@@ -1,0 +1,233 @@
+---
+###################################
+#
+# Configuration file for pastclim and CircleCI
+#
+# It uses the docker built by https://github.com/EvolEcolGroup/EEG_Docker and available on docker.com:
+# https://hub.docker.com/repository/docker/manicaeeg/eeg-docker
+#
+# - All test can be set to run only on the default branch and open pull request (PR) 
+#    via the CircleCI website > Go the the repo settings (gear icon) >> Advanced Settings
+# - If "run only on PR" is set:
+#    - Commit on any branch (excluding default and open PR) do trigger job to "NOT RUN" (but are logged).
+#    - As soon as any PR is open the "devtools-and-vignette" job is executed.
+#    - If the test passes, the status "ci/circleci: devtools-and-vignette" is sent to GitHub
+#      and the PR merge is possible.
+#    - After a branch is merged on master, dev or redesigned, "all-tests" job is run.
+#      It includes vignettes and codecov
+#
+# - If mandatory GitHub status are set (via GitHub repo settings), these are the status that need to be selected:
+#   - in dev/redesigned:    "ci/circleci: devtools-and-vignette"
+#   [- in master: "ci/circleci: pr-dev-to-master" - Not yet implemented]
+#   (Any pull request need to pass these status check in order to be merged from any 
+#   branch to dev/redesigned and from dev to master.)
+#
+# - [Not yet implemented: Pull request directly to master will fail the "pr-dev-to-master" and
+#   therefore will not get the approval for the merge.]
+#
+###################################
+version: 2.1
+
+executors:
+  use-eeg-docker: 
+    docker:          
+      - image: manicaeeg/eeg-docker:latest 
+    environment:
+      - R_LIBS:  /root/project/ci_dependencies     # Use this folder to cache r-packages
+      - R_LIBS_USER: /root/project/ci_dependencies # Use this folder to cache r-packages
+  # - run: echo 'export R_LIBS=./ci_dependencies' >> $BASH_ENV # Alternative shell command
+
+# Future improvement: test from a clean environment - you can ignore them now
+#   use-docker-ubuntu:
+#     docker:
+#       - image: ubuntu:latest  # latest LTS (18.04 or 20.04)
+#       # - image: ubuntu:18.04 # it is faster, might not have sudo and other base packages
+
+references:
+
+  # Decomment for using persistent workspace. Tested and working (with "Open PR only" option).
+  #
+  # attach_workspace: &attach_workspace
+  #   attach_workspace:
+  #     at: ~/
+  #     # at: *workspace_root
+
+  # persist_workspace: &persist_workspace
+  #   persist_to_workspace:
+  #     root: ~/
+  #     paths: project/
+
+# Cache-related references. To flush cache, simply rename the cache key (e.g. change the version number)
+  create_dir_cache_key: &create_dir_cache_key
+    run:
+      name: Create md5sum for ci_dependencies directory
+      command: |
+        mkdir -p ci_dependencies
+        ls -laR ci_dependencies > deps_checksum
+
+  save_cache_ci_dependencies: &save_cache_ci_dependencies
+    save_cache:
+     #key: cache-v1-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
+      key: cache-v1-{{ .Branch }}-{{ checksum "deps_checksum" }}
+      paths:
+        - /root/project/ci_dependencies
+
+  restore_cache_ci_dependencies: &restore_cache_ci_dependencies
+    restore_cache:
+      keys:
+      # - cache-v1-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
+        - cache-v1-{{ .Branch }}-{{ checksum "deps_checksum" }}
+        - cache-v1-{{ .Branch }}  # Fallback if not found
+        - cache-v1                # Fallback if not found    
+
+# References for installing dependencies 
+  install-apt-deps: &install-apt-deps # Needed for the vignettes
+    run:
+      name: Updating apt packages
+      command: |
+        apt-get update
+        apt-get install -y qpdf pandoc pandoc-citeproc devscripts -qq --no-install-recommends
+        apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev
+        
+  install-devtools-deps: &install-devtools-deps
+    run:
+      name: Create 'ci_dependencies' folder and install devtools dependencies
+      command: |
+        apt-get update
+        apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev
+        mkdir -p ci_dependencies
+        Rscript -e 'install.packages("pkgdown",repos = "https://cloud.r-project.org/")'
+        Rscript -e 'devtools::install_deps(dependencies = TRUE)'
+
+#Devtools and code coverage references
+  devtools-check-no-vignettes: &devtools-check-no-vignettes
+    run: Rscript -e 'devtools::check(vignettes = FALSE)'
+
+  devtools-check: &devtools-check
+    run: Rscript -e 'devtools::check()'
+
+  code-cov: &code-cov
+    run: Rscript -e 'library(covr); codecov(type="all")'
+    
+###################################
+jobs:  
+  
+  # manual-devtools-check: # for new test branches: No vignettes and NO codecov
+  #   executor: use-eeg-docker # Use the EEG docker
+  #   steps:
+  #     - checkout  # pulls Git repository to the working directory
+  #     - *create_dir_cache_key
+  #     - *restore_cache_ci_dependencies
+  #   # - *attach_workspace
+  
+  #     - *install-devtools-deps
+      
+  #     - *create_dir_cache_key
+  #     - *save_cache_ci_dependencies
+  #     - run: rm deps_checksum  # Delete the temp file with the dir checksum
+
+  #     - *devtools-check-no-vignettes
+
+  # manual-vignette-codecov: # Include vignettes and codecov
+  #   executor: use-eeg-docker 
+  #   steps:
+  #     - checkout  # pulls Git repository to the working directory
+  #     - *create_dir_cache_key
+  #     - *restore_cache_ci_dependencies
+      
+  #     - *install-apt-deps # Needed for the vignettes
+  #     - *install-devtools-deps
+      
+  #     - *create_dir_cache_key
+  #     - *save_cache_ci_dependencies
+  #     - run: rm deps_checksum  # Delete the temp file with the dir checksum
+      
+  #     - *devtools-check # (includes vignettes)
+  #     - *code-cov
+      
+  devtools-and-vignette: # for new test branches: with vignettes but NO codecov
+    executor: use-eeg-docker # Use the EEG docker
+    steps:
+      - checkout  # pulls Git repository to the working directory
+      - *create_dir_cache_key
+      - *restore_cache_ci_dependencies
+       
+      - *install-apt-deps
+      - *install-devtools-deps
+      
+      - *create_dir_cache_key
+      - *save_cache_ci_dependencies
+      - run: rm deps_checksum  # Delete the temp file with the dir checksum
+
+      - *devtools-check # (includes vignettes)
+
+      #- *devtools-check-no-vignettes
+      # - *persist_workspace
+
+  all-tests: # Deeper tests (include vignettes and codecov)
+    executor: use-eeg-docker # Use the EEG docker
+    steps:
+      - checkout  # pulls Git repository to the working directory
+      - *create_dir_cache_key
+      - *restore_cache_ci_dependencies
+      # - *attach_workspace
+
+      - *install-devtools-deps
+      
+      - *create_dir_cache_key
+      - *save_cache_ci_dependencies
+      - run: rm deps_checksum  # Delete the temp file with the dir checksum
+      
+      - *devtools-check # (includes vignettes)
+      - *code-cov   
+
+
+###################################
+# Future improvements for differentiated checks - they can be ignored now
+#
+  # Ubuntu LTS for dev branch
+  # pr-dev-to-master:
+  #   executor: use-docker-ubuntu  # Use the Ubuntu docker
+  #   steps: #   Write steps here, eg: 
+  #     - run: cat /etc/*-release  # Echo Linux version
+
+  # # Ubuntu LTS for master branch
+  # after-master-merge:
+  #   executor: use-docker-ubuntu  # Use the Ubuntu docker
+  #   steps: #   Write steps here, eg: 
+  #     - run: cat /etc/*-release  # Echo Linux version
+
+###################################
+
+workflows:
+  version: 2.1
+  pastclim-ci: # The workflow name shown in circleci interface
+    jobs:
+      #- manual-devtools-check:
+      #    type: approval # requires manual confirmation (on the CircleCI website) to run
+      #- manual-vignette-codecov:
+      #    type: approval # requires manual confirmation (on the CircleCI website) to run
+      
+      - devtools-and-vignette: # execute on all open PR on selected branches (but not on ignored branches)
+          filters:
+            branches:
+              ignore: [master, dev]
+
+      - all-tests:
+          filters:
+            branches:     
+              only: [master, dev]
+      
+  
+
+      # Future improvements for differentiated checks - they can be ignored now
+      # Job performed only on PR [dev and redesign]  
+      # - pr-dev-to-master:  # Test with Ubuntu LTS for PR dev > master
+      #     filters:
+      #       branches: {only: [dev, redesign]}
+
+      # - after-master-merge:  # After a PR has been merged on master
+      #     filters:
+      #       branches:
+      #         only: master
+...

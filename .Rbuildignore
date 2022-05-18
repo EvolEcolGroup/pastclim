@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+ci_dependencies
+.circleci
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
