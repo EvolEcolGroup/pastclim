@@ -3,7 +3,7 @@ title: "pastclim overview"
 # output: rmarkdown::pdf_document
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{pastclim_overview}
+  %\VignetteIndexEntry{pastclim overview}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
