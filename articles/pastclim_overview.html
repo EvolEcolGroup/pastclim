@@ -397,13 +397,13 @@
                                       dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span>
-<span class="co">#&gt;     cell      x      y       bio01     bio10</span>
-<span class="co">#&gt; 1 160067 -66.75 -21.25   4.9262977  7.840648</span>
-<span class="co">#&gt; 2  88919  -0.75  28.25  19.2792110 28.895376</span>
-<span class="co">#&gt; 3  43004  81.75  60.25 -13.3509140 11.130406</span>
-<span class="co">#&gt; 4 162632 135.75 -22.75  19.1958447 25.333883</span>
-<span class="co">#&gt; 5  53655   7.25  52.75  -0.5266353  9.893217</span>
-<span class="co">#&gt; 6 109951  75.25  13.75  22.1673565 24.787848</span></code></pre></div>
+<span class="co">#&gt;     cell      x      y     bio01    bio10</span>
+<span class="co">#&gt; 1 172694 126.75 -29.75 15.996573 22.51374</span>
+<span class="co">#&gt; 2  97661  50.25  22.25 21.708418 28.99555</span>
+<span class="co">#&gt; 3  65933  26.25  44.25  6.134737 16.30345</span>
+<span class="co">#&gt; 4 122246 102.75   5.25 21.812836 23.11625</span>
+<span class="co">#&gt; 5  95630 114.75  23.75 17.211203 24.37206</span>
+<span class="co">#&gt; 6 118285 -77.75   7.75 21.863672 22.90678</span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>
@@ -413,12 +413,12 @@
             dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
 <span class="co">#&gt;   longitude latitude time_bp      bio12</span>
-<span class="co">#&gt; 1    -66.75   -21.25  -20000  235.95547</span>
-<span class="co">#&gt; 2     -0.75    28.25  -20000   10.53946</span>
-<span class="co">#&gt; 3     81.75    60.25  -20000  292.55222</span>
-<span class="co">#&gt; 4    135.75   -22.75  -20000  179.19412</span>
-<span class="co">#&gt; 5      7.25    52.75  -20000  564.32581</span>
-<span class="co">#&gt; 6     75.25    13.75  -20000 1221.32556</span></code></pre></div>
+<span class="co">#&gt; 1    126.75   -29.75  -20000   63.48896</span>
+<span class="co">#&gt; 2     50.25    22.25  -20000   44.47391</span>
+<span class="co">#&gt; 3     26.25    44.25  -20000  593.26306</span>
+<span class="co">#&gt; 4    102.75     5.25  -20000 2465.22681</span>
+<span class="co">#&gt; 5    114.75    23.75  -20000 1358.77417</span>
+<span class="co">#&gt; 6    -77.75     7.75  -20000 2649.78857</span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,
@@ -427,12 +427,12 @@
            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
 <span class="co">#&gt;   cell_number time_bp      bio12</span>
-<span class="co">#&gt; 1      160067  -20000  235.95547</span>
-<span class="co">#&gt; 2       88919  -20000   10.53946</span>
-<span class="co">#&gt; 3       43004  -20000  292.55222</span>
-<span class="co">#&gt; 4      162632  -20000  179.19412</span>
-<span class="co">#&gt; 5       53655  -20000  564.32581</span>
-<span class="co">#&gt; 6      109951  -20000 1221.32556</span></code></pre></div>
+<span class="co">#&gt; 1      172694  -20000   63.48896</span>
+<span class="co">#&gt; 2       97661  -20000   44.47391</span>
+<span class="co">#&gt; 3       65933  -20000  593.26306</span>
+<span class="co">#&gt; 4      122246  -20000 2465.22681</span>
+<span class="co">#&gt; 5       95630  -20000 1358.77417</span>
+<span class="co">#&gt; 6      118285  -20000 2649.78857</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
