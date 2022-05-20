@@ -1,4 +1,4 @@
-# pastclim <img src="./man/figures/pastclim_logo.png" align="right" alt="" width="150" />
+# pastclim <img src="./man/figures/logo.png" align="right" alt="" width="150" />
 
 <!-- badges: start -->
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master)
