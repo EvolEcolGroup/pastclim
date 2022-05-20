@@ -7,12 +7,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="pastclim">
 <title>pastclim overview • pastclim</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="pastclim overview">
 <meta property="og:description" content="pastclim">
+<meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -67,7 +74,7 @@
 
 <script src="pastclim_overview_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>pastclim overview</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>pastclim overview</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/HEAD/vignettes/pastclim_overview.Rmd" class="external-link"><code>vignettes/pastclim_overview.Rmd</code></a></small>
@@ -397,13 +404,13 @@
                                       dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span>
-<span class="co">#&gt;     cell      x      y     bio01    bio10</span>
-<span class="co">#&gt; 1 172694 126.75 -29.75 15.996573 22.51374</span>
-<span class="co">#&gt; 2  97661  50.25  22.25 21.708418 28.99555</span>
-<span class="co">#&gt; 3  65933  26.25  44.25  6.134737 16.30345</span>
-<span class="co">#&gt; 4 122246 102.75   5.25 21.812836 23.11625</span>
-<span class="co">#&gt; 5  95630 114.75  23.75 17.211203 24.37206</span>
-<span class="co">#&gt; 6 118285 -77.75   7.75 21.863672 22.90678</span></code></pre></div>
+<span class="co">#&gt;    cell       x     y      bio01      bio10</span>
+<span class="co">#&gt; 1 91598 -101.25 26.25  14.765033 21.6648865</span>
+<span class="co">#&gt; 2 34491  145.25 66.25 -26.909006  1.0283663</span>
+<span class="co">#&gt; 3 63736    7.75 45.75  -3.507627  1.8984982</span>
+<span class="co">#&gt; 4 29526 -177.25 69.25 -25.617529 -0.2018768</span>
+<span class="co">#&gt; 5 42962   60.75 60.25 -11.669735 10.8188086</span>
+<span class="co">#&gt; 6 61603   21.25 47.25   4.289180 13.2025871</span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>
@@ -412,13 +419,13 @@
             bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
             dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   longitude latitude time_bp      bio12</span>
-<span class="co">#&gt; 1    126.75   -29.75  -20000   63.48896</span>
-<span class="co">#&gt; 2     50.25    22.25  -20000   44.47391</span>
-<span class="co">#&gt; 3     26.25    44.25  -20000  593.26306</span>
-<span class="co">#&gt; 4    102.75     5.25  -20000 2465.22681</span>
-<span class="co">#&gt; 5    114.75    23.75  -20000 1358.77417</span>
-<span class="co">#&gt; 6    -77.75     7.75  -20000 2649.78857</span></code></pre></div>
+<span class="co">#&gt;   longitude latitude time_bp     bio12</span>
+<span class="co">#&gt; 1   -101.25    26.25  -20000  227.5071</span>
+<span class="co">#&gt; 2    145.25    66.25  -20000  145.6565</span>
+<span class="co">#&gt; 3      7.75    45.75  -20000 2248.2300</span>
+<span class="co">#&gt; 4   -177.25    69.25  -20000  237.8406</span>
+<span class="co">#&gt; 5     60.75    60.25  -20000  385.3750</span>
+<span class="co">#&gt; 6     21.25    47.25  -20000  648.1831</span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,
@@ -426,13 +433,13 @@
            bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   cell_number time_bp      bio12</span>
-<span class="co">#&gt; 1      172694  -20000   63.48896</span>
-<span class="co">#&gt; 2       97661  -20000   44.47391</span>
-<span class="co">#&gt; 3       65933  -20000  593.26306</span>
-<span class="co">#&gt; 4      122246  -20000 2465.22681</span>
-<span class="co">#&gt; 5       95630  -20000 1358.77417</span>
-<span class="co">#&gt; 6      118285  -20000 2649.78857</span></code></pre></div>
+<span class="co">#&gt;   cell_number time_bp     bio12</span>
+<span class="co">#&gt; 1       91598  -20000  227.5071</span>
+<span class="co">#&gt; 2       34491  -20000  145.6565</span>
+<span class="co">#&gt; 3       63736  -20000 2248.2300</span>
+<span class="co">#&gt; 4       29526  -20000  237.8406</span>
+<span class="co">#&gt; 5       42962  -20000  385.3750</span>
+<span class="co">#&gt; 6       61603  -20000  648.1831</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
