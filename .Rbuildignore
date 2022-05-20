@@ -6,3 +6,4 @@ ci_dependencies
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^\.github$

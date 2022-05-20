@@ -9,7 +9,8 @@ This library is designed to provide an easy way to extract and manipulate paleoc
 reconstructions for ecological and anthropological analyses. It currently focuses
 on data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years.
-The reconstructions are bias-corrected and downscaled to 0.5 degree.
+The reconstructions are bias-corrected and downscaled to 0.5 degree. A paper
+describing the functionality of `pastclim` can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1).
 
 ## Install the library
 
@@ -21,7 +22,7 @@ devtools::install_github("EvolEcolGroup/pastclim")
 ```
 
 There is a vignette with detailed step by step examples on how to use the library. You can
-find it on the website for the package. Or, if when can build it when installing
+find it in the [article section of the `pastclim` website](https://evolecolgroup.github.io/pastclim/articles/pastclim_overview.html). Or, you can build it when installing
 `pastclim` :
 ```
 devtools::install_github("EvolEcolGroup/pastclim", build_vignette = TRUE)

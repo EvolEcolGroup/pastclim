@@ -11,7 +11,8 @@ Description: Currently this package focuses on Beyer et al 2020, a reconstructio
     are bias-corrected and downscaled to 0.5 degree, and this package helps using
     these data for ecological and archaeological studies.
 License: CC BY 4.0
-URL: https://github.com/EvolEcolGroup/pastclim
+URL: https://github.com/EvolEcolGroup/pastclim,
+    https://evolecolgroup.github.io/pastclim/
 BugReports: https://github.com/EvolEcolGroup/pastclim/issues
 Encoding: UTF-8
 LazyData: true
