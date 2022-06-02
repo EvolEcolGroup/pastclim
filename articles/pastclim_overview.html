@@ -404,13 +404,13 @@
                                       dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span>
-<span class="co">#&gt;     cell      x      y     bio01    bio10</span>
-<span class="co">#&gt; 1 142069 -65.75  -8.75 22.642614 23.68013</span>
-<span class="co">#&gt; 2 110724 101.75  13.25 23.961096 25.95718</span>
-<span class="co">#&gt; 3 160445 122.25 -21.25 21.927588 28.25985</span>
-<span class="co">#&gt; 4  45092  45.75  58.75 -8.368093 11.94273</span>
-<span class="co">#&gt; 5  65974  46.75  44.25  5.570333 17.57733</span>
-<span class="co">#&gt; 6 104011 -14.75  17.75 23.437035 27.67053</span></code></pre></div>
+<span class="co">#&gt;     cell      x     y      bio01     bio10</span>
+<span class="co">#&gt; 1 143712  35.75 -9.75  18.582243 20.145868</span>
+<span class="co">#&gt; 2 135757  18.25 -4.25  21.511459 22.322388</span>
+<span class="co">#&gt; 3  52516 157.75 53.75  -8.844231  3.286693</span>
+<span class="co">#&gt; 4  28008 143.75 70.75 -25.303133  5.980192</span>
+<span class="co">#&gt; 5  60335 107.25 48.25 -11.743439  6.924706</span>
+<span class="co">#&gt; 6 113417   8.25 11.25  21.346640 25.050423</span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>
@@ -419,13 +419,13 @@
             bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
             dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   longitude latitude time_bp     bio12</span>
-<span class="co">#&gt; 1    -65.75    -8.75  -20000 1770.1633</span>
-<span class="co">#&gt; 2    101.75    13.25  -20000 1396.6460</span>
-<span class="co">#&gt; 3    122.25   -21.25  -20000  169.5276</span>
-<span class="co">#&gt; 4     45.75    58.75  -20000  391.1953</span>
-<span class="co">#&gt; 5     46.75    44.25  -20000  316.3296</span>
-<span class="co">#&gt; 6    -14.75    17.75  -20000  182.1868</span></code></pre></div>
+<span class="co">#&gt;   longitude latitude time_bp      bio12</span>
+<span class="co">#&gt; 1     35.75    -9.75  -20000 1654.77026</span>
+<span class="co">#&gt; 2     18.25    -4.25  -20000 1607.60278</span>
+<span class="co">#&gt; 3    157.75    53.75  -20000  494.77484</span>
+<span class="co">#&gt; 4    143.75    70.75  -20000   45.47204</span>
+<span class="co">#&gt; 5    107.25    48.25  -20000  324.43683</span>
+<span class="co">#&gt; 6      8.25    11.25  -20000  846.59540</span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,
@@ -433,13 +433,13 @@
            bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   cell_number time_bp     bio12</span>
-<span class="co">#&gt; 1      142069  -20000 1770.1633</span>
-<span class="co">#&gt; 2      110724  -20000 1396.6460</span>
-<span class="co">#&gt; 3      160445  -20000  169.5276</span>
-<span class="co">#&gt; 4       45092  -20000  391.1953</span>
-<span class="co">#&gt; 5       65974  -20000  316.3296</span>
-<span class="co">#&gt; 6      104011  -20000  182.1868</span></code></pre></div>
+<span class="co">#&gt;   cell_number time_bp      bio12</span>
+<span class="co">#&gt; 1      143712  -20000 1654.77026</span>
+<span class="co">#&gt; 2      135757  -20000 1607.60278</span>
+<span class="co">#&gt; 3       52516  -20000  494.77484</span>
+<span class="co">#&gt; 4       28008  -20000   45.47204</span>
+<span class="co">#&gt; 5       60335  -20000  324.43683</span>
+<span class="co">#&gt; 6      113417  -20000  846.59540</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
