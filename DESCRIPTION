@@ -2,7 +2,7 @@ Package: pastclim
 Type: Package
 Title: This package provides helper functions to interact with timeseries of worldwide climate
     reconstructions
-Version: 0.9.0
+Version: 1.0.0
 Author: Andrea Manica
 Maintainer: Andrea Manica <am315@cam.ac.uk>
 Description: Currently this package focuses on Beyer et al 2020, a reconstruction
