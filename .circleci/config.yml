@@ -67,18 +67,18 @@ references:
 
   save_cache_ci_dependencies: &save_cache_ci_dependencies
     save_cache:
-     #key: cache-v1-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
-      key: cache-v1-{{ .Branch }}-{{ checksum "deps_checksum" }}
+     #key: cache-v2-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
+      key: cache-v2-{{ .Branch }}-{{ checksum "deps_checksum" }}
       paths:
         - /root/project/ci_dependencies
 
   restore_cache_ci_dependencies: &restore_cache_ci_dependencies
     restore_cache:
       keys:
-      # - cache-v1-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
-        - cache-v1-{{ .Branch }}-{{ checksum "deps_checksum" }}
-        - cache-v1-{{ .Branch }}  # Fallback if not found
-        - cache-v1                # Fallback if not found    
+      # - cache-v2-{{ .Branch }}-{{ checksum "CACHE_KEY1" }} # General syntax
+        - cache-v2-{{ .Branch }}-{{ checksum "deps_checksum" }}
+        - cache-v2-{{ .Branch }}  # Fallback if not found
+        - cache-v2                # Fallback if not found    
 
 # References for installing dependencies 
   install-apt-deps: &install-apt-deps # Needed for the vignettes
