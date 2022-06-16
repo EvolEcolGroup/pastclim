@@ -3,7 +3,14 @@ Type: Package
 Title: This package provides helper functions to interact with timeseries of worldwide climate
     reconstructions
 Version: 1.0.0
-Author: Andrea Manica
+Authors@R: c(
+       person("Michela", "Leonardi", role = "aut"),
+       person(c("Emily","Y."), "Hallet", role = "ctb"),
+       person("Robert", "Beyer", role = "ctb"),
+       person("Mario", "Krapp", role = "ctb"),
+       person("Andrea", "Manica", role = c("aut","cre"),
+         email = "am315@cam.ac.uk")
+     )
 Maintainer: Andrea Manica <am315@cam.ac.uk>
 Description: Currently this package focuses on Beyer et al 2020, a reconstruction
     of climate based on the HadCM3 model for the last 120k years, and Krapp et al 

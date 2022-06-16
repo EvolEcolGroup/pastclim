@@ -1,0 +1,18 @@
+citHeader("To cite pastclim in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "pastclim: an R package to easily access and use paleoclimatic reconstructions",
+  author   = c(
+	   person("Michela", "Leonardi", role = "aut"),
+	   person(c("Emily","Y."), "Hallet", role = "ctb"),
+	   person("Robert", "Beyer", role = "ctb"),
+	   person("Mario", "Krapp", role = "ctb"),
+	   person("Andrea", "Manica", role = c("aut","cre"),
+         email = "am315@cam.ac.uk")
+     ),
+  journal  = "bioRxiv",
+  year     = "2022",
+  url      = "https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1",
+  textVersion = "Leonardi M, Hallet EY, Beyer R, Krapp M, Manica A (2022). “pastclim: an R package to easily access and use paleoclimatic reconstructions.” bioRxiv. <URL: https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1>."
+)
