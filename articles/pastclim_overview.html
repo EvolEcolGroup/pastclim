@@ -73,7 +73,7 @@
 
 
 <script src="pastclim_overview_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>pastclim overview</h1>
             
       
@@ -212,7 +212,7 @@
 <p>We can get a summary of this object:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span>
-<span class="co">#&gt; terra 1.5.21</span>
+<span class="co">#&gt; terra 1.5.34</span>
 <span class="va">climate_20k</span>
 <span class="co">#&gt; class       : SpatRaster </span>
 <span class="co">#&gt; dimensions  : 300, 720, 3  (nrow, ncol, nlyr)</span>
@@ -404,13 +404,13 @@
                                       dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span>
-<span class="co">#&gt;     cell      x     y      bio01     bio10</span>
-<span class="co">#&gt; 1 143712  35.75 -9.75  18.582243 20.145868</span>
-<span class="co">#&gt; 2 135757  18.25 -4.25  21.511459 22.322388</span>
-<span class="co">#&gt; 3  52516 157.75 53.75  -8.844231  3.286693</span>
-<span class="co">#&gt; 4  28008 143.75 70.75 -25.303133  5.980192</span>
-<span class="co">#&gt; 5  60335 107.25 48.25 -11.743439  6.924706</span>
-<span class="co">#&gt; 6 113417   8.25 11.25  21.346640 25.050423</span></code></pre></div>
+<span class="co">#&gt;     cell      x      y      bio01    bio10</span>
+<span class="co">#&gt; 1 164080 139.75 -23.75  20.261000 27.07437</span>
+<span class="co">#&gt; 2 135283 141.25  -3.75  23.749817 24.17443</span>
+<span class="co">#&gt; 3  58093  66.25  49.75  -4.093619 14.89208</span>
+<span class="co">#&gt; 4 135797  38.25  -4.25  19.147038 20.81510</span>
+<span class="co">#&gt; 5  35173 126.25  65.75 -21.871048  9.02999</span>
+<span class="co">#&gt; 6 145687 -56.75 -11.25  20.458406 21.36190</span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>
@@ -420,12 +420,12 @@
             dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
 <span class="co">#&gt;   longitude latitude time_bp      bio12</span>
-<span class="co">#&gt; 1     35.75    -9.75  -20000 1654.77026</span>
-<span class="co">#&gt; 2     18.25    -4.25  -20000 1607.60278</span>
-<span class="co">#&gt; 3    157.75    53.75  -20000  494.77484</span>
-<span class="co">#&gt; 4    143.75    70.75  -20000   45.47204</span>
-<span class="co">#&gt; 5    107.25    48.25  -20000  324.43683</span>
-<span class="co">#&gt; 6      8.25    11.25  -20000  846.59540</span></code></pre></div>
+<span class="co">#&gt; 1    139.75   -23.75  -20000  145.39200</span>
+<span class="co">#&gt; 2    141.25    -3.75  -20000 2416.05176</span>
+<span class="co">#&gt; 3     66.25    49.75  -20000  209.76231</span>
+<span class="co">#&gt; 4     38.25    -4.25  -20000 1019.84778</span>
+<span class="co">#&gt; 5    126.25    65.75  -20000   50.13695</span>
+<span class="co">#&gt; 6    -56.75   -11.25  -20000 2114.42017</span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,
@@ -434,12 +434,12 @@
            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
 <span class="co">#&gt;   cell_number time_bp      bio12</span>
-<span class="co">#&gt; 1      143712  -20000 1654.77026</span>
-<span class="co">#&gt; 2      135757  -20000 1607.60278</span>
-<span class="co">#&gt; 3       52516  -20000  494.77484</span>
-<span class="co">#&gt; 4       28008  -20000   45.47204</span>
-<span class="co">#&gt; 5       60335  -20000  324.43683</span>
-<span class="co">#&gt; 6      113417  -20000  846.59540</span></code></pre></div>
+<span class="co">#&gt; 1      164080  -20000  145.39200</span>
+<span class="co">#&gt; 2      135283  -20000 2416.05176</span>
+<span class="co">#&gt; 3       58093  -20000  209.76231</span>
+<span class="co">#&gt; 4      135797  -20000 1019.84778</span>
+<span class="co">#&gt; 5       35173  -20000   50.13695</span>
+<span class="co">#&gt; 6      145687  -20000 2114.42017</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -449,12 +449,12 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Andrea Manica.</p>
+<p>Developed by Michela Leonardi, Andrea Manica.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>
