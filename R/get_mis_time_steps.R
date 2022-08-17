@@ -19,13 +19,13 @@ get_mis_time_steps <- function(mis, dataset, path_to_nc = NULL) {
 
   if (is.null(path_to_nc)) {
     path_to_nc <- get_pastclimdata_path()
+    # we get the first available file to get info for the dataset
+    possible_vars <- get_vars_for_dataset(dataset)
+    this_file <- get_file_for_dataset(possible_vars[1], dataset)$file_name
+    path_to_nc <- file.path(path_to_nc, this_file)
   }
-  # we get the first available file to get info for the dataset
-  possible_vars <- get_vars_for_dataset(dataset)
-  this_file <- get_file_for_dataset(possible_vars[1], dataset)$file_name
-  this_file <- file.path(path_to_nc, this_file)
 
-  climate_nc <- ncdf4::nc_open(this_file)
+  climate_nc <- ncdf4::nc_open(path_to_nc)
   time_steps <- (climate_nc$dim$time$vals)
   ncdf4::nc_close(climate_nc)
   mis_time_steps <- time_steps[time_steps > (mis_boundaries[mis_boundaries$mis
