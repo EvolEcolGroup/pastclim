@@ -9,7 +9,8 @@ check_var_in_nc(bio_variables, path_to_nc)
 \arguments{
 \item{bio_variables}{vector of names of variables to be extracted}
 
-\item{path_to_nc}{the path to the file that contains the downloaded resonstructions.}
+\item{path_to_nc}{the path to the file that contains the downloaded
+resonstructions.}
 }
 \description{
 Internal function to test a custom nc file.

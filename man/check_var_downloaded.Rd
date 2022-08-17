@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_downloaded_datasets.R
 \name{check_var_downloaded}
 \alias{check_var_downloaded}
-\title{Internal functions to check whether we have downloaded a given variable for a dataset}
+\title{Internal functions to check whether we have downloaded a given variable
+for a dataset}
 \usage{
 check_var_downloaded(variable, dataset, path_to_nc = NULL)
 }
@@ -14,6 +15,7 @@ check_var_downloaded(variable, dataset, path_to_nc = NULL)
 \item{path_to_nc}{path to the netcdf datasets}
 }
 \description{
-Internal functions to check whether we have downloaded a given variable for a dataset
+Internal functions to check whether we have downloaded a given variable
+for a dataset
 }
 \keyword{internal}

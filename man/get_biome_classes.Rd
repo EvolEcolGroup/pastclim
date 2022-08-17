@@ -8,10 +8,11 @@ get_biome_classes(dataset, path_to_nc = NULL)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer2020" or "Krapp2021" are available)}
+"Beyer2020", "Krapp2021" or "Example" are available)}
 
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{path_to_nc}{the path to the directory containing the downloaded
+reconstructions. Leave it unset if you are using the companion
+`pastclimData` to store datasets.}
 }
 \description{
 Get a full list of biomes and how their id as coded in the biome variable

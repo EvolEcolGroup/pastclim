@@ -15,6 +15,7 @@ region_outline_union
 }
 \description{
 An \code{sf} object containing outlines for major regions. Each outline is
-represented as a single polygon. If you want multiple polygons, use \link{region_outline}.
+represented as a single polygon. If you want multiple polygons, use
+\link{region_outline}.
 }
 \keyword{datasets}

@@ -10,11 +10,12 @@ get_ice_mask(time_bp, dataset, path_to_nc = NULL)
 \item{time_bp}{time slice in years before present (negative)}
 
 \item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer2020" or "Krapp2021" are available). Note that this function will not work
-on an custom dataset.}
+"Beyer2020" or "Krapp2021" are available). Note that this function will
+not work on an custom dataset.}
 
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{path_to_nc}{the path to the directory containing the downloaded
+reconstructions. Leave it unset if you are using the companion
+`pastclimData` to store datasets.}
 }
 \description{
 Get the ice mask for a dataset at a given timepoint.

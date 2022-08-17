@@ -13,8 +13,9 @@ climate_for_time_slice(time_bp, bio_variables, dataset, path_to_nc = NULL)
 
 \item{dataset}{string defining the dataset to use}
 
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{path_to_nc}{the path to the directory containing the downloaded
+reconstructions. Leave it unset if you are using the companion `pastclimData`
+to store datasets.}
 }
 \description{
 This function extracts a raster brick for a given time slice.

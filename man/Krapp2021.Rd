@@ -10,18 +10,18 @@ This dataset covers the last 800k years, at intervals of 1k years.
 This dataset can be downloaded with \code{\link{download_dataset}}. The
 files can be found at
 
-Manica, Andrea (2022): pastclim_krapp2021_v1.0.0. figshare. Dataset. 
-\url{https://doi.org/10.6084/m9.figshare.19733680.v1} 
- 
+Manica, Andrea (2022): pastclim_krapp2021_v1.0.0. figshare. Dataset.
+\url{https://doi.org/10.6084/m9.figshare.19733680.v1}
+
 based on
 
-Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based 
-reconstruction of high-resolution global terrestrial climate for the last 
-800,000 years. Sci Data 8, 228 (2021). 
+Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
+reconstruction of high-resolution global terrestrial climate for the last
+800,000 years. Sci Data 8, 228 (2021).
 \url{https://doi.org/10.1038/s41597-021-01009-3}
 
 The version included in `pastclim` has the icesheets masked.
 
-Note that, for bio15, we use the corrected version, which follows 
+Note that, for bio15, we use the corrected version, which follows
 \url{https://pubs.usgs.gov/ds/691/ds691.pdf}
 }

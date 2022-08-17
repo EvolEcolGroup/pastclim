@@ -21,16 +21,19 @@ climate_for_locations(
 
 \item{bio_variables}{vector of names of variables to be extracted.}
 
-\item{dataset}{string defining the dataset to use (one of Beyer2020, Krapp2021 or custom).}
+\item{dataset}{string defining the dataset to use (one of Beyer2020,
+Krapp2021 or custom).}
 
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{path_to_nc}{the path to the directory containing the downloaded
+reconstructions.
+Leave it unset if you are using the companion `pastclimData` to store
+datasets.}
 
-\item{nn_interpol}{boolean determining whether nearest neighbour interpolation is
-used to estimate climate for cells that lack such information (i.e. they are
-under water or ice). Interpolation is only performed from the first ring of
-nearest neighbours; if climate is not available, NA will be returned for
-that location. Defaults to TRUE.}
+\item{nn_interpol}{boolean determining whether nearest neighbour
+interpolation is used to estimate climate for cells that lack such
+information (i.e. they are under water or ice). Interpolation is only
+performed from the first ring of nearest neighbours; if climate is not
+available, NA will be returned for that location. Defaults to TRUE.}
 }
 \description{
 This function extract local climate from Beyer et al for a set of locations

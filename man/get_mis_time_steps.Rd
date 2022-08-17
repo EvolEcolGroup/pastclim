@@ -4,7 +4,7 @@
 \alias{get_mis_time_steps}
 \title{Get time steps for a given MIS}
 \usage{
-get_mis_time_steps(mis, dataset, path_to_nc = NULL)
+get_mis_time_steps(mis, dataset = NULL, path_to_nc = NULL)
 }
 \arguments{
 \item{mis}{string giving the mis; it must use the same spelling as used in
@@ -13,8 +13,9 @@ get_mis_time_steps(mis, dataset, path_to_nc = NULL)
 \item{dataset}{string defining dataset to be downloaded (currently only
 "Beyer2020" or "Krapp2021" are available)}
 
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{path_to_nc}{the path to the directory containing the downloaded
+reconstructions. Leave it unset if you are using the companion
+`pastclimData` to store datasets.}
 }
 \description{
 Get the time steps available in a given dataset for a MIS.
