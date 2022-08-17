@@ -3,7 +3,7 @@ delta_compute <- function(x_modern, high_res) {
 
   # check that it is compatible with the x_modern
 
-  # disaggregate the x_modern SpatRaster to the resolution of 
+  # disaggregate the x_modern SpatRaster to the resolution of
   # the high res with "near"
 
   # compute anomalies against the modern
