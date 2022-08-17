@@ -1,10 +1,11 @@
-#' Convert a time BP to indeces in a netcdf file.
+#' Convert a time BP to indexes in a netcdf file.
 #'
 #' Internal function
 #'
 #' @param time_bp vector of times BP
 #' @param path_to_nc path to nc file
 #'
+#' @keywords internal
 
 time_bp_to_index <- function(time_bp, path_to_nc) {
   climate_nc <- ncdf4::nc_open(path_to_nc)
