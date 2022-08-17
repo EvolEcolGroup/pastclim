@@ -8,7 +8,7 @@
 
 get_downloaded_datasets <- function(path_to_nc = NULL) {
   if (is.null(path_to_nc)) {
-    path_to_nc <- get_pastclimdata_path()
+    path_to_nc <- get_data_path()
   }
   all_nc_files <- list.files(path_to_nc)
   files_subset <- files_by_dataset[files_by_dataset$file_name %in%

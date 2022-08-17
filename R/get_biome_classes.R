@@ -13,7 +13,7 @@
 
 get_biome_classes <- function(dataset, path_to_nc = NULL) {
   if (is.null(path_to_nc)) {
-    path_to_nc <- get_pastclimdata_path()
+    path_to_nc <- get_data_path()
   }
   # test that we ahve the biome variable
   check_var_downloaded("biome", dataset, path_to_nc = path_to_nc)

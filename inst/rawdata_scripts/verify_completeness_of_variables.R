@@ -1,7 +1,7 @@
 # this script check that we have values for the same cells across all variables
 dataset <- "Krapp2021"
 library(pastclim)
-this_path <- pastclim::get_pastclimdata_path()
+this_path <- pastclim::get_data_path()
 vars_for_dataset <- pastclim:::get_file_for_dataset(
   get_vars_for_dataset(dataset), dataset)
 

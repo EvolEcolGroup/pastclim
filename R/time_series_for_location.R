@@ -27,7 +27,7 @@ time_series_for_locations <-
     }
 
     if (is.null(path_to_nc)) {
-      path_to_nc <- get_pastclimdata_path()
+      path_to_nc <- get_data_path()
     }
 
     # reorder the inputs by time

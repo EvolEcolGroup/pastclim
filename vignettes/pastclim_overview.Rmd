@@ -34,9 +34,6 @@ And read it directly in R with:
 ```{r vignette, eval=FALSE}
 vignette("pastclim_overview",package="pastclim")
 ```
-The vignette also provides instructions on how to install the optional
-companion package `pastclimData`, which simplifies the task of downloading and 
-storing the climate simulations.
 Depending on the operating system you use, you might need additional packages to build
 a vignette.
 ---
@@ -53,15 +50,48 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 
 
 # Download the data
-You will need to download climatic reconstuctions before being able to do any
-work with `pastclim`. The library focuses on two datasets: "Beyer2020" which covers the last 120k years; and, for project that go further back in time, "Krapp2021" which goes back to 800kya. For these to datasets, there are functions that help you download the data
-and choose the variables. If you are familiar with handling `netcdf` files, you can also
-use most functions in `pastclim` on custom datasets.
+You will need to download climatic reconstructions before being able to do any
+work with `pastclim`. Currently the library contains two datasets: 
+"Beyer2020" which covers the last 120k years; and, for project that go further back in time, "Krapp2021" which goes back to 800kya. For these two datasets, there are functions that help you download the data
+and choose the variables. It is possible to add additional, custom datasets, but
+you will need some familiarity with handling `netcdf` files (see the vignette on 
+'Formatting data to use in pastclim').
 
-For Beyer2020 and Krapp2021, you can get a list
-of available variables for each dataset with:
+Datasets will stored in the package data path, which can be obtained with:
+
 ```{r}
 library(pastclim)
+get_data_path()
+```
+
+If you prefer using a custom path (e.g. in "~/my_reconstructions"), it can be set with:
+
+```{r eval=FALSE}
+set_data_path(path_to_nc = "~/my_reconstructions")
+```
+
+`pastclim` will remember this new path in the future, even after closing and restarting
+R.
+
+The package includes a small dataset, *Example*, that we will use in this vignette;
+the real datasets are large (from 100s of Mb to a few Gb), and you will need to specify
+what you want to download (see below).
+
+Let us start by inspecting the *Example* dataset. We can get a list of variables
+available for this dataset with:
+```{r}
+get_vars_for_dataset(dataset="Example")
+```
+
+and the available time steps available can be obtained with:
+
+```{r}
+get_time_steps(dataset="Example")
+```
+
+For "Beyer2020" and "Krapp2021", you can get a list
+of available variables for each dataset with:
+```{r}
 get_vars_for_dataset(dataset="Beyer2020")
 ```
 
@@ -71,47 +101,21 @@ and
 get_vars_for_dataset(dataset="Krapp2021")
 ```
 
-However, before being able to use these data you need to download the data files into
-a directory of choice. Note that these data are large (from 100s of Mb to a few Gb). There is also a small
-"Example" dataset that we will use in this vignette. This is included in the package when 
-you download it, and it is stored in the `/extdata` directory, which can be found in:
-
-```{r}
-path_to_example_nc <- system.file("/extdata/", package="pastclim")
-```
-
-For Beyer2020 and Krapp20221, `pastclim` manages the files necessary for each variable. So, we can download data for `bio01` and `bio05` for the Beyer2020 dataset with (this operation might take several minutes, as the datasets are large; `R` will pause until
+You will not be able to get the available timesteps until you actual download the data. `pastclim` offers an interface
+to download the necessary files into your data path. Let's download `bio01` and `bio05` for the *Beyer2020* dataset (this operation might take several minutes, as the datasets are large; `R` will pause until
 the download is complete):
 
-```{r eval=FALSE}
-download_dataset(dataset="Beyer2020", bio_variables = c("bio01","bio05"),
-                 path_to_nc = "~/paleoclimate_reconstructions")
-```
-
-Note that we need to provide `pastclim` with a local path where to store the reconstructions (in this case `~/paleoclimate_reconstructions`, but you probably want a different one on your machine). We will have to use that path again every time we use a command to manipulate the data.
-
-You can get a summary of variables already downloaded (and thus that can be used)
-with:
-```{r}
-get_downloaded_datasets(path_to_nc = path_to_example_nc)
-```
-
-Note that for the example above, we used the directory containing the example dataset; use the path where you stored the data that you donwloaded. Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally. 
-
-Having to set a path every time can be cumbersome; a simpler option to handle climate files is to install a companion package `pastclimData`:
-
-```{r eval=FALSE}
-devtools::install_github("EvolEcolGroup/pastclimData", ref="master")
-```
-
-If `pastclimData` is installed, the paleoclimate reconstructions will be stored
-within that package when you download them and they will then be found automatically by `pastclim` without the need to set a path). So, to download the Beyer2020 dataset, we
-simply need:
 ```{r eval=FALSE}
 download_dataset(dataset="Beyer2020", bio_variables = c("bio01","bio05"))
 ```
 
-By not setting `path_to_nc` in the command above, the downloaded file will be stored in that companion library`pastclimData`. The downside of storing the data in `pastclimData` is that, if you reinstall or upgrade `R`, you will need to redownload the climate reconstructions.
+You can get a summary of variables already downloaded (and thus that can be used)
+with:
+```{r}
+get_downloaded_datasets()
+```
+
+Note that for the example above, we used the directory containing the example dataset; use the path where you stored the data that you downloaded. Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.
 
 # Get climate for location
 
@@ -123,23 +127,21 @@ locations<-data.frame(longitude=c(0,90,-120,-7),latitude=c(20,45,60,37),
 
 climate_for_locations (x= locations[,c("longitude", "latitude")],
            time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
-           dataset="Example", nn_interpol = FALSE, path_to_nc = path_to_example_nc)
+           dataset="Example", nn_interpol = FALSE)
 ```
 Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
 ```{r}
 climate_for_locations (x= locations[,c("longitude", "latitude")],
            time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
-           dataset="Example", nn_interpol = TRUE, path_to_nc = path_to_example_nc)
+           dataset="Example", nn_interpol = TRUE)
 ```
 In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that `nn_interpol = TRUE` is the default for this function.
-
-In both commands above, we used the local copy of the Example dataset. If `pastclimData` was installed, we could use the same commands without setting `path_to_nc`.
 
 Get time series for these locations:
 ```{r}
 locations_ts <- time_series_for_locations(x= locations[,c("longitude", "latitude")],
                                          bio_variables=c("bio01","bio12"),
-                                         dataset="Example", path_to_nc = path_to_example_nc)
+                                         dataset="Example")
 ```
 
 The resulting dataframe can be subsetted to get the time series for each location
@@ -161,7 +163,7 @@ We can extract rasters for a given time step:
 ```{r}
 climate_20k <- climate_for_time_slice(time_bp = -20000,
                                       c("bio01","bio10","bio12"),
-                                      dataset="Example", path_to_nc = path_to_example_nc)
+                                      dataset="Example")
 ```
 
 We can get a summary of this object:
@@ -221,14 +223,14 @@ Note that the Eurasian outline is intersected by the antimeridian, and so we hav
 # Working with biomes and icesheets
 The climate reconstructions do not show areas under permanent ice. Ice sheets are stored as class 28 in the "biome" variable:
 ```{r}
-get_biome_classes("Example", path_to_nc = path_to_example_nc)
+get_biome_classes("Example")
 ```
 
 To plot it, we extract the biome and then subset it to just that class
 ```{r, fig.width=6, fig.height=5}
 climate_20k <- climate_for_time_slice(-20000,
                                       c("bio01","bio10","biome"),
-                                      dataset = "Example", path_to_nc = path_to_example_nc)
+                                      dataset = "Example")
 climate_20k$ice<-climate_20k$biome
 climate_20k$ice[climate_20k$ice!=28]<-FALSE
 climate_20k$ice[climate_20k$ice==28]<-TRUE
@@ -239,9 +241,9 @@ Or more simply, we use functions designed to get ice and land masks.
 ```{r, fig.width=6, fig.height=5}
 climate_20k <- climate_for_time_slice(-20000,
                                       c("bio01","bio10"),
-                                      dataset="Example", path_to_nc = path_to_example_nc)
-climate_20k$ice_mask<-get_ice_mask(-20000, dataset="Example", path_to_nc = path_to_example_nc)
-climate_20k$land_mask <- get_land_mask(-20000, dataset="Example", path_to_nc = path_to_example_nc)
+                                      dataset="Example")
+climate_20k$ice_mask<-get_ice_mask(-20000, dataset="Example")
+climate_20k$land_mask <- get_land_mask(-20000, dataset="Example")
 terra::plot(climate_20k)
 ```
 
@@ -251,7 +253,7 @@ We can visualise the environment for this time step with a PCA:
 ```{r, fig.width=4, fig.height=4}
 climate_10k <- climate_for_time_slice(-10000,
                                       c("bio01","bio10","bio12"),
-                                      dataset="Example", path_to_nc = path_to_example_nc)
+                                      dataset="Example")
 climate_values_10k <- values(climate_10k)
 climate_values_10k <- climate_values_10k[!is.nan(climate_values_10k[,1]),]
 climate_10k_pca<-prcomp(climate_values_10k,scale=TRUE, center=TRUE)
@@ -264,7 +266,7 @@ We can now get the climate variables for the locations at this time step, comput
 locations_10k <- locations[locations$time_bp==-10000,]
 locations_10k_climate<- climate_for_locations (x= locations_10k[,c("longitude", "latitude")],
            time_bp = locations_10k$time_bp, bio_variables=c("bio01","bio10","bio12"),
-           dataset="Example", path_to_nc = path_to_example_nc)
+           dataset="Example")
 locations_10k_pca_scores <- predict(climate_10k_pca,newdata= locations_10k_climate[,-c(1:2)])
 plot(climate_10k_pca$x[,2]~climate_10k_pca$x[,1],pch=20,col="lightgray",
      xlab="PC1",ylab="PC2")
@@ -276,7 +278,7 @@ points(locations_10k_pca_scores,pch=20,col="red")
 Sometimes we want to work with multiple time steps to represent a given MIS.
 We can get a list of time steps available for a given mis with:
 ```{r}
-mis_time_steps <- get_mis_time_steps(1,"Example", path_to_nc = path_to_example_nc)
+mis_time_steps <- get_mis_time_steps(1,"Example")
 mis_time_steps
 ```
 
@@ -285,7 +287,7 @@ And now cycle over those steps. First extract the climate into a list:
 mis_climate_list<-list()
 for (this_step in mis_time_steps){
   this_step_climate <- climate_for_time_slice(this_step ,c("bio01","bio10","bio12"),
-                                      dataset="Example", path_to_nc = path_to_example_nc)
+                                      dataset="Example")
 this_step_climate <- values(this_step_climate)
 this_step_climate <- this_step_climate[!is.nan(this_step_climate[,1]),]
   mis_climate_list[[as.character(this_step)]]<- this_step_climate
@@ -311,7 +313,7 @@ For a number of species distribution models, we need to subsample background poi
 
 ```{r}
 climate_20k <- climate_for_time_slice(-20000,c("bio01","bio10"),
-                                      dataset="Example", path_to_nc = path_to_example_nc)
+                                      dataset="Example")
 this_sample<-terra::spatSample(climate_20k, 100,na.rm=TRUE,cells=TRUE,xy=TRUE)
 head(this_sample)
 ```
@@ -322,7 +324,7 @@ additional_var <- climate_for_locations (
             x= data.frame(longitude = this_sample$x, latitude = this_sample$y),
             time_bp = rep(-20000,nrow(this_sample)), 
             bio_variables=c("bio12"),
-            dataset="Example", path_to_nc = path_to_example_nc)
+            dataset="Example")
 head(additional_var)
 ```
 
@@ -331,6 +333,6 @@ Alternatively, we could use the cell number:
 additional_var <- climate_for_locations (x= this_sample$cell,
            time_bp = rep(-20000,nrow(this_sample)), 
            bio_variables=c("bio12"),
-           dataset="Example", path_to_nc = path_to_example_nc)
+           dataset="Example")
 head(additional_var)
 ```

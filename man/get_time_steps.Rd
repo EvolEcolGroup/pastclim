@@ -8,7 +8,7 @@ get_time_steps(dataset = NULL, path_to_nc = NULL)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer2020", "Krapp2021" and "Example" are available). Leave it unset 
+"Beyer2020", "Krapp2021" and "Example" are available). Leave it unset
 if using `path_to_nc`}
 
 \item{path_to_nc}{the path to the directory containing the downloaded

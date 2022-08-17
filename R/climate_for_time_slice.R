@@ -27,7 +27,7 @@ climate_for_time_slice <-
 
     # if path_to_nc is not set, use pastclimData
     if (is.null(path_to_nc)) {
-      path_to_nc <- get_pastclimdata_path()
+      path_to_nc <- get_data_path()
     }
 
     time_index <- NULL

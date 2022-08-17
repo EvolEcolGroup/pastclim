@@ -26,7 +26,7 @@ LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.2.1
 Depends: 
-    R (>= 3.5.0)
+    R (>= 4.0.0)
 Imports:
   curl,
   ncdf4,
@@ -34,10 +34,7 @@ Imports:
 Suggests: 
     rmarkdown,
     knitr,
-    pastclimData,
     sf,
     testthat (>= 3.0.0)
-Remotes:
-  EvolEcolGroup/pastclimData  
 VignetteBuilder: knitr
 Config/testthat/edition: 3
