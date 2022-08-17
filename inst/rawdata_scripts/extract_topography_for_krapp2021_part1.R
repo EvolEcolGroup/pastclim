@@ -47,7 +47,7 @@ time_steps_bp <- time_steps_bp[!is.na(time_steps_bp)]
 
 for (i in time_steps_bp) {
   cat(i)
-  time_step_row <- -(i / 1000) + 1
+  time_step_row <- - (i / 1000) + 1
   # now check neighbours of each boundary cell, and expand out if < sea level
   sea_level_now <- sea_level$SeaLev_longPC1[time_step_row]
 

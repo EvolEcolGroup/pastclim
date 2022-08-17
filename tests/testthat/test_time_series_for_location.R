@@ -42,7 +42,8 @@ test_that("time_series_for_location", {
 
   # now treat it as if it was a custom dataset
   path_to_example_nc <- system.file("/extdata/example_climate.nc",
-                                    package = "pastclim")
+    package = "pastclim"
+  )
   locations_ts <- time_series_for_locations(
     x = locations[, c("longitude", "latitude")],
     bio_variables = c("BIO1", "BIO12"),

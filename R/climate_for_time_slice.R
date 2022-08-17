@@ -44,8 +44,10 @@ climate_for_time_slice <-
         this_var_nc <- this_var
       }
       if (is.null(time_index)) {
-        time_index <- time_bp_to_index(time_bp = time_bp, path_to_nc =
-                                         this_file)
+        time_index <- time_bp_to_index(
+          time_bp = time_bp, path_to_nc =
+            this_file
+        )
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
       var_slice <- terra::subset(var_brick, subset = time_index)

@@ -21,7 +21,8 @@ get_available_datasets <- function() {
 check_available_dataset <- function(dataset) {
   if (!dataset %in% get_available_datasets()) {
     stop("'dataset' must be one of ", paste(get_available_datasets(),
-                                            collapse = ", "))
+      collapse = ", "
+    ))
   } else {
     return(TRUE)
   }

@@ -31,8 +31,10 @@ get_biome_classes <- function(dataset, path_to_nc = NULL) {
     )
     row.names(biome_categories) <- NULL
   } else if (dataset == "Krapp2021") {
-    biomes_string <- trimws(unlist(strsplit(biome_attributes$biomes, split =
-                                              ";")))
+    biomes_string <- trimws(unlist(strsplit(biome_attributes$biomes,
+      split =
+        ";"
+    )))
     biomes_string <- biomes_string[-length(biomes_string)]
     biomes_string <- substr(biomes_string, 4, nchar(biomes_string))
     biome_categories <- data.frame(

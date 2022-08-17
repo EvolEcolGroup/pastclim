@@ -64,8 +64,10 @@ climate_for_locations <-
         this_var_nc <- this_var
       }
       if (is.null(time_indeces)) {
-        time_indeces <- time_bp_to_index(time_bp = time_bp, path_to_nc =
-                                           this_file)
+        time_indeces <- time_bp_to_index(
+          time_bp = time_bp, path_to_nc =
+            this_file
+        )
         unique_time_indeces <- unique(time_indeces)
       }
       climate_brick <- terra::rast(this_file, subds = this_var_nc)
@@ -79,19 +81,23 @@ climate_for_locations <-
           x = this_slice,
           y = x[this_slice_indeces, ]
         )
-        locations_data[this_slice_indeces, this_var] <- this_climate[,
-                                                             ncol(this_climate)]
+        locations_data[this_slice_indeces, this_var] <- this_climate[
+          ,
+          ncol(this_climate)
+        ]
         if (nn_interpol) {
           locations_to_move <- this_slice_indeces[this_slice_indeces %in%
-                                      which(is.na(locations_data[, this_var]))]
+            which(is.na(locations_data[, this_var]))]
           if (length(locations_to_move) == 0) {
             next
           }
           for (i in locations_to_move) {
             if (inherits(x, "data.frame")) {
               cell_id <-
-                terra::cellFromXY(climate_brick, as.matrix(locations_data[i,
-                                                                          1:2]))
+                terra::cellFromXY(climate_brick, as.matrix(locations_data[
+                  i,
+                  1:2
+                ]))
             } else {
               cell_id <- x[i]
             }

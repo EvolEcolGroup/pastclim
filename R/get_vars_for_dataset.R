@@ -48,5 +48,5 @@ check_available_variable <- function(variable, dataset) {
 
 get_varname <- function(variable, dataset) {
   return(files_by_dataset$ncvar[files_by_dataset$variable == variable &
-                                  files_by_dataset$dataset == dataset])
+    files_by_dataset$dataset == dataset])
 }

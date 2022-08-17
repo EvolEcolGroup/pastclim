@@ -16,9 +16,9 @@ get_mis_time_steps <- function(mis, dataset = NULL, path_to_nc = NULL) {
   if (!mis %in% mis_boundaries$mis) {
     stop("'mis' should be one of ", paste(mis_boundaries$mis, collapse = ","))
   }
-  if (all(is.null(dataset),is.null(path_to_nc))){
+  if (all(is.null(dataset), is.null(path_to_nc))) {
     stop("Either 'dataset' or 'path_to_nc' needs to be given")
-  } else if (!any(is.null(dataset),is.null(path_to_nc))) {
+  } else if (!any(is.null(dataset), is.null(path_to_nc))) {
     stop("Only 'dataset' or 'path_to_nc' can be given")
   }
 
@@ -34,7 +34,7 @@ get_mis_time_steps <- function(mis, dataset = NULL, path_to_nc = NULL) {
   time_steps <- (climate_nc$dim$time$vals)
   ncdf4::nc_close(climate_nc)
   mis_time_steps <- time_steps[time_steps > (mis_boundaries[mis_boundaries$mis
-                                                      == mis, "start"] * 1000) &
+  == mis, "start"] * 1000) &
     time_steps <= (mis_boundaries[mis_boundaries$mis == mis, "end"] * 1000)]
   return(mis_time_steps)
 }

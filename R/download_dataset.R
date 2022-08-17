@@ -16,7 +16,8 @@ download_dataset <- function(dataset, bio_variables = NULL, path_to_nc = NULL) {
   if (is.null(path_to_nc)) {
     path_to_nc <- system.file("extdata", package = "pastclimData")
     if (path_to_nc == "") {
-      stop("the parameter path was not set, and the package pastclimData is not installed.")
+      stop("the parameter path was not set, and the package pastclimData",
+      "is not installed.")
     }
   }
 

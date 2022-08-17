@@ -55,7 +55,8 @@ test_that("climate_for_time_slice", {
 
   # now treat it as if it was a custom dataset
   path_to_example_nc <- system.file("/extdata/example_climate.nc",
-                                    package = "pastclim")
+    package = "pastclim"
+  )
   this_climate <- climate_for_locations(
     x = locations[, c("longitude", "latitude")],
     time_bp = locations$time_bp, bio_variables = c("BIO1", "BIO12"),

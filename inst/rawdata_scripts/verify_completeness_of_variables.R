@@ -2,7 +2,8 @@
 dataset <- "Krapp2021"
 library(pastclim)
 this_path <- pastclim::get_pastclimdata_path()
-vars_for_dataset <- pastclim:::get_file_for_dataset(get_vars_for_dataset(dataset), dataset)
+vars_for_dataset <- pastclim:::get_file_for_dataset(
+  get_vars_for_dataset(dataset), dataset)
 
 file1 <- ncdf4::nc_open(paste0(this_path, "/", vars_for_dataset$file_name[1]))
 n_steps <- file1$dim$time$len

@@ -25,7 +25,8 @@ check_var_in_nc <- function(bio_variables, path_to_nc) {
   if (!all(bio_variables %in% nc_in_vars)) {
     stop(
       "variable (", paste(bio_variables[!bio_variables %in% nc_in_vars],
-                          collapse = ", "),
+        collapse = ", "
+      ),
       ") not present in the file"
     )
   }

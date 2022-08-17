@@ -2,7 +2,7 @@ test_that("climate_for_time_slice", {
   # using standard dataset
   path_to_example_nc <- system.file("/extdata/", package = "pastclim")
   expect_true(inherits(climate_for_time_slice(-20000, c("bio01", "bio12"),
-                                              "Example",
+    "Example",
     path_to_nc = path_to_example_nc
   ), "SpatRaster"))
   # if we try to use a variable that does not exist
@@ -16,10 +16,11 @@ test_that("climate_for_time_slice", {
 
   # now treat it as if it was a custom dataset
   path_to_example_nc <- system.file("/extdata/example_climate.nc",
-                                    package = "pastclim")
+    package = "pastclim"
+  )
   expect_true(inherits(climate_for_time_slice(-20000, c("BIO1", "BIO12"),
-                                              "custom",
-                                              path_to_nc = path_to_example_nc
+    "custom",
+    path_to_nc = path_to_example_nc
   ), "SpatRaster"))
   # if we try to use a variable that does not exist
   expect_error(climate_for_time_slice(-20000, c("BIO01", "lai"), "custom",

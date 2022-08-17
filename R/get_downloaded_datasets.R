@@ -12,11 +12,13 @@ get_downloaded_datasets <- function(path_to_nc = NULL) {
   }
   all_nc_files <- list.files(path_to_nc)
   files_subset <- files_by_dataset[files_by_dataset$file_name %in%
-                                     all_nc_files, ]
+    all_nc_files, ]
   downloaded_vars <- list()
   for (dataset in unique(files_subset$dataset)) {
-    downloaded_vars[[dataset]] <- files_subset[files_subset$dataset == dataset,
-                                               "variable"]
+    downloaded_vars[[dataset]] <- files_subset[
+      files_subset$dataset == dataset,
+      "variable"
+    ]
   }
   downloaded_vars
 }
@@ -36,11 +38,15 @@ check_var_downloaded <- function(variable, dataset, path_to_nc = NULL) {
 
   # test if we have downloaded already
   if (!all(variable %in% get_downloaded_datasets(path_to_nc = path_to_nc)
-           [[dataset]])) {
-    missing_vars <- variable[!variable %in% get_downloaded_datasets(path_to_nc =
-                                                        path_to_nc)[[dataset]]]
-    stop("variable (", paste(missing_vars, collapse = ", "),
-         ") not yet downloaded, use `download_dataset()`")
+  [[dataset]])) {
+    missing_vars <- variable[!variable %in% get_downloaded_datasets(
+      path_to_nc =
+        path_to_nc
+    )[[dataset]]]
+    stop(
+      "variable (", paste(missing_vars, collapse = ", "),
+      ") not yet downloaded, use `download_dataset()`"
+    )
   }
   return(TRUE)
 }
