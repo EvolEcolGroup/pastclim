@@ -6,22 +6,10 @@
 #' "Beyer" is available)
 #' @param bio_variables one or more variable names to be downloaded. If left
 #' to NULL, all variables available for this dataset will be downloaded
-#' @param path_to_nc directory where the files will be saved. If not set, the
-#' data will be downloaded into the storage package pastclimData; an error
-#' will be returned if this package is not installed.
 #'
 #' @export
 
-download_dataset <- function(dataset, bio_variables = NULL, path_to_nc = NULL) {
-  if (is.null(path_to_nc)) {
-    path_to_nc <- system.file("extdata", package = "pastclimData")
-    if (path_to_nc == "") {
-      stop(
-        "the parameter path was not set, and the package pastclimData",
-        "is not installed."
-      )
-    }
-  }
+download_dataset <- function(dataset, bio_variables = NULL) {
 
   # check the dataset exists
   available_datasets <- unique(files_by_dataset$dataset)
@@ -62,9 +50,9 @@ download_dataset <- function(dataset, bio_variables = NULL, path_to_nc = NULL) {
   for (this_var in bio_variables) {
     file_details <- get_file_for_dataset(this_var, dataset)
     # only download the file if it is needed
-    if (!file.exists(file.path(path_to_nc, file_details$file_name))) {
+    if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
       curl::curl_download(file_details$download_path,
-        destfile = file.path(path_to_nc, file_details$file_name),
+        destfile = file.path(get_data_path(), file_details$file_name),
         quiet = FALSE
       )
     }

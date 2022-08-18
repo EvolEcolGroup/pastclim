@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_bp_to_index.R
 \name{time_bp_to_index}
 \alias{time_bp_to_index}
-\title{Convert a time BP to indeces in a netcdf file.}
+\title{Convert a time BP to indexes in a netcdf file.}
 \usage{
 time_bp_to_index(time_bp, path_to_nc)
 }
@@ -14,3 +14,4 @@ time_bp_to_index(time_bp, path_to_nc)
 \description{
 Internal function
 }
+\keyword{internal}

@@ -4,10 +4,12 @@
 \alias{check_available_dataset}
 \title{Check if dataset is available.}
 \usage{
-check_available_dataset(dataset)
+check_available_dataset(dataset, include_custom = FALSE)
 }
 \arguments{
 \item{dataset}{string defining dataset}
+
+\item{include_custom}{boolean whether a 'custom' dataset is allowed}
 }
 \description{
 Internal getter function

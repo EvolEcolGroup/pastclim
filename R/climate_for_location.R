@@ -1,18 +1,17 @@
-#' Extract local climate for one or more locations.
+#' Extract local climate for one or more locations for a given time slice.
 #'
-#' This function extract local climate from Beyer et al for a set of locations
-#' at the appropriate times
+#' This function extract local climate for a set of locations
+#' at the appropriate times (selecting the closest time slice available for the
+#' specific date associated with each location).
 #'
 #' @param x a 2 column matrix (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
 #' @param time_bp vector of ages, in years before present (negative).
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use (one of Beyer2020,
-#' Krapp2021 or custom).
-#' @param path_to_nc the path to the directory containing the downloaded
-#' reconstructions.
-#' Leave it unset if you are using the companion `pastclimData` to store
-#' datasets.
+#' Krapp2021, Example or custom).
+#' @param path_to_nc the path to the custom nc file containing the paleoclimate
+#' reconstructions. All the variables of interest need to be included in this file.
 #' @param nn_interpol boolean determining whether nearest neighbour
 #' interpolation is used to estimate climate for cells that lack such
 #' information (i.e. they are under water or ice). Interpolation is only
@@ -21,7 +20,7 @@
 #'
 #' @export
 
-climate_for_locations <-
+location_slice <-
   function(x,
            time_bp,
            bio_variables,
@@ -120,3 +119,19 @@ climate_for_locations <-
 
     return(locations_data)
   }
+
+
+#' Extract local climate for one or more locations for a given time slice.
+#'
+#' Deprecated version of \code{location_slice}
+#' 
+#' @param ... arguments to be passed to \code{location_slice}
+#' 
+#' @export
+
+climate_for_locations <-function(...){
+  warning("DEPRECATED: use 'location_slice' instead")
+  location_slice(...)
+}
+
+

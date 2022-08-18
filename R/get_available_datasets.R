@@ -5,7 +5,7 @@
 #' @export
 
 get_available_datasets <- function() {
-  return(unique(files_by_dataset$dataset))
+  return(unique(as.character(files_by_dataset$dataset)))
 }
 
 
@@ -14,13 +14,18 @@ get_available_datasets <- function() {
 #' Internal getter function
 #'
 #' @param dataset string defining dataset
+#' @param include_custom boolean whether a 'custom' dataset is allowed
 #'
 #' @keywords internal
 
 
-check_available_dataset <- function(dataset) {
-  if (!dataset %in% get_available_datasets()) {
-    stop("'dataset' must be one of ", paste(get_available_datasets(),
+check_available_dataset <- function(dataset, include_custom=FALSE) {
+  available_datasets <- get_available_datasets()
+  if (include_custom){
+    available_datasets <- c(available_datasets, "custom")
+  }
+  if (!dataset %in% available_datasets) {
+    stop("'dataset' must be one of ", paste (available_datasets,
       collapse = ", "
     ))
   } else {
