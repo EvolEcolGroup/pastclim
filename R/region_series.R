@@ -66,6 +66,8 @@ region_series <-
       #   terra::add(climate_spatraster) <- var_slice
       # }
     }
+    climate_sds<-terra::sds(climate_spatrasters)
+    names(climate_sds)<-bio_variables
     #names(climate_spatraster) <- varnames(climate_spatraster) <- bio_variables
     return(terra::sds(climate_spatrasters))
   }

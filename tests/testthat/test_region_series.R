@@ -1,6 +1,5 @@
 test_that("climate_for_time_slice", {
   # using standard dataset
-  path_to_example_nc <- system.file("/extdata/example_climate.nc", package = "pastclim")
   
   climate_region <- region_series(c(-20000,-10000), c("bio01", "bio12"),
                          "Example")
@@ -8,6 +7,7 @@ test_that("climate_for_time_slice", {
   expect_true(all(names(climate_region)==c("bio01", "bio12")))
   expect_true(all(terra::nlyr(climate_region)==c(2,2)))
   # do the same for a custom dataset
+  path_to_example_nc <- system.file("/extdata/example_climate.nc", package = "pastclim")
   climate_region <- region_series(c(-20000,-10000), c("BIO1", "BIO10"),
                                   "custom",path_to_nc = path_to_example_nc)
   expect_true(inherits(climate_region, "SpatRasterDataset"))
