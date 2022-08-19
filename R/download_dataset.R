@@ -1,9 +1,12 @@
 #' Download paeloclimate reconstructions.
 #'
-#' This function downloads paleoclimate reconstructions
+#' This function downloads paleoclimate reconstructions. Files will be stored
+#' in the data path of `pastclim`, which can be inspected with
+#' \code{get_data_path} and changed with \code{set_data_path}
 #'
-#' @param dataset string defining dataset to be downloaded (currently only
-#' "Beyer" is available)
+#' @param dataset string defining dataset to be downloaded (a list of possible
+#' values can be obtained with \code{get_available_datasets}). This function
+#' will not work on custom datasets.
 #' @param bio_variables one or more variable names to be downloaded. If left
 #' to NULL, all variables available for this dataset will be downloaded
 #'

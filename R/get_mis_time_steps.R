@@ -4,15 +4,15 @@
 #'
 #' @param mis string giving the mis; it must use the same spelling as used in
 #' /code{mis_boundaries}
-#' @param dataset string defining dataset to be downloaded (currently only
-#' "Beyer2020" or "Krapp2021" are available)
-#' @param path_to_nc the path to the directory containing the downloaded
-#' reconstructions. Leave it unset if you are using the companion
-#' `pastclimData` to store datasets.
+#' @param dataset string defining dataset to be downloaded (a list of possible
+#' values can be obtained with \code{get_available_datasets}). If set to "custom",
+#' then a single nc file is used from "path_to_nc"
+#' @param path_to_nc the path to the custom nc file containing the paleoclimate
+#' reconstructions. All the variables of interest need to be included in this file.
 #'
 #' @export
 
-get_mis_time_steps <- function(mis, dataset = NULL, path_to_nc = NULL) {
+get_mis_time_steps <- function(mis, dataset, path_to_nc = NULL) {
   if (!mis %in% mis_boundaries$mis) {
     stop("'mis' should be one of ", paste(mis_boundaries$mis, collapse = ","))
   }

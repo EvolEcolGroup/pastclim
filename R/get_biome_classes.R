@@ -3,23 +3,19 @@
 #' Get a full list of biomes and how their id as coded in the biome variable
 #' for a given dataset.
 #'
-#' @param dataset string defining dataset to be downloaded (currently only
-#' "Beyer2020", "Krapp2021" or "Example" are available)
-#' @param path_to_nc the path to the directory containing the downloaded
-#' reconstructions. Leave it unset if you are using the companion
-#' `pastclimData` to store datasets.
+#' @param dataset string defining dataset to be downloaded (a list of possible
+#' values can be obtained with \code{get_available_datasets}). This function
+#' will not work on custom datasets.
 #'
 #' @export
 
-get_biome_classes <- function(dataset, path_to_nc = NULL) {
-  if (is.null(path_to_nc)) {
-    path_to_nc <- get_data_path()
-  }
+get_biome_classes <- function(dataset) {
+  data_path <- get_data_path()
   # test that we ahve the biome variable
-  check_var_downloaded("biome", dataset, path_to_nc = path_to_nc)
+  check_var_downloaded("biome", dataset)
   # get file name for biome
   this_file <- get_file_for_dataset("biome", dataset)$file_name
-  this_file <- file.path(path_to_nc, this_file)
+  this_file <- file.path(data_path, this_file)
   nc_in <- ncdf4::nc_open(this_file)
   biome_attributes <- ncdf4::ncatt_get(nc_in, "biome")
   # format the table
