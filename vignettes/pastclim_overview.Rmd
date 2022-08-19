@@ -204,7 +204,7 @@ climate_20k
 
 and plot these three variables (the layers of the raster):
 ```{r, fig.width=6, fig.height=5}
-terra::plot(climate_20k)
+terra::plot(climate_20k, main = names(climate_20k))
 ```
 
 Often we want to focus a given region. There are a number of preset extents in 
@@ -215,7 +215,8 @@ region_extent
 We can crop the raster to Europe:
 ```{r, fig.width=6, fig.height=5}
 europe_climate_20k <- terra::crop(climate_20k, terra::ext(region_extent$Europe))
-terra::plot(europe_climate_20k)
+terra::plot(europe_climate_20k,
+            main = names(europe_climate_20k))
 ```
 
 We might want to use a more complex shape (i.e. a polygon, as a `terra::vect` 
@@ -236,7 +237,8 @@ afr_eurasia_vec <- terra::vect("POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,
 terra::crs(afr_eurasia_vec) <- terra::crs(climate_20k)
 climate_20k_afr_eurasia <- terra::mask(climate_20k, afr_eurasia_vec)
 climate_20k_afr_eurasia <- terra::crop(climate_20k_afr_eurasia, afr_eurasia_vec)
-terra::plot(climate_20k_afr_eurasia)
+terra::plot(climate_20k_afr_eurasia, 
+            main = names(climate_20k_afr_eurasia))
 ```
 
 `pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
@@ -246,9 +248,37 @@ africa_outline <- subset(region_outline, region_outline$name == "Africa")
 eurasia_outline <- subset(region_outline, region_outline$name == "Eurasia")
 afr_eurasia_vec <- terra::vect(sf::st_union(africa_outline, eurasia_outline))
 climate_20k_afr_eurasia <- terra::mask(climate_20k, afr_eurasia_vec)
-terra::plot(climate_20k_afr_eurasia)
+terra::plot(climate_20k_afr_eurasia,
+            main = names(climate_20k_afr_eurasia))
 ```
 Note that the Eurasian outline is intersected by the antimeridian, and so we have a small amount of data on the left hand side of the plot (corresponding to the eastern end of Siberia).
+
+It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `spatRasterDataset`, with each variable as a sub-dataset:
+
+```{r}
+climate_region <- region_series(
+  time_bp = list(min=-15000,max=0), c("bio01", "bio10", "bio12"),
+  "Example"
+)
+climate_region
+```
+
+Each of these sub-dataset is a `spatRaster`, with time steps as layers:
+
+```{r}
+climate_region$bio01
+```
+
+We can then plot the time series of a given variable:
+```{r}
+terra::plot(climate_region$bio01)
+```
+
+To plot all climate variables for a given time step, we can slice the time series:
+```{r}
+slice_10k <- slice_region_series(climate_region, time_bp = -10000)
+terra::plot(slice_10k, main = names(slice_10k))
+```
 
 # Working with biomes and icesheets
 The climate reconstructions do not show areas under permanent ice. Ice sheets are stored as class 28 in the "biome" variable:
