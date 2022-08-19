@@ -248,12 +248,12 @@ get_biome_classes("Example")
 
 To plot it, we extract the biome and then subset it to just that class
 ```{r, fig.width=6, fig.height=5}
-climate_20k <- region_slice(-20000,
-                                      c("bio01","bio10","biome"),
-                                      dataset = "Example")
+climate_20k <- region_slice(time_bp = -20000, 
+                            bio_variables = c("bio01","bio10","biome"),
+                            dataset = "Example")
 climate_20k$ice<-climate_20k$biome
-climate_20k$ice[climate_20k$ice!=28]<-FALSE
-climate_20k$ice[climate_20k$ice==28]<-TRUE
+climate_20k$ice[climate_20k$ice!=28] <- FALSE
+climate_20k$ice[climate_20k$ice==28] <- TRUE
 terra::plot(climate_20k)
 ```
 
