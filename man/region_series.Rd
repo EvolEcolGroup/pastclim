@@ -7,7 +7,8 @@
 region_series(time_bp, bio_variables, dataset, path_to_nc = NULL)
 }
 \arguments{
-\item{time_bp}{time slices in years before present (negative). The slices needs
+\item{time_bp}{time slices in years before present (negative values represent
+time before present, positive values time in the future). The slices need
 to exist in the dataset. To check which slices are available, you can use
 \code{get_time_steps}.}
 
@@ -17,16 +18,12 @@ to exist in the dataset. To check which slices are available, you can use
 then a single nc file is used from "path_to_nc"}
 
 \item{path_to_nc}{the path to the custom nc file containing the paleoclimate
-reconstructions. All the variables of interest need to be included in this file.
-
-location_slice
-location_series
-region_slice
-region_series
-slice_region_series}
+reconstructions. All the variables of interest need to be included in
+this file.}
 }
 \description{
-This function extracts a time series of one or more climate variables for a given
+This function extracts a time series of one or more climate variables for
+a given
 dataset covering a region (or the whole world). The function returns a
 SpatRasterDataset \code{terra::sds} object, with
 each variable as a sub-dataset.

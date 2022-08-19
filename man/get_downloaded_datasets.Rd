@@ -4,10 +4,10 @@
 \alias{get_downloaded_datasets}
 \title{Get the variables downloaded for each dataset.}
 \usage{
-get_downloaded_datasets(path_to_nc = NULL)
+get_downloaded_datasets(data_path = NULL)
 }
 \arguments{
-\item{path_to_nc}{path to the netcdf datasets}
+\item{data_path}{leave it to NULL to use the default datapath}
 }
 \description{
 List the downloaded variable for each dataset.

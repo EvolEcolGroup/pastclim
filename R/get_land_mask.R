@@ -11,7 +11,7 @@
 #' @export
 
 get_land_mask <- function(time_bp, dataset) {
-  climate_slice <- climate_for_time_slice(
+  climate_slice <- region_slice(
     time_bp = time_bp, bio_variables = "biome",
     dataset = dataset
   )

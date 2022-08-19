@@ -45,9 +45,9 @@ region_slice <-
 
 climate_for_time_slice <- function(...) {
   warning("DEPRECATED: use 'region_slice' instead")
-  if (!is.null(path_to_nc)) {
-    stop("the use of pastclimData is now deprecated,",
-    " use 'set_path_data' instead")
-  }
+  # if (!is.null(path_to_nc)) {
+  #   stop("the use of pastclimData is now deprecated,",
+  #   " use 'set_path_data' instead")
+  # }
   region_slice(...)
 }

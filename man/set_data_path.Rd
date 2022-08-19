@@ -8,11 +8,12 @@ set_data_path(path_to_nc = NULL)
 }
 \arguments{
 \item{path_to_nc}{the path to the file that contains the downloaded
-resonstructions. If left unset, the default location returned by 
+resonstructions. If left unset, the default location returned by
 `tools::R_user_dir("pastclim","data")` will be used}
 }
 \description{
-This function sets the path where climate reconstructions will be stored. This
+This function sets the path where climate reconstructions will be stored.
+This
 information is stored in a file names "pastclim_data.txt", which is found
 in the directory returned by `tools::R_user_dir("pastclim","config")` (i.e.
 the default configuration directory for the package as set in R >= 4.0).

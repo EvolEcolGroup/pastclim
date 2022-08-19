@@ -66,6 +66,7 @@ location_slice <-
         time_indeces <- time_bp_to_index(
           time_bp = time_bp, time_steps = times
         )
+        locations_data$time_bp_slice <- times[time_indeces]
         unique_time_indeces <- unique(time_indeces)
       }
       climate_brick <- terra::rast(this_file, subds = this_var_nc)

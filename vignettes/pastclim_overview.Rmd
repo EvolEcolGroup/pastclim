@@ -130,7 +130,7 @@ Let us create some fictitious locations:
 
 ```{r}
 locations<-data.frame(longitude=c(0,90,-120,-7),latitude=c(20,45,60,37),
-                      time_bp=c(0,-10000, -20000, -10000))
+                      time_bp=c(0,-9753, -18738, -11849))
 locations
 ```
 
@@ -140,6 +140,9 @@ location_slice (x= locations[,c("longitude", "latitude")],
            time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
            dataset="Example", nn_interpol = FALSE)
 ```
+`pastclim` finds the closest time steps (slices) available for a given date, and ouputs
+the slice used in column `time_bp_slice` (the *Example* dataset that we use in this vignette has a temporal resolution of only 5k years).
+
 Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
 ```{r}
 location_slice (x= locations[,c("longitude", "latitude")],
@@ -245,10 +248,10 @@ get_biome_classes("Example")
 
 To plot it, we extract the biome and then subset it to just that class
 ```{r, fig.width=6, fig.height=5}
-climate_20k <- climate_for_time_slice(-20000,
+climate_20k <- region_slice(-20000,
                                       c("bio01","bio10","biome"),
                                       dataset = "Example")
-climate_20k$ice<-climate_20k$biome
+climate_20k$ice<-climate_20k$`biome_-20000`
 climate_20k$ice[climate_20k$ice!=28]<-FALSE
 climate_20k$ice[climate_20k$ice==28]<-TRUE
 terra::plot(climate_20k)
@@ -256,7 +259,7 @@ terra::plot(climate_20k)
 
 Or more simply, we use functions designed to get ice and land masks.
 ```{r, fig.width=6, fig.height=5}
-climate_20k <- climate_for_time_slice(-20000,
+climate_20k <- region_slice(-20000,
                                       c("bio01","bio10"),
                                       dataset="Example")
 climate_20k$ice_mask<-get_ice_mask(-20000, dataset="Example")
@@ -268,7 +271,7 @@ terra::plot(climate_20k)
 
 We can visualise the environment for this time step with a PCA:
 ```{r, fig.width=4, fig.height=4}
-climate_10k <- climate_for_time_slice(-10000,
+climate_10k <- region_slice(-10000,
                                       c("bio01","bio10","bio12"),
                                       dataset="Example")
 climate_values_10k <- values(climate_10k)
@@ -281,7 +284,7 @@ plot(climate_10k_pca$x[,2]~climate_10k_pca$x[,1],pch=20,col="lightgray",
 We can now get the climate variables for the locations at this time step, compute the PCA scores and plots the locations on top of the background climate:
 ```{r, fig.width=4, fig.height=4}
 locations_10k <- locations[locations$time_bp==-10000,]
-locations_10k_climate<- climate_for_locations (x= locations_10k[,c("longitude", "latitude")],
+locations_10k_climate<- location_slice (x= locations_10k[,c("longitude", "latitude")],
            time_bp = locations_10k$time_bp, bio_variables=c("bio01","bio10","bio12"),
            dataset="Example")
 locations_10k_pca_scores <- predict(climate_10k_pca,newdata= locations_10k_climate[,-c(1:2)])
@@ -303,7 +306,7 @@ And now cycle over those steps. First extract the climate into a list:
 ```{r}
 mis_climate_list<-list()
 for (this_step in mis_time_steps){
-  this_step_climate <- climate_for_time_slice(this_step ,c("bio01","bio10","bio12"),
+  this_step_climate <- region_slice(this_step ,c("bio01","bio10","bio12"),
                                       dataset="Example")
 this_step_climate <- values(this_step_climate)
 this_step_climate <- this_step_climate[!is.nan(this_step_climate[,1]),]

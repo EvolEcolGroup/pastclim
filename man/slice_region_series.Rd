@@ -9,11 +9,13 @@ slice_region_series(x, time_bp)
 \arguments{
 \item{x}{time series generated with \code{region_series}}
 
-\item{time_bp}{time slices in years before present (negative). The slices needs
-to exist in the dataset. To check which slices are available, you can use
-\code{terra::time(x[[1]])}}
+\item{time_bp}{time slices in years before present (negative). The slices
+need to exist in the dataset. To check which slices are available, you
+can use \code{terra::time(x[[1]])} (note that you have to use
+the `time` fuction on the first element of the 'sds' object, i.e. on one
+of the 'spatRaster' objects)}
 }
 \description{
-This function extracts a time slice from time series of one or more climate 
+This function extracts a time slice from time series of one or more climate
 variables for a given dataset covering a region (or the whole world).
 }

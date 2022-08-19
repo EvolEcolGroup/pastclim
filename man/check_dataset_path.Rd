@@ -11,7 +11,8 @@ check_dataset_path(dataset, path_to_nc)
 then a single nc file is used from "path_to_nc"}
 
 \item{path_to_nc}{the path to the custom nc file containing the paleoclimate
-reconstructions. All the variables of interest need to be included in this file.}
+reconstructions. All the variables of interest need to be included in
+this file.}
 }
 \description{
 Check that the dataset and path_to_nc parameters are valid

@@ -7,13 +7,14 @@
 get_data_path()
 }
 \description{
-This function returns the path where climate reconstructions will be stored. This
-information is stored in a file names "pastclim_data.txt", which is found
-in the directory returned by `tools::R_user_dir("pastclim","config")` (i.e.
+This function returns the path where climate reconstructions will be stored.
+This information is stored in a file names "pastclim_data.txt", which
+is found in the directory returned by 
+`tools::R_user_dir("pastclim","config")` (i.e.
 the default configuration directory for the package as set in R >= 4.0).
 }
 \details{
 If this function is run before any path was set, it calls `set_data_path`,
-which defaults to storing data in the directory returned by 
+which defaults to storing data in the directory returned by
 `tools::R_user_dir("pastclim","data")`
 }
