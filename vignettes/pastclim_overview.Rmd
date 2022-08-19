@@ -52,7 +52,7 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 # Download the data
 You will need to download climatic reconstructions before being able to do any
 work with `pastclim`. Currently the library contains two datasets: 
-"Beyer2020" which covers the last 120k years; and, for project that go further back in time, "Krapp2021" which goes back to 800kya. For these two datasets, there are functions that help you download the data
+*Beyer2020* which covers the last 120k years; and, for project that go further back in time, *Krapp2021* which goes back to 800kya. For these two datasets, there are functions that help you download the data
 and choose the variables. It is possible to add additional, custom datasets, but
 you will need some familiarity with handling `netcdf` files (see the vignette on 
 'Formatting data to use in pastclim').
@@ -90,7 +90,7 @@ and the available time steps available can be obtained with:
 get_time_steps(dataset = "Example")
 ```
 
-For "Beyer2020" and "Krapp2021", you can get a list
+For *Beyer2020* and *Krapp2021*, you can get a list
 of available variables for each dataset with:
 ```{r}
 get_vars_for_dataset(dataset = "Beyer2020")
@@ -111,7 +111,7 @@ we can use:
 get_downloaded_datasets()
 ```
 
-Let's now download `bio01` and `bio05` for the *Beyer2020* dataset (this operation might take several minutes, as the datasets are large; `R` will pause until
+Let's now download *bio01* and *bio05* for the *Beyer2020* dataset (this operation might take several minutes, as the datasets are large; `R` will pause until
 the download is complete):
 
 ```{r eval=FALSE}
@@ -136,7 +136,7 @@ locations <- data.frame(
 locations
 ```
 
-And extract their climatic conditions for `bio01` and `bio12`:
+And extract their climatic conditions for *bio01* and *bio12*:
 ```{r}
 location_slice(
   x = locations[, c("longitude", "latitude")],
@@ -296,7 +296,7 @@ climate_20k <- region_slice(
 climate_20k$ice <- climate_20k$biome
 climate_20k$ice[climate_20k$ice != 28] <- FALSE
 climate_20k$ice[climate_20k$ice == 28] <- TRUE
-terra::plot(climate_20k)
+terra::plot(climate_20k, main = names(climate_20k))
 ```
 
 Or more simply, we use functions designed to get ice and land masks.
@@ -308,7 +308,7 @@ climate_20k <- region_slice(
 )
 climate_20k$ice_mask <- get_ice_mask(-20000, dataset = "Example")
 climate_20k$land_mask <- get_land_mask(-20000, dataset = "Example")
-terra::plot(climate_20k)
+terra::plot(climate_20k, main = names(climate_20k))
 ```
 
 # Set the samples within the background
