@@ -9,7 +9,7 @@ test_that("get_time_steps requires correct variables", {
   )
 })
 
-test_that("get_time_steps for pastclimData", {
+test_that("get_time_steps for standard dataset", {
   expect_equal(get_time_steps(dataset = "Example"),
     c(-20000, -15000, -10000, -5000, 0),
     ignore_attr = TRUE

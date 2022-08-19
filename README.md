@@ -29,11 +29,10 @@ devtools::install_github("EvolEcolGroup/pastclim", build_vignette = TRUE)
 ```
 And read it directly in R with:
 ```
-vignette("pastclim_overview",package="pastclim")
+vignette("pastclim_overview", package = "pastclim")
 ```
-The vignette also provides instructions on how to install the optional
-companion package `pastclimData`, which simplifies the task of downloading and 
-storing the climate simulations.
+There is also a vignette on how to format custom datasets (and ideally, how to 
+make a pull request to include them officially in `pastclim` for everyone to use!)
 
 ---
 

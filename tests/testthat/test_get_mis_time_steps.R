@@ -1,5 +1,4 @@
-test_that("get_mis_time_steps for pastclimData", {
-  skip_if(!requireNamespace("pastclimData"))
+test_that("get_mis_time_steps for standard dataset", {
   expect_equal(get_mis_time_steps(mis = "2", dataset = "Example"),
     c(-20000, -15000),
     ignore_attr = TRUE

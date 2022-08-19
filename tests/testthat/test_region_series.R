@@ -1,11 +1,11 @@
-test_that("climate_for_time_slice", {
+test_that("region series", {
   # using standard dataset
-  
   climate_region <- region_series(c(-20000,-10000), c("bio01", "bio12"),
                          "Example")
   expect_true(inherits(climate_region, "SpatRasterDataset"))
   expect_true(all(names(climate_region)==c("bio01", "bio12")))
   expect_true(all(terra::nlyr(climate_region)==c(2,2)))
+  
   # do the same for a custom dataset
   path_to_example_nc <- system.file("/extdata/example_climate.nc", package = "pastclim")
   climate_region <- region_series(c(-20000,-10000), c("BIO1", "BIO10"),
@@ -29,4 +29,9 @@ test_that("climate_for_time_slice", {
   expect_error(region_series(c(-20000,-10000), c("BIO1", "BIO12"), "custom",
     path_to_nc = "./foo"
   ), "path_to_nc does not point to a file")
+  
+  # if we use time steps that do not exist
+  expect_error(region_series(c(-19000,-10000), c("bio01", "bio12"),
+                                  "Example"),
+               "time_bp should only include time steps available in the dataset")
 })

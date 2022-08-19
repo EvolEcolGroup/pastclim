@@ -5,7 +5,8 @@
 #' SpatRasterDataset \code{terra::sds} object, with
 #' each variable as a sub-dataset.
 #'
-#' @param time_bp time slices in years before present (negative). The slices needs
+#' @param time_bp time slices in years before present (negative values represent
+#' time before present, positive values time in the future). The slices need
 #' to exist in the dataset. To check which slices are available, you can use
 #' \code{get_time_steps}.
 #' @param bio_variables vector of names of variables to be extracted
@@ -53,18 +54,20 @@ region_series <-
       }
       # figure out the time indeces the first time we run this
       if (is.null(time_index)) {
-        time_index <- time_bp_to_index(
-          time_bp = time_bp, path_to_nc =
-            this_file
-        )
+        # as we have the file name, we can us the same code for custom and 
+        # standard datasets.
+        times <- get_time_steps(dataset="custom", path_to_nc = this_file)
+        time_index <- match(time_bp,times)
+        if (any(is.na(time_index))){
+          stop("time_bp should only include time steps available in the dataset")
+        }
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
       climate_spatrasters[[this_var]] <- terra::subset(var_brick, subset = time_index)
-      # if (is.null(climate_spatraster)) {
-      #   climate_spatraster <- var_slice
-      # } else {
-      #   terra::add(climate_spatraster) <- var_slice
-      # }
+      varnames(climate_spatrasters[[this_var]]) <- this_var
+      names(climate_spatrasters[[this_var]]) <- paste(this_var,
+                                                         time(climate_spatrasters[[this_var]]),
+                                                         sep="_")
     }
     climate_sds<-terra::sds(climate_spatrasters)
     names(climate_sds)<-bio_variables
