@@ -19,6 +19,11 @@
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
+#' @param ext an extent, coded as a \code{terra::SpatExtent} object. If NULL,
+#' the full extent of the reconstruction is given.
+#' @param crop a polygon used to crop the reconstructions (e.g. the outline
+#' of a continental mass). A \code{terra::SpatVector} object is used to
+#' define the polygon
 #'
 #' @import terra
 #' @export
@@ -27,9 +32,23 @@ region_series <-
   function(time_bp = NULL,
            bio_variables,
            dataset,
-           path_to_nc = NULL) {
+           path_to_nc = NULL,
+           ext = NULL,
+           crop = NULL) {
+    
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
+    if (!is.null(ext)){
+      if(!inherits(ext,"SpatExtent")){
+        stop ("extent should be a terra::SpatExtent object created terra::ext")
+      }
+    }
+    if (!is.null(crop)){
+      if(!inherits(crop,"SpatVector")){
+        stop ("extent should be a terra::SpatVector object created terra::vect")
+      }
+    }
+    
     # check whether the variables exist for this dataset
     if (dataset != "custom") { # if we are using standard datasets
       check_var_downloaded(bio_variables, dataset)
@@ -59,6 +78,17 @@ region_series <-
                                      time_steps = times)
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
+      # subset extent
+      if (!is.null(ext)){
+        var_brick <- terra::crop(var_brick, ext)
+      }
+      # subset to crop
+      if (!is.null(crop)){
+        terra::crs(crop) <- terra::crs(var_brick)
+        var_brick <- terra::mask(var_brick, crop)
+        var_brick <- terra::crop(var_brick, crop)
+      }
+      
       if (!is.null(time_bp)){
         climate_spatrasters[[this_var]] <- terra::subset(var_brick,
                                        subset = time_index)

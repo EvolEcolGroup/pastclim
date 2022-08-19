@@ -16,7 +16,12 @@
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
 #' reconstructions. All the variables of interest need to be included
 #' in this file.
-#'
+#' @param ext an extent, coded as a \code{terra::SpatExtent} object. If NULL,
+#' the full extent of the reconstruction is given.
+#' @param crop a polygon used to crop the reconstructions (e.g. the outline
+#' of a continental mass). A \code{terra::SpatVector} object is used to
+#' define the polygon.
+#' 
 #' @import terra
 #' @export
 
@@ -24,12 +29,17 @@ region_slice <-
   function(time_bp,
            bio_variables,
            dataset,
-           path_to_nc = NULL) {
+           path_to_nc = NULL,
+           ext = NULL,
+           crop = NULL) {
+    
     this_series <- region_series(
       time_bp = time_bp,
       bio_variables = bio_variables,
       dataset = dataset,
-      path_to_nc = path_to_nc
+      path_to_nc = path_to_nc,
+      ext = ext,
+      crop = crop
     )
     return(slice_region_series(x = this_series, time_bp = time_bp))
   }

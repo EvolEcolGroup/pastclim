@@ -4,7 +4,14 @@
 \alias{region_series}
 \title{Extract a time series of climate variables for a region}
 \usage{
-region_series(time_bp = NULL, bio_variables, dataset, path_to_nc = NULL)
+region_series(
+  time_bp = NULL,
+  bio_variables,
+  dataset,
+  path_to_nc = NULL,
+  ext = NULL,
+  crop = NULL
+)
 }
 \arguments{
 \item{time_bp}{time slices in years before present (negative values represent
@@ -23,6 +30,13 @@ then a single nc file is used from "path_to_nc"}
 \item{path_to_nc}{the path to the custom nc file containing the paleoclimate
 reconstructions. All the variables of interest need to be included in
 this file.}
+
+\item{ext}{an extent, coded as a \code{terra::SpatExtent} object. If NULL,
+the full extent of the reconstruction is given.}
+
+\item{crop}{a polygon used to crop the reconstructions (e.g. the outline
+of a continental mass). A \code{terra::SpatVector} object is used to
+define the polygon}
 }
 \description{
 This function extracts a time series of one or more climate variables for
