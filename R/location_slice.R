@@ -6,13 +6,14 @@
 #'
 #' @param x a 2 column matrix (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
-#' @param time_bp the time slice in years before present (negative values represent
-#' time before present, positive values time in the future).
+#' @param time_bp the time slice in years before present (negative
+#' values represent time before present, positive values time in the future).
 #' #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use (one of Beyer2020,
 #' Krapp2021, Example or custom).
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
-#' reconstructions. All the variables of interest need to be included in this file.
+#' reconstructions. All the variables of interest need to be included
+#'  in this file.
 #' @param nn_interpol boolean determining whether nearest neighbour
 #' interpolation is used to estimate climate for cells that lack such
 #' information (i.e. they are under water or ice). Interpolation is only
@@ -28,7 +29,6 @@ location_slice <-
            dataset,
            path_to_nc = NULL,
            nn_interpol = TRUE) {
-    
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
     # if we are using standard datasets, check whether a variables exists
@@ -62,15 +62,15 @@ location_slice <-
         this_var_nc <- this_var
       }
       if (is.null(time_indeces)) {
+        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
         time_indeces <- time_bp_to_index(
-          time_bp = time_bp, path_to_nc =
-            this_file
+          time_bp = time_bp, time_steps = times
         )
         unique_time_indeces <- unique(time_indeces)
       }
       climate_brick <- terra::rast(this_file, subds = this_var_nc)
-      # create column to store variable
 
+      # create column to store variable
       locations_data[this_var] <- NA
       for (j in unique_time_indeces) {
         this_slice <- terra::subset(climate_brick, j)
@@ -123,17 +123,18 @@ location_slice <-
 #' Extract local climate for one or more locations for a given time slice.
 #'
 #' Deprecated version of \code{location_slice}
-#' 
+#'
 #' @param ... arguments to be passed to \code{location_slice}
-#' 
+#'
 #' @export
 
-climate_for_locations <-function(...){
+climate_for_locations <- function(...) {
   warning("DEPRECATED: use 'location_slice' instead")
-  if (!is.null(path_to_nc)){
-    stop("the use of pastclimData is now deprecated, use 'set_path_data' instead")
+  if (!is.null(path_to_nc)) {
+    stop(
+      "the use of pastclimData is now deprecated",
+      "use 'set_path_data' instead"
+    )
   }
   location_slice(...)
 }
-
-

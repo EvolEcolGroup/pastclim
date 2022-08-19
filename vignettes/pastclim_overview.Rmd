@@ -79,6 +79,7 @@ what you want to download (see below).
 
 Let us start by inspecting the *Example* dataset. We can get a list of variables
 available for this dataset with:
+
 ```{r}
 get_vars_for_dataset(dataset="Example")
 ```
@@ -101,43 +102,54 @@ and
 get_vars_for_dataset(dataset="Krapp2021")
 ```
 
-You will not be able to get the available timesteps until you actual download the data. `pastclim` offers an interface
-to download the necessary files into your data path. Let's download `bio01` and `bio05` for the *Beyer2020* dataset (this operation might take several minutes, as the datasets are large; `R` will pause until
+You will not be able to get the available time steps until you download the data. `pastclim` offers an interface
+to download the necessary files into your data path. 
+
+To inspect which datasets and variables have already been downloaded in the data path,
+we can use:
+```{r}
+get_downloaded_datasets()
+```
+
+Let's now download `bio01` and `bio05` for the *Beyer2020* dataset (this operation might take several minutes, as the datasets are large; `R` will pause until
 the download is complete):
 
 ```{r eval=FALSE}
 download_dataset(dataset="Beyer2020", bio_variables = c("bio01","bio05"))
 ```
 
-You can get a summary of variables already downloaded (and thus that can be used)
-with:
-```{r}
-get_downloaded_datasets()
-```
+Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.
 
-Note that for the example above, we used the directory containing the example dataset; use the path where you stored the data that you downloaded. Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.
+# Get climate for locations
 
-# Get climate for location
+Often we want to get the climate for specific locations. We can do so by using
+the function `location_slice`. With this function, we will get slices of climate
+for the times relevant to the locations of interest.
 
-Get climate for several locations at different times:
+Let us create some fictitious locations:
 
 ```{r}
 locations<-data.frame(longitude=c(0,90,-120,-7),latitude=c(20,45,60,37),
                       time_bp=c(0,-10000, -20000, -10000))
+locations
+```
 
-climate_for_locations (x= locations[,c("longitude", "latitude")],
+And extract their climatic conditions for `bio01` and `bio12`:
+```{r}
+location_slice (x= locations[,c("longitude", "latitude")],
            time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
            dataset="Example", nn_interpol = FALSE)
 ```
 Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
 ```{r}
-climate_for_locations (x= locations[,c("longitude", "latitude")],
+location_slice (x= locations[,c("longitude", "latitude")],
            time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
            dataset="Example", nn_interpol = TRUE)
 ```
 In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that `nn_interpol = TRUE` is the default for this function.
 
-Get time series for these locations:
+Sometimes, we want to get a time series of climatic reconstructions, thus allowing us to
+see how climate changed over time:
 ```{r}
 locations_ts <- time_series_for_locations(x= locations[,c("longitude", "latitude")],
                                          bio_variables=c("bio01","bio12"),
@@ -145,11 +157,11 @@ locations_ts <- time_series_for_locations(x= locations[,c("longitude", "latitude
 ```
 
 The resulting dataframe can be subsetted to get the time series for each location
-(the small example dataset only contains 5 time points):
+(note that the small *Example* dataset only contains 5 time points):
 ```{r}
 subset(locations_ts,id==1)
 ```
-Note that the last two locations do not return information for all time steps. That's due to the change in sea level and icesheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
+Also note that the last two locations do not return information for all time steps. That's due to the change in sea level and icesheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
 ```{r}
 subset(locations_ts,id==3)
 ```
@@ -157,22 +169,27 @@ subset(locations_ts,id==3)
 subset(locations_ts,id==4)
 ```
 
-# Get climate for a given time step
+# Get climate for a region
 
-We can extract rasters for a given time step:
+Instead of focussing on specific locations, we might want to look a whole region.
+For a given time step, we can extract a slice of climate with
+
 ```{r}
-climate_20k <- climate_for_time_slice(time_bp = -20000,
+climate_20k <- region_slice(time_bp = -20000,
                                       c("bio01","bio10","bio12"),
                                       dataset="Example")
 ```
 
-We can get a summary of this object:
+This returns a raster (technically a `spatRaster` object as defined in the `terra`
+library, meaning that we can perform all standard `terra` raster operations
+on this object). To interact with `spatRaster` objects, it is best to load the
+`terra` library; we can then get a summary of this object:
 ```{r}
 library(terra)
 climate_20k
 ```
 
-and plot these two layers:
+and plot these three variables (the layers of the raster):
 ```{r, fig.width=6, fig.height=5}
 terra::plot(climate_20k)
 ```
@@ -209,7 +226,7 @@ climate_20k_afr_eurasia <- terra::crop(climate_20k_afr_eurasia,afr_eurasia_vec)
 terra::plot(climate_20k_afr_eurasia)
 ```
 
-`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa nad Eurasian by unioning the two individual outines:
+`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
 ```{r}
 library(sf)
 africa_outline<- subset(region_outline, region_outline$name=="Africa")

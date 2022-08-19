@@ -1,6 +1,7 @@
 #' Extract a time series of climate variables for a region
 #'
-#' This function extracts a time series of one or more climate variables for a given
+#' This function extracts a time series of one or more climate variables for
+#' a given
 #' dataset covering a region (or the whole world). The function returns a
 #' SpatRasterDataset \code{terra::sds} object, with
 #' each variable as a sub-dataset.
@@ -13,13 +14,8 @@
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
-#' reconstructions. All the variables of interest need to be included in this file.
-#' 
-#' location_slice
-#' location_series
-#' region_slice
-#' region_series
-#' slice_region_series
+#' reconstructions. All the variables of interest need to be included in
+#' this file.
 #'
 #' @import terra
 #' @export
@@ -29,9 +25,8 @@ region_series <-
            bio_variables,
            dataset,
            path_to_nc = NULL) {
-    
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
-    
+
     # check whether the variables exist for this dataset
     if (dataset != "custom") { # if we are using standard datasets
       check_var_downloaded(bio_variables, dataset)
@@ -54,25 +49,24 @@ region_series <-
       }
       # figure out the time indeces the first time we run this
       if (is.null(time_index)) {
-        # as we have the file name, we can us the same code for custom and 
+        # as we have the file name, we can us the same code for custom and
         # standard datasets.
-        times <- get_time_steps(dataset="custom", path_to_nc = this_file)
-        time_index <- match(time_bp,times)
-        if (any(is.na(time_index))){
+        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
+        time_index <- match(time_bp, times)
+        if (any(is.na(time_index))) {
           stop("time_bp should only include time steps available in the dataset")
         }
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
-      climate_spatrasters[[this_var]] <- terra::subset(var_brick, subset = time_index)
+      climate_spatrasters[[this_var]] <- terra::subset(var_brick,
+                                                       subset = time_index)
       varnames(climate_spatrasters[[this_var]]) <- this_var
       names(climate_spatrasters[[this_var]]) <- paste(this_var,
-                                                         time(climate_spatrasters[[this_var]]),
-                                                         sep="_")
+        time(climate_spatrasters[[this_var]]),
+        sep = "_"
+      )
     }
-    climate_sds<-terra::sds(climate_spatrasters)
-    names(climate_sds)<-bio_variables
-    #names(climate_spatraster) <- varnames(climate_spatraster) <- bio_variables
+    climate_sds <- terra::sds(climate_spatrasters)
+    names(climate_sds) <- bio_variables
     return(terra::sds(climate_spatrasters))
   }
-
-

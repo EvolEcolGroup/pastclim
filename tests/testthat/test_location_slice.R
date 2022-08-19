@@ -8,7 +8,8 @@ test_that("location_slice", {
   this_climate <- location_slice(
     x = locations[, c("longitude", "latitude")],
     time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
-    dataset = "Example", nn_interpol = FALSE)
+    dataset = "Example", nn_interpol = FALSE
+  )
   expect_false(is.na(this_climate[1, "bio01"]))
   expect_true(is.na(this_climate[3, "bio01"]))
   expect_true(is.na(this_climate[4, "bio01"]))
@@ -80,7 +81,7 @@ test_that("location_slice", {
     ),
     "path_to_nc does not point to a file"
   )
-  
+
   # now use times which are not the exact timesteps
   locations_timeoff <- data.frame(
     longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37),
@@ -90,12 +91,13 @@ test_that("location_slice", {
     x = locations_timeoff[, c("longitude", "latitude")],
     time_bp = locations_timeoff$time_bp, bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
-  )  
+  )
   # and compare it to the estimates from exact times (they should be the same!)
   this_climate <- location_slice(
     x = locations[, c("longitude", "latitude")],
     time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
   )
-  expect_true(identical(this_climate[,-c(1:3)], this_climate_timeoff[,-c(1:3)]))
+  expect_true(identical(this_climate[, -c(1:3)],
+                        this_climate_timeoff[, -c(1:3)]))
 })

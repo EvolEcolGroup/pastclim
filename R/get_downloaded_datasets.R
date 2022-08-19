@@ -6,8 +6,8 @@
 #'
 #' @export
 
-get_downloaded_datasets <- function(data_path=NULL) {
-  if (is.null(data_path)){
+get_downloaded_datasets <- function(data_path = NULL) {
+  if (is.null(data_path)) {
     data_path <- get_data_path()
   }
   all_nc_files <- list.files(data_path)
@@ -38,7 +38,8 @@ check_var_downloaded <- function(variable, dataset) {
   # test if we have downloaded already
   if (!all(variable %in% get_downloaded_datasets()
   [[dataset]])) {
-    missing_vars <- variable[!variable %in% get_downloaded_datasets()[[dataset]]]
+    missing_vars <- variable[!variable %in%
+      get_downloaded_datasets()[[dataset]]]
     stop(
       "variable (", paste(missing_vars, collapse = ", "),
       ") not yet downloaded, use `download_dataset()`"

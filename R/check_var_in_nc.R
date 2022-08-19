@@ -5,7 +5,7 @@
 #' @param bio_variables vector of names of variables to be extracted
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
 #' reconstructions.
-#' 
+#'
 #' @keywords internal
 
 check_var_in_nc <- function(bio_variables, path_to_nc) {

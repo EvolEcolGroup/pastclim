@@ -6,8 +6,7 @@ testthat::test_that("get_downloaded_datasets", {
   # return an empty list if there are no files
   expect_true(length(get_downloaded_datasets(data_path = "./foo")) == 0)
   # check that we have downloaded a variable
-  expect_true(check_var_downloaded("bio01", "Example"
-  ))
+  expect_true(check_var_downloaded("bio01", "Example"))
   # raise error if the variable is not available
   expect_error(
     check_var_downloaded("npp", "Example"),

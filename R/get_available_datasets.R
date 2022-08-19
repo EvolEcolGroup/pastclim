@@ -19,13 +19,13 @@ get_available_datasets <- function() {
 #' @keywords internal
 
 
-check_available_dataset <- function(dataset, include_custom=FALSE) {
+check_available_dataset <- function(dataset, include_custom = FALSE) {
   available_datasets <- get_available_datasets()
-  if (include_custom){
+  if (include_custom) {
     available_datasets <- c(available_datasets, "custom")
   }
   if (!dataset %in% available_datasets) {
-    stop("'dataset' must be one of ", paste (available_datasets,
+    stop("'dataset' must be one of ", paste(available_datasets,
       collapse = ", "
     ))
   } else {
