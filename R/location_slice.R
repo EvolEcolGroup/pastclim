@@ -8,12 +8,12 @@
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
 #' @param time_bp the time slice in years before present (negative
 #' values represent time before present, positive values time in the future).
-#' #' @param bio_variables vector of names of variables to be extracted.
-#' @param dataset string defining the dataset to use (one of Beyer2020,
-#' Krapp2021, Example or custom).
+#' @param bio_variables vector of names of variables to be extracted.
+#' @param dataset string defining the dataset to use. If set to "custom",
+#' then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
-#' reconstructions. All the variables of interest need to be included
-#'  in this file.
+#' reconstructions. All the variables of interest need to be included in
+#' this file.
 #' @param nn_interpol boolean determining whether nearest neighbour
 #' interpolation is used to estimate climate for cells that lack such
 #' information (i.e. they are under water or ice). Interpolation is only
@@ -131,11 +131,11 @@ location_slice <-
 
 climate_for_locations <- function(...) {
   warning("DEPRECATED: use 'location_slice' instead")
-  if (!is.null(path_to_nc)) {
-    stop(
-      "the use of pastclimData is now deprecated",
-      "use 'set_path_data' instead"
-    )
-  }
+  # if (!is.null(path_to_nc)) {
+  #   stop(
+  #     "the use of pastclimData is now deprecated",
+  #     "use 'set_path_data' instead"
+  #   )
+  # }
   location_slice(...)
 }

@@ -30,6 +30,6 @@ slice_region_series <- function(x, time_bp) {
       terra::add(climate_spatraster) <- subset(x[[i]], time_index)
     }
   }
-  # names(climate_spatraster) <- varnames(climate_spatraster) #<- names(x)
+  names(climate_spatraster) <- varnames(climate_spatraster) #<- names(x)
   return(climate_spatraster)
 }

@@ -7,8 +7,11 @@
 #' each variable as a sub-dataset.
 #'
 #' @param time_bp time slices in years before present (negative values represent
-#' time before present, positive values time in the future). The slices need
-#' to exist in the dataset. To check which slices are available, you can use
+#' time before present, positive values time in the future). This parameter can
+#' be a vector of times (the slices need
+#' to exist in the dataset), a list with a min and max element setting the
+#' range of values, or left to NULL to retrieve all time steps.
+#' To check which slices are available, you can use
 #' \code{get_time_steps}.
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
@@ -21,7 +24,7 @@
 #' @export
 
 region_series <-
-  function(time_bp,
+  function(time_bp = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL) {
@@ -52,14 +55,16 @@ region_series <-
         # as we have the file name, we can us the same code for custom and
         # standard datasets.
         times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
-        time_index <- match(time_bp, times)
-        if (any(is.na(time_index))) {
-          stop("time_bp should only include time steps available in the dataset")
-        }
+        time_index <- time_bp_series(time_bp = time_bp,
+                                     time_steps = times)
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
-      climate_spatrasters[[this_var]] <- terra::subset(var_brick,
-                                                       subset = time_index)
+      if (!is.null(time_bp)){
+        climate_spatrasters[[this_var]] <- terra::subset(var_brick,
+                                       subset = time_index)
+      } else {
+        climate_spatrasters[[this_var]] <- var_brick
+      }
       varnames(climate_spatrasters[[this_var]]) <- this_var
       names(climate_spatrasters[[this_var]]) <- paste(this_var,
         time(climate_spatrasters[[this_var]]),

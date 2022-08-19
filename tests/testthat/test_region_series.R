@@ -50,4 +50,17 @@ test_that("region series", {
     ),
     "time_bp should only include time steps available in the dataset"
   )
+  
+  # get all values
+  climate_region <- region_series(bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_true(all(terra::nlyr(climate_region) == c(5, 5)))
+  
+  # get all values
+  climate_region <- region_series(
+    time_bp = list(min=-13000,max=0), c("bio01", "bio12"),
+    "Example"
+  )
+  expect_true(all(terra::nlyr(climate_region) == c(3, 3)))
 })
