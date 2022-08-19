@@ -32,7 +32,7 @@ devtools::install_github("EvolEcolGroup/pastclim", build_vignettes = TRUE)
 ```
 And read it directly in R with:
 ```{r vignette, eval=FALSE}
-vignette("pastclim_overview",package="pastclim")
+vignette("pastclim_overview", package = "pastclim")
 ```
 Depending on the operating system you use, you might need additional packages to build
 a vignette.
@@ -81,25 +81,25 @@ Let us start by inspecting the *Example* dataset. We can get a list of variables
 available for this dataset with:
 
 ```{r}
-get_vars_for_dataset(dataset="Example")
+get_vars_for_dataset(dataset = "Example")
 ```
 
 and the available time steps available can be obtained with:
 
 ```{r}
-get_time_steps(dataset="Example")
+get_time_steps(dataset = "Example")
 ```
 
 For "Beyer2020" and "Krapp2021", you can get a list
 of available variables for each dataset with:
 ```{r}
-get_vars_for_dataset(dataset="Beyer2020")
+get_vars_for_dataset(dataset = "Beyer2020")
 ```
 
 and 
 
 ```{r}
-get_vars_for_dataset(dataset="Krapp2021")
+get_vars_for_dataset(dataset = "Krapp2021")
 ```
 
 You will not be able to get the available time steps until you download the data. `pastclim` offers an interface
@@ -115,7 +115,7 @@ Let's now download `bio01` and `bio05` for the *Beyer2020* dataset (this operati
 the download is complete):
 
 ```{r eval=FALSE}
-download_dataset(dataset="Beyer2020", bio_variables = c("bio01","bio05"))
+download_dataset(dataset = "Beyer2020", bio_variables = c("bio01", "bio05"))
 ```
 
 Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.
@@ -129,47 +129,55 @@ for the times relevant to the locations of interest.
 Let us create some fictitious locations:
 
 ```{r}
-locations<-data.frame(longitude=c(0,90,-120,-7),latitude=c(20,45,60,37),
-                      time_bp=c(0,-9753, -18738, -11849))
+locations <- data.frame(
+  longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37),
+  time_bp = c(0, -9753, -18738, -11849)
+)
 locations
 ```
 
 And extract their climatic conditions for `bio01` and `bio12`:
 ```{r}
-location_slice (x= locations[,c("longitude", "latitude")],
-           time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
-           dataset="Example", nn_interpol = FALSE)
+location_slice(
+  x = locations[, c("longitude", "latitude")],
+  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  dataset = "Example", nn_interpol = FALSE
+)
 ```
 `pastclim` finds the closest time steps (slices) available for a given date, and ouputs
 the slice used in column `time_bp_slice` (the *Example* dataset that we use in this vignette has a temporal resolution of only 5k years).
 
 Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
 ```{r}
-location_slice (x= locations[,c("longitude", "latitude")],
-           time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
-           dataset="Example", nn_interpol = TRUE)
+location_slice(
+  x = locations[, c("longitude", "latitude")],
+  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  dataset = "Example", nn_interpol = TRUE
+)
 ```
 In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that `nn_interpol = TRUE` is the default for this function.
 
 Sometimes, we want to get a time series of climatic reconstructions, thus allowing us to
 see how climate changed over time:
 ```{r}
-locations_ts <- location_series(x= locations[,c("longitude", "latitude")],
-                                         bio_variables=c("bio01","bio12"),
-                                         dataset="Example")
+locations_ts <- location_series(
+  x = locations[, c("longitude", "latitude")],
+  bio_variables = c("bio01", "bio12"),
+  dataset = "Example"
+)
 ```
 
 The resulting dataframe can be subsetted to get the time series for each location
 (note that the small *Example* dataset only contains 5 time points):
 ```{r}
-subset(locations_ts,id==1)
+subset(locations_ts, id == 1)
 ```
 Also note that the last two locations do not return information for all time steps. That's due to the change in sea level and icesheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
 ```{r}
-subset(locations_ts,id==3)
+subset(locations_ts, id == 3)
 ```
 ```{r}
-subset(locations_ts,id==4)
+subset(locations_ts, id == 4)
 ```
 
 # Get climate for a region
@@ -178,9 +186,11 @@ Instead of focussing on specific locations, we might want to look a whole region
 For a given time step, we can extract a slice of climate with
 
 ```{r}
-climate_20k <- region_slice(time_bp = -20000,
-                                      c("bio01","bio10","bio12"),
-                                      dataset="Example")
+climate_20k <- region_slice(
+  time_bp = -20000,
+  c("bio01", "bio10", "bio12"),
+  dataset = "Example"
+)
 ```
 
 This returns a raster (technically a `spatRaster` object as defined in the `terra`
@@ -204,7 +214,7 @@ region_extent
 ```
 We can crop the raster to Europe:
 ```{r, fig.width=6, fig.height=5}
-europe_climate_20k <- terra::crop(climate_20k,terra::ext(region_extent$Europe))
+europe_climate_20k <- terra::crop(climate_20k, terra::ext(region_extent$Europe))
 terra::plot(europe_climate_20k)
 ```
 
@@ -220,21 +230,21 @@ copy over the `crs` from the raster to the polygon). It is also helpful to crop
 the extent of the raster to that of the polygon (to avoid having a large amount
 of blank space).
 ```{r, fig.width=6, fig.height=5}
-afr_eurasia_vec<- terra::vect("POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10, 
+afr_eurasia_vec <- terra::vect("POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,
                               119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,
                               -25 -40, -25 64, 0 70))")
-terra::crs(afr_eurasia_vec)<-terra::crs(climate_20k)
+terra::crs(afr_eurasia_vec) <- terra::crs(climate_20k)
 climate_20k_afr_eurasia <- terra::mask(climate_20k, afr_eurasia_vec)
-climate_20k_afr_eurasia <- terra::crop(climate_20k_afr_eurasia,afr_eurasia_vec)
+climate_20k_afr_eurasia <- terra::crop(climate_20k_afr_eurasia, afr_eurasia_vec)
 terra::plot(climate_20k_afr_eurasia)
 ```
 
 `pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
 ```{r}
 library(sf)
-africa_outline<- subset(region_outline, region_outline$name=="Africa")
-eurasia_outline<- subset(region_outline, region_outline$name=="Eurasia")
-afr_eurasia_vec<-terra::vect(sf::st_union(africa_outline, eurasia_outline))
+africa_outline <- subset(region_outline, region_outline$name == "Africa")
+eurasia_outline <- subset(region_outline, region_outline$name == "Eurasia")
+afr_eurasia_vec <- terra::vect(sf::st_union(africa_outline, eurasia_outline))
 climate_20k_afr_eurasia <- terra::mask(climate_20k, afr_eurasia_vec)
 terra::plot(climate_20k_afr_eurasia)
 ```
@@ -248,21 +258,25 @@ get_biome_classes("Example")
 
 To plot it, we extract the biome and then subset it to just that class
 ```{r, fig.width=6, fig.height=5}
-climate_20k <- region_slice(time_bp = -20000, 
-                            bio_variables = c("bio01","bio10","biome"),
-                            dataset = "Example")
-climate_20k$ice<-climate_20k$biome
-climate_20k$ice[climate_20k$ice!=28] <- FALSE
-climate_20k$ice[climate_20k$ice==28] <- TRUE
+climate_20k <- region_slice(
+  time_bp = -20000,
+  bio_variables = c("bio01", "bio10", "biome"),
+  dataset = "Example"
+)
+climate_20k$ice <- climate_20k$biome
+climate_20k$ice[climate_20k$ice != 28] <- FALSE
+climate_20k$ice[climate_20k$ice == 28] <- TRUE
 terra::plot(climate_20k)
 ```
 
 Or more simply, we use functions designed to get ice and land masks.
 ```{r, fig.width=6, fig.height=5}
-climate_20k <- region_slice(time_bp = -20000,
-                            c("bio01","bio10"),
-                            dataset = "Example")
-climate_20k$ice_mask<-get_ice_mask(-20000, dataset = "Example")
+climate_20k <- region_slice(
+  time_bp = -20000,
+  c("bio01", "bio10"),
+  dataset = "Example"
+)
+climate_20k$ice_mask <- get_ice_mask(-20000, dataset = "Example")
 climate_20k$land_mask <- get_land_mask(-20000, dataset = "Example")
 terra::plot(climate_20k)
 ```
@@ -272,36 +286,44 @@ terra::plot(climate_20k)
 We can visualise the environment for this time step with a PCA:
 ```{r, fig.width=4, fig.height=4}
 climate_10k <- region_slice(-10000,
-                            c("bio01","bio10","bio12"),
-                            dataset="Example")
+  c("bio01", "bio10", "bio12"),
+  dataset = "Example"
+)
 climate_values_10k <- values(climate_10k)
-climate_values_10k <- climate_values_10k[!is.nan(climate_values_10k[,1]),]
-climate_10k_pca<-prcomp(climate_values_10k,scale=TRUE, center=TRUE)
-plot(climate_10k_pca$x[,2]~climate_10k_pca$x[,1],pch=20,col="lightgray",
-     xlab="PC1",ylab="PC2")
+climate_values_10k <- climate_values_10k[!is.nan(climate_values_10k[, 1]), ]
+climate_10k_pca <- prcomp(climate_values_10k, scale = TRUE, center = TRUE)
+plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
+  pch = 20, col = "lightgray",
+  xlab = "PC1", ylab = "PC2"
+)
 ```
 
 We can now get the climate variables for the locations at this time step, compute the PCA scores and plots the locations on top of the background climate:
 ```{r, fig.width=4, fig.height=4}
-locations_10k <-location_slice (x= locations[,c("longitude", "latitude")],
-           time_bp = locations$time_bp, bio_variables=c("bio01","bio12"),
-           dataset="Example")
-locations_10k <- locations_10k[locations_10k$time_bp_slice == -10000,]
-locations_10k_climate<- location_slice (x= locations_10k[,c("longitude", "latitude")],
-           time_bp = locations_10k$time_bp, bio_variables=c("bio01","bio10","bio12"),
-           dataset="Example")
-locations_10k_pca_scores <- predict(climate_10k_pca,newdata= locations_10k_climate[,-c(1:4)])
-plot(climate_10k_pca$x[,2]~climate_10k_pca$x[,1],pch=20,col="lightgray",
-     xlab="PC1",ylab="PC2")
-points(locations_10k_pca_scores,pch=20,col="red")
-
+locations_10k <- location_slice(
+  x = locations[, c("longitude", "latitude")],
+  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  dataset = "Example"
+)
+locations_10k <- locations_10k[locations_10k$time_bp_slice == -10000, ]
+locations_10k_climate <- location_slice(
+  x = locations_10k[, c("longitude", "latitude")],
+  time_bp = locations_10k$time_bp, bio_variables = c("bio01", "bio10", "bio12"),
+  dataset = "Example"
+)
+locations_10k_pca_scores <- predict(climate_10k_pca, newdata = locations_10k_climate[, -c(1:4)])
+plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
+  pch = 20, col = "lightgray",
+  xlab = "PC1", ylab = "PC2"
+)
+points(locations_10k_pca_scores, pch = 20, col = "red")
 ```
 
 ## Working with MIS
 Sometimes we want to work with multiple time steps to represent a given MIS.
 We can get a list of time steps available for a given mis with:
 ```{r}
-mis_time_steps <- get_mis_time_steps(1,"Example")
+mis_time_steps <- get_mis_time_steps(1, "Example")
 mis_time_steps
 ```
 
@@ -310,9 +332,11 @@ And now cycle over those steps. First extract the climate into a list:
 mis_climate_list <- list()
 for (this_step in mis_time_steps) {
   this_step_climate <-
-    region_slice(time_bp = this_step ,
-                 bio_variables =  c("bio01", "bio10", "bio12"),
-                 dataset = "Example")
+    region_slice(
+      time_bp = this_step,
+      bio_variables = c("bio01", "bio10", "bio12"),
+      dataset = "Example"
+    )
   this_step_climate <- values(this_step_climate)
   this_step_climate <-
     this_step_climate[!is.nan(this_step_climate[, 1]), ]
@@ -327,9 +351,11 @@ mis_climate <- do.call(rbind, mis_climate_list)
 
 And finally plot it:
 ```{r, fig.width=4, fig.height=4}
-mis_pca<-prcomp(mis_climate,scale=TRUE, center=TRUE)
-plot(mis_pca$x[,2]~mis_pca$x[,1],pch=20,col="lightgray",
-     xlab="PC1",ylab="PC2") 
+mis_pca <- prcomp(mis_climate, scale = TRUE, center = TRUE)
+plot(mis_pca$x[, 2] ~ mis_pca$x[, 1],
+  pch = 20, col = "lightgray",
+  xlab = "PC1", ylab = "PC2"
+)
 ```
 
 
@@ -338,29 +364,36 @@ plot(mis_pca$x[,2]~mis_pca$x[,1],pch=20,col="lightgray",
 For a number of species distribution models, we need to subsample background points to our presences. We can simply do that by generating the raster for the time slice of interest, and using the appropriate function from `terra`:
 
 ```{r}
-climate_20k <- region_slice(time_bp = -20000,
-                            bio_variables = c("bio01", "bio10"),
-                            dataset = "Example")
-this_sample<-terra::spatSample(climate_20k, 100, na.rm = TRUE,
-                               cells = TRUE,xy = TRUE)
+climate_20k <- region_slice(
+  time_bp = -20000,
+  bio_variables = c("bio01", "bio10"),
+  dataset = "Example"
+)
+this_sample <- terra::spatSample(climate_20k, 100,
+  na.rm = TRUE,
+  cells = TRUE, xy = TRUE
+)
 head(this_sample)
 ```
 
 If we needed to get other variables for those coordinates, we could simply:
 ```{r}
-additional_var <- location_slice (
-            x = data.frame(longitude = this_sample$x, latitude = this_sample$y),
-            time_bp = rep(-20000, nrow(this_sample)), 
-            bio_variables = c("bio12"),
-            dataset = "Example")
+additional_var <- location_slice(
+  x = data.frame(longitude = this_sample$x, latitude = this_sample$y),
+  time_bp = rep(-20000, nrow(this_sample)),
+  bio_variables = c("bio12"),
+  dataset = "Example"
+)
 head(additional_var)
 ```
 
 Alternatively, we could use the cell number:
 ```{r}
-additional_var <- location_slice (x = this_sample$cell,
-           time_bp = rep(-20000, nrow(this_sample)), 
-           bio_variables = c("bio12"),
-           dataset = "Example")
+additional_var <- location_slice(
+  x = this_sample$cell,
+  time_bp = rep(-20000, nrow(this_sample)),
+  bio_variables = c("bio12"),
+  dataset = "Example"
+)
 head(additional_var)
 ```
