@@ -6,8 +6,9 @@
 #'
 #' @param x a 2 column matrix (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
-#' @param time_bp vector of ages, in years before present (negative).
-#' @param bio_variables vector of names of variables to be extracted.
+#' @param time_bp the time slice in years before present (negative values represent
+#' time before present, positive values time in the future).
+#' #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use (one of Beyer2020,
 #' Krapp2021, Example or custom).
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
@@ -27,16 +28,14 @@ location_slice <-
            dataset,
            path_to_nc = NULL,
            nn_interpol = TRUE) {
+    
+    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
     # if we are using standard datasets, check whether a variables exists
     if (dataset != "custom") {
-      check_var_downloaded(bio_variables, dataset, path_to_nc)
+      check_var_downloaded(bio_variables, dataset)
     } else { # else check that the variables exist in the custom nc
       check_var_in_nc(bio_variables, path_to_nc)
-    }
-
-    if (is.null(path_to_nc)) {
-      path_to_nc <- get_data_path()
     }
 
     # reorder the inputs by time
@@ -56,10 +55,10 @@ location_slice <-
       # get name of file that contains this variable
       if (dataset != "custom") {
         this_file <- get_file_for_dataset(this_var, dataset)$file_name
-        this_file <- file.path(path_to_nc, this_file)
+        this_file <- file.path(get_data_path(), this_file)
         this_var_nc <- get_varname(variable = this_var, dataset = dataset)
       } else {
-        this_file <- file.path(path_to_nc)
+        this_file <- path_to_nc
         this_var_nc <- this_var
       }
       if (is.null(time_indeces)) {
@@ -131,6 +130,9 @@ location_slice <-
 
 climate_for_locations <-function(...){
   warning("DEPRECATED: use 'location_slice' instead")
+  if (!is.null(path_to_nc)){
+    stop("the use of pastclimData is now deprecated, use 'set_path_data' instead")
+  }
   location_slice(...)
 }
 

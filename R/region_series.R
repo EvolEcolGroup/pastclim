@@ -34,7 +34,7 @@ region_series <-
     
     # check whether the variables exist for this dataset
     if (dataset != "custom") { # if we are using standard datasets
-      check_var_downloaded(bio_variables, dataset, get_data_path())
+      check_var_downloaded(bio_variables, dataset)
     } else { # else check that the variables exist in the custom nc
       check_var_in_nc(bio_variables, path_to_nc)
     }

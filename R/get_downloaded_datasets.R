@@ -2,15 +2,15 @@
 #'
 #' List the downloaded variable for each dataset.
 #'
-#' @param path_to_nc path to the netcdf datasets
+#' @param data_path leave it to NULL to use the default datapath
 #'
 #' @export
 
-get_downloaded_datasets <- function(path_to_nc = NULL) {
-  if (is.null(path_to_nc)) {
-    path_to_nc <- get_data_path()
+get_downloaded_datasets <- function(data_path=NULL) {
+  if (is.null(data_path)){
+    data_path <- get_data_path()
   }
-  all_nc_files <- list.files(path_to_nc)
+  all_nc_files <- list.files(data_path)
   files_subset <- files_by_dataset[files_by_dataset$file_name %in%
     all_nc_files, ]
   downloaded_vars <- list()
@@ -28,21 +28,17 @@ get_downloaded_datasets <- function(path_to_nc = NULL) {
 #'
 #' @param variable a vector of names of the variables of interest
 #' @param dataset dataset of interest
-#' @param path_to_nc path to the netcdf datasets
 #'
 #' @keywords internal
 
-check_var_downloaded <- function(variable, dataset, path_to_nc = NULL) {
+check_var_downloaded <- function(variable, dataset) {
   # first check the variable exists for that dataset
   check_available_variable(variable, dataset)
 
   # test if we have downloaded already
-  if (!all(variable %in% get_downloaded_datasets(path_to_nc = path_to_nc)
+  if (!all(variable %in% get_downloaded_datasets()
   [[dataset]])) {
-    missing_vars <- variable[!variable %in% get_downloaded_datasets(
-      path_to_nc =
-        path_to_nc
-    )[[dataset]]]
+    missing_vars <- variable[!variable %in% get_downloaded_datasets()[[dataset]]]
     stop(
       "variable (", paste(missing_vars, collapse = ", "),
       ") not yet downloaded, use `download_dataset()`"
