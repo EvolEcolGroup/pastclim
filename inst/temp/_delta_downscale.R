@@ -1,4 +1,7 @@
-delta_compute <- function(x_modern, high_res) {
+# x_modern the modern climate reconstruction
+# high_res_obs the observed high resolution data
+
+delta_compute <- function(x_modern, high_res_obs) {
   # get the extent of the high res reference
 
   # check that it is compatible with the x_modern
@@ -16,6 +19,8 @@ delta_downscale <- function(x, delta_rast, time_point, sea_level_path) {
   etopo1 <- terra::rast("ETOPO1_Ice_c_gmt4.grd")
   sea_level <- read.table("spratt2016.txt", header = TRUE, row.names = 1)
 
+  #system.file("extdata/sea_level_spratt2016.txt",data="package")
+  
   # downscale x with near
 
   # adjust the land area based on sea level
