@@ -3,9 +3,6 @@
 # first download the two nc files into the directory `/temp_files/beyer`
 # then create internal_seas.nc with `create_internal_seas_raster.R` 
 # then run this shell script from `/temp_files/beyer`
-# 
-# note that we add the monthly npp data into the main file, even though
-# we don't use it right now
 
 ## fix units
 ncatted -a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"  LateQuaternary_Environment.nc LateQuaternary_Environment_u.nc
@@ -45,3 +42,5 @@ ncatted -a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -h Beye
 ncatted -a command_line,global,c,c,"./inst/rawdata_scripts/repackage_beyer2020.sh" -h Beyer2020_all_vars_v1.0.0.nc
 
 rm Beyer2020_all_vars.nc
+
+Rscript ../../repackage_beyer2020_split_annual_monthly.R
