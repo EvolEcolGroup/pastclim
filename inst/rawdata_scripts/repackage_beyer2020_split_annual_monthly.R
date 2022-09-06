@@ -20,7 +20,7 @@ ncdf4::nc_close(nc_in)
 select_string <- "-select,name=temperature,precipitation,cloudiness,relative_humidity,wind_speed,mo_npp"
 cdo("-z zip_9",select_string,"Beyer2020_all_vars_v1.0.0.nc","Beyer2020_monthly_vars_temp.nc")
 cdo("splitlevel","Beyer2020_monthly_vars_temp.nc","Beyer2020_monthly")
-for (i in 2:12){
+for (i in 1:12){
   if (i<10){
     month_id<-paste0("0",i)
   } else {
@@ -50,3 +50,5 @@ ncdf4::ncatt_put(nc_in, varid = 0, attname = "pastclim_version",
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "history",
                  attval="")
 ncdf4::nc_close(nc_in)
+unlink("Beyer2020_monthly0*")
+unlink("Beyer2020_monthly_vars_temp.nc")
