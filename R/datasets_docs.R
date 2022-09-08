@@ -1,3 +1,15 @@
+#' Documentation for the Example dataset
+#'
+#' This dataset is a subset of Beyer2020, used for the vignette of pastclim.
+#' Do not use this dataset for any real work, as it might not reflect the most
+#' up-to-date version of Beyer2020.
+#'
+#' @name Example
+NULL
+#> NULL
+
+
+
 #' Documentation for the Beyer2020 dataset
 #'
 #' This dataset covers the last 120k years, at intervals of 1/2 k years, and a 

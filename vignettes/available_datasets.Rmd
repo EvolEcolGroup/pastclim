@@ -1,0 +1,39 @@
+---
+title: "Available datasets in pastclim"
+output: rmarkdown::pdf_document
+# output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{available datasets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Datasets available in `pastclim`
+
+A number of datasets are available in pastclim. It is possible to use custom datasets as long as they are properly formatted (look at the article on how to format custom datasets if you are interested). It is possible to get a list of all available datasets with:
+
+```{r}
+library(pastclim)
+get_available_datasets()
+```
+
+For each dataset, you can get detailed information with the function:
+
+```{r}
+get_dataset_info(dataset="Example")
+```
+
+Here we provide the full documentation for each dataset (sorted in alphabetical order):
+```{r echo=FALSE}
+for (i in sort(get_available_datasets())){
+  get_dataset_info(i)
+  cat("\n#######################################################\n")
+}
+```

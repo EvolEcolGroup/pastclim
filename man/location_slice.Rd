@@ -17,8 +17,9 @@ location_slice(
 \item{x}{a 2 column matrix (with columns `longitude`, ranging
 -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.}
 
-\item{time_bp}{the time slice in years before present (negative
-values represent time before present, positive values time in the future).}
+\item{time_bp}{the dates in years before present (negative
+values represent time before present, i.e. 1950, positive values time in the future)
+for each location.}
 
 \item{bio_variables}{vector of names of variables to be extracted.}
 

@@ -4,16 +4,11 @@
 \alias{Beyer2020}
 \title{Documentation for the Beyer2020 dataset}
 \description{
-This dataset covers the last 120k years, at intervals of 1/2 k years.
+This dataset covers the last 120k years, at intervals of 1/2 k years, and a 
+resolution of 0.5 degrees in latitude and longitude.
 }
 \details{
-This dataset can be downloaded with \code{\link{download_dataset}}. The
-files can be found at
-
-Manica, Andrea (2022): pastclim_beyer2020_v1.0.0. figshare. Dataset.
-\url{https://doi.org/10.6084/m9.figshare.19723405.v1}
-
-based on
+If you use this dataset, make sure to cite the original publication:
 
 Beyer, R.M.,
 Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
@@ -33,4 +28,12 @@ were used for all time steps.
 Also, for bio15, the coefficient of variation was computed after adding one
 to monthly estimates, and it was multiplied by 100 following
 \url{https://pubs.usgs.gov/ds/691/ds691.pdf}
+
+Changelog
+
+v1.0.0 Remove icesheets and internal seas, and use correct formula for bio15.
+Files can be downloaded from:
+
+Manica, Andrea (2022): pastclim_beyer2020_v1.0.0. figshare. Dataset.
+\url{https://doi.org/10.6084/m9.figshare.19723405.v1}
 }
