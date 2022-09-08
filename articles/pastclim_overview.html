@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="pastclim overview">
 <meta property="og:description" content="pastclim">
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,16 +88,16 @@
 </h2>
 <p>You will need to install the library from Github. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></span></code></pre></div>
 <p>There is a vignette with detailed step by step examples on how to use the library. You can find it on the website for the package. Or, if when can build it when installing <code>pastclim</code> :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>And read it directly in R with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"pastclim_overview"</span>,package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"pastclim_overview"</span>,package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span></span></code></pre></div>
 <p>The vignette also provides instructions on how to install the optional companion package <code>pastclimData</code>, which simplifies the task of downloading and storing the climate simulations. Depending on the operating system you use, you might need additional packages to build a vignette. —</p>
 <p>NOTE: <code>pastclim</code> relies on <code>terra</code> to process rasters. There is a known bug in <code>terra</code> that leads to the occasional message:</p>
-<pre><code><span class="st">"Error in x$.self$finalize() : attempt to apply non-function"</span></code></pre>
+<pre><code><span><span class="st">"Error in x$.self$finalize() : attempt to apply non-function"</span></span></code></pre>
 <p>being reported. This is an error related to garbage collection, which does not affect the script being correctly executed, so it can be ignored. More discussion of this issue can be found on <a href="https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second" class="external-link">stack<strong>overflow</strong></a></p>
 </div>
 <div class="section level2">
@@ -106,39 +106,39 @@
 <p>You will need to download climatic reconstuctions before being able to do any work with <code>pastclim</code>. The library focuses on two datasets: “Beyer2020” which covers the last 120k years; and, for project that go further back in time, “Krapp2021” which goes back to 800kya. For these to datasets, there are functions that help you download the data and choose the variables. If you are familiar with handling <code>netcdf</code> files, you can also use most functions in <code>pastclim</code> on custom datasets.</p>
 <p>For Beyer2020 and Krapp2021, you can get a list of available variables for each dataset with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span>
-<span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   </span>
-<span class="co">#&gt;  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   </span>
-<span class="co">#&gt; [13] "bio15"    "bio16"    "bio17"    "bio18"    "bio19"    "npp"     </span>
-<span class="co">#&gt; [19] "lai"      "biome"    "altitude" "rugosity"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   </span></span>
+<span><span class="co">#&gt;  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   </span></span>
+<span><span class="co">#&gt; [13] "bio15"    "bio16"    "bio17"    "bio18"    "bio19"    "npp"     </span></span>
+<span><span class="co">#&gt; [19] "lai"      "biome"    "altitude" "rugosity"</span></span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Krapp2021"</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   </span>
-<span class="co">#&gt;  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   </span>
-<span class="co">#&gt; [13] "bio15"    "bio16"    "bio17"    "bio18"    "bio19"    "npp"     </span>
-<span class="co">#&gt; [19] "biome"    "altitude" "rugosity"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Krapp2021"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   </span></span>
+<span><span class="co">#&gt;  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   </span></span>
+<span><span class="co">#&gt; [13] "bio15"    "bio16"    "bio17"    "bio18"    "bio19"    "npp"     </span></span>
+<span><span class="co">#&gt; [19] "biome"    "altitude" "rugosity"</span></span></code></pre></div>
 <p>However, before being able to use these data you need to download the data files into a directory of choice. Note that these data are large (from 100s of Mb to a few Gb). There is also a small “Example” dataset that we will use in this vignette. This is included in the package when you download it, and it is stored in the <code>/extdata</code> directory, which can be found in:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path_to_example_nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"/extdata/"</span>, package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">path_to_example_nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"/extdata/"</span>, package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span></span></code></pre></div>
 <p>For Beyer2020 and Krapp20221, <code>pastclim</code> manages the files necessary for each variable. So, we can download data for <code>bio01</code> and <code>bio05</code> for the Beyer2020 dataset with (this operation might take several minutes, as the datasets are large; <code>R</code> will pause until the download is complete):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio05"</span><span class="op">)</span>,
-                 path_to_nc <span class="op">=</span> <span class="st">"~/paleoclimate_reconstructions"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio05"</span><span class="op">)</span>,</span>
+<span>                 path_to_nc <span class="op">=</span> <span class="st">"~/paleoclimate_reconstructions"</span><span class="op">)</span></span></code></pre></div>
 <p>Note that we need to provide <code>pastclim</code> with a local path where to store the reconstructions (in this case <code>~/paleoclimate_reconstructions</code>, but you probably want a different one on your machine). We will have to use that path again every time we use a command to manipulate the data.</p>
 <p>You can get a summary of variables already downloaded (and thus that can be used) with:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets</a></span><span class="op">(</span>path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="co">#&gt; $Example</span>
-<span class="co">#&gt; [1] "bio01" "bio10" "bio12" "biome"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets</a></span><span class="op">(</span>path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $Example</span></span>
+<span><span class="co">#&gt; [1] "bio01" "bio10" "bio12" "biome"</span></span></code></pre></div>
 <p>Note that for the example above, we used the directory containing the example dataset; use the path where you stored the data that you donwloaded. Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.</p>
 <p>Having to set a path every time can be cumbersome; a simpler option to handle climate files is to install a companion package <code>pastclimData</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclimData"</span>, ref<span class="op">=</span><span class="st">"master"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclimData"</span>, ref<span class="op">=</span><span class="st">"master"</span><span class="op">)</span></span></code></pre></div>
 <p>If <code>pastclimData</code> is installed, the paleoclimate reconstructions will be stored within that package when you download them and they will then be found automatically by <code>pastclim</code> without the need to set a path). So, to download the Beyer2020 dataset, we simply need:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio05"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio05"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>By not setting <code>path_to_nc</code> in the command above, the downloaded file will be stored in that companion library<code>pastclimData</code>. The downside of storing the data in <code>pastclimData</code> is that, if you reinstall or upgrade <code>R</code>, you will need to redownload the climate reconstructions.</p>
 </div>
 <div class="section level2">
@@ -146,143 +146,143 @@
 </h2>
 <p>Get climate for several locations at different times:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">locations</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>longitude<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">90</span>,<span class="op">-</span><span class="fl">120</span>,<span class="op">-</span><span class="fl">7</span><span class="op">)</span>,latitude<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">45</span>,<span class="fl">60</span>,<span class="fl">37</span><span class="op">)</span>,
-                      time_bp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">10000</span>, <span class="op">-</span><span class="fl">20000</span>, <span class="op">-</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,
-           time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-           dataset<span class="op">=</span><span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">FALSE</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="co">#&gt;   longitude latitude time_bp     bio01    bio12</span>
-<span class="co">#&gt; 1         0       20       0 27.469721 79.85666</span>
-<span class="co">#&gt; 2        90       45  -10000  5.871795 74.30677</span>
-<span class="co">#&gt; 3      -120       60  -20000        NA       NA</span>
-<span class="co">#&gt; 4        -7       37  -10000        NA       NA</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">locations</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>longitude<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">90</span>,<span class="op">-</span><span class="fl">120</span>,<span class="op">-</span><span class="fl">7</span><span class="op">)</span>,latitude<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">45</span>,<span class="fl">60</span>,<span class="fl">37</span><span class="op">)</span>,</span>
+<span>                      time_bp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">10000</span>, <span class="op">-</span><span class="fl">20000</span>, <span class="op">-</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>           time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>           dataset<span class="op">=</span><span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">FALSE</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   longitude latitude time_bp     bio01    bio12</span></span>
+<span><span class="co">#&gt; 1         0       20       0 27.469721 79.85666</span></span>
+<span><span class="co">#&gt; 2        90       45  -10000  5.871795 74.30677</span></span>
+<span><span class="co">#&gt; 3      -120       60  -20000        NA       NA</span></span>
+<span><span class="co">#&gt; 4        -7       37  -10000        NA       NA</span></span></code></pre></div>
 <p>Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so <code>pastclim</code> does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,
-           time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-           dataset<span class="op">=</span><span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">TRUE</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="co">#&gt;   longitude latitude time_bp     bio01     bio12</span>
-<span class="co">#&gt; 1         0       20       0 27.469721  79.85666</span>
-<span class="co">#&gt; 2        90       45  -10000  5.871795  74.30677</span>
-<span class="co">#&gt; 3      -120       60  -20000        NA        NA</span>
-<span class="co">#&gt; 4        -7       37  -10000 16.986354 634.06764</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>           time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>           dataset<span class="op">=</span><span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">TRUE</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   longitude latitude time_bp     bio01     bio12</span></span>
+<span><span class="co">#&gt; 1         0       20       0 27.469721  79.85666</span></span>
+<span><span class="co">#&gt; 2        90       45  -10000  5.871795  74.30677</span></span>
+<span><span class="co">#&gt; 3      -120       60  -20000        NA        NA</span></span>
+<span><span class="co">#&gt; 4        -7       37  -10000 16.986354 634.06764</span></span></code></pre></div>
 <p>In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that <code>nn_interpol = TRUE</code> is the default for this function.</p>
 <p>In both commands above, we used the local copy of the Example dataset. If <code>pastclimData</code> was installed, we could use the same commands without setting <code>path_to_nc</code>.</p>
 <p>Get time series for these locations:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">locations_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/time_series_for_locations.html">time_series_for_locations</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,
-                                         bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-                                         dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">locations_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/time_series_for_locations.html">time_series_for_locations</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">locations</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>                                         bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>                                         dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span></code></pre></div>
 <p>The resulting dataframe can be subsetted to get the time series for each location (the small example dataset only contains 5 time points):</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;     longitude latitude id   time    bio01     bio12</span>
-<span class="co">#&gt; 1           0       20  1 -20000 22.29012  90.42681</span>
-<span class="co">#&gt; 1.1         0       20  1 -15000 23.55733 124.59431</span>
-<span class="co">#&gt; 1.2         0       20  1 -10000 25.49891 143.62798</span>
-<span class="co">#&gt; 1.3         0       20  1  -5000 26.15615 123.10526</span>
-<span class="co">#&gt; 1.4         0       20  1      0 27.46972  79.85666</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     longitude latitude id   time    bio01     bio12</span></span>
+<span><span class="co">#&gt; 1           0       20  1 -20000 22.29012  90.42681</span></span>
+<span><span class="co">#&gt; 1.1         0       20  1 -15000 23.55733 124.59431</span></span>
+<span><span class="co">#&gt; 1.2         0       20  1 -10000 25.49891 143.62798</span></span>
+<span><span class="co">#&gt; 1.3         0       20  1  -5000 26.15615 123.10526</span></span>
+<span><span class="co">#&gt; 1.4         0       20  1      0 27.46972  79.85666</span></span></code></pre></div>
 <p>Note that the last two locations do not return information for all time steps. That’s due to the change in sea level and icesheet extent, and this function (as opposed to <code>climate_for_locations</code>) does not allow for interpolation.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt;     longitude latitude id   time     bio01    bio12</span>
-<span class="co">#&gt; 3        -120       60  3 -20000       NaN      NaN</span>
-<span class="co">#&gt; 3.1      -120       60  3 -15000       NaN      NaN</span>
-<span class="co">#&gt; 3.2      -120       60  3 -10000 -4.152016 304.4748</span>
-<span class="co">#&gt; 3.3      -120       60  3  -5000 -3.695625 368.5451</span>
-<span class="co">#&gt; 3.4      -120       60  3      0 -3.614444 328.0434</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     longitude latitude id   time     bio01    bio12</span></span>
+<span><span class="co">#&gt; 3        -120       60  3 -20000       NaN      NaN</span></span>
+<span><span class="co">#&gt; 3.1      -120       60  3 -15000       NaN      NaN</span></span>
+<span><span class="co">#&gt; 3.2      -120       60  3 -10000 -4.152016 304.4748</span></span>
+<span><span class="co">#&gt; 3.3      -120       60  3  -5000 -3.695625 368.5451</span></span>
+<span><span class="co">#&gt; 3.4      -120       60  3      0 -3.614444 328.0434</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt;     longitude latitude id   time    bio01    bio12</span>
-<span class="co">#&gt; 4          -7       37  4 -20000 11.81411 1211.144</span>
-<span class="co">#&gt; 4.1        -7       37  4 -15000 13.98757 1138.329</span>
-<span class="co">#&gt; 4.2        -7       37  4 -10000      NaN      NaN</span>
-<span class="co">#&gt; 4.3        -7       37  4  -5000      NaN      NaN</span>
-<span class="co">#&gt; 4.4        -7       37  4      0      NaN      NaN</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>,<span class="va">id</span><span class="op">==</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     longitude latitude id   time    bio01    bio12</span></span>
+<span><span class="co">#&gt; 4          -7       37  4 -20000 11.81411 1211.144</span></span>
+<span><span class="co">#&gt; 4.1        -7       37  4 -15000 13.98757 1138.329</span></span>
+<span><span class="co">#&gt; 4.2        -7       37  4 -10000      NaN      NaN</span></span>
+<span><span class="co">#&gt; 4.3        -7       37  4  -5000      NaN      NaN</span></span>
+<span><span class="co">#&gt; 4.4        -7       37  4      0      NaN      NaN</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-climate-for-a-given-time-step">Get climate for a given time step<a class="anchor" aria-label="anchor" href="#get-climate-for-a-given-time-step"></a>
 </h2>
 <p>We can extract rasters for a given time step:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span>time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,
-                                      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span>time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
+<span>                                      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span></code></pre></div>
 <p>We can get a summary of this object:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span>
-<span class="co">#&gt; terra 1.5.34</span>
-<span class="va">climate_20k</span>
-<span class="co">#&gt; class       : SpatRaster </span>
-<span class="co">#&gt; dimensions  : 300, 720, 3  (nrow, ncol, nlyr)</span>
-<span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span>
-<span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span>
-<span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span>
-<span class="co">#&gt; sources     : example_climate.nc:BIO1  </span>
-<span class="co">#&gt;               example_climate.nc:BIO10  </span>
-<span class="co">#&gt;               example_climate.nc:BIO12  </span>
-<span class="co">#&gt; varnames    : bio01 (Annual Mean Temperature) </span>
-<span class="co">#&gt;               bio10 (Mean Temperature of Warmest Quarter) </span>
-<span class="co">#&gt;               bio12 (Annual Precipitation) </span>
-<span class="co">#&gt; names       : bio01, bio10, bio12 </span>
-<span class="co">#&gt; time        : -20000</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; terra 1.6.7</span></span>
+<span><span class="va">climate_20k</span></span>
+<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; dimensions  : 300, 720, 3  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span></span>
+<span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; sources     : example_climate.nc:BIO1  </span></span>
+<span><span class="co">#&gt;               example_climate.nc:BIO10  </span></span>
+<span><span class="co">#&gt;               example_climate.nc:BIO12  </span></span>
+<span><span class="co">#&gt; varnames    : bio01 (Annual Mean Temperature) </span></span>
+<span><span class="co">#&gt;               bio10 (Mean Temperature of Warmest Quarter) </span></span>
+<span><span class="co">#&gt;               bio12 (Annual Precipitation) </span></span>
+<span><span class="co">#&gt; names       : bio01, bio10, bio12 </span></span>
+<span><span class="co">#&gt; time (raw)  : -20000</span></span></code></pre></div>
 <p>and plot these two layers:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-17-1.png" width="576"></p>
 <p>Often we want to focus a given region. There are a number of preset extents in <code>pastclim</code>:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">region_extent</span>
-<span class="co">#&gt; $Africa</span>
-<span class="co">#&gt; [1] -19  61 -36  38</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $America</span>
-<span class="co">#&gt; [1] -180  -15  -70   90</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Asia</span>
-<span class="co">#&gt; [1]  60 180   5  85</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Europe</span>
-<span class="co">#&gt; [1] -15  70  33  75</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Eurasia</span>
-<span class="co">#&gt; [1] -15 180  33  85</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $N_America</span>
-<span class="co">#&gt; [1] -180  -15   15   90</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Oceania</span>
-<span class="co">#&gt; [1] 110 180 -50  10</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $S_America</span>
-<span class="co">#&gt; [1] -125  -31   58   35</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">region_extent</span></span>
+<span><span class="co">#&gt; $Africa</span></span>
+<span><span class="co">#&gt; [1] -19  61 -36  38</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $America</span></span>
+<span><span class="co">#&gt; [1] -180  -15  -70   90</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Asia</span></span>
+<span><span class="co">#&gt; [1]  60 180   5  85</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Europe</span></span>
+<span><span class="co">#&gt; [1] -15  70  33  75</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Eurasia</span></span>
+<span><span class="co">#&gt; [1] -15 180  33  85</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $N_America</span></span>
+<span><span class="co">#&gt; [1] -180  -15   15   90</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Oceania</span></span>
+<span><span class="co">#&gt; [1] 110 180 -50  10</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $S_America</span></span>
+<span><span class="co">#&gt; [1] -125  -31   58   35</span></span></code></pre></div>
 <p>We can crop the raster to Europe:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">europe_climate_20k</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">climate_20k</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">europe_climate_20k</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">climate_20k</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
 <p>We might want to use a more complex shape (i.e. a polygon, as a <code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code> object) as a mask to limit the area covered by the raster. For example, we might want to focus the 3 continents Africa, Europe and Asia, but exclude the Americas and Oceania. We need to create a polygon with the appropriate vertices (note that you need to reuse the first vertex as the last vertex, to close the polygon). For the masking operation to work correctly, the polygon will need to have the same projection as the raster (all the dataset have a simple <code>lon/lat</code> projection, so we can copy over the <code>crs</code> from the raster to the polygon). It is also helpful to crop the extent of the raster to that of the polygon (to avoid having a large amount of blank space).</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">afr_eurasia_vec</span><span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10, 
-                              119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,
-                              -25 -40, -25 64, 0 70))"</span><span class="op">)</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">afr_eurasia_vec</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span>
-<span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="va">afr_eurasia_vec</span><span class="op">)</span>
-<span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span>,<span class="va">afr_eurasia_vec</span><span class="op">)</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">afr_eurasia_vec</span><span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10, </span></span>
+<span><span class="st">                              119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,</span></span>
+<span><span class="st">                              -25 -40, -25 64, 0 70))"</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">afr_eurasia_vec</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span>
+<span><span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="va">afr_eurasia_vec</span><span class="op">)</span></span>
+<span><span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span>,<span class="va">afr_eurasia_vec</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-20-1.png" width="576"></p>
 <p><code>pastclim</code> includes a number of pre-generated masks for the main continental masses, stored in the dataset <code>continent_outlines</code> in an <code>sf</code> object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). <code>continent_outlines_union</code> provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa nad Eurasian by unioning the two individual outines:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
-<span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span>
-<span class="va">africa_outline</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">region_outline</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">name</span><span class="op">==</span><span class="st">"Africa"</span><span class="op">)</span>
-<span class="va">eurasia_outline</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">region_outline</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">name</span><span class="op">==</span><span class="st">"Eurasia"</span><span class="op">)</span>
-<span class="va">afr_eurasia_vec</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">st_union</a></span><span class="op">(</span><span class="va">africa_outline</span>, <span class="va">eurasia_outline</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span>
-<span class="co">#&gt; geometries</span>
-<span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="va">afr_eurasia_vec</span><span class="op">)</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span></span>
+<span><span class="va">africa_outline</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">region_outline</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">name</span><span class="op">==</span><span class="st">"Africa"</span><span class="op">)</span></span>
+<span><span class="va">eurasia_outline</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">region_outline</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">name</span><span class="op">==</span><span class="st">"Eurasia"</span><span class="op">)</span></span>
+<span><span class="va">afr_eurasia_vec</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">st_union</a></span><span class="op">(</span><span class="va">africa_outline</span>, <span class="va">eurasia_outline</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span></span>
+<span><span class="co">#&gt; geometries</span></span>
+<span><span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="va">afr_eurasia_vec</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-21-1.png" width="700"> Note that the Eurasian outline is intersected by the antimeridian, and so we have a small amount of data on the left hand side of the plot (corresponding to the eastern end of Siberia).</p>
 </div>
 <div class="section level2">
@@ -290,55 +290,55 @@
 </h2>
 <p>The climate reconstructions do not show areas under permanent ice. Ice sheets are stored as class 28 in the “biome” variable:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_biome_classes.html">get_biome_classes</a></span><span class="op">(</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="co">#&gt;    id                           category</span>
-<span class="co">#&gt; 1   0                       Water bodies</span>
-<span class="co">#&gt; 2   1          Tropical evergreen forest</span>
-<span class="co">#&gt; 3   2     Tropical semi-deciduous forest</span>
-<span class="co">#&gt; 4   3 Tropical deciduous forest/woodland</span>
-<span class="co">#&gt; 5   4         Temperate deciduous forest</span>
-<span class="co">#&gt; 6   5           Temperate conifer forest</span>
-<span class="co">#&gt; 7   6                  Warm mixed forest</span>
-<span class="co">#&gt; 8   7                  Cool mixed forest</span>
-<span class="co">#&gt; 9   8                Cool conifer forest</span>
-<span class="co">#&gt; 10  9                  Cold mixed forest</span>
-<span class="co">#&gt; 11 10      Evegreen taiga/montane forest</span>
-<span class="co">#&gt; 12 11     Deciduous taiga/montane forest</span>
-<span class="co">#&gt; 13 12                   Tropical savanna</span>
-<span class="co">#&gt; 14 13      Tropical xerophytic shrubland</span>
-<span class="co">#&gt; 15 14     Temperate xerophytic shrubland</span>
-<span class="co">#&gt; 16 15     Temperate sclerophyll woodland</span>
-<span class="co">#&gt; 17 16      Temperate broadleaved savanna</span>
-<span class="co">#&gt; 18 17              Open conifer woodland</span>
-<span class="co">#&gt; 19 18                    Boreal parkland</span>
-<span class="co">#&gt; 20 19                 Tropical grassland</span>
-<span class="co">#&gt; 21 20                Temperate grassland</span>
-<span class="co">#&gt; 22 21                             Desert</span>
-<span class="co">#&gt; 23 22                      Steppe tundra</span>
-<span class="co">#&gt; 24 23                       Shrub tundra</span>
-<span class="co">#&gt; 25 24                 Dwarf shrub tundra</span>
-<span class="co">#&gt; 26 25             Prostrate shrub tundra</span>
-<span class="co">#&gt; 27 26    Cushion forb lichen moss tundra</span>
-<span class="co">#&gt; 28 27                             Barren</span>
-<span class="co">#&gt; 29 28                           Land ice</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_biome_classes.html">get_biome_classes</a></span><span class="op">(</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    id                           category</span></span>
+<span><span class="co">#&gt; 1   0                       Water bodies</span></span>
+<span><span class="co">#&gt; 2   1          Tropical evergreen forest</span></span>
+<span><span class="co">#&gt; 3   2     Tropical semi-deciduous forest</span></span>
+<span><span class="co">#&gt; 4   3 Tropical deciduous forest/woodland</span></span>
+<span><span class="co">#&gt; 5   4         Temperate deciduous forest</span></span>
+<span><span class="co">#&gt; 6   5           Temperate conifer forest</span></span>
+<span><span class="co">#&gt; 7   6                  Warm mixed forest</span></span>
+<span><span class="co">#&gt; 8   7                  Cool mixed forest</span></span>
+<span><span class="co">#&gt; 9   8                Cool conifer forest</span></span>
+<span><span class="co">#&gt; 10  9                  Cold mixed forest</span></span>
+<span><span class="co">#&gt; 11 10      Evegreen taiga/montane forest</span></span>
+<span><span class="co">#&gt; 12 11     Deciduous taiga/montane forest</span></span>
+<span><span class="co">#&gt; 13 12                   Tropical savanna</span></span>
+<span><span class="co">#&gt; 14 13      Tropical xerophytic shrubland</span></span>
+<span><span class="co">#&gt; 15 14     Temperate xerophytic shrubland</span></span>
+<span><span class="co">#&gt; 16 15     Temperate sclerophyll woodland</span></span>
+<span><span class="co">#&gt; 17 16      Temperate broadleaved savanna</span></span>
+<span><span class="co">#&gt; 18 17              Open conifer woodland</span></span>
+<span><span class="co">#&gt; 19 18                    Boreal parkland</span></span>
+<span><span class="co">#&gt; 20 19                 Tropical grassland</span></span>
+<span><span class="co">#&gt; 21 20                Temperate grassland</span></span>
+<span><span class="co">#&gt; 22 21                             Desert</span></span>
+<span><span class="co">#&gt; 23 22                      Steppe tundra</span></span>
+<span><span class="co">#&gt; 24 23                       Shrub tundra</span></span>
+<span><span class="co">#&gt; 25 24                 Dwarf shrub tundra</span></span>
+<span><span class="co">#&gt; 26 25             Prostrate shrub tundra</span></span>
+<span><span class="co">#&gt; 27 26    Cushion forb lichen moss tundra</span></span>
+<span><span class="co">#&gt; 28 27                             Barren</span></span>
+<span><span class="co">#&gt; 29 28                           Land ice</span></span></code></pre></div>
 <p>To plot it, we extract the biome and then subset it to just that class</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,
-                                      <span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"biome"</span><span class="op">)</span>,
-                                      dataset <span class="op">=</span> <span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">&lt;-</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">biome</span>
-<span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">!=</span><span class="fl">28</span><span class="op">]</span><span class="op">&lt;-</span><span class="cn">FALSE</span>
-<span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">==</span><span class="fl">28</span><span class="op">]</span><span class="op">&lt;-</span><span class="cn">TRUE</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,</span>
+<span>                                      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"biome"</span><span class="op">)</span>,</span>
+<span>                                      dataset <span class="op">=</span> <span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">&lt;-</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">biome</span></span>
+<span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">!=</span><span class="fl">28</span><span class="op">]</span><span class="op">&lt;-</span><span class="cn">FALSE</span></span>
+<span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice</span><span class="op">==</span><span class="fl">28</span><span class="op">]</span><span class="op">&lt;-</span><span class="cn">TRUE</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-23-1.png" width="576"></p>
 <p>Or more simply, we use functions designed to get ice and land masks.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,
-                                      <span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span><span class="op">)</span>,
-                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">climate_20k</span><span class="op">$</span><span class="va">ice_mask</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">climate_20k</span><span class="op">$</span><span class="va">land_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_land_mask.html">get_land_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,</span>
+<span>                                      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span><span class="op">)</span>,</span>
+<span>                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice_mask</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">climate_20k</span><span class="op">$</span><span class="va">land_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_land_mask.html">get_land_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-24-1.png" width="576"></p>
 </div>
 <div class="section level2">
@@ -346,52 +346,52 @@
 </h2>
 <p>We can visualise the environment for this time step with a PCA:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">climate_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span>,
-                                      <span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">climate_values_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">climate_10k</span><span class="op">)</span>
-<span class="va">climate_values_10k</span> <span class="op">&lt;-</span> <span class="va">climate_values_10k</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.nan</a></span><span class="op">(</span><span class="va">climate_values_10k</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>,<span class="op">]</span>
-<span class="va">climate_10k_pca</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">climate_values_10k</span>,scale<span class="op">=</span><span class="cn">TRUE</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,
-     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span>,</span>
+<span>                                      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">climate_values_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">climate_10k</span><span class="op">)</span></span>
+<span><span class="va">climate_values_10k</span> <span class="op">&lt;-</span> <span class="va">climate_values_10k</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.nan</a></span><span class="op">(</span><span class="va">climate_values_10k</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="va">climate_10k_pca</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">climate_values_10k</span>,scale<span class="op">=</span><span class="cn">TRUE</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,</span>
+<span>     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-25-1.png" width="384"></p>
 <p>We can now get the climate variables for the locations at this time step, compute the PCA scores and plots the locations on top of the background climate:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">locations_10k</span> <span class="op">&lt;-</span> <span class="va">locations</span><span class="op">[</span><span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span><span class="op">==</span><span class="op">-</span><span class="fl">10000</span>,<span class="op">]</span>
-<span class="va">locations_10k_climate</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations_10k</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,
-           time_bp <span class="op">=</span> <span class="va">locations_10k</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-           dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">locations_10k_pca_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">climate_10k_pca</span>,newdata<span class="op">=</span> <span class="va">locations_10k_climate</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,
-     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_10k_pca_scores</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">locations_10k</span> <span class="op">&lt;-</span> <span class="va">locations</span><span class="op">[</span><span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span><span class="op">==</span><span class="op">-</span><span class="fl">10000</span>,<span class="op">]</span></span>
+<span><span class="va">locations_10k_climate</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">locations_10k</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>           time_bp <span class="op">=</span> <span class="va">locations_10k</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>           dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">locations_10k_pca_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">climate_10k_pca</span>,newdata<span class="op">=</span> <span class="va">locations_10k_climate</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,</span>
+<span>     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_10k_pca_scores</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-26-1.png" width="384"></p>
 <div class="section level3">
 <h3 id="working-with-mis">Working with MIS<a class="anchor" aria-label="anchor" href="#working-with-mis"></a>
 </h3>
 <p>Sometimes we want to work with multiple time steps to represent a given MIS. We can get a list of time steps available for a given mis with:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mis_time_steps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mis_time_steps.html">get_mis_time_steps</a></span><span class="op">(</span><span class="fl">1</span>,<span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">mis_time_steps</span>
-<span class="co">#&gt; [1] -10000  -5000      0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mis_time_steps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mis_time_steps.html">get_mis_time_steps</a></span><span class="op">(</span><span class="fl">1</span>,<span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">mis_time_steps</span></span>
+<span><span class="co">#&gt; [1] -10000  -5000      0</span></span></code></pre></div>
 <p>And now cycle over those steps. First extract the climate into a list:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mis_climate_list</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">this_step</span> <span class="kw">in</span> <span class="va">mis_time_steps</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="va">this_step</span> ,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,
-                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">this_step_climate</span><span class="op">)</span>
-<span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="va">this_step_climate</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.nan</a></span><span class="op">(</span><span class="va">this_step_climate</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>,<span class="op">]</span>
-  <span class="va">mis_climate_list</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">this_step</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">&lt;-</span> <span class="va">this_step_climate</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mis_climate_list</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">this_step</span> <span class="kw">in</span> <span class="va">mis_time_steps</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="va">this_step</span> ,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span>,<span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">this_step_climate</span><span class="op">)</span></span>
+<span><span class="va">this_step_climate</span> <span class="op">&lt;-</span> <span class="va">this_step_climate</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.nan</a></span><span class="op">(</span><span class="va">this_step_climate</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>,<span class="op">]</span></span>
+<span>  <span class="va">mis_climate_list</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">this_step</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">&lt;-</span> <span class="va">this_step_climate</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Then combine them into a single matrix:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mis_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">mis_climate_list</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mis_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">mis_climate_list</span><span class="op">)</span></span></code></pre></div>
 <p>And finally plot it:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mis_pca</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">mis_climate</span>,scale<span class="op">=</span><span class="cn">TRUE</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mis_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">mis_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,
-     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">mis_pca</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">mis_climate</span>,scale<span class="op">=</span><span class="cn">TRUE</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mis_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">~</span><span class="va">mis_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,pch<span class="op">=</span><span class="fl">20</span>,col<span class="op">=</span><span class="st">"lightgray"</span>,</span>
+<span>     xlab<span class="op">=</span><span class="st">"PC1"</span>,ylab<span class="op">=</span><span class="st">"PC2"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="pastclim_overview_files/figure-html/unnamed-chunk-30-1.png" width="384"></p>
 </div>
 </div>
@@ -400,46 +400,46 @@
 </h2>
 <p>For a number of species distribution models, we need to subsample background points to our presences. We can simply do that by generating the raster for the time slice of interest, and using the appropriate function from <code>terra</code>:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span><span class="op">)</span>,
-                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span>
-<span class="co">#&gt;     cell      x      y      bio01    bio10</span>
-<span class="co">#&gt; 1 164080 139.75 -23.75  20.261000 27.07437</span>
-<span class="co">#&gt; 2 135283 141.25  -3.75  23.749817 24.17443</span>
-<span class="co">#&gt; 3  58093  66.25  49.75  -4.093619 14.89208</span>
-<span class="co">#&gt; 4 135797  38.25  -4.25  19.147038 20.81510</span>
-<span class="co">#&gt; 5  35173 126.25  65.75 -21.871048  9.02999</span>
-<span class="co">#&gt; 6 145687 -56.75 -11.25  20.458406 21.36190</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_time_slice.html">climate_for_time_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio10"</span><span class="op">)</span>,</span>
+<span>                                      dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="va">this_sample</span><span class="op">&lt;-</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/sample.html" class="external-link">spatSample</a></span><span class="op">(</span><span class="va">climate_20k</span>, <span class="fl">100</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span>,cells<span class="op">=</span><span class="cn">TRUE</span>,xy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     cell       x     y      bio01     bio10</span></span>
+<span><span class="co">#&gt; 1  91587 -106.75 26.25  8.1123600 13.419621</span></span>
+<span><span class="co">#&gt; 2 115620   29.75  9.75 23.3461456 26.170769</span></span>
+<span><span class="co">#&gt; 3  97015   87.25 22.75 23.2532940 28.588257</span></span>
+<span><span class="co">#&gt; 4  93478  118.75 25.25 15.2189827 24.811197</span></span>
+<span><span class="co">#&gt; 5  54725 -177.75 51.75  0.9130771  6.765947</span></span>
+<span><span class="co">#&gt; 6  89053   66.25 28.25 13.5098810 23.459200</span></span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>
-            x<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>longitude <span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">x</span>, latitude <span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>,
-            time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span><span class="op">)</span>, 
-            bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
-            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   longitude latitude time_bp      bio12</span>
-<span class="co">#&gt; 1    139.75   -23.75  -20000  145.39200</span>
-<span class="co">#&gt; 2    141.25    -3.75  -20000 2416.05176</span>
-<span class="co">#&gt; 3     66.25    49.75  -20000  209.76231</span>
-<span class="co">#&gt; 4     38.25    -4.25  -20000 1019.84778</span>
-<span class="co">#&gt; 5    126.25    65.75  -20000   50.13695</span>
-<span class="co">#&gt; 6    -56.75   -11.25  -20000 2114.42017</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span></span>
+<span>            x<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>longitude <span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">x</span>, latitude <span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>,</span>
+<span>            time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>            bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>            dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   longitude latitude time_bp     bio12</span></span>
+<span><span class="co">#&gt; 1   -106.75    26.25  -20000 1129.6238</span></span>
+<span><span class="co">#&gt; 2     29.75     9.75  -20000  673.6381</span></span>
+<span><span class="co">#&gt; 3     87.25    22.75  -20000 1086.1195</span></span>
+<span><span class="co">#&gt; 4    118.75    25.25  -20000  369.5797</span></span>
+<span><span class="co">#&gt; 5   -177.75    51.75  -20000 1089.1826</span></span>
+<span><span class="co">#&gt; 6     66.25    28.25  -20000  197.0243</span></span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,
-           time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span><span class="op">)</span>, 
-           bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,
-           dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span>
-<span class="co">#&gt;   cell_number time_bp      bio12</span>
-<span class="co">#&gt; 1      164080  -20000  145.39200</span>
-<span class="co">#&gt; 2      135283  -20000 2416.05176</span>
-<span class="co">#&gt; 3       58093  -20000  209.76231</span>
-<span class="co">#&gt; 4      135797  -20000 1019.84778</span>
-<span class="co">#&gt; 5       35173  -20000   50.13695</span>
-<span class="co">#&gt; 6      145687  -20000 2114.42017</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/climate_for_locations.html">climate_for_locations</a></span> <span class="op">(</span>x<span class="op">=</span> <span class="va">this_sample</span><span class="op">$</span><span class="va">cell</span>,</span>
+<span>           time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           bio_variables<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>           dataset<span class="op">=</span><span class="st">"Example"</span>, path_to_nc <span class="op">=</span> <span class="va">path_to_example_nc</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   cell_number time_bp     bio12</span></span>
+<span><span class="co">#&gt; 1       91587  -20000 1129.6238</span></span>
+<span><span class="co">#&gt; 2      115620  -20000  673.6381</span></span>
+<span><span class="co">#&gt; 3       97015  -20000 1086.1195</span></span>
+<span><span class="co">#&gt; 4       93478  -20000  369.5797</span></span>
+<span><span class="co">#&gt; 5       54725  -20000 1089.1826</span></span>
+<span><span class="co">#&gt; 6       89053  -20000  197.0243</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -454,7 +454,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
