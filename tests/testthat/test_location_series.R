@@ -27,6 +27,12 @@ test_that("time_series_for_location", {
   )  
   expect_true(nrow(locations_ts) == 8)
 
+  # test one location only
+  locations_ts <- location_series(
+    x = locations[1, c("longitude", "latitude")],
+    bio_variables = c("bio01"),
+    dataset = "Example"
+  )  
   # now test if we try a variable that is not available
   expect_error(
     location_series(

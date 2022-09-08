@@ -3,7 +3,7 @@
 #' This function extract a time series of local climate for
 #'  a set of locations
 #'
-#' @param x a 2 column matrix (with columns `longitude`, ranging
+#' @param x a 2 column data.frame (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
@@ -40,6 +40,8 @@ location_series <-
     # reorder the inputs by time
     if (inherits(x, "data.frame")) {
       locations_data <- x
+    } else if (inherits(x, "matrix"))  {
+        locations_data <- as.data.frame(x) 
     } else {
       locations_data <- data.frame(cell_number = x)
     }
