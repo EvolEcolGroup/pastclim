@@ -6,8 +6,9 @@
 #'
 #' @param x a 2 column matrix (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
-#' @param time_bp the time slice in years before present (negative
-#' values represent time before present, positive values time in the future).
+#' @param time_bp the dates in years before present (negative
+#' values represent time before present, i.e. 1950, positive values time in the future)
+#' for each location.
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -38,6 +39,8 @@ location_slice <-
       check_var_in_nc(bio_variables, path_to_nc)
     }
 
+    # TODO CHECK THAT X HAS THE CORRECT COLUMNS AND THAT TIME_BP IS OF THE RIGHT LENGTH
+    
     # reorder the inputs by time
     if (inherits(x, "data.frame")) {
       x <- x[order(time_bp), ]

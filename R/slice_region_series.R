@@ -4,10 +4,11 @@
 #' variables for a given dataset covering a region (or the whole world).
 #'
 #' @param x time series generated with \code{region_series}
-#' @param time_bp time slices in years before present (negative). The slices
+#' @param time_bp time slices in years before present (i.e. 1950, negative integers
+#' for values in the past). The slices
 #' need to exist in the dataset. To check which slices are available, you
 #' can use \code{terra::time(x[[1]])} (note that you have to use
-#' the `time` fuction on the first element of the 'sds' object, i.e. on one
+#' the `time` function on the first element of the 'sds' object, i.e. on one
 #' of the 'spatRaster' objects)
 #'
 #' @export
