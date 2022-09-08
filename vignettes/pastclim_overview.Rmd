@@ -172,7 +172,7 @@ The resulting dataframe can be subsetted to get the time series for each locatio
 ```{r}
 subset(locations_ts, id == 1)
 ```
-Also note that the last two locations do not return information for all time steps. That's due to the change in sea level and icesheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
+Also note that the last two locations do not return information for all time steps. That's due to the change in sea level and ice sheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
 ```{r}
 subset(locations_ts, id == 3)
 ```
@@ -301,7 +301,7 @@ terra::plot(slice_10k, main = names(slice_10k))
 `region_series` takes the same `ext` and `crop` options as `region_slice` to limit
 the extent of the climatic reconstrutions.
 
-# Working with biomes and icesheets
+# Working with biomes and ice sheets
 The climate reconstructions do not show areas under permanent ice. Ice sheets are stored as class 28 in the "biome" variable:
 ```{r}
 get_biome_classes("Example")
