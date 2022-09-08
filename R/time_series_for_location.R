@@ -3,7 +3,7 @@
 #' This function extract a time series of local climate for
 #'  a set of locations
 #'
-#' @param x a 2 column matrix (with columns `longitude`, ranging
+#' @param x a 2 column matrix or dataframe (with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use.
@@ -33,6 +33,8 @@ time_series_for_locations <-
     # reorder the inputs by time
     if (inherits(x, "data.frame")) {
       locations_data <- x
+    } else if (inherits(x, "matrix"))  {
+      locations_data <- as.data.frame(x) 
     } else {
       locations_data <- data.frame(cell_number = x)
     }
@@ -58,8 +60,12 @@ time_series_for_locations <-
         time_series_df$time <- rep(time(climate_brick), each = n_locations)
       }
       this_var_ts <- terra::extract(climate_brick, x)
-      names(this_var_ts)[-1] <- terra::time(climate_brick)
-      time_series_df[this_var] <- utils::stack(this_var_ts, select = -ID)$values
+      if (n_locations>1){
+        names(this_var_ts)[-1] <- terra::time(climate_brick)
+        time_series_df[this_var] <- utils::stack(this_var_ts, select = -ID)$values
+      } else {
+        time_series_df[this_var]<-t(this_var_ts)[,1]
+      }
     }
     return(time_series_df)
   }
