@@ -30,7 +30,8 @@ Depends:
 Imports:
   curl,
   ncdf4,
-  terra
+  terra,
+  utils
 Suggests: 
     rmarkdown,
     knitr,

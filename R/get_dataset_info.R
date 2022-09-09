@@ -20,23 +20,23 @@ get_dataset_info <- function(dataset) {
 #' R-bloggers:
 #' from https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
 #' @param topic The topic of the help
-#' @param format how the output shoudl be formmated
+#' @param format how the output should be formatted
 #' @param which lines should be printed
 #' @param before string to be printed before the output
 #' @param after string to be printed after the output
 #'
 #' @keywords internal
 
-help_console <- function(topic, format=c("text", "html", "latex", "Rd"),
+help_console <- function(topic, format=c("text", "html", "latex"),
                          lines=NULL, before=NULL, after=NULL) {  
   format=match.arg(format)
   if (!is.character(topic)) topic <- deparse(substitute(topic))
-  helpfile = utils:::.getHelpFile(help(topic))
-  hs <- capture.output(switch(format, 
-                              text=tools:::Rd2txt(helpfile),
-                              html=tools:::Rd2HTML(helpfile),
-                              latex=tools:::Rd2latex(helpfile),
-                              Rd=tools:::prepare_Rd(helpfile)
+  getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
+  helpfile = getHelpFile(utils::help(topic))
+  hs <- utils::capture.output(switch(format, 
+                              text=tools::Rd2txt(helpfile),
+                              html=tools::Rd2HTML(helpfile),
+                              latex=tools::Rd2latex(helpfile)
   )
   )
   if(!is.null(lines)) hs <- hs[lines]

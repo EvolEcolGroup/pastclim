@@ -1,7 +1,7 @@
 ---
 title: "Available datasets in pastclim"
-output: rmarkdown::pdf_document
-# output: rmarkdown::html_vignette
+# output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{available datasets}
   %\VignetteEngine{knitr::rmarkdown}
@@ -37,3 +37,4 @@ for (i in sort(get_available_datasets())){
   cat("\n#######################################################\n")
 }
 ```
+

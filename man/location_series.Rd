@@ -7,7 +7,7 @@
 location_series(x, time_bp = NULL, bio_variables, dataset, path_to_nc = NULL)
 }
 \arguments{
-\item{x}{a 2 column matrix (with columns `longitude`, ranging
+\item{x}{a 2 column data.frame (with columns `longitude`, ranging
 -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.}
 
 \item{time_bp}{time slices in years before present (negative values represent

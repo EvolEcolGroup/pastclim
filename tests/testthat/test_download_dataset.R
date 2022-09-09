@@ -10,9 +10,7 @@ test_that("download_dataset", {
     "^foo not available "
   )
   # check that only the example climate is in the data directory
-  expect_true(list.files(get_data_path()) == "example_climate.nc")
+  expect_true("example_climate.nc" %in% list.files(get_data_path()))
   # expect no error as the dataset exists
   expect_error(download_dataset("Example"), NA)
-  # but we should not have downloaded anything, as we already have the file
-  expect_true(list.files(get_data_path()) == "example_climate.nc")
 })
