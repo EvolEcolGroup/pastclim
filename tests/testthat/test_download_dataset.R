@@ -1,7 +1,7 @@
 test_that("download_dataset", {
   expect_error(
     download_dataset("Beyer"),
-    "'dataset' must be one of Beyer2020, Krapp2021, Example"
+    "'dataset' must be one of "
   )
   expect_error(
     download_dataset("Beyer2020",

@@ -26,7 +26,7 @@ Here we provide a simple example of how to format such a dataset in R. We will u
 We start by translating each geoTIFF into a `netcdf` file. The files have the prefix *CHELSA_TraCE21k_bio01_-**xxx**_V1.0.small.tif*, where **xxx** is the number of the time step.
 We will only use 3 time step for illustrative purposes.
 
-We store all the files in a single directory, and create a raster from a list of the files
+We store all the files in a single directory, and create a `spatRaster` from a list of the files
 in that directory:
 
 ```{r}
@@ -60,7 +60,7 @@ ncdf4::nc_close(nc_in)
 
 ```
 
-We can now read in our custom nc file.
+We can now read in our custom netcdf file.
 ```{r}
 library(pastclim)
 custom_series <- region_series(bio_variables = "bio01",
@@ -87,7 +87,7 @@ it allows for smaller files).
 
 # Making the data available to others
 
-Once you have created suitably fomatted ncdf files that can be used as custom datasets in 
+Once you have created suitably fomatted netcdf files that can be used as custom datasets in 
 `pastclim`, you can add those data officially to the package, and thus make them available
 to others. Here are the necessary steps:
 
