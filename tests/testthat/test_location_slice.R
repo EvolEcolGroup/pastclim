@@ -1,7 +1,7 @@
 test_that("location_slice", {
   # using standard dataset
   locations <- data.frame(
-    longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37),
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
     time_bp = c(0, -10000, -20000, -10000)
   )
 
@@ -84,7 +84,7 @@ test_that("location_slice", {
 
   # now use times which are not the exact timesteps
   locations_timeoff <- data.frame(
-    longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37),
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
     time_bp = c(0, -9750, -20375, -10475)
   )
   this_climate_timeoff <- location_slice(

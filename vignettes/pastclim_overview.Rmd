@@ -137,7 +137,7 @@ Let us create some fictitious locations:
 
 ```{r}
 locations <- data.frame(
-  longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37),
+  longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
   time_bp = c(0, -9753, -18738, -11849)
 )
 locations
@@ -151,7 +151,7 @@ location_slice(
   dataset = "Example", nn_interpol = FALSE
 )
 ```
-`pastclim` finds the closest time steps (slices) available for a given date, and ouputs
+`pastclim` finds the closest time steps (slices) available for a given date, and outputs
 the slice used in column `time_bp_slice` (the *Example* dataset that we use in this vignette has a temporal resolution of only 5k years).
 
 Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
@@ -175,16 +175,13 @@ locations_ts <- location_series(
 ```
 
 The resulting dataframe can be subsetted to get the time series for each location
-(note that the small *Example* dataset only contains 5 time points):
+(the small *Example* dataset only contains 5 time points):
 ```{r}
 subset(locations_ts, id == 1)
 ```
-Also note that the last two locations do not return information for all time steps. That's due to the change in sea level and ice sheet extent, and this function (as opposed to `climate_for_locations`) does not allow for interpolation.
+Also note that for some locations, climate can be available only for certain time steps, depending on sea level and ice sheet extent. This is the case for location 3: 
 ```{r}
 subset(locations_ts, id == 3)
-```
-```{r}
-subset(locations_ts, id == 4)
 ```
 
 # Get climate for a region
@@ -262,7 +259,7 @@ terra::plot(climate_20k_afr_eurasia,
 ```
 
 `pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
-```{r}
+```{r, fig.width=6, fig.height=5}
 library(sf)
 africa_outline <- subset(region_outline, region_outline$name == "Africa")
 eurasia_outline <- subset(region_outline, region_outline$name == "Eurasia")
@@ -295,12 +292,12 @@ climate_region$bio01
 ```
 
 We can then plot the time series of a given variable:
-```{r}
+```{r, fig.width=6, fig.height=5}
 terra::plot(climate_region$bio01)
 ```
 
 To plot all climate variables for a given time step, we can slice the time series:
-```{r}
+```{r, fig.width=6, fig.height=5}
 slice_10k <- slice_region_series(climate_region, time_bp = -10000)
 terra::plot(slice_10k, main = names(slice_10k))
 ```

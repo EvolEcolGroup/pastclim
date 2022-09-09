@@ -41,7 +41,7 @@ NULL
 #' 
 #' v1.0.0 Remove icesheets and internal seas, and use correct formula for bio15.
 #' Files can be downloaded from: 
-#' \url{https://doi.org/10.6084/m9.figshare.19723405.v1}
+#' \doi{doi.org/10.6084/m9.figshare.19723405.v1}
 #'
 #'
 #' @name Beyer2020
