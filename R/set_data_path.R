@@ -52,14 +52,16 @@ set_data_path <- function(path_to_nc = NULL) {
 #' Get the data path where climate reconstructions are stored
 #'
 #' This function returns the path where climate reconstructions will be stored.
-#' This information is stored in a file names "pastclim_data.txt", which
+#' When `pastclim` is installed, the data path defaults to the directory
+#' returned by `tools::R_user_dir("pastclim","data")` (i.e. the data directory
+#' for the package in R>=4.0). The data path can be changed with 
+#' \code{set_data_path}. Once changed, `pastclim` will remember the new data
+#' path in the future.
+#' 
+#' The data path is stored in a file named "pastclim_data.txt", which
 #' is found in the directory returned by 
 #' `tools::R_user_dir("pastclim","config")` (i.e.
 #' the default configuration directory for the package as set in R >= 4.0).
-#'
-#' If this function is run before any path was set, it calls `set_data_path`,
-#' which defaults to storing data in the directory returned by
-#' `tools::R_user_dir("pastclim","data")`
 #'
 #' @export
 
