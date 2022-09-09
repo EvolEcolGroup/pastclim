@@ -20,7 +20,7 @@ NULL
 #' Beyer, R.M.,
 #' Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
 #' vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
-#' \url{https://doi.org/10.1038/s41597-020-0552-1}
+#' \doi{doi.org/10.1038/s41597-020-0552-1}
 #'
 #' The version included in `pastclim` has the icesheets masked, as well as
 #' internal seas (Black and Caspian Sea) removed. The latter are based on:
@@ -60,7 +60,7 @@ NULL
 #' Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
 #' reconstruction of high-resolution global terrestrial climate for the last
 #' 800,000 years. Sci Data 8, 228 (2021).
-#' \url{https://doi.org/10.1038/s41597-021-01009-3}
+#' \doi{doi.org/10.1038/s41597-021-01009-3}
 #'
 #' The version included in `pastclim` has the icesheets masked.
 #'
@@ -72,7 +72,7 @@ NULL
 #' v1.0.0 Remove icesheets and use correct formula for bio15. Files can be downloaded from:
 #' 
 #' Manica, Andrea (2022): pastclim_krapp2021_v1.0.0. figshare. Dataset.
-#' \url{https://doi.org/10.6084/m9.figshare.19733680.v1}
+#' \doi{doi.org/10.6084/m9.figshare.19733680.v1}
 #'
 #' @name Krapp2021
 NULL
