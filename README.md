@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master)
 [![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://codecov.io/gh/EvolEcolGroup/pastclim)
+[![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 This library is designed to provide an easy way to extract and manipulate paleoclimate
