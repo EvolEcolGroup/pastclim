@@ -414,11 +414,13 @@ plot(mis_pca$x[, 2] ~ mis_pca$x[, 1],
 ```
 
 
-# Random sampling of background
+# Random sampling of background (there is a bug in terra that prevents this section from working)
+
+# if you get a "negative probability" error when sampling, you are using the new version of terra with the bug
 
 For a number of species distribution models, we need to subsample background points to our presences. We can simply do that by generating the raster for the time slice of interest, and using the appropriate function from `terra`:
 
-```{r}
+```{r eval=FALSE}
 climate_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("bio01", "bio10"),
@@ -432,7 +434,7 @@ head(this_sample)
 ```
 
 If we needed to get other variables for those coordinates, we could simply:
-```{r}
+```{r eval=FALSE}
 additional_var <- location_slice(
   x = data.frame(longitude = this_sample$x, latitude = this_sample$y),
   time_bp = rep(-20000, nrow(this_sample)),
@@ -443,7 +445,7 @@ head(additional_var)
 ```
 
 Alternatively, we could use the cell number:
-```{r}
+```{r eval=FALSE}
 additional_var <- location_slice(
   x = this_sample$cell,
   time_bp = rep(-20000, nrow(this_sample)),
