@@ -1,5 +1,5 @@
 ---
-title: "Formatting a custom dataset for pastclim"
+title: "custom dataset"
 #output: rmarkdown::pdf_document
 output: rmarkdown::html_vignette
 vignette: >
