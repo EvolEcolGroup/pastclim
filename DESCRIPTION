@@ -30,7 +30,7 @@ Depends:
 Imports:
   curl,
   ncdf4,
-  terra,
+  terra (<= 1.6.7),
   utils
 Suggests: 
     rmarkdown,

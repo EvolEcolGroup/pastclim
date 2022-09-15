@@ -98,6 +98,7 @@ references:
         mkdir -p ci_dependencies
         Rscript -e 'install.packages("pkgdown",repos = "https://cloud.r-project.org/")'
         Rscript -e 'devtools::install_deps(dependencies = TRUE)'
+        Rscript -e 'devtools::install_version("terra", version="1.6.7", repos = "https://cloud.r-project.org/")'
 
 #Devtools and code coverage references
   devtools-check-no-vignettes: &devtools-check-no-vignettes
