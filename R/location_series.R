@@ -103,7 +103,7 @@ location_series <-
 #'
 #' @export
 
-climate_for_locations <- function(...) {
+time_series_for_locations <- function(...) {
   warning("DEPRECATED: use 'location_slice' instead")
   # if (!is.null(path_to_nc)) {
   #   stop(
@@ -111,7 +111,7 @@ climate_for_locations <- function(...) {
   #     "use 'set_path_data' instead"
   #   )
   # }
-  location_slice(...)
+  location_series(...)
 }
 
 
