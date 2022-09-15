@@ -45,7 +45,7 @@ region_series <-
     }
     if (!is.null(crop)){
       if(!inherits(crop,"SpatVector")){
-        stop ("extent should be a terra::SpatVector object created terra::vect")
+        stop ("extent should be a terra::SpatVector object created with terra::vect")
       }
     }
     
