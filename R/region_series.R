@@ -102,6 +102,5 @@ region_series <-
       )
     }
     climate_sds <- terra::sds(climate_spatrasters)
-    names(climate_sds) <- bio_variables
-    return(terra::sds(climate_spatrasters))
+    return(climate_sds)
   }

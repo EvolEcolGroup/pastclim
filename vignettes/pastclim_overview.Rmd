@@ -393,6 +393,7 @@ for (this_step in mis_time_steps) {
       dataset = "Example"
     )
   this_step_climate <- values(this_step_climate)
+  # remove NAs
   this_step_climate <-
     this_step_climate[!is.nan(this_step_climate[, 1]), ]
   mis_climate_list[[as.character(this_step)]] <- this_step_climate
@@ -418,7 +419,7 @@ plot(mis_pca$x[, 2] ~ mis_pca$x[, 1],
 
 NOTE: there is a bug in terra 1.6.17 that prevents this section from working; you will get a "negative probability" error when sampling if you use that version.
 
-For a number of species distribution models, we need to subsample background points to our presences. We can simply do that by generating the raster for the time slice of interest, and using the appropriate function from `terra`:
+For a number of species distribution models, we need to subsample background points to our presences. If we are interested in a single time step, we can simple generate the raster for the time slice of interest, and use `sample_region_slice`:
 
 ```{r}
 climate_20k <- region_slice(
@@ -426,10 +427,7 @@ climate_20k <- region_slice(
   bio_variables = c("bio01", "bio10"),
   dataset = "Example"
 )
-this_sample <- terra::spatSample(climate_20k, 100,
-  na.rm = TRUE,
-  cells = TRUE, xy = TRUE
-)
+this_sample <- sample_region_slice(climate_20k, size = 100)
 head(this_sample)
 ```
 
@@ -453,4 +451,19 @@ additional_var <- location_slice(
   dataset = "Example"
 )
 head(additional_var)
+```
+
+We can also sample the background for multiple time steps (e.g. if we want to match the background to the number of samples based on their radiocarbon dates). So, for example, if
+we wanted 3 samples from 20k years ago and 5 samples from 10k years ago:
+
+```{r}
+climate_ts <- region_series(
+  time_bp = c(-20000,-10000),
+  c("bio01", "bio10", "bio12"),
+  dataset = "Example",
+  ext = terra::ext(region_extent$Europe)
+)
+sampled_climate <- sample_region_series(climate_ts, size = c(3,5))
+sampled_climate
+
 ```
