@@ -20,6 +20,28 @@ Once you have `devtools`, simply use:
 ```
 devtools::install_github("EvolEcolGroup/pastclim")
 ```
+---
+
+## IMPORTANT: terra version
+
+The latest version of `terra` on CRAN (1.6.17) has a bug which prevents correct sampling of `spatRasters`. For
+a fully functional `pastclim`, you need to downgrade your version to 1.6.7:
+
+```
+devtools::install_version("terra", version="1.6.7")
+```
+
+This fix will work for Linux and Windows, but it turns out that for OSX, `terra` version 1.6.7 on CRAN is built
+without support for reading netcdf files. So, if you are on OSX, you need to further downgrade `terra` to version
+1.6.3:
+
+```
+devtools::install_version("terra", version="1.6.3")
+```
+
+Hopefully these issues will be fixed in the upcoming version of `terra`
+
+---
 
 There is a vignette with detailed step by step examples on how to use the library. You can
 find it in the [article section of the `pastclim` website](https://evolecolgroup.github.io/pastclim/articles/pastclim_overview.html). Or, you can build it when installing
