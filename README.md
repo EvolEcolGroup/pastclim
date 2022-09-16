@@ -39,7 +39,7 @@ without support for reading netcdf files. So, if you are on OSX, you need to fur
 devtools::install_version("terra", version="1.6.3")
 ```
 
-Hopefully these issues will be fixed in the upcoming version of `terra`
+The issue has been fixed in the development version of `terra`.
 
 ---
 
