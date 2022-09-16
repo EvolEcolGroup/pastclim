@@ -28,7 +28,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 2
-          extra-packages: pkgdown
+          extra-packages: any::pkgdown
           needs: website
 
       - name: Downgrade terra
