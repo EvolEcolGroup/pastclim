@@ -23,7 +23,7 @@ jobs:
         run: |
           Rscript -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
           Rscript -e '.libPaths(Sys.getenv("R_LIBS_USER"))'
-          Rscript -e 'install.packages("devtools",repos = "https://cloud.r-project.org/")'
+          Rscript -e 'pak::pkg_install("devtools")'
           Rscript -e 'devtools::install_version("terra", version="1.6.7", repos = "https://cloud.r-project.org/")'
 
       - uses: r-lib/actions/setup-r@v1
