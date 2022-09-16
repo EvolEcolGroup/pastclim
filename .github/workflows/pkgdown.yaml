@@ -21,6 +21,8 @@ jobs:
       
       - name: Downgrade terra
         run: |
+          dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)  # create personal library
+          .libPaths(Sys.getenv("R_LIBS_USER"))  # add to the path
           Rscript -e 'install.packages("devtools",repos = "https://cloud.r-project.org/")'
           Rscript -e 'devtools::install_version("terra", version="1.6.7", repos = "https://cloud.r-project.org/")'
 
