@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, dev]
   release:
     types: [published]
   workflow_dispatch:
@@ -17,16 +17,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-pandoc@v2
 
-      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: pkgdown
           needs: website
+
+      - name: Downgrade terra
+        run: |
+          Rscript -e 'pak::pkg_install("devtools")'
+          Rscript -e 'devtools::install_version("terra", version="1.6.7", repos = "https://cloud.r-project.org/")'
 
       - name: Deploy package
         run: |
