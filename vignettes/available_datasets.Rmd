@@ -24,16 +24,21 @@ library(pastclim)
 get_available_datasets()
 ```
 
-For each dataset, you can get detailed information with the function:
+For each dataset, you can get detailed information using the 
+help function:
 
-```{r}
-get_dataset_info(dataset="Example")
+```{r eval=FALSE}
+help("Example")
+```
+
+```{r echo=FALSE}
+pastclim:::get_dataset_info(dataset="Example")
 ```
 
 Here we provide the full documentation for each dataset (sorted in alphabetical order):
 ```{r echo=FALSE}
 for (i in sort(get_available_datasets())){
-  get_dataset_info(i)
+  pastclim:::get_dataset_info(i)
   cat("\n#######################################################\n")
 }
 ```

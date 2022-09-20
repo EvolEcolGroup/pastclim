@@ -5,7 +5,7 @@
 #' \code{get_available_datasets}
 #'
 #' @param dataset A dataset in pastclim
-#' @export
+#' @keywords internal
 
 get_dataset_info <- function(dataset) {
   if (!dataset %in% get_available_datasets()){
@@ -34,11 +34,14 @@ help_console <- function(topic, format=c("text", "html", "latex"),
   getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
   helpfile = getHelpFile(utils::help(topic))
   hs <- utils::capture.output(switch(format, 
-                              text=tools::Rd2txt(helpfile),
+                              text=tools::Rd2txt(helpfile,
+                                                 outputEncoding = "ASCII"),
                               html=tools::Rd2HTML(helpfile),
                               latex=tools::Rd2latex(helpfile)
   )
   )
+  # replace strange formatting of title
+  hs[substr(hs,1,2)=="_\b"]<- gsub("_\b","",hs[substr(hs,1,2)=="_\b"],fixed = TRUE)
   if(!is.null(lines)) hs <- hs[lines]
   hs <- c(before, hs, after)
   cat(hs, sep="\n")
