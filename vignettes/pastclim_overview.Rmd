@@ -225,7 +225,7 @@ europe_climate_20k <- region_slice(
   time_bp = -20000,
   c("bio01", "bio10", "bio12"),
   dataset = "Example",
-  ext = terra::ext(region_extent$Europe)
+  ext = region_extent$Europe
 )
 terra::plot(europe_climate_20k,
             main = names(europe_climate_20k))

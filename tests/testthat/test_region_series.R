@@ -64,3 +64,41 @@ test_that("region series", {
   )
   expect_true(all(terra::nlyr(climate_region) == c(3, 3)))
 })
+
+test_that("ext on region series", {
+  # this should work
+  expect_error(region_slice(
+    time_bp = -20000,
+    c("bio01", "bio10", "bio12"),
+    dataset = "Example",
+    ext = terra::ext(region_extent$Europe)
+  ),NA)
+  
+  # this should raise an error
+  expect_error(region_slice(
+    time_bp = -20000,
+    c("bio01", "bio10", "bio12"),
+    dataset = "Example",
+    ext = "foo"
+  ), "ext should be a ")
+  
+  # not enough elements
+  ext<-c(-15, 70, 33)
+  expect_error(region_slice(
+    time_bp = -20000,
+    c("bio01", "bio10", "bio12"),
+    dataset = "Example",
+    ext = ext
+  ), "ext should be a ")
+  
+  # but this works as it is long enough
+  ext<-c(-15, 70, 33, 75)
+  expect_error(region_slice(
+    time_bp = -20000,
+    c("bio01", "bio10", "bio12"),
+    dataset = "Example",
+    ext = ext
+  ), NA)  
+
+})
+  

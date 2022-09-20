@@ -39,13 +39,17 @@ region_series <-
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
     if (!is.null(ext)){
-      if(!inherits(ext,"SpatExtent")){
-        stop ("extent should be a terra::SpatExtent object created terra::ext")
+      if(!any(inherits(ext,"SpatExtent"),
+              all(inherits(ext,"numeric"), length(ext)==4))){
+        stop ("ext should be a numeric vector of length 4 or a terra::SpatExtent object created terra::ext")
+      }
+      if (inherits(ext,"numeric")){
+        ext <- terra::ext(ext)
       }
     }
     if (!is.null(crop)){
       if(!inherits(crop,"SpatVector")){
-        stop ("extent should be a terra::SpatVector object created with terra::vect")
+        stop ("crop should be a terra::SpatVector object created with terra::vect")
       }
     }
     
