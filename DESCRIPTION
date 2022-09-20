@@ -2,7 +2,7 @@ Package: pastclim
 Type: Package
 Title: This Package Provides Helper Functions to Interact with Time Series of 
     Worldwide Climate Reconstructions
-Version: 1.0.1.9000
+Version: 1.0.1.9001
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
