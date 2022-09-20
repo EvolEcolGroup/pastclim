@@ -3,11 +3,11 @@
 #' This function samples points from a region time slice (i.e. a timepoint).
 #' 
 #' This function wraps \code{terra::spatSample} to appropriate sample the
-#' \code{terra::spatRaster} returned
+#' \code{terra::SpatRaster} returned
 #' by \code{region_slice}. You can also use \code{terra::spatSample} directly
-#' on a slice (which is a standard \code{terra::spatRaster}).
+#' on a slice (which is a standard \code{terra::SpatRaster}).
 #'
-#' @param x a \code{terra::spatRaster} returned
+#' @param x a \code{terra::SpatRaster} returned
 #' by \code{region_slice}
 #' @param size number of points sampled.
 #' @param method one of the sampling methods from \code{terra::spatSample}. It
