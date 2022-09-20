@@ -3,6 +3,7 @@
 on:
   push:
     branches: [main, master, dev]
+    # add dev
   pull_request:
     branches: [main, master]
   release:
