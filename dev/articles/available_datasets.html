@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,25 +98,25 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Example"   "Beyer2020" "Krapp2021"</span></span></code></pre></div>
-<p>For each dataset, you can get detailed information with the function:</p>
+<p>For each dataset, you can get detailed information using the help function:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_dataset_info.html">get_dataset_info</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Example"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; _D_o_c_u_m_e_n_t_a_t_i_o_n _f_o_r _t_h_e _E_x_a_m_p_l_e _d_a_t_a_s_e_t</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"Example"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Documentation for the Example dataset</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_s_c_r_i_p_t_i_o_n:</span></span>
+<span><span class="co">#&gt; Description:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      This dataset is a subset of Beyer2020, used for the vignette of</span></span>
 <span><span class="co">#&gt;      pastclim. Do not use this dataset for any real work, as it might</span></span>
-<span><span class="co">#&gt;      not reflect the most up-to-date version of Beyer2020.</span></span></code></pre></div>
+<span><span class="co">#&gt;      not reflect the most up-to-date version of Beyer2020.</span></span></code></pre>
 <p>Here we provide the full documentation for each dataset (sorted in alphabetical order):</p>
-<pre><code><span><span class="co">#&gt; _D_o_c_u_m_e_n_t_a_t_i_o_n _f_o_r _t_h_e _B_e_y_e_r_2_0_2_0 _d_a_t_a_s_e_t</span></span>
+<pre><code><span><span class="co">#&gt; Documentation for the Beyer2020 dataset</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_s_c_r_i_p_t_i_o_n:</span></span>
+<span><span class="co">#&gt; Description:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      This dataset covers the last 120k years, at intervals of 1/2 k</span></span>
 <span><span class="co">#&gt;      years, and a resolution of 0.5 degrees in latitude and longitude.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_t_a_i_l_s:</span></span>
+<span><span class="co">#&gt; Details:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
 <span><span class="co">#&gt;      publication:</span></span>
@@ -153,9 +153,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
-<span><span class="co">#&gt; _D_o_c_u_m_e_n_t_a_t_i_o_n _f_o_r _t_h_e _E_x_a_m_p_l_e _d_a_t_a_s_e_t</span></span>
+<span><span class="co">#&gt; Documentation for the Example dataset</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_s_c_r_i_p_t_i_o_n:</span></span>
+<span><span class="co">#&gt; Description:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      This dataset is a subset of Beyer2020, used for the vignette of</span></span>
 <span><span class="co">#&gt;      pastclim. Do not use this dataset for any real work, as it might</span></span>
@@ -163,14 +163,14 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
-<span><span class="co">#&gt; _D_o_c_u_m_e_n_t_a_t_i_o_n _f_o_r _t_h_e _K_r_a_p_p_2_0_2_1 _d_a_t_a_s_e_t</span></span>
+<span><span class="co">#&gt; Documentation for the Krapp2021 dataset</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_s_c_r_i_p_t_i_o_n:</span></span>
+<span><span class="co">#&gt; Description:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      This dataset covers the last 800k years, at intervals of 1k years,</span></span>
 <span><span class="co">#&gt;      and a resolution of 0.5 degrees in latitude and longitude.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; _D_e_t_a_i_l_s:</span></span>
+<span><span class="co">#&gt; Details:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
 <span><span class="co">#&gt;      publication:</span></span>

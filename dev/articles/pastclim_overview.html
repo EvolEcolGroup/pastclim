@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -557,13 +557,13 @@
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x    y      bio01    bio10</span></span>
-<span><span class="co">#&gt; 1 14954  13.5 48.5  0.8084163 10.02328</span></span>
-<span><span class="co">#&gt; 2 11407  66.5 58.5 -9.9745779 12.81296</span></span>
-<span><span class="co">#&gt; 3 22501   0.5 27.5 19.3944244 29.05527</span></span>
-<span><span class="co">#&gt; 4 22856  -4.5 26.5 20.0186481 28.42356</span></span>
-<span><span class="co">#&gt; 5 19738 117.5 35.5  9.0533886 22.96060</span></span>
-<span><span class="co">#&gt; 6 24743  82.5 21.5 23.3264236 29.29441</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x     y      bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 39110  49.5 -18.5  21.964424 24.125481</span></span>
+<span><span class="co">#&gt; 2 46764 143.5 -39.5   9.211129 16.318352</span></span>
+<span><span class="co">#&gt; 3 14685 104.5  49.5  -9.120463  9.425072</span></span>
+<span><span class="co">#&gt; 4 10734 113.5  60.5 -16.449184 11.763474</span></span>
+<span><span class="co">#&gt; 5 14631  50.5  49.5   0.636004  8.999390</span></span>
+<span><span class="co">#&gt; 6 22523  22.5  27.5  18.050619 24.711462</span></span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
@@ -573,13 +573,13 @@
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   longitude latitude time_bp time_bp_slice     bio12</span></span>
-<span><span class="co">#&gt; 1      13.5     48.5  -20000        -20000 670.82288</span></span>
-<span><span class="co">#&gt; 2      66.5     58.5  -20000        -20000 272.53018</span></span>
-<span><span class="co">#&gt; 3       0.5     27.5  -20000        -20000  11.32761</span></span>
-<span><span class="co">#&gt; 4      -4.5     26.5  -20000        -20000  23.90315</span></span>
-<span><span class="co">#&gt; 5     117.5     35.5  -20000        -20000 397.41644</span></span>
-<span><span class="co">#&gt; 6      82.5     21.5  -20000        -20000 902.86743</span></span></code></pre></div>
+<span><span class="co">#&gt;   longitude latitude time_bp time_bp_slice       bio12</span></span>
+<span><span class="co">#&gt; 1      49.5    -18.5  -20000        -20000 2880.977783</span></span>
+<span><span class="co">#&gt; 2     143.5    -39.5  -20000        -20000  660.414795</span></span>
+<span><span class="co">#&gt; 3     104.5     49.5  -20000        -20000  451.089172</span></span>
+<span><span class="co">#&gt; 4     113.5     60.5  -20000        -20000  199.415375</span></span>
+<span><span class="co">#&gt; 5      50.5     49.5  -20000        -20000  265.857178</span></span>
+<span><span class="co">#&gt; 6      22.5     27.5  -20000        -20000    4.960639</span></span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
@@ -589,13 +589,13 @@
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   cell_number time_bp time_bp_slice     bio12</span></span>
-<span><span class="co">#&gt; 1       14954  -20000        -20000 670.82288</span></span>
-<span><span class="co">#&gt; 2       11407  -20000        -20000 272.53018</span></span>
-<span><span class="co">#&gt; 3       22501  -20000        -20000  11.32761</span></span>
-<span><span class="co">#&gt; 4       22856  -20000        -20000  23.90315</span></span>
-<span><span class="co">#&gt; 5       19738  -20000        -20000 397.41644</span></span>
-<span><span class="co">#&gt; 6       24743  -20000        -20000 902.86743</span></span></code></pre></div>
+<span><span class="co">#&gt;   cell_number time_bp time_bp_slice       bio12</span></span>
+<span><span class="co">#&gt; 1       39110  -20000        -20000 2880.977783</span></span>
+<span><span class="co">#&gt; 2       46764  -20000        -20000  660.414795</span></span>
+<span><span class="co">#&gt; 3       14685  -20000        -20000  451.089172</span></span>
+<span><span class="co">#&gt; 4       10734  -20000        -20000  199.415375</span></span>
+<span><span class="co">#&gt; 5       14631  -20000        -20000  265.857178</span></span>
+<span><span class="co">#&gt; 6       22523  -20000        -20000    4.960639</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we want to match the background to the number of samples based on their radiocarbon dates). So, for example, if we wanted 3 samples from 20k years ago and 5 samples from 10k years ago:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
@@ -606,15 +606,15 @@
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y     bio01    bio10      bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 3374 43.5 35.5 17.017353 27.88568  268.29761  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3556 55.5 33.5 15.644857 25.59466   68.47096  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 2963 57.5 40.5  8.889895 20.36036   97.48357  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 3134 58.5 38.5 14.942838 31.61710  155.89046  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 2864 43.5 41.5  2.272758 18.18176  660.12994  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2197 56.5 49.5  3.067279 24.65434  234.81911  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2456 60.5 46.5  5.563390 27.51768  100.58378  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 1881 -4.5 52.5  8.183455 14.04215 1739.80518  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y       bio01     bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2177 36.5 49.5  -0.1346438 13.896396 441.7762  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 2017 46.5 51.5  -2.4428747 14.768283 425.6878  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 1248 42.5 60.5 -11.4980183  8.076018 312.4774  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 3112 36.5 38.5   6.1357627 19.477980 458.4421  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2138 -2.5 49.5   8.6513414 17.407436 891.0628  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 2166 25.5 49.5   6.6998425 19.152622 573.8161  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 1458 -2.5 57.5   5.9737506 11.852680 819.4865  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2999  8.5 39.5  14.7220221 23.353346 652.3750  -10000</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
