@@ -7,7 +7,7 @@
 sample_rs_variable(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{terra::spatRasterCollection} returned
+\item{x}{a \code{terra::SpatRasterDataset} returned
 by \code{region_series}}
 
 \item{size}{a vector of the number of points sampled for each time step}

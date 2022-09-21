@@ -14,7 +14,7 @@ for values in the past). The slices
 need to exist in the dataset. To check which slices are available, you
 can use \code{terra::time(x[[1]])} (note that you have to use
 the `time` function on the first element of the 'sds' object, i.e. on one
-of the 'spatRaster' objects)}
+of the 'SpatRaster' objects)}
 }
 \description{
 This function extracts a time slice from time series of one or more climate

@@ -7,7 +7,7 @@
 sample_region_slice(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{terra::spatRaster} returned
+\item{x}{a \code{terra::SpatRaster} returned
 by \code{region_slice}}
 
 \item{size}{number of points sampled.}
@@ -24,7 +24,7 @@ This function samples points from a region time slice (i.e. a timepoint).
 }
 \details{
 This function wraps \code{terra::spatSample} to appropriate sample the
-\code{terra::spatRaster} returned
+\code{terra::SpatRaster} returned
 by \code{region_slice}. You can also use \code{terra::spatSample} directly
-on a slice (which is a standard \code{terra::spatRaster}).
+on a slice (which is a standard \code{terra::SpatRaster}).
 }
