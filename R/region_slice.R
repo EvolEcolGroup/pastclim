@@ -16,11 +16,12 @@
 #' @param path_to_nc the path to the custom nc file containing the paleoclimate
 #' reconstructions. All the variables of interest need to be included
 #' in this file.
-#' @param ext an extent, coded as a \code{terra::SpatExtent} object. If NULL,
+#' @param ext an extent, coded as numberic vector (length=4; 
+#' order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A \code{terra::SpatVector} object is used to
-#' define the polygon.
+#' of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+#' is used to define the polygon.
 #' 
 #' @import terra
 #' @export

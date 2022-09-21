@@ -258,17 +258,15 @@ terra::plot(climate_20k_afr_eurasia,
             main = names(climate_20k_afr_eurasia))
 ```
 
-`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
+`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sfc` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
 ```{r, fig.width=6, fig.height=5}
 library(sf)
-africa_outline <- subset(region_outline, region_outline$name == "Africa")
-eurasia_outline <- subset(region_outline, region_outline$name == "Eurasia")
-afr_eurasia_vec <- terra::vect(sf::st_union(africa_outline, eurasia_outline))
+afr_eurasia <- sf::st_union(region_outline$Africa, region_outline$Eurasia)
 climate_20k_afr_eurasia <- region_slice(
   time_bp = -20000,
   c("bio01", "bio10", "bio12"),
   dataset = "Example",
-  crop = afr_eurasia_vec)
+  crop = afr_eurasia)
 terra::plot(climate_20k_afr_eurasia,
             main = names(climate_20k_afr_eurasia))
 ```

@@ -67,7 +67,7 @@ test_that("region series", {
 
 test_that("ext on region series", {
   # this should work
-  expect_error(region_slice(
+  expect_error(region_series(
     time_bp = -20000,
     c("bio01", "bio10", "bio12"),
     dataset = "Example",
@@ -75,7 +75,7 @@ test_that("ext on region series", {
   ),NA)
   
   # this should raise an error
-  expect_error(region_slice(
+  expect_error(region_series(
     time_bp = -20000,
     c("bio01", "bio10", "bio12"),
     dataset = "Example",
@@ -84,7 +84,7 @@ test_that("ext on region series", {
   
   # not enough elements
   ext<-c(-15, 70, 33)
-  expect_error(region_slice(
+  expect_error(region_series(
     time_bp = -20000,
     c("bio01", "bio10", "bio12"),
     dataset = "Example",
@@ -93,12 +93,40 @@ test_that("ext on region series", {
   
   # but this works as it is long enough
   ext<-c(-15, 70, 33, 75)
-  expect_error(region_slice(
+  expect_error(region_series(
     time_bp = -20000,
     c("bio01", "bio10", "bio12"),
     dataset = "Example",
     ext = ext
   ), NA)  
 
+  test_that("crop on region series", {
+
+    # this should work
+    expect_error(region_series(
+      time_bp = -20000,
+      c("bio01", "bio10", "bio12"),
+      dataset = "Example",
+      crop = terra::vect(region_outline$Eurasia)
+    ),NA)    
+    
+    # this should raise an error
+    expect_error(region_series(
+      time_bp = -20000,
+      c("bio01", "bio10", "bio12"),
+      dataset = "Example",
+      crop = "foo"
+    ), "crop should be a ")
+    
+    # this should work
+    expect_error(region_series(
+      time_bp = -20000,
+      c("bio01", "bio10", "bio12"),
+      dataset = "Example",
+      crop = region_outline$Eurasia),NA)  
+    
+  })
+  
+  
 })
   

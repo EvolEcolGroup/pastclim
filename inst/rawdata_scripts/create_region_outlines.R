@@ -20,9 +20,14 @@ outlines_df <- sf::st_sf(outlines_df,
   crs = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
 )
 region_outline_union <- outlines_df
+region_outline_union<-as.list(outlines_df$geometry)
+names(region_outline_union)<-outlines_df$name
 usethis::use_data(region_outline_union, overwrite = TRUE)
 # wrap_around_the antimeridian
 outlines_df <- sf::st_wrap_dateline(outlines_df, options = c("WRAPDATELINE=YES",
                                                           "DATELINEOFFSET=180"))
-region_outline <- outlines_df
+#region_outline <- outlines_df
+#
+region_outline<-as.list(outlines_df$geometry)
+names(region_outline)<-outlines_df$name
 usethis::use_data(region_outline, overwrite = TRUE)

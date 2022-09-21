@@ -29,12 +29,13 @@ then a single nc file is used from "path_to_nc"}
 reconstructions. All the variables of interest need to be included
 in this file.}
 
-\item{ext}{an extent, coded as a \code{terra::SpatExtent} object. If NULL,
+\item{ext}{an extent, coded as numberic vector (length=4; 
+order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
 the full extent of the reconstruction is given.}
 
 \item{crop}{a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A \code{terra::SpatVector} object is used to
-define the polygon.}
+of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+is used to define the polygon.}
 }
 \description{
 This function extracts a slice of one or more climate variables for a given
