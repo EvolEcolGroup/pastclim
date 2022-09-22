@@ -2,10 +2,10 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  available_datasets: available_datasets.html
-  custom_datasets: custom_datasets.html
-  pastclim_overview: pastclim_overview.html
-last_built: 2022-09-22T12:24Z
+  a0_pastclim_overview: a0_pastclim_overview.html
+  a1_available_datasets: a1_available_datasets.html
+  a2_custom_datasets: a2_custom_datasets.html
+last_built: 2022-09-22T14:03Z
 urls:
   reference: https://evolecolgroup.github.io/pastclim/reference
   article: https://evolecolgroup.github.io/pastclim/articles
