@@ -186,7 +186,7 @@ subset(locations_ts, id == 3)
 
 # Get climate for a region
 
-Instead of focussing on specific locations, we might want to look a whole region.
+Instead of focussing on specific locations, we might want to look at a whole region.
 For a given time step, we can extract a slice of climate with
 
 ```{r}
@@ -200,7 +200,8 @@ climate_20k <- region_slice(
 This returns a raster (technically a `spatRaster` object as defined in the `terra`
 library, meaning that we can perform all standard `terra` raster operations
 on this object). To interact with `spatRaster` objects, it is best to load the
-`terra` library; we can then get a summary of this object:
+`terra` library (otherwise you might get errors as the correct method is not found, e.g. 
+when plotting); we can then get a summary of this object:
 ```{r}
 library(terra)
 climate_20k
@@ -214,11 +215,15 @@ terra::plot(climate_20k, main = names(climate_20k))
 Often we want to focus a given region. There are a number of preset extents in 
 `pastclim`:
 ```{r}
-region_extent
+names(region_extent)
 ```
 
-We can extract climate only for Europe; we need to pass an `terra::SpatExtent`
-object to `region_slice`:
+We can get the corners of the European extent:
+```{r}
+region_extent$Europe
+```
+
+And then can extract climate only for Europe by setting `ext` in `region_slice`:
 
 ```{r, fig.width=6, fig.height=5}
 europe_climate_20k <- region_slice(
@@ -231,7 +236,7 @@ terra::plot(europe_climate_20k,
             main = names(europe_climate_20k))
 ```
 
-Alternatively, we can crop an already extracted raster:
+Alternatively, we can crop an already extracted raster, uisng standard `terra` functions:
 ```{r, fig.width=6, fig.height=5}
 europe_climate_20k_alt <- terra::crop(climate_20k, terra::ext(region_extent$Europe))
 terra::plot(europe_climate_20k_alt,
@@ -258,7 +263,12 @@ terra::plot(climate_20k_afr_eurasia,
             main = names(climate_20k_afr_eurasia))
 ```
 
-`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sfc` object. Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
+`pastclim` includes a number of pre-generated masks for the main continental masses, stored in the dataset `continent_outlines` in an `sf::sfc` object. We can get a list with:
+```{r}
+names(region_outline)
+```
+
+Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). `continent_outlines_union` provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:
 ```{r, fig.width=6, fig.height=5}
 library(sf)
 afr_eurasia <- sf::st_union(region_outline$Africa, region_outline$Eurasia)
@@ -301,7 +311,7 @@ terra::plot(slice_10k, main = names(slice_10k))
 ```
 
 `region_series` takes the same `ext` and `crop` options as `region_slice` to limit
-the extent of the climatic reconstrutions.
+the extent of the climatic reconstructions.
 
 # Working with biomes and ice sheets
 The climate reconstructions do not show areas under permanent ice. Ice sheets are stored as class 28 in the "biome" variable:
