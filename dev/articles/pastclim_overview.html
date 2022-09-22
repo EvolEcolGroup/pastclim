@@ -339,8 +339,7 @@
 <p><code>pastclim</code> includes a number of pre-generated masks for the main continental masses, stored in the dataset <code>continent_outlines</code> in an <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sf::sfc</a></code> object. We can get a list with:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Africa"        "Eurasia"       "North_America" "Oceania"      </span></span>
-<span><span class="co">#&gt; [5] "South_America"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Africa"    "Eurasia"   "N_America" "Oceania"   "S_America"</span></span></code></pre></div>
 <p>Note that outlines that cross the antimeridian are split into multiple polygons (so that they can be used without projecting the rasters). <code>continent_outlines_union</code> provides the same outlines as single polygons (in case you want to use a projection). We can build the outline for Africa and Eurasia by unioning the two individual outlines:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
@@ -541,13 +540,13 @@
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x    y      bio01      bio10</span></span>
-<span><span class="co">#&gt; 1 24060 119.5 23.5  14.257964 23.7914429</span></span>
-<span><span class="co">#&gt; 2  8632 171.5 66.5 -19.974539  3.1328311</span></span>
-<span><span class="co">#&gt; 3 18927  26.5 37.5  13.667462 21.9087563</span></span>
-<span><span class="co">#&gt; 4  8985 164.5 65.5 -20.745630  0.8217192</span></span>
-<span><span class="co">#&gt; 5 12811  30.5 54.5  -5.765846 10.1282549</span></span>
-<span><span class="co">#&gt; 6 29737  36.5  7.5  12.625663 14.0932007</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x     y     bio01    bio10</span></span>
+<span><span class="co">#&gt; 1 17506  45.5  41.5  7.692405 17.85237</span></span>
+<span><span class="co">#&gt; 2 27547   6.5  13.5 23.046766 27.41786</span></span>
+<span><span class="co">#&gt; 3 40270 129.5 -21.5 20.918192 27.00087</span></span>
+<span><span class="co">#&gt; 4 15703  42.5  46.5  3.283137 15.36104</span></span>
+<span><span class="co">#&gt; 5 14640  59.5  49.5 -3.480088 15.55316</span></span>
+<span><span class="co">#&gt; 6 32256  35.5   0.5 12.985081 13.84774</span></span></code></pre></div>
 <p>If we needed to get other variables for those coordinates, we could simply:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
@@ -558,12 +557,12 @@
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   longitude latitude time_bp time_bp_slice     bio12</span></span>
-<span><span class="co">#&gt; 1     119.5     23.5  -20000        -20000 1171.2969</span></span>
-<span><span class="co">#&gt; 2     171.5     66.5  -20000        -20000  173.8706</span></span>
-<span><span class="co">#&gt; 3      26.5     37.5  -20000        -20000  587.2151</span></span>
-<span><span class="co">#&gt; 4     164.5     65.5  -20000        -20000  147.4138</span></span>
-<span><span class="co">#&gt; 5      30.5     54.5  -20000        -20000  669.9687</span></span>
-<span><span class="co">#&gt; 6      36.5      7.5  -20000        -20000 1776.1536</span></span></code></pre></div>
+<span><span class="co">#&gt; 1      45.5     41.5  -20000        -20000  457.7113</span></span>
+<span><span class="co">#&gt; 2       6.5     13.5  -20000        -20000  554.9792</span></span>
+<span><span class="co">#&gt; 3     129.5    -21.5  -20000        -20000  226.3890</span></span>
+<span><span class="co">#&gt; 4      42.5     46.5  -20000        -20000  419.2703</span></span>
+<span><span class="co">#&gt; 5      59.5     49.5  -20000        -20000  192.7655</span></span>
+<span><span class="co">#&gt; 6      35.5      0.5  -20000        -20000 1479.1156</span></span></code></pre></div>
 <p>Alternatively, we could use the cell number:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">additional_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
@@ -574,12 +573,12 @@
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">additional_var</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   cell_number time_bp time_bp_slice     bio12</span></span>
-<span><span class="co">#&gt; 1       24060  -20000        -20000 1171.2969</span></span>
-<span><span class="co">#&gt; 2        8632  -20000        -20000  173.8706</span></span>
-<span><span class="co">#&gt; 3       18927  -20000        -20000  587.2151</span></span>
-<span><span class="co">#&gt; 4        8985  -20000        -20000  147.4138</span></span>
-<span><span class="co">#&gt; 5       12811  -20000        -20000  669.9687</span></span>
-<span><span class="co">#&gt; 6       29737  -20000        -20000 1776.1536</span></span></code></pre></div>
+<span><span class="co">#&gt; 1       17506  -20000        -20000  457.7113</span></span>
+<span><span class="co">#&gt; 2       27547  -20000        -20000  554.9792</span></span>
+<span><span class="co">#&gt; 3       40270  -20000        -20000  226.3890</span></span>
+<span><span class="co">#&gt; 4       15703  -20000        -20000  419.2703</span></span>
+<span><span class="co">#&gt; 5       14640  -20000        -20000  192.7655</span></span>
+<span><span class="co">#&gt; 6       32256  -20000        -20000 1479.1156</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we want to match the background to the number of samples based on their radiocarbon dates). So, for example, if we wanted 3 samples from 20k years ago and 5 samples from 10k years ago:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
@@ -590,15 +589,15 @@
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01     bio10     bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 3297 51.5 36.5  3.8066380 15.437151  271.8507  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 2429 33.5 46.5  3.3800123 15.335072  355.1125  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 3277 31.5 36.5 11.9182920 19.350822 1023.8317  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1625 -5.5 55.5  6.9374671 12.358449 1362.8245  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 3315 69.5 36.5 11.0060072 26.450264  328.1606  -10000</span></span>
-<span><span class="co">#&gt; -10000.3  890 24.5 64.5 -5.6964226  4.681164  703.4832  -10000</span></span>
-<span><span class="co">#&gt; -10000.4  708 12.5 66.5  0.7333664  9.822402 1325.0425  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 2275 49.5 48.5  6.6485682 26.075098  200.6484  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y        bio01     bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1079 43.5 62.5 -15.11810303  3.778402 184.7460  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 3545 44.5 33.5  18.43214798 28.545069 139.3261  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2090 34.5 50.5  -1.64681518 12.856133 511.2631  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 1766 50.5 54.5   2.64525008 21.963890 470.3685  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1610 64.5 56.5  -0.01098338 20.495562 327.6205  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 1729 13.5 54.5   6.66873550 19.290457 654.2861  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 3133 57.5 38.5  13.36437416 30.161182 190.1969  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2589 23.5 44.5   9.90921211 22.067381 642.0956  -10000</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
