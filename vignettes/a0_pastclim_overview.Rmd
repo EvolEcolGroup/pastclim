@@ -119,7 +119,8 @@ the download is complete):
 download_dataset(dataset = "Beyer2020", bio_variables = c("bio01", "bio05"))
 ```
 
-Note that multiple variables are packed together into a single file, so the command might list more variables than the ones that we downloaded originally.
+Note that multiple variables can be packed together into a single file, so
+`get_downloaded_datasets()` might list more variables than the ones that we chose to download (it depends on the dataset).
 
 We have found that on some installations of R (mostly on macOS), the default data path
 chosen by R can lead to an error when downloading datasets (this is due to incorrect 
