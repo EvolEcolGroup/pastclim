@@ -36,6 +36,7 @@ vignette("pastclim_overview", package = "pastclim")
 ```
 Depending on the operating system you use, you might need additional packages to build
 a vignette.
+
 ---
 
 NOTE: `pastclim` relies on `terra` to process rasters. There is a known bug in
@@ -159,8 +160,7 @@ Note that the last two locations, for the appropriate time steps, are not availa
 location_slice(
   x = locations[, c("longitude", "latitude")],
   time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
-  dataset = "Example", nn_interpol = TRUE
-)
+  dataset = "Example", nn_interpol = TRUE)
 ```
 In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that `nn_interpol = TRUE` is the default for this function.
 
@@ -170,12 +170,11 @@ see how climate changed over time:
 locations_ts <- location_series(
   x = locations[, c("longitude", "latitude")],
   bio_variables = c("bio01", "bio12"),
-  dataset = "Example"
-)
+  dataset = "Example")
 ```
 
 The resulting dataframe can be subsetted to get the time series for each location
-(the small *Example* dataset only contains 5 time points):
+(the small *Example* dataset only contains 5 time slices):
 ```{r}
 subset(locations_ts, id == 1)
 ```
@@ -192,7 +191,7 @@ For a given time step, we can extract a slice of climate with
 ```{r}
 climate_20k <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example"
 )
 ```
@@ -216,9 +215,9 @@ It is possible to also load a time series of rasters with the function `region_s
 
 ```{r}
 climate_region <- region_series(
-  time_bp = list(min=-15000,max=0), c("bio01", "bio10", "bio12"),
-  "Example"
-)
+  time_bp = list(min = -15000, max = 0), 
+  bio_variables = c("bio01", "bio10", "bio12"),
+  dataset = "Example")
 climate_region
 ```
 
@@ -240,17 +239,18 @@ terra::plot(slice_10k, main = names(slice_10k))
 ```
 
 Instead of giving a minimum and maximum time step, you can also provide
-specific time steps. Note that `pastclim` has a function to get a vector
+specific time steps to `region_series`. Note that `pastclim` has a function to get a vector
 of the time steps for a given MIS in a dataset. For example, for MIS 1, we get:
 ```{r}
-mis1_steps <- get_mis_time_steps(1, "Example")
+mis1_steps <- get_mis_time_steps(mis = 1, dataset = "Example")
 mis1_steps
 ```
 Which we can then use:
 ```{r}
 climate_mis1 <- region_series(
-  time_bp = mis1_steps, c("bio01", "bio10", "bio12"),
-  "Example"
+  time_bp = mis1_steps, 
+  bio_variables = c("bio01", "bio10", "bio12"),
+  dataset = "Example"
 )
 climate_mis1
 ```
@@ -273,7 +273,7 @@ And then we can extract climate only for Europe by setting `ext` in `region_slic
 ```{r, fig.width=6, fig.height=5}
 europe_climate_20k <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example",
   ext = region_extent$Europe
 )
@@ -306,7 +306,7 @@ library(sf)
 afr_eurasia <- sf::st_union(region_outline$Africa, region_outline$Eurasia)
 climate_20k_afr_eurasia <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables  = c("bio01", "bio10", "bio12"),
   dataset = "Example",
   crop = afr_eurasia)
 terra::plot(climate_20k_afr_eurasia,
@@ -326,7 +326,7 @@ custom_vec <- terra::vect("POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,
                               -25 -40, -25 64, 0 70))")
 climate_20k_custom <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example",
   crop = custom_vec)
 terra::plot(climate_20k_custom, 
@@ -363,7 +363,7 @@ To plot it, we use functions designed to get ice and land masks.
 ```{r, fig.width=6, fig.height=5}
 climate_20k <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10"),
+  bio_variables = c("bio01", "bio10"),
   dataset = "Example"
 )
 climate_20k$ice_mask <- get_ice_mask(-20000, dataset = "Example")
@@ -379,7 +379,7 @@ visualising the background for the time step of interest with a PCA:
 
 ```{r, fig.width=4, fig.height=4}
 climate_10k <- region_slice(-10000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example"
 )
 climate_values_10k <- terra::as.data.frame(climate_10k)
@@ -443,7 +443,7 @@ we wanted 3 samples from 20k years ago and 5 samples from 10k years ago:
 ```{r}
 climate_ts <- region_series(
   time_bp = c(-20000,-10000),
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example",
   ext = terra::ext(region_extent$Europe)
 )
