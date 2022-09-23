@@ -1,5 +1,5 @@
 # x_modern the modern climate reconstruction
-# high_res_obs the observed high resolution data
+# high_res_obs the observed high resolution data used to create the delta
 
 delta_compute <- function(x_modern, high_res_obs) {
   if (terra::ext(high_res_obs)!=terra::ext(x_modern)){
@@ -13,6 +13,12 @@ delta_compute <- function(x_modern, high_res_obs) {
   delta <- x_modern_high - high_res_obs
   return(delta)
 }
+
+
+# steps for delta downscaling in areas without info
+# check Roberts or Mario's paper
+
+
 
 delta_downscale <- function(x, delta_rast,  time_point, sea_level_path, x_ice, x_landmask_high) {
   # check that extent and resolutions are compatible
