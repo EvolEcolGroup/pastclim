@@ -85,7 +85,7 @@ available for this dataset with:
 get_vars_for_dataset(dataset = "Example")
 ```
 
-and the available time steps available can be obtained with:
+and the available time steps can be obtained with:
 
 ```{r}
 get_time_steps(dataset = "Example")
