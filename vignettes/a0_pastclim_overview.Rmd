@@ -415,7 +415,7 @@ plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
 points(locations_10k_pca_scores, pch = 20, col = "red")
 ```
 If we want to pool the background from multiple time steps, we can simple use
-`region_series` to get a series, adn then transform it into a data frame with
+`region_series` to get a series, and then transform it into a data frame with
 `df_from_region_series`.
 
 # Random sampling of background
