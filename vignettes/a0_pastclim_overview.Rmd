@@ -378,12 +378,14 @@ location within the background for that time period. Let us start by
 visualising the background for the time step of interest with a PCA:
 
 ```{r, fig.width=4, fig.height=4}
+bio_vars <- c("bio01", "bio10", "bio12")
 climate_10k <- region_slice(-10000,
-  bio_variables = c("bio01", "bio10", "bio12"),
+  bio_variables = bio_vars,
   dataset = "Example"
 )
-climate_values_10k <- terra::as.data.frame(climate_10k)
-climate_10k_pca <- prcomp(climate_values_10k, scale = TRUE, center = TRUE)
+climate_values_10k <- df_from_region_slice(climate_10k)
+climate_10k_pca <- prcomp(climate_values_10k[, bio_vars], 
+                          scale = TRUE, center = TRUE)
 plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
   pch = 20, col = "lightgray",
   xlab = "PC1", ylab = "PC2"
@@ -392,7 +394,6 @@ plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
 
 We can now get the climatic conditions for the locations at this time step and compute the PCA scores based on the axes we defined on the background:
 ```{r}
-bio_vars <- c("bio01", "bio10", "bio12")
 locations_10k <- data.frame(
   longitude = c(0, 90, 20, 5), latitude = c(20, 45, 50, 47),
   time_bp = c(-9932, -9753, -10084, -10249)
@@ -413,6 +414,9 @@ plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
 )
 points(locations_10k_pca_scores, pch = 20, col = "red")
 ```
+If we want to pool the background from multiple time steps, we can simple use
+`region_series` to get a series, adn then transform it into a data frame with
+`df_from_region_series`.
 
 # Random sampling of background
 

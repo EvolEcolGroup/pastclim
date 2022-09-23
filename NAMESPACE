@@ -3,6 +3,8 @@
 export(check_dataset_path)
 export(climate_for_locations)
 export(climate_for_time_slice)
+export(df_from_region_series)
+export(df_from_region_slice)
 export(download_dataset)
 export(get_available_datasets)
 export(get_biome_classes)

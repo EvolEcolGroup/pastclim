@@ -3,7 +3,7 @@
 #' This function extracts a time slice from time series of one or more climate
 #' variables for a given dataset covering a region (or the whole world).
 #'
-#' @param x time series generated with \code{region_series}
+#' @param x climate time series generated with \code{region_series}
 #' @param time_bp time slices in years before present (i.e. 1950, negative integers
 #' for values in the past). The slices
 #' need to exist in the dataset. To check which slices are available, you
