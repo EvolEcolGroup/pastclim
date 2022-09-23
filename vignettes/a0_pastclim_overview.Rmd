@@ -239,6 +239,22 @@ slice_10k <- slice_region_series(climate_region, time_bp = -10000)
 terra::plot(slice_10k, main = names(slice_10k))
 ```
 
+Instead of giving a minimum and maximum time step, you can also provide
+specific time steps. Note that `pastclim` has a function to get a vector
+of the time steps for a given MIS in a dataset. For example, for MIS 1, we get:
+```{r}
+mis1_steps <- get_mis_time_steps(1, "Example")
+mis1_steps
+```
+Which we can then use:
+```{r}
+climate_mis1 <- region_series(
+  time_bp = mis1_steps, c("bio01", "bio10", "bio12"),
+  "Example"
+)
+climate_mis1
+```
+
 # Cropping
 
 Often we want to focus a given region. There are a number of preset rectangular extents in 
@@ -398,48 +414,6 @@ plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
 points(locations_10k_pca_scores, pch = 20, col = "red")
 ```
 
-## Working with MIS
-Sometimes we want to combine multiple time steps to represent the background
-(e.g. when considering a given MIS). `pastclim` has a function to get a vector
-of the time steps for a given MIS in a dataset. For example, for MIS 1, we get:
-```{r}
-mis_time_steps <- get_mis_time_steps(1, "Example")
-mis_time_steps
-```
-
-We now cycle over those steps. First extract the climate into a list:
-```{r}
-mis_climate_list <- list()
-for (this_step in mis_time_steps) {
-  this_step_climate <-
-    region_slice(
-      time_bp = this_step,
-      bio_variables = c("bio01", "bio10", "bio12"),
-      dataset = "Example"
-    )
-  this_step_climate <- values(this_step_climate)
-  # remove NAs
-  this_step_climate <-
-    this_step_climate[!is.nan(this_step_climate[, 1]), ]
-  mis_climate_list[[as.character(this_step)]] <- this_step_climate
-}
-```
-
-Then combine them into a single matrix:
-```{r}
-mis_climate <- do.call(rbind, mis_climate_list)
-```
-
-And finally plot it:
-```{r, fig.width=4, fig.height=4}
-mis_pca <- prcomp(mis_climate, scale = TRUE, center = TRUE)
-plot(mis_pca$x[, 2] ~ mis_pca$x[, 1],
-  pch = 20, col = "lightgray",
-  xlab = "PC1", ylab = "PC2"
-)
-```
-
-
 # Random sampling of background
 
 NOTE: there is a bug in terra 1.6.17 that prevents this section from 
@@ -448,7 +422,7 @@ if you use that version.
 
 For a number of species distribution models, rather than using the complete
 background, we need to subsample background points to our presences. 
-If we are interested in a single time step, we can simple generate the 
+If we are interested in a single time step, we can simply generate the 
 raster for the time slice of interest, and use `sample_region_slice`:
 
 ```{r}
