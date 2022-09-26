@@ -71,13 +71,13 @@ vignette("available_datasets", package = "pastclim")
 Please be aware that using any dataset made available to pastclim will require to cite both pastclim and the original publication presenting the dataset. The reference to cite for pastclim can be obtained by typing
 
 ```{r}
-cite("pastclim")
+citation("pastclim")
 ```
 
 while the reference associated to any dataset of choice (in this case "Beyer2020") is displayed together with the general information on it through the command:
 
 ```{r}
-help("Example")
+help("Beyer2020")
 ```
 
 For the datasets available, there are functions that help you download the data
@@ -485,7 +485,7 @@ sampled_climate
 
 At first we will need to extract a region and time of choice, in this case Northern America 10,000 years ago
 
-```{r}
+```{r, fig.width=6, fig.height=4}
 Namerica_10k <- region_slice(dataset="Example", c("bio01"),
                                time_bp=-10000, ext=region_extent$N_America)
 terra::plot(Namerica_10k)
@@ -493,7 +493,7 @@ terra::plot(Namerica_10k)
 
 We can then downscale using the `disagg()` function from the `terra` package, requiring an aggregation factor expressed as number of cells in each direction (horizontally, vertically, and, if needed, over layers). In the example below we used 25 both horizontally and vertically.
 
-```{r}  
+```{r, fig.width=6, fig.height=4}  
 Namerica_ds <- terra::disagg(Namerica_10k, fact=25, method='bilinear')
 terra::plot(Namerica_ds)
 
