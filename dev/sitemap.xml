@@ -58,6 +58,12 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/copy_example_data.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/df_from_region_series.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/df_from_region_slice.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_dataset.html</loc>
   </url>
   <url>
