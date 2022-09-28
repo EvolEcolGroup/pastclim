@@ -30,6 +30,7 @@ find it on the website for the package. Or, if needed, you can build it when ins
 ```{r install_vignette, eval=FALSE}
 devtools::install_github("EvolEcolGroup/pastclim", build_vignettes = TRUE)
 ```
+
 And read it directly in R with:
 ```{r vignette, eval=FALSE}
 vignette("pastclim_overview", package = "pastclim")
@@ -57,14 +58,13 @@ work with `pastclim`. Currently the library contains two datasets:
 you will need some familiarity with handling `netcdf` files (see the vignette on 
 'custom dataset').
 
-```{r}
-library(pastclim)
+```{r eval=FALSE}
 vignette("custom_datasets", package = "pastclim")
 ```
 
 A list of all datasets available can be obtained by typing 
 
-```{r}
+```{r eval=FALSE}
 vignette("available_datasets", package = "pastclim")
 ```
 
@@ -76,16 +76,21 @@ citation("pastclim")
 
 while the reference associated to any dataset of choice (in this case "Beyer2020") is displayed together with the general information on it through the command:
 
-```{r}
+```{r eval=FALSE}
 help("Beyer2020")
 ```
 
-For the datasets available, there are functions that help you download the data
+```{r echo=FALSE}
+pastclim:::get_dataset_info(dataset="Beyer2020")
+```
+
+For the datasets available in `pastclim`, there are functions that help you download the data
 and choose the variables. 
 
 Datasets will stored in the package data path, which can be obtained with:
 
 ```{r}
+library(pastclim)
 get_data_path()
 ```
 
@@ -126,6 +131,9 @@ and
 ```{r}
 get_vars_for_dataset(dataset = "Krapp2021")
 ```
+
+For monthly variables, months are coded as "_xx" at the end of the variable names; e.g. "temperature_02" is the
+mean monthly temperature for February.
 
 You will not be able to get the available time steps until you download the data. `pastclim` offers an interface
 to download the necessary files into your data path. 
@@ -270,6 +278,7 @@ of the time steps for a given MIS in a dataset. For example, for MIS 1, we get:
 mis1_steps <- get_mis_time_steps(mis = 1, dataset = "Example")
 mis1_steps
 ```
+
 Which we can then use:
 ```{r}
 climate_mis1 <- region_series(
@@ -368,6 +377,7 @@ The Beyer2020 and Krapp2021 datasets include a categorical variable detailing th
 ```{r}
 get_biome_classes("Example")
 ```
+
 If we need to plot the extent of a specific biome, for example the desert, we first extract the variable and then subset it to just the class we are interested in using its ID (21, in this case):
 
 ```{r, fig.width=6, fig.height=5}
@@ -428,7 +438,8 @@ climate_loc_10k <- location_slice(
   time_bp = locations_10k$time_bp, bio_variables = bio_vars,
   dataset = "Example"
 )
-locations_10k_pca_scores <- predict(climate_10k_pca, newdata = climate_loc_10k[, bio_vars])
+locations_10k_pca_scores <- predict(climate_10k_pca, 
+                                    newdata = climate_loc_10k[, bio_vars])
 ```
 
 And now we can plot the points on top of the background
@@ -439,6 +450,7 @@ plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
 )
 points(locations_10k_pca_scores, pch = 20, col = "red")
 ```
+
 If we want to pool the background from multiple time steps, we can simple use
 `region_series` to get a series, and then transform it into a data frame with
 `df_from_region_series`.
@@ -479,6 +491,7 @@ climate_ts <- region_series(
 sampled_climate <- sample_region_series(climate_ts, size = c(3,5))
 sampled_climate
 ```
+
 # Downscaling
 
 `pastclim` does not contain built-in code to change the spatial resolution of the climatic reconstructions, but it is possible to downscale the data by using the relevant function from the `terra` package. 
@@ -491,7 +504,7 @@ Namerica_10k <- region_slice(dataset="Example", c("bio01"),
 terra::plot(Namerica_10k)
 ```
 
-We can then downscale using the `disagg()` function from the `terra` package, requiring an aggregation factor expressed as number of cells in each direction (horizontally, vertically, and, if needed, over layers). In the example below we used 25 both horizontally and vertically.
+We can then downscale using the `disagg()` function from the `terra` package, requiring an aggregation factor expressed as number of cells in each direction (horizontally, vertically, and, if needed, over layers). In the example below we used 25 both horizontally and vertically, using bilinear interpolation.
 
 ```{r, fig.width=6, fig.height=4}  
 Namerica_ds <- terra::disagg(Namerica_10k, fact=25, method='bilinear')
