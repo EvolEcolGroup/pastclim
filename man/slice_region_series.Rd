@@ -7,7 +7,7 @@
 slice_region_series(x, time_bp)
 }
 \arguments{
-\item{x}{time series generated with \code{region_series}}
+\item{x}{climate time series generated with \code{region_series}}
 
 \item{time_bp}{time slices in years before present (i.e. 1950, negative integers
 for values in the past). The slices
