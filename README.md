@@ -12,10 +12,15 @@ comment out the githubactions as they can't cope with downgrading terra
 
 
 This library is designed to provide an easy way to extract and manipulate paleoclimate
-reconstructions for ecological and anthropological analyses. It currently focuses
-on data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
+reconstructions for ecological and anthropological analyses. It currently includes
+data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years.
-The reconstructions are bias-corrected and downscaled to 0.5 degree. A paper
+The reconstructions are bias-corrected and downscaled to 0.5 degree. A vignette, which
+can be found on the website under Articles, illustrates how additional dataset
+can be read with pastclim (if you format a new dataset, please consider a pull request
+to make it available to others!).
+
+A paper
 describing the functionality of `pastclim` can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1).
 
 ## Install the library
@@ -29,7 +34,7 @@ devtools::install_github("EvolEcolGroup/pastclim")
 
 ---
 
-## IMPORTANT: terra version
+### IMPORTANT: terra version
 
 The latest version of `terra` on CRAN (1.6.17) has a bug which prevents correct sampling of `spatRasters`. For
 a fully functional `pastclim`, you need to downgrade your version to 1.6.7:
@@ -50,23 +55,32 @@ The issue has been fixed in the development version of `terra`.
 
 ---
 
+## Overview of functionality
 
+There is a vignette with detailed step by step examples on how to use the library, as
+well as a cheatsheet covering the key functions. You can
+find them in the article and cheatsheet sections of the `pastclim` website. There are
+also additional articles providing details of datasets available within `pastclim`,
+and instructions on how to format and use custom datasets.
 
-
-There is a vignette with detailed step by step examples on how to use the library. You can
-find it in the [article section of the `pastclim` website](https://evolecolgroup.github.io/pastclim/articles/pastclim_overview.html). Or, you can build it when installing
-`pastclim` :
+You can also build the vignettes when installing 
+`pastclim` (note that you will need to have the necessary tools to build vignettes already installed;
+requirements depend on your OS):
 ```
 devtools::install_github("EvolEcolGroup/pastclim", build_vignette = TRUE)
 ```
-And read it directly in R with:
+You can read the vignettes directly in R with:
 ```
 vignette("pastclim_overview", package = "pastclim")
 ```
-There is also a vignette on how to format custom datasets (and ideally, how to 
-make a pull request to include them officially in `pastclim` for everyone to use!)
 
 ---
+
+## Current issues
+
+If something does not work, check the [issues on Github] (https://github.com/EvolEcolGroup/pastclim/issues) to see whether the problem
+has already been reported. If not, feel free to create an new issue. Please make sure you provide
+[a reproducible example] (https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) for the developers to investigate the issue.
 
 NOTE: `pastclim` relies on `terra` to process rasters. There is a known bug in
 `terra` that leads to the occasional message: 

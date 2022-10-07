@@ -1,8 +1,8 @@
 Package: pastclim
 Type: Package
-Title: This Package Provides Helper Functions to Interact with Time Series of 
-    Worldwide Climate Reconstructions
-Version: 1.0.1.9001
+Title: An R package providing helper functions to interact with timeseries of 
+  worldwide climate reconstructions 
+Version: 1.0.1.9002
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -12,11 +12,8 @@ Authors@R: c(
          email = "am315@cam.ac.uk")
      )
 Maintainer: Andrea Manica <am315@cam.ac.uk>
-Description: Currently this package focuses on Beyer et al 2020, a reconstruction
-    of climate based on the HadCM3 model for the last 120k years, and Krapp et al 
-    2021, covering the last 800k years. The reconstructions
-    are bias-corrected and downscaled to 0.5 degree, and this package helps using
-    these data for ecological and archaeological studies.
+Description: This library is designed to provide an easy way to extract and manipulate paleoclimate
+  reconstructions for ecological and anthropological analyses.
 License: CC BY 4.0
 URL: https://github.com/EvolEcolGroup/pastclim,
     https://evolecolgroup.github.io/pastclim/
