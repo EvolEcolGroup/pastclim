@@ -7,6 +7,10 @@
 
 * add monthly variables to Beyer2020 and Krapp2021
 
+# pastclim 1.0.1
+
+* Fix bug when information was extracted for just one location.
+
 # pastclim 1.0.0
 
 * Initial public release
