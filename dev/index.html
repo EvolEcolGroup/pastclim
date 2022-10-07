@@ -5,13 +5,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Currently this package focuses on Beyer et al 2020, a reconstruction
-    of climate based on the HadCM3 model for the last 120k years, and Krapp et al 
-    2021, covering the last 800k years. The reconstructions
-    are bias-corrected and downscaled to 0.5 degree, and this package helps using
-    these data for ecological and archaeological studies.">
-<title>This Package Provides Helper Functions to Interact with Time Series of 
-    Worldwide Climate Reconstructions • pastclim</title>
+<meta name="description" content="This library is designed to provide an easy way to extract and manipulate paleoclimate
+  reconstructions for ecological and anthropological analyses.">
+<title>An R package providing helper functions to interact with timeseries of 
+  worldwide climate reconstructions  • pastclim</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -22,13 +19,10 @@
 <link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="This Package Provides Helper Functions to Interact with Time Series of 
-    Worldwide Climate Reconstructions">
-<meta property="og:description" content="Currently this package focuses on Beyer et al 2020, a reconstruction
-    of climate based on the HadCM3 model for the last 120k years, and Krapp et al 
-    2021, covering the last 800k years. The reconstructions
-    are bias-corrected and downscaled to 0.5 degree, and this package helps using
-    these data for ecological and archaeological studies.">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="An R package providing helper functions to interact with timeseries of 
+  worldwide climate reconstructions ">
+<meta property="og:description" content="This library is designed to provide an easy way to extract and manipulate paleoclimate
+  reconstructions for ecological and anthropological analyses.">
 <meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -44,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,29 +92,39 @@
 <!---
 comment out the githubactions as they can't cope with downgrading terra
 [![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
----><p>This library is designed to provide an easy way to extract and manipulate paleoclimate reconstructions for ecological and anthropological analyses. It currently focuses on data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>.</p>
+---><p>This library is designed to provide an easy way to extract and manipulate paleoclimate reconstructions for ecological and anthropological analyses. It currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. A vignette, which can be found on the website under Articles, illustrates how additional dataset can be read with pastclim (if you format a new dataset, please consider a pull request to make it available to others!).</p>
+<p>A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>.</p>
 <div class="section level2">
 <h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
 </h2>
 <p>You will need to install the library from Github. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></span></code></pre>
 <hr>
-</div>
-<div class="section level2">
-<h2 id="important-terra-version">IMPORTANT: terra version<a class="anchor" aria-label="anchor" href="#important-terra-version"></a>
-</h2>
+<div class="section level3">
+<h3 id="important-terra-version">IMPORTANT: terra version<a class="anchor" aria-label="anchor" href="#important-terra-version"></a>
+</h3>
 <p>The latest version of <code>terra</code> on CRAN (1.6.17) has a bug which prevents correct sampling of <code>spatRasters</code>. For a fully functional <code>pastclim</code>, you need to downgrade your version to 1.6.7:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">"terra"</span>, version<span class="op">=</span><span class="st">"1.6.7"</span><span class="op">)</span></span></code></pre>
 <p>This fix will work for Linux and Windows, but it turns out that for OSX, <code>terra</code> version 1.6.7 on CRAN is built without support for reading netcdf files. So, if you are on OSX, you need to further downgrade <code>terra</code> to version 1.6.3:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">"terra"</span>, version<span class="op">=</span><span class="st">"1.6.3"</span><span class="op">)</span></span></code></pre>
 <p>The issue has been fixed in the development version of <code>terra</code>.</p>
 <hr>
-<p>There is a vignette with detailed step by step examples on how to use the library. You can find it in the <a href="https://evolecolgroup.github.io/pastclim/articles/pastclim_overview.html">article section of the <code>pastclim</code> website</a>. Or, you can build it when installing <code>pastclim</code> :</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
+</h2>
+<p>There is a vignette with detailed step by step examples on how to use the library, as well as a cheatsheet covering the key functions. You can find them in the article and cheatsheet sections of the <code>pastclim</code> website. There are also additional articles providing details of datasets available within <code>pastclim</code>, and instructions on how to format and use custom datasets.</p>
+<p>You can also build the vignettes when installing <code>pastclim</code> (note that you will need to have the necessary tools to build vignettes already installed; requirements depend on your OS):</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignette <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
-<p>And read it directly in R with:</p>
+<p>You can read the vignettes directly in R with:</p>
 <pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"pastclim_overview"</span>, package <span class="op">=</span> <span class="st">"pastclim"</span><span class="op">)</span></span></code></pre>
-<p>There is also a vignette on how to format custom datasets (and ideally, how to make a pull request to include them officially in <code>pastclim</code> for everyone to use!)</p>
 <hr>
+</div>
+<div class="section level2">
+<h2 id="current-issues">Current issues<a class="anchor" aria-label="anchor" href="#current-issues"></a>
+</h2>
+<p>If something does not work, check the [issues on Github] (<a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link uri">https://github.com/EvolEcolGroup/pastclim/issues</a>) to see whether the problem has already been reported. If not, feel free to create an new issue. Please make sure you provide [a reproducible example] (<a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example" class="external-link uri">https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example</a>) for the developers to investigate the issue.</p>
 <p>NOTE: <code>pastclim</code> relies on <code>terra</code> to process rasters. There is a known bug in <code>terra</code> that leads to the occasional message:</p>
 <pre><code><span><span class="st">"Error in x$.self$finalize() : attempt to apply non-function"</span></span></code></pre>
 <p>This is an error related to garbage collection, which does not affect the script being correctly executed, so it can be ignored. More discussion of this issue can be found on <a href="https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second" class="external-link">stack<strong>overflow</strong></a></p>
