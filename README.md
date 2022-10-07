@@ -15,8 +15,8 @@ This library is designed to provide an easy way to extract and manipulate paleoc
 reconstructions for ecological and anthropological analyses. It currently includes
 data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years.
-The reconstructions are bias-corrected and downscaled to 0.5 degree. A vignette (which
-can be found on the website under Articles) illustrates how additional dataset
+The reconstructions are bias-corrected and downscaled to 0.5 degree. A vignette, which
+can be found on the website under Articles, illustrates how additional dataset
 can be read with pastclim (if you format a new dataset, please consider a pull request
 to make it available to others!).
 

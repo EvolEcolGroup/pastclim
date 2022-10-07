@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
-Title: Helper Functions to Interact with Time Series of 
-    Worldwide Climate Reconstructions
+Title: An R package providing helper functions to interact with timeseries of 
+  worldwide climate reconstructions 
 Version: 1.0.1.9001
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
