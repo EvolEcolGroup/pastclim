@@ -56,9 +56,16 @@ sample_region_series<-function(x, size, method="random", replace=FALSE, na.rm=TR
 sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
   {  
   # sample the first variable
+  # spatSample samples additional points to make sure it has enough points after
+  # removing NA. The default exp=5 is not sufficient if size is very small.
+  if ((size*5)<1000){
+    exp = ceiling(1000/size)
+  } else {
+    exp = 5
+  }
   var_values <- terra::spatSample(x[1], size, method=method,
                                       replace=replace, na.rm=na.rm,
-                                      cells=TRUE, xy=TRUE)
+                                      cells=TRUE, xy=TRUE, exp=exp)
   # get the details for the sampled cells
   sampled_cells <- var_values[,c("cell","x","y")]
   sampled_values <- sampled_cells[rep(seq_len(nrow(sampled_cells)),
@@ -107,9 +114,16 @@ sample_rs_variable<-function(x, size, method="random", replace=FALSE, na.rm=TRUE
   t_steps <- time (x[1])
   for (i in seq_len(length(size))){
     x_step <- slice_region_series(x,t_steps[i])
+    # spatSample samples additional points to make sure it has enough points after
+    # removing NA. The default exp=5 is not sufficient if size is very small.
+    if ((size[i]*5)<1000){
+      exp = ceiling(1000/size[i])
+    } else {
+      exp = 5 # the terra default
+    }
     values <- terra::spatSample(x_step, size[i], method=method,
                                 replace=replace, na.rm=na.rm,
-                                cells=TRUE, xy=TRUE)
+                                cells=TRUE, xy=TRUE, exp=exp)
     values$time_bp<- t_steps[i]
     # write into output
     sample_list[[as.character(t_steps[i])]]<-values

@@ -23,6 +23,13 @@ sample_region_slice<-function(x, size, method="random", replace=FALSE, na.rm=TRU
   {
     stop("size should be a single value")
   }
+  # spatSample samples additional points to make sure it has enough points after
+  # removing NA. The default exp=5 is not sufficient if size is very small.
+  if ((size*5)<1000){
+    exp = ceiling(1000/size)
+  } else {
+    exp = 5
+  }
   terra::spatSample(x, size, method=method, replace=replace, na.rm=na.rm,
-                    cells = TRUE, xy = TRUE)
+                    cells = TRUE, xy = TRUE, exp = exp)
 } 
