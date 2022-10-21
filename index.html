@@ -97,19 +97,8 @@ comment out the githubactions as they can't cope with downgrading terra
 <p>You will need to install the library from Github. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></span></code></pre>
 <hr>
-</div>
-<div class="section level2">
-<h2 id="important-terra-version">IMPORTANT: terra version<a class="anchor" aria-label="anchor" href="#important-terra-version"></a>
-</h2>
-<p>The latest version of <code>terra</code> on CRAN (1.6.17) has a bug which prevents correct sampling of <code>spatRasters</code>. For a fully functional <code>pastclim</code>, you need to downgrade your version to 1.6.7:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">"terra"</span>, version<span class="op">=</span><span class="st">"1.6.7"</span><span class="op">)</span></span></code></pre>
-<p>This fix will work for Linux and Windows, but it turns out that for OSX, <code>terra</code> version 1.6.7 on CRAN is built without support for reading netcdf files. So, if you are on OSX, you need to further downgrade <code>terra</code> to version 1.6.3:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">"terra"</span>, version<span class="op">=</span><span class="st">"1.6.3"</span><span class="op">)</span></span></code></pre>
-<p>The issue has been fixed in the development version of <code>terra</code>.</p>
-<hr>
-<hr>
 <div class="section level3">
-<h3 id="important-terra-version-1">IMPORTANT: terra version<a class="anchor" aria-label="anchor" href="#important-terra-version-1"></a>
+<h3 id="important-terra-version">IMPORTANT: terra version<a class="anchor" aria-label="anchor" href="#important-terra-version"></a>
 </h3>
 <p>The latest version of <code>terra</code> on CRAN (1.6.17) has a bug which prevents correct sampling of <code>spatRasters</code>. For a fully functional <code>pastclim</code>, you need to downgrade your version to 1.6.7:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">"terra"</span>, version<span class="op">=</span><span class="st">"1.6.7"</span><span class="op">)</span></span></code></pre>
