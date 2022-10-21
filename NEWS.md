@@ -1,11 +1,13 @@
-# pastclim (development version)
+# pastclim 1.1.0
 
-* expand functionality to handle series for regions; rename functions for region
-  and location to make them consistent
+* Expand functionality to handle time series for regions; rename functions  to
+  extract data for regions and locations to make them consistent. Old code will
+  still work, but will raise a warning that the functions are deprecated.
 
-* remove the need for `pastclimData`, using the user dir returned by R>=4.0.0
+* Remove the need for `pastclimData`, we now put any data in the user dir returned
+  by R>=4.0.0. This removes the need of re-downloading the data when upgrading R.
 
-* add monthly variables to Beyer2020 and Krapp2021
+* Add monthly variables to Beyer2020 and Krapp2021.
 
 # pastclim 1.0.1
 
