@@ -10,7 +10,6 @@ comment out the githubactions as they can't cope with downgrading terra
 [![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 --->
 
-
 This library is designed to provide an easy way to extract and manipulate paleoclimate
 reconstructions for ecological and anthropological analyses. It currently includes
 data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
@@ -31,29 +30,6 @@ Once you have `devtools`, simply use:
 ```
 devtools::install_github("EvolEcolGroup/pastclim")
 ```
----
-
-## IMPORTANT: terra version
-
-The latest version of `terra` on CRAN (1.6.17) has a bug which prevents correct sampling of `spatRasters`. For
-a fully functional `pastclim`, you need to downgrade your version to 1.6.7:
-
-```
-devtools::install_version("terra", version="1.6.7")
-```
-
-This fix will work for Linux and Windows, but it turns out that for OSX, `terra` version 1.6.7 on CRAN is built
-without support for reading netcdf files. So, if you are on OSX, you need to further downgrade `terra` to version
-1.6.3:
-
-```
-devtools::install_version("terra", version="1.6.3")
-```
-
-The issue has been fixed in the development version of `terra`.
-
----
-
 ---
 
 ### IMPORTANT: terra version
