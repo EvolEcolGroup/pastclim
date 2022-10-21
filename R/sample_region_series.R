@@ -106,6 +106,9 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
 
 sample_rs_variable<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
 {
+  if (sum(size)==0){
+    stop("at least one element of sample size should be larger than zero")
+  }
   if (length(size)!=length(time(x[1]))){
     stop("size should be the same length as the number of time steps in x")
   }
