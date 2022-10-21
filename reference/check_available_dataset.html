@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,16 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/pastclim_overview.html">pastclim overview</a>
+    <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
+    <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
+    <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
   </div>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href=".././pastclim_cheatsheet.pdf">Cheatsheet</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -44,7 +52,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Check if dataset is available.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/HEAD/R/get_available_datasets.R" class="external-link"><code>R/get_available_datasets.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/HEAD/R/check_available_datasets.R" class="external-link"><code>R/check_available_datasets.R</code></a></small>
       <div class="d-none name"><code>check_available_dataset.Rd</code></div>
     </div>
 
@@ -54,13 +62,17 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_available_dataset</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_available_dataset</span><span class="op">(</span><span class="va">dataset</span>, include_custom <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dataset</dt>
 <dd><p>string defining dataset</p></dd>
+
+
+<dt>include_custom</dt>
+<dd><p>boolean whether a 'custom' dataset is allowed</p></dd>
 
 </dl></div>
 

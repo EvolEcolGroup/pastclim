@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,16 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/pastclim_overview.html">pastclim overview</a>
+    <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
+    <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
+    <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
   </div>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href=".././pastclim_cheatsheet.pdf">Cheatsheet</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -64,19 +72,39 @@
         <dd>Documentation for the Beyer2020 dataset</dd>
       </dl><dl><dt>
           
+          <code><a href="Example.html">Example</a></code> 
+        </dt>
+        <dd>Documentation for the Example dataset</dd>
+      </dl><dl><dt>
+          
           <code><a href="Krapp2021.html">Krapp2021</a></code> 
         </dt>
         <dd>Documentation for the Krapp2021 dataset</dd>
       </dl><dl><dt>
           
+          <code><a href="check_dataset_path.html">check_dataset_path()</a></code> 
+        </dt>
+        <dd>Check dataset and path_to_nc params.</dd>
+      </dl><dl><dt>
+          
           <code><a href="climate_for_locations.html">climate_for_locations()</a></code> 
         </dt>
-        <dd>Extract local climate for one or more locations.</dd>
+        <dd>Extract local climate for one or more locations for a given time slice.</dd>
       </dl><dl><dt>
           
           <code><a href="climate_for_time_slice.html">climate_for_time_slice()</a></code> 
         </dt>
-        <dd>Extract a raster brick for a given time slice</dd>
+        <dd>Extract a climate slice for a region</dd>
+      </dl><dl><dt>
+          
+          <code><a href="df_from_region_series.html">df_from_region_series()</a></code> 
+        </dt>
+        <dd>Extract data frame from a region series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="df_from_region_slice.html">df_from_region_slice()</a></code> 
+        </dt>
+        <dd>Extract data frame from a region slice</dd>
       </dl><dl><dt>
           
           <code><a href="download_dataset.html">download_dataset()</a></code> 
@@ -92,6 +120,11 @@
           <code><a href="get_biome_classes.html">get_biome_classes()</a></code> 
         </dt>
         <dd>Get the biome classes for a dataset.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_data_path.html">get_data_path()</a></code> 
+        </dt>
+        <dd>Get the data path where climate reconstructions are stored</dd>
       </dl><dl><dt>
           
           <code><a href="get_downloaded_datasets.html">get_downloaded_datasets()</a></code> 
@@ -119,9 +152,9 @@
         <dd>Get time steps for a given MIS</dd>
       </dl><dl><dt>
           
-          <code><a href="get_pastclimdata_path.html">get_pastclimdata_path()</a></code> 
+          <code><a href="get_time_steps.html">get_time_steps()</a></code> 
         </dt>
-        <dd>Get the path for pastclimdata.</dd>
+        <dd>Get time steps for a given dataset</dd>
       </dl><dl><dt>
           
           <code><a href="get_varname.html">get_varname()</a></code> 
@@ -132,6 +165,21 @@
           <code><a href="get_vars_for_dataset.html">get_vars_for_dataset()</a></code> 
         </dt>
         <dd>Get a list of variables for a given dataset.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="is_region_series.html">is_region_series()</a></code> 
+        </dt>
+        <dd>Check the object is a valid region series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="location_series.html">location_series()</a></code> 
+        </dt>
+        <dd>Extract a time series of bioclimatic variables for one or more locations.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="location_slice.html">location_slice()</a></code> 
+        </dt>
+        <dd>Extract local climate for one or more locations for a given time slice.</dd>
       </dl><dl><dt>
           
           <code><a href="mis_boundaries.html">mis_boundaries</a></code> 
@@ -154,9 +202,34 @@
         <dd>Region outlines unioned.</dd>
       </dl><dl><dt>
           
-          <code><a href="time_bp_to_index.html">time_bp_to_index()</a></code> 
+          <code><a href="region_series.html">region_series()</a></code> 
         </dt>
-        <dd>Convert a time BP to indeces in a netcdf file.</dd>
+        <dd>Extract a time series of climate variables for a region</dd>
+      </dl><dl><dt>
+          
+          <code><a href="region_slice.html">region_slice()</a></code> 
+        </dt>
+        <dd>Extract a climate slice for a region</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sample_region_series.html">sample_region_series()</a></code> 
+        </dt>
+        <dd>Sample points from a region time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sample_region_slice.html">sample_region_slice()</a></code> 
+        </dt>
+        <dd>Sample points from a region time slice</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_data_path.html">set_data_path()</a></code> 
+        </dt>
+        <dd>Set the data path where climate reconstructions will be stored</dd>
+      </dl><dl><dt>
+          
+          <code><a href="slice_region_series.html">slice_region_series()</a></code> 
+        </dt>
+        <dd>Extract a slice for a time series of climate variables for a region</dd>
       </dl><dl><dt>
           
           <code><a href="time_series_for_locations.html">time_series_for_locations()</a></code> 
