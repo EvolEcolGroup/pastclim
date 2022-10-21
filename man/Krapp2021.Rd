@@ -4,24 +4,28 @@
 \alias{Krapp2021}
 \title{Documentation for the Krapp2021 dataset}
 \description{
-This dataset covers the last 800k years, at intervals of 1k years.
+This dataset covers the last 800k years, at intervals of 1k years, and a 
+resolution of 0.5 degrees in latitude and longitude.
 }
 \details{
-This dataset can be downloaded with \code{\link{download_dataset}}. The
-files can be found at
+If you use this dataset, make sure to cite the original publication:
 
-Manica, Andrea (2022): pastclim_krapp2021_v1.0.0. figshare. Dataset. 
-\url{https://doi.org/10.6084/m9.figshare.19733680.v1} 
- 
-based on
+Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
+reconstruction of high-resolution global terrestrial climate for the last
+800,000 years. Sci Data 8, 228 (2021).
+\doi{doi.org/10.1038/s41597-021-01009-3}
 
-Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based 
-reconstruction of high-resolution global terrestrial climate for the last 
-800,000 years. Sci Data 8, 228 (2021). 
-\url{https://doi.org/10.1038/s41597-021-01009-3}
+The version included in `pastclim` has the ice sheets masked.
 
-The version included in `pastclim` has the icesheets masked.
-
-Note that, for bio15, we use the corrected version, which follows 
+Note that, for bio15, we use the corrected version, which follows
 \url{https://pubs.usgs.gov/ds/691/ds691.pdf}
+
+Changelog
+
+v1.1.0 Added monthly variables. Files can be downloaded from:
+\url{https://zenodo.org/record/7065055}
+
+v1.0.0 Remove ice sheets and use correct formula for bio15. 
+Files can be downloaded from:
+\doi{doi.org/10.6084/m9.figshare.19733680.v1}
 }

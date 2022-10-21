@@ -4,17 +4,14 @@
 \alias{get_ice_mask}
 \title{Get the ice mask for a dataset.}
 \usage{
-get_ice_mask(time_bp, dataset, path_to_nc = NULL)
+get_ice_mask(time_bp, dataset)
 }
 \arguments{
 \item{time_bp}{time slice in years before present (negative)}
 
-\item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer2020" or "Krapp2021" are available). Note that this function will not work
-on an custom dataset.}
-
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{dataset}{string defining dataset to be downloaded (a list of possible
+values can be obtained with \code{get_available_datasets}). This function
+will not work on custom datasets.}
 }
 \description{
 Get the ice mask for a dataset at a given timepoint.

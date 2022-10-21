@@ -4,14 +4,12 @@
 \alias{get_biome_classes}
 \title{Get the biome classes for a dataset.}
 \usage{
-get_biome_classes(dataset, path_to_nc = NULL)
+get_biome_classes(dataset)
 }
 \arguments{
-\item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer2020" or "Krapp2021" are available)}
-
-\item{path_to_nc}{the path to the directory containing the downloaded resonstructions.
-Leave it unset if you are using the companion `pastclimData` to store datasets.}
+\item{dataset}{string defining dataset to be downloaded (a list of possible
+values can be obtained with \code{get_available_datasets}). This function
+will not work on custom datasets.}
 }
 \description{
 Get a full list of biomes and how their id as coded in the biome variable

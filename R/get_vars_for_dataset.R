@@ -5,8 +5,9 @@
 #' publications, as `pastclim` harmonises the names of variables across
 #' different reconstructions.
 #'
-#' @param dataset string defining dataset to for which variables are given.
-#' It can take the value "Beyer2020", "Krapp2021" or "Example"
+#' @param dataset string defining dataset to be downloaded (a list of possible
+#' values can be obtained with \code{get_available_datasets}). This function
+#' will not work on custom datasets.
 #'
 #' @export
 
@@ -48,5 +49,5 @@ check_available_variable <- function(variable, dataset) {
 
 get_varname <- function(variable, dataset) {
   return(files_by_dataset$ncvar[files_by_dataset$variable == variable &
-                                  files_by_dataset$dataset == dataset])
+    files_by_dataset$dataset == dataset])
 }

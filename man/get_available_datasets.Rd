@@ -7,5 +7,6 @@
 get_available_datasets()
 }
 \description{
-List the available datasets
+List the datasets available in pastclim. Most functions can also be
+used on custom datasets by setting `dataset="custom"`
 }

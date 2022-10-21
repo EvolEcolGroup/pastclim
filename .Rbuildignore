@@ -7,3 +7,4 @@ ci_dependencies
 ^docs$
 ^pkgdown$
 ^\.github$
+^cran-comments.md

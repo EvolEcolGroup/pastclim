@@ -3,20 +3,17 @@
 #' Get the land mask for a dataset at a given timepoint.
 #'
 #' @param time_bp time slice in years before present (negative)
-#' @param dataset string defining dataset to be downloaded (currently only
-#' "Beyer2020" or "Krapp2021" are available). Note that this function will
-#' not work on an custom dataset.
-#' @param path_to_nc the path to the directory containing the downloaded
-#' reconstructions. Leave it unset if you are using the companion
-#' `pastclimData` to store datasets.
+#' @param dataset string defining dataset to be downloaded (a list of possible
+#' values can be obtained with \code{get_available_datasets}). This function
+#' will not work on custom datasets.
 #'
 #' @import terra
 #' @export
 
-get_land_mask <- function(time_bp, dataset, path_to_nc = NULL) {
-  climate_slice <- climate_for_time_slice(
+get_land_mask <- function(time_bp, dataset) {
+  climate_slice <- region_slice(
     time_bp = time_bp, bio_variables = "biome",
-    dataset = dataset, path_to_nc = path_to_nc
+    dataset = dataset
   )
   climate_slice$land_mask <- climate_slice[names(climate_slice)]
   climate_slice$land_mask[climate_slice$land_mask != 28] <- TRUE

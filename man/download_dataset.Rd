@@ -4,19 +4,18 @@
 \alias{download_dataset}
 \title{Download paeloclimate reconstructions.}
 \usage{
-download_dataset(dataset, bio_variables = NULL, path_to_nc = NULL)
+download_dataset(dataset, bio_variables = NULL)
 }
 \arguments{
-\item{dataset}{string defining dataset to be downloaded (currently only
-"Beyer" is available)}
+\item{dataset}{string defining dataset to be downloaded (a list of possible
+values can be obtained with \code{get_available_datasets}). This function
+will not work on custom datasets.}
 
-\item{bio_variables}{one or more variable names to be downloaded. If left to NULL,
-all variables available for this dataset will be downloaded}
-
-\item{path_to_nc}{directory where the files will be saved. If not set, the data will
-be downloaded into the storage package pastclimData; an error will be
-returned if this package is not installed.}
+\item{bio_variables}{one or more variable names to be downloaded. If left
+to NULL, all variables available for this dataset will be downloaded}
 }
 \description{
-This function downloads paleoclimate reconstructions
+This function downloads paleoclimate reconstructions. Files will be stored
+in the data path of `pastclim`, which can be inspected with
+\code{get_data_path} and changed with \code{set_data_path}
 }

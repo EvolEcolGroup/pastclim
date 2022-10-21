@@ -7,12 +7,13 @@
 get_vars_for_dataset(dataset)
 }
 \arguments{
-\item{dataset}{string defining dataset to for which variables are given. It can take the value
-"Beyer2020", "Krapp2021" or "Example"}
+\item{dataset}{string defining dataset to be downloaded (a list of possible
+values can be obtained with \code{get_available_datasets}). This function
+will not work on custom datasets.}
 }
 \description{
 This function lists the variables available for a given dataset. Note that
 the spelling and use of capitals in names might differ from the original
-publications, as `pastclim` harmonises the names of variables across different
-reconstructions.
+publications, as `pastclim` harmonises the names of variables across
+different reconstructions.
 }
