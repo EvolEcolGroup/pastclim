@@ -22,6 +22,12 @@ test_that("sample_region_series works correctly", {
   n_points <- c(1, 0)
   sampled_var <- sample_region_series(climate_ts, size = n_points)
   expect_true(nrow(sampled_var) == sum(n_points))
+  # get error if sample sizes are all zero
+  n_points <- c(0, 0)
+  expect_error(
+    sampled_var <- sample_region_series(climate_ts, size = n_points),
+    "at least one element of sample size should be larger than zero"
+  )  
   # now use a single sample size for all layers
   n_points <- 10
   sampled_fixed <- sample_region_series(climate_ts, size = n_points)
