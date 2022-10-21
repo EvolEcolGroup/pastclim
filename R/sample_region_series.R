@@ -113,20 +113,22 @@ sample_rs_variable<-function(x, size, method="random", replace=FALSE, na.rm=TRUE
   sample_list<-list()
   t_steps <- time (x[1])
   for (i in seq_len(length(size))){
-    x_step <- slice_region_series(x,t_steps[i])
-    # spatSample samples additional points to make sure it has enough points after
-    # removing NA. The default exp=5 is not sufficient if size is very small.
-    if ((size[i]*5)<1000){
-      exp = ceiling(1000/size[i])
-    } else {
-      exp = 5 # the terra default
+    if (size[i]>0) {
+      x_step <- slice_region_series(x,t_steps[i])
+      # spatSample samples additional points to make sure it has enough points after
+      # removing NA. The default exp=5 is not sufficient if size is very small.
+      if ((size[i]*5)<1000){
+        exp = ceiling(1000/size[i])
+      } else {
+        exp = 5 # the terra default
+      }
+      values <- terra::spatSample(x_step, size[i], method=method,
+                                  replace=replace, na.rm=na.rm,
+                                  cells=TRUE, xy=TRUE, exp=exp)
+      values$time_bp<- t_steps[i]
+      # write into output
+      sample_list[[as.character(t_steps[i])]]<-values
     }
-    values <- terra::spatSample(x_step, size[i], method=method,
-                                replace=replace, na.rm=na.rm,
-                                cells=TRUE, xy=TRUE, exp=exp)
-    values$time_bp<- t_steps[i]
-    # write into output
-    sample_list[[as.character(t_steps[i])]]<-values
   }
   # combine them into a single matrix
   sampled_climate <- do.call(rbind, sample_list)

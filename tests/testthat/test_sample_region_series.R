@@ -18,6 +18,11 @@ test_that("sample_region_series works correctly", {
     sampled_var <- sample_region_series(climate_ts, size = n_points),
     "size should be the same length as the number of time steps in x"
   )
+  # check that it works if we use small numbers and zero
+  n_points <- c(1, 0)
+  sampled_var <- sample_region_series(climate_ts, size = n_points)
+  expect_true(nrow(sampled_var) == sum(n_points))
+  # now use a single sample size for all layers
   n_points <- 10
   sampled_fixed <- sample_region_series(climate_ts, size = n_points)
   expect_true(nrow(sampled_fixed) == n_points * length(t_steps))
