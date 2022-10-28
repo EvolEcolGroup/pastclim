@@ -123,7 +123,7 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
   }
   land_mask <- NULL
   for (i in 1:length(time_bp)) {
-    topography_bin<-topography_rast
+    topography_bin<-topo_rast
     topography_bin[topography_bin>sea_level[i]]<-NA
     topography_bin[!is.na(topography_bin)]<-1
     sea_patches<-patches(topography_bin)
