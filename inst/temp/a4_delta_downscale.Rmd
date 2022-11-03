@@ -17,7 +17,6 @@ knitr::opts_chunk$set(
 
 # THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
 
-
 ## Downscaling a dataset in pastclim `pastclim`
 
 The `terra` package can downscale reconstructiosn using a bilinear method. Other `R`

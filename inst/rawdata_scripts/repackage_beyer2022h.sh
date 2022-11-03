@@ -36,12 +36,14 @@ ncatted -a grid_mapping,internal_seas,d,, beyer_internal_seas3.nc beyer_internal
 cdo invertlat beyer_internal_seas4.nc beyer_internal_seas5.nc
 # remove internal seas
 cdo div LateQuaternary_Environment_no_ice.nc beyer_internal_seas5.nc LateQuaternary_Environment_no_internal_seas.nc
+# the latest version of cdo messes with the time values
+ncap2 -s 'time=time-120000' LateQuaternary_Environment_no_internal_seas.nc LateQuaternary_Environment_no_internal_seas2.nc
 # clean up unnecessary files
-rm beyer* LateQuaternary_Environment_no_ice.nc
+rm beyer* LateQuaternary_Environment_no_ice.nc LateQuaternary_Environment_no_internal_seas.nc
 # recompress it
-nccopy -d9 LateQuaternary_Environment_no_internal_seas.nc Beyer2022h_all_vars.nc
-rm LateQuaternary_Environment_no_internal_seas.nc
-ncatted -a created_by,global,c,c,'Andrea Manica' -a pastclim_version,global,c,c,'1.0.0' -a link,global,a,c,'https://github.com/EvolEcolGroup/pastclim' -a description,global,a,c,'All variables from Beyer et al 2020, with icesheets and internal seas removed, to be used by the R library pastclim' -a history,global,d,, -a history_of_appended_files,global,d,, -h Beyer2022h_all_vars.nc Beyer2022h_all_vars_v1.0.0.nc
+nccopy -d9 LateQuaternary_Environment_no_internal_seas2.nc Beyer2022h_all_vars.nc
+rm LateQuaternary_Environment_no_internal_seas2.nc
+ncatted -a created_by,global,c,c,'Andrea Manica' -a pastclim_version,global,c,c,'1.0.0' -a link,global,a,c,'https://github.com/EvolEcolGroup/pastclim' -a description,global,a,c,'All variables from Beyer et al 2020, with Heinrich events, with icesheets and internal seas removed, to be used by the R library pastclim' -a history,global,d,, -a history_of_appended_files,global,d,, -h Beyer2022h_all_vars.nc Beyer2022h_all_vars_v1.0.0.nc
 ncatted -a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -h Beyer2022h_all_vars_v1.0.0.nc
 ncatted -a command_line,global,c,c,"./inst/rawdata_scripts/repackage_beyer2022h.sh" -h Beyer2022h_all_vars_v1.0.0.nc
 
