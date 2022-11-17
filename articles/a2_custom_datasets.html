@@ -205,9 +205,12 @@ information about available datasets. This table is found in
 <span><span class="co">#&gt;   variable ncvar dataset monthly          file_name download_path</span></span>
 <span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate.nc              </span></span>
 <span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate.nc              </span></span>
-<span><span class="co">#&gt;   file_name_orig download_path_orig version</span></span>
-<span><span class="co">#&gt; 1                                     1.1.0</span></span>
-<span><span class="co">#&gt; 2                                     1.1.0</span></span></code></pre></div>
+<span><span class="co">#&gt;   file_name_orig download_path_orig version                           long_name</span></span>
+<span><span class="co">#&gt; 1                                     1.1.0             annual mean temperature</span></span>
+<span><span class="co">#&gt; 2                                     1.1.0 mean temperature of warmest quarter</span></span>
+<span><span class="co">#&gt;        abbreviated_name time_frame           units  units_exp</span></span>
+<span><span class="co">#&gt; 1           ann. mean T       year degrees Celsius *degree*C*</span></span>
+<span><span class="co">#&gt; 2 mean T of warmest qtr       year degrees Celsius *degree*C*</span></span></code></pre></div>
 <p>This includes the following fields:</p>
 <p><code>variable</code>: the variable name used by
 <code>pastclim</code></p>
@@ -222,6 +225,15 @@ create the <em>nc</em> dataset.</p>
 <p><code>download_path_orig</code>: the path of those original
 files.</p>
 <p><code>version</code>: the version of the dataset that you created</p>
+<p><code>long_name</code>: the long name for the variable</p>
+<p><code>abbreviated_name</code>: an abbreviated version of
+<code>long_name</code> (used for plot labels)</p>
+<p><code>time_frame</code>: either <code>year</code> or the appropriate
+<code>month</code></p>
+<p><code>units</code>: units for the variable, to be displayed in a
+plain text table</p>
+<p><code>units_exp</code>: units formatted to be included in
+<code>expression</code> when creating plot labels</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Once you have added lines detailing the variables in your
 dataset, run the script

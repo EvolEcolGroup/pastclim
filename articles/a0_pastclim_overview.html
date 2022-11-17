@@ -290,13 +290,21 @@ available variables for each dataset with:</p>
 <span><span class="co">#&gt; [69] "cloudiness_12"</span></span></code></pre></div>
 <p>For monthly variables, months are coded as “_xx” at the end of the
 variable names; e.g. “temperature_02” is the mean monthly temperature
-for February.</p>
+for February. A more thorough description of each variable (including
+the units) can be obtained with:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Example"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   variable                           long_name           units</span></span>
+<span><span class="co">#&gt; 1    bio01             annual mean temperature degrees Celsius</span></span>
+<span><span class="co">#&gt; 2    bio10 mean temperature of warmest quarter degrees Celsius</span></span>
+<span><span class="co">#&gt; 3    bio12                annual precipitation     mm per year</span></span>
+<span><span class="co">#&gt; 4    biome                 biome (from BIOME4)</span></span></code></pre></div>
 <p>You will not be able to get the available time steps until you
 download the data. <code>pastclim</code> offers an interface to download
 the necessary files into your data path.</p>
 <p>To inspect which datasets and variables have already been downloaded
 in the data path, we can use:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Example</span></span>
 <span><span class="co">#&gt; [1] "bio01" "bio10" "bio12" "biome"</span></span></code></pre></div>
@@ -304,7 +312,7 @@ in the data path, we can use:</p>
 <em>Beyer2020</em> dataset (this operation might take several minutes,
 as the datasets are large; <code>R</code> will pause until the download
 is complete):</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio05"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Note that multiple variables can be packed together into a single
 file, so <code><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets()</a></code> might list more
@@ -326,7 +334,7 @@ by using the function <code>location_slice</code>. With this function,
 we will get slices of climate for the times relevant to the locations of
 interest.</p>
 <p>Let us create some fictitious locations:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">90</span>, <span class="op">-</span><span class="fl">120</span>, <span class="op">-</span><span class="fl">9</span><span class="op">)</span>, latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">60</span>, <span class="fl">37</span><span class="op">)</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">9753</span>, <span class="op">-</span><span class="fl">18738</span>, <span class="op">-</span><span class="fl">11849</span><span class="op">)</span></span>
@@ -339,7 +347,7 @@ interest.</p>
 <span><span class="co">#&gt; 4        -9       37  -11849</span></span></code></pre></div>
 <p>And extract their climatic conditions for <em>bio01</em> and
 <em>bio12</em>:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">locations</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -361,7 +369,7 @@ to the discretisation of space in the raster. We can interpolate climate
 among the nearest neighbours, thus using climate reconstructions for
 neighbouring pixels if the location is just off one or more land
 pixels:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/location_slice.html">location_slice</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">locations</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="va">locations</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -376,7 +384,7 @@ we can reconstruct some appropriate climate by interpolating. Note that
 <code>nn_interpol = TRUE</code> is the default for this function.</p>
 <p>Sometimes, we want to get a time series of climatic reconstructions,
 thus allowing us to see how climate changed over time:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">locations_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/location_series.html">location_series</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">locations</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -384,7 +392,7 @@ thus allowing us to see how climate changed over time:</p>
 <p>The resulting dataframe can be subsetted to get the time series for
 each location (the small <em>Example</em> dataset only contains 5 time
 slices):</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">id</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     longitude latitude id   time    bio01     bio12</span></span>
 <span><span class="co">#&gt; 1           0       20  1 -20000 22.44057 102.66345</span></span>
@@ -395,7 +403,7 @@ slices):</p>
 <p>Also note that for some locations, climate can be available only for
 certain time steps, depending on sea level and ice sheet extent. This is
 the case for location 3:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">id</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     longitude latitude id   time     bio01    bio12</span></span>
 <span><span class="co">#&gt; 3        -120       60  3 -20000       NaN      NaN</span></span>
@@ -410,20 +418,20 @@ the case for location 3:</p>
 <p>Instead of focussing on specific locations, we might want to look at
 a whole region. For a given time step, we can extract a slice of climate
 with</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>This returns a raster (technically a <code>spatRaster</code> object
+<p>This returns a raster (technically a <code>SpatRaster</code> object
 as defined in the <code>terra</code> library, meaning that we can
 perform all standard <code>terra</code> raster operations on this
-object). To interact with <code>spatRaster</code> objects, it is best to
+object). To interact with <code>SpatRaster</code> objects, it is best to
 load the <code>terra</code> library (otherwise you might get errors as
 the correct method is not found, e.g.  when plotting); we can then get a
 summary of this object:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; terra 1.6.7</span></span>
 <span><span class="va">climate_20k</span></span>
@@ -441,14 +449,18 @@ summary of this object:</p>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12 </span></span>
 <span><span class="co">#&gt; time (raw)  : -20000</span></span></code></pre></div>
 <p>and plot these three variables (the layers of the raster):</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-23-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-24-1.png" width="576"></p>
+<p>We can add more informative labels with <code>var_labels</code>:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/var_labels.html">var_labels</a></span><span class="op">(</span><span class="va">climate_20k</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-25-1.png" width="576"></p>
 <p>It is possible to also load a time series of rasters with the
 function <code>region_series</code>. In this case, the function returns
-a <code>spatRasterDataset</code>, with each variable as a
+a <code>SpatRasterDataset</code>, with each variable as a
 sub-dataset:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min <span class="op">=</span> <span class="op">-</span><span class="fl">15000</span>, max <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, </span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -463,9 +475,9 @@ sub-dataset:</p>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
 <span><span class="co">#&gt; source(s)   : example_climate.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
-<p>Each of these sub-dataset is a <code>spatRaster</code>, with time
+<p>Each of these sub-dataset is a <code>SpatRaster</code>, with time
 steps as layers:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_region</span><span class="op">$</span><span class="va">bio01</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
 <span><span class="co">#&gt; dimensions  : 150, 360, 4  (nrow, ncol, nlyr)</span></span>
@@ -477,25 +489,25 @@ steps as layers:</p>
 <span><span class="co">#&gt; names       : bio01_-15000, bio01_-10000, bio01_-5000, bio01_0 </span></span>
 <span><span class="co">#&gt; time (raw)  : -15000 to 0</span></span></code></pre></div>
 <p>We can then plot the time series of a given variable:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">$</span><span class="va">bio01</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-26-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-28-1.png" width="576"></p>
 <p>To plot all climate variables for a given time step, we can slice the
 time series:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">slice_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">climate_region</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">10000</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">slice_10k</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">slice_10k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-27-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-29-1.png" width="576"></p>
 <p>Instead of giving a minimum and maximum time step, you can also
 provide specific time steps to <code>region_series</code>. Note that
 <code>pastclim</code> has a function to get a vector of the time steps
 for a given MIS in a dataset. For example, for MIS 1, we get:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mis1_steps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mis_time_steps.html">get_mis_time_steps</a></span><span class="op">(</span>mis <span class="op">=</span> <span class="fl">1</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="va">mis1_steps</span></span>
 <span><span class="co">#&gt; [1] -10000  -5000      0</span></span></code></pre></div>
 <p>Which we can then use:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_mis1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="va">mis1_steps</span>, </span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -517,17 +529,17 @@ for a given MIS in a dataset. For example, for MIS 1, we get:</p>
 </h2>
 <p>Often we want to focus a given region. There are a number of preset
 rectangular extents in <code>pastclim</code>:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Africa"    "America"   "Asia"      "Europe"    "Eurasia"   "N_America"</span></span>
 <span><span class="co">#&gt; [7] "Oceania"   "S_America"</span></span></code></pre></div>
 <p>We can get the corners of the European extent:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span></span>
 <span><span class="co">#&gt; [1] -15  70  33  75</span></span></code></pre></div>
 <p>And then we can extract climate only for Europe by setting
 <code>ext</code> in <code>region_slice</code>:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">europe_climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -536,19 +548,19 @@ rectangular extents in <code>pastclim</code>:</p>
 <span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
 <span>            main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-32-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-34-1.png" width="576"></p>
 <p>As we can see in the plot, cutting Europe using a rectangular shape
 keeps a portion of Northern Africa in the map. <code>pastclim</code>
 includes a number of pre-generated masks for the main continental
 masses, stored in the dataset <code>region_outline</code> in an
 <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sf::sfc</a></code> object. We can get a list with:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Africa"    "Eurasia"   "N_America" "Oceania"   "S_America" "Europe"</span></span></code></pre></div>
 <p>We can then use the function <code>crop</code> within
 <code>region_slice</code> to only keep the area within the desired
 outline.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">europe_climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -557,10 +569,10 @@ outline.</p>
 <span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
 <span>            main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-34-1.png" width="576"></p>
-<p>We can combine multiple regions together. For example, we can cropt
-to Afircan and Eurasia by unioning the two indiviudal outlines:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-36-1.png" width="576"></p>
+<p>We can combine multiple regions together. For example, we can crop to
+Africa and Eurasia by unioning the two individual outlines:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span></span>
 <span><span class="va">afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">st_union</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">$</span><span class="va">Africa</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">Eurasia</span><span class="op">)</span></span>
@@ -571,7 +583,7 @@ to Afircan and Eurasia by unioning the two indiviudal outlines:</p>
 <span>  crop <span class="op">=</span> <span class="va">afr_eurasia</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span>,</span>
 <span>            main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-35-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-37-1.png" width="576"></p>
 <p>Note that outlines that cross the antimeridian are split into
 multiple polygons (so that they can be used without projecting the
 rasters). For Eurasia, we have the eastern end of Siberia on the left
@@ -582,7 +594,7 @@ projection).</p>
 <code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code> object) as a mask to limit the area covered by
 the raster. Note that you need to reuse the first vertex as the last
 vertex, to close the polygon:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_vec</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,</span></span>
 <span><span class="st">                              119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,</span></span>
 <span><span class="st">                              -25 -40, -25 64, 0 70))"</span><span class="op">)</span></span>
@@ -593,7 +605,7 @@ vertex, to close the polygon:</p>
 <span>  crop <span class="op">=</span> <span class="va">custom_vec</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_custom</span>, </span>
 <span>            main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k_custom</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-36-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-38-1.png" width="576"></p>
 <p><code>region_series</code> takes the same <code>ext</code> and
 <code>crop</code> options as <code>region_slice</code> to limit the
 extent of the climatic reconstructions.</p>
@@ -603,7 +615,7 @@ extent of the climatic reconstructions.</p>
 </h2>
 <p>The Beyer2020 and Krapp2021 datasets include a categorical variable
 detailing the extension of biomes.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_biome_classes.html">get_biome_classes</a></span><span class="op">(</span><span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id                           category</span></span>
 <span><span class="co">#&gt; 1   0                       Water bodies</span></span>
@@ -638,7 +650,7 @@ detailing the extension of biomes.</p>
 <p>If we need to plot the extent of a specific biome, for example the
 desert, we first extract the variable and then subset it to just the
 class we are interested in using its ID (21, in this case):</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"biome"</span><span class="op">)</span>,</span>
@@ -648,11 +660,11 @@ class we are interested in using its ID (21, in this case):</p>
 <span><span class="va">climate_20k</span><span class="op">$</span><span class="va">desert</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">desert</span> <span class="op">!=</span> <span class="fl">21</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span>
 <span><span class="va">climate_20k</span><span class="op">$</span><span class="va">desert</span><span class="op">[</span><span class="va">climate_20k</span><span class="op">$</span><span class="va">desert</span> <span class="op">==</span> <span class="fl">21</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-38-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-40-1.png" width="576"></p>
 <p>The climate reconstructions do not show areas under permanent ice.
 Ice sheets are stored as class 28 in the “biome” variable:</p>
 <p>To plot it, we use functions designed to get ice and land masks.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span><span class="op">)</span>,</span>
@@ -661,7 +673,7 @@ Ice sheets are stored as class 28 in the “biome” variable:</p>
 <span><span class="va">climate_20k</span><span class="op">$</span><span class="va">ice_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="va">climate_20k</span><span class="op">$</span><span class="va">land_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_land_mask.html">get_land_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-39-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-41-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="set-the-samples-within-the-background">Set the samples within the background<a class="anchor" aria-label="anchor" href="#set-the-samples-within-the-background"></a>
@@ -670,7 +682,7 @@ Ice sheets are stored as class 28 in the “biome” variable:</p>
 given set of location within the background for that time period. Let us
 start by visualising the background for the time step of interest with a
 PCA:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bio_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span></span>
 <span><span class="va">climate_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="va">bio_vars</span>,</span>
@@ -683,11 +695,11 @@ PCA:</p>
 <span>  pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"lightgray"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-40-1.png" width="384"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-42-1.png" width="384"></p>
 <p>We can now get the climatic conditions for the locations at this time
 step and compute the PCA scores based on the axes we defined on the
 background:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">locations_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">90</span>, <span class="fl">20</span>, <span class="fl">5</span><span class="op">)</span>, latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">47</span><span class="op">)</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9932</span>, <span class="op">-</span><span class="fl">9753</span>, <span class="op">-</span><span class="fl">10084</span>, <span class="op">-</span><span class="fl">10249</span><span class="op">)</span></span>
@@ -700,13 +712,13 @@ background:</p>
 <span><span class="va">locations_10k_pca_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">climate_10k_pca</span>, </span>
 <span>                                    newdata <span class="op">=</span> <span class="va">climate_loc_10k</span><span class="op">[</span>, <span class="va">bio_vars</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p>And now we can plot the points on top of the background</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
 <span>  pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"lightgray"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_10k_pca_scores</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-42-1.png" width="384"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-44-1.png" width="384"></p>
 <p>If we want to pool the background from multiple time steps, we can
 simple use <code>region_series</code> to get a series, and then
 transform it into a data frame with
@@ -723,7 +735,7 @@ complete background, we need to subsample background points to our
 presences. If we are interested in a single time step, we can simply
 generate the raster for the time slice of interest, and use
 <code>sample_region_slice</code>:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span><span class="op">)</span>,</span>
@@ -731,18 +743,18 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell      x    y     bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 18440 -100.5 38.5 -2.659625 12.467758</span></span>
-<span><span class="co">#&gt; 2 22026 -114.5 28.5 15.872678 21.499157</span></span>
-<span><span class="co">#&gt; 3 10463 -157.5 60.5 -5.717480  5.175115</span></span>
-<span><span class="co">#&gt; 4 22929   68.5 26.5 22.301588 31.383848</span></span>
-<span><span class="co">#&gt; 5 18617   76.5 38.5  4.873680 16.000620</span></span>
-<span><span class="co">#&gt; 6 28262    1.5 11.5 23.145214 26.861542</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x    y       bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 34124 103.5 -4.5  21.3287945 22.008018</span></span>
+<span><span class="co">#&gt; 2 33052 111.5 -1.5  22.7460957 23.251400</span></span>
+<span><span class="co">#&gt; 3 32620  39.5 -0.5  22.7930374 24.671169</span></span>
+<span><span class="co">#&gt; 4 16105  84.5 45.5   0.2787018 16.471230</span></span>
+<span><span class="co">#&gt; 5 33317  16.5 -2.5  21.6905346 22.659603</span></span>
+<span><span class="co">#&gt; 6  8250 149.5 67.5 -22.1954956  6.222754</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
 years ago and 5 samples from 10k years ago:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>,<span class="op">-</span><span class="fl">10000</span><span class="op">)</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
@@ -751,15 +763,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y       bio01     bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 1249 43.5 60.5 -11.3114719  8.744466 296.4148  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 1591 45.5 56.5  -6.2876401 13.170197 462.1782  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 2151 10.5 49.5   0.7422014 10.140980 493.4155  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 2008 37.5 51.5   4.3851705 20.234484 548.0971  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 3484 68.5 34.5   3.5008464 17.620132 468.1274  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2182 41.5 49.5   6.2629223 23.268314 419.5354  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2989 -1.5 39.5  11.6625671 22.586748 458.2083  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 1824 23.5 53.5   5.4629798 16.973560 572.4611  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01     bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2924 18.5 40.5 11.8564234 19.745676 694.5808  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 1925 39.5 52.5 -3.8857801 12.482188 484.4795  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2365 54.5 47.5  0.4585338 14.077825 245.7558  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2396  0.5 46.5 10.6525545 19.041199 758.5591  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1563 17.5 56.5  4.8147368 13.374036 571.8895  -10000</span></span>
+<span><span class="co">#&gt; -10000.3  893 27.5 64.5 -0.2782847  6.427793 393.2548  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 1011 60.5 63.5 -4.5923247 14.350857 416.1996  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 3191 30.5 37.5 12.4899578 24.888031 583.1693  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
@@ -770,20 +782,20 @@ to downscale the data by using the relevant function from the
 <code>terra</code> package.</p>
 <p>At first we will need to extract a region and time of choice, in this
 case Northern America 10,000 years ago</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Namerica_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Example"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span><span class="op">)</span>,</span>
 <span>                               time_bp<span class="op">=</span><span class="op">-</span><span class="fl">10000</span>, ext<span class="op">=</span><span class="va">region_extent</span><span class="op">$</span><span class="va">N_America</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Namerica_10k</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-45-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-47-1.png" width="576"></p>
 <p>We can then downscale using the <code><a href="https://rdrr.io/pkg/terra/man/disaggregate.html" class="external-link">disagg()</a></code> function from
 the <code>terra</code> package, requiring an aggregation factor
 expressed as number of cells in each direction (horizontally,
 vertically, and, if needed, over layers). In the example below we used
 25 both horizontally and vertically, using bilinear interpolation.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Namerica_ds</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/disaggregate.html" class="external-link">disagg</a></span><span class="op">(</span><span class="va">Namerica_10k</span>, fact<span class="op">=</span><span class="fl">25</span>, method<span class="op">=</span><span class="st">'bilinear'</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Namerica_ds</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-46-1.png" width="576"></p>
+<p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-48-1.png" width="576"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
