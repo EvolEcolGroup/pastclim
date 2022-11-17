@@ -133,7 +133,10 @@ get_vars_for_dataset(dataset = "Krapp2021")
 ```
 
 For monthly variables, months are coded as "_xx" at the end of the variable names; e.g. "temperature_02" is the
-mean monthly temperature for February.
+mean monthly temperature for February. A more thorough description of each variable (including the units) can be obtained with:
+```{r}
+get_vars_for_dataset(dataset="Example", details = TRUE)
+```
 
 You will not be able to get the available time steps until you download the data. `pastclim` offers an interface
 to download the necessary files into your data path. 
@@ -229,9 +232,9 @@ climate_20k <- region_slice(
 )
 ```
 
-This returns a raster (technically a `spatRaster` object as defined in the `terra`
+This returns a raster (technically a `SpatRaster` object as defined in the `terra`
 library, meaning that we can perform all standard `terra` raster operations
-on this object). To interact with `spatRaster` objects, it is best to load the
+on this object). To interact with `SpatRaster` objects, it is best to load the
 `terra` library (otherwise you might get errors as the correct method is not found, e.g. 
 when plotting); we can then get a summary of this object:
 ```{r}
@@ -244,7 +247,12 @@ and plot these three variables (the layers of the raster):
 terra::plot(climate_20k, main = names(climate_20k))
 ```
 
-It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `spatRasterDataset`, with each variable as a sub-dataset:
+We can add more informative labels with `var_labels`:
+```{r, fig.width=6, fig.height=5}
+terra::plot(climate_20k, main = var_labels(climate_20k, dataset = "Example"))
+```  
+
+It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `SpatRasterDataset`, with each variable as a sub-dataset:
 
 ```{r}
 climate_region <- region_series(
@@ -254,7 +262,7 @@ climate_region <- region_series(
 climate_region
 ```
 
-Each of these sub-dataset is a `spatRaster`, with time steps as layers:
+Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 
 ```{r}
 climate_region$bio01
@@ -333,7 +341,7 @@ terra::plot(europe_climate_20k,
             main = names(europe_climate_20k))
 ```
 
-We can combine multiple regions together. For example, we can cropt to Afircan and Eurasia by unioning the two indiviudal outlines:
+We can combine multiple regions together. For example, we can crop to Africa and Eurasia by unioning the two individual outlines:
 
 ```{r, fig.width=6, fig.height=5}
 library(sf)
