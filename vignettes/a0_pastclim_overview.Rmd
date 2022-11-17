@@ -232,9 +232,9 @@ climate_20k <- region_slice(
 )
 ```
 
-This returns a raster (technically a `spatRaster` object as defined in the `terra`
+This returns a raster (technically a `SpatRaster` object as defined in the `terra`
 library, meaning that we can perform all standard `terra` raster operations
-on this object). To interact with `spatRaster` objects, it is best to load the
+on this object). To interact with `SpatRaster` objects, it is best to load the
 `terra` library (otherwise you might get errors as the correct method is not found, e.g. 
 when plotting); we can then get a summary of this object:
 ```{r}
@@ -252,8 +252,7 @@ We can add more informative labels with `var_labels`:
 terra::plot(climate_20k, main = var_labels(climate_20k, dataset = "Example"))
 ```  
 
-
-It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `spatRasterDataset`, with each variable as a sub-dataset:
+It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `SpatRasterDataset`, with each variable as a sub-dataset:
 
 ```{r}
 climate_region <- region_series(
@@ -263,7 +262,7 @@ climate_region <- region_series(
 climate_region
 ```
 
-Each of these sub-dataset is a `spatRaster`, with time steps as layers:
+Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 
 ```{r}
 climate_region$bio01
