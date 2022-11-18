@@ -12,7 +12,7 @@ testthat::test_that("get_downloaded_datasets", {
     check_var_downloaded("npp", "Example"),
     "^npp not available"
   )
-  # raise error if we have not downloaded a variable yet
+  # in the future, use skip_if to avoid this test if we already have this variable installed
   expect_error(
     check_var_downloaded("cloudiness_01", "Krapp2021"),
     "^variable"

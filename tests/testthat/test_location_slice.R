@@ -1,10 +1,11 @@
 test_that("location_slice", {
-  # using standard dataset
   locations <- data.frame(
+    name = c("A","B","C","D"),
     longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
     time_bp = c(0, -10000, -20000, -10000)
   )
-
+  
+  # using a data frame of locations and a separate vector of 
   this_climate <- location_slice(
     x = locations[, c("longitude", "latitude")],
     time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
@@ -23,6 +24,34 @@ test_that("location_slice", {
   expect_true(is.na(this_climate[3, "bio01"]))
   expect_false(is.na(this_climate[4, "bio01"]))
 
+  # now use the full dataframe for pretty labelling
+  this_climate_df <- location_slice(
+    x = locations,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_equal(this_climate_df[,c("bio01","bio12")],
+               this_climate[,c("bio01","bio12")])
+  # check errors if we don't set up correctly with a dataframe
+  # give time in both x and time_bp
+  expect_error(this_climate_df <- location_slice(
+    x = locations, time_bp = locations$time_bp,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  ) , "times should either be given as a column")
+  # fail to give time when giving only locations 
+  expect_error(this_climate_df <- location_slice(
+    x = locations[, c("longitude", "latitude")],
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  ) , "missing times: they should either ")  
+  # dataframe with missing coordinates
+  expect_error(this_climate_df <- location_slice(
+    x = locations[,c("longitude","time_bp")],
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  ) , "x must have columns latitude and longitude")  
+  
   # now test if we try a variable that is not available
   expect_error(
     location_slice(

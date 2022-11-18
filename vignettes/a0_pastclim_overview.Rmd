@@ -133,7 +133,10 @@ get_vars_for_dataset(dataset = "Krapp2021")
 ```
 
 For monthly variables, months are coded as "_xx" at the end of the variable names; e.g. "temperature_02" is the
-mean monthly temperature for February.
+mean monthly temperature for February. A more thorough description of each variable (including the units) can be obtained with:
+```{r}
+get_vars_for_dataset(dataset="Example", details = TRUE)
+```
 
 You will not be able to get the available time steps until you download the data. `pastclim` offers an interface
 to download the necessary files into your data path. 
@@ -167,12 +170,17 @@ Often we want to get the climate for specific locations. We can do so by using
 the function `location_slice`. With this function, we will get slices of climate
 for the times relevant to the locations of interest.
 
-Let us create some fictitious locations:
+Let us consider five possible locations of interest: Iho Eleru (a Late Stone Age inland site 
+in Nigeria), La Riera (a Late Paleolithic coastal site on Spain), Chalki (a Mesolithic site on a 
+Greek island), Oronsay (a Mesolithic site in the Scottish Hebrides), and Atlantis (the fabled submersed city
+mentioned by Plato). For each site we have a date (realistic, but made up) that we are interested in associating
+with climatic reconstructions.
 
 ```{r}
 locations <- data.frame(
-  longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
-  time_bp = c(0, -9753, -18738, -11849)
+  name = c("Iho Eleru","La Riera", "Chalki", "Oronsay","Atlantis"), 
+  longitude = c(5,-4, 27, -6, -24), latitude = c(7, 44, 36, 56, 31),
+  time_bp = c(-11200, -18738,-10227, -10200, -11600)
 )
 locations
 ```
@@ -180,28 +188,29 @@ locations
 And extract their climatic conditions for *bio01* and *bio12*:
 ```{r}
 location_slice(
-  x = locations[, c("longitude", "latitude")],
-  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  x = locations, bio_variables = c("bio01", "bio12"),
   dataset = "Example", nn_interpol = FALSE
 )
 ```
 `pastclim` finds the closest time steps (slices) available for a given date, and outputs
 the slice used in column `time_bp_slice` (the *Example* dataset that we use in this vignette has a temporal resolution of only 5k years).
 
-Note that the last two locations, for the appropriate time steps, are not available (either under water or ice), and so `pastclim` does not return a climate reconstruction. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
+Note that the last Chalki and Atlantis, for the appropriate time steps, are not available. This occurs when a location, in the reconstructions, was either under water or ice, and so `pastclim` can not return any estimate. In some instances, this is due to the discretisation of space in the raster. We can interpolate climate among the nearest neighbours, thus using climate reconstructions for neighbouring pixels if the location is just off one or more land pixels:
 ```{r}
 location_slice(
-  x = locations[, c("longitude", "latitude")],
-  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  x = locations, bio_variables = c("bio01", "bio12"),
   dataset = "Example", nn_interpol = TRUE)
 ```
-In this case, the last location is indeed just off the coast, and so we can reconstruct some appropriate climate by interpolating. Note that `nn_interpol = TRUE` is the default for this function.
+For Chalki, we can see that the problem is indeed that, since it is a small island, it is not
+well represented in the reconstructions (bear in mind that the `Example` dataset is
+very coarse in resolution), and so we can reconstruct some appropriate climate by interpolating. Atlantis, on the other hand, is the middle of the ocean, and so there is no information
+on what the climate might have been before became submerged (assuming it ever existed...). Note that `nn_interpol = TRUE` is the default for this function.
 
 Sometimes, we want to get a time series of climatic reconstructions, thus allowing us to
 see how climate changed over time:
 ```{r}
 locations_ts <- location_series(
-  x = locations[, c("longitude", "latitude")],
+  x = locations,
   bio_variables = c("bio01", "bio12"),
   dataset = "Example")
 ```
@@ -209,12 +218,40 @@ locations_ts <- location_series(
 The resulting dataframe can be subsetted to get the time series for each location
 (the small *Example* dataset only contains 5 time slices):
 ```{r}
-subset(locations_ts, id == 1)
+subset(locations_ts, name == "Iho Eleru")
 ```
-Also note that for some locations, climate can be available only for certain time steps, depending on sea level and ice sheet extent. This is the case for location 3: 
+Also note that for some locations, climate can be available only for certain time steps, depending on sea level and ice sheet extent. This is the case for Oronsay: 
 ```{r}
-subset(locations_ts, id == 3)
+subset(locations_ts, name == "Oronsay")
 ```
+
+We can quickly plot `bio1` through time for the locations:
+```{r, warning=TRUE, fig.width=4, fig.height=3}
+library(ggplot2)
+ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +
+  geom_line(aes(col=name))+
+  geom_point(aes(col=name))
+```
+
+As expected, we don't have data for Atlantis (as it is always underwater), but we
+also fail to retrieve data for Chalki. This is because `location_series` does not
+interpolate from nearest neighbours. So, to get data for that island, we would have
+to change slighlty the coordinates to make sure it falls within a cell with climatic
+information.
+
+Pretty labels for environemntal variables can be generated with `var_labels`:
+```{r, warning=TRUE, fig.width=4, fig.height=3}
+library(ggplot2)
+ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +
+  geom_line(aes(col=name))+
+  geom_point(aes(col=name))+
+  labs(y = var_labels("bio01", dataset="Example", abbreviated=TRUE),
+       x = "time BP (yr)")
+```
+
+*Note* that these climatic reconstructions were extracted from the `Example` dataset,
+which is very coarse, so they should not be used to base any real inference about
+their environmental conditions.
 
 # Get climate for a region
 
@@ -229,9 +266,9 @@ climate_20k <- region_slice(
 )
 ```
 
-This returns a raster (technically a `spatRaster` object as defined in the `terra`
+This returns a raster (technically a `SpatRaster` object as defined in the `terra`
 library, meaning that we can perform all standard `terra` raster operations
-on this object). To interact with `spatRaster` objects, it is best to load the
+on this object). To interact with `SpatRaster` objects, it is best to load the
 `terra` library (otherwise you might get errors as the correct method is not found, e.g. 
 when plotting); we can then get a summary of this object:
 ```{r}
@@ -244,7 +281,12 @@ and plot these three variables (the layers of the raster):
 terra::plot(climate_20k, main = names(climate_20k))
 ```
 
-It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `spatRasterDataset`, with each variable as a sub-dataset:
+We can add more informative labels with `var_labels`:
+```{r, fig.width=6, fig.height=5}
+terra::plot(climate_20k, main = var_labels(climate_20k, dataset = "Example"))
+```  
+
+It is possible to also load a time series of rasters with the function `region_series`. In this case, the function returns a `SpatRasterDataset`, with each variable as a sub-dataset:
 
 ```{r}
 climate_region <- region_series(
@@ -254,7 +296,7 @@ climate_region <- region_series(
 climate_region
 ```
 
-Each of these sub-dataset is a `spatRaster`, with time steps as layers:
+Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 
 ```{r}
 climate_region$bio01
@@ -333,7 +375,7 @@ terra::plot(europe_climate_20k,
             main = names(europe_climate_20k))
 ```
 
-We can combine multiple regions together. For example, we can cropt to Afircan and Eurasia by unioning the two indiviudal outlines:
+We can combine multiple regions together. For example, we can crop to Africa and Eurasia by unioning the two individual outlines:
 
 ```{r, fig.width=6, fig.height=5}
 library(sf)
