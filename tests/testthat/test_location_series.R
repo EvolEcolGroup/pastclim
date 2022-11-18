@@ -1,6 +1,6 @@
 test_that("time_series_for_location", {
   # using standard dataset
-  locations <- data.frame(
+  locations <- data.frame(name=c("A","B","C","D"),
     longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37)
   )
 
@@ -32,7 +32,16 @@ test_that("time_series_for_location", {
     x = locations[1, c("longitude", "latitude")],
     bio_variables = c("bio01"),
     dataset = "Example"
-  )  
+  ) 
+  
+  # test with names
+  locations_ts <- location_series(
+    x = locations,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_true("name"%in%names(locations_ts))
+  
   # now test if we try a variable that is not available
   expect_error(
     location_series(
@@ -61,6 +70,17 @@ test_that("time_series_for_location", {
     "variable \\(bio01, bio12\\) not yet downloaded"
   )
 
+  # test if we use a dataframe missing some coordinates
+  expect_error(
+    location_series(
+      x = locations[, c("longitude","name")],
+      bio_variables = c("bio01", "bio12"),
+      dataset = "Example"
+    ),
+    "x should be a dataframe with"
+  )  
+  
+  
   # now use a custom dataset
   path_to_example_nc <- system.file("/extdata/example_climate.nc",
     package = "pastclim"

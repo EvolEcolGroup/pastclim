@@ -1,10 +1,14 @@
 #' Extract a time series of bioclimatic variables for one or more locations.
 #'
 #' This function extract a time series of local climate for
-#'  a set of locations
+#'  a set of locations. Note that this function does not apply any interpolation
+#'  (as opposed to \code{location_slice}). If you have a coastal location that just
+#'  falls into the water for the reconstructions, you will have to amend the coordinates
+#'  to put it more firmly on land.
 #'
-#' @param x a 2 column data.frame (with columns `longitude`, ranging
-#' -180 to 180, and `latitude`, from -90 to 90), or a vector of cell numbers.
+#' @param x a data.frame with columns `longitude`, ranging
+#' -180 to 180, and `latitude`, from -90 to 90 (and an optional `name`),
+#' or a vector of cell numbers.
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
 #' be a vector of times (the slices need
@@ -39,14 +43,18 @@ location_series <-
 
     # reorder the inputs by time
     if (inherits(x, "data.frame")) {
-      locations_data <- x
+      if (!all(c("longitude","latitude") %in% names(x))){
+        stop ("x should be a dataframe with columns latitude and longitude")
+      }
+      coords <- x[,c("longitude","latitude")]
     } else if (inherits(x, "matrix"))  {
         locations_data <- as.data.frame(x) 
     } else {
       locations_data <- data.frame(cell_number = x)
     }
     
-    time_series_df <- locations_data
+    
+    time_series_df <- coords
     time_series_df$id <- seq_len(nrow(time_series_df))
     time_index <- NULL
     for (this_var in bio_variables) {
@@ -86,9 +94,12 @@ location_series <-
         ), ]
         time_series_df$time <- rep(time(climate_brick), each = n_locations)
       }
-      this_var_ts <- terra::extract(climate_brick, x)
+      this_var_ts <- terra::extract(climate_brick, coords)
       names(this_var_ts)[-1] <- terra::time(climate_brick)
       time_series_df[this_var] <- utils::stack(this_var_ts, select = -ID)$values
+    }
+    if ("name" %in% names(x)){
+      time_series_df$name <- x$name[time_series_df$id]
     }
     return(time_series_df)
   }
