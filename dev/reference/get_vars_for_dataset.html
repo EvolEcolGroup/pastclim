@@ -16,7 +16,7 @@ different reconstructions."><meta property="og:image" content="https://evolecolg
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,15 +71,24 @@ different reconstructions.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_vars_for_dataset</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_vars_for_dataset</span><span class="op">(</span><span class="va">dataset</span>, path_to_nc <span class="op">=</span> <span class="cn">NULL</span>, details <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dataset</dt>
 <dd><p>string defining dataset to be downloaded (a list of possible
-values can be obtained with <code>get_available_datasets</code>). This function
-will not work on custom datasets.</p></dd>
+values can be obtained with <code>get_available_datasets</code>).</p></dd>
+
+
+<dt>path_to_nc</dt>
+<dd><p>the path to the custom nc file containing the paleoclimate
+reconstructions.</p></dd>
+
+
+<dt>details</dt>
+<dd><p>boolean determining whether the output should include information
+including long names of variables and their units</p></dd>
 
 </dl></div>
 

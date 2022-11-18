@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,27 +96,60 @@
 <div class="section level3">
 <h3 id="formatting-a-custom-dataset-for-pastclim">Formatting a custom dataset for <code>pastclim</code><a class="anchor" aria-label="anchor" href="#formatting-a-custom-dataset-for-pastclim"></a>
 </h3>
-<p>This guide is aimed at formatting data in such a way that they can be used with <code>pastclim</code>. <code>pastclim</code> is designed to extract data from <code>netcdf</code> files, a format commonly used for storing climate reconstructions. <code>netcdf</code> files have a number of advantages, as they can store compressed information, as well as allowing access to only the data required (e.g. extracting only the time steps or location of interest without reading all the data in memory). The expected format for <code>pastclim</code> requires that all time steps of a given variable be stored within a single netcdf file. How variables are combined (or not) is then flexible: you can have a separate file for each variable, collate everything within a single file, or create multiple files each including a number of variables. The time variable should be in years since 1950 (i.e. with negative integers indicating the past). There are a number of command line tools as well as R libraries (e.g. <code>cdo</code>, <code>gdal</code>, <code>terra</code>) that can help creating and editing netcdf files.</p>
+<p>This guide is aimed at formatting data in such a way that they can be
+used with <code>pastclim</code>. <code>pastclim</code> is designed to
+extract data from <code>netcdf</code> files, a format commonly used for
+storing climate reconstructions. <code>netcdf</code> files have a number
+of advantages, as they can store compressed information, as well as
+allowing access to only the data required (e.g. extracting only the time
+steps or location of interest without reading all the data in memory).
+The expected format for <code>pastclim</code> requires that all time
+steps of a given variable be stored within a single netcdf file. How
+variables are combined (or not) is then flexible: you can have a
+separate file for each variable, collate everything within a single
+file, or create multiple files each including a number of variables. The
+time variable should be in years since 1950 (i.e. with negative integers
+indicating the past). There are a number of command line tools as well
+as R libraries (e.g. <code>cdo</code>, <code>gdal</code>,
+<code>terra</code>) that can help creating and editing netcdf files.</p>
 </div>
 <div class="section level3">
 <h3 id="an-example-the-trace21k-chelsea">An example: the Trace21k-CHELSEA<a class="anchor" aria-label="anchor" href="#an-example-the-trace21k-chelsea"></a>
 </h3>
-<p>Here we provide a simple example of how to format such a dataset in R. We will use a version of the Trace21k dataset, downscaled to 30 arcsecs using the CHELSEA algorithm(available from <a href="https://chelsa-climate.org/chelsa-trace21k/" class="external-link">this website</a>). The data are stored as geoTIFF files, one file per timestep per variable. First, we need to collate all the files for a given variable (we will use <em>bio01</em> as an example) within a single <code>netcdf</code> file. As the original files are large, we will illustrate here how do to that for only a few timesteps which were aggregated to 3x3 degrees to keep files sizes small.</p>
-<p>We start by translating each geoTIFF into a <code>netcdf</code> file. The files have the prefix <em>CHELSA_TraCE21k_bio01_-<strong>xxx</strong>_V1.0.small.tif</em>, where <strong>xxx</strong> is the number of the time step. We will only use 3 time step for illustrative purposes.</p>
-<p>We store all the files in a single directory, and create a <code>spatRaster</code> from a list of the files in that directory:</p>
+<p>Here we provide a simple example of how to format such a dataset in
+R. We will use a version of the Trace21k dataset, downscaled to 30
+arcsecs using the CHELSEA algorithm(available from <a href="https://chelsa-climate.org/chelsa-trace21k/" class="external-link">this website</a>).
+The data are stored as geoTIFF files, one file per timestep per
+variable. First, we need to collate all the files for a given variable
+(we will use <em>bio01</em> as an example) within a single
+<code>netcdf</code> file. As the original files are large, we will
+illustrate here how do to that for only a few timesteps which were
+aggregated to 3x3 degrees to keep files sizes small.</p>
+<p>We start by translating each geoTIFF into a <code>netcdf</code> file.
+The files have the prefix
+<em>CHELSA_TraCE21k_bio01_-<strong>xxx</strong>_V1.0.small.tif</em>,
+where <strong>xxx</strong> is the number of the time step. We will only
+use 3 time step for illustrative purposes.</p>
+<p>We store all the files in a single directory, and create a
+<code>spatRaster</code> from a list of the files in that directory:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tiffs_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/CHELSA_bio01"</span>,package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span></span>
 <span><span class="va">list_of_tiffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tiffs_path</span>,<span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">tiffs_path</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">bio01</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">list_of_tiffs</span><span class="op">)</span></span></code></pre></div>
-<p>Now we need to set the time axis of the raster (in this case, reconstructions are every 100 years), and generate some userfriendly names to layers in the raster:</p>
+<p>Now we need to set the time axis of the raster (in this case,
+reconstructions are every 100 years), and generate some userfriendly
+names to layers in the raster:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"_"</span><span class="op">)</span></span></code></pre></div>
-<p>Now we save the data as a <em>nc</em> file (we will use the temporary directory)</p>
+<p>Now we save the data as a <em>nc</em> file (we will use the temporary
+directory)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"CHELSA_TraCE21k_bio01.nc"</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bio01</span>, filename <span class="op">=</span> <span class="va">nc_name</span>, varname <span class="op">=</span> <span class="st">"bio01"</span><span class="op">)</span></span></code></pre></div>
-<p>We also need to make sure that the <em>time</em> dimension has units and is labelled as <code>axis="T"</code>, or <code>pastclim</code> will not be able to read the data properly.</p>
+<p>We also need to make sure that the <em>time</em> dimension has units
+and is labelled as <code>axis="T"</code>, or <code>pastclim</code> will
+not be able to read the data properly.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc_in</span> <span class="op">&lt;-</span> <span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_open.html" class="external-link">nc_open</a></span><span class="op">(</span><span class="va">nc_name</span>, write<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>, varid<span class="op">=</span><span class="st">"time"</span>, attname<span class="op">=</span><span class="st">"units"</span>, attval <span class="op">=</span> <span class="st">"years since present"</span><span class="op">)</span></span>
@@ -139,7 +172,8 @@
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (EPSG:4326) </span></span>
 <span><span class="co">#&gt; source(s)   : CHELSA_TraCE21k_bio01.nc </span></span>
 <span><span class="co">#&gt; names       : bio01</span></span></code></pre></div>
-<p>As expected, there is only one variable (“bio01”) and 3 time steps (nlyr). We can get the times of those time steps with:</p>
+<p>As expected, there is only one variable (“bio01”) and 3 time steps
+(nlyr). We can get the times of those time steps with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_steps.html">get_time_steps</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"custom"</span>, path_to_nc <span class="op">=</span> <span class="va">nc_name</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]    0 -100 -200</span></span></code></pre></div>
@@ -148,15 +182,23 @@
 <code class="sourceCode R"><span><span class="va">climate_100</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">custom_series</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>Note that these reconstructions include the ocean and the icesheets, and it would be much better to remove them as they are not needed for most ecological/archaological studies (and it allows for smaller files).</p>
+<p>Note that these reconstructions include the ocean and the icesheets,
+and it would be much better to remove them as they are not needed for
+most ecological/archaological studies (and it allows for smaller
+files).</p>
 </div>
 <div class="section level2">
 <h2 id="making-the-data-available-to-others">Making the data available to others<a class="anchor" aria-label="anchor" href="#making-the-data-available-to-others"></a>
 </h2>
-<p>Once you have created suitably fomatted netcdf files that can be used as custom datasets in <code>pastclim</code>, you can add those data officially to the package, and thus make them available to others. Here are the necessary steps:</p>
+<p>Once you have created suitably fomatted netcdf files that can be used
+as custom datasets in <code>pastclim</code>, you can add those data
+officially to the package, and thus make them available to others. Here
+are the necessary steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Put your files in a freely available repository.</p></li>
-<li><p>Update the table used by <code>pastclim</code> to store information about available datasets. This table is found in “./inst/rawdata_scripts/data_files/variable_table.csv”.</p></li>
+<li><p>Update the table used by <code>pastclim</code> to store
+information about available datasets. This table is found in
+“./inst/rawdata_scripts/data_files/variable_table.csv”.</p></li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"rawdata_scripts/data_files/variable_table.csv"</span>,</span>
@@ -164,22 +206,45 @@
 <span><span class="co">#&gt;   variable ncvar dataset monthly          file_name download_path</span></span>
 <span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate.nc              </span></span>
 <span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate.nc              </span></span>
-<span><span class="co">#&gt;   file_name_orig download_path_orig version</span></span>
-<span><span class="co">#&gt; 1                                     1.1.0</span></span>
-<span><span class="co">#&gt; 2                                     1.1.0</span></span></code></pre></div>
+<span><span class="co">#&gt;   file_name_orig download_path_orig version                           long_name</span></span>
+<span><span class="co">#&gt; 1                                     1.1.0             annual mean temperature</span></span>
+<span><span class="co">#&gt; 2                                     1.1.0 mean temperature of warmest quarter</span></span>
+<span><span class="co">#&gt;        abbreviated_name time_frame           units  units_exp</span></span>
+<span><span class="co">#&gt; 1           ann. mean T       year degrees Celsius *degree*C*</span></span>
+<span><span class="co">#&gt; 2 mean T of warmest qtr       year degrees Celsius *degree*C*</span></span></code></pre></div>
 <p>This includes the following fields:</p>
-<p><code>variable</code>: the variable name used by <code>pastclim</code></p>
-<p><code>ncvar</code>: the variable name within the <em>nc</em> file (it can be the same as <code>variable</code>)</p>
+<p><code>variable</code>: the variable name used by
+<code>pastclim</code></p>
+<p><code>ncvar</code>: the variable name within the <em>nc</em> file (it
+can be the same as <code>variable</code>)</p>
 <p><code>dataset</code>: the name of the dataset.</p>
 <p><code>monthly</code>: boolean on whether the variable is monthly.</p>
 <p><code>file_name</code>: the name of the file for that variable.</p>
 <p><code>download_path</code>: the URL to download the file.</p>
-<p><code>file_name_orig</code>: the name of the original file(s) used to create the <em>nc</em> dataset.</p>
-<p><code>download_path_orig</code>: the path of those original files.</p>
+<p><code>file_name_orig</code>: the name of the original file(s) used to
+create the <em>nc</em> dataset.</p>
+<p><code>download_path_orig</code>: the path of those original
+files.</p>
 <p><code>version</code>: the version of the dataset that you created</p>
+<p><code>long_name</code>: the long name for the variable</p>
+<p><code>abbreviated_name</code>: an abbreviated version of
+<code>long_name</code> (used for plot labels)</p>
+<p><code>time_frame</code>: either <code>year</code> or the appropriate
+<code>month</code></p>
+<p><code>units</code>: units for the variable, to be displayed in a
+plain text table</p>
+<p><code>units_exp</code>: units formatted to be included in
+<code>expression</code> when creating plot labels</p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Once you have added lines detailing the variables in your dataset, run the script “./inst/rawdata_scripts/creat_files_by_dataset.R” to store that information into the appropriate dataset in <code>pastclim</code>.</p></li>
-<li><p>Provide information on the new dataset in the file “./R/dataset_docs”, using <code>roxygen2</code> notation. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.</p></li>
+<li><p>Once you have added lines detailing the variables in your
+dataset, run the script
+“./inst/rawdata_scripts/creat_files_by_dataset.R” to store that
+information into the appropriate dataset in
+<code>pastclim</code>.</p></li>
+<li><p>Provide information on the new dataset in the file
+“./R/dataset_docs”, using <code>roxygen2</code> notation. Make sure that
+you provide an appropriate reference for the original data, as it is
+important that users can refer back to the original source.</p></li>
 <li><p>Make a Pull Request on GitHub.</p></li>
 </ol>
 </div>
