@@ -1,0 +1,21 @@
+
+Starr Carr 11256
+Mount Sandel 9353
+
+
+locations <- data.frame(
+  name = c("La Riera", "Atlantis"), 
+  longitude = c(-4, -24), latitude = c(44,31),
+  time_bp = c(-18738, -11600)
+)
+
+location_slice(
+  x = locations[, c("longitude", "latitude")],
+  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  dataset = "Example", nn_interpol = FALSE
+)
+
+location_slice(
+  x = locations[, c("longitude", "latitude")],
+  time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+  dataset = "Example", nn_interpol = TRUE)

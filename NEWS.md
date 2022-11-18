@@ -1,3 +1,12 @@
+# pastclim (development version)
+
+# pastclim dev
+
+* Provide additional information about variables and their units, and create
+  pretty labels for plots.
+  
+* Names of locations are now stored automatically in the outputs.
+
 # pastclim 1.1.0
 
 * Expand functionality to handle time series for regions; rename functions  to
