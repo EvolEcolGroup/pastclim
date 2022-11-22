@@ -22,6 +22,8 @@ to make it available to others!).
 A paper
 describing the functionality of `pastclim` can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1).
 
+There is a [website](https://evolecolgroup.github.io/pastclim/) associated to the library displaying different vignettes ([pastclim overview](https://evolecolgroup.github.io/pastclim/dev/articles/a0_pastclim_overview.html), [custom dataset](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html)) and a [cheatsheet](https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf). A list of available palaeoclimatic datasets can be found [here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html).
+
 ## Install the library
 
 You will need to install the library from Github. For this step, you will need to
