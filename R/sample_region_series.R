@@ -69,8 +69,8 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
   # get the details for the sampled cells
   sampled_cells <- var_values[,c("cell","x","y")]
   sampled_values <- sampled_cells[rep(seq_len(nrow(sampled_cells)),
-                                               times=length(time(x[1]))),]
-  sampled_values$time_bp <- rep(time(x[1]), each=nrow(sampled_cells))
+                                               times=length(time_bp(x[1]))),]
+  sampled_values$time_bp <- rep(time_bp(x[1]), each=nrow(sampled_cells))
   # let's reuse these vales
  
   for (this_var in names(x)){
@@ -81,7 +81,7 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
       # reuse the values obtained from spatSample
       var_values <- var_values[,-c(1:3)]
     }
-    colnames(var_values)<-time(x[1])
+    colnames(var_values)<-time_bp(x[1])
     var_values<-utils::stack(var_values)
     sampled_values[this_var]<- var_values[,1]
   }
@@ -109,12 +109,12 @@ sample_rs_variable<-function(x, size, method="random", replace=FALSE, na.rm=TRUE
   if (sum(size)==0){
     stop("at least one element of sample size should be larger than zero")
   }
-  if (length(size)!=length(time(x[1]))){
+  if (length(size)!=length(time_bp(x[1]))){
     stop("size should be the same length as the number of time steps in x")
   }
   # create list to store samples for each time step
   sample_list<-list()
-  t_steps <- time (x[1])
+  t_steps <- time_bp(x[1])
   for (i in seq_len(length(size))){
     if (size[i]>0) {
       x_step <- slice_region_series(x,t_steps[i])

@@ -9,7 +9,7 @@ test_that("region slice", {
   expect_true(terra::nlyr(climate_slice) == c(2))
 
   # do the same for a custom dataset
-  path_to_example_nc <- system.file("/extdata/example_climate.nc",
+  path_to_example_nc <- system.file("/extdata/example_climate_v2.nc",
                                     package = "pastclim")
   climate_slice <- region_slice(c(-10000), c("BIO1", "BIO10"),
     "custom",

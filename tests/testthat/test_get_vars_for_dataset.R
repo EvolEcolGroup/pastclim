@@ -23,7 +23,7 @@ test_that("get_vars_for_dataset returns appropriate object", {
 
 
 test_that("get_vars_for_dataset for local file", {
-  path_to_example_nc <- system.file("/extdata/", "example_climate.nc",
+  path_to_example_nc <- system.file("/extdata/", "example_climate_v2.nc",
     package = "pastclim"
   )
   vars <- get_vars_for_dataset(dataset = "custom", path_to_nc = path_to_example_nc)

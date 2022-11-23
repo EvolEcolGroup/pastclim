@@ -54,7 +54,12 @@ be able to read the data properly.
 
 ```{r}
 nc_in <- ncdf4::nc_open(nc_name, write=TRUE)
-ncdf4::ncatt_put(nc_in, varid="time", attname="units", attval = "years since present")
+ncdf4::ncatt_put(nc_in,varid="time", 
+                 attname = "units",
+                 attval = "years since 1950-01-01 00:00:00.0")
+ncdf4::ncatt_put(nc_in,varid="time", 
+                 attname = "long_name",
+                 attval = "years BP")
 ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
 ncdf4::nc_close(nc_in)
 

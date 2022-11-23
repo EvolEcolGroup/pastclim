@@ -86,16 +86,16 @@ location_series <-
       }      
       # add time var if it doesn't exist yet
       if (!("time" %in% names(time_series_df))) {
-        n_time_steps <- length(time(climate_brick))
+        n_time_steps <- length(time_bp(climate_brick))
         n_locations <- nrow(time_series_df)
         time_series_df <- time_series_df[rep(
           seq_len(nrow(time_series_df)),
           n_time_steps
         ), ]
-        time_series_df$time <- rep(time(climate_brick), each = n_locations)
+        time_series_df$time <- rep(time_bp(climate_brick), each = n_locations)
       }
       this_var_ts <- terra::extract(climate_brick, coords)
-      names(this_var_ts)[-1] <- terra::time(climate_brick)
+      names(this_var_ts)[-1] <- time_bp(climate_brick)
       time_series_df[this_var] <- utils::stack(this_var_ts, select = -ID)$values
     }
     if ("name" %in% names(x)){

@@ -6,6 +6,9 @@
   toset <- !(names(op.pastclim) %in% names(op))
   if (any(toset)) options(op.pastclim[toset])
 
+  # copy example dataset into the data path (and update it if it has changed)
+  copy_example_data()
+  
   # check that gdal was compiled with netcdf support
   d <- gdal(drivers=TRUE)
   if (!"netCDF" %in% terra::gdal(drivers=TRUE)$name){

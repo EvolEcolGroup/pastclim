@@ -9,7 +9,7 @@ test_that("region series", {
   expect_true(all(terra::nlyr(climate_region) == c(2, 2)))
 
   # do the same for a custom dataset
-  path_to_example_nc <- system.file("/extdata/example_climate.nc",
+  path_to_example_nc <- system.file("/extdata/example_climate_v2.nc",
                                     package = "pastclim")
   climate_region <- region_series(c(-20000, -10000), c("BIO1", "BIO10"),
     "custom",

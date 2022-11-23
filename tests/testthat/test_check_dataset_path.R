@@ -12,7 +12,7 @@ test_that("check_dataset_path errors", {
     "custom",
     file.path(
       get_data_path(),
-      "example_climate.nc"
+      "example_climate_v2.nc"
     )
   ))
   expect_error(

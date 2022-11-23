@@ -3,7 +3,7 @@
 # high_res_obs the observed high resolution data used to create the delta
 
 delta_compute <- function(x, ref_time, high_res_obs) {
-  ref_index <- which(time(x)==ref_time)
+  ref_index <- which(time_bp(x)==ref_time)
   if(length(ref_index)!=1){
     stop("ref_time should be a time in x")
   }

@@ -20,7 +20,7 @@
 #' @export
 
 delta_compute <- function(x, ref_time, obs) {
-  ref_index <- which(time(x)==ref_time)
+  ref_index <- which(time_bp(x)==ref_time)
   if(length(ref_index)!=1){
     stop("ref_time should be a time in x")
   }
@@ -143,7 +143,7 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  time(land_mask) <- time_bp
+  time_bp(land_mask) <- time_bp
   return(land_mask)
   
 }

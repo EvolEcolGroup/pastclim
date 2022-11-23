@@ -87,7 +87,7 @@ reference can be used by setting sea levels for each time step (see the man page
 for `make_land_mask` for details):
 ```{r}
 high_res_mask <- make_land_mask(topo_rast = topo_rast, 
-                                time_bp = time(model_rast))
+                                time_bp = time_bp(model_rast))
 plot(high_res_mask)
 ```
 

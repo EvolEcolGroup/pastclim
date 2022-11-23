@@ -82,7 +82,7 @@ test_that("time_series_for_location", {
   
   
   # now use a custom dataset
-  path_to_example_nc <- system.file("/extdata/example_climate.nc",
+  path_to_example_nc <- system.file("/extdata/example_climate_v2.nc",
     package = "pastclim"
   )
   locations_ts <- location_series(

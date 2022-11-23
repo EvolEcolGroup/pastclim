@@ -25,7 +25,7 @@ is_region_series <- function (x, strict = FALSE) {
   } else {
     all_times<-list()
     for (i in terra::varnames(x)){
-      all_times[[i]] <- terra::time(x[i])
+      all_times[[i]] <- time_bp(x[i])
     }
     return(length(unique(all_times))==1)
   }
