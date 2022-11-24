@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,7 +151,12 @@ and is labelled as <code>axis="T"</code>, or <code>pastclim</code> will
 not be able to read the data properly.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc_in</span> <span class="op">&lt;-</span> <span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_open.html" class="external-link">nc_open</a></span><span class="op">(</span><span class="va">nc_name</span>, write<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>, varid<span class="op">=</span><span class="st">"time"</span>, attname<span class="op">=</span><span class="st">"units"</span>, attval <span class="op">=</span> <span class="st">"years since present"</span><span class="op">)</span></span>
+<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>,varid<span class="op">=</span><span class="st">"time"</span>, </span>
+<span>                 attname <span class="op">=</span> <span class="st">"units"</span>,</span>
+<span>                 attval <span class="op">=</span> <span class="st">"years since 1950-01-01 00:00:00.0"</span><span class="op">)</span></span>
+<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>,varid<span class="op">=</span><span class="st">"time"</span>, </span>
+<span>                 attname <span class="op">=</span> <span class="st">"long_name"</span>,</span>
+<span>                 attval <span class="op">=</span> <span class="st">"years BP"</span><span class="op">)</span></span>
 <span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>, varid<span class="op">=</span><span class="st">"time"</span>, attname<span class="op">=</span><span class="st">"axis"</span>, attval <span class="op">=</span> <span class="st">"T"</span><span class="op">)</span></span>
 <span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_close.html" class="external-link">nc_close</a></span><span class="op">(</span><span class="va">nc_in</span><span class="op">)</span></span></code></pre></div>
 <p>We can now read in our custom netcdf file.</p>
@@ -202,9 +207,9 @@ information about available datasets. This table is found in
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"rawdata_scripts/data_files/variable_table.csv"</span>,</span>
 <span>                     package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   variable ncvar dataset monthly          file_name download_path</span></span>
-<span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate.nc              </span></span>
-<span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate.nc              </span></span>
+<span><span class="co">#&gt;   variable ncvar dataset monthly             file_name download_path</span></span>
+<span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate_v2.nc              </span></span>
+<span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate_v2.nc              </span></span>
 <span><span class="co">#&gt;   file_name_orig download_path_orig version                           long_name</span></span>
 <span><span class="co">#&gt; 1                                     1.1.0             annual mean temperature</span></span>
 <span><span class="co">#&gt; 2                                     1.1.0 mean temperature of warmest quarter</span></span>
