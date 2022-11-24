@@ -14,7 +14,7 @@ time steps."><meta property="og:image" content="https://evolecolgroup.github.io/
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,12 +56,12 @@ time steps."><meta property="og:image" content="https://evolecolgroup.github.io/
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Check the object is a valid region series</h1>
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/HEAD/R/is_region_slice.R" class="external-link"><code>R/is_region_slice.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/HEAD/R/is_region_series.R" class="external-link"><code>R/is_region_series.R</code></a></small>
       <div class="d-none name"><code>is_region_series.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p>A region series is a <code>terra::SpatRasterDataset</code> for which each
+    <p>A region series is a <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRasterDataset</a></code> for which each
 subdataset is a variable, and all variables have the same number of 
 time steps.</p>
     </div>
@@ -74,7 +74,7 @@ time steps.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>a <code>terra::SpatRasterDataset</code> representing a time series of
+<dd><p>a <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRasterDataset</a></code> representing a time series of
 regional reconstructions obtained from <code>region_series</code>.</p></dd>
 
 

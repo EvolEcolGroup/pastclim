@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -421,8 +421,8 @@ the case for Oronsay:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Oronsay"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     longitude latitude id   time    bio01    bio12    name</span></span>
-<span><span class="co">#&gt; 4          -6       56  4 -20000      NaN      NaN Oronsay</span></span>
-<span><span class="co">#&gt; 4.1        -6       56  4 -15000      NaN      NaN Oronsay</span></span>
+<span><span class="co">#&gt; 4          -6       56  4 -20000       NA       NA Oronsay</span></span>
+<span><span class="co">#&gt; 4.1        -6       56  4 -15000       NA       NA Oronsay</span></span>
 <span><span class="co">#&gt; 4.2        -6       56  4 -10000 6.937467 1362.824 Oronsay</span></span>
 <span><span class="co">#&gt; 4.3        -6       56  4  -5000 8.167976 1462.253 Oronsay</span></span>
 <span><span class="co">#&gt; 4.4        -6       56  4      0 8.185000 1434.490 Oronsay</span></span></code></pre></div>
@@ -480,21 +480,21 @@ the correct method is not found, e.g.  when plotting); we can then get a
 summary of this object:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; terra 1.6.7</span></span>
+<span><span class="co">#&gt; terra 1.6.41</span></span>
 <span><span class="va">climate_20k</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
 <span><span class="co">#&gt; dimensions  : 150, 360, 3  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; sources     : example_climate.nc:BIO1  </span></span>
-<span><span class="co">#&gt;               example_climate.nc:BIO10  </span></span>
-<span><span class="co">#&gt;               example_climate.nc:BIO12  </span></span>
+<span><span class="co">#&gt; sources     : example_climate_v2.nc:BIO1  </span></span>
+<span><span class="co">#&gt;               example_climate_v2.nc:BIO10  </span></span>
+<span><span class="co">#&gt;               example_climate_v2.nc:BIO12  </span></span>
 <span><span class="co">#&gt; varnames    : bio01 (Annual Mean Temperature) </span></span>
 <span><span class="co">#&gt;               bio10 (Mean Temperature of Warmest Quarter) </span></span>
 <span><span class="co">#&gt;               bio12 (Annual Precipitation) </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12 </span></span>
-<span><span class="co">#&gt; time (raw)  : -20000</span></span></code></pre></div>
+<span><span class="co">#&gt; time (years): -18050</span></span></code></pre></div>
 <p>and plot these three variables (the layers of the raster):</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -520,7 +520,7 @@ sub-dataset:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : example_climate.nc </span></span>
+<span><span class="co">#&gt; source(s)   : example_climate_v2.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 <p>Each of these sub-dataset is a <code>SpatRaster</code>, with time
 steps as layers:</p>
@@ -531,10 +531,10 @@ steps as layers:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source      : example_climate.nc:BIO1 </span></span>
+<span><span class="co">#&gt; source      : example_climate_v2.nc:BIO1 </span></span>
 <span><span class="co">#&gt; varname     : bio01 (Annual Mean Temperature) </span></span>
 <span><span class="co">#&gt; names       : bio01_-15000, bio01_-10000, bio01_-5000, bio01_0 </span></span>
-<span><span class="co">#&gt; time (raw)  : -15000 to 0</span></span></code></pre></div>
+<span><span class="co">#&gt; time (years): -13050 to 1950</span></span></code></pre></div>
 <p>We can then plot the time series of a given variable:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">$</span><span class="va">bio01</span><span class="op">)</span></span></code></pre></div>
@@ -568,7 +568,7 @@ for a given MIS in a dataset. For example, for MIS 1, we get:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : example_climate.nc </span></span>
+<span><span class="co">#&gt; source(s)   : example_climate_v2.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -790,13 +790,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell      x    y      bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 21121   60.5 31.5  13.194922 22.511562</span></span>
-<span><span class="co">#&gt; 2  6135 -165.5 72.5 -22.417572  1.836929</span></span>
-<span><span class="co">#&gt; 3 31150    9.5  3.5  23.199669 24.417057</span></span>
-<span><span class="co">#&gt; 4 27563   22.5 13.5  21.077471 24.894121</span></span>
-<span><span class="co">#&gt; 5 19517 -103.5 35.5   4.270195 16.095173</span></span>
-<span><span class="co">#&gt; 6 12863   82.5 54.5  -8.307021 12.707703</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x    y      bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 10428 167.5 61.5 -12.373116  6.414859</span></span>
+<span><span class="co">#&gt; 2 19683  62.5 35.5  10.132229 19.726059</span></span>
+<span><span class="co">#&gt; 3 13574  73.5 52.5  -6.253211 14.367539</span></span>
+<span><span class="co">#&gt; 4 14329 108.5 50.5  -9.394243 11.358223</span></span>
+<span><span class="co">#&gt; 5 35066 -34.5 -7.5  21.973154 22.637299</span></span>
+<span><span class="co">#&gt; 6 12532 111.5 55.5 -18.206465  5.807931</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -810,15 +810,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y     bio01    bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 2394 -1.5 46.5  6.058960 12.68920 956.2217  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3393 62.5 35.5 10.132229 19.72606 220.0306  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 2208 67.5 49.5 -4.699539 13.98932 228.6166  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1239 33.5 60.5  1.528656 13.16897 432.1784  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 3289 43.5 36.5 16.961464 33.19430 306.5759  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 3326 -4.5 35.5 15.710377 25.92014 742.6757  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2393 -2.5 46.5 11.046384 17.42771 915.0517  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 2544 63.5 45.5  6.763794 28.36025  85.4914  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01     bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2480 -0.5 45.5  5.7967072 12.629689 1010.5872  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 2274 48.5 48.5  1.9978458 10.185613  250.3696  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2286 60.5 48.5 -2.1655362 16.893709  150.3818  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 1488 27.5 57.5  3.3059609 15.458413  587.5472  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1979  8.5 51.5  7.2385406 16.296041  703.8508  -10000</span></span>
+<span><span class="co">#&gt; -10000.3  977 26.5 63.5  0.6386247  6.670905  449.5557  -10000</span></span>
+<span><span class="co">#&gt; -10000.4  732 36.5 66.5 -0.8214954  8.529382  392.2386  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 1442 66.5 58.5 -1.2876331 18.761122  347.4037  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
