@@ -6,9 +6,9 @@ s <- rast(system.file("ex/logo.tif", package="terra"))
 #d <- as.Date("2001-05-04") + 0:2
 d <- c(0,-1000,-2000)
 d <- c(0, 1000, 2000)
-time(s) <- d
+time_bp(s) <- d
 
-time(s)
+time_bp(s)
 
 setwd(tempdir())
 rr <- writeCDF(s, "test.nc", overwrite=TRUE)

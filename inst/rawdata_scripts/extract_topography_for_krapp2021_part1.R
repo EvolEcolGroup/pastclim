@@ -12,7 +12,7 @@ mask_nc <- terra::rast(paste0(
   system.file("extdata", package = "pastclimData"),
   "/", mask_file
 ), subds = "BIO1")
-time_steps_bp_all <- terra::time(mask_nc)
+time_steps_bp_all <- time_bp(mask_nc)
 # convert to rows of sea level
 
 altitude_all <- NULL
@@ -29,13 +29,13 @@ if (file.exists("altitude.nc")) {
     stop("something went wrong copying the temp file")
   }
   altitude_all <- rast("altitude_temp.nc")
-  time(altitude_all) <- time_steps_bp_all[1:(dim(altitude_all)[3])]
+  time_bp(altitude_all) <- time_steps_bp_all[1:(dim(altitude_all)[3])]
   res <- file.copy("rugosity.nc", "rugosity_temp.nc", overwrite = TRUE)
   if (!res) {
     stop("something went wrong copying the temp file")
   }
   rugosity_all <- rast("rugosity_temp.nc")
-  time(rugosity_all) <- time_steps_bp_all[1:(dim(rugosity_all)[3])]
+  time_bp(rugosity_all) <- time_steps_bp_all[1:(dim(rugosity_all)[3])]
   n_steps <- dim(rugosity_all)[3]
 } else {
   n_steps <- 0
@@ -114,8 +114,8 @@ for (i in time_steps_bp) {
       left_behind_cells <- which(!is.na(values(left_behind)))
     }
   }
-  time(rugosity_now) <- i
-  time(altitude_now) <- i
+  time_bp(rugosity_now) <- i
+  time_bp(altitude_now) <- i
   # and now we save the rasters
   if (is.null(rugosity_all)) {
     rugosity_all <- rugosity_now

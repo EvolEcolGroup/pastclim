@@ -1,8 +1,8 @@
 variable,ncvar,dataset,monthly,file_name,download_path,file_name_orig,download_path_orig,version,long_name,abbreviated_name,time_frame,units,units_exp
-bio01,BIO1,Example,FALSE,example_climate.nc,,,,1.1.0,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*
-bio10,BIO10,Example,FALSE,example_climate.nc,,,,1.1.0,mean temperature of warmest quarter,mean T of warmest qtr,year,degrees Celsius,*degree*C*
-bio12,BIO12,Example,FALSE,example_climate.nc,,,,1.1.0,annual precipitation,ann. P,year,mm per year,*mm~yr^-1*
-biome,biome,Example,FALSE,example_climate.nc,,,,1.1.0,biome (from BIOME4),biome,year,,
+bio01,BIO1,Example,FALSE,example_climate_v2.nc,,,,1.1.0,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*
+bio10,BIO10,Example,FALSE,example_climate_v2.nc,,,,1.1.0,mean temperature of warmest quarter,mean T of warmest qtr,year,degrees Celsius,*degree*C*
+bio12,BIO12,Example,FALSE,example_climate_v2.nc,,,,1.1.0,annual precipitation,ann. P,year,mm per year,*mm~yr^-1*
+biome,biome,Example,FALSE,example_climate_v2.nc,,,,1.1.0,biome (from BIOME4),biome,year,,
 bio01,bio01,Beyer2020,FALSE,Beyer2020_annual_vars_v1.1.0.nc,https://zenodo.org/record/7062281/files/Beyer2020_annual_vars_v1.1.0.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.1.0,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*
 bio04,bio04,Beyer2020,FALSE,Beyer2020_annual_vars_v1.1.0.nc,https://zenodo.org/record/7062281/files/Beyer2020_annual_vars_v1.1.0.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.1.0,temperature seasonality,T season.,year,degrees Celsius,*degree*C*
 bio05,bio05,Beyer2020,FALSE,Beyer2020_annual_vars_v1.1.0.nc,https://zenodo.org/record/7062281/files/Beyer2020_annual_vars_v1.1.0.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.1.0,maximum temperature of warmest month,max. T of warmest mo.,year,degrees Celsius,*degree*C*

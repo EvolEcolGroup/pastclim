@@ -106,7 +106,7 @@ region_series <-
       }
       varnames(climate_spatrasters[[this_var]]) <- this_var
       names(climate_spatrasters[[this_var]]) <- paste(this_var,
-        time(climate_spatrasters[[this_var]]),
+        time_bp(climate_spatrasters[[this_var]]),
         sep = "_"
       )
     }

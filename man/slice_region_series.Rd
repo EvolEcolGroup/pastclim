@@ -12,7 +12,7 @@ slice_region_series(x, time_bp)
 \item{time_bp}{time slices in years before present (i.e. 1950, negative integers
 for values in the past). The slices
 need to exist in the dataset. To check which slices are available, you
-can use \code{terra::time(x[[1]])} (note that you have to use
+can use \code{time_bp(x[[1]])} (note that you have to use
 the `time` function on the first element of the 'sds' object, i.e. on one
 of the 'SpatRaster' objects)}
 }

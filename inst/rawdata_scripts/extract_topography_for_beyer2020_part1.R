@@ -14,7 +14,7 @@ mask_nc <- terra::rast(paste0(
   system.file("extdata", package = "pastclimData"),
   "/", mask_file
 ), subds = "BIO1")
-time_steps_bp_all <- terra::time(mask_nc)
+time_steps_bp_all <- time_bp(mask_nc)
 # convert to rows of sea level
 
 altitude_all <- NULL
@@ -92,8 +92,8 @@ for (i in time_steps_bp) {
       left_behind_cells <- which(!is.na(values(left_behind)))
     }
   }
-  time(rugosity_now) <- i
-  time(altitude_now) <- i
+  time_bp(rugosity_now) <- i
+  time_bp(altitude_now) <- i
   # and now we save the rasters
   if (is.null(rugosity_all)) {
     rugosity_all <- rugosity_now

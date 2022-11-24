@@ -92,12 +92,12 @@ get_data_path <- function() {
 #' @keywords internal
 
 copy_example_data <- function() {
-  if (!file.exists(file.path(get_data_path(), "example_climate_nc"))) {
+  if (!file.exists(file.path(get_data_path(), "example_climate_v2.nc"))) {
     file.copy(
-      from = system.file("/extdata/example_climate.nc",
+      from = system.file("/extdata/example_climate_v2.nc",
         package = "pastclim"
       ),
-      to = file.path(get_data_path(), "example_climate.nc")
+      to = file.path(get_data_path(), "example_climate_v2.nc")
     )
   }
 }

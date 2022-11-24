@@ -17,7 +17,7 @@ test_that("get_time_steps for standard dataset", {
 })
 
 test_that("get_time_steps for local file", {
-  path_to_example_nc <- system.file("/extdata/", "example_climate.nc",
+  path_to_example_nc <- system.file("/extdata/", "example_climate_v2.nc",
     package = "pastclim"
   )
   expect_equal(get_time_steps(

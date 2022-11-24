@@ -1,0 +1,110 @@
+---
+title: "custom dataset"
+#output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{custom dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
+
+## Downscaling a dataset in pastclim `pastclim`
+
+The `terra` package can downscale reconstructiosn using a bilinear method. Other `R`
+packages also offer various approaches to downscale rasters.
+
+For paleoclimate reconstructions, the delta method has been shown to be very effective
+(Beyer et al, REF), but sea level changes require some care on how to apply such a method.
+`pastclim` includes functions to use the delta method. We will focus on South East
+Asia, as this area was greatly affected by sea level changes over the last glaciation.
+We will work on the variable "bio01"
+
+First, we extract a time series for the variable and region of interest:
+```{r}
+library(terra)
+library(pastclim)
+sea_ext<- terra::ext(100, 130, -15, 20)
+model_series <- region_series(bio_variables = "bio01",dataset="Example",
+                            ext = sea_ext)
+model_series
+```
+
+Note that a `SpatRasterDataset` has been returned, which contains only one `spatRaster`
+for "bio01". We want to work on that `spatRaster`, so we extract it with:
+
+```{r}
+model_rast <- model_series$bio01
+model_rast
+```
+And we can now plot it:
+```{r}
+plot(model_rast)
+```
+
+We can see how that the reconstructions are rather coarse (the Example dataset
+uses 1x1 degree cells). We now need a set of
+high resolutions observations for the variable of interest that we will use to 
+generate the delta raster used to downscale reconstructions. We will use data from
+worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
+equally suitable).
+```{r}
+high_res_file <- system.file("extdata/wc2.1_5m_bio_1_sea.tif",package="pastclim")
+high_res_obs<-terra::rast(high_res_file)
+plot(high_res_obs)
+```
+
+We need to make sure that the extent of the modern observations is the same as the
+extent of the model reconstructions
+```{r}
+ext(high_res_obs)==ext(model_rast)
+```
+
+If that was not the case, we would use `terra::crop` to math the extents.
+We also need a high resolution topographic/bathymetric map to reconstruct past
+coastlines following sea level change:
+```{r}
+topo_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",package="pastclim")
+topo_rast <- terra::rast(topo_file)
+```
+
+This raster also needs to have the same extent as the model reconstructions:
+```{r}
+ext(topo_rast)==ext(model_rast)
+```
+
+We can now generate a high resolution land mask for the periods of interest. By
+default, we use the sea level reconstructions from Spratt et al 2016, but a different
+reference can be used by setting sea levels for each time step (see the man page
+for `make_land_mask` for details):
+```{r}
+high_res_mask <- make_land_mask(topo_rast = topo_rast, 
+                                time_bp = time_bp(model_rast))
+plot(high_res_mask)
+```
+
+We can now compute a delta raster and use it to downscale the model reconstructions:
+```{r}
+delta_rast<-delta_compute(x=model_rast, ref_time = 0, obs = high_res_obs)
+model_downscaled <- delta_downscale (x = model_rast, delta_rast = delta_rast,
+                                 x_landmask_high = high_res_mask)
+model_downscaled
+```
+
+Let's inspect the resulting data:
+```{r}
+plot(model_downscaled)
+```
+
+And, as a reminder, the original reconstructions:
+```{r}
+plot(model_rast)
+```
