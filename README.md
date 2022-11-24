@@ -71,7 +71,7 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 
 ---
 
-### terra without NETCDF drivers for OSX
+### terra without NETCDF driver for OSX
 
 A number of versions of `terra` available as binaries for OSX on CRAN (including the latest one) have
 been compiled without a NETCDF driver. This prevents `pastclim`, which relies on `terra`, from 
@@ -79,7 +79,10 @@ correctly reading files. When loaded, `pastclim` checks if the driver is availab
 a missing driver, you will get the error:
 
 ```
-error: the R library terra currently installed relies on a version of gdal that does not support reading netcdf files. You will need to reinstall terra, possibly from source, if there isn't a version with netcdf support on CRAN."
+error: the R library terra currently installed relies on a version of gdal
+that does not support reading netcdf files. You will need to reinstall
+terra, possibly from source, if there isn't a version with netcdf 
+support on CRAN."
 ```
 
 To install `terra` from source, see instructions [here](https://github.com/rspatial/terra).
