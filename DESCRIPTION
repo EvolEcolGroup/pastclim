@@ -26,7 +26,7 @@ Depends:
 Imports:
   curl,
   ncdf4,
-  terra (>=1.6-41),
+  terra (>=1.6.41),
   utils
 Suggests: 
   rmarkdown,
