@@ -143,7 +143,7 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  time_bp(land_mask) <- time_bp
+  terra::time(land_mask) <- (time_bp+1950)
   return(land_mask)
   
 }

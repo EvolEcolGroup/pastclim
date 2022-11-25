@@ -295,9 +295,12 @@ Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 climate_region$bio01
 ```
 
-We can then plot the time series of a given variable:
+Note that `terra` stores dates in years a AD, not BP.
+
+We can then plot the time series of a given variable (we relabel the plots
+to use years bp):
 ```{r, fig.width=6, fig.height=5}
-terra::plot(climate_region$bio01)
+terra::plot(climate_region$bio01, main=time_bp(climate_region$bio01))
 ```
 
 To plot all climate variables for a given time step, we can slice the time series:
