@@ -28,8 +28,8 @@ devtools::install_github("EvolEcolGroup/pastclim")
 
 ## Overview of functionality
 
-On its dedicated website [website](https://evolecolgroup.github.io/pastclim/), you can find
-Articles giving you a step-by-step ([overview of the package](https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html), and how
+On its dedicated [website](https://evolecolgroup.github.io/pastclim/), you can find
+Articles giving you a step-by-step [overview of the package](https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html), and how
 to build and use [custom datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html). There is also a [cheatsheet](https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf). 
 
 Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 
