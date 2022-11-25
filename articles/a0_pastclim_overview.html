@@ -145,14 +145,14 @@ obtained by typing</p>
 <span><span class="co">#&gt; To cite pastclim in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   Leonardi M, Hallet EY, Beyer R, Krapp M, Manica A (2022). “pastclim:</span></span>
-<span><span class="co">#&gt;   an R package to easily access and use paleoclimatic reconstructions.”</span></span>
-<span><span class="co">#&gt;   bioRxiv. &lt;URL:</span></span>
+<span><span class="co">#&gt;   an R package to easily access and use palaeoclimatic</span></span>
+<span><span class="co">#&gt;   reconstructions.” bioRxiv. &lt;URL:</span></span>
 <span><span class="co">#&gt;   https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   @Article{,</span></span>
-<span><span class="co">#&gt;     title = {pastclim: an R package to easily access and use paleoclimatic reconstructions},</span></span>
+<span><span class="co">#&gt;     title = {pastclim: an R package to easily access and use palaeoclimatic reconstructions},</span></span>
 <span><span class="co">#&gt;     author = {Michela Leonardi and Emily Y. Hallet and Robert Beyer and Mario Krapp and Andrea Manica},</span></span>
 <span><span class="co">#&gt;     journal = {bioRxiv},</span></span>
 <span><span class="co">#&gt;     year = {2022},</span></span>
@@ -200,8 +200,8 @@ through the command:</p>
 <span><span class="co">#&gt;      v1.1.0 Added monthly variables. Files can be downloaded from:</span></span>
 <span><span class="co">#&gt;      &lt;https://zenodo.org/deposit/7062281&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      v1.0.0 Remove icesheets and internal seas, and use correct formula</span></span>
-<span><span class="co">#&gt;      for bio15. Files can be downloaded from:</span></span>
+<span><span class="co">#&gt;      v1.0.0 Remove ice sheets and internal seas, and use correct</span></span>
+<span><span class="co">#&gt;      formula for bio15. Files can be downloaded from:</span></span>
 <span><span class="co">#&gt;      doi:doi.org/10.6084/m9.figshare.19723405.v1</span></span>
 <span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.6084/m9.figshare.19723405.v1&gt;</span></span></code></pre>
 <p>For the datasets available in <code>pastclim</code>, there are
@@ -334,7 +334,7 @@ by using the function <code>location_slice</code>. With this function,
 we will get slices of climate for the times relevant to the locations of
 interest.</p>
 <p>Let us consider five possible locations of interest: Iho Eleru (a
-Late Stone Age inland site in Nigeria), La Riera (a Late Paleolithic
+Late Stone Age inland site in Nigeria), La Riera (a Late Palaeolithic
 coastal site on Spain), Chalki (a Mesolithic site on a Greek island),
 Oronsay (a Mesolithic site in the Scottish Hebrides), and Atlantis (the
 fabled submersed city mentioned by Plato). For each site we have a date
@@ -439,9 +439,9 @@ locations:</p>
 underwater), but we also fail to retrieve data for Chalki. This is
 because <code>location_series</code> does not interpolate from nearest
 neighbours. So, to get data for that island, we would have to change
-slighlty the coordinates to make sure it falls within a cell with
+slightly the coordinates to make sure it falls within a cell with
 climatic information.</p>
-<p>Pretty labels for environemntal variables can be generated with
+<p>Pretty labels for environmental variables can be generated with
 <code>var_labels</code>:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -789,13 +789,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x     y      bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 10790 169.5  60.5 -10.068626  7.942513</span></span>
-<span><span class="co">#&gt; 2 21777  -3.5  29.5  17.619894 26.496748</span></span>
-<span><span class="co">#&gt; 3 39453  32.5 -19.5  15.606427 18.870665</span></span>
-<span><span class="co">#&gt; 4 12521 100.5  55.5 -10.743379 11.317014</span></span>
-<span><span class="co">#&gt; 5 11383  42.5  58.5  -8.271435 11.243995</span></span>
-<span><span class="co">#&gt; 6 25674 -66.5  18.5  19.064739 21.297983</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x     y     bio01    bio10</span></span>
+<span><span class="co">#&gt; 1 24946 -74.5  20.5 21.139154 22.48985</span></span>
+<span><span class="co">#&gt; 2 44030 -70.5 -32.5  2.714508  7.79090</span></span>
+<span><span class="co">#&gt; 3 32959  18.5  -1.5 21.632030 22.51468</span></span>
+<span><span class="co">#&gt; 4 23623  42.5  24.5 19.437099 27.36665</span></span>
+<span><span class="co">#&gt; 5 23662  81.5  24.5 22.426125 27.73315</span></span>
+<span><span class="co">#&gt; 6 43872 131.5 -31.5 15.190894 23.15901</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -809,15 +809,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y     bio01    bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 2436 40.5 46.5  4.148638 15.96005 463.0820  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 2986 -4.5 39.5  7.669454 15.18006 937.2371  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 1922 36.5 52.5 -4.581256 11.33713 574.8109  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 3537 36.5 33.5 13.413321 25.16107 369.4025  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 2265 39.5 48.5  7.283413 23.38003 482.9165  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 1862 61.5 53.5  1.061991 22.32875 297.3006  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2653  2.5 43.5 10.981819 20.05305 911.6071  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 1006 55.5 63.5 -3.034965 14.78242 465.2495  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01     bio10      bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1  168 67.5 73.5 -29.750813  2.252303   84.98595  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 1615 69.5 56.5  -9.288210 12.756434  271.77692  -20000</span></span>
+<span><span class="co">#&gt; -20000.3  590 64.5 68.5 -23.294865  4.279680   55.79834  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2925 19.5 40.5  14.428632 24.388700 1236.46692  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2089 33.5 50.5   6.345162 20.742130  571.86658  -10000</span></span>
+<span><span class="co">#&gt; -10000.3  155 54.5 73.5 -14.910255  4.878086  315.50378  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2573  7.5 44.5   8.296335 18.236010 1268.61987  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 3411 -4.5 34.5  15.208137 26.413832  673.87463  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>

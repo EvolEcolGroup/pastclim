@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This R package is designed to provide an easy way to extract and manipulate paleoclimate
+<meta name="description" content="This R package is designed to provide an easy way to extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses.">
-<title>Manipulate Timeseries of Paleoclimate Reconstructions  • pastclim</title>
+<title>Manipulate Time Series of Palaeoclimate Reconstructions  • pastclim</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,8 +18,8 @@
 <link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Timeseries of Paleoclimate Reconstructions ">
-<meta property="og:description" content="This R package is designed to provide an easy way to extract and manipulate paleoclimate
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Time Series of Palaeoclimate Reconstructions ">
+<meta property="og:description" content="This R package is designed to provide an easy way to extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses.">
 <meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -91,12 +91,12 @@
 comment out the githubactions as they can't cope with downgrading terra
 [![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 --->
-<p>This <code>R</code> library is designed to provide an easy way to extract and manipulate paleoclimate reconstructions for ecological and anthropological analyses.</p>
+<p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses.</p>
 <p>A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
 <div class="section level2">
 <h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
 </h2>
-<p>You will need to install the library from Github. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
+<p>You will need to install the library from GitHub. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -113,7 +113,7 @@ comment out the githubactions as they can't cope with downgrading terra
 <div class="section level2">
 <h2 id="current-issues">Current issues<a class="anchor" aria-label="anchor" href="#current-issues"></a>
 </h2>
-<p>If something does not work, check the <a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link">issues on Github</a> to see whether the problem has already been reported. If not, feel free to create an new issue. Please make sure you provide <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example" class="external-link">a reproducible example</a> for the developers to investigate the issue.</p>
+<p>If something does not work, check the <a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link">issues on GitHub</a> to see whether the problem has already been reported. If not, feel free to create an new issue. Please make sure you provide <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example" class="external-link">a reproducible example</a> for the developers to investigate the issue.</p>
 <div class="section level3">
 <h3 id="error-in-xselffinalize">Error in x$.self$finalize()<a class="anchor" aria-label="anchor" href="#error-in-xselffinalize"></a>
 </h3>
@@ -123,9 +123,9 @@ comment out the githubactions as they can't cope with downgrading terra
 <hr>
 </div>
 <div class="section level3">
-<h3 id="terra-without-netcdf-driver-for-osx">terra without NETCDF driver for OSX<a class="anchor" aria-label="anchor" href="#terra-without-netcdf-driver-for-osx"></a>
+<h3 id="terra-without-netcdf-driver-for-macos">terra without NETCDF driver for macOS<a class="anchor" aria-label="anchor" href="#terra-without-netcdf-driver-for-macos"></a>
 </h3>
-<p>A number of versions of <code>terra</code> available as binaries for OSX on CRAN (including the latest one) have been compiled without a NETCDF driver. This prevents <code>pastclim</code>, which relies on <code>terra</code>, from correctly reading files. When loaded, <code>pastclim</code> checks if the driver is available; in case of a missing driver, you will get the error:</p>
+<p>A number of versions of <code>terra</code> available as binaries for macOS on CRAN (including the latest one) have been compiled without a NETCDF driver. This prevents <code>pastclim</code>, which relies on <code>terra</code>, from correctly reading files. When loaded, <code>pastclim</code> checks if the driver is available; in case of a missing driver, you will get the error:</p>
 <pre><code>error: the R library terra currently installed relies on a version of gdal
 that does not support reading netcdf files. You will need to reinstall
 terra, possibly from source, if there isn't a version with netcdf 
