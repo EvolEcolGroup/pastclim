@@ -55,8 +55,9 @@ vignette("pastclim_overview", package = "pastclim")
 
 If something does not work, check the [issues on GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether the problem
 has already been reported. If not, feel free to create an new issue. Please make sure you provide
-[a reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) for the developers to investigate the issue.
+[a reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) for the developers to investigate the problem.
 
+---
 
 ### Error in x\$.self\$finalize()
 
