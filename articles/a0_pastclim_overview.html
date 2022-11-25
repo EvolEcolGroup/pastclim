@@ -318,13 +318,6 @@ is complete):</p>
 file, so <code><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets()</a></code> might list more
 variables than the ones that we chose to download (it depends on the
 dataset).</p>
-<p>We have found that on some installations of R (mostly on macOS), the
-default data path chosen by R can lead to an error when downloading
-datasets (this is due to incorrect writing permission for that path). If
-you get an error when downloading data stating “Failed to open file …”,
-set the path with <code>set_data_path</code> to a directory in your user
-area, and the error should disappear when you issue again the
-<code>download_dataset</code> command.</p>
 </div>
 <div class="section level2">
 <h2 id="get-climate-for-locations">Get climate for locations<a class="anchor" aria-label="anchor" href="#get-climate-for-locations"></a>
@@ -789,13 +782,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x     y     bio01    bio10</span></span>
-<span><span class="co">#&gt; 1 24946 -74.5  20.5 21.139154 22.48985</span></span>
-<span><span class="co">#&gt; 2 44030 -70.5 -32.5  2.714508  7.79090</span></span>
-<span><span class="co">#&gt; 3 32959  18.5  -1.5 21.632030 22.51468</span></span>
-<span><span class="co">#&gt; 4 23623  42.5  24.5 19.437099 27.36665</span></span>
-<span><span class="co">#&gt; 5 23662  81.5  24.5 22.426125 27.73315</span></span>
-<span><span class="co">#&gt; 6 43872 131.5 -31.5 15.190894 23.15901</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell      x     y      bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 27220   39.5  14.5  15.799550 18.363043</span></span>
+<span><span class="co">#&gt; 2  8304 -156.5  66.5  -9.452661  7.665736</span></span>
+<span><span class="co">#&gt; 3 21122   61.5  31.5  16.198671 26.005247</span></span>
+<span><span class="co">#&gt; 4 12148   87.5  56.5  -9.154640 13.264400</span></span>
+<span><span class="co">#&gt; 5  6820  159.5  71.5 -27.081657  6.759717</span></span>
+<span><span class="co">#&gt; 6 37937  -43.5 -15.5  19.518848 20.585707</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -809,15 +802,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01     bio10      bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1  168 67.5 73.5 -29.750813  2.252303   84.98595  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 1615 69.5 56.5  -9.288210 12.756434  271.77692  -20000</span></span>
-<span><span class="co">#&gt; -20000.3  590 64.5 68.5 -23.294865  4.279680   55.79834  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 2925 19.5 40.5  14.428632 24.388700 1236.46692  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 2089 33.5 50.5   6.345162 20.742130  571.86658  -10000</span></span>
-<span><span class="co">#&gt; -10000.3  155 54.5 73.5 -14.910255  4.878086  315.50378  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2573  7.5 44.5   8.296335 18.236010 1268.61987  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 3411 -4.5 34.5  15.208137 26.413832  673.87463  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y     bio01    bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1747 31.5 54.5 -5.575004 10.53926 618.6409  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 1832 31.5 53.5 -4.657496 10.98834 608.5477  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 3394 63.5 35.5  9.193057 19.38136 219.4914  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 1178 57.5 61.5 -2.682556 15.53593 498.4005  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2677 26.5 43.5 10.023724 22.48063 608.1375  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 3412 -3.5 34.5 15.864123 27.17528 539.3297  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2759 23.5 42.5  7.335249 18.84332 660.6351  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2059  3.5 50.5  8.949070 17.54700 757.1337  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
