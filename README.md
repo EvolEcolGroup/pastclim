@@ -1,8 +1,8 @@
 # pastclim <img src="./man/figures/logo.png" align="right" alt="" width="150" />
 
 <!-- badges: start -->
-[![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master)
-[![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://codecov.io/gh/EvolEcolGroup/pastclim)
+[![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
+[![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
 <!-- badges: end -->
 
 <!---
@@ -28,7 +28,7 @@ devtools::install_github("EvolEcolGroup/pastclim")
 
 ## Overview of functionality
 
-On its dedicated website [website](https://evolecolgroup.github.io/pastclim), you can find
+On its dedicated website [website](https://evolecolgroup.github.io/pastclim/), you can find
 Articles giving you a step-by-step ([overview of the package](https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html), and how
 to build and use [custom datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html). There is also a [cheatsheet](https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf). 
 

@@ -1,4 +1,5 @@
 .onLoad <- function(libname, pkgname) {
+  # store the data path as an option for easy retrieval
   op <- options()
   op.pastclim <- list(
     pastclim.data_path = get_data_path()
