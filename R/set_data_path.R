@@ -7,7 +7,7 @@
 #' the default configuration directory for the package as set in R >= 4.0).
 #'
 #' @param path_to_nc the path to the file that contains the downloaded
-#' resonstructions. If left unset, the default location returned by
+#' reconstructions. If left unset, the default location returned by
 #' `tools::R_user_dir("pastclim","data")` will be used
 #'
 #' @export
@@ -17,33 +17,30 @@ set_data_path <- function(path_to_nc = NULL) {
   if (!dir.exists(tools::R_user_dir("pastclim", "config"))) {
     dir.create(tools::R_user_dir("pastclim", "config"), recursive = TRUE)
   }
-  # use the default location
+  # if use the default location for data
   if (is.null(path_to_nc)) {
-    cat(tools::R_user_dir("pastclim", "data"), "\n",
-      file = file.path(
-        tools::R_user_dir("pastclim", "config"),
-        "pastclim_data.txt"
-      )
-    )
-    # and now create it if it does not exist yet
-    if (!dir.exists(tools::R_user_dir("pastclim", "data"))) {
-      dir.create(tools::R_user_dir("pastclim", "data"), recursive = TRUE)
+    path_to_nc <- tools::R_user_dir("pastclim", "data")
+    # create it if it does not exist yet
+    if (!dir.exists(path_to_nc)) {
+      dir.create(path_to_nc, recursive = TRUE)
     }
-    # update option
-    options(pastclim.data_path = tools::R_user_dir("pastclim", "data"))
-  } else {
-    # check that it exists
-    if (dir.exists(path_to_nc)) {
-      cat(path_to_nc, "\n", file = file.path(
-        tools::R_user_dir("pastclim", "config"),
-        "pastclim_data.txt"
-      ))
-    } else {
+  } else { # if custom path, stop if it does not exist
+    if (!dir.exists(path_to_nc)){
       stop(path_to_nc, " does not exist!")
     }
-    # update option
-    options(pastclim.data_path = path_to_nc)
   }
+  
+  utils::write.table(path_to_nc,
+              row.names = FALSE,
+              col.names = FALSE, 
+              file = file.path(
+                tools::R_user_dir("pastclim", "config"),
+                "pastclim_data.txt"
+              )
+  )
+  
+  # update option
+  options(pastclim.data_path = path_to_nc)
   # move the example data into the new data path
   copy_example_data()
 }
@@ -92,12 +89,12 @@ get_data_path <- function() {
 #' @keywords internal
 
 copy_example_data <- function() {
-  if (!file.exists(file.path(get_data_path(), "example_climate_nc"))) {
+  if (!file.exists(file.path(get_data_path(), "example_climate_v2.nc"))) {
     file.copy(
-      from = system.file("/extdata/example_climate.nc",
+      from = system.file("/extdata/example_climate_v2.nc",
         package = "pastclim"
       ),
-      to = file.path(get_data_path(), "example_climate.nc")
+      to = file.path(get_data_path(), "example_climate_v2.nc")
     )
   }
 }

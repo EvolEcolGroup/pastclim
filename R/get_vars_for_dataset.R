@@ -6,14 +6,45 @@
 #' different reconstructions.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
-#' will not work on custom datasets.
+#' values can be obtained with \code{get_available_datasets}).
+#' @param path_to_nc the path to the custom nc file containing the palaeoclimate
+#' reconstructions.
+#' @param details boolean determining whether the output should include information
+#' including long names of variables and their units
 #'
 #' @export
 
-get_vars_for_dataset <- function(dataset) {
-  check_available_dataset(dataset)
-  return(files_by_dataset$variable[files_by_dataset$dataset == dataset])
+get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE) {
+  if (dataset!="custom"){
+    if (!is.null(path_to_nc)){
+      stop("path_to_nc should only be set for 'custom' dataset")
+    }
+    check_available_dataset(dataset)
+    if (!details){
+      return(files_by_dataset$variable[files_by_dataset$dataset == dataset])
+    } else {
+      return(files_by_dataset[files_by_dataset$dataset == dataset,
+                              c("variable","long_name", "units")])
+    }
+  } else {
+    if (is.null(path_to_nc)){
+      stop("path_to_nc should be set for 'custom' dataset")
+    }
+    nc_in <- ncdf4::nc_open(path_to_nc)
+    if (!details){
+      vars <- names(nc_in$var)
+      ncdf4::nc_close(nc_in)
+      return(names(nc_in$var))
+    } else {
+      get_detail <- function(x, attrib) {return(x[[attrib]])}
+      vars_details <- data.frame(variable = names(nc_in$var),
+                                 long_name = unlist(lapply(nc_in$var, get_detail, "longname")),
+                                 units = unlist(lapply(nc_in$var, get_detail, "units")))
+      rownames(vars_details) <- NULL
+      return(vars_details)
+    }
+    
+  }
 }
 
 #' Check if var is available for this dataset.

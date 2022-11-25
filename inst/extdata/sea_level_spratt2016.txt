@@ -1,8 +1,8 @@
 # Global Sea Level Reconstruction using Stacked Records from 0-800 ka
 #-----------------------------------------------------------------------
-#               World Data Center for Paleoclimatology, Boulder
+#               World Data Center for Palaeoclimatology, Boulder
 #                                   and
-#                      NOAA Paleoclimatology Program
+#                      NOAA Palaeoclimatology Program
 #-----------------------------------------------------------------------
 # NOTE: Please cite original publication, online resource and date accessed when using this data.
 # If there is no publication information, please cite Investigator, title, online resource and date accessed.

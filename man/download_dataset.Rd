@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_dataset.R
 \name{download_dataset}
 \alias{download_dataset}
-\title{Download paeloclimate reconstructions.}
+\title{Download palaeoclimatereconstructions.}
 \usage{
 download_dataset(dataset, bio_variables = NULL)
 }
@@ -15,7 +15,7 @@ will not work on custom datasets.}
 to NULL, all variables available for this dataset will be downloaded}
 }
 \description{
-This function downloads paleoclimate reconstructions. Files will be stored
+This function downloads palaeoclimate reconstructions. Files will be stored
 in the data path of `pastclim`, which can be inspected with
 \code{get_data_path} and changed with \code{set_data_path}
 }

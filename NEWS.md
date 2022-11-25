@@ -1,3 +1,13 @@
+# pastclim 1.2.0
+
+* Provide additional information about variables and their units, and create
+  pretty labels for plots.
+  
+* Names of locations are now stored automatically in the outputs.
+
+* Update how time is handled to work with `terra` 1.6-41 (which now imports
+  units from netcdf files).
+
 # pastclim 1.1.0
 
 * Expand functionality to handle time series for regions; rename functions  to

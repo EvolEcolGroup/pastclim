@@ -54,7 +54,12 @@ be able to read the data properly.
 
 ```{r}
 nc_in <- ncdf4::nc_open(nc_name, write=TRUE)
-ncdf4::ncatt_put(nc_in, varid="time", attname="units", attval = "years since present")
+ncdf4::ncatt_put(nc_in,varid="time", 
+                 attname = "units",
+                 attval = "years since 1950-01-01 00:00:00.0")
+ncdf4::ncatt_put(nc_in,varid="time", 
+                 attname = "long_name",
+                 attval = "years BP")
 ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
 ncdf4::nc_close(nc_in)
 
@@ -124,7 +129,17 @@ the *nc* dataset.
 
 `version`: the version of the dataset that you created
 
-3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/creat_files_by_dataset.R" to store
+`long_name`: the long name for the variable
+
+`abbreviated_name`: an abbreviated version of `long_name` (used for plot labels)
+
+`time_frame`: either `year` or the appropriate `month`
+
+`units`: units for the variable, to be displayed in a plain text table
+
+`units_exp`: units formatted to be included in `expression` when creating plot labels
+
+3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/create_files_by_dataset.R" to store
 that information into the appropriate dataset in `pastclim`.
 
 4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` notation. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.

@@ -5,7 +5,7 @@
 #' time steps.
 #' 
 #' The standard test only checks that each SpatRaster has the same number of
-#' layers. The more thorough test (obtaned with strict=TRUE) actually checks
+#' layers. The more thorough test (obtainedwith strict=TRUE) actually checks
 #' that all time steps are identical by comparing the result of 
 #' \code{terra::time} applied to each variable
 #'
@@ -25,7 +25,7 @@ is_region_series <- function (x, strict = FALSE) {
   } else {
     all_times<-list()
     for (i in terra::varnames(x)){
-      all_times[[i]] <- terra::time(x[i])
+      all_times[[i]] <- time_bp(x[i])
     }
     return(length(unique(all_times))==1)
   }
