@@ -162,7 +162,6 @@ not be able to read the data properly.</p>
 <p>We can now read in our custom netcdf file.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; pastclim 1.2.0</span></span>
 <span><span class="va">custom_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="st">"bio01"</span>,</span>
 <span>                                dataset <span class="op">=</span> <span class="st">"custom"</span>,</span>
 <span>                                path_to_nc <span class="op">=</span> <span class="va">nc_name</span></span>
