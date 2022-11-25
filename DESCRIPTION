@@ -1,6 +1,6 @@
 Package: pastclim
 Type: Package
-Title: Manipulate Timeseries of Paleoclimate Reconstructions 
+Title: Manipulate Time Series of Palaeoclimate Reconstructions 
 Version: 1.2.0
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
@@ -11,9 +11,10 @@ Authors@R: c(
          email = "am315@cam.ac.uk")
      )
 Maintainer: Andrea Manica <am315@cam.ac.uk>
-Description: This R package is designed to provide an easy way to extract and manipulate paleoclimate
+Description: This R package is designed to provide an easy way to extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses.
 License: CC BY 4.0
+Language: en-GB
 URL: https://github.com/EvolEcolGroup/pastclim,
     https://evolecolgroup.github.io/pastclim/
 BugReports: https://github.com/EvolEcolGroup/pastclim/issues

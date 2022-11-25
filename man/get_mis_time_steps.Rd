@@ -14,7 +14,7 @@ get_mis_time_steps(mis, dataset, path_to_nc = NULL)
 values can be obtained with \code{get_available_datasets}). If set to
 "custom", then a single nc file is used from "path_to_nc"}
 
-\item{path_to_nc}{the path to the custom nc file containing the paleoclimate
+\item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
 reconstructions. All the variables of interest need to be included in
 this file.}
 }

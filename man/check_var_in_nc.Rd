@@ -9,7 +9,7 @@ check_var_in_nc(bio_variables, path_to_nc)
 \arguments{
 \item{bio_variables}{vector of names of variables to be extracted}
 
-\item{path_to_nc}{the path to the custom nc file containing the paleoclimate
+\item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
 reconstructions.}
 }
 \description{

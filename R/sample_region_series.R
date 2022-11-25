@@ -3,7 +3,7 @@
 #' This function samples points from a region time series. Sampling can either be
 #' performed for the same locations at all time steps (if only one value is given
 #' for `size`), or for different locations for each time step (if `size` is a 
-#' vector of lenght equal to the number of time steps). To sample the same
+#' vector of length equal to the number of time steps). To sample the same
 #' number of points, but different locations, for each time step, provide a vector
 #' repeating the same value for each time step.
 #' 

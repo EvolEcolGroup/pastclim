@@ -10,7 +10,7 @@ comment out the githubactions as they can't cope with downgrading terra
 [![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 --->
 
-This `R` library is designed to provide an easy way to extract and manipulate paleoclimate
+This `R` library is designed to provide an easy way to extract and manipulate palaeoclimate
 reconstructions for ecological and anthropological analyses. 
 
 A paper
@@ -19,7 +19,7 @@ use `pastclim` in your research.
 
 ## Install the library
 
-You will need to install the library from Github. For this step, you will need to
+You will need to install the library from GitHub. For this step, you will need to
 use `devtools` (if you haven't done so already, install it from CRAN with `install.packages("devtools")`.
 Once you have `devtools`, simply use:
 ```
@@ -53,7 +53,7 @@ vignette("pastclim_overview", package = "pastclim")
 
 ## Current issues
 
-If something does not work, check the [issues on Github](https://github.com/EvolEcolGroup/pastclim/issues) to see whether the problem
+If something does not work, check the [issues on GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether the problem
 has already been reported. If not, feel free to create an new issue. Please make sure you provide
 [a reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) for the developers to investigate the issue.
 
@@ -71,9 +71,9 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 
 ---
 
-### terra without NETCDF driver for OSX
+### terra without NETCDF driver for macOS
 
-A number of versions of `terra` available as binaries for OSX on CRAN (including the latest one) have
+A number of versions of `terra` available as binaries for macOS on CRAN (including the latest one) have
 been compiled without a NETCDF driver. This prevents `pastclim`, which relies on `terra`, from 
 correctly reading files. When loaded, `pastclim` checks if the driver is available; in case of
 a missing driver, you will get the error:

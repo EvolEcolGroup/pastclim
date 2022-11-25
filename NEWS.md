@@ -5,7 +5,8 @@
   
 * Names of locations are now stored automatically in the outputs.
 
-* Update how time is handled to work with `terra` 1.6-41
+* Update how time is handled to work with `terra` 1.6-41 (which now imports
+  units from netcdf files).
 
 # pastclim 1.1.0
 

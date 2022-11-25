@@ -171,7 +171,7 @@ the function `location_slice`. With this function, we will get slices of climate
 for the times relevant to the locations of interest.
 
 Let us consider five possible locations of interest: Iho Eleru (a Late Stone Age inland site 
-in Nigeria), La Riera (a Late Paleolithic coastal site on Spain), Chalki (a Mesolithic site on a 
+in Nigeria), La Riera (a Late Palaeolithic coastal site on Spain), Chalki (a Mesolithic site on a 
 Greek island), Oronsay (a Mesolithic site in the Scottish Hebrides), and Atlantis (the fabled submersed city
 mentioned by Plato). For each site we have a date (realistic, but made up) that we are interested in associating
 with climatic reconstructions.
@@ -236,10 +236,10 @@ ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +
 As expected, we don't have data for Atlantis (as it is always underwater), but we
 also fail to retrieve data for Chalki. This is because `location_series` does not
 interpolate from nearest neighbours. So, to get data for that island, we would have
-to change slighlty the coordinates to make sure it falls within a cell with climatic
+to change slightly the coordinates to make sure it falls within a cell with climatic
 information.
 
-Pretty labels for environemntal variables can be generated with `var_labels`:
+Pretty labels for environmental variables can be generated with `var_labels`:
 ```{r, warning=TRUE, fig.width=4, fig.height=3}
 library(ggplot2)
 ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +

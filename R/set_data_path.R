@@ -7,7 +7,7 @@
 #' the default configuration directory for the package as set in R >= 4.0).
 #'
 #' @param path_to_nc the path to the file that contains the downloaded
-#' resonstructions. If left unset, the default location returned by
+#' reconstructions. If left unset, the default location returned by
 #' `tools::R_user_dir("pastclim","data")` will be used
 #'
 #' @export

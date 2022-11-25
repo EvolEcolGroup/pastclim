@@ -10,7 +10,7 @@ get_vars_for_dataset(dataset, path_to_nc = NULL, details = FALSE)
 \item{dataset}{string defining dataset to be downloaded (a list of possible
 values can be obtained with \code{get_available_datasets}).}
 
-\item{path_to_nc}{the path to the custom nc file containing the paleoclimate
+\item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
 reconstructions.}
 
 \item{details}{boolean determining whether the output should include information

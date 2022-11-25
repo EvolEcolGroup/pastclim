@@ -8,7 +8,7 @@ set_data_path(path_to_nc = NULL)
 }
 \arguments{
 \item{path_to_nc}{the path to the file that contains the downloaded
-resonstructions. If left unset, the default location returned by
+reconstructions. If left unset, the default location returned by
 `tools::R_user_dir("pastclim","data")` will be used}
 }
 \description{

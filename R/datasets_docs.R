@@ -39,7 +39,7 @@ NULL
 #' v1.1.0 Added monthly variables. Files can be downloaded from: 
 #' \url{https://zenodo.org/deposit/7062281}
 #' 
-#' v1.0.0 Remove icesheets and internal seas, and use correct formula for bio15.
+#' v1.0.0 Remove ice sheets and internal seas, and use correct formula for bio15.
 #' Files can be downloaded from: 
 #' \doi{doi.org/10.6084/m9.figshare.19723405.v1}
 #'

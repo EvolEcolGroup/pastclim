@@ -5,7 +5,7 @@
 #' time steps.
 #' 
 #' The standard test only checks that each SpatRaster has the same number of
-#' layers. The more thorough test (obtaned with strict=TRUE) actually checks
+#' layers. The more thorough test (obtainedwith strict=TRUE) actually checks
 #' that all time steps are identical by comparing the result of 
 #' \code{terra::time} applied to each variable
 #'

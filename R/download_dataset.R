@@ -1,6 +1,6 @@
-#' Download paeloclimate reconstructions.
+#' Download palaeoclimatereconstructions.
 #'
-#' This function downloads paleoclimate reconstructions. Files will be stored
+#' This function downloads palaeoclimate reconstructions. Files will be stored
 #' in the data path of `pastclim`, which can be inspected with
 #' \code{get_data_path} and changed with \code{set_data_path}
 #'
