@@ -1,9 +1,9 @@
 ---
-title: "custom dataset"
+title: "delta downscaling"
 #output: rmarkdown::pdf_document
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{custom dataset}
+  %\VignetteIndexEntry{delta downscaling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,9 +24,11 @@ packages also offer various approaches to downscale rasters.
 
 For palaeoclimate reconstructions, the delta method has been shown to be very effective
 (Beyer et al, REF), but sea level changes require some care on how to apply such a method.
-`pastclim` includes functions to use the delta method. We will focus on South East
+`pastclim` includes functions to use the delta method for downscaling. We will focus on South East
 Asia, as this area was greatly affected by sea level changes over the last glaciation.
-We will work on the variable "bio01"
+We will work on the variable "bio01". However, note that, in most cases, it is better practice to
+downscale monthly temperature and precipitation estimates, and then compute the "bio" variables
+from those quantities.
 
 First, we extract a time series for the variable and region of interest:
 ```{r}
@@ -38,8 +40,8 @@ model_series <- region_series(bio_variables = "bio01",dataset="Example",
 model_series
 ```
 
-Note that a `SpatRasterDataset` has been returned, which contains only one `spatRaster`
-for "bio01". We want to work on that `spatRaster`, so we extract it with:
+Note that a `SpatRasterDataset` has been returned, which contains only one `SpatRaster`
+for "bio01". We want to work on that `SpatRaster`, so we extract it with:
 
 ```{r}
 model_rast <- model_series$bio01
@@ -68,7 +70,7 @@ extent of the model reconstructions
 ext(high_res_obs)==ext(model_rast)
 ```
 
-If that was not the case, we would use `terra::crop` to math the extents.
+If that was not the case, we would use `terra::crop` to match the extents.
 We also need a high resolution topographic/bathymetric map to reconstruct past
 coastlines following sea level change:
 ```{r}
@@ -80,6 +82,13 @@ This raster also needs to have the same extent as the model reconstructions:
 ```{r}
 ext(topo_rast)==ext(model_rast)
 ```
+
+#TEMPORARY UNTIL THIS FUNCTIONS ARE INTEGRATED INTO PASTCLIM
+We now need to load the draft functions for downscaling:
+```{r}
+source(system.file("/temp/_delta_downscale_3.R",package="pastclim"))
+```
+
 
 We can now generate a high resolution land mask for the periods of interest. By
 default, we use the sea level reconstructions from Spratt et al 2016, but a different

@@ -1,4 +1,5 @@
 .onLoad <- function(libname, pkgname) {
+  packageStartupMessage("pastclim ", utils::packageVersion("pastclim"))
   # store the data path as an option for easy retrieval
   op <- options()
   op.pastclim <- list(
