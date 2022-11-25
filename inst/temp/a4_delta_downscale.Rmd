@@ -1,7 +1,7 @@
 ---
 title: "delta downscaling"
-#output: rmarkdown::pdf_document
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
+#output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{delta downscaling}
   %\VignetteEngine{knitr::rmarkdown}
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Downscaling a dataset in pastclim `pastclim`
 
-The `terra` package can downscale reconstructiosn using a bilinear method. Other `R`
+The `terra` package can downscale reconstructions using a bilinear method. Other `R`
 packages also offer various approaches to downscale rasters.
 
 For palaeoclimate reconstructions, the delta method has been shown to be very effective
@@ -48,7 +48,7 @@ model_rast <- model_series$bio01
 model_rast
 ```
 And we can now plot it:
-```{r}
+```{r, fig.width=6, fig.height=5}
 plot(model_rast)
 ```
 
@@ -58,7 +58,7 @@ high resolutions observations for the variable of interest that we will use to
 generate the delta raster used to downscale reconstructions. We will use data from
 worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
 equally suitable).
-```{r}
+```{r, fig.width=4, fig.height=4}
 high_res_file <- system.file("extdata/wc2.1_5m_bio_1_sea.tif",package="pastclim")
 high_res_obs<-terra::rast(high_res_file)
 plot(high_res_obs)
@@ -94,7 +94,7 @@ We can now generate a high resolution land mask for the periods of interest. By
 default, we use the sea level reconstructions from Spratt et al 2016, but a different
 reference can be used by setting sea levels for each time step (see the man page
 for `make_land_mask` for details):
-```{r}
+```{r, fig.width=6, fig.height=5}
 high_res_mask <- make_land_mask(topo_rast = topo_rast, 
                                 time_bp = time_bp(model_rast))
 plot(high_res_mask)
@@ -109,11 +109,12 @@ model_downscaled
 ```
 
 Let's inspect the resulting data:
-```{r}
+```{r, fig.width=6, fig.height=5}
 plot(model_downscaled)
 ```
 
-And, as a reminder, the original reconstructions:
-```{r}
+And, as a reminder, the original reconstructions (note that the colour scales are not
+the same! The interpolated data have a wider temperature range):
+```{r, fig.width=6, fig.height=5}
 plot(model_rast)
 ```
