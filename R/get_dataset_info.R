@@ -5,6 +5,7 @@
 #' \code{get_available_datasets}
 #'
 #' @param dataset A dataset in pastclim
+#' @returns text describing the dataset
 #' @keywords internal
 
 get_dataset_info <- function(dataset) {
@@ -24,6 +25,7 @@ get_dataset_info <- function(dataset) {
 #' @param which lines should be printed
 #' @param before string to be printed before the output
 #' @param after string to be printed after the output
+#' @returns text of the help file
 #'
 #' @keywords internal
 

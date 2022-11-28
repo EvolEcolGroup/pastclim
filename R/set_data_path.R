@@ -60,6 +60,7 @@ set_data_path <- function(path_to_nc = NULL) {
 #' `tools::R_user_dir("pastclim","config")` (i.e.
 #' the default configuration directory for the package as set in R >= 4.0).
 #'
+#' @returns the data path
 #' @export
 
 get_data_path <- function() {

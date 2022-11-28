@@ -8,6 +8,8 @@
 #' @param x climate time series generated with \code{region_series}
 #' @param xy a boolean whether x and y coordinates should be added 
 #' to the dataframe (default to TRUE)
+#' @returns a data.frame where each cell each raster layer (i.e. timestep) is a
+#' row, and the available variables are columns.
 #'
 #' @export
 

@@ -9,6 +9,7 @@
 #' will not work on custom datasets.
 #' @param bio_variables one or more variable names to be downloaded. If left
 #' to NULL, all variables available for this dataset will be downloaded
+#' @returns TRUE if the dataset(s) was downloaded correctly.
 #'
 #' @export
 
@@ -60,4 +61,5 @@ download_dataset <- function(dataset, bio_variables = NULL) {
       )
     }
   }
+  return(TRUE)
 }

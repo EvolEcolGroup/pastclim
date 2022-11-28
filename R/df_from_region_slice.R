@@ -9,6 +9,8 @@
 #' generated with \code{region_slice}
 #' @param xy a boolean whether x and y coordinates should be added 
 #' to the dataframe (default to TRUE)
+#' @returns a data.frame where each cell the raster is a
+#' row, and the available variables are columns.
 #'
 #' @export
 

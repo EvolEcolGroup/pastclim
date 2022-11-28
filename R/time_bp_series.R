@@ -4,7 +4,8 @@
 #'
 #' @param time_bp vector of times BP
 #' @param time_steps time steps for which reconstructions are available
-#'
+#' @returns the indeces for the relevant time steps
+#' 
 #' @keywords internal
 
 time_bp_series<-function(time_bp, time_steps){

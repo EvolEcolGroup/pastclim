@@ -3,6 +3,7 @@
 #' List the downloaded variable for each dataset.
 #'
 #' @param data_path leave it to NULL to use the default datapath
+#' @returns a list of variable names per dataset.
 #'
 #' @export
 
