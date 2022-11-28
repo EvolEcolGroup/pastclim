@@ -6,6 +6,9 @@
 \usage{
 get_data_path()
 }
+\value{
+the data path
+}
 \description{
 This function returns the path where climate reconstructions will be stored.
 When `pastclim` is installed, the data path defaults to the directory

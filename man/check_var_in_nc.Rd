@@ -12,6 +12,9 @@ check_var_in_nc(bio_variables, path_to_nc)
 \item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
 reconstructions.}
 }
+\value{
+TRUE fi the variable exists
+}
 \description{
 Internal function to test a custom nc file.
 }

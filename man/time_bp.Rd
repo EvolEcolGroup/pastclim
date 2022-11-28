@@ -9,6 +9,9 @@ time_bp(x)
 \arguments{
 \item{x}{a \code{terra::SpatRaster}}
 }
+\value{
+a date in years BP (where negative numbers indicate a date in the past)
+}
 \description{
 A wrapper around \code{terra::time}, which converts time into years before
 present

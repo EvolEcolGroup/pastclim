@@ -11,6 +11,9 @@ time_bp_series(time_bp, time_steps)
 
 \item{time_steps}{time steps for which reconstructions are available}
 }
+\value{
+the indeces for the relevant time steps
+}
 \description{
 Internal function
 }

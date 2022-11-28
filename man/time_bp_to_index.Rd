@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_bp_to_index.R
 \name{time_bp_to_index}
 \alias{time_bp_to_index}
-\title{Convert a time BP to indexes in a netcdf file.}
+\title{Find the closest index to a given time in years BP}
 \usage{
 time_bp_to_index(time_bp, time_steps)
 }
@@ -10,6 +10,9 @@ time_bp_to_index(time_bp, time_steps)
 \item{time_bp}{vector of times BP}
 
 \item{time_steps}{time steps for which reconstructions are available}
+}
+\value{
+the indeces for the relevant time steps
 }
 \description{
 Internal function

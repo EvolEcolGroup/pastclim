@@ -11,6 +11,9 @@ check_available_dataset(dataset, include_custom = FALSE)
 
 \item{include_custom}{boolean whether a 'custom' dataset is allowed}
 }
+\value{
+TRUE if the dataset is available
+}
 \description{
 Internal getter function
 }

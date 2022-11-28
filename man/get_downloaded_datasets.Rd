@@ -9,6 +9,9 @@ get_downloaded_datasets(data_path = NULL)
 \arguments{
 \item{data_path}{leave it to NULL to use the default datapath}
 }
+\value{
+a list of variable names per dataset.
+}
 \description{
 List the downloaded variable for each dataset.
 }

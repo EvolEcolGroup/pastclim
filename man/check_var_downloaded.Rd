@@ -12,6 +12,9 @@ check_var_downloaded(variable, dataset)
 
 \item{dataset}{dataset of interest}
 }
+\value{
+TRUE if the variable has been downloaded.
+}
 \description{
 Internal functions to check whether we have downloaded a given variable
 for a dataset

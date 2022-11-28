@@ -13,6 +13,10 @@ generated with \code{region_slice}}
 \item{xy}{a boolean whether x and y coordinates should be added 
 to the dataframe (default to TRUE)}
 }
+\value{
+a data.frame where each cell the raster is a
+row, and the available variables are columns.
+}
 \description{
 Extract the climatic information from a region slice and organise it as
 a data frame. This is just a wrapper around \code{terra::as.data.frame}.

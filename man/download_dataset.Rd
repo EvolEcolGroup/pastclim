@@ -14,6 +14,9 @@ will not work on custom datasets.}
 \item{bio_variables}{one or more variable names to be downloaded. If left
 to NULL, all variables available for this dataset will be downloaded}
 }
+\value{
+TRUE if the dataset(s) was downloaded correctly.
+}
 \description{
 This function downloads palaeoclimate reconstructions. Files will be stored
 in the data path of `pastclim`, which can be inspected with
