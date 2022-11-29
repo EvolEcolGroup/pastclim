@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+################################################################################
+
 test_that("get_vars_for_dataset give appropriate errors", {
   expect_error(
     get_vars_for_dataset(dataset = "blah"),
@@ -32,3 +42,7 @@ test_that("get_vars_for_dataset for local file", {
                                details = TRUE)
   expect_true(inherits(vars,"data.frame"))
 })
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)

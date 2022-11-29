@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+################################################################################
+
 testthat::test_that("get_and_check_available_datasets", {
   testthat::expect_true(all(get_available_datasets() %in% c(
     "Beyer2020",
@@ -16,3 +26,7 @@ testthat::test_that("get_and_check_available_datasets", {
     "'dataset' must be one of "
   )
 })
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)

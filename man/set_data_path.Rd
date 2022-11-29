@@ -4,12 +4,26 @@
 \alias{set_data_path}
 \title{Set the data path where climate reconstructions will be stored}
 \usage{
-set_data_path(path_to_nc = NULL)
+set_data_path(
+  path_to_nc = NULL,
+  ask = TRUE,
+  write_config = TRUE,
+  copy_example = TRUE
+)
 }
 \arguments{
 \item{path_to_nc}{the path to the file that contains the downloaded
 reconstructions. If left unset, the default location returned by
 `tools::R_user_dir("pastclim","data")` will be used}
+
+\item{ask}{boolean on whether the user should be asked to confirm their
+choices}
+
+\item{write_config}{boolean on whether the path should be saved in a config
+file}
+
+\item{copy_example}{boolean on whether the example dataset should be saved
+in the data_path}
 }
 \value{
 TRUE if the path was set correctly
