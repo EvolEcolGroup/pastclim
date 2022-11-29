@@ -25,6 +25,9 @@
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
 #' of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
 #' is used to define the polygon.
+#' @returns a
+#' SpatRasterDataset \code{terra::sds} object, with
+#' each variable as a sub-dataset.
 #'
 #' @import terra
 #' @export

@@ -28,6 +28,9 @@ then a single nc file is used from "path_to_nc"}
 reconstructions. All the variables of interest need to be included in
 this file.}
 }
+\value{
+a data.frame with teh climatic variables of interest
+}
 \description{
 This function extract a time series of local climate for
  a set of locations. Note that this function does not apply any interpolation

@@ -20,6 +20,8 @@
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed
+#' @returns a data.frame with the sampled cells and their respective values for
+#' the climate variables.
 #'
 #' @export
 

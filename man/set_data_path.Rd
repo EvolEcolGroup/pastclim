@@ -11,6 +11,9 @@ set_data_path(path_to_nc = NULL)
 reconstructions. If left unset, the default location returned by
 `tools::R_user_dir("pastclim","data")` will be used}
 }
+\value{
+TRUE if the path was set correctly
+}
 \description{
 This function sets the path where climate reconstructions will be stored.
 This

@@ -22,7 +22,7 @@
 #' information (i.e. they are under water or ice). Interpolation is only
 #' performed from the first ring of nearest neighbours; if climate is not
 #' available, NA will be returned for that location. Defaults to TRUE.
-#'
+#' @returns a data.frame with teh climatic variables of interest
 #' @export
 
 location_slice <-

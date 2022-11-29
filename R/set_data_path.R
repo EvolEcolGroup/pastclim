@@ -9,6 +9,7 @@
 #' @param path_to_nc the path to the file that contains the downloaded
 #' reconstructions. If left unset, the default location returned by
 #' `tools::R_user_dir("pastclim","data")` will be used
+#' @return TRUE if the path was set correctly
 #'
 #' @export
 
@@ -43,6 +44,7 @@ set_data_path <- function(path_to_nc = NULL) {
   options(pastclim.data_path = path_to_nc)
   # move the example data into the new data path
   copy_example_data()
+  return (TRUE)
 }
 
 
@@ -86,6 +88,8 @@ get_data_path <- function() {
 #' Internal function to copy the example dataset when a new data path is set
 #'
 #' Copy example dataset
+#' 
+#' @returns TRUE if the data were copied successfully
 #'
 #' @keywords internal
 
@@ -98,4 +102,5 @@ copy_example_data <- function() {
       to = file.path(get_data_path(), "example_climate_v2.nc")
     )
   }
+  return(TRUE)
 }
