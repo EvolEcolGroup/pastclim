@@ -52,6 +52,8 @@ sample_region_series<-function(x, size, method="random", replace=FALSE, na.rm=TR
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed
+#' @returns a data.frame with the sampled cells and their respective values for
+#' the climate variables.
 #'
 #' @keywords internal
 
@@ -103,6 +105,8 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed
+#' @returns a data.frame with the sampled cells and their respective values for
+#' the climate variables.
 #'
 #' @keywords internal
 

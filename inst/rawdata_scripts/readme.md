@@ -1,4 +1,8 @@
-This files provides an overivew of the scripts used to generate the data used in pastclim. All R scripts assume that you are in the root directory of the package:
+This files provides an overivew of the scripts used to generate the data used in pastclim. All R scripts assume that you are in the root directory of the package.
+
+NOTE: these scripts were used with terra <1.6-41, which changed the way time
+is coded. Make sure that you check the scripts before running, as they might not
+function as expected.
 
 ## scripts to package the climate data
 

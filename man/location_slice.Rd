@@ -39,7 +39,7 @@ performed from the first ring of nearest neighbours; if climate is not
 available, NA will be returned for that location. Defaults to TRUE.}
 }
 \value{
-a data.frame with teh climatic variables of interest
+a data.frame with the climatic variables of interest.
 }
 \description{
 This function extract local climate for a set of locations

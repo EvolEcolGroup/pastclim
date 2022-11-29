@@ -53,7 +53,7 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE) {
 #'
 #' @param variable a vector of names of the variables of interest
 #' @param dataset dataset of interest
-#'
+#' @returns TRUE if var is available
 #' @keywords internal
 
 check_available_variable <- function(variable, dataset) {
@@ -76,6 +76,7 @@ check_available_variable <- function(variable, dataset) {
 #'
 #' @param variable string defining the variable name
 #' @param dataset string defining dataset to be downloaded
+#' @returns the name of the variable
 #'
 
 get_varname <- function(variable, dataset) {

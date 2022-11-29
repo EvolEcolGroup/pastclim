@@ -9,6 +9,11 @@ climate_for_time_slice(...)
 \arguments{
 \item{...}{arguments to be passed to \code{region_slice}}
 }
+\value{
+a
+SpatRaster \code{terra::SpatRaster} object, with
+each variable as a layer.
+}
 \description{
 Deprecated version of \code{region_slice}
 }

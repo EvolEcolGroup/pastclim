@@ -54,6 +54,9 @@ region_slice <-
 #' Deprecated version of \code{region_slice}
 #'
 #' @param ... arguments to be passed to \code{region_slice}
+#' @returns a
+#' SpatRaster \code{terra::SpatRaster} object, with
+#' each variable as a layer.
 #'
 #' @export
 

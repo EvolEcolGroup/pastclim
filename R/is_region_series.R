@@ -13,6 +13,7 @@
 #' regional reconstructions obtained from \code{region_series}.
 #' @param strict a boolean defining whether to preform a thorough test (see
 #' description above for details).
+#' @returns TRUE if the object is a region series
 #'
 #' @export
 

@@ -111,6 +111,7 @@ location_series <-
 #' Deprecated version of \code{location_series}
 #'
 #' @param ... arguments to be passed to \code{series}
+#' @returns a data.frame with teh climatic variables of interest
 #'
 #' @export
 

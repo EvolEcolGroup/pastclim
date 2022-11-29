@@ -13,7 +13,7 @@ check_var_in_nc(bio_variables, path_to_nc)
 reconstructions.}
 }
 \value{
-TRUE fi the variable exists
+TRUE if the variable exists
 }
 \description{
 Internal function to test a custom nc file.
