@@ -85,14 +85,36 @@ pastclim:::get_dataset_info(dataset="Beyer2020")
 ```
 
 For the datasets available in `pastclim`, there are functions that help you download the data
-and choose the variables. 
+and choose the variables. When you start `pastclim` for the first time, you will
+need to set the path where reconstructions are stored using `set_data_path`. By
+default, the package data path will be used:
 
-Datasets will stored in the package data path, which can be obtained with:
-
-```{r}
+```{r eval=FALSE}
 library(pastclim)
-get_data_path()
+set_data_path()
 ```
+
+```{r echo=FALSE}
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+```
+
+
+```
+The data_path will be set to /home/am315/.local/share/R/pastclim.
+A copy of the Example dataset will be copied there.
+This path will be saved by pastclim for future use.
+Proceed? 
+
+1: Yes
+2: No
+```
+
 
 If you prefer using a custom path (e.g. in "~/my_reconstructions"), it can be set with:
 
