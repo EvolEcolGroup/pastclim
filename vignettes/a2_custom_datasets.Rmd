@@ -65,9 +65,23 @@ ncdf4::nc_close(nc_in)
 
 ```
 
-We can now read in our custom netcdf file.
+We can now read in our custom netcdf file with `pastclim`.
 ```{r}
 library(pastclim)
+```
+
+```{r echo=FALSE, results='hide'}
+data_path <- file.path(tempdir(),"pastclim_data")
+# clear it in case it exists already
+unlink(data_path, recursive = TRUE) 
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+```
+
+```{r}
 custom_series <- region_series(bio_variables = "bio01",
                                 dataset = "custom",
                                 path_to_nc = nc_name
@@ -92,7 +106,7 @@ it allows for smaller files).
 
 # Making the data available to others
 
-Once you have created suitably fomatted netcdf files that can be used as custom datasets in 
+Once you have created suitably formatted netcdf files that can be used as custom datasets in 
 `pastclim`, you can add those data officially to the package, and thus make them available
 to others. Here are the necessary steps:
 
@@ -142,6 +156,6 @@ the *nc* dataset.
 3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/create_files_by_dataset.R" to store
 that information into the appropriate dataset in `pastclim`.
 
-4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` notation. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.
+4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` syntax. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.
 
 4) Make a Pull Request on GitHub.

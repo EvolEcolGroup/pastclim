@@ -43,7 +43,7 @@ set_data_path <- function(path_to_nc = NULL, ask = TRUE, write_config = TRUE,
                               "You will have to reset the path when R is restarted.\n")
     }
     message_to_user<-paste0(message_to_user,"Proceed?")
-    user_choice <- menu(c("Yes","No"), title = message_to_user)
+    user_choice <- utils::menu(c("Yes","No"), title = message_to_user)
   } else { # else, if we don't ask, answer yes
     user_choice <- 1 
   }
@@ -103,3 +103,24 @@ copy_example_data <- function() {
   return(TRUE)
 }
 
+#' Set the data path for examples on CRAN
+#'
+#' Users should NOT need this function. It is used to set up a
+#' data path in the temporary directory for examples and tests
+#' to run on CRAN.
+#' 
+#' @returns None
+#' @export
+
+
+set_data_path_for_CRAN <- function() {
+  # set up data path for this test
+  data_path <- file.path(tempdir(),"pastclim_data")
+  # clear it if it exists
+  unlink(data_path, recursive = TRUE)
+  # set data path
+  set_data_path(path_to_nc = data_path,
+                ask = FALSE,
+                write_config = FALSE,
+                copy_example = TRUE)
+}

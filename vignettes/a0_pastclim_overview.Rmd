@@ -94,36 +94,31 @@ library(pastclim)
 set_data_path()
 ```
 
-```{r echo=FALSE}
-data_path <- file.path(tempdir(),"pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
-# set data path
-set_data_path(path_to_nc = data_path,
-              ask = FALSE,
-              write_config = FALSE,
-              copy_example = TRUE)
+```{r echo=FALSE, results='hide'}
+library(pastclim)
+set_data_path_for_CRAN()
 ```
 
-
 ```
-The data_path will be set to /home/am315/.local/share/R/pastclim.
-A copy of the Example dataset will be copied there.
-This path will be saved by pastclim for future use.
-Proceed? 
-
-1: Yes
-2: No
+#> The data_path will be set to /home/andrea/.local/share/R/pastclim.
+#> A copy of the Example dataset will be copied there.
+#> This path will be saved by pastclim for future use.
+#> Proceed? 
+#> 
+#> 1: Yes
+#> 2: No
 ```
 
+Press 1 if you are happy with the offered choices, and `pastclim`
+will remember your data path in future sessions. Note that your
+data path will look different than in this example, as it depends
+on your user name and operating system.
 
 If you prefer using a custom path (e.g. in "~/my_reconstructions"), it can be set with:
 
 ```{r eval=FALSE}
 set_data_path(path_to_nc = "~/my_reconstructions")
 ```
-
-`pastclim` will remember this new path in the future, even after closing and restarting
-R.
 
 The package includes a small dataset, *Example*, that we will use in this vignette but is not suitable for running analyses;
 the real datasets are large (from 100s of Mb to a few Gb), and you will need to specify

@@ -25,8 +25,8 @@ get_data_path <- function(silent=FALSE) {
       "pastclim_data.txt"
     ))) {
       if (!silent) {
-        message("A default data_path was not set for pastclim\n",
-                "Use `set_data_path()` to set it")
+        message("A default data_path was not set for pastclim;\n",
+                "use `set_data_path()` to set it.")
       }
       return(NULL)
     }
@@ -35,8 +35,8 @@ get_data_path <- function(silent=FALSE) {
       "pastclim_data.txt"
     ))[1, 1]
     if (!dir.exists(path_to_nc)){
-      error("the path ",path_to_nc," from the config file does not exist!\n",
-            "you can reset the path with `set_data_path`")
+      stop("The path ",path_to_nc," from the config file does not exist!\n",
+            "You can reset the path with `set_data_path`.")
     }
     return(path_to_nc)
   }
