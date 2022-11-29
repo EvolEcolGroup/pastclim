@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_dataset.R
 \name{download_dataset}
 \alias{download_dataset}
-\title{Download palaeoclimatereconstructions.}
+\title{Download palaeoclimate reconstructions.}
 \usage{
 download_dataset(dataset, bio_variables = NULL)
 }

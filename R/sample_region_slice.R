@@ -1,6 +1,6 @@
 #' Sample points from a region time slice
 #'
-#' This function samples points from a region time slice (i.e. a timepoint).
+#' This function samples points from a region time slice (i.e. a time point).
 #' 
 #' This function wraps \code{terra::spatSample} to appropriate sample the
 #' \code{terra::SpatRaster} returned

@@ -10,7 +10,7 @@ climate_for_locations(...)
 \item{...}{arguments to be passed to \code{location_slice}}
 }
 \value{
-a data.frame with teh climatic variables of interest
+a data.frame with the climatic variables of interest
 }
 \description{
 Deprecated version of \code{location_slice}

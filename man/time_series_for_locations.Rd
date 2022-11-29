@@ -10,7 +10,7 @@ time_series_for_locations(...)
 \item{...}{arguments to be passed to \code{series}}
 }
 \value{
-a data.frame with teh climatic variables of interest
+a data.frame with the climatic variables of interest
 }
 \description{
 Deprecated version of \code{location_series}

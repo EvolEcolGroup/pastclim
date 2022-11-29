@@ -1,4 +1,4 @@
-#' Download palaeoclimatereconstructions.
+#' Download palaeoclimate reconstructions.
 #'
 #' This function downloads palaeoclimate reconstructions. Files will be stored
 #' in the data path of `pastclim`, which can be inspected with

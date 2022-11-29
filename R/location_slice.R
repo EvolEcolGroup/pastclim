@@ -152,7 +152,7 @@ location_slice <-
 #' Deprecated version of \code{location_slice}
 #'
 #' @param ... arguments to be passed to \code{location_slice}
-#' @returns a data.frame with teh climatic variables of interest
+#' @returns a data.frame with the climatic variables of interest
 #'
 #' @export
 

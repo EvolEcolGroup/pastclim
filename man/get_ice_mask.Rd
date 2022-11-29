@@ -14,5 +14,5 @@ values can be obtained with \code{get_available_datasets}). This function
 will not work on custom datasets.}
 }
 \description{
-Get the ice mask for a dataset at a given timepoint.
+Get the ice mask for a dataset at a given time point.
 }

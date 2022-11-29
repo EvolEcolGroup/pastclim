@@ -29,7 +29,7 @@ reconstructions. All the variables of interest need to be included in
 this file.}
 }
 \value{
-a data.frame with teh climatic variables of interest
+a data.frame with the climatic variables of interest
 }
 \description{
 This function extract a time series of local climate for

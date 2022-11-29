@@ -1,6 +1,6 @@
 #' Get the land mask for a dataset.
 #'
-#' Get the land mask for a dataset at a given timepoint.
+#' Get the land mask for a dataset at a given time point.
 #'
 #' @param time_bp time slice in years before present (negative)
 #' @param dataset string defining dataset to be downloaded (a list of possible

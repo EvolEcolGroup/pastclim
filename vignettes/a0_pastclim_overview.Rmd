@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # Install the library
 
-You will need to install the library from Github. For this step, you will need to
+You will need to install the library from GitHub. For this step, you will need to
 use `devtools` (if you haven't done so already, install it from CRAN with `install.packages("devtools")`.
 Once you have `devtools`, simply use:
 ```{r install, eval=FALSE}
