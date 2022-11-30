@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master, cran_changes]
+    branches: [main, master, rcheck]
   pull_request:
     branches: [main, master]
 
@@ -20,9 +20,9 @@ jobs:
         config:
           - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+#          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+#          - {os: ubuntu-latest,   r: 'release'}
+#          - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -43,6 +43,10 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+      
+      - name: Get dev terra
+        if: matrix.config.os == macos-latest
+        run: Rscript "install.packages('terra', repos='https://rspatial.r-universe.dev')"
 
       - uses: r-lib/actions/check-r-package@v2
         with:
