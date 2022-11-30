@@ -179,7 +179,7 @@ jobs:
       - run: rm deps_checksum  # Delete the temp file with the dir checksum
       
       - *devtools-check # (includes vignettes)
-      - *code-cov   
+#      - *code-cov   
 
 
 ###################################
