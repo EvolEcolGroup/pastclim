@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+################################################################################
+
 test_that("var_labels for plots", {
   # check that we can correctly return expressions for every variable (i.e. 
   # that nothing is malforms and crashes the parsing)
@@ -33,3 +43,7 @@ test_that("var_labels for plots", {
                "x should be either a character vector or a SpatRaster")
 }
 )
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)  

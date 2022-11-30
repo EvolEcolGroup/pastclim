@@ -74,7 +74,7 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 
 ### terra without NETCDF driver for macOS
 
-A number of versions of `terra` available as binaries for macOS on CRAN (including the latest one) have
+A number of versions of `terra` available as binaries for macOS X86-64 on CRAN (including the latest one) have
 been compiled without a NETCDF driver. This prevents `pastclim`, which relies on `terra`, from 
 correctly reading files. When loaded, `pastclim` checks if the driver is available; in case of
 a missing driver, you will get the error:

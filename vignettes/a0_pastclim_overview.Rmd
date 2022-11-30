@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # Install the library
 
-You will need to install the library from Github. For this step, you will need to
+You will need to install the library from GitHub. For this step, you will need to
 use `devtools` (if you haven't done so already, install it from CRAN with `install.packages("devtools")`.
 Once you have `devtools`, simply use:
 ```{r install, eval=FALSE}
@@ -85,23 +85,40 @@ pastclim:::get_dataset_info(dataset="Beyer2020")
 ```
 
 For the datasets available in `pastclim`, there are functions that help you download the data
-and choose the variables. 
+and choose the variables. When you start `pastclim` for the first time, you will
+need to set the path where reconstructions are stored using `set_data_path`. By
+default, the package data path will be used:
 
-Datasets will stored in the package data path, which can be obtained with:
-
-```{r}
+```{r eval=FALSE}
 library(pastclim)
-get_data_path()
+set_data_path()
 ```
+
+```{r echo=FALSE, results='hide'}
+library(pastclim)
+set_data_path_for_CRAN()
+```
+
+```
+#> The data_path will be set to /home/andrea/.local/share/R/pastclim.
+#> A copy of the Example dataset will be copied there.
+#> This path will be saved by pastclim for future use.
+#> Proceed? 
+#> 
+#> 1: Yes
+#> 2: No
+```
+
+Press 1 if you are happy with the offered choices, and `pastclim`
+will remember your data path in future sessions. Note that your
+data path will look different than in this example, as it depends
+on your user name and operating system.
 
 If you prefer using a custom path (e.g. in "~/my_reconstructions"), it can be set with:
 
 ```{r eval=FALSE}
 set_data_path(path_to_nc = "~/my_reconstructions")
 ```
-
-`pastclim` will remember this new path in the future, even after closing and restarting
-R.
 
 The package includes a small dataset, *Example*, that we will use in this vignette but is not suitable for running analyses;
 the real datasets are large (from 100s of Mb to a few Gb), and you will need to specify

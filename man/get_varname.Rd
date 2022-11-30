@@ -11,6 +11,9 @@ get_varname(variable, dataset)
 
 \item{dataset}{string defining dataset to be downloaded}
 }
+\value{
+the name of the variable
+}
 \description{
 Internal function to get the varname for this variable
 }

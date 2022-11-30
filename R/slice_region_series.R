@@ -10,6 +10,7 @@
 #' can use \code{time_bp(x[[1]])} (note that you have to use
 #' the `time` function on the first element of the 'sds' object, i.e. on one
 #' of the 'SpatRaster' objects)
+#' @returns a \code{SpatRaster} of the relevant slice.
 #'
 #' @export
 

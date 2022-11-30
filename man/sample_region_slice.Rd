@@ -19,8 +19,12 @@ defaults to "random"}
 
 \item{na.rm}{boolean determining whether NAs are removed}
 }
+\value{
+a data.frame with the sampled cells and their respective values for
+the climate variables.
+}
 \description{
-This function samples points from a region time slice (i.e. a timepoint).
+This function samples points from a region time slice (i.e. a time point).
 }
 \details{
 This function wraps \code{terra::spatSample} to appropriate sample the

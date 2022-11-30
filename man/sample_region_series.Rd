@@ -21,6 +21,10 @@ defaults to "random"}
 
 \item{na.rm}{boolean determining whether NAs are removed}
 }
+\value{
+a data.frame with the sampled cells and their respective values for
+the climate variables.
+}
 \description{
 This function samples points from a region time series. Sampling can either be
 performed for the same locations at all time steps (if only one value is given

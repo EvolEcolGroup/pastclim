@@ -4,7 +4,7 @@
 #' present
 #'
 #' @param x a \code{terra::SpatRaster}
-#'
+#' @returns a date in years BP (where negative numbers indicate a date in the past)
 #' @export
 
 

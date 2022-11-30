@@ -22,7 +22,7 @@
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
-#'
+#' @returns a data.frame with the climatic variables of interest
 #' @export
 
 location_series <-
@@ -111,6 +111,7 @@ location_series <-
 #' Deprecated version of \code{location_series}
 #'
 #' @param ... arguments to be passed to \code{series}
+#' @returns a data.frame with the climatic variables of interest
 #'
 #' @export
 

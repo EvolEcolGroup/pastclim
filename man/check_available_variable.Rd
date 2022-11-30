@@ -11,6 +11,9 @@ check_available_variable(variable, dataset)
 
 \item{dataset}{dataset of interest}
 }
+\value{
+TRUE if var is available
+}
 \description{
 Internal getter function
 }

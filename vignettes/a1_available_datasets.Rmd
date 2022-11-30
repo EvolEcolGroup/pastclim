@@ -21,6 +21,20 @@ A number of datasets are available in pastclim. It is possible to use custom dat
 
 ```{r}
 library(pastclim)
+```
+
+```{r echo=FALSE, results='hide'}
+data_path <- file.path(tempdir(),"pastclim_data")
+# clear it in case it exists already
+unlink(data_path, recursive = TRUE) 
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+```
+
+```{r}
 get_available_datasets()
 ```
 
