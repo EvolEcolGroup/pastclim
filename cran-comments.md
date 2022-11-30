@@ -35,7 +35,7 @@ Missing Rd-tags in up to 26 .Rd files, e.g.:
 
 > My apologies, I relied on devtools::check() to test the documentation, 
 I see now that it fails to check returns. All functions now should have a
-return value.
+return value in their documentation.
 
 Please ensure that your functions do not write by default or in your
 examples/vignettes/tests in the user's home filespace (including the
@@ -56,7 +56,8 @@ filespace (sorry, I had misread the note about R_user_dir on CRAN).
 
 On all testing environment (see below), I only get a note because of the
 package being a new submission (expected), and a false positive for mispelling 
-(palaeoclimate is an existing word and IS spelled correctly).
+(palaeoclimate is an existing word and IS spelled correctly; the rest are parts
+of the author list of the paper describing the package).
 
 ## R CMD check results
 On all systems:
@@ -67,7 +68,10 @@ Maintainer: ‘Andrea Manica <am315@cam.ac.uk>’
 New submission
 
 Possibly misspelled words in DESCRIPTION:
-  palaeoclimate (14:90)
+  al (16:18)
+  et (16:15)
+  Leonardi (16:6)
+  palaeoclimate (14:55)
   Palaeoclimate (3:34)
 
 0 errors ✔ | 0 warnings ✔ | 1 notes ✖
