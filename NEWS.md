@@ -1,3 +1,6 @@
+# pastclim 1.2.1
+* Small updates for CRAN submission.
+
 # pastclim 1.2.0
 
 * Provide additional information about variables and their units, and create
