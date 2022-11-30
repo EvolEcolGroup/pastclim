@@ -44,14 +44,13 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
       
-      - name: Get dev terra
+      - name: Get dev terra for MacOS
         if: matrix.config.os == 'macos-latest'
-#        with:
-#          os: ${{matrix.config.os}}
-        run: 
-#          echo ${{matrix.config.os}}
-          Rscript -e "install.packages('terra', repos='https://rspatial.r-universe.dev')"
+        run: install.packages('terra', repos='https://rspatial.r-universe.dev')
+        shell: Rscript {0}
+        
+#          Rscript -e "install.packages('terra', repos='https://rspatial.r-universe.dev')"
 
-#      - uses: r-lib/actions/check-r-package@v2
-#        with:
-#          upload-snapshots: true
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
