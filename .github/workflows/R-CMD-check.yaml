@@ -45,13 +45,13 @@ jobs:
           needs: check
       
       - name: Get dev terra
-#        if: matrix.config.os == "macos-latest"
+        if: matrix.config.os == "macos-latest"
 #        with:
 #          os: ${{matrix.config.os}}
         run: 
-          print ${{matrix.config.os}}
-#          Rscript "install.packages('terra', repos='https://rspatial.r-universe.dev')"
+#          echo ${{matrix.config.os}}
+          Rscript "install.packages('terra', repos='https://rspatial.r-universe.dev')"
 
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
+#      - uses: r-lib/actions/check-r-package@v2
+#        with:
+#          upload-snapshots: true
