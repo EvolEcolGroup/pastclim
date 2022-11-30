@@ -81,7 +81,7 @@ When loaded, `pastclim` checks if the driver is available; in case of
 a missing driver, you will get the error:
 
 ```
-Error: The installed version of terra lacks support reading netcdf files.
+Error: The installed version of terra lacks support for reading netcdf files.
 pastclim needs netcdf support: you will need to reinstall terra,
 possibly from source, if there isn't a version with netcdf support
 on CRAN. Alternatively, try the latest development version from R-universe:
