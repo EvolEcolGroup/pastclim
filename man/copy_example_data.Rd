@@ -6,6 +6,9 @@
 \usage{
 copy_example_data()
 }
+\value{
+TRUE if the data were copied successfully
+}
 \description{
 Copy example dataset
 }

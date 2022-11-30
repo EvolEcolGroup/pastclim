@@ -2,14 +2,11 @@
   # store the data path as an option for easy retrieval
   op <- options()
   op.pastclim <- list(
-    pastclim.data_path = get_data_path()
+    pastclim.data_path = get_data_path(silent=TRUE)
   )
   toset <- !(names(op.pastclim) %in% names(op))
   if (any(toset)) options(op.pastclim[toset])
 
-  # copy example dataset into the data path (and update it if it has changed)
-  copy_example_data()
-  
   # check that gdal was compiled with netcdf support
   d <- gdal(drivers=TRUE)
   if (!"netCDF" %in% terra::gdal(drivers=TRUE)$name){

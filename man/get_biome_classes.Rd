@@ -11,6 +11,9 @@ get_biome_classes(dataset)
 values can be obtained with \code{get_available_datasets}). This function
 will not work on custom datasets.}
 }
+\value{
+a data.frame with columns id and category.
+}
 \description{
 Get a full list of biomes and how their id as coded in the biome variable
 for a given dataset.

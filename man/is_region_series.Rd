@@ -13,14 +13,17 @@ regional reconstructions obtained from \code{region_series}.}
 \item{strict}{a boolean defining whether to preform a thorough test (see
 description above for details).}
 }
+\value{
+TRUE if the object is a region series
+}
 \description{
 A region series is a \code{terra::SpatRasterDataset} for which each
-subdataset is a variable, and all variables have the same number of 
+sub-dataset is a variable, and all variables have the same number of 
 time steps.
 }
 \details{
 The standard test only checks that each SpatRaster has the same number of
-layers. The more thorough test (obtainedwith strict=TRUE) actually checks
+layers. The more thorough test (obtained with strict=TRUE) actually checks
 that all time steps are identical by comparing the result of 
 \code{terra::time} applied to each variable
 }

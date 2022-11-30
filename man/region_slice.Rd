@@ -37,6 +37,11 @@ the full extent of the reconstruction is given.}
 of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
 is used to define the polygon.}
 }
+\value{
+a
+SpatRaster \code{terra::SpatRaster} object, with
+each variable as a layer.
+}
 \description{
 This function extracts a slice of one or more climate variables for a given
 dataset covering a region (or the whole world). The function returns a

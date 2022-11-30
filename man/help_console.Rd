@@ -23,6 +23,9 @@ help_console(
 
 \item{which}{lines should be printed}
 }
+\value{
+text of the help file
+}
 \description{
 This function prints a help file to console. It is based on a function published on
 R-bloggers:

@@ -3,6 +3,7 @@
 #'
 #' @param variable a vector of names of the variables of interest
 #' @param dataset dataset of interest
+#' @returns TRUE if the variable has been downloaded.
 #'
 #' @keywords internal
 

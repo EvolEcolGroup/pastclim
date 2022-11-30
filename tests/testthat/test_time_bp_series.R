@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+################################################################################
+
 test_that("time_bp_series returns correct values", {
   time_bp <- c(-10000,-20000)
   time_steps <- sort(-seq(0,20000,by = 5000))
@@ -27,4 +37,9 @@ test_that("time_bp_series returns correct values", {
   #####################################################
   expect_error(time_bp_series("blah",time_steps),
                "time_bp can only be")
-})  
+})
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)  
+

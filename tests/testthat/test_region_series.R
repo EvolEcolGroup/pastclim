@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+              ask = FALSE,
+              write_config = FALSE,
+              copy_example = TRUE)
+################################################################################
+
 test_that("region series", {
   # using standard dataset
   climate_region <- region_series(
@@ -99,7 +109,7 @@ test_that("ext on region series", {
     dataset = "Example",
     ext = ext
   ), NA)  
-
+})
   test_that("crop on region series", {
 
     # this should work
@@ -125,8 +135,9 @@ test_that("ext on region series", {
       dataset = "Example",
       crop = region_outline$Eurasia),NA)  
     
-  })
-  
-  
+
 })
-  
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)  

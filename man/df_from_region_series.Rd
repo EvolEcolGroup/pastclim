@@ -12,6 +12,10 @@ df_from_region_series(x, xy = TRUE)
 \item{xy}{a boolean whether x and y coordinates should be added 
 to the dataframe (default to TRUE)}
 }
+\value{
+a data.frame where each cell each raster layer (i.e. timestep) is a
+row, and the available variables are columns.
+}
 \description{
 Extract the climatic information from a region series and organise them as
 a data frame.

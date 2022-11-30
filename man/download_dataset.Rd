@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_dataset.R
 \name{download_dataset}
 \alias{download_dataset}
-\title{Download palaeoclimatereconstructions.}
+\title{Download palaeoclimate reconstructions.}
 \usage{
 download_dataset(dataset, bio_variables = NULL)
 }
@@ -13,6 +13,9 @@ will not work on custom datasets.}
 
 \item{bio_variables}{one or more variable names to be downloaded. If left
 to NULL, all variables available for this dataset will be downloaded}
+}
+\value{
+TRUE if the dataset(s) was downloaded correctly.
 }
 \description{
 This function downloads palaeoclimate reconstructions. Files will be stored

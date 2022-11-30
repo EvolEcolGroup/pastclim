@@ -4,7 +4,7 @@
 #'
 #' @param dataset string defining dataset
 #' @param include_custom boolean whether a 'custom' dataset is allowed
-#'
+#' @returns TRUE if the dataset is available
 #' @keywords internal
 
 

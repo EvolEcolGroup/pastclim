@@ -16,6 +16,9 @@ can use \code{time_bp(x[[1]])} (note that you have to use
 the `time` function on the first element of the 'sds' object, i.e. on one
 of the 'SpatRaster' objects)}
 }
+\value{
+a \code{SpatRaster} of the relevant slice.
+}
 \description{
 This function extracts a time slice from time series of one or more climate
 variables for a given dataset covering a region (or the whole world).

@@ -1,3 +1,13 @@
+# set up data path for this test
+data_path <- file.path(tempdir(),"pastclim_data")
+unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# set data path
+set_data_path(path_to_nc = data_path,
+                          ask = FALSE,
+                          write_config = FALSE,
+                          copy_example = TRUE)
+################################################################################
+
 test_that("check_dataset_path errors", {
   expect_true(check_dataset_path("Example", NULL))
   expect_error(
@@ -26,3 +36,8 @@ test_that("check_dataset_path errors", {
     "path_to_nc does not point to a file"
   )
 })
+
+################################################################################
+# clean up for the next test
+unlink(data_path, recursive = TRUE)
+
