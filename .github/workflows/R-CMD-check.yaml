@@ -50,7 +50,7 @@ jobs:
 #          os: ${{matrix.config.os}}
         run: 
 #          echo ${{matrix.config.os}}
-          Rscript "install.packages('terra', repos='https://rspatial.r-universe.dev')"
+          Rscript -e "install.packages('terra', repos='https://rspatial.r-universe.dev')"
 
 #      - uses: r-lib/actions/check-r-package@v2
 #        with:
