@@ -2,13 +2,11 @@
 
 <!-- badges: start -->
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
+[![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
 <!-- badges: end -->
 
-<!---
-comment out the githubactions as they can't cope with downgrading terra
-[![R-CMD-check](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
---->
+
 
 This `R` library is designed to provide an easy way to extract and manipulate palaeoclimate
 reconstructions for ecological and anthropological analyses. 
@@ -72,20 +70,30 @@ of this issue can be found on [stack**overflow**](https://stackoverflow.com/ques
 
 ---
 
-### terra without NETCDF driver for macOS
+### `terra` without NETCDF driver for macOS
 
 A number of versions of `terra` available as binaries for macOS X86-64 on CRAN (including the latest one) have
-been compiled without a NETCDF driver. This prevents `pastclim`, which relies on `terra`, from 
-correctly reading files. When loaded, `pastclim` checks if the driver is available; in case of
+been compiled without a NETCDF driver (the latest ARM library is OK). This prevents `pastclim`, which relies on `terra`, from 
+correctly reading files. Other packages that rely on `terra` are similarly 
+affected (e.g. `stars`; see this [bug](https://github.com/r-spatial/stars/issues/566))
+
+When loaded, `pastclim` checks if the driver is available; in case of
 a missing driver, you will get the error:
 
 ```
-error: the R library terra currently installed relies on a version of gdal
-that does not support reading netcdf files. You will need to reinstall
-terra, possibly from source, if there isn't a version with netcdf 
-support on CRAN."
+Error: The installed version of terra lacks support for reading netcdf files.
+pastclim needs netcdf support: you will need to reinstall terra,
+possibly from source, if there isn't a version with netcdf support
+on CRAN. Alternatively, try the latest development version from R-universe:
+install.packages('terra', repos='https://rspatial.r-universe.dev')
 ```
 
-To install `terra` from source, see instructions [here](https://github.com/rspatial/terra).
+The easiest solution is probably to install the `dev` version of `terra` from
+[R-universe](https://r-universe.dev/organizations/) with:
+```
+install.packages('terra', repos='https://rspatial.r-universe.dev')
+```
+Alternatively, if you want to install a specific version of 
+ `terra` from source, see instructions [here](https://github.com/rspatial/terra).
 
 
