@@ -45,7 +45,7 @@ jobs:
           needs: check
       
       - name: Get dev terra
-        if: matrix.config.os == "macos-latest"
+        if: matrix.config.os == 'macos-latest'
 #        with:
 #          os: ${{matrix.config.os}}
         run: 
