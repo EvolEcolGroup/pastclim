@@ -127,7 +127,7 @@
 </h3>
 <p>A number of versions of <code>terra</code> available as binaries for macOS X86-64 on CRAN (including the latest one) have been compiled without a NETCDF driver (the latest ARM library is OK). This prevents <code>pastclim</code>, which relies on <code>terra</code>, from correctly reading files. Other packages that rely on <code>terra</code> are similarly affected (e.g. <code>stars</code>; see this <a href="https://github.com/r-spatial/stars/issues/566" class="external-link">bug</a>)</p>
 <p>When loaded, <code>pastclim</code> checks if the driver is available; in case of a missing driver, you will get the error:</p>
-<pre><code>Error: The installed version of terra lacks support reading netcdf files.
+<pre><code>Error: The installed version of terra lacks support for reading netcdf files.
 pastclim needs netcdf support: you will need to reinstall terra,
 possibly from source, if there isn't a version with netcdf support
 on CRAN. Alternatively, try the latest development version from R-universe:
