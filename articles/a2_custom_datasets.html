@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,11 +118,11 @@ as R libraries (e.g. <code>cdo</code>, <code>gdal</code>,
 <p>Here we provide a simple example of how to format such a dataset in
 R. We will use a version of the Trace21k dataset, downscaled to 30
 arcsecs using the CHELSEA algorithm(available from <a href="https://chelsa-climate.org/chelsa-trace21k/" class="external-link">this website</a>).
-The data are stored as geoTIFF files, one file per timestep per
+The data are stored as geoTIFF files, one file per time step per
 variable. First, we need to collate all the files for a given variable
 (we will use <em>bio01</em> as an example) within a single
 <code>netcdf</code> file. As the original files are large, we will
-illustrate here how do to that for only a few timesteps which were
+illustrate here how do to that for only a few time steps which were
 aggregated to 3x3 degrees to keep files sizes small.</p>
 <p>We start by translating each geoTIFF into a <code>netcdf</code> file.
 The files have the prefix
@@ -136,7 +136,7 @@ use 3 time step for illustrative purposes.</p>
 <span><span class="va">list_of_tiffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tiffs_path</span>,<span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">tiffs_path</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">bio01</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">list_of_tiffs</span><span class="op">)</span></span></code></pre></div>
 <p>Now we need to set the time axis of the raster (in this case,
-reconstructions are every 100 years), and generate some userfriendly
+reconstructions are every 100 years), and generate some user friendly
 names to layers in the raster:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
@@ -159,10 +159,12 @@ not be able to read the data properly.</p>
 <span>                 attval <span class="op">=</span> <span class="st">"years BP"</span><span class="op">)</span></span>
 <span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>, varid<span class="op">=</span><span class="st">"time"</span>, attname<span class="op">=</span><span class="st">"axis"</span>, attval <span class="op">=</span> <span class="st">"T"</span><span class="op">)</span></span>
 <span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_close.html" class="external-link">nc_close</a></span><span class="op">(</span><span class="va">nc_in</span><span class="op">)</span></span></code></pre></div>
-<p>We can now read in our custom netcdf file.</p>
+<p>We can now read in our custom netcdf file with
+<code>pastclim</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
-<span><span class="va">custom_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="st">"bio01"</span>,</span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">custom_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="st">"bio01"</span>,</span>
 <span>                                dataset <span class="op">=</span> <span class="st">"custom"</span>,</span>
 <span>                                path_to_nc <span class="op">=</span> <span class="va">nc_name</span></span>
 <span><span class="op">)</span></span>
@@ -178,24 +180,24 @@ not be able to read the data properly.</p>
 <span><span class="co">#&gt; names       : bio01</span></span></code></pre></div>
 <p>As expected, there is only one variable (“bio01”) and 3 time steps
 (nlyr). We can get the times of those time steps with:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_steps.html">get_time_steps</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"custom"</span>, path_to_nc <span class="op">=</span> <span class="va">nc_name</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]    0 -100 -200</span></span></code></pre></div>
 <p>And we can slice the series and plot a give time point:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_100</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">custom_series</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_100</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>Note that these reconstructions include the ocean and the icesheets,
+<p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p>Note that these reconstructions include the ocean and the ice sheets,
 and it would be much better to remove them as they are not needed for
-most ecological/archaological studies (and it allows for smaller
+most ecological/archaeological studies (and it allows for smaller
 files).</p>
 </div>
 <div class="section level2">
 <h2 id="making-the-data-available-to-others">Making the data available to others<a class="anchor" aria-label="anchor" href="#making-the-data-available-to-others"></a>
 </h2>
-<p>Once you have created suitably fomatted netcdf files that can be used
-as custom datasets in <code>pastclim</code>, you can add those data
+<p>Once you have created suitably formatted netcdf files that can be
+used as custom datasets in <code>pastclim</code>, you can add those data
 officially to the package, and thus make them available to others. Here
 are the necessary steps:</p>
 <ol style="list-style-type: decimal">
@@ -204,7 +206,7 @@ are the necessary steps:</p>
 information about available datasets. This table is found in
 “./inst/rawdata_scripts/data_files/variable_table.csv”.</p></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"rawdata_scripts/data_files/variable_table.csv"</span>,</span>
 <span>                     package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   variable ncvar dataset monthly             file_name download_path</span></span>
@@ -246,7 +248,7 @@ dataset, run the script
 information into the appropriate dataset in
 <code>pastclim</code>.</p></li>
 <li><p>Provide information on the new dataset in the file
-“./R/dataset_docs”, using <code>roxygen2</code> notation. Make sure that
+“./R/dataset_docs”, using <code>roxygen2</code> syntax. Make sure that
 you provide an appropriate reference for the original data, as it is
 important that users can refer back to the original source.</p></li>
 <li><p>Make a Pull Request on GitHub.</p></li>

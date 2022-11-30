@@ -18,7 +18,7 @@ the default configuration directory for the package as set in R &amp;gt;= 4.0).'
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,12 @@ the default configuration directory for the package as set in R &gt;= 4.0).</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_data_path</span><span class="op">(</span>path_to_nc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_data_path</span><span class="op">(</span></span>
+<span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ask <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  write_config <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  copy_example <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -84,7 +89,28 @@ the default configuration directory for the package as set in R &gt;= 4.0).</p>
 reconstructions. If left unset, the default location returned by
 `tools::R_user_dir("pastclim","data")` will be used</p></dd>
 
+
+<dt>ask</dt>
+<dd><p>boolean on whether the user should be asked to confirm their
+choices</p></dd>
+
+
+<dt>write_config</dt>
+<dd><p>boolean on whether the path should be saved in a config
+file</p></dd>
+
+
+<dt>copy_example</dt>
+<dd><p>boolean on whether the example dataset should be saved
+in the data_path</p></dd>
+
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>TRUE if the path was set correctly</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
