@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Palaeoclimate Reconstructions 
-Version: 1.2.1
+Version: 1.2.1.9000
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
