@@ -16,7 +16,8 @@ test_that("get_mis_time_steps for standard dataset", {
 })
 
 test_that("get_mis_time_steps for local file", {
-  path_to_example_nc <- system.file("/extdata/", "example_climate_v2.nc",
+  example_filename <- files_by_dataset$file_name[files_by_dataset$dataset=="Example"][1]
+  path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )
   expect_equal(get_mis_time_steps(

@@ -33,8 +33,9 @@ test_that("get_vars_for_dataset returns appropriate object", {
 
 
 test_that("get_vars_for_dataset for local file", {
-  path_to_example_nc <- system.file("/extdata/", "example_climate_v2.nc",
-    package = "pastclim"
+  example_filename <- files_by_dataset$file_name[files_by_dataset$dataset=="Example"][1]
+  path_to_example_nc <- system.file("/extdata/", example_filename,
+                                    package = "pastclim"
   )
   vars <- get_vars_for_dataset(dataset = "custom", path_to_nc = path_to_example_nc)
   expect_true(inherits(vars,"character"))

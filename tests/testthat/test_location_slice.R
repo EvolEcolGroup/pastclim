@@ -91,8 +91,9 @@ test_that("location_slice", {
   )
 
   # now test a custom dataset
-  path_to_example_nc <- system.file("/extdata/example_climate_v2.nc",
-    package = "pastclim"
+  example_filename <- files_by_dataset$file_name[files_by_dataset$dataset=="Example"][1]
+  path_to_example_nc <- system.file("/extdata/", example_filename,
+                                    package = "pastclim"
   )
   this_climate <- location_slice(
     x = locations[, c("longitude", "latitude")],
