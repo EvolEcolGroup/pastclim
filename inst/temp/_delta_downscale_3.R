@@ -14,7 +14,7 @@
 #'
 #' @param x a \code{terra::SpatRaster} for the variable of interest, with all
 #' time steps of interest
-#' @param ref_time the time of the slice that is used to compute the delta
+#' @param ref_time the time (BP) of the slice that is used to compute the delta
 #' @param obs the observations
 #'
 #' @export
@@ -143,7 +143,9 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  terra::time(land_mask) <- (time_bp+1950)
+  # TODO work around problem in terra (fixed in dev)
+  #terra::time(land_mask, tstep="years") <- (time_bp+1950)
+  terra::time(land_mask, tstep="") <- (time_bp+1950)
   return(land_mask)
   
 }
