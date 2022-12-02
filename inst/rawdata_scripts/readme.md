@@ -22,7 +22,7 @@ variables into two separate files.
 
 ## scripts to create internal variables for pastclim
 
-1. `create_files_by_dataset.R` is a script to update the internal dataframe which stores the link between variable names and file names and locations. It is based on `variable_table.csv`.
+1. `create_getOption("pastclim.dataset_list").R` is a script to update the internal dataframe which stores the link between variable names and file names and locations. It is based on `variable_table.csv`.
 
 2. `creat_mis_boundaries.R` create internal dataset of mis boundaries.
 

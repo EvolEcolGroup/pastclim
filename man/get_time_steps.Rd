@@ -16,5 +16,5 @@ reconstructions. All the variables of interest need to be included in
 this file.}
 }
 \description{
-Get the time steps available in a given dataset.
+Get the time steps (in time_bp) available in a given dataset.
 }

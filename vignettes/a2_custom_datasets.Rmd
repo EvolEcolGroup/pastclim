@@ -45,7 +45,7 @@ names(bio01)<-paste("bio01",terra::time(bio01),sep="_")
 Now we save the data as a *nc* file (we will use the temporary directory)
 ```{r}
 nc_name <- file.path(tempdir(),"CHELSA_TraCE21k_bio01.nc")
-terra::writeCDF(bio01, filename = nc_name, varname = "bio01")
+terra::writeCDF(bio01, filename = nc_name, varname = "bio01", overwrite=TRUE)
 ```
 
 We also need to make sure that the *time* dimension has units and is labelled
@@ -117,7 +117,7 @@ store information about available datasets. This table is found in
 "./inst/rawdata_scripts/data_files/variable_table.csv".
 
 ```{r}
-head(read.csv(system.file("rawdata_scripts/data_files/variable_table.csv",
+head(read.csv(system.file("rawdata_scripts/data_files/dataset_list_included.csv",
                      package="pastclim")), n=2)
 ```
 
@@ -153,7 +153,7 @@ the *nc* dataset.
 
 `units_exp`: units formatted to be included in `expression` when creating plot labels
 
-3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/create_files_by_dataset.R" to store
+3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/create_getOption("pastclim.dataset_list").R" to store
 that information into the appropriate dataset in `pastclim`.
 
 4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` syntax. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.

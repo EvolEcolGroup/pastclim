@@ -27,8 +27,9 @@ test_that("get_time_steps for standard dataset", {
 })
 
 test_that("get_time_steps for local file", {
-  path_to_example_nc <- system.file("/extdata/", "example_climate_v2.nc",
-    package = "pastclim"
+  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset=="Example"][1]
+  path_to_example_nc <- system.file("/extdata/", example_filename,
+                                    package = "pastclim"
   )
   expect_equal(get_time_steps(
     dataset = "custom",

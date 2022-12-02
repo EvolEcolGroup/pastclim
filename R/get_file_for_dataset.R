@@ -9,6 +9,6 @@
 
 get_file_for_dataset <- function(variable, dataset) {
   check_available_variable(variable, dataset)
-  return(files_by_dataset[files_by_dataset$variable %in% variable &
-    files_by_dataset$dataset == dataset, ])
+  return(getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$variable %in% variable &
+    getOption("pastclim.dataset_list")$dataset == dataset, ])
 }

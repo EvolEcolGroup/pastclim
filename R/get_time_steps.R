@@ -1,6 +1,6 @@
 #' Get time steps for a given dataset
 #'
-#' Get the time steps available in a given dataset.
+#' Get the time steps (in time_bp) available in a given dataset.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
 #' values can be obtained with \code{get_available_datasets}). If set to
@@ -21,8 +21,11 @@ get_time_steps <- function(dataset, path_to_nc = NULL) {
     path_to_nc <- file.path(get_data_path(), this_file)
   }
 
-  climate_nc <- ncdf4::nc_open(path_to_nc)
-  time_steps <- (climate_nc$dim$time$vals)
-  ncdf4::nc_close(climate_nc)
-  return(time_steps)
+  climate_nc <- terra::rast(path_to_nc, subds=1)
+  return(time_bp(climate_nc))
+  
+  # climate_nc <- ncdf4::nc_open(path_to_nc)
+  # time_steps <- (climate_nc$dim$time$vals)
+  # ncdf4::nc_close(climate_nc)
+  # return(time_steps)
 }

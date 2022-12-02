@@ -1,14 +1,20 @@
 # start with a clean slate in case other tests set up the path
 options(pastclim.data_path = NULL) # reset the option
 
-test_that("set and get data path", {
+test_that("get data path when config not present", {
+  skip_if((file.exists(file.path(
+    tools::R_user_dir("pastclim", "config"),
+    "pastclim_data.txt"
+  ))),"config file already exists on this system")
   # try to get path when none is set
   expect_message(null_data_path <- get_data_path())
   expect_null(null_data_path)
   # now do the same in silent mode
   expect_no_message(null_data_path <- get_data_path(silent = TRUE))
   expect_null(null_data_path)
+})
 
+test_that("set and get data path", {
   # now set the path in a subdirectory of tempdir
   data_path <- file.path(tempdir(),"pastclim_data")
   unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
