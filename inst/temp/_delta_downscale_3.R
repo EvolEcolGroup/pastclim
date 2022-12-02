@@ -182,6 +182,10 @@ idw_interp <- function(x, y, ...){
   x_gap[x_gap==0]<-NA
   x_df <- terra::as.data.frame(x,xy=TRUE,na.rm=TRUE)
   x_gap_df <- terra::as.data.frame(x_gap, xy=TRUE, na.rm=TRUE)
+  # if there is not gap between the values and the mask, just return the values
+  if (nrow(x_gap_df)==0){
+    return(x)
+  }
   names(x_df)[3] <-"this_var"
   names(x_gap_df)[3] <-"this_var"
   # interpolate those gaps with idw (time consuming...)
