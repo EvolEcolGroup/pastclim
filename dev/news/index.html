@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,8 +56,19 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="pastclim-development-version">pastclim (development version)<a class="anchor" aria-label="anchor" href="#pastclim-development-version"></a></h2>
-</div>
+<h2 class="pkg-version" data-toc-text="1.2.2" id="pastclim-122-under-development">pastclim 1.2.2 (under development)<a class="anchor" aria-label="anchor" href="#pastclim-122-under-development"></a></h2>
+<ul><li>Update of Krapp2021 files to make them compatible with how terra now handles time. Users will have to redownload datasets. Old files can be removed with ‘clean_data_path()’</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.1" id="pastclim-121">pastclim 1.2.1<a class="anchor" aria-label="anchor" href="#pastclim-121"></a></h2>
+<ul><li>Small updates for CRAN submission.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.0" id="pastclim-120">pastclim 1.2.0<a class="anchor" aria-label="anchor" href="#pastclim-120"></a></h2>
+<ul><li><p>Provide additional information about variables and their units, and create pretty labels for plots.</p></li>
+<li><p>Names of locations are now stored automatically in the outputs.</p></li>
+<li><p>Update how time is handled to work with <code>terra</code> 1.6-41 (which now imports units from netcdf files).</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="pastclim-110">pastclim 1.1.0<a class="anchor" aria-label="anchor" href="#pastclim-110"></a></h2>
 <ul><li><p>Expand functionality to handle time series for regions; rename functions to extract data for regions and locations to make them consistent. Old code will still work, but will raise a warning that the functions are deprecated.</p></li>

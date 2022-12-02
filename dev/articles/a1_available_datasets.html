@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.0.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +101,13 @@ custom datasets as long as they are properly formatted (look at the
 article on how to format custom datasets if you are interested). It is
 possible to get a list of all available datasets with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Example"   "Beyer2020" "Krapp2021"</span></span></code></pre></div>
 <p>For each dataset, you can get detailed information using the help
 function:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"Example"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Documentation for the Example dataset</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -154,8 +155,8 @@ alphabetical order):</p>
 <span><span class="co">#&gt;      v1.1.0 Added monthly variables. Files can be downloaded from:</span></span>
 <span><span class="co">#&gt;      &lt;https://zenodo.org/deposit/7062281&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      v1.0.0 Remove icesheets and internal seas, and use correct formula</span></span>
-<span><span class="co">#&gt;      for bio15. Files can be downloaded from:</span></span>
+<span><span class="co">#&gt;      v1.0.0 Remove ice sheets and internal seas, and use correct</span></span>
+<span><span class="co">#&gt;      formula for bio15. Files can be downloaded from:</span></span>
 <span><span class="co">#&gt;      doi:doi.org/10.6084/m9.figshare.19723405.v1</span></span>
 <span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.6084/m9.figshare.19723405.v1&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
