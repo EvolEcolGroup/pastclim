@@ -18,7 +18,7 @@ test_that("check_dataset_path errors", {
     check_dataset_path("custom", NULL),
     "you need to set path_to_nc if dataset='custom'"
   )
-  example_filename <- files_by_dataset$file_name[files_by_dataset$dataset=="Example"][1]
+  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset=="Example"][1]
   expect_true(check_dataset_path(
     "custom",
     file.path(

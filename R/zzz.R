@@ -2,7 +2,8 @@
   # store the data path as an option for easy retrieval
   op <- options()
   op.pastclim <- list(
-    pastclim.data_path = get_data_path(silent=TRUE)
+    pastclim.data_path = get_data_path(silent=TRUE),
+    pastclim.dataset_list = load_dataset_list()
   )
   toset <- !(names(op.pastclim) %in% names(op))
   if (any(toset)) options(op.pastclim[toset])

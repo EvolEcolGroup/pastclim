@@ -14,7 +14,7 @@ clean_data_path <- function(ask=TRUE) {
     return(FALSE)
   }
   files_now <- list.files(get_data_path())
-  possible_files <- unique(files_by_dataset$file_name)
+  possible_files <- unique(getOption("pastclim.dataset_list")$file_name)
   files_to_remove <- files_now[!files_now %in% possible_files]
   if (length(files_to_remove)>0){
     if (ask){

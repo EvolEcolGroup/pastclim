@@ -16,7 +16,7 @@
 download_dataset <- function(dataset, bio_variables = NULL) {
 
   # check the dataset exists
-  available_datasets <- unique(files_by_dataset$dataset)
+  available_datasets <- unique(getOption("pastclim.dataset_list")$dataset)
   if (!dataset %in% available_datasets) {
     stop(
       "'dataset' must be one of ",
@@ -26,7 +26,7 @@ download_dataset <- function(dataset, bio_variables = NULL) {
 
   # check that the variable is available for this dataset
   available_variables <-
-    files_by_dataset$variable[files_by_dataset$dataset == dataset]
+    getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset]
   # if variable is null, donwload all possible variables
   if (is.null(bio_variables)) {
     bio_variables <- available_variables

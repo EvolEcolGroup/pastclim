@@ -92,7 +92,7 @@ set_data_path <- function(path_to_nc = NULL, ask = TRUE, write_config = TRUE,
 #' @keywords internal
 
 copy_example_data <- function() {
-  example_filename <- unique(files_by_dataset$file_name[files_by_dataset$dataset == "Example"])
+  example_filename <- unique(getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset == "Example"])
   if (!file.exists(file.path(get_data_path(), example_filename))) {
     file.copy(
       from = system.file(file.path("/extdata",example_filename),

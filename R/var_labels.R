@@ -47,7 +47,7 @@ var_labels <- function(x, dataset, with_units=TRUE,
   }
   
   # get variable details for this dataset
-  sub_table <- files_by_dataset[files_by_dataset$dataset==dataset,]
+  sub_table <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset==dataset,]
 
   indeces <- match(variables, sub_table$variable)
   if (any(is.na(indeces))){

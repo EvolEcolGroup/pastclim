@@ -7,5 +7,5 @@
 #' @export
 
 get_available_datasets <- function() {
-  return(unique(as.character(files_by_dataset$dataset)))
+  return(unique(as.character(getOption("pastclim.dataset_list")$dataset)))
 }
