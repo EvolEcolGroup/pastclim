@@ -8,33 +8,25 @@
 #' most advanced table is used.
 #'
 #' @param on_cran boolean to make this function run on ci tests using tempdir
-#' @returns the dataset list
-#' @keywords internal
+#' @returns TRUE if the dataset was updated
+#' @export
 
 update_dataset_list <- function(on_cran=FALSE) {
-  warning("this function is incomplete and non-functional yet")
-  if (!on_cran){
-    config_dir <- tools::R_user_dir("pastclim", "config")
+  curl::curl_download("https://raw.githubusercontent.com/EvolEcolGroup/pastclim/dataset_list/dataset_list_included.csv",
+                      destfile = file.path(tempdir(), "dataset_list_included.csv"),
+                      quiet = FALSE)
+  new_table_github <- utils::read.csv(file.path(tempdir(), "dataset_list_included.csv"))
+  # if the github version is more recent, copy it into config
+  if (utils::compareVersion(new_table_github$dataset_list_v[1], 
+                            getOption("pastclim.dataset_list")$dataset_list_v[1])==1){
+    file.copy(utils::read.csv(file.path(tempdir(), "dataset_list_included.csv")),
+              to= file.path(tools::R_user_dir("pastclim", "config"),"dataset_list_included.csv"))
+    load_dataset_list()
+    message("The dataset list was updated.")
+    return(TRUE)
   } else {
-    config_dir <- tempdir()
+    message("The dataset list currently installed is already the latest version.")
+    return(FALSE)
   }
-  # this is incomplete
   
-  if (file.exists(file.path(
-    config_dir,
-    "dataset_list_included.csv"
-  ))) {
-    table_in_config <- utils::read.csv(file.path(
-      config_dir,
-      "dataset_list_included.csv"
-    ))
-    table_in_config$dataset <- as.factor(table_in_config$dataset)
-    # we should check that the new table includes all the columns in the original file
-    if (utils::compareVersion(table_in_config$dataset_list_v[1], 
-                          dataset_list_included$dataset_list_v[1])==1){
-      # need to update
-      return(table_in_config)
-    }
-  }
-  return(dataset_list_included)
 }

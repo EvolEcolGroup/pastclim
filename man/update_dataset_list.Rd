@@ -10,7 +10,7 @@ update_dataset_list(on_cran = FALSE)
 \item{on_cran}{boolean to make this function run on ci tests using tempdir}
 }
 \value{
-the dataset list
+TRUE if the dataset was updated
 }
 \description{
 If a newer dataset list (which includes all the information about the files
@@ -20,4 +20,3 @@ storing the data for pastclim), download it and start using it as
 column, named 'dataset_list_v', provides the version of this table, and the
 most advanced table is used.
 }
-\keyword{internal}
