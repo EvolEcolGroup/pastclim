@@ -8,7 +8,6 @@
   if (any(toset)) options(op.pastclim[toset])
 
   # check that gdal was compiled with netcdf support
-  d <- gdal(drivers=TRUE)
   if (!"netCDF" %in% terra::gdal(drivers=TRUE)$name){
     stop("The installed version of terra lacks support for reading netcdf files.\n",
          "pastclim needs netcdf support: you will need to reinstall terra,\n",
