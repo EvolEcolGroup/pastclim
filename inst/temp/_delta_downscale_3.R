@@ -33,7 +33,7 @@ delta_compute <- function(x, ref_time, obs) {
   x_modern_high<-disagg(x_modern, fact = terra::res( x_modern)/terra::res(obs),
          method="bilinear")
   # compute anomalies against the modern
-  delta <- x_modern_high - obs
+  delta <- obs - x_modern_high
   # mask for maximum land extent
   max_land <- max(x,na.rm=TRUE)
   max_land <- disagg(max_land, fact = terra::res( x)/terra::res(obs),
