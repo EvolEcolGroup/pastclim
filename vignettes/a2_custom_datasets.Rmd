@@ -40,7 +40,6 @@ Now we need to set the time axis of the raster (in this case, reconstructions ar
 ```{r}
 terra::time(bio01)<-c(0,-100,-200)
 names(bio01)<-paste("bio01",terra::time(bio01),sep="_")
-bio01_sds<-sds(bio01)
 ```
 
 Now we save the data as a *nc* file (we will use the temporary directory)
