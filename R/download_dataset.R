@@ -16,7 +16,7 @@
 download_dataset <- function(dataset, bio_variables = NULL) {
 
   # check the dataset exists
-  available_datasets <- unique(files_by_dataset$dataset)
+  available_datasets <- unique(getOption("pastclim.dataset_list")$dataset)
   if (!dataset %in% available_datasets) {
     stop(
       "'dataset' must be one of ",
@@ -26,7 +26,7 @@ download_dataset <- function(dataset, bio_variables = NULL) {
 
   # check that the variable is available for this dataset
   available_variables <-
-    files_by_dataset$variable[files_by_dataset$dataset == dataset]
+    getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset]
   # if variable is null, donwload all possible variables
   if (is.null(bio_variables)) {
     bio_variables <- available_variables
@@ -50,15 +50,21 @@ download_dataset <- function(dataset, bio_variables = NULL) {
   }
 
 
-  # download the dataset
-  for (this_var in bio_variables) {
-    file_details <- get_file_for_dataset(this_var, dataset)
-    # only download the file if it is needed
-    if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
-      curl::curl_download(file_details$download_path,
-        destfile = file.path(get_data_path(), file_details$file_name),
-        quiet = FALSE
-      )
+  # special case for the example dataset
+  # as we have a copy on the package
+  if (dataset == "Example"){
+    copy_example_data()
+  } else {
+    # download the file for each variable
+    for (this_var in bio_variables) {
+      file_details <- get_file_for_dataset(this_var, dataset)
+      # only download the file if it is needed
+      if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
+        curl::curl_download(file_details$download_path,
+                            destfile = file.path(get_data_path(), file_details$file_name),
+                            quiet = FALSE
+        )
+      }
     }
   }
   return(TRUE)

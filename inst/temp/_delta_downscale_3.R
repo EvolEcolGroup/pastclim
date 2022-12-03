@@ -14,7 +14,7 @@
 #'
 #' @param x a \code{terra::SpatRaster} for the variable of interest, with all
 #' time steps of interest
-#' @param ref_time the time of the slice that is used to compute the delta
+#' @param ref_time the time (BP) of the slice that is used to compute the delta
 #' @param obs the observations
 #'
 #' @export
@@ -33,7 +33,7 @@ delta_compute <- function(x, ref_time, obs) {
   x_modern_high<-disagg(x_modern, fact = terra::res( x_modern)/terra::res(obs),
          method="bilinear")
   # compute anomalies against the modern
-  delta <- x_modern_high - obs
+  delta <- obs - x_modern_high
   # mask for maximum land extent
   max_land <- max(x,na.rm=TRUE)
   max_land <- disagg(max_land, fact = terra::res( x)/terra::res(obs),
@@ -143,7 +143,9 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  terra::time(land_mask) <- (time_bp+1950)
+  # TODO work around problem in terra (fixed in dev)
+  #terra::time(land_mask, tstep="years") <- (time_bp+1950)
+  terra::time(land_mask, tstep="") <- (time_bp+1950)
   return(land_mask)
   
 }
@@ -182,6 +184,10 @@ idw_interp <- function(x, y, ...){
   x_gap[x_gap==0]<-NA
   x_df <- terra::as.data.frame(x,xy=TRUE,na.rm=TRUE)
   x_gap_df <- terra::as.data.frame(x_gap, xy=TRUE, na.rm=TRUE)
+  # if there is not gap between the values and the mask, just return the values
+  if (nrow(x_gap_df)==0){
+    return(x)
+  }
   names(x_df)[3] <-"this_var"
   names(x_gap_df)[3] <-"this_var"
   # interpolate those gaps with idw (time consuming...)

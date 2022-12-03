@@ -12,7 +12,7 @@ get_downloaded_datasets <- function(data_path = NULL) {
     data_path <- get_data_path()
   }
   all_nc_files <- list.files(data_path)
-  files_subset <- files_by_dataset[files_by_dataset$file_name %in%
+  files_subset <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$file_name %in%
     all_nc_files, ]
   downloaded_vars <- list()
   for (dataset in unique(files_subset$dataset)) {

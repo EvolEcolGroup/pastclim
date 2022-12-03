@@ -116,7 +116,7 @@ location_series <-
 #' @export
 
 time_series_for_locations <- function(...) {
-  warning("DEPRECATED: use 'location_slice' instead")
+  warning("DEPRECATED: use 'location_series' instead")
   # if (!is.null(path_to_nc)) {
   #   stop(
   #     "the use of pastclimData is now deprecated",

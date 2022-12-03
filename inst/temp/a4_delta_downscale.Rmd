@@ -49,7 +49,7 @@ model_rast
 ```
 And we can now plot it:
 ```{r, fig.width=6, fig.height=5}
-plot(model_rast)
+plot(model_rast, main=time_bp(model_rast))
 ```
 
 We can see how that the reconstructions are rather coarse (the Example dataset
@@ -97,7 +97,7 @@ for `make_land_mask` for details):
 ```{r, fig.width=6, fig.height=5}
 high_res_mask <- make_land_mask(topo_rast = topo_rast, 
                                 time_bp = time_bp(model_rast))
-plot(high_res_mask)
+plot(high_res_mask, main=time_bp(high_res_mask))
 ```
 
 We can now compute a delta raster and use it to downscale the model reconstructions:
@@ -110,11 +110,11 @@ model_downscaled
 
 Let's inspect the resulting data:
 ```{r, fig.width=6, fig.height=5}
-plot(model_downscaled)
+plot(model_downscaled, main=time_bp(model_downscaled))
 ```
 
 And, as a reminder, the original reconstructions (note that the colour scales are not
-the same! The interpolated data have a wider temperature range):
+the same! `terra` chooses a scale for each time step based on the time specific range):
 ```{r, fig.width=6, fig.height=5}
-plot(model_rast)
+plot(model_rast, main=time_bp(model_rast))
 ```
