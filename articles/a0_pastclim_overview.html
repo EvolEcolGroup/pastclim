@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -328,6 +328,13 @@ is complete):</p>
 file, so <code><a href="../reference/get_downloaded_datasets.html">get_downloaded_datasets()</a></code> might list more
 variables than the ones that we chose to download (it depends on the
 dataset).</p>
+<p>When upgrading <code>pastclim</code>, new version of various datasets
+might become available. This will make the previously downloaded
+datasets obsolete, and you might suddenly be told by
+<code>pastclim</code> that some variables have to be re-downloaded. This
+can lead to the accumulation of old datasets in your data path. The
+function <code><a href="../reference/clean_data_path.html">clean_data_path()</a></code> can be used to delete old files
+that are no longer needed.</p>
 </div>
 <div class="section level2">
 <h2 id="get-climate-for-locations">Get climate for locations<a class="anchor" aria-label="anchor" href="#get-climate-for-locations"></a>
@@ -489,9 +496,9 @@ summary of this object:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; sources     : example_climate_v2.nc:BIO1  </span></span>
-<span><span class="co">#&gt;               example_climate_v2.nc:BIO10  </span></span>
-<span><span class="co">#&gt;               example_climate_v2.nc:BIO12  </span></span>
+<span><span class="co">#&gt; sources     : example_climate_v1.2.2.nc:BIO1  </span></span>
+<span><span class="co">#&gt;               example_climate_v1.2.2.nc:BIO10  </span></span>
+<span><span class="co">#&gt;               example_climate_v1.2.2.nc:BIO12  </span></span>
 <span><span class="co">#&gt; varnames    : bio01 (Annual Mean Temperature) </span></span>
 <span><span class="co">#&gt;               bio10 (Mean Temperature of Warmest Quarter) </span></span>
 <span><span class="co">#&gt;               bio12 (Annual Precipitation) </span></span>
@@ -522,7 +529,7 @@ sub-dataset:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : example_climate_v2.nc </span></span>
+<span><span class="co">#&gt; source(s)   : example_climate_v1.2.2.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 <p>Each of these sub-dataset is a <code>SpatRaster</code>, with time
 steps as layers:</p>
@@ -533,7 +540,7 @@ steps as layers:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source      : example_climate_v2.nc:BIO1 </span></span>
+<span><span class="co">#&gt; source      : example_climate_v1.2.2.nc:BIO1 </span></span>
 <span><span class="co">#&gt; varname     : bio01 (Annual Mean Temperature) </span></span>
 <span><span class="co">#&gt; names       : bio01_-15000, bio01_-10000, bio01_-5000, bio01_0 </span></span>
 <span><span class="co">#&gt; time (years): -13050 to 1950</span></span></code></pre></div>
@@ -572,7 +579,7 @@ for a given MIS in a dataset. For example, for MIS 1, we get:</p>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : example_climate_v2.nc </span></span>
+<span><span class="co">#&gt; source(s)   : example_climate_v1.2.2.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -794,13 +801,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x     y      bio01    bio10</span></span>
-<span><span class="co">#&gt; 1 35137  36.5  -7.5  16.335367 17.39381</span></span>
-<span><span class="co">#&gt; 2 41246  25.5 -24.5  15.921940 22.39835</span></span>
-<span><span class="co">#&gt; 3 16039  18.5  45.5   5.397324 14.09845</span></span>
-<span><span class="co">#&gt; 4 43042  21.5 -29.5  14.923188 22.44445</span></span>
-<span><span class="co">#&gt; 5 17944 123.5  40.5   1.618034 17.81194</span></span>
-<span><span class="co">#&gt; 6 13616 115.5  52.5 -12.698180 10.56013</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell      x     y      bio01      bio10</span></span>
+<span><span class="co">#&gt; 1 39187  126.5 -18.5  23.448450 28.4534569</span></span>
+<span><span class="co">#&gt; 2 48208  147.5 -43.5   6.878393 13.2400589</span></span>
+<span><span class="co">#&gt; 3  9398 -142.5  63.5 -12.530194  0.5149397</span></span>
+<span><span class="co">#&gt; 4 28626    5.5  10.5  22.854250 26.5171547</span></span>
+<span><span class="co">#&gt; 5 30884  103.5   4.5  22.020557 23.2946358</span></span>
+<span><span class="co">#&gt; 6 10343   82.5  61.5 -14.402436 10.4397850</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -814,15 +821,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y       bio01     bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1  843 62.5 65.5 -19.4563332  5.615269 137.5087  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 2505 24.5 45.5   1.5588731 10.155309 855.8486  -20000</span></span>
-<span><span class="co">#&gt; -20000.3  765 69.5 66.5 -19.5254974  6.257774 129.0459  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1259 53.5 60.5  -0.6508555 17.090181 521.2786  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 3117 41.5 38.5   9.4102440 26.110374 605.0865  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2663 12.5 43.5   9.9968805 20.498951 905.3091  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 1316 25.5 59.5   3.2345541 10.599086 569.0425  -10000</span></span>
-<span><span class="co">#&gt; -10000.5  840 59.5 65.5  -6.8984585 11.500679 377.6773  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01     bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2241 15.5 48.5  1.2137476 10.726925 615.9055  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 1984 13.5 51.5 -3.2889555  6.299238 380.8084  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 1693 62.5 55.5 -7.1772122 13.366912 332.1245  -20000</span></span>
+<span><span class="co">#&gt; -10000.1  741 45.5 66.5 -2.9793441 13.458773 437.3149  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1441 65.5 58.5 -1.0997492 18.786671 340.0696  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 3220 59.5 37.5 13.5756416 29.335346 170.4065  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 1951 65.5 52.5  0.4378298 22.777580 231.7631  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 1641 10.5 55.5  6.0388212 16.433008 666.8826  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>

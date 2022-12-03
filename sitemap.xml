@@ -52,6 +52,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_var_in_nc.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/clean_data_path.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/climate_for_locations.html</loc>
   </url>
   <url>
@@ -115,6 +118,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/is_region_series.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/load_dataset_list.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/location_series.html</loc>
   </url>
   <url>
@@ -170,6 +176,9 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/time_series_for_locations.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/update_dataset_list.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/var_labels.html</loc>

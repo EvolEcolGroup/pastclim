@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,7 +145,7 @@ names to layers in the raster:</p>
 directory)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"CHELSA_TraCE21k_bio01.nc"</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bio01</span>, filename <span class="op">=</span> <span class="va">nc_name</span>, varname <span class="op">=</span> <span class="st">"bio01"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bio01</span>, filename <span class="op">=</span> <span class="va">nc_name</span>, varname <span class="op">=</span> <span class="st">"bio01"</span>, overwrite<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>We also need to make sure that the <em>time</em> dimension has units
 and is labelled as <code>axis="T"</code>, or <code>pastclim</code> will
 not be able to read the data properly.</p>
@@ -207,16 +207,16 @@ information about available datasets. This table is found in
 “./inst/rawdata_scripts/data_files/variable_table.csv”.</p></li>
 </ol>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"rawdata_scripts/data_files/variable_table.csv"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"rawdata_scripts/data_files/dataset_list_included.csv"</span>,</span>
 <span>                     package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   variable ncvar dataset monthly             file_name download_path</span></span>
-<span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate_v2.nc              </span></span>
-<span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate_v2.nc              </span></span>
+<span><span class="co">#&gt;   variable ncvar dataset monthly                 file_name download_path</span></span>
+<span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate_v1.2.2.nc              </span></span>
+<span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate_v1.2.2.nc              </span></span>
 <span><span class="co">#&gt;   file_name_orig download_path_orig version                           long_name</span></span>
-<span><span class="co">#&gt; 1                                     1.1.0             annual mean temperature</span></span>
-<span><span class="co">#&gt; 2                                     1.1.0 mean temperature of warmest quarter</span></span>
-<span><span class="co">#&gt;        abbreviated_name time_frame           units  units_exp</span></span>
-<span><span class="co">#&gt; 1           ann. mean T       year degrees Celsius *degree*C*</span></span>
+<span><span class="co">#&gt; 1                                     1.2.2             annual mean temperature</span></span>
+<span><span class="co">#&gt; 2                                     1.2.2 mean temperature of warmest quarter</span></span>
+<span><span class="co">#&gt;        abbreviated_name time_frame           units  units_exp dataset_list_v</span></span>
+<span><span class="co">#&gt; 1           ann. mean T       year degrees Celsius *degree*C*          1.2.2</span></span>
 <span><span class="co">#&gt; 2 mean T of warmest qtr       year degrees Celsius *degree*C*</span></span></code></pre></div>
 <p>This includes the following fields:</p>
 <p><code>variable</code>: the variable name used by
@@ -244,8 +244,8 @@ plain text table</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Once you have added lines detailing the variables in your
 dataset, run the script
-“./inst/rawdata_scripts/create_files_by_dataset.R” to store that
-information into the appropriate dataset in
+“./inst/rawdata_scripts/create_getOption(”pastclim.dataset_list”).R” to
+store that information into the appropriate dataset in
 <code>pastclim</code>.</p></li>
 <li><p>Provide information on the new dataset in the file
 “./R/dataset_docs”, using <code>roxygen2</code> syntax. Make sure that
