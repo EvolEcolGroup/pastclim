@@ -35,10 +35,11 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
   }
   land_mask <- NULL
   for (i in 1:length(time_bp)) {
-    topography_bin<-relief_rast
-    topography_bin[topography_bin>sea_level[i]]<-NA
-    topography_bin[!is.na(topography_bin)]<-1
-    sea_patches<-patches(topography_bin)
+    # create binary relief map for areas above and below the relevant sea level
+    relief_bin<-relief_rast
+    relief_bin[relief_bin>sea_level[i]]<-NA
+    relief_bin[!is.na(relief_bin)]<-1
+    sea_patches<-patches(relief_bin)
     modal_vector <- function(x) {
       ux <- unique(x)
       ux[which.max(tabulate(match(x, ux)))]
@@ -55,7 +56,7 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  # work around problem in terra defining time units for negative values 
+  # work around problem of old terra failing to set time units for negative values 
   # (fixed in dev after 1.6.47)
   if (utils::packageVersion("terra")<"1.6.48"){
     terra::time(land_mask, tstep="") <- (time_bp+1950)

@@ -41,7 +41,7 @@ First, we extract a time series for the variable and region of interest:
 library(terra)
 library(pastclim)
 sea_ext<- terra::ext(100, 130, -15, 20)
-model_series <- region_series(bio_variables = "bio01",dataset="Example",
+model_series <- region_series(bio_variables = "bio01", dataset = "Example",
                             ext = sea_ext)
 model_series
 ```
@@ -55,7 +55,7 @@ model_rast
 ```
 And we can now plot it:
 ```{r, fig.width=6, fig.height=5}
-plot(model_rast, main=time_bp(model_rast))
+plot(model_rast, main = time_bp(model_rast))
 ```
 
 We can see how that the reconstructions are rather coarse (the Example dataset
@@ -65,8 +65,9 @@ generate the delta raster used to downscale reconstructions. We will use data fr
 Worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
 equally suitable).
 ```{r, fig.width=4, fig.height=4}
-high_res_file <- system.file("extdata/wc2.1_5m_bio_1_sea.tif",package="pastclim")
-high_res_obs<-terra::rast(high_res_file)
+high_res_file <- system.file("extdata/wc2.1_5m_bio_1_sea.tif",
+                             package = "pastclim")
+high_res_obs <- terra::rast(high_res_file)
 plot(high_res_obs)
 ```
 
@@ -91,7 +92,8 @@ relief_rast <- pastclim:::download_relief(high_res_obs)
 ```
 
 ```{r eval=FALSE, results="hide",echo=FALSE}
-relief_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",package="pastclim")
+relief_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",
+                           package = "pastclim")
 relief_rast <- terra::rast(relief_file)
 ```
 
@@ -122,19 +124,21 @@ We can now compute a delta raster and use it to downscale the model
 reconstructions:
 
 ```{r}
-delta_rast<-pastclim:::delta_compute(x=model_rast, ref_time = 0, obs = high_res_obs)
-model_downscaled <- pastclim:::delta_downscale (x = model_rast, delta_rast = delta_rast,
-                                 x_landmask_high = high_res_mask)
+delta_rast<-pastclim:::delta_compute(x=model_rast, ref_time = 0, 
+                                     obs = high_res_obs)
+model_downscaled <- pastclim:::delta_downscale (x = model_rast, 
+                                                delta_rast = delta_rast,
+                                                x_landmask_high = high_res_mask)
 model_downscaled
 ```
 
 Let's inspect the resulting data:
 ```{r, fig.width=6, fig.height=5}
-plot(model_downscaled, main=time_bp(model_downscaled))
+plot(model_downscaled, main = time_bp(model_downscaled))
 ```
 
 And, as a reminder, the original reconstructions (note that the colour scales are not
 the same! `terra` chooses a scale for each time step based on the time specific range):
 ```{r, fig.width=6, fig.height=5}
-plot(model_rast, main=time_bp(model_rast))
+plot(model_rast, main = time_bp(model_rast))
 ```
