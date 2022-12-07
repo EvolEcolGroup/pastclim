@@ -55,9 +55,13 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
       add(land_mask)<-sea_patches
     }
   }
-  # TODO work around problem in terra (fixed in dev)
-  #terra::time(land_mask, tstep="years") <- (time_bp+1950)
-  terra::time(land_mask, tstep="") <- (time_bp+1950)
+  # work around problem in terra defining time units for negative values 
+  # (fixed in dev after 1.6.47)
+  if (utils::packageVersion("terra")<"1.6.48"){
+    terra::time(land_mask, tstep="") <- (time_bp+1950)
+  } else {
+    terra::time(land_mask, tstep="years") <- (time_bp+1950)
+  }
   return(land_mask)
   
 }
