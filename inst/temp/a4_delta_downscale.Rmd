@@ -65,45 +65,59 @@ plot(high_res_obs)
 ```
 
 We need to make sure that the extent of the modern observations is the same as the
-extent of the model reconstructions
+extent of the model reconstructions:
+
 ```{r}
 ext(high_res_obs)==ext(model_rast)
 ```
 
 If that was not the case, we would use `terra::crop` to match the extents.
-We also need a high resolution topographic/bathymetric map to reconstruct past
-coastlines following sea level change:
+
+We also need a high resolution global relief map (i.e. integrating both 
+topographic and bathymetric values) to reconstruct past
+coastlines following sea level change. We will use an upscaled version of the
+ETOPO1 dataset (upscaled to 5 min resolution to keep the file smaller):
+
 ```{r}
 topo_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",package="pastclim")
 topo_rast <- terra::rast(topo_file)
 ```
 
-This raster also needs to have the same extent as the model reconstructions:
+This raster also needs to have the same extent as the model reconstructions,
+as well as the same resolution of the high resolution climate observations:
+
 ```{r}
-ext(topo_rast)==ext(model_rast)
+ext(topo_rast) == ext(model_rast)
+
+ext(topo_rast) == ext(high_res_obs)
+ncol(topo_rast) == ncol(high_res_obs)
+nrow(topo_rast) == nrow(high_res_obs)
 ```
 
 #TEMPORARY UNTIL THIS FUNCTIONS ARE INTEGRATED INTO PASTCLIM
-We now need to load the draft functions for downscaling:
-```{r}
-source(system.file("/temp/_delta_downscale_3.R",package="pastclim"))
-```
 
+Note that we will use the draft functions for downscaling, which can be accessed
+by usign the prefix `pastclim:::`. The `:::` access internal functions. You will
+also get a message reminding you that these functions are not final and thus
+should not be used for real analysis.
 
 We can now generate a high resolution land mask for the periods of interest. By
 default, we use the sea level reconstructions from Spratt et al 2016, but a different
 reference can be used by setting sea levels for each time step (see the man page
 for `make_land_mask` for details):
+
 ```{r, fig.width=6, fig.height=5}
-high_res_mask <- make_land_mask(topo_rast = topo_rast, 
+high_res_mask <- pastclim:::make_land_mask(topo_rast = topo_rast, 
                                 time_bp = time_bp(model_rast))
 plot(high_res_mask, main=time_bp(high_res_mask))
 ```
 
-We can now compute a delta raster and use it to downscale the model reconstructions:
+We can now compute a delta raster and use it to downscale the model
+reconstructions:
+
 ```{r}
-delta_rast<-delta_compute(x=model_rast, ref_time = 0, obs = high_res_obs)
-model_downscaled <- delta_downscale (x = model_rast, delta_rast = delta_rast,
+delta_rast<-pastclim:::delta_compute(x=model_rast, ref_time = 0, obs = high_res_obs)
+model_downscaled <- pastclim:::delta_downscale (x = model_rast, delta_rast = delta_rast,
                                  x_landmask_high = high_res_mask)
 model_downscaled
 ```

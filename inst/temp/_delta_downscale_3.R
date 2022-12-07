@@ -150,19 +150,7 @@ make_land_mask <- function(topo_rast, time_bp, sea_level = NULL) {
   
 }
 
-#' Create a binary mask
-#'
-#' Create a binary mask where NAs are 0 and values are 1
-#'
-#' @param x a \code{terra::SpatRaster}
-#'
-#' @keywords internal
 
-make_binary_mask <- function (x){
-  x[!is.na(x)]<-1
-  x[is.na(x)]<-0
-  return(x)
-}
 
 #' Interpolate x to match mask y
 #'

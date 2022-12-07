@@ -27,6 +27,7 @@ Depends:
   R (>= 4.0.0)
 Imports:
   curl,
+  gstat,
   ncdf4,
   terra (>= 1.6.41),
   utils
