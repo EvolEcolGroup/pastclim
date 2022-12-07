@@ -17,6 +17,12 @@ knitr::opts_chunk$set(
 
 # THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
 
+Note that we will use the draft functions for downscaling, which can be accessed
+by usign the prefix `pastclim:::`. The `:::` access internal functions. You will
+also get a message reminding you that these functions are not final and thus
+should not be used for real analysis.
+
+
 ## Downscaling a dataset in pastclim `pastclim`
 
 The `terra` package can downscale reconstructions using a bilinear method. Other `R`
@@ -56,7 +62,7 @@ We can see how that the reconstructions are rather coarse (the Example dataset
 uses 1x1 degree cells). We now need a set of
 high resolutions observations for the variable of interest that we will use to 
 generate the delta raster used to downscale reconstructions. We will use data from
-worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
+Worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
 equally suitable).
 ```{r, fig.width=4, fig.height=4}
 high_res_file <- system.file("extdata/wc2.1_5m_bio_1_sea.tif",package="pastclim")
@@ -75,31 +81,31 @@ If that was not the case, we would use `terra::crop` to match the extents.
 
 We also need a high resolution global relief map (i.e. integrating both 
 topographic and bathymetric values) to reconstruct past
-coastlines following sea level change. We will use an upscaled version of the
-ETOPO1 dataset (upscaled to 5 min resolution to keep the file smaller):
+coastlines following sea level change. The relief raster will need to have
+the same extent and resolution as the high resolution observations. We
+can download one (based on ETOPO2022) with:
 
 ```{r}
-topo_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",package="pastclim")
-topo_rast <- terra::rast(topo_file)
+relief_rast <- pastclim:::download_relief(high_res_obs)
+
 ```
 
-This raster also needs to have the same extent as the model reconstructions,
+```{r eval=FALSE, results="hide",echo=FALSE}
+relief_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",package="pastclim")
+relief_rast <- terra::rast(relief_file)
+```
+
+We can quickly confirm that the resulting relief raster has the same extent 
+as the model reconstructions,
 as well as the same resolution of the high resolution climate observations:
 
 ```{r}
-ext(topo_rast) == ext(model_rast)
+ext(relief_rast) == ext(model_rast)
 
-ext(topo_rast) == ext(high_res_obs)
-ncol(topo_rast) == ncol(high_res_obs)
-nrow(topo_rast) == nrow(high_res_obs)
+ext(relief_rast) == ext(high_res_obs)
+ncol(relief_rast) == ncol(high_res_obs)
+nrow(relief_rast) == nrow(high_res_obs)
 ```
-
-#TEMPORARY UNTIL THIS FUNCTIONS ARE INTEGRATED INTO PASTCLIM
-
-Note that we will use the draft functions for downscaling, which can be accessed
-by usign the prefix `pastclim:::`. The `:::` access internal functions. You will
-also get a message reminding you that these functions are not final and thus
-should not be used for real analysis.
 
 We can now generate a high resolution land mask for the periods of interest. By
 default, we use the sea level reconstructions from Spratt et al 2016, but a different
@@ -107,7 +113,7 @@ reference can be used by setting sea levels for each time step (see the man page
 for `make_land_mask` for details):
 
 ```{r, fig.width=6, fig.height=5}
-high_res_mask <- pastclim:::make_land_mask(topo_rast = topo_rast, 
+high_res_mask <- pastclim:::make_land_mask(relief_rast = relief_rast, 
                                 time_bp = time_bp(model_rast))
 plot(high_res_mask, main=time_bp(high_res_mask))
 ```

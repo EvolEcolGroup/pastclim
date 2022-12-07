@@ -4,10 +4,10 @@
 \alias{make_land_mask}
 \title{Create a land mask}
 \usage{
-make_land_mask(topo_rast, time_bp, sea_level = NULL)
+make_land_mask(relief_rast, time_bp, sea_level = NULL)
 }
 \arguments{
-\item{topo_rast}{a \code{terra::SpatRaster} with topography}
+\item{relief_rast}{a \code{terra::SpatRaster} with relief}
 
 \item{time_bp}{the time of interest}
 
@@ -20,7 +20,8 @@ layers are different times
 }
 \description{
 Create a land mask for a given time step. The land mask is based on the simple
-logic of moving the ocean up and down given the current topography/bathymetry.
+logic of moving the ocean up and down given the current relief profile (
+topography+bathymetry, i.e. the elevation both above and below sea level).
 Note that this approach ignores any rebound due to changing mass and distribution of
 icesheets. The landmask will show internal lakes/seas as land, as their level
 is unrelated to the general sea level. If you have specific reconstructions

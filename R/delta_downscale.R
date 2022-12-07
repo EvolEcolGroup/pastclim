@@ -29,8 +29,8 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL) {
     stop("x and delta_rast don't have the same extent")
   }
   if (!is.null(x_landmask_high)){
-    if (!all((terra::ncol(delta_rast)!=terra::ncol(x_landmask_high)),
-             (terra::nrow(delta_rast)!=terra::nrow(x_landmask_high)))){
+    if (!all((terra::ncol(delta_rast)==terra::ncol(x_landmask_high)),
+             (terra::nrow(delta_rast)==terra::nrow(x_landmask_high)))){
       stop("delta_rast and x_landmask_high should have the same number of rows\n",
            "and columns")
     }

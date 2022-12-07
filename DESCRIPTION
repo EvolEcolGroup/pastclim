@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Palaeoclimate Reconstructions 
-Version: 1.2.2
+Version: 1.2.2.9000
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -34,8 +34,9 @@ Imports:
 Suggests: 
   rmarkdown,
   knitr,
-  sf,
+  marmap,
   ggplot2,
+  sf,
   testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
