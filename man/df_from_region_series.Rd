@@ -2,7 +2,9 @@
 % Please edit documentation in R/df_from_region_series.R
 \name{df_from_region_series}
 \alias{df_from_region_series}
-\title{Extract data frame from a region series}
+\title{Extract data frame from a region series
+Extract the climatic information from a region series and organise them as
+a data frame.}
 \usage{
 df_from_region_series(x, xy = TRUE)
 }
@@ -17,9 +19,5 @@ a data.frame where each cell each raster layer (i.e. timestep) is a
 row, and the available variables are columns.
 }
 \description{
-Extract the climatic information from a region series and organise them as
-a data frame.
-}
-\details{
 To extract a data frame from a region slice, see \code{df_from_region_slice}.
 }

@@ -28,6 +28,7 @@ Depends:
 Imports:
   curl,
   gstat,
+  methods,
   ncdf4,
   terra (>= 1.6.41),
   utils
