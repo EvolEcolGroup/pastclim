@@ -5,6 +5,7 @@
 \alias{bioclim_vars}
 \alias{bioclim_vars,numeric,numeric-method}
 \alias{bioclim_vars,SpatRaster,SpatRaster-method}
+\alias{bioclim_vars,SpatRasterDataset,SpatRasterDataset-method}
 \alias{bioclim_vars,matrix,matrix-method}
 \title{Compute the BIOCLIM variables}
 \usage{
@@ -13,6 +14,8 @@ bioclim_vars(prec, tavg, ...)
 \S4method{bioclim_vars}{numeric,numeric}(prec, tavg)
 
 \S4method{bioclim_vars}{SpatRaster,SpatRaster}(prec, tavg, filename = "", ...)
+
+\S4method{bioclim_vars}{SpatRasterDataset,SpatRasterDataset}(prec, tavg, filename = "", ...)
 
 \S4method{bioclim_vars}{matrix,matrix}(prec, tavg)
 }
@@ -39,6 +42,8 @@ but for many paleoclimatic reconstructions one average temperature is
 avaliable. Most variables, with the exception of BIO02 and BIO03, can
 be rephrased meaningfully in terms of mean temperature. 
 This function is a modified version of \code{predicts::bcvars}.
+}
+\details{
 The variables are:
 BIO01 = Annual Mean Temperature
 BIO04 = Temperature Seasonality (standard deviation *100)
@@ -57,8 +62,7 @@ BIO16 = Precipitation of Wettest Quarter
 BIO17 = Precipitation of Driest Quarter
 BIO18 = Precipitation of Warmest Quarter
 BIO19 = Precipitation of Coldest Quarter
-}
-\details{
+
 These summary Bioclimatic variables are after:
 Nix, 1986. A biogeographic analysis of Australian elapid snakes. In: R. Longmore (ed.).
     Atlas of elapid snakes of Australia. Australian Flora and Fauna Series 7.

@@ -30,11 +30,45 @@ sea_ext<- terra::ext(100, 110, 0, 10)
 # crop the observations for this extent
 high_res_tavg <- terra::crop(wc_tavg_5, sea_ext)
 high_res_prec <- terra::crop(wc_prec_5, sea_ext)
-
+# check that we can compute bioclim variables for the present
 bioclim_pres <- bioclim_vars(tavg = high_res_tavg, prec = high_res_prec)
-
+# Get timeseries (only for a limited number of time steps, equivalent to the Example dataset)
 tavg_series <- region_series(bio_variables = c(paste0("temperature_0",1:9),paste0("temperature_",10:12)),
                              time_bp =  get_time_steps(dataset = "Example"),
                              dataset = "Beyer2020",
                               ext = sea_ext)
 
+prec_series <- region_series(bio_variables = c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12)),
+                             time_bp =  get_time_steps(dataset = "Example"),
+                             dataset = "Beyer2020",
+                             ext = sea_ext)
+# now get the relief data and create landmasks
+relief_rast <- pastclim:::download_relief(high_res_tavg)
+high_res_mask <- pastclim:::make_land_mask(relief_rast = relief_rast, 
+                                           time_bp = time_bp(model_rast))
+# now we need to downscale the two series of monthly variables
+# we will have to downscale one month at a time, put all the months into
+# a list, and then combine them into a SpatRasterDataset
+# start with temperature
+tavg_downscaled_list<-list()
+for (i in 1:12){
+  delta_rast<-pastclim:::delta_compute(x=tavg_series[[i]], ref_time = 0, 
+                                       obs = high_res_tavg[[i]])
+  tavg_downscaled_list[[i]] <- pastclim:::delta_downscale (x = tavg_series[[i]], 
+                                                  delta_rast = delta_rast,
+                                                  x_landmask_high = high_res_mask)
+}
+tavg_downscaled <- terra::sds(tavg_downscaled_list)
+
+prec_downscaled_list<-list()
+for (i in 1:12){
+  delta_rast<-pastclim:::delta_compute(x=prec_series[[i]], ref_time = 0, 
+                                       obs = high_res_prec[[i]])
+  prec_downscaled_list[[i]] <- pastclim:::delta_downscale (x = prec_series[[i]], 
+                                                           delta_rast = delta_rast,
+                                                           x_landmask_high = high_res_mask)
+}
+prec_downscaled <- terra::sds(prec_downscaled_list)
+
+# now create the biovariables
+bioclim_downscaled<-bioclim_vars(tavg =tavg_downscaled, prec = prec_downscaled)

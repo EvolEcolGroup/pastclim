@@ -26,6 +26,9 @@ delta_compute <- function(x, ref_time, obs) {
     stop("ref_time should be a time in x")
   }
   x_modern<-x[[ref_index]]
+  if (terra::nlyr(obs)>1){
+    stop("obs should only contain one layer of observations")
+  }
   if (terra::ext(obs)!=terra::ext(x_modern)){
     stop("x_modern and high_res_obs don't have the same extent")
   }

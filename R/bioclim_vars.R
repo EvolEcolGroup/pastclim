@@ -7,6 +7,8 @@
 #' avaliable. Most variables, with the exception of BIO02 and BIO03, can
 #' be rephrased meaningfully in terms of mean temperature. 
 #' This function is a modified version of \code{predicts::bcvars}.
+#' 
+#' 
 #' The variables are:
 #' BIO01 = Annual Mean Temperature
 #' BIO04 = Temperature Seasonality (standard deviation *100)
@@ -88,6 +90,40 @@ methods::setMethod("bioclim_vars", signature(prec="SpatRaster", tavg="SpatRaster
 )
 
 
+#' @param filename filename where the raster can be stored.
+#' @rdname bioclim_vars-methods
+#' @export
+methods::setMethod("bioclim_vars", signature(prec="SpatRasterDataset", tavg="SpatRasterDataset"), 
+                   function(prec, tavg, filename="", ...) {
+         if (!all(is_region_series(prec),is_region_series(tavg))){
+           "prec and tavg should be generated with region_series"
+         }
+          if (!all((nlyr(prec)[1]==nlyr(tavg)[1]),
+              (time_bp(prec[[1]])==time_bp(tavg[[1]])))){
+            stop("prec and tavg should have the same time steps")
+          }
+          time_slices <- time_bp(prec[[1]])
+          # loop over the time slices
+          for (i in 1:length(time_slices)){
+            #browser()
+            prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
+            tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
+            biovars_slice<-bioclim_vars(prec_slice, tavg_slice)
+            # TODO add years as time step when terra is fixed
+            time(biovars_slice)<-rep(time_slices[i],terra::nlyr(biovars_slice))
+            if (i==1){
+              biovars_list<-split(biovars_slice, f=1:17)
+            } else {
+            for (x in 1:(terra::nlyr(biovars_slice))){
+              biovars_list[[x]] <- c(biovars_list[[x]], biovars_slice[[x]])
+            }
+            }
+          }
+          # return the variables as a SpatRasterDataset
+          return(terra::sds(biovars_list))
+})
+                     
+                     
 #' @rdname bioclim_vars-methods
 #' @export
 methods::setMethod("bioclim_vars", signature(prec="matrix", tavg="matrix"), 
