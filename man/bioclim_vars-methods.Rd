@@ -20,19 +20,16 @@ bioclim_vars(prec, tavg, ...)
 \S4method{bioclim_vars}{matrix,matrix}(prec, tavg)
 }
 \arguments{
-\item{prec}{monthly precipitation, as a matrix or 
-a \code{terra::SpatRaster}}
+\item{prec}{monthly precipitation}
 
-\item{tavg}{monthly average temperatures, as a matrix or 
-a \code{terra::SpatRaster}}
+\item{tavg}{monthly average temperatures}
 
 \item{...}{additional variables for specific methods}
 
 \item{filename}{filename where the raster can be stored.}
 }
 \value{
-an array or a \code{terra::SpatRaster} where each layer 
-is a bioclim variable
+the bioclim variables
 }
 \description{
 To compute BIOCLIM variables from 

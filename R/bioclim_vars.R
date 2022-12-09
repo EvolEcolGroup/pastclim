@@ -3,11 +3,10 @@
 #' To compute BIOCLIM variables from 
 #' monthly average temperature and precipitation data. For modern data,
 #' this variables are generally computed using min and maximum temperature,
-#' but for many paleoclimatic reconstructions one average temperature is
+#' but for many paleoclimatic reconstructions only average temperature is
 #' avaliable. Most variables, with the exception of BIO02 and BIO03, can
 #' be rephrased meaningfully in terms of mean temperature. 
 #' This function is a modified version of \code{predicts::bcvars}.
-#' 
 #' 
 #' The variables are:
 #' BIO01 = Annual Mean Temperature
@@ -36,13 +35,10 @@
 # and Expanded following the ANUCLIM manual
 #'
 #'
-#' @param tavg monthly average temperatures, as a matrix or 
-#' a \code{terra::SpatRaster} 
-#' @param prec monthly precipitation, as a matrix or 
-#' a \code{terra::SpatRaster} 
+#' @param tavg monthly average temperatures
+#' @param prec monthly precipitation
 #' @param ... additional variables for specific methods
-#' @returns an array or a \code{terra::SpatRaster} where each layer 
-#' is a bioclim variable
+#' @returns the bioclim variables
 #' @docType methods
 #' @rdname bioclim_vars-methods
 #' @importFrom methods setGeneric
@@ -105,7 +101,6 @@ methods::setMethod("bioclim_vars", signature(prec="SpatRasterDataset", tavg="Spa
           time_slices <- time_bp(prec[[1]])
           # loop over the time slices
           for (i in 1:length(time_slices)){
-            #browser()
             prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
             tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
             biovars_slice<-bioclim_vars(prec_slice, tavg_slice)
