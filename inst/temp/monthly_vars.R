@@ -2,7 +2,7 @@
 # worldclim_tile("tavg",lon=0,lat=52,path=tempdir())
 # to only get part of the world
 
-path_wc <- "../../project_temp/climate_downscale/worldclim_monthly"
+base_path_wc <- "../../project_temp/climate_downscale/worldclim_monthly"
 wc_res <- 5 # one of 10,5,2.5,0.5 minutes
 
 library(geodata)
@@ -26,7 +26,7 @@ if (!file.exists(file.path(base_path_wc,"wc_prec_5_monthly.nc"))){
 }
 
 # now set the extent for SEA
-sea_ext<- terra::ext(100, 110, 0, 10)
+sea_ext<- terra::ext(110, 120, -5, 5)
 # crop the observations for this extent
 high_res_tavg <- terra::crop(wc_tavg_5, sea_ext)
 high_res_prec <- terra::crop(wc_prec_5, sea_ext)
@@ -45,7 +45,7 @@ prec_series <- region_series(bio_variables = c(paste0("precipitation_0",1:9),pas
 # now get the relief data and create landmasks
 relief_rast <- pastclim:::download_relief(high_res_tavg)
 high_res_mask <- pastclim:::make_land_mask(relief_rast = relief_rast, 
-                                           time_bp = time_bp(model_rast))
+                                           time_bp = get_time_steps(dataset = "Example"))
 # now we need to downscale the two series of monthly variables
 # we will have to downscale one month at a time, put all the months into
 # a list, and then combine them into a SpatRasterDataset
@@ -72,3 +72,15 @@ prec_downscaled <- terra::sds(prec_downscaled_list)
 
 # now create the biovariables
 bioclim_downscaled<-bioclim_vars(tavg =tavg_downscaled, prec = prec_downscaled)
+
+
+## write some files for a future vignette
+# terra::writeCDF(tavg_series,file.path(path_wc,"tavg_series.nc"),compression=9)
+# terra::writeCDF(prec_series,file.path(path_wc,"prec_series.nc"),compression=9)
+# terra::writeCDF(relief_rast,file.path(path_wc,"relief.nc"),compression=9)
+# terra::writeCDF(high_res_tavg,file.path(path_wc,"high_res_tavg.nc"),compression=9)
+# terra::writeCDF(high_res_prec,file.path(path_wc,"high_res_prec.nc"),compression=9)
+
+# suggested range for a vignette:
+#sea_ext<- terra::ext(110, 120, -5, 5)
+
