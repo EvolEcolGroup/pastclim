@@ -78,11 +78,19 @@ We can see how that the reconstructions are rather coarse (the Beyer2020 dataset
 uses 0.5x0.5 degree cells). We now need a set of
 high resolutions observations for the variable of interest that we will use to 
 generate the delta raster used to downscale reconstructions. We will use data from
-Worldclim2 at 5 minute resolution (but other datasets such as CHELSA would be
-equally suitable).
+WorldClim2 at 10 minute resolution (but other datasets such as CHELSA would be
+equally suitable). For WorldClim, there are some convenient functions to download
+and then load variables:
+```{r}
+pastclim:::download_worldclim("tavg",10)
+```
+Once the variable is downloaded, we can load it at any time with:
+```{r}
+tavg_obs_hres_series <- pastclim:::load_worldclim("tavg",10)
+```
+
+We want to crop these reconstructions to the extent of interest
 ```{r, fig.width=4, fig.height=4}
-high_res_file <- "../../../../project_temp/climate_downscale/worldclim_monthly/wc_tavg_5_monthly.nc"
-tavg_obs_hres_series <- terra::rast(high_res_file)
 tavg_obs_hres_series <- terra::crop(tavg_obs_hres_series, sea_ext)
 # extract the january raster
 tavg_obs_hres_rast <- tavg_obs_hres_series[[1]]
@@ -196,8 +204,8 @@ prec_series <- region_series(bio_variables = prec_vars,
 
 Get some high resolution observations:
 ```{r, fig.width=4, fig.height=4}
-high_res_file <- "../../../../project_temp/climate_downscale/worldclim_monthly/wc_prec_5_monthly.nc"
-prec_obs_hres_series <- terra::rast(high_res_file)
+pastclim:::download_worldclim("prec",10)
+prec_obs_hres_series <- pastclim:::load_worldclim("prec",10)
 prec_obs_hres_series <- terra::crop(prec_obs_hres_series, sea_ext)
 # extract the january raster
 prec_obs_hres_rast <- prec_obs_hres_series[[1]]
