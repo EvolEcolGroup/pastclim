@@ -50,16 +50,19 @@ sea_ext<- terra::ext(110, 120, -5, 5)
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
 time_steps <- get_time_steps(dataset = "Example")
 ```
-The series for this region could be generated with the following command:
-```{r}
+The series for this region can be generated with the following command (note
+that you will need the appropriate variables for the Beyer2020 dataset downloaded
+on your computer, use `download_dataset` if needed):
+```{r eval=FALSE}
 tavg_series <- region_series(bio_variables =tavg_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
                               ext = sea_ext)
 ```
-In this vignette, we will fetch pre-generated series stored in the package
-```{r}
-#fetch the data
+
+```{r echo=FALSE, results="hide"}
+tavg_series <- terra::sds(system.file("extdata/delta/tavg_series.nc",
+                                       package="pastclim"))
 
 ```
 
@@ -81,19 +84,25 @@ generate the delta raster used to downscale reconstructions. We will use data fr
 WorldClim2 at 10 minute resolution (but other datasets such as CHELSA would be
 equally suitable). For WorldClim, there are some convenient functions to download
 and then load variables:
-```{r}
+```{r eval=FALSE}
 pastclim:::download_worldclim("tavg",10)
 ```
 Once the variable is downloaded, we can load it at any time with:
-```{r}
-tavg_obs_hres_series <- pastclim:::load_worldclim("tavg",10)
+```{r eval=FALSE}
+tavg_obs_hres_all<- pastclim:::load_worldclim("tavg",10)
 ```
+
+```{r echo=FALSE, results="hide"}
+tavg_obs_hres_all<- terra::rast(system.file("extdata/delta/tavg_obs_hres_all.nc",
+                                            package="pastclim"))
+```
+
 
 We want to crop these reconstructions to the extent of interest
 ```{r, fig.width=4, fig.height=4}
-tavg_obs_hres_series <- terra::crop(tavg_obs_hres_series, sea_ext)
+tavg_obs_hres_all <- terra::crop(tavg_obs_hres_all, sea_ext)
 # extract the january raster
-tavg_obs_hres_rast <- tavg_obs_hres_series[[1]]
+tavg_obs_hres_rast <- tavg_obs_hres_all[[1]]
 plot(tavg_obs_hres_rast)
 ```
 
@@ -112,15 +121,14 @@ coastlines following sea level change. The relief raster will need to have
 the same extent and resolution as the high resolution observations. We
 can download one (based on ETOPO2022) with:
 
-```{r}
+```{r eval=FALSE}
 relief_rast <- pastclim:::download_relief(tavg_obs_hres_rast)
 
 ```
 
-```{r eval=FALSE, results="hide",echo=FALSE}
-relief_file <- system.file("extdata/ETOPO1_Ice_c_gmt4_5min_sea.tif",
-                           package = "pastclim")
-relief_rast <- terra::rast(relief_file)
+```{r echo=FALSE, results="hide"}
+relief_rast <- terra::rast(system.file("extdata/delta/relief.nc",
+                                       package="pastclim"))
 ```
 
 We can quickly confirm that the resulting relief raster has the same extent 
@@ -194,7 +202,7 @@ tavg_downscaled
 As expected, we have 12 months (subdatasets), each with 5 time steps.
 
 We now need to create a series for precipitation:
-```{r}
+```{r eval=FALSE}
 prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
 prec_series <- region_series(bio_variables = prec_vars,
                              time_bp =  time_steps,
@@ -202,14 +210,24 @@ prec_series <- region_series(bio_variables = prec_vars,
                              ext = sea_ext)
 ```
 
+```{r echo=FALSE, results="hide"}
+prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
+prec_series <- terra::sds(system.file("extdata/delta/prec_series.nc",
+                           package="pastclim"))
+
+```
+
 Get some high resolution observations:
-```{r, fig.width=4, fig.height=4}
+```{r, eval=FALSE}
 pastclim:::download_worldclim("prec",10)
-prec_obs_hres_series <- pastclim:::load_worldclim("prec",10)
-prec_obs_hres_series <- terra::crop(prec_obs_hres_series, sea_ext)
-# extract the january raster
-prec_obs_hres_rast <- prec_obs_hres_series[[1]]
-plot(prec_obs_hres_rast)
+prec_obs_hres_all <- pastclim:::load_worldclim("prec",10)
+prec_obs_hres_all <- terra::crop(prec_obs_hres_all, sea_ext)
+```
+
+```{r echo=FALSE, results="hide"}
+prec_obs_hres_all <-terra::rast(system.file("extdata/delta/prec_obs_hres_all.nc",
+                                            package="pastclim"))
+
 ```
 
 And finally downscale precipitation:
