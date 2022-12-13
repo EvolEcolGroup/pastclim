@@ -16,6 +16,9 @@ reconstructions.}
 \item{details}{boolean determining whether the output should include information
 including long names of variables and their units}
 }
+\value{
+a vector of variable names
+}
 \description{
 This function lists the variables available for a given dataset. Note that
 the spelling and use of capitals in names might differ from the original

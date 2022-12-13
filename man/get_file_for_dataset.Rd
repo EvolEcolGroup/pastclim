@@ -13,6 +13,9 @@ get_file_for_dataset(variable, dataset)
 values can be obtained with \code{get_available_datasets}). This function
 will not work on custom datasets.}
 }
+\value{
+the filename for taht variable and dataset
+}
 \description{
 Internal getter function
 }

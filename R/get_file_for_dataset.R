@@ -6,6 +6,7 @@
 #' @param dataset string defining dataset to be downloaded (a list of possible
 #' values can be obtained with \code{get_available_datasets}). This function
 #' will not work on custom datasets.
+#' @returns the filename for taht variable and dataset
 
 get_file_for_dataset <- function(variable, dataset) {
   check_available_variable(variable, dataset)

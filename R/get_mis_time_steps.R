@@ -10,6 +10,7 @@
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
+#' @returns a vector of time steps
 #'
 #' @export
 
