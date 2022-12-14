@@ -4,18 +4,20 @@ This file provides an overview of the scripts used to generate the data used in 
 
 1. `dataset_list_included.R` is a script to update the internal dataframe which stores the link between variable names and file names and locations. It is based on `./data_files/dataset_list_included.csv`.
 
-2. `creat_mis_boundaries.R` create internal dataset of mis boundaries.
+2. `mis_boundaries.R` create internal dataset of mis boundaries.
 
-3. `create_region_extent.R` create internal dataset of regional extents.
+3. `region_extent.R` create internal dataset of regional extents.
 
-4. `create_region_outlines.R` create outlines for regions
+4. `region_outlines.R` create outlines for regions.
 
-## helpful scripts (this should be turned into tests)
+## helpful scripts (this should be turned into tests) - stored under ./helper_functions/
 
 1. `verify_completeness_of_variables.R` this script is used to check that all
 variables have the same extent (same number of missing values).
 
-2. `verify_files_by_dataset_R` script to check files paths for a given dataset
+2. `verify_files_by_dataset_R` script to check files paths for a given dataset.
+
+3. `check_returns_in_documentation.R` script to check that all .Rd files are have a /value returned.
 
 NOTE: these scripts were used with terra <1.6-41, which changed the way time
 is coded. Make sure that you check the scripts before running, as they might not
