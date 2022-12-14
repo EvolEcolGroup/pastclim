@@ -37,7 +37,7 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL) {
   }
 
   # downscale x with bilinear
-  x_high <- disagg(x, fact = terra::res( x)/terra::res(delta_rast),
+  x_high <- disagg(x, fact = round(terra::res( x)/terra::res(delta_rast)),
                    method="bilinear")
   
   # apply the delta_rast to x

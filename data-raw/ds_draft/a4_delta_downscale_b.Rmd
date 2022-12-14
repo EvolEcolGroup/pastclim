@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
 
 Note that we will use the draft functions for downscaling, which can be accessed
-by usign the prefix `pastclim:::`. The `:::` access internal functions. You will
+by using the prefix `pastclim:::`. The `:::` accesses internal functions. You will
 also get a message reminding you that these functions are not final and thus
 should not be used for real analysis.
 
@@ -187,7 +187,7 @@ a list, and finally conver the list into a `SpatRasterDataset`
 tavg_downscaled_list<-list()
 for (i in 1:12){
   delta_rast<-pastclim:::delta_compute(x=tavg_series[[i]], ref_time = 0, 
-                                       obs = tavg_obs_hres_series[[i]])
+                                       obs = tavg_obs_hres_all[[i]])
   tavg_downscaled_list[[i]] <- pastclim:::delta_downscale (x = tavg_series[[i]], 
                                                   delta_rast = delta_rast,
                                                   x_landmask_high = high_res_mask)
@@ -235,7 +235,7 @@ And finally downscale precipitation:
 prec_downscaled_list<-list()
 for (i in 1:12){
   delta_rast<-pastclim:::delta_compute(x=prec_series[[i]], ref_time = 0, 
-                                       obs = prec_obs_hres_series[[i]])
+                                       obs = prec_obs_hres_all[[i]])
   prec_downscaled_list[[i]] <- pastclim:::delta_downscale (x = prec_series[[i]], 
                                                   delta_rast = delta_rast,
                                                   x_landmask_high = high_res_mask)

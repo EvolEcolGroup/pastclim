@@ -1,10 +1,11 @@
 # script to generate files for delta downscaling vignette
 library(terra)
 library(pastclim)
-if (!dir.exists("../extdata")){
+delta_dir <- "../../inst/extdata/delta/"
+if (!dir.exists(delta_dir)){
 stop("your working directory was not set in the directory of this script")
 }
-delta_dir <- "../extdata/delta"
+
 dir.create(delta_dir,showWarnings = FALSE)
 sea_ext<- terra::ext(110, 120, -5, 5)
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))

@@ -34,13 +34,13 @@ delta_compute <- function(x, ref_time, obs) {
   }
   # disaggregate the x_modern SpatRaster to the resolution of
   # the high res with "bilinear" interpolation
-  x_modern_high<-disagg(x_modern, fact = terra::res( x_modern)/terra::res(obs),
+  x_modern_high<-disagg(x_modern, fact = round(terra::res( x_modern)/terra::res(obs)),
                         method="bilinear")
   # compute anomalies against the modern
   delta <- obs - x_modern_high
   # mask for maximum land extent
   max_land <- max(x,na.rm=TRUE)
-  max_land <- disagg(max_land, fact = terra::res( x)/terra::res(obs),
+  max_land <- disagg(max_land, fact = round(terra::res( x)/terra::res(obs)),
                      method="near")
   delta_interp <- idw_interp(delta,max_land)
   return(delta_interp)

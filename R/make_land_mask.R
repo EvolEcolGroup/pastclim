@@ -57,9 +57,8 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
     }
   }
   # work around problem of old terra failing to set time units for negative values 
-  # (fixed in dev after 1.6.47)
-  browser()
-  if (utils::packageVersion("terra")<"1.6.48"){
+  # (fixed in dev in 1.6.49)
+  if (utils::packageVersion("terra")<"1.6.49"){
     terra::time(land_mask, tstep="") <- (time_bp+1950)
   } else {
     terra::time(land_mask, tstep="years") <- (time_bp+1950)
