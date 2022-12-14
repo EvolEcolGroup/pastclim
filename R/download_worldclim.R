@@ -25,7 +25,7 @@ download_worldclim <- function(var, res, path=NULL, version="2.1", ...) {
 
   if(!requireNamespace("geodata", quietly=TRUE)){
     message("This function requires the 'geodata' package; install it with:\n",
-            "install.packages('marmap')")
+            "install.packages('geodata')")
     return(invisible())
   }
   if (is.null(path)){
