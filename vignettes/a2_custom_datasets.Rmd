@@ -35,6 +35,10 @@ list_of_tiffs <- file.path(tiffs_path,dir(tiffs_path))
 bio01 <- terra::rast(list_of_tiffs)
 ```
 
+*NOTE: `terra` has changed the way it handles time when reading from netcdf. The
+dev version of `terra` can more easily format netcdf files correctly, but this
+vignette presents a number of workarounds needed for the version on CRAN*
+
 Now we need to set the time axis of the raster (in this case, reconstructions are every 100 years), and generate some user friendly names to layers in the raster:
 
 ```{r}

@@ -23,9 +23,7 @@ validate_nc <- function(path_to_nc) {
     ncdf4::nc_close(nc_in)
     stop("the dimension names should be: longitude, latitude and time")
   }
-  # check that variable time has the correct units (not obligatory, but give
-  # a warning)
-#  browser()
+  # check that time has the correct units of 'years since XXXX'
   if (identical(grep(pattern="^years since",nc_in$dim$time$units),integer(0))){
     ncdf4::nc_close(nc_in)
     stop ("the time units should start with 'years since', but this file has\n",
@@ -40,7 +38,7 @@ validate_nc <- function(path_to_nc) {
   }
 
   
-  # check that each dimension has a longname (units could be
+  # check that each variable has a longname (units could be
   # empty for categorical variables or variables that are unitless)
   for (i in names(nc_in$var)){
     if (nchar(nc_in$var[[i]]$longname)==0){
