@@ -1,6 +1,8 @@
 #' Check dataset and path_to_nc params
 #'
-#' Check that the dataset and path_to_nc parameters are valid.
+#' Check that the dataset and path_to_nc parameters are valid. Specifically,
+#' if `path_to_nc` should only be set if `dataset` is `custom` (and conversely,
+#' `custom` datasets require a `path_to_nc`).
 #'
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc".
@@ -8,8 +10,7 @@
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
 #' @returns TRUE if both dataset and path are valid.
-#' @export
-
+#' @keywords internal
 
 check_dataset_path <- function(dataset, path_to_nc) {
   check_available_dataset(dataset = dataset, include_custom = TRUE)
