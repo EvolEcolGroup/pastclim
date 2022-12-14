@@ -1,3 +1,6 @@
+# pastclim 1.2.3
+* Added lai to Krapp2021.
+
 # pastclim 1.2.2
 * Update of Krapp2021 files to make them compatible with how terra now handles
   time. Users will have to redownload datasets. Old files can be removed with
