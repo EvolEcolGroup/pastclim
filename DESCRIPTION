@@ -24,11 +24,11 @@ LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.2.2
 Depends: 
-  R (>= 4.0.0)
+  R (>= 4.0.0),
+  terra (>= 1.6.41)
 Imports:
   curl,
   ncdf4,
-  terra (>= 1.6.41),
   utils
 Suggests: 
   rmarkdown,
