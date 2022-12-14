@@ -8,8 +8,10 @@
 #' 
 #' It is possible to also provide a high resoultion landmask to this function.
 #' For cells which are not included in the original simulation (e.g. because
-#' the landmask was discretised at lower resolution), an idw algorightm is used
-#' to interpolate the missing values. 
+#' the landmask was discretised at lower resolution), an inverse
+#' distance weighted algorithm (as implemented in \code{gstat::gstat}) is used
+#' to interpolate the missing values. See the manpage for \code{gstat::gstat}
+#' for more parameters that can change the behaviour of the iwd interpolation.
 #'
 #' @param x a \code{terra::SpatRaster} for the variable of interest, with all
 #' time steps of interest
@@ -17,12 +19,21 @@
 #' \code{pastclim::delta_compute}
 #' @param x_landmask_high a \code{terra::SpatRaster} with the same number of layers
 #' as x. If left NULL, the original landmask of x is used.
+#' @param nmax the number of nearest observations that should be used for a
+#'  kriging prediction or simulation, where nearest is defined in terms
+#'  of the space of the spatial locations (see \code{gstat::gstat} for details)
+#' @param set named list with optional parameters to be passed to gstat 
+#' (only set commands of gstat are allowed, and not all of them may be
+#' relevant; see the gstat manual for gstat stand-alone, URL and more details
+#' in the \code{gstat::gstat} help page)
+#' @param ... further parameters to be passed to \code{gstat::gstat}
 #' @returns a \code{terra::SpatRaster} of the downscaled variable, where each
 #' layers is a time step.
 #' @keywords internal
 
 
-delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL) {
+delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL,
+                            nmax=7, set=list(idp = .5), ...) {
   message("This function is still under development; do not use it for real analysis")
   # check that extent and resolutions are compatible
   if (terra::ext(delta_rast)!=terra::ext(x)){
@@ -53,7 +64,8 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL) {
     x_high <- mask(x_high,x_landmask_high)
     # fill in any gaps that resulted from this step with idw
     for (i in 1:terra::nlyr(x_high)){
-      x_high[[i]] <- idw_interp(x_high[[i]],x_landmask_high[[i]])
+      x_high[[i]] <- idw_interp(x_high[[i]],x_landmask_high[[i]],
+                                nmax=nmax, set=set, ...)
     }
   }
   

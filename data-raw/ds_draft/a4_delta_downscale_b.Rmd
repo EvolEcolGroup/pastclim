@@ -226,7 +226,7 @@ prec_obs_hres_all <- terra::crop(prec_obs_hres_all, sea_ext)
 
 ```{r echo=FALSE, results="hide"}
 prec_obs_hres_all <-terra::rast(system.file("extdata/delta/prec_obs_hres_all.nc",
-                                            package="pastclim"))
+                                            package = "pastclim"))
 
 ```
 
@@ -245,7 +245,7 @@ prec_downscaled <- terra::sds(prec_downscaled_list)
 
 We are now ready to compute the bioclim variables:
 ```{r}
-bioclim_downscaled<-bioclim_vars(tavg =tavg_downscaled, prec = prec_downscaled)
+bioclim_downscaled<-bioclim_vars(tavg = tavg_downscaled, prec = prec_downscaled)
 ```
 
 Let's inspect the object:
@@ -255,5 +255,5 @@ bioclim_downscaled
 
 And plot the first variable (bio01):
 ```{r}
-plot(bioclim_downscaled[[1]],main=time(bioclim_downscaled[[1]]))
+plot(bioclim_downscaled[[1]], main = time(bioclim_downscaled[[1]]))
 ```

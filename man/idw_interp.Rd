@@ -4,7 +4,7 @@
 \alias{idw_interp}
 \title{Interpolate x to match mask y}
 \usage{
-idw_interp(x, y, ...)
+idw_interp(x, y, nmax = 7, set = list(idp = 0.5), ...)
 }
 \arguments{
 \item{x}{the \code{terra::SpatRaster} of the variable of interest}
@@ -12,7 +12,16 @@ idw_interp(x, y, ...)
 \item{y}{the \code{terra::SpatRaster} the reference mask defining which
 cells should have values}
 
-\item{...}{paramters to be passed to \code{gstat::gstat}}
+\item{nmax}{the number of nearest observations that should be used for a
+kriging prediction or simulation, where nearest is defined in terms
+of the space of the spatial locations (see \code{gstat::gstat} for details)}
+
+\item{set}{named list with optional parameters to be passed to gstat 
+(only set commands of gstat are allowed, and not all of them may be
+relevant; see the gstat manual for gstat stand-alone, URL and more details
+in the \code{gstat::gstat} help page)}
+
+\item{...}{further parameters to be passed to \code{gstat::gstat}}
 }
 \description{
 Fill in x to match cells available in y, using iwd (inverse-weighted

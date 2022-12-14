@@ -4,7 +4,14 @@
 \alias{delta_downscale}
 \title{Downscale using the delta method}
 \usage{
-delta_downscale(x, delta_rast, x_landmask_high = NULL)
+delta_downscale(
+  x,
+  delta_rast,
+  x_landmask_high = NULL,
+  nmax = 7,
+  set = list(idp = 0.5),
+  ...
+)
 }
 \arguments{
 \item{x}{a \code{terra::SpatRaster} for the variable of interest, with all
@@ -15,6 +22,17 @@ time steps of interest}
 
 \item{x_landmask_high}{a \code{terra::SpatRaster} with the same number of layers
 as x. If left NULL, the original landmask of x is used.}
+
+\item{nmax}{the number of nearest observations that should be used for a
+kriging prediction or simulation, where nearest is defined in terms
+of the space of the spatial locations (see \code{gstat::gstat} for details)}
+
+\item{set}{named list with optional parameters to be passed to gstat 
+(only set commands of gstat are allowed, and not all of them may be
+relevant; see the gstat manual for gstat stand-alone, URL and more details
+in the \code{gstat::gstat} help page)}
+
+\item{...}{further parameters to be passed to \code{gstat::gstat}}
 }
 \value{
 a \code{terra::SpatRaster} of the downscaled variable, where each
@@ -30,7 +48,9 @@ as an argument for this function.
 \details{
 It is possible to also provide a high resoultion landmask to this function.
 For cells which are not included in the original simulation (e.g. because
-the landmask was discretised at lower resolution), an idw algorightm is used
-to interpolate the missing values.
+the landmask was discretised at lower resolution), an inverse
+distance weighted algorithm (as implemented in \code{gstat::gstat}) is used
+to interpolate the missing values. See the manpage for \code{gstat::gstat}
+for more parameters that can change the behaviour of the iwd interpolation.
 }
 \keyword{internal}
