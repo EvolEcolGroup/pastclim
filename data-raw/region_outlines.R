@@ -1,10 +1,10 @@
 library(sf)
 library(terra)
-outlines <- read.csv("./inst/rawdata_scripts/data_files/continent_outlines.csv",
+outlines <- read.csv("./data_files/continent_outlines.csv",
                      stringsAsFactors = TRUE)
 outlines["X"] <- round(outlines["X"], 2)
 outlines["Y"] <- round(outlines["Y"], 2)
-# remove Antarctica, for whith the corodinates are problematic as they cross
+# remove Antarctica, for with the coordinates are problematic as they cross
 # the the 90 latitude line
 outlines <- outlines[outlines$id != "Antarctica", ]
 outlines$id <- as.factor(as.character(outlines$id))
