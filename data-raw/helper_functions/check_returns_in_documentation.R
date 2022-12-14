@@ -2,10 +2,12 @@
 # it will return a list of the map pages missing returns
 # note that map pages for datasets don't need returns.
 
+## running: grep -Ril -F "\value" ./man/
+
 check_returns_in_documentation <-function(){
   # note the additiona \ to run through system 2
   files_with_value <- basename(system2(command = "grep",
-                                       args='-Ril "\\\\value" ./man/',
+                                       args=c("-Ril -F ", shQuote("\\value"), " ./man/"),
                                        stdout=TRUE)
                                )
   all_files<-dir ("./man")

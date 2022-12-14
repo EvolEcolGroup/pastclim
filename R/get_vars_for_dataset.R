@@ -11,6 +11,7 @@
 #' reconstructions.
 #' @param details boolean determining whether the output should include information
 #' including long names of variables and their units
+#' @returns a vector of variable names
 #'
 #' @export
 
@@ -21,9 +22,9 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE) {
     }
     check_available_dataset(dataset)
     if (!details){
-      return(files_by_dataset$variable[files_by_dataset$dataset == dataset])
+      return(getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset])
     } else {
-      return(files_by_dataset[files_by_dataset$dataset == dataset,
+      return(getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset,
                               c("variable","long_name", "units")])
     }
   } else {
@@ -80,6 +81,6 @@ check_available_variable <- function(variable, dataset) {
 #'
 
 get_varname <- function(variable, dataset) {
-  return(files_by_dataset$ncvar[files_by_dataset$variable == variable &
-    files_by_dataset$dataset == dataset])
+  return(getOption("pastclim.dataset_list")$ncvar[getOption("pastclim.dataset_list")$variable == variable &
+    getOption("pastclim.dataset_list")$dataset == dataset])
 }

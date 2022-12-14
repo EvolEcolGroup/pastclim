@@ -15,6 +15,9 @@ values can be obtained with \code{get_available_datasets}). If set to
 reconstructions. All the variables of interest need to be included in
 this file.}
 }
+\value{
+a vector of time steps (in time_bp)
+}
 \description{
-Get the time steps available in a given dataset.
+Get the time steps (in time_bp) available in a given dataset.
 }

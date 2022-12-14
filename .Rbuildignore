@@ -11,3 +11,4 @@ ci_dependencies
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^codecov.yml
+^data-raw$
