@@ -13,6 +13,9 @@ get_land_mask(time_bp, dataset)
 values can be obtained with \code{get_available_datasets}). This function
 will not work on custom datasets.}
 }
+\value{
+a binary \code{terra::SpatRaster} with the land mask as 1s
+}
 \description{
 Get the land mask for a dataset at a given time point.
 }

@@ -1,8 +1,8 @@
 variable,ncvar,dataset,monthly,file_name,download_path,file_name_orig,download_path_orig,version,long_name,abbreviated_name,time_frame,units,units_exp,dataset_list_v
-bio01,BIO1,Example,FALSE,example_climate_v1.2.2.nc,,,,1.2.2,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*,1.2.2
-bio10,BIO10,Example,FALSE,example_climate_v1.2.2.nc,,,,1.2.2,mean temperature of warmest quarter,mean T of warmest qtr,year,degrees Celsius,*degree*C*,
-bio12,BIO12,Example,FALSE,example_climate_v1.2.2.nc,,,,1.2.2,annual precipitation,ann. P,year,mm per year,*mm~yr^-1*,
-biome,biome,Example,FALSE,example_climate_v1.2.2.nc,,,,1.2.2,biome (from BIOME4),biome,year,,,
+bio01,BIO1,Example,FALSE,example_climate_v1.2.3.nc,,,,1.2.3,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*,1.2.3
+bio10,BIO10,Example,FALSE,example_climate_v1.2.3.nc,,,,1.2.3,mean temperature of warmest quarter,mean T of warmest qtr,year,degrees Celsius,*degree*C*,
+bio12,BIO12,Example,FALSE,example_climate_v1.2.3.nc,,,,1.2.3,annual precipitation,ann. P,year,mm per year,*mm~yr^-1*,
+biome,biome,Example,FALSE,example_climate_v1.2.3.nc,,,,1.2.3,biome (from BIOME4),biome,year,,,
 bio01,bio01,Beyer2020,FALSE,Beyer2020_annual_vars_v1.2.2.nc,https://zenodo.org/record/7388091/files/Beyer2020_annual_vars_v1.2.2.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.2.2,annual mean temperature,ann. mean T,year,degrees Celsius,*degree*C*,
 bio04,bio04,Beyer2020,FALSE,Beyer2020_annual_vars_v1.2.2.nc,https://zenodo.org/record/7388091/files/Beyer2020_annual_vars_v1.2.2.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.2.2,temperature seasonality,T season.,year,degrees Celsius,*degree*C*,
 bio05,bio05,Beyer2020,FALSE,Beyer2020_annual_vars_v1.2.2.nc,https://zenodo.org/record/7388091/files/Beyer2020_annual_vars_v1.2.2.nc?download=1,LateQuaternary_Environment.nc,https://ndownloader.figshare.com/files/22659026,1.2.2,maximum temperature of warmest month,max. T of warmest mo.,year,degrees Celsius,*degree*C*,
@@ -116,6 +116,7 @@ bio18,bio18,Krapp2021,FALSE,Krapp2021_bio18_v1.2.2.nc,https://zenodo.org/record/
 bio19,bio19,Krapp2021,FALSE,Krapp2021_bio19_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_bio19_v1.2.2.nc?download=1,bio19_800ka.nc,https://osf.io/3mbd9/?action=download,1.2.2,precipitation of coldest quarter,P of coldest qtr,year,mm per quarter,*mm~qtr^-1*,
 npp,npp,Krapp2021,FALSE,Krapp2021_npp_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_npp_v1.2.2.nc?download=1,biome4output_800ka.nc,https://osf.io/cf5zp/?action=download,1.2.2,net primary productivity,NPP,year,gC per m^2 per year,*gC~m^-2~yr^-1*,
 biome,biome,Krapp2021,FALSE,Krapp2021_biome_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_biome_v1.2.2.nc?download=1,biome4output_800ka.nc,https://osf.io/cf5zp/?action=download,1.2.2,biome (from BIOME4),biome (from BIOME4),year,,,
+lai,lai,Krapp2021,FALSE,Krapp2021_lai_v1.2.3.nc,https://zenodo.org/record/7434553/files/Krapp2021_lai_v1.2.3.nc?download=1,biome4output_800ka.nc,https://osf.io/cf5zp/?action=download,1.2.3,leaf area index,LAI,year,gC per m^2,*gC~m^-2*,
 altitude,altitude,Krapp2021,FALSE,Krapp2021_topography_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_topography_v1.2.2.nc?download=1,,,1.2.2,altitude over the sea level,altitude over the sea level,year,m,*m*,
 rugosity,rugosity,Krapp2021,FALSE,Krapp2021_topography_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_topography_v1.2.2.nc?download=1,,,1.2.2,rugosity,rugosity,year,,,
 temperature_01,temp_01,Krapp2021,TRUE,Krapp2021_temp_monthly_v1.2.2.nc,https://zenodo.org/record/7388149/files/Krapp2021_temp_monthly_v1.2.2.nc?download=1,,,1.2.2,mean temperature Jan,mean T Jan,january,degrees Celsius,*degree*C*,
