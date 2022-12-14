@@ -25,17 +25,20 @@ validate_nc <- function(path_to_nc) {
   }
   # check that variable time has the correct units (not obligatory, but give
   # a warning)
-  if (nc_in$dim$time$units!="years since 1950-01-01 00:00:00.0"){
-    if (nc_in$dim$time$units=="years since present"){
-      ncdf4::nc_close(nc_in)
-      stop("The time units are 'years since present'.\n",
-           "terra interprets 'present' as 1970, which differs from the more\n",
-           "usual 1950. Ideally define explicitely the reference date,e.g.:\n",
-           "years since 1950-01-01 00:00:00.0")
-    }
-    warning("The time units are not 'years since 1950-01-01 00:00:00.0.\n",
-            "This is not fatal, but can in some instances lead to problems.")
+#  browser()
+  if (identical(grep(pattern="^years since",nc_in$dim$time$units),integer(0))){
+    ncdf4::nc_close(nc_in)
+    stop ("the time units should start with 'years since', but this file has\n",
+         "'", nc_in$dim$time$units, "'")
   }
+  if (nc_in$dim$time$units=="years since present"){
+      ncdf4::nc_close(nc_in)
+      stop("the time units are 'years since present'.\n",
+           "terra interprets 'present' as 1970, which differs from the more\n",
+           "usual 1950 used for radiocarbon dates. To avoid errors, define\n",
+           "explicitely the reference date, e.g. 'years since 1950'")
+  }
+
   
   # check that each dimension has a longname (units could be
   # empty for categorical variables or variables that are unitless)

@@ -10,8 +10,7 @@
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
 #' @returns TRUE if both dataset and path are valid.
-#' @export
-
+#' @keywords internal
 
 check_dataset_path <- function(dataset, path_to_nc) {
   check_available_dataset(dataset = dataset, include_custom = TRUE)
