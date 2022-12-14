@@ -6,9 +6,8 @@ set_data_path(path_to_nc = data_path,
               ask = FALSE,
               write_config = FALSE,
               copy_example = TRUE)
-example_nc_filename <- unique(dataset_list_included$file_name[dataset_list_included$dataset=="Example"])
-#path_to_example_nc<- system.file(file.path("/extdata",example_nc_filename),
-#                                 package = "pastclim")
+example_nc_filename <-  unique(getOption("pastclim.dataset_list")$file_name[
+  getOption("pastclim.dataset_list")$dataset == "Example"])
 path_to_example_nc <- file.path(get_data_path(),example_nc_filename)
 path_to_broken_nc <- file.path(get_data_path(),"broken.nc")
 ################################################################################
