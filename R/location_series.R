@@ -82,7 +82,7 @@ location_series <-
       if (!"name" %in% names(x)){
         x$name<-as.character(1:nrow(x))
       }
-      x <- x[,names(x) %in% c("longitude", "latitude","name")]
+      x <- x[,match(c("name","longitude", "latitude"), names(x))]
       n_loc <- nrow(x)
       # now repeat it for each time step
       x<- x[rep(1:nrow(x),length(time_bp)),]
