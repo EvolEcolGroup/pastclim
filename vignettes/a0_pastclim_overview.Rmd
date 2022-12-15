@@ -244,7 +244,7 @@ subset(locations_ts, name == "Oronsay")
 We can quickly plot `bio1` through time for the locations:
 ```{r, warning=TRUE, fig.width=4, fig.height=3}
 library(ggplot2)
-ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +
+ggplot(data=locations_ts, aes(x=time_bp, y=bio01, group=name)) +
   geom_line(aes(col=name))+
   geom_point(aes(col=name))
 ```
@@ -258,7 +258,7 @@ information.
 Pretty labels for environmental variables can be generated with `var_labels`:
 ```{r, warning=TRUE, fig.width=4, fig.height=3}
 library(ggplot2)
-ggplot(data=locations_ts, aes(x=time, y=bio01, group=name)) +
+ggplot(data=locations_ts, aes(x=time_bp, y=bio01, group=name)) +
   geom_line(aes(col=name))+
   geom_point(aes(col=name))+
   labs(y = var_labels("bio01", dataset="Example", abbreviated=TRUE),
