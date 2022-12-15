@@ -24,7 +24,7 @@ ETOPO2022 dataset.
 }
 \details{
 This function uses \code{marmap::getNOAA.bathy} to download the data, and
-then converts them into a \code{terra::SpatRaster} in a format compatible
+then converts them into a \code{terra::SpatRaster} formatted to be compatible
 with `pastclim`
 }
 \keyword{internal}
