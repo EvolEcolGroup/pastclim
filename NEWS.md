@@ -1,9 +1,10 @@
 # pastclim 1.2.3
-* Added lai to Krapp2021.
+* Added lai to Krapp2021 (the variable is now also present in the original OSF
+  repository for that dataset).
 
 # pastclim 1.2.2
 * Update of Krapp2021 files to make them compatible with how terra now handles
-  time. Users will have to redownload datasets. Old files can be removed with
+  time. Users will have to re-download datasets. Old files can be removed with
   'clean_data_path()'
 
 # pastclim 1.2.1
