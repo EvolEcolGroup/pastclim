@@ -104,7 +104,6 @@ location_slice <-
         this_var_nc <- this_var
       }
       if (is.null(time_indeces)) {
-        #browser()
         times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
         time_indeces <- time_bp_to_index(
           time_bp = locations_data$time_bp, time_steps = times
@@ -119,18 +118,18 @@ location_slice <-
       for (j in unique_time_indeces) {
         this_slice <- terra::subset(climate_brick, j)
         this_slice_indeces <- which(time_indeces == j)
-        this_climate <- terra::extract(
-          x = this_slice,
-          y = coords[this_slice_indeces, ]
-        )
-        # if we want to use a buffer, ignore the point estimates
-        if (buffer){
-          this_climate[,ncol(this_climate)]<-NA
+        if (!buffer){ # get the specific values for those locations
+          this_climate <- terra::extract(
+            x = this_slice,
+            y = coords[this_slice_indeces, ])
+          locations_data[this_slice_indeces, this_var] <- this_climate[
+            ,
+            ncol(this_climate)
+          ]
+        } else { # set to NA as we will compute them with a buffer
+          locations_data[this_slice_indeces, this_var] <- NA
         }
-        locations_data[this_slice_indeces, this_var] <- this_climate[
-          ,
-          ncol(this_climate)
-        ]
+
         if (nn_interpol | buffer) {
           locations_to_move <- this_slice_indeces[this_slice_indeces %in%
             which(is.na(locations_data[, this_var]))]
