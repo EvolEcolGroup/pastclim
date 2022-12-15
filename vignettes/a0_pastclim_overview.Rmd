@@ -251,9 +251,11 @@ ggplot(data=locations_ts, aes(x=time_bp, y=bio01, group=name)) +
 
 As expected, we don't have data for Atlantis (as it is always underwater), but we
 also fail to retrieve data for Chalki. This is because `location_series` does not
-interpolate from nearest neighbours. So, to get data for that island, we would have
-to change slightly the coordinates to make sure it falls within a cell with climatic
-information.
+interpolate from nearest neighbours by default (so, it differs from `location_slice`
+in behaviour). The rationale for this behaviour is that we are intersted in whether
+some locations might end underwater, and so we do not want to grab climate estimates
+if they have been submerged. However, in some cases (as for Chalki) it might be
+necessary to allow for interpolation.
 
 Pretty labels for environmental variables can be generated with `var_labels`:
 ```{r, warning=TRUE, fig.width=4, fig.height=3}
@@ -267,7 +269,16 @@ ggplot(data=locations_ts, aes(x=time_bp, y=bio01, group=name)) +
 
 *Note* that these climatic reconstructions were extracted from the `Example` dataset,
 which is very coarse, so they should not be used to base any real inference about
-their environmental conditions.
+their environmental conditions. But note that higher resolution is not always better.
+It is important to consider the appropriate spatial
+scale that is relevant to the question at hand. Sometimes, it might be necessary
+to downscale the simulations (see section at the end of this vignette), or in other
+cases we might want to get estimates to cover an area around the specific location
+(e.g. if we are comparing to proxies that capture the climatology of a broad area,
+such as certain sediment cores that capture pollen from the broader region).
+`location_slice` and `location_series` can provide
+mean estimates for areas around the location coordinates by setting the `buffer`
+parameter (see the help pages of those functions for details).
 
 # Get climate for a region
 
