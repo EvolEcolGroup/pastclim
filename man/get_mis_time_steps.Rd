@@ -18,6 +18,9 @@ values can be obtained with \code{get_available_datasets}). If set to
 reconstructions. All the variables of interest need to be included in
 this file.}
 }
+\value{
+a vector of time steps
+}
 \description{
 Get the time steps available in a given dataset for a MIS.
 }

@@ -11,6 +11,7 @@
 #' reconstructions.
 #' @param details boolean determining whether the output should include information
 #' including long names of variables and their units
+#' @returns a vector of variable names
 #'
 #' @export
 

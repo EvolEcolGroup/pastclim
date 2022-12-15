@@ -35,6 +35,10 @@ list_of_tiffs <- file.path(tiffs_path,dir(tiffs_path))
 bio01 <- terra::rast(list_of_tiffs)
 ```
 
+*NOTE: `terra` has changed the way it handles time when reading from netcdf. The
+dev version of `terra` can more easily format netcdf files correctly, but this
+vignette presents a number of workarounds needed for the version on CRAN*
+
 Now we need to set the time axis of the raster (in this case, reconstructions are every 100 years), and generate some user friendly names to layers in the raster:
 
 ```{r}
@@ -114,10 +118,10 @@ to others. Here are the necessary steps:
 
 2) Update the table used by `pastclim` to
 store information about available datasets. This table is found in
-"./inst/rawdata_scripts/data_files/variable_table.csv".
+"./inst/extdata/variable_table.csv".
 
 ```{r}
-head(read.csv(system.file("rawdata_scripts/data_files/dataset_list_included.csv",
+head(read.csv(system.file("extdata/dataset_list_included.csv",
                      package="pastclim")), n=2)
 ```
 
@@ -153,7 +157,7 @@ the *nc* dataset.
 
 `units_exp`: units formatted to be included in `expression` when creating plot labels
 
-3) Once you have added lines detailing the variables in your dataset, run the script "./inst/rawdata_scripts/create_getOption("pastclim.dataset_list").R" to store
+3) Once you have added lines detailing the variables in your dataset, run the script "./raw-data/dataset_list_included.R" to store
 that information into the appropriate dataset in `pastclim`.
 
 4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` syntax. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.
