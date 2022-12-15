@@ -1,7 +1,6 @@
 #read.csv(system.file("rawdata_scripts/data_files/variable_table_complete_meta.csv",
 #            library="pastclim"))
 library(ClimateOperators)
-rm(list=ls())
 dataset <- "Krapp2021"
 version_number <- "1.2.2"
 out_dir <- "../../project_temp/past_climate/new_meta"
@@ -12,7 +11,7 @@ target_files <- unique(sub_meta$file_name)
 
 for (i in target_files){
   name_components<-unlist(strsplit(i,"_",fixed=TRUE))
-  # replace the last component with new version 1.2.2
+  # replace the last component with new version
   name_components<-name_components[-length(name_components)]
   new_name <- paste(paste(name_components, collapse="_"),paste0("v", version_number,".nc"),sep="_")
   new_target_path <- file.path(out_dir, new_name)

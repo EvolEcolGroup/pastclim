@@ -14,6 +14,11 @@ clean_data_path <- function(ask=TRUE) {
     return(FALSE)
   }
   files_now <- list.files(get_data_path())
+  # remove some exceptions (we should check if the dataset list is still
+  # current or whether it has become obsolete)
+  files_now <- files_now[!files_now %in% c("pastclim_dataset_list.csv")]
+  files_now <- files_now[!substr(files_now,1,2)=="wc"]
+  
   possible_files <- unique(getOption("pastclim.dataset_list")$file_name)
   files_to_remove <- files_now[!files_now %in% possible_files]
   if (length(files_to_remove)>0){

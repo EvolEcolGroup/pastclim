@@ -22,6 +22,25 @@
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
+#' @param nn_interpol boolean determining whether nearest neighbour
+#' interpolation is used to estimate climate for cells that lack such
+#' information (i.e. they are under water or ice). By default, interpolation is only
+#' performed from the first ring of nearest neighbours; if climate is not
+#' available, NA will be returned for that location. The number of neighbours
+#' can be changed with the argument `directions`. `nn_interpol` defaults to FALSE
+#' (this is DIFFERENT from \code{location_slice}.
+#' @param buffer boolean determining whether the variable will be returned
+#' as the mean of a buffer around the focal cell. If set to TRUE, it overrides
+#' `nn_interpol` (which provides the same estimates as `buffer` but only for
+#' locations that are in cells with an NA). The buffer size is determined
+#' by the argument `directions`. `buffer` defaults to FALSE.
+#' @param directions character or matrix to indicate the directions in which
+#' cells are considered connected when using `nn_interpol` or `buffer`. 
+#' The following character values are allowed: "rook" or "4" for the 
+#' horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
+#' "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
+#' or "16" for knight and one-cell queen move neighbors. If directions
+#' is a matrix it should have odd dimensions and have logical (or 0, 1) values.
 #' @returns a data.frame with the climatic variables of interest
 #' @export
 
@@ -30,78 +49,59 @@ location_series <-
            time_bp = NULL,
            bio_variables,
            dataset,
-           path_to_nc = NULL) {
+           path_to_nc = NULL,
+           nn_interpol = FALSE,
+           buffer = FALSE,
+           directions = 8) {
     
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
     # if we are using standard datasets, check whether a variables exists
+    # and get the times
     if (dataset != "custom") {
       check_var_downloaded(bio_variables, dataset)
+      times <- get_time_steps(dataset = dataset, path_to_nc = path_to_nc)
     } else { # else check that the variables exist in the custom nc
       check_var_in_nc(bio_variables, path_to_nc)
+      times <- get_time_steps(dataset = "custom", path_to_nc = path_to_nc)
+    }
+    time_bp_i <- time_bp_to_i_series(time_bp = time_bp,
+                                     time_steps = times)
+    if (is.null(time_bp_i)){
+      time_bp <- times
+    } else {
+      time_bp <- times[time_bp_i]
     }
 
-    # reorder the inputs by time
+    # check coordinates data frame
     if (inherits(x, "data.frame")) {
       if (!all(c("longitude","latitude") %in% names(x))){
         stop ("x should be a dataframe with columns latitude and longitude")
       }
-      coords <- x[,c("longitude","latitude")]
-    } else if (inherits(x, "matrix"))  {
-        locations_data <- as.data.frame(x) 
+      # if names does not exist, add it
+      if (!"name" %in% names(x)){
+        x$name<-as.character(1:nrow(x))
+      }
+      x <- x[,match(c("name","longitude", "latitude"), names(x))]
+      n_loc <- nrow(x)
+      # now repeat it for each time step
+      x<- x[rep(1:nrow(x),length(time_bp)),]
+
+    }else if (inherits(x, "numeric")){
+      n_loc <- length(x)
+      x<- rep(x, length(time_bp))
     } else {
-      locations_data <- data.frame(cell_number = x)
+      stop ("x should be either a data.frame or a numeric vector")
     }
     
-    
-    time_series_df <- coords
-    time_series_df$id <- seq_len(nrow(time_series_df))
-    time_index <- NULL
-    for (this_var in bio_variables) {
-      # get name of file that contains this variable
-      if (dataset != "custom") {
-        this_file <- get_file_for_dataset(this_var, dataset)$file_name
-        this_file <- file.path(get_data_path(), this_file)
-        this_var_nc <- get_varname(variable = this_var, dataset = dataset)
-      } else {
-        this_file <- file.path(path_to_nc)
-        this_var_nc <- this_var
-      }
-      
-      # figure out the time indeces the first time we run this
-      if (is.null(time_index)) {
-        # as we have the file name, we can us the same code for custom and
-        # standard datasets.
-        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
-        time_index <- time_bp_series(time_bp = time_bp,
-                                     time_steps = times)
-      }
-      
-      climate_brick_temp <- terra::rast(this_file, subds = this_var_nc)
-      if (!is.null(time_bp)){
-        climate_brick <- terra::subset(climate_brick_temp,
-                                                         subset = time_index)
-      } else {
-        climate_brick <- climate_brick_temp
-      }      
-      # add time var if it doesn't exist yet
-      if (!("time" %in% names(time_series_df))) {
-        n_time_steps <- length(time_bp(climate_brick))
-        n_locations <- nrow(time_series_df)
-        time_series_df <- time_series_df[rep(
-          seq_len(nrow(time_series_df)),
-          n_time_steps
-        ), ]
-        time_series_df$time <- rep(time_bp(climate_brick), each = n_locations)
-      }
-      this_var_ts <- terra::extract(climate_brick, coords)
-      names(this_var_ts)[-1] <- time_bp(climate_brick)
-      time_series_df[this_var] <- utils::stack(this_var_ts, select = -ID)$values
-    }
-    if ("name" %in% names(x)){
-      time_series_df$name <- x$name[time_series_df$id]
-    }
-    return(time_series_df)
+    # now copy over the times to match the coordinates
+    time_bp <- rep(time_bp, each=n_loc)
+    # and now feed the info to location_slice
+    location_ts <- location_slice(x=x, time_bp = time_bp, bio_variables = bio_variables,
+                                  dataset= dataset, path_to_nc=path_to_nc,
+                                  nn_interpol = nn_interpol, buffer = buffer,
+                                  directions = directions)
+    return(location_ts[,!names(location_ts) %in% "time_bp_slice"])
   }
 
 

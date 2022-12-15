@@ -1,7 +1,7 @@
 # repackage the Krapp2021 dataset
 # 
 # first download the nc files into the directory `/temp_files/krapp/original_files`
-# then run this shell script from `/temp_files/krapp`
+# then run this shell script from the git root
 
 ### Check if the krapp directory exists ###
 if [ ! -d "./inst/rawdata_scripts/temp_files/krapp/original_files" ] 
@@ -40,13 +40,21 @@ do
     # biome4 needs further editing (remove pCO2)
     # first extract the biomes
     filename="./repackaged/${prefix}_biome_v${version}.nc"
-    ncks -C -O -x -v pco2,npp $filepath $filename
+    ncks -C -O -x -v pco2,npp,LAI $filepath $filename
     # now process the npp
     filename="./repackaged/${prefix}_npp_v${version}.nc"
     # crop the icesheets for npp
-    ncks -C -O -x -v pco2,biome $filepath npp_800ka.nc
+    ncks -C -O -x -v pco2,biome,LAI $filepath npp_800ka.nc
     cdo -z zip_9 div npp_800ka.nc krapp_land_only.nc $filename
     rm npp_800ka.nc
+    # and now LAI
+    filename="./repackaged/${prefix}_lai_v${version}.nc"
+    # crop the icesheets for npp
+    ncks -C -O -x -v pco2,biome,npp $filepath lai_800ka.nc
+    ncrename -v LAI,lai lai_800ka.nc
+    cdo -z zip_9 div lai_800ka.nc krapp_land_only.nc $filename
+    rm lai_800ka.nc
+    
 fi
 done
 
@@ -54,7 +62,7 @@ for filename in "$repackaged_dir"/*
 do
 echo "$filename"
 ncatted -a author,global,d,, -a history,global,d,, -a description,global,d,, -a command_line,global,d,, -h $filename
-ncatted -a created_by,global,c,c,'Andrea Manica' -a pastclim_version,global,c,c,'1.0.0' -a link,global,a,c,'https://github.com/EvolEcolGroup/pastclim' -a description,global,a,c,'Data from Krapp et al 2021, with icesheets and internal seas removed, to be used by the R library pastclim' -a history,global,d,, -a history_of_appended_files,global,d,, -h $filename
+ncatted -a created_by,global,c,c,'Andrea Manica' -a pastclim_version,global,c,c,'1.2.3' -a link,global,a,c,'https://github.com/EvolEcolGroup/pastclim' -a description,global,a,c,'Data from Krapp et al 2021, with icesheets and internal seas removed, to be used by the R library pastclim' -a history,global,d,, -a history_of_appended_files,global,d,, -h $filename
 ncatted -a units,time,m,c,"years since present" -h $filename
 ncatted -a command_line,global,c,c,"./inst/rawdata_scripts/repackage_krapp2021.sh" -h $filename
 done
