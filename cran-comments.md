@@ -20,7 +20,8 @@ e.g.:  inst/rawdata_scripts/update_meta_data_of_vars_in_nc.R
 
 
 > Those scripts were internal ones to generate the raw data for the package.
-They have been moved outside ./inst/, into ./raw-data/ so that they are not exposed to the user.
+They have been moved outside ./inst/, into ./raw-data/ so that they are not 
+exposed to the user.
 
 
 ## Test environments
