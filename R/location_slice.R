@@ -19,9 +19,22 @@
 #' this file.
 #' @param nn_interpol boolean determining whether nearest neighbour
 #' interpolation is used to estimate climate for cells that lack such
-#' information (i.e. they are under water or ice). Interpolation is only
+#' information (i.e. they are under water or ice). By default, interpolation is only
 #' performed from the first ring of nearest neighbours; if climate is not
-#' available, NA will be returned for that location. Defaults to TRUE.
+#' available, NA will be returned for that location. The number of neighbours
+#' can be changed with the argument `directions`. `nn_interpol` defaults to TRUE.
+#' @param buffer boolean determining whether the variable will be returned
+#' as the mean of a buffer around the focal cell. If set to TRUE, it overrides
+#' `nn_interpol` (which provides the same estimates as `buffer` but only for
+#' locations that are in cells with an NA). The buffer size is determined
+#' by the argument `directions`. `buffer` defaults to FALSE.
+#' @param directions character or matrix to indicate the directions in which
+#' cells are considered connected when using `nn_interpol` or `buffer`. 
+#' The following character values are allowed: "rook" or "4" for the 
+#' horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
+#' "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
+#' or "16" for knight and one-cell queen move neighbors. If directions
+#' is a matrix it should have odd dimensions and have logical (or 0, 1) values.
 #' @returns a data.frame with the climatic variables of interest.
 #' @export
 
@@ -31,9 +44,12 @@ location_slice <-
            bio_variables,
            dataset,
            path_to_nc = NULL,
-           nn_interpol = TRUE) {
-    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
+           nn_interpol = TRUE,
+           buffer = FALSE,
+           directions = 8) {
 
+    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
+    
     # if we are using standard datasets, check whether a variables exists
     if (dataset != "custom") {
       check_var_downloaded(bio_variables, dataset)
@@ -107,11 +123,15 @@ location_slice <-
           x = this_slice,
           y = coords[this_slice_indeces, ]
         )
+        # if we want to use a buffer, ignore the point estimates
+        if (buffer){
+          this_climate[,ncol(this_climate)]<-NA
+        }
         locations_data[this_slice_indeces, this_var] <- this_climate[
           ,
           ncol(this_climate)
         ]
-        if (nn_interpol) {
+        if (nn_interpol | buffer) {
           locations_to_move <- this_slice_indeces[this_slice_indeces %in%
             which(is.na(locations_data[, this_var]))]
           if (length(locations_to_move) == 0) {
@@ -127,7 +147,8 @@ location_slice <-
               cell_id <- coords[i]
             }
             neighbours_ids <-
-              terra::adjacent(climate_brick, cell_id, 8, pairs = FALSE)
+              terra::adjacent(climate_brick, cell_id, 
+                              directions = directions, pairs = FALSE)
             neighbours_values <-
               terra::extract(
                 x = this_slice,
