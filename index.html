@@ -92,7 +92,6 @@
 <!-- old badges, kept for future reference
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
 [![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
-
 -->
 <p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses.</p>
 <p>A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
@@ -105,8 +104,8 @@
 <div class="section level2">
 <h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
 </h2>
-<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>.</p>
-<p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>.</p>
+<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>.</p>
+<p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</p>
 <p>You can also build the vignettes when installing <code>pastclim</code> (note that you will need to have the necessary tools to build vignettes already installed; requirements depend on your OS):</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignette <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 <p>If you built the vignettes, you can read them directly in R. For example, the overview can be obtained with:</p>
