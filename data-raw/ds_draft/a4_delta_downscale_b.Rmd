@@ -39,7 +39,7 @@ we keep the extent small to reduce computational time).
 ## An example for one variable
 
 When downscaling, it is generally a better idea to downscale the monthly variables,
-and then recompute the BIOCLIM variables. We will usethe monthly variables
+and then recompute the BIOCLIM variables. We will use the monthly variables
 from the Beyer2020 dataset, and focus on the time steps that are also available
 in the Example dataset (i.e. a subset of the full Beyer2020 dataset, to reduce
 computational time):
@@ -101,7 +101,7 @@ tavg_obs_hres_all<- terra::rast(system.file("extdata/delta/tavg_obs_hres_all.nc"
 We want to crop these reconstructions to the extent of interest
 ```{r, fig.width=4, fig.height=4}
 tavg_obs_hres_all <- terra::crop(tavg_obs_hres_all, sea_ext)
-# extract the january raster
+# extract the January raster
 tavg_obs_hres_rast <- tavg_obs_hres_all[[1]]
 plot(tavg_obs_hres_rast)
 ```
