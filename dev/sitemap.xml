@@ -121,9 +121,6 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_series.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_series_old.html</loc>
-  </url>
-  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_slice.html</loc>
   </url>
   <url>
@@ -169,7 +166,7 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_to_i_series.html</loc>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_series.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_to_index.html</loc>
