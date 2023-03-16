@@ -215,7 +215,7 @@ used:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_data_path.html">set_data_path</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.3</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.7.18</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; The data_path will be set to /home/andrea/.local/share/R/pastclim.</span></span>
 <span><span class="co">#&gt; A copy of the Example dataset will be copied there.</span></span>
 <span><span class="co">#&gt; This path will be saved by pastclim for future use.</span></span>
@@ -805,13 +805,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell      x    y     bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 15315   14.5 47.5 -1.805168  6.511774</span></span>
-<span><span class="co">#&gt; 2 18289  108.5 39.5  2.374932 15.915917</span></span>
-<span><span class="co">#&gt; 3 25037   16.5 20.5 18.249695 24.819342</span></span>
-<span><span class="co">#&gt; 4 16122  101.5 45.5 -2.459154 12.318211</span></span>
-<span><span class="co">#&gt; 5 15793  132.5 46.5 -3.539984 15.205266</span></span>
-<span><span class="co">#&gt; 6 11892 -168.5 56.5 -5.268926  8.073412</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x     y     bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 25030   9.5  20.5  21.43332 27.824675</span></span>
+<span><span class="co">#&gt; 2 30362 -58.5   5.5  22.59621 24.124298</span></span>
+<span><span class="co">#&gt; 3 36130 -50.5 -10.5  21.82633 22.654425</span></span>
+<span><span class="co">#&gt; 4 24026  85.5  23.5  21.36464 26.932798</span></span>
+<span><span class="co">#&gt; 5  9355 174.5  64.5 -15.37578  5.464261</span></span>
+<span><span class="co">#&gt; 6  4277 136.5  78.5 -29.71084  6.500917</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -825,15 +825,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y        bio01     bio10     bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 2969 63.5 40.5   9.40001011 21.159704  95.55842  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3107 31.5 38.5   6.71235657 14.414721 443.52847  -20000</span></span>
-<span><span class="co">#&gt; -20000.3  833 52.5 65.5 -16.64396095  8.413747 180.47249  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 3296 50.5 36.5   9.96707344 26.101688 264.80643  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 1418 42.5 58.5   1.32226443 17.108730 555.90015  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 1574 28.5 56.5   3.53897452 16.242958 646.62048  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 1161 40.5 61.5  -0.09091096 14.608473 579.57739  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 1316 25.5 59.5   3.23455405 10.599086 569.04248  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y     bio01    bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2344 33.5 47.5  2.262170 14.90902 355.6306  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 2865 44.5 41.5  4.475834 14.88976 540.7664  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2944 38.5 40.5  4.260213 12.74107 518.1914  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2747 11.5 42.5 13.687679 23.67339 759.1479  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1316 25.5 59.5  3.234554 10.59909 569.0425  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 3293 47.5 36.5  7.612511 23.99700 282.1458  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2745  9.5 42.5  9.919656 19.50445 822.4520  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 1098 62.5 62.5 -4.120922 15.16186 406.4946  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
