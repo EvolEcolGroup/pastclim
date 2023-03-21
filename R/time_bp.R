@@ -12,7 +12,7 @@ time_bp <- function(x){
   if (!inherits(x,"SpatRaster")){
     stop("x is not a SpatRaster")
   }
-  if (x@ptr$timestep!="years"){
+  if (timeInfo(x)$step != "years") {
     # this should be escalated to an error once terra can properly set times in years (it's in dev)
     warning("the time units of SpatRaster are not 'years'",
          " it might be a problem with the time units not being properly set in the original nc file")
