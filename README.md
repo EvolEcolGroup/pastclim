@@ -98,7 +98,28 @@ The easiest solution is probably to install the `dev` version of `terra` from
 ```
 install.packages('terra', repos='https://rspatial.r-universe.dev')
 ```
+
+However, note that the `dev` version of `terra` is incompatible with the version
+of `pastclim` on CRAN. Therefore, you need to also upgrade `pastclim` to `dev`:
+```
+devtools::install_github("EvolEcolGroup/pastclim", ref="dev")
+```
+
 Alternatively, if you want to install a specific version of 
  `terra` from source, see instructions [here](https://github.com/rspatial/terra).
 
+---
 
+### no slot of name "ptr" with `dev` version of `terra`
+
+the `dev` version of `terra` is incompatible with the version
+of `pastclim` on CRAN, leading to the following error.
+
+```
+Error in time_bp(climate_nc) : no slot of name "ptr" for this object of class "SpatRaster"
+```
+
+To solve this, you need to also upgrade `pastclim` to `dev`:
+```
+devtools::install_github("EvolEcolGroup/pastclim", ref="dev")
+```
