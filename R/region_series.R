@@ -86,7 +86,7 @@ region_series <-
         # as we have the file name, we can us the same code for custom and
         # standard datasets.
         times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
-        time_index <- time_bp_series(time_bp = time_bp,
+        time_index <- time_bp_to_i_series(time_bp = time_bp,
                                      time_steps = times)
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)

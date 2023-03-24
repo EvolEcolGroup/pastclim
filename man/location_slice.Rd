@@ -10,7 +10,9 @@ location_slice(
   bio_variables,
   dataset,
   path_to_nc = NULL,
-  nn_interpol = TRUE
+  nn_interpol = TRUE,
+  buffer = FALSE,
+  directions = 8
 )
 }
 \arguments{
@@ -34,9 +36,24 @@ this file.}
 
 \item{nn_interpol}{boolean determining whether nearest neighbour
 interpolation is used to estimate climate for cells that lack such
-information (i.e. they are under water or ice). Interpolation is only
+information (i.e. they are under water or ice). By default, interpolation is only
 performed from the first ring of nearest neighbours; if climate is not
-available, NA will be returned for that location. Defaults to TRUE.}
+available, NA will be returned for that location. The number of neighbours
+can be changed with the argument `directions`. `nn_interpol` defaults to TRUE.}
+
+\item{buffer}{boolean determining whether the variable will be returned
+as the mean of a buffer around the focal cell. If set to TRUE, it overrides
+`nn_interpol` (which provides the same estimates as `buffer` but only for
+locations that are in cells with an NA). The buffer size is determined
+by the argument `directions`. `buffer` defaults to FALSE.}
+
+\item{directions}{character or matrix to indicate the directions in which
+cells are considered connected when using `nn_interpol` or `buffer`. 
+The following character values are allowed: "rook" or "4" for the 
+horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
+"queen" or "8" to get the vertical, horizontal and diagonal neighbors;
+or "16" for knight and one-cell queen move neighbors. If directions
+is a matrix it should have odd dimensions and have logical (or 0, 1) values.}
 }
 \value{
 a data.frame with the climatic variables of interest.

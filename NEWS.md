@@ -1,6 +1,10 @@
 # pastclim 1.2.3
 * Added lai to Krapp2021 (the variable is now also present in the original OSF
   repository for that dataset).
+* Change column names in data.frame returned by location_series to match
+  location_slice
+* Allow for interpolation of nearest neighbours in location_series, and allow
+  for a buffer on estimates returned by the location_* functions.
 
 # pastclim 1.2.2
 * Update of Krapp2021 files to make them compatible with how terra now handles

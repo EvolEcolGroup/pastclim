@@ -8,7 +8,7 @@
 #' 
 #' @keywords internal
 
-time_bp_series<-function(time_bp, time_steps){
+time_bp_to_i_series<-function(time_bp, time_steps){
   # if this is a vector, just use the values
   if (is.numeric(time_bp)){
     time_index <- match(time_bp, time_steps)

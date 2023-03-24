@@ -33,6 +33,21 @@ test_that("location_slice", {
   expect_false(is.na(this_climate[1, "bio01"]))
   expect_true(is.na(this_climate[3, "bio01"]))
   expect_false(is.na(this_climate[4, "bio01"]))
+  
+  this_climate_buffer <- location_slice(
+    x = locations[, c("longitude", "latitude")],
+    time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+    dataset = "Example",
+    buffer=TRUE
+  )
+  expect_false(is.na(this_climate_buffer[1, "bio01"]))
+  expect_true(is.na(this_climate_buffer[3, "bio01"]))
+  expect_false(is.na(this_climate_buffer[4, "bio01"]))
+  # the underwater location should return the same value with nn_interpol and buffer
+  # but the other two values should differ
+  expect_false(this_climate[1, "bio01"]==this_climate_buffer[1, "bio01"])
+  expect_false(this_climate[2, "bio01"]==this_climate_buffer[2, "bio01"])
+  expect_true(this_climate[4, "bio01"]==this_climate_buffer[4, "bio01"])
 
   # now use the full dataframe for pretty labelling
   this_climate_df <- location_slice(
