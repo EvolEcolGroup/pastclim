@@ -8,7 +8,7 @@ set_data_path(path_to_nc = data_path,
               copy_example = TRUE)
 ################################################################################
 
-test_that("time_series_for_location", {
+test_that("location_series", {
   # using standard dataset
   locations <- data.frame(name=c("A","B","C","D"),
     longitude = c(0, 90, -120, -7), latitude = c(20, 45, 60, 37)

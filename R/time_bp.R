@@ -1,22 +1,51 @@
-#' Extract time in years before present from SpatRaster
+#' Extract and set time in years before present for SpatRaster
 #'
-#' A wrapper around \code{terra::time}, which converts time into years before
-#' present
+#' This functions extracts and sets time in years BP (i.e. from 1950) for a
+#' \code{terra::SpatRaster}. In the \code{terra::SpatRaster} object, time is 
+#' stored with unit "years", which
+#' are years from 0AD. This means that, when a summary of the 
+#' \code{terra::SpatRaster} is
+#' inspected, the times will appear as `time_bp`+1950. The same applies when the
+#' function \code{terra::time} is used instead of \code{time_bp}.
 #'
 #' @param x a \code{terra::SpatRaster}
+#' @param value a numeric vector of times in years BP
 #' @returns a date in years BP (where negative numbers indicate a date in the past)
+#' @rdname time_bp
+#' @import methods
 #' @export
 
+setGeneric("time_bp", function(x)
+  standardGeneric("time_bp") )
 
-time_bp <- function(x){
-  if (!inherits(x,"SpatRaster")){
-    stop("x is not a SpatRaster")
-  }
+#' @rdname time_bp
+#' @export
+#time_bp <- function(x){
+setMethod("time_bp", signature(x="SpatRaster"),
+          function(x)  {
   if (timeInfo(x)$step != "years") {
-    # this should be escalated to an error once terra can properly set times in years (it's in dev)
-    warning("the time units of SpatRaster are not 'years'",
-         " it might be a problem with the time units not being properly set in the original nc file")
+    # as of 1.7.18, the bug in terra setting years to negative has ben fixed
+    stop("The time units of SpatRaster are not 'years'.\n",
+         "It might be a problem with the time units not being properly set in the original nc file.\n",
+         "Set time units correctly with time_bp(x)<-c(-10000,-400).\n",
+         "NOTE do NOT use terra:time, as that terra measures years from 0AD, not BP")
   }
   time_yr<-terra::time(x)
   return(time_yr-1950)
-}
+})
+
+#' @rdname time_bp
+#' @export
+setGeneric("time_bp<-", function(x, value)
+  standardGeneric("time_bp<-") )
+
+#' @rdname time_bp
+#' @export
+setMethod("time_bp<-", signature(x="SpatRaster"),
+           function(x, value)  {
+             value_bp <- value+1950
+             time(x,tstep="years")<-value_bp
+             return(x)
+           }
+)
+
