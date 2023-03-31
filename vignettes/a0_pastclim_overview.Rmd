@@ -329,7 +329,12 @@ Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 climate_region$bio01
 ```
 
-Note that `terra` stores dates in years a AD, not BP.
+Note that `terra` stores dates in years as AD, not BP. You can inspect the times
+in years BP with:
+```{r}
+time_bp(climate_region$bio01)
+```
+
 
 We can then plot the time series of a given variable (we relabel the plots
 to use years bp):

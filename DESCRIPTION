@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Palaeoclimate Reconstructions 
-Version: 1.2.3
+Version: 1.2.3.9000
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -25,7 +25,8 @@ LazyDataCompression: xz
 RoxygenNote: 7.2.2
 Depends: 
   R (>= 4.0.0),
-  terra (>= 1.6.41)
+  methods,
+  terra (>= 1.7.18)
 Imports:
   curl,
   ncdf4,
