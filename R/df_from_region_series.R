@@ -1,5 +1,4 @@
 #' Extract data frame from a region series
-#'
 #' Extract the climatic information from a region series and organise them as
 #' a data frame.
 #' 
