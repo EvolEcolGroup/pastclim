@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Methods to easily extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses, as described
-  in Leonardi et al. (2022) &lt;doi:10.1101/2022.05.18.492456&gt;.">
+  in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
 <title>Manipulate Time Series of Palaeoclimate Reconstructions  • pastclim</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -22,7 +22,7 @@
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Time Series of Palaeoclimate Reconstructions ">
 <meta property="og:description" content="Methods to easily extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses, as described
-  in Leonardi et al. (2022) &lt;doi:10.1101/2022.05.18.492456&gt;.">
+  in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
 <meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.2.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,10 +93,9 @@
 <!-- old badges, kept for future reference
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
 [![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
-
 -->
 <p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses.</p>
-<p>A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
+<p>The functionalities of <code>pastclim</code> are described in <a href="https://doi.org/10.1111/ecog.06481" class="external-link">Leonardi et al. (2023)</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
 <div class="section level2">
 <h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
 </h2>
@@ -106,8 +105,8 @@
 <div class="section level2">
 <h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
 </h2>
-<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>.</p>
-<p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>.</p>
+<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>.</p>
+<p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</p>
 <p>You can also build the vignettes when installing <code>pastclim</code> (note that you will need to have the necessary tools to build vignettes already installed; requirements depend on your OS):</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignette <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 <p>If you built the vignettes, you can read them directly in R. For example, the overview can be obtained with:</p>
@@ -140,7 +139,19 @@ on CRAN. Alternatively, try the latest development version from R-universe:
 install.packages('terra', repos='https://rspatial.r-universe.dev')</code></pre>
 <p>The easiest solution is probably to install the <code>dev</code> version of <code>terra</code> from <a href="https://r-universe.dev/organizations/" class="external-link">R-universe</a> with:</p>
 <pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'terra'</span>, repos<span class="op">=</span><span class="st">'https://rspatial.r-universe.dev'</span><span class="op">)</span></span></code></pre>
+<p>However, note that the <code>dev</code> version of <code>terra</code> is incompatible with the version of <code>pastclim</code> on CRAN. Therefore, you need to also upgrade <code>pastclim</code> to <code>dev</code>:</p>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></span></code></pre>
 <p>Alternatively, if you want to install a specific version of <code>terra</code> from source, see instructions <a href="https://github.com/rspatial/terra" class="external-link">here</a>.</p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="no-slot-of-name-ptr-with-dev-version-of-terra">no slot of name “ptr” with <code>dev</code> version of <code>terra</code>
+<a class="anchor" aria-label="anchor" href="#no-slot-of-name-ptr-with-dev-version-of-terra"></a>
+</h3>
+<p>the <code>dev</code> version of <code>terra</code> is incompatible with the version of <code>pastclim</code> on CRAN, leading to the following error.</p>
+<pre><code>Error in time_bp(climate_nc) : no slot of name "ptr" for this object of class "SpatRaster"</code></pre>
+<p>To solve this, you need to also upgrade <code>pastclim</code> to <code>dev</code>:</p>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>

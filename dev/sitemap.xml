@@ -130,6 +130,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/mis_boundaries.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/pastclim.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/region_extent.html</loc>
   </url>
   <url>
@@ -169,7 +172,7 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_series.html</loc>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_to_i_series.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/time_bp_to_index.html</loc>
