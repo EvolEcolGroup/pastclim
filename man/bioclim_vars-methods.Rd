@@ -32,12 +32,12 @@ bioclim_vars(prec, tavg, ...)
 the bioclim variables
 }
 \description{
-To compute BIOCLIM variables from 
+To compute BIOCLIM variables from
 monthly average temperature and precipitation data. For modern data,
 this variables are generally computed using min and maximum temperature,
 but for many paleoclimatic reconstructions only average temperature is
 avaliable. Most variables, with the exception of BIO02 and BIO03, can
-be rephrased meaningfully in terms of mean temperature. 
+be rephrased meaningfully in terms of mean temperature.
 This function is a modified version of \code{predicts::bcvars}.
 }
 \details{
@@ -62,6 +62,6 @@ BIO19 = Precipitation of Coldest Quarter
 
 These summary Bioclimatic variables are after:
 Nix, 1986. A biogeographic analysis of Australian elapid snakes. In: R. Longmore (ed.).
-    Atlas of elapid snakes of Australia. Australian Flora and Fauna Series 7.
-    Australian Government Publishing Service, Canberra.
+Atlas of elapid snakes of Australia. Australian Flora and Fauna Series 7.
+Australian Government Publishing Service, Canberra.
 }

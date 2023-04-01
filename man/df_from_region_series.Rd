@@ -11,7 +11,7 @@ df_from_region_series(x, xy = TRUE)
 \arguments{
 \item{x}{climate time series generated with \code{region_series}}
 
-\item{xy}{a boolean whether x and y coordinates should be added 
+\item{xy}{a boolean whether x and y coordinates should be added
 to the dataframe (default to TRUE)}
 }
 \value{

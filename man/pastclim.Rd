@@ -5,11 +5,11 @@
 \alias{pastclim}
 \title{pastclim}
 \description{
-This `R` library is designed to provide an easy way to extract and manipulate palaeoclimate
+This \code{R} library is designed to provide an easy way to extract and manipulate palaeoclimate
 reconstructions for ecological and anthropological analyses.
 }
 \details{
-The functionalities of `pastclim` are described in 
- [Leonardi et al. (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you
-use `pastclim` in your research.
+The functionalities of \code{pastclim} are described in
+\href{https://doi.org/10.1111/ecog.06481}{Leonardi et al. (2023)}. Please cite it if you
+use \code{pastclim} in your research.
 }

@@ -255,5 +255,27 @@ bioclim_downscaled
 
 And plot the first variable (bio01):
 ```{r}
-plot(bioclim_downscaled[[1]], main = time(bioclim_downscaled[[1]]))
+plot(bioclim_downscaled[[1]], main = time_bp(bioclim_downscaled[[1]]))
+```
+
+We can now save the downscaled `sds` to a netcdf file:
+```{r}
+terra::writeCDF(bioclim_downscaled,paste0(tempdir(),"/EA_bioclim_downscaled.nc"), overwrite=TRUE)
+```
+
+And then use it as a custom dataset for any function in `pastclim`:
+```{r}
+custom_data <- region_series(bio_variables =c("bio01","bio04","bio19"),
+                             dataset = "custom",
+                             path_to_nc = paste0(tempdir(),"/EA_bioclim_downscaled.nc"))
+```
+
+We can quickly inspect the resulting `sds` obejct:
+```{r}
+custom_data
+```
+
+And plot it:
+```{r}
+plot(custom_data$bio01,main=time_bp(custom_data$bio01))
 ```

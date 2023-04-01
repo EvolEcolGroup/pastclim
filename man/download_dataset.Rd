@@ -19,6 +19,6 @@ TRUE if the dataset(s) was downloaded correctly.
 }
 \description{
 This function downloads palaeoclimate reconstructions. Files will be stored
-in the data path of `pastclim`, which can be inspected with
+in the data path of \code{pastclim}, which can be inspected with
 \code{get_data_path} and changed with \code{set_data_path}
 }

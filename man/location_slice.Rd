@@ -16,11 +16,11 @@ location_slice(
 )
 }
 \arguments{
-\item{x}{a data.frame with columns `longitude`, ranging
--180 to 180, and `latitude`, from -90 to 90, plus optional
-columns `time_bp` and `name`. Alternatively, a vector of cell numbers.}
+\item{x}{a data.frame with columns \code{longitude}, ranging
+-180 to 180, and \code{latitude}, from -90 to 90, plus optional
+columns \code{time_bp} and \code{name}. Alternatively, a vector of cell numbers.}
 
-\item{time_bp}{used if no `time_bp` column is present in `x`: the dates in
+\item{time_bp}{used if no \code{time_bp} column is present in \code{x}: the dates in
 years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.}
@@ -39,17 +39,17 @@ interpolation is used to estimate climate for cells that lack such
 information (i.e. they are under water or ice). By default, interpolation is only
 performed from the first ring of nearest neighbours; if climate is not
 available, NA will be returned for that location. The number of neighbours
-can be changed with the argument `directions`. `nn_interpol` defaults to TRUE.}
+can be changed with the argument \code{directions}. \code{nn_interpol} defaults to TRUE.}
 
 \item{buffer}{boolean determining whether the variable will be returned
 as the mean of a buffer around the focal cell. If set to TRUE, it overrides
-`nn_interpol` (which provides the same estimates as `buffer` but only for
+\code{nn_interpol} (which provides the same estimates as \code{buffer} but only for
 locations that are in cells with an NA). The buffer size is determined
-by the argument `directions`. `buffer` defaults to FALSE.}
+by the argument \code{directions}. \code{buffer} defaults to FALSE.}
 
 \item{directions}{character or matrix to indicate the directions in which
-cells are considered connected when using `nn_interpol` or `buffer`. 
-The following character values are allowed: "rook" or "4" for the 
+cells are considered connected when using \code{nn_interpol} or \code{buffer}.
+The following character values are allowed: "rook" or "4" for the
 horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
 "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
 or "16" for knight and one-cell queen move neighbors. If directions

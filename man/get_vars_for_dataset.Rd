@@ -22,6 +22,6 @@ a vector of variable names
 \description{
 This function lists the variables available for a given dataset. Note that
 the spelling and use of capitals in names might differ from the original
-publications, as `pastclim` harmonises the names of variables across
+publications, as \code{pastclim} harmonises the names of variables across
 different reconstructions.
 }

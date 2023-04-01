@@ -19,14 +19,14 @@ a \code{terra::SpatRaster} of the delta
 }
 \description{
 This function generates a delta (difference) raster, computed as the difference between
-model estimates (`x`) and some observations (`high_res_obs`). `x` is a 
-\code{terra::SpatRaster} of the variable we want to downscale, and it 
-can contain multiple time steps. `ref_time` sets the time slice for which
+model estimates (\code{x}) and some observations (\code{high_res_obs}). \code{x} is a
+\code{terra::SpatRaster} of the variable we want to downscale, and it
+can contain multiple time steps. \code{ref_time} sets the time slice for which
 the delta should be computed.
 }
 \details{
-If `obs` has a higher
-resolution than `x`, the latter is interpolated using a bilinear algorithm.
+If \code{obs} has a higher
+resolution than \code{x}, the latter is interpolated using a bilinear algorithm.
 For areas that are present in some time slices, but not in the observations
 (e.g. due to sea level change), the delta map is extended to cover the maximum
 cumulative land mask (over all time steps) using idw.

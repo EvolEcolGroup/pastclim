@@ -104,8 +104,8 @@ methods::setMethod("bioclim_vars", signature(prec="SpatRasterDataset", tavg="Spa
             prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
             tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
             biovars_slice<-bioclim_vars(prec_slice, tavg_slice)
-            # TODO add years as time step when terra is fixed
-            time(biovars_slice)<-rep(time_slices[i],terra::nlyr(biovars_slice))
+            # set times in years BP
+            time_bp(biovars_slice)<-rep(time_slices[i],terra::nlyr(biovars_slice))
             if (i==1){
               biovars_list<-split(biovars_slice, f=1:17)
             } else {
@@ -115,7 +115,12 @@ methods::setMethod("bioclim_vars", signature(prec="SpatRasterDataset", tavg="Spa
             }
           }
           # return the variables as a SpatRasterDataset
-          return(terra::sds(biovars_list))
+          bioclim_sds <- terra::sds(biovars_list)
+          names(bioclim_sds) <- c("bio01",paste0("bio0", 4:9),
+                                  paste0("bio",10:19))
+          varnames(bioclim_sds) <- c("bio01",paste0("bio0", 4:9),
+                                     paste0("bio",10:19))
+          return(bioclim_sds)
 })
                      
                      

@@ -25,7 +25,7 @@ a data.frame with the sampled cells and their respective values for
 the climate variables.
 }
 \description{
-Internal function for fixed sampling from \code{sample_region_series}, 
+Internal function for fixed sampling from \code{sample_region_series},
 used when a single size is given.
 }
 \keyword{internal}

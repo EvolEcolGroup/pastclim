@@ -7,7 +7,7 @@
 get_data_path(silent = FALSE)
 }
 \arguments{
-\item{silent}{boolean on whether a message is returned when data_path is 
+\item{silent}{boolean on whether a message is returned when data_path is
 not set (i.e. equal to NULL)}
 }
 \value{
@@ -17,10 +17,10 @@ the data path
 This function returns the path where climate reconstructions are stored.
 }
 \details{
-The path is stored in an option for `pastclim` named `data_path`. If
+The path is stored in an option for \code{pastclim} named \code{data_path}. If
 a configuration file was saved when using \code{set_data_path}, the path
 is retrieved from a file named "pastclim_data.txt", which
-is found in the directory returned by 
-`tools::R_user_dir("pastclim","config")` (i.e.
+is found in the directory returned by
+\code{tools::R_user_dir("pastclim","config")} (i.e.
 the default configuration directory for the package as set in R >= 4.0).
 }

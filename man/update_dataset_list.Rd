@@ -15,8 +15,8 @@ TRUE if the dataset was updated
 \description{
 If a newer dataset list (which includes all the information about the files
 storing the data for pastclim), download it and start using it as
-'dataset_list_included.csv' in 
-`tools::R_user_dir("pastclim","config")`. If the latter is present, the last
+'dataset_list_included.csv' in
+\code{tools::R_user_dir("pastclim","config")}. If the latter is present, the last
 column, named 'dataset_list_v', provides the version of this table, and the
 most advanced table is used.
 }

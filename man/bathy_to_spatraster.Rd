@@ -13,7 +13,7 @@ bathy_to_spatraster(bathy)
 a \code{terra::SpatRaster} with the relief for the chosen region
 }
 \description{
-This function converts a \code{marmap::bathy} object to 
+This function converts a \code{marmap::bathy} object to
 a \code{terra::SpatRaster}.
 }
 \keyword{internal}

@@ -26,7 +26,6 @@ RoxygenNote: 7.2.2
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
-  methods,
   terra (>= 1.7.18)
 Imports:
   curl,

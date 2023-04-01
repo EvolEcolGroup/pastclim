@@ -7,10 +7,10 @@
 download_worldclim(var, res, path = NULL, version = "2.1", ...)
 }
 \arguments{
-\item{var}{character Valid variables names are "tmin", "tmax", "tavg", 
+\item{var}{character Valid variables names are "tmin", "tmax", "tavg",
 "prec", "wind", "vapr", and "bio".}
 
-\item{res}{numeric Valid resolutions are 10, 5, 2.5, 
+\item{res}{numeric Valid resolutions are 10, 5, 2.5,
 and 0.5 (minutes of a degree)}
 
 \item{path}{character. Path where to download the data to, If left NULL, the data
@@ -25,13 +25,13 @@ a \code{terra::SpatRaster} with the requested worldclim variable
 }
 \description{
 This function downloads annual and monthly variables from the Worldclim 2.1 dataset.
-These variables are saved in a format that can be read by 
+These variables are saved in a format that can be read by
 \code{load_worldclim}, and easily used for delta downscaling paleoclimate
 observations
 }
 \details{
 This function uses \code{geodata::worldclim_global} to download the data, and
 then converts them into a \code{terra::SpatRaster} in a format compatible
-with `pastclim`
+with \code{pastclim}
 }
 \keyword{internal}

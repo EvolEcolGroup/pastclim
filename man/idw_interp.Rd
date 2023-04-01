@@ -16,7 +16,7 @@ cells should have values}
 kriging prediction or simulation, where nearest is defined in terms
 of the space of the spatial locations (see \code{gstat::gstat} for details)}
 
-\item{set}{named list with optional parameters to be passed to gstat 
+\item{set}{named list with optional parameters to be passed to gstat
 (only set commands of gstat are allowed, and not all of them may be
 relevant; see the gstat manual for gstat stand-alone, URL and more details
 in the \code{gstat::gstat} help page)}

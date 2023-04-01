@@ -25,7 +25,7 @@ the climate variables.
 }
 \description{
 Internal function for sampling different number of points for each
-timestep of a region series from \code{sample_region_series}, 
+timestep of a region series from \code{sample_region_series},
 used when size is a vector of values.
 }
 \keyword{internal}
