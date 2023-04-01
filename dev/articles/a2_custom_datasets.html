@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.3.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,33 +144,19 @@ number of workarounds needed for the version on CRAN</em></p>
 reconstructions are every 100 years), and generate some user friendly
 names to layers in the raster:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: terra</span></span>
+<span><span class="co">#&gt; terra 1.7.18</span></span>
+<span><span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"_"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we save the data as a <em>nc</em> file (we will use the temporary
 directory)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nc_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"CHELSA_TraCE21k_bio01.nc"</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bio01</span>, filename <span class="op">=</span> <span class="va">nc_name</span>, varname <span class="op">=</span> <span class="st">"bio01"</span>, overwrite<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>We also need to make sure that the <em>time</em> dimension has units
-and is labelled as <code>axis="T"</code>, or <code>pastclim</code> will
-not be able to read the data properly.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nc_in</span> <span class="op">&lt;-</span> <span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_open.html" class="external-link">nc_open</a></span><span class="op">(</span><span class="va">nc_name</span>, write<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>,varid<span class="op">=</span><span class="st">"time"</span>, </span>
-<span>                 attname <span class="op">=</span> <span class="st">"units"</span>,</span>
-<span>                 attval <span class="op">=</span> <span class="st">"years since 1950-01-01 00:00:00.0"</span><span class="op">)</span></span>
-<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>,varid<span class="op">=</span><span class="st">"time"</span>, </span>
-<span>                 attname <span class="op">=</span> <span class="st">"long_name"</span>,</span>
-<span>                 attval <span class="op">=</span> <span class="st">"years BP"</span><span class="op">)</span></span>
-<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/ncatt_put.html" class="external-link">ncatt_put</a></span><span class="op">(</span><span class="va">nc_in</span>, varid<span class="op">=</span><span class="st">"time"</span>, attname<span class="op">=</span><span class="st">"axis"</span>, attval <span class="op">=</span> <span class="st">"T"</span><span class="op">)</span></span>
-<span><span class="fu">ncdf4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ncdf4/man/nc_close.html" class="external-link">nc_close</a></span><span class="op">(</span><span class="va">nc_in</span><span class="op">)</span></span></code></pre></div>
 <p>We can now read in our custom netcdf file with
 <code>pastclim</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.18</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="st">"bio01"</span>,</span>
 <span>                                dataset <span class="op">=</span> <span class="st">"custom"</span>,</span>
 <span>                                path_to_nc <span class="op">=</span> <span class="va">nc_name</span></span>
@@ -187,14 +173,14 @@ not be able to read the data properly.</p>
 <span><span class="co">#&gt; names       : bio01</span></span></code></pre></div>
 <p>As expected, there is only one variable (“bio01”) and 3 time steps
 (nlyr). We can get the times of those time steps with:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_steps.html">get_time_steps</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"custom"</span>, path_to_nc <span class="op">=</span> <span class="va">nc_name</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]    0 -100 -200</span></span></code></pre></div>
-<p>And we can slice the series and plot a give time point:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>And we can slice the series and plot a given time point:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_100</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">custom_series</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_100</span><span class="op">)</span></span></code></pre></div>
-<p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Note that these reconstructions include the ocean and the ice sheets,
 and it would be much better to remove them as they are not needed for
 most ecological/archaeological studies (and it allows for smaller
@@ -213,7 +199,7 @@ are the necessary steps:</p>
 information about available datasets. This table is found in
 “./inst/extdata/variable_table.csv”.</p></li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/dataset_list_included.csv"</span>,</span>
 <span>                     package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   variable ncvar dataset monthly                 file_name download_path</span></span>
