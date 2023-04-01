@@ -263,14 +263,15 @@ We can now save the downscaled `sds` to a netcdf file:
 terra::writeCDF(bioclim_downscaled,paste0(tempdir(),"/EA_bioclim_downscaled.nc"), overwrite=TRUE)
 ```
 
-And then use it as a custom dataset for any function in `pastclim`:
+And then use it as a custom dataset for any function in `pastclim`. Let's extract
+a region series for three variables:
 ```{r}
 custom_data <- region_series(bio_variables =c("bio01","bio04","bio19"),
                              dataset = "custom",
                              path_to_nc = paste0(tempdir(),"/EA_bioclim_downscaled.nc"))
 ```
 
-We can quickly inspect the resulting `sds` obejct:
+We can quickly inspect the resulting `sds` object:
 ```{r}
 custom_data
 ```
