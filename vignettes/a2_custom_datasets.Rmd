@@ -42,7 +42,8 @@ vignette presents a number of workarounds needed for the version on CRAN*
 Now we need to set the time axis of the raster (in this case, reconstructions are every 100 years), and generate some user friendly names to layers in the raster:
 
 ```{r}
-terra::time(bio01)<-c(0,-100,-200)
+library(pastclim)
+time_bp(bio01)<-c(0,-100,-200)
 names(bio01)<-paste("bio01",terra::time(bio01),sep="_")
 ```
 
@@ -52,27 +53,7 @@ nc_name <- file.path(tempdir(),"CHELSA_TraCE21k_bio01.nc")
 terra::writeCDF(bio01, filename = nc_name, varname = "bio01", overwrite=TRUE)
 ```
 
-We also need to make sure that the *time* dimension has units and is labelled
-as `axis="T"`, or `pastclim` will not
-be able to read the data properly.
-
-```{r}
-nc_in <- ncdf4::nc_open(nc_name, write=TRUE)
-ncdf4::ncatt_put(nc_in,varid="time", 
-                 attname = "units",
-                 attval = "years since 1950-01-01 00:00:00.0")
-ncdf4::ncatt_put(nc_in,varid="time", 
-                 attname = "long_name",
-                 attval = "years BP")
-ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
-ncdf4::nc_close(nc_in)
-
-```
-
 We can now read in our custom netcdf file with `pastclim`.
-```{r}
-library(pastclim)
-```
 
 ```{r echo=FALSE, results='hide'}
 data_path <- file.path(tempdir(),"pastclim_data")
@@ -98,7 +79,7 @@ As expected, there is only one variable ("bio01") and
 get_time_steps(dataset="custom", path_to_nc = nc_name)
 ```
 
-And we can slice the series and plot a give time point:
+And we can slice the series and plot a given time point:
 ```{r}
 climate_100<-slice_region_series(custom_series, time_bp = -100)
 terra::plot(climate_100)
