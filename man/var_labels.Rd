@@ -7,7 +7,7 @@
 var_labels(x, dataset, with_units = TRUE, abbreviated = FALSE)
 }
 \arguments{
-\item{x}{either a character vector with the names of the variables, or a 
+\item{x}{either a character vector with the names of the variables, or a
 \code{SpatRaster} generated with \code{region_slice}}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible

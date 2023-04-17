@@ -16,8 +16,8 @@ location_series(
 )
 }
 \arguments{
-\item{x}{a data.frame with columns `longitude`, ranging
--180 to 180, and `latitude`, from -90 to 90 (and an optional `name`),
+\item{x}{a data.frame with columns \code{longitude}, ranging
+-180 to 180, and \code{latitude}, from -90 to 90 (and an optional \code{name}),
 or a vector of cell numbers.}
 
 \item{time_bp}{time slices in years before present (negative values represent
@@ -42,18 +42,18 @@ interpolation is used to estimate climate for cells that lack such
 information (i.e. they are under water or ice). By default, interpolation is only
 performed from the first ring of nearest neighbours; if climate is not
 available, NA will be returned for that location. The number of neighbours
-can be changed with the argument `directions`. `nn_interpol` defaults to FALSE
+can be changed with the argument \code{directions}. \code{nn_interpol} defaults to FALSE
 (this is DIFFERENT from \code{location_slice}.}
 
 \item{buffer}{boolean determining whether the variable will be returned
 as the mean of a buffer around the focal cell. If set to TRUE, it overrides
-`nn_interpol` (which provides the same estimates as `buffer` but only for
+\code{nn_interpol} (which provides the same estimates as \code{buffer} but only for
 locations that are in cells with an NA). The buffer size is determined
-by the argument `directions`. `buffer` defaults to FALSE.}
+by the argument \code{directions}. \code{buffer} defaults to FALSE.}
 
 \item{directions}{character or matrix to indicate the directions in which
-cells are considered connected when using `nn_interpol` or `buffer`. 
-The following character values are allowed: "rook" or "4" for the 
+cells are considered connected when using \code{nn_interpol} or \code{buffer}.
+The following character values are allowed: "rook" or "4" for the
 horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
 "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
 or "16" for knight and one-cell queen move neighbors. If directions
@@ -64,8 +64,8 @@ a data.frame with the climatic variables of interest
 }
 \description{
 This function extract a time series of local climate for
- a set of locations. Note that this function does not apply any interpolation
- (as opposed to \code{location_slice}). If you have a coastal location that just
- falls into the water for the reconstructions, you will have to amend the coordinates
- to put it more firmly on land.
+a set of locations. Note that this function does not apply any interpolation
+(as opposed to \code{location_slice}). If you have a coastal location that just
+falls into the water for the reconstructions, you will have to amend the coordinates
+to put it more firmly on land.
 }

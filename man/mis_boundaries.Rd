@@ -7,9 +7,9 @@
 \format{
 A data frame with 24 rows and 2 variables:
 \describe{
-  \item{mis}{the stage, a string}
-  \item{start}{the start of a given MIS, in kya}
-  \item{end}{the start of a given MIS, in kya}
+\item{mis}{the stage, a string}
+\item{start}{the start of a given MIS, in kya}
+\item{end}{the start of a given MIS, in kya}
 }
 }
 \usage{

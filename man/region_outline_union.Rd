@@ -7,7 +7,7 @@
 \format{
 \code{sf} of outlines.
 \describe{
-  \item{name}{names of regions}
+\item{name}{names of regions}
 }
 }
 \usage{
