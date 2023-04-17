@@ -43,9 +43,9 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-      
-      - name: Get dev terra for MacOS
-        if: matrix.config.os == 'macos-latest'
+
+      - name: Get dev terra for MacOS or dev
+        if: matrix.config.os == 'macos-latest' || ${{ github.base_ref == 'dev' }}
         run: install.packages('terra', repos='https://rspatial.r-universe.dev')
         shell: Rscript {0}
 
