@@ -13,7 +13,7 @@ validate_nc(path_to_nc)
 TRUE if the file is valid.
 }
 \description{
-This function validates a netcdf file as a potential dataset for `pastlim`.
+This function validates a netcdf file as a potential dataset for \code{pastlim}.
 The key checks are:
 a) that the dimensions (longitude, latitude and time) have been set correctly.
 b) that all variables have the appropriate metadata (longname and units)

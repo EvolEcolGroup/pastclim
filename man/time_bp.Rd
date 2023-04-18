@@ -25,10 +25,10 @@ a date in years BP (where negative numbers indicate a date in the past)
 }
 \description{
 This functions extracts and sets time in years BP (i.e. from 1950) for a
-\code{terra::SpatRaster}. In the \code{terra::SpatRaster} object, time is 
+\code{terra::SpatRaster}. In the \code{terra::SpatRaster} object, time is
 stored with unit "years", which
-are years from 0AD. This means that, when a summary of the 
+are years from 0AD. This means that, when a summary of the
 \code{terra::SpatRaster} is
-inspected, the times will appear as `time_bp`+1950. The same applies when the
+inspected, the times will appear as \code{time_bp}+1950. The same applies when the
 function \code{terra::time} is used instead of \code{time_bp}.
 }
