@@ -616,6 +616,17 @@ plot(europe_climate_20k,
 
 Only the points within the extent of the region will be plotted (so, in this case, only the European locations).
 
+We can combine ice sheets and locations in a single plot:
+
+```{r, fig.width=6, fig.height=5}
+plot(europe_climate_20k, 
+     fun=function() {
+        polys(ice_mask_vect, col="gray", lwd=0.5)
+        points(locations_vect, col="red", cex=2)
+     })
+
+```
+
 # Set the samples within the background
 
 In many studies, we want to set the environmental conditions at a given
