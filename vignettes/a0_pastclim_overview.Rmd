@@ -581,6 +581,21 @@ land_mask <- get_land_mask(-20000, dataset = "Example")
 terra::plot(c(ice_mask, land_mask))
 ```
 
+We can also add the ice sheets to plots of climatic variables. First, we need to turn the
+ice mask into polygons:
+```{r}
+ice_mask_vect <- as.polygons(ice_mask)
+```
+
+We can then add the polygons to each layer (i.e. variable) of climate slice with the following code (note that, to add the 
+polygons to every panel of the figure, we need to create a function that is used as
+an argument for `fun` within `plot`):
+
+```{r, fig.width=6, fig.height=5}
+plot(climate_20k, 
+     fun=function() polys(ice_mask_vect, col="gray", lwd=0.5))
+```
+
 # Adding locations to region plots
 
 To plot locations on region plots, we first need to create a `SpatVector` obejct from
@@ -592,10 +607,11 @@ locations_vect
 ```
 
 We can then add it to a climate slice with the following code (note that, to add the 
-points to every panel of the figure, we need to createa  function that is used as
-an argument for `fun` within `plot`:
+points to every panel of the figure, we need to create a function that is used as
+an argument for `fun` within `plot`):
 ```{r, fig.width=6, fig.height=5}
-plot(europe_climate_20k, fun=function() points(locations_vect, col="red", cex=2))
+plot(europe_climate_20k, 
+     fun=function() points(locations_vect, col="red", cex=2))
 ```
 
 Only the points within the extent of the region will be plotted (so, in this case, only the European locations).
@@ -714,3 +730,6 @@ europe_ds <- terra::disagg(europe_10k, fact=25, method='bilinear')
 terra::plot(europe_ds)
 
 ```
+
+Note that, whilst we have smoothed the climate, the land mask has not changed, and thus
+it still has very blocky edges.
