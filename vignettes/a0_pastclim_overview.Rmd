@@ -581,17 +581,24 @@ land_mask <- get_land_mask(-20000, dataset = "Example")
 terra::plot(c(ice_mask, land_mask))
 ```
 
+# Adding locations to region plots
 
-```{r, fig.width=6, fig.height=2.5, echo=FALSE, eval=FALSE}
-#You can also plot the icemask on top of some other variables with:
-# this does not work on all systems?!?
-climate_20k <- region_slice(
-  time_bp = -20000,
-  bio_variables = c("bio01", "bio10"),
-  dataset = "Example"
-)
-plot(climate_20k, fun=function()plot(ice_mask, add=TRUE, col="gray", legend=FALSE))
+To plot locations on region plots, we first need to create a `SpatVector` obejct from
+the dataframe of metadata, specifying the names of the columns with the x and y coordinates:
+
+```{r}
+locations_vect <- vect(locations, geom=c("longitude", "latitude"))
+locations_vect
 ```
+
+We can then add it to a climate slice with the following code (note that, to add the 
+points to every panel of the figure, we need to createa  function that is used as
+an argument for `fun` within `plot`:
+```{r, fig.width=6, fig.height=5}
+plot(europe_climate_20k, fun=function() points(locations_vect, col="red", cex=2))
+```
+
+Only the points within the extent of the region will be plotted (so, in this case, only the European locations).
 
 # Set the samples within the background
 
