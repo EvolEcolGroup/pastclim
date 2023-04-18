@@ -53,7 +53,7 @@ set_data_path <- function(path_to_nc = NULL, ask = TRUE, write_config = TRUE,
     # if the data directory does not exist, attempt to make it
     if (!dir.exists(data_dir)) {
       dir.create(data_dir, recursive = TRUE)
-      # do we need to check succeful dir creation, or does it raise an error?
+      # do we need to check successful dir creation, or does it raise an error?
     }
     # if requested, write the path in a config file for future use
     if (write_config){
