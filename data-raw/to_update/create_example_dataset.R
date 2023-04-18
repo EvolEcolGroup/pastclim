@@ -21,6 +21,9 @@ cdo("select,name=biome example_climate_subset.nc example_climate_biome.nc")
 cdo("gridboxmax,2,2 example_climate_biome.nc example_climate_biome_max.nc")
 # this mask is correct for the ice mask
 cdo("gridboxmin,2,2 example_climate_biome.nc example_climate_biome_min.nc")
+
+## CHECK the following
+
 # create an ice mask with the correct ice
 cdo ("-O -expr,'biome = ((biome < 28)) ? biome : -1' example_climate_biome_min.nc ice1.nc")
 cdo ("-O -expr,'biome = ((biome >= 28)) ? 1 : 0' ice1.nc ice2.nc")
