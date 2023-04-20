@@ -39,5 +39,6 @@ get_biome_classes <- function(dataset) {
       category = biomes_string
     )
   }
+  ncdf4::nc_close(nc_in)
   return(biome_categories)
 }
