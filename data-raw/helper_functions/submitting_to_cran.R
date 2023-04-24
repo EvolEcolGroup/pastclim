@@ -14,8 +14,8 @@ pastclim_checks <- rhub::check_for_cran()
 devtools::check_mac_release()
 devtools::check_win_devel()
 
+# TO DO MANUALLY: update cran-comments.md accordingly
+# upadte version number
+
 # if everything passes, edit the cran-comments.md to explain any notes
 devtools::release()
-
-
-https://doi.org/10.1111/ecog.06481
