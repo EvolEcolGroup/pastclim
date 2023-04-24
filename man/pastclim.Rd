@@ -10,14 +10,14 @@ reconstructions for ecological and anthropological analyses.
 }
 \details{
 The functionalities of \code{pastclim} are described in
-Leonardi et al. (2023) \url{doi:10.1111/ecog.06481}. Please cite it if you
+\link{Leonardi et al. (2023)} {https://onlinelibrary.wiley.com/doi/10.1111/ecog.06481}. Please cite it if you
 use \code{pastclim} in your research.
 
 On its dedicated \href{https://evolecolgroup.github.io/pastclim/}{website}, you can find
 Articles giving you a step-by-step \href{https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html}{overview of the package},
 and a \href{https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf}{cheatsheet}.
 There is also a
-\href{https://evolecolgroup.github.io/pastclim/dev}{version} of the site
+\href{https://evolecolgroup.github.io/pastclim/dev/}{version} of the site
 updated for the \code{dev} version (on the top left, the version number is in
 red, and will be in the format x.x.x.9xxx, indicating it is a
 development version).
