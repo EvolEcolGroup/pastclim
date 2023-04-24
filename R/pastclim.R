@@ -4,7 +4,7 @@
 #' reconstructions for ecological and anthropological analyses.
 #' 
 #' The functionalities of `pastclim` are described in 
-#'  [Leonardi et al. (2023)] {https://onlinelibrary.wiley.com/doi/10.1111/ecog.06481}. Please cite it if you
+#'  [Leonardi et al. (2023)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.06481). Please cite it if you
 #' use `pastclim` in your research.
 #' 
 #' On its dedicated [website](https://evolecolgroup.github.io/pastclim/), you can find
