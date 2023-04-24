@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Palaeoclimate Reconstructions 
-Version: 1.2.3.9004
+Version: 1.2.3.9005
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -22,7 +22,7 @@ BugReports: https://github.com/EvolEcolGroup/pastclim/issues
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
@@ -33,10 +33,11 @@ Imports:
   ncdf4,
   utils
 Suggests: 
-  rmarkdown,
-  knitr,
-  sf,
-  ggplot2,
-  testthat (>= 3.0.0)
+    rmarkdown,
+    knitr,
+    sf,
+    ggplot2,
+    testthat (>= 3.0.0),
+    spelling
 VignetteBuilder: knitr
 Config/testthat/edition: 3

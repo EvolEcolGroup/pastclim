@@ -14,7 +14,7 @@ values can be obtained with \code{get_available_datasets}). This function
 will not work on custom datasets.}
 }
 \value{
-the filename for taht variable and dataset
+the filename for that variable and dataset
 }
 \description{
 Internal getter function

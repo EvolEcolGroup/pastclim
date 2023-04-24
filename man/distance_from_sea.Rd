@@ -2,7 +2,7 @@
 % Please edit documentation in R/distance_from_sea.R
 \name{distance_from_sea}
 \alias{distance_from_sea}
-\title{Compute a raster of distances from the sea for each land pixed.}
+\title{Compute a raster of distances from the sea for each land pixel.}
 \usage{
 distance_from_sea(time_bp, dataset)
 }

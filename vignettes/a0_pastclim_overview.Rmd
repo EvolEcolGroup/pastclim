@@ -598,7 +598,7 @@ plot(climate_20k,
 
 # Adding locations to region plots
 
-To plot locations on region plots, we first need to create a `SpatVector` obejct from
+To plot locations on region plots, we first need to create a `SpatVector` object from
 the dataframe of metadata, specifying the names of the columns with the x and y coordinates:
 
 ```{r}

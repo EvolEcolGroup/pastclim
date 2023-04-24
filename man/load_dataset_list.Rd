@@ -15,7 +15,7 @@ the dataset list
 \description{
 This function returns a dataframe with the details for each variable
 available in every dataset. It defaults to the copy stored within the
-package, but it checks in case there is an udpated version stored as
+package, but it checks in case there is an updated version stored as
 'data_list.csv' in
 \code{tools::R_user_dir("pastclim","config")}. If the latter is present, the last
 column, named 'dataset_list_v', provides the version of this table, and the

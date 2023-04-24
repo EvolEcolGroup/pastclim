@@ -10,6 +10,22 @@ reconstructions for ecological and anthropological analyses.
 }
 \details{
 The functionalities of \code{pastclim} are described in
-\href{https://doi.org/10.1111/ecog.06481}{Leonardi et al. (2023)}. Please cite it if you
+Leonardi et al. (2023) \url{doi:10.1111/ecog.06481}. Please cite it if you
 use \code{pastclim} in your research.
+
+On its dedicated \href{https://evolecolgroup.github.io/pastclim/}{website}, you can find
+Articles giving you a step-by-step \href{https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html}{overview of the package},
+and a \href{https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf}{cheatsheet}.
+There is also a
+\href{https://evolecolgroup.github.io/pastclim/dev}{version} of the site
+updated for the \code{dev} version (on the top left, the version number is in
+red, and will be in the format x.x.x.9xxx, indicating it is a
+development version).
+
+\code{pastclim} currently includes data from Beyer et al 2020, a reconstruction of climate
+based on the HadCM3
+model for the last 120k years, and Krapp et al 2021, which covers the last 800k years.
+The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets
+can be found \href{https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html}{here}.
+There are also instructions on how to build and use \href{https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html}{custom datasets}.
 }

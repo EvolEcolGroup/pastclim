@@ -1,4 +1,4 @@
-#' Compute a raster of distances from the sea for each land pixed.
+#' Compute a raster of distances from the sea for each land pixel.
 #'
 #' Get the land mask for a dataset at a given time point, and compute distance
 #' from the sea for each land pixel.
