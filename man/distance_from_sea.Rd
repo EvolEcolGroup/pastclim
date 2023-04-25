@@ -9,7 +9,7 @@ distance_from_sea(time_bp, dataset)
 \arguments{
 \item{time_bp}{time slice in years before present (negative)}
 
-\item{dataset}{string defining dataset to be downloaded (a list of possible
+\item{dataset}{string defining the dataset to use (a list of possible
 values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 }

@@ -4,7 +4,7 @@
 #' from the sea for each land pixel.
 #'
 #' @param time_bp time slice in years before present (negative)
-#' @param dataset string defining dataset to be downloaded (a list of possible
+#' @param dataset string defining the dataset to use (a list of possible
 #' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a [`terra::SpatRaster`] of distances
@@ -13,7 +13,7 @@
 #' @export
 
 distance_from_sea <- function(time_bp, dataset) {
-  this_land_mask <- pastclim::get_land_mask(time_bp=time_bp,
+  this_land_mask <- get_land_mask(time_bp=time_bp,
                                             dataset=dataset)
   coastlines_polyline <- terra::as.polygons(this_land_mask) # first get polygon
   coastlines_polyline <- terra::as.lines(coastlines_polyline) # then extract line
