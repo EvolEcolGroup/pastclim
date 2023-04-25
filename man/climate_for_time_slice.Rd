@@ -11,7 +11,7 @@ climate_for_time_slice(...)
 }
 \value{
 a
-SpatRaster \link[terra:SpatRaster-class]{terra::SpatRaster} object, with
+SpatRaster \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, with
 each variable as a layer.
 }
 \description{

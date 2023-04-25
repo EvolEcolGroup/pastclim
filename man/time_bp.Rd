@@ -16,7 +16,7 @@ time_bp(x) <- value
 \S4method{time_bp}{SpatRaster}(x) <- value
 }
 \arguments{
-\item{x}{a \link[terra:SpatRaster-class]{terra::SpatRaster}}
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}}
 
 \item{value}{a numeric vector of times in years BP}
 }
@@ -25,10 +25,10 @@ a date in years BP (where negative numbers indicate a date in the past)
 }
 \description{
 This functions extracts and sets time in years BP (i.e. from 1950) for a
-\link[terra:SpatRaster-class]{terra::SpatRaster}. In the \link[terra:SpatRaster-class]{terra::SpatRaster} object, time is
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}. In the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, time is
 stored with unit "years", which
 are years from 0AD. This means that, when a summary of the
-\link[terra:SpatRaster-class]{terra::SpatRaster} is
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} is
 inspected, the times will appear as \code{time_bp}+1950. The same applies when the
 function \code{\link[terra:time]{terra::time()}} is used instead of \code{\link[=time_bp]{time_bp()}}.
 }

@@ -14,7 +14,7 @@ values can be obtained with \code{\link[=get_available_datasets]{get_available_d
 will not work on custom datasets.}
 }
 \value{
-a \link[terra:SpatRaster-class]{terra::SpatRaster} of distances
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of distances
 }
 \description{
 Get the land mask for a dataset at a given time point, and compute distance

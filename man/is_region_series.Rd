@@ -7,7 +7,7 @@
 is_region_series(x, strict = FALSE)
 }
 \arguments{
-\item{x}{a \link[terra:SpatRaster-class]{terra::SpatRasterDataset} representing a time series of
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} representing a time series of
 regional reconstructions obtained from \code{\link[=region_series]{region_series()}}.}
 
 \item{strict}{a boolean defining whether to preform a thorough test (see
@@ -17,7 +17,7 @@ description above for details).}
 TRUE if the object is a region series
 }
 \description{
-A region series is a \link[terra:SpatRaster-class]{terra::SpatRasterDataset} for which each
+A region series is a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} for which each
 sub-dataset is a variable, and all variables have the same number of
 time steps.
 }

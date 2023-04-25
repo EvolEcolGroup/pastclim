@@ -7,7 +7,7 @@
 df_from_region_slice(x, xy = TRUE)
 }
 \arguments{
-\item{x}{climate time slice (i.e. a \link[terra:SpatRaster-class]{terra::SpatRaster})
+\item{x}{climate time slice (i.e. a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}})
 generated with \code{\link[=region_slice]{region_slice()}}}
 
 \item{xy}{a boolean whether x and y coordinates should be added

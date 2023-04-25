@@ -7,7 +7,7 @@
 sample_rs_fixed(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \link[terra:SpatRaster-class]{terra::SpatRasterDataset} returned
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
 by \code{\link[=region_series]{region_series()}}}
 
 \item{size}{number of points sampled; the same

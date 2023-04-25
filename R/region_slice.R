@@ -2,7 +2,7 @@
 #'
 #' This function extracts a slice of one or more climate variables for a given
 #' dataset covering a region (or the whole world). The function returns a
-#' SpatRaster [terra::SpatRaster] object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #'
 #' @param time_bp the time slice in years before present (negative
@@ -20,10 +20,10 @@
 #' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A \code{sf:sfg} or a [terra::SpatVector] object 
+#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object 
 #' is used to define the polygon.
 #' @returns a
-#' SpatRaster [terra::SpatRaster] object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #' 
 #' @import terra
@@ -55,7 +55,7 @@ region_slice <-
 #'
 #' @param ... arguments to be passed to [region_slice()]
 #' @returns a
-#' SpatRaster [terra::SpatRaster] object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #'
 #' @export

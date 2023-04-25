@@ -13,8 +13,8 @@ slice_region_series(x, time_bp)
 for values in the past). The slices
 need to exist in the dataset. To check which slices are available, you
 can use \code{time_bp(x[[1]])} (note that you have to use
-the \code{time} function on the first element of the 'sds' object, i.e. on one
-of the 'SpatRaster' objects)}
+the \code{\link[=time_bp]{time_bp()}} function on the first element of the \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, i.e. on one
+of the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} objects)}
 }
 \value{
 a \link{SpatRaster} of the relevant slice.

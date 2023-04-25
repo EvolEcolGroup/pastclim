@@ -5,7 +5,7 @@
 #' 
 #' To extract a data frame from a region series, see [df_from_region_series()].
 #'
-#' @param x climate time slice (i.e. a [terra::SpatRaster]) 
+#' @param x climate time slice (i.e. a [`terra::SpatRaster`]) 
 #' generated with [region_slice()]
 #' @param xy a boolean whether x and y coordinates should be added 
 #' to the dataframe (default to TRUE)

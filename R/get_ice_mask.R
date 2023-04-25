@@ -6,7 +6,7 @@
 #' @param dataset string defining dataset to be downloaded (a list of possible
 #' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
-#' @returns a binary [terra::SpatRaster] with the ice mask as 1s
+#' @returns a binary [`terra::SpatRaster`] with the ice mask as 1s
 #'
 #' @import terra
 #' @export

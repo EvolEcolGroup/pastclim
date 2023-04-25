@@ -14,7 +14,7 @@ values can be obtained with \code{\link[=get_available_datasets]{get_available_d
 will not work on custom datasets.}
 }
 \value{
-a binary \link[terra:SpatRaster-class]{terra::SpatRaster} with the land mask as 1s
+a binary \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the land mask as 1s
 }
 \description{
 Get the land mask for a dataset at a given time point.

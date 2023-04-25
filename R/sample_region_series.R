@@ -8,10 +8,10 @@
 #' repeating the same value for each time step.
 #' 
 #' This function wraps [terra::spatSample()] to appropriate sample the
-#' [terra::SpatRaster]s in the [terra::SpatRasterDataset] returned
+#' [`terra::SpatRaster`]s in the [`terra::SpatRasterDataset`] returned
 #' by [region_series()].
 #'
-#' @param x a [terra::SpatRasterDataset] returned
+#' @param x a [`terra::SpatRasterDataset`] returned
 #' by [region_series()]
 #' @param size number of points sampled. A single value is used to sample the same
 #' locations across all time steps, a vector of values to sample different locations
@@ -44,7 +44,7 @@ sample_region_series<-function(x, size, method="random", replace=FALSE, na.rm=TR
 #' Internal function for fixed sampling from [sample_region_series()], 
 #' used when a single size is given.
 #'
-#' @param x a [terra::SpatRasterDataset] returned
+#' @param x a [`terra::SpatRasterDataset`] returned
 #' by [region_series()]
 #' @param size number of points sampled; the same
 #' locations across all time steps
@@ -98,7 +98,7 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
 #' timestep of a region series from [sample_region_series()], 
 #' used when size is a vector of values.
 #'
-#' @param x a [terra::SpatRasterDataset] returned
+#' @param x a [`terra::SpatRasterDataset`] returned
 #' by [region_series()]
 #' @param size a vector of the number of points sampled for each time step
 #' @param method one of the sampling methods from [terra::spatSample()]. It

@@ -7,9 +7,9 @@
 #' @param time_bp time slices in years before present (i.e. 1950, negative integers
 #' for values in the past). The slices
 #' need to exist in the dataset. To check which slices are available, you
-#' can use \code{time_bp(x[[1]])} (note that you have to use
-#' the `time` function on the first element of the 'sds' object, i.e. on one
-#' of the 'SpatRaster' objects)
+#' can use `time_bp(x[[1]])` (note that you have to use
+#' the [time_bp()] function on the first element of the [`terra::SpatRasterDataset`] object, i.e. on one
+#' of the [`terra::SpatRaster`] objects)
 #' @returns a [SpatRaster] of the relevant slice.
 #'
 #' @export

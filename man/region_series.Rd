@@ -36,18 +36,18 @@ order= xmin, xmax, ymin, ymax) or a \link[terra:SpatExtent-class]{terra::SpatExt
 the full extent of the reconstruction is given.}
 
 \item{crop}{a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A \code{sf:sfg} or a \link[terra:SpatVector-class]{terra::SpatVector} object
+of a continental mass). A \code{\link[sf:st]{sf::sfg}} or a \link[terra:SpatVector-class]{terra::SpatVector} object
 is used to define the polygon.}
 }
 \value{
 a
-\link[terra:SpatRaster-class]{terra::SpatRasterDataset} object, with
+\code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, with
 each variable as a sub-dataset.
 }
 \description{
 This function extracts a time series of one or more climate variables for
 a given
 dataset covering a region (or the whole world). The function returns a
-\link[terra:SpatRaster-class]{terra::SpatRasterDataset} object, with
+\code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, with
 each variable as a sub-dataset.
 }

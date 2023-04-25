@@ -8,7 +8,7 @@ var_labels(x, dataset, with_units = TRUE, abbreviated = FALSE)
 }
 \arguments{
 \item{x}{either a character vector with the names of the variables, or a
-\link[terra:SpatRaster-class]{terra::SpatRaster} generated with [region_slice())]
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} generated with [region_slice())]
 
 [region_slice())]: R:region_slice())}
 

@@ -1,6 +1,6 @@
 #' Check the object is a valid region series
 #'
-#' A region series is a [terra::SpatRasterDataset] for which each
+#' A region series is a [`terra::SpatRasterDataset`] for which each
 #' sub-dataset is a variable, and all variables have the same number of 
 #' time steps.
 #' 
@@ -9,7 +9,7 @@
 #' that all time steps are identical by comparing the result of 
 #' [terra::time()] applied to each variable
 #'
-#' @param x a [terra::SpatRasterDataset] representing a time series of
+#' @param x a [`terra::SpatRasterDataset`] representing a time series of
 #' regional reconstructions obtained from [region_series()].
 #' @param strict a boolean defining whether to preform a thorough test (see
 #' description above for details).

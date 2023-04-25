@@ -5,7 +5,7 @@
 \alias{region_outline_union}
 \title{Region outlines unioned.}
 \format{
-[sf::sf] of outlines.
+\code{\link[sf:sf]{sf::sf}} of outlines.
 \describe{
 \item{name}{names of regions}
 }
@@ -14,7 +14,7 @@
 region_outline_union
 }
 \description{
-An [sf::sf] object containing outlines for major regions. Each outline is
+An \code{\link[sf:sf]{sf::sf}} object containing outlines for major regions. Each outline is
 represented as a single polygon. If you want multiple polygons, use
 \link{region_outline}.
 }

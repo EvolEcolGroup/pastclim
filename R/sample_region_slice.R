@@ -3,11 +3,11 @@
 #' This function samples points from a region time slice (i.e. a time point).
 #' 
 #' This function wraps [terra::spatSample()] to appropriate sample the
-#' [terra::SpatRaster] returned
+#' [`terra::SpatRaster`] returned
 #' by [region_slice()]. You can also use [terra::spatSample()] directly
-#' on a slice (which is a standard [terra::SpatRaster]).
+#' on a slice (which is a standard [`terra::SpatRaster`]).
 #'
-#' @param x a [terra::SpatRaster] returned
+#' @param x a [`terra::SpatRaster`] returned
 #' by [region_slice()]
 #' @param size number of points sampled.
 #' @param method one of the sampling methods from [terra::spatSample()]. It
