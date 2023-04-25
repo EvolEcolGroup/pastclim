@@ -10,7 +10,7 @@ reconstructions for ecological and anthropological analyses.
 }
 \details{
 The functionalities of \code{pastclim} are described in
-\href{https://doi.org/10.1111/ecog.06481}{Leonardi et al. (2023)}. Please cite it if you
+Leonardi et al. (2023) \doi{10.1111/ecog.06481}. Please cite it if you
 use \code{pastclim} in your research.
 
 On its dedicated \href{https://evolecolgroup.github.io/pastclim/}{website}, you can find

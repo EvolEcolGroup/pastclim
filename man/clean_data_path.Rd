@@ -14,6 +14,6 @@ TRUE if files are deleted successfully
 }
 \description{
 This function deletes old reconstructions that have been superseded in the
-data_path. It assumes that the only files in data_path are part of pastclim
+data_path. It assumes that the only files in data_path are part of \code{pastclim}
 (i.e. there are no custom datasets stored in that directory).
 }

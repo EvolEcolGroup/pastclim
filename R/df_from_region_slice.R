@@ -1,12 +1,12 @@
 #' Extract data frame from a region slice
 #'
 #' Extract the climatic information from a region slice and organise it as
-#' a data frame. This is just a wrapper around \code{terra::as.data.frame}.
+#' a data frame. This is just a wrapper around [terra::as.data.frame()].
 #' 
 #' To extract a data frame from a region series, see \code{df_from_region_series}.
 #'
-#' @param x climate time slice (i.e. a \code{terra::SpatRaster}) 
-#' generated with \code{region_slice}
+#' @param x climate time slice (i.e. a [terra::SpatRaster]) 
+#' generated with [region_slice()]
 #' @param xy a boolean whether x and y coordinates should be added 
 #' to the dataframe (default to TRUE)
 #' @returns a data.frame where each cell the raster is a

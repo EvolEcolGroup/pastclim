@@ -5,7 +5,9 @@ usethis::use_spell_check(lang="en-GB")
 urlchecker::url_check()
 
 # enhanced local checks
-devtools::check(remote = TRUE, manual = TRUE).
+devtools::check(remote = TRUE, manual = TRUE)
+
+source("")
 
 # first check with rhub
 pastclim_checks <- rhub::check_for_cran()
