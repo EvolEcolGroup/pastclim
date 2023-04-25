@@ -5,7 +5,7 @@
 \alias{region_outline}
 \title{Region outlines.}
 \format{
-\code{sf} of outlines.
+[sf::sf] of outlines.
 \describe{
 \item{name}{names of regions}
 }
@@ -14,7 +14,7 @@
 region_outline
 }
 \description{
-An \code{sf} object containing outlines for major regions. Outlines that
+An [sf::sf] object containing outlines for major regions. Outlines that
 span the antimeridian have been split into multiple polygons.
 }
 \keyword{datasets}

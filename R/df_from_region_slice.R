@@ -3,7 +3,7 @@
 #' Extract the climatic information from a region slice and organise it as
 #' a data frame. This is just a wrapper around [terra::as.data.frame()].
 #' 
-#' To extract a data frame from a region series, see \code{df_from_region_series}.
+#' To extract a data frame from a region series, see [df_from_region_series()].
 #'
 #' @param x climate time slice (i.e. a [terra::SpatRaster]) 
 #' generated with [region_slice()]

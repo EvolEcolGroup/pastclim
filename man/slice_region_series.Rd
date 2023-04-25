@@ -7,7 +7,7 @@
 slice_region_series(x, time_bp)
 }
 \arguments{
-\item{x}{climate time series generated with \code{region_series}}
+\item{x}{climate time series generated with \code{\link[=region_series]{region_series()}}}
 
 \item{time_bp}{time slices in years before present (i.e. 1950, negative integers
 for values in the past). The slices
@@ -17,7 +17,7 @@ the \code{time} function on the first element of the 'sds' object, i.e. on one
 of the 'SpatRaster' objects)}
 }
 \value{
-a \code{SpatRaster} of the relevant slice.
+a \link{SpatRaster} of the relevant slice.
 }
 \description{
 This function extracts a time slice from time series of one or more climate

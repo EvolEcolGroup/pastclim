@@ -2,15 +2,15 @@
 #'
 #' This function samples points from a region time slice (i.e. a time point).
 #' 
-#' This function wraps \code{terra::spatSample} to appropriate sample the
-#' \code{terra::SpatRaster} returned
-#' by \code{region_slice}. You can also use \code{terra::spatSample} directly
-#' on a slice (which is a standard \code{terra::SpatRaster}).
+#' This function wraps [terra::spatSample()] to appropriate sample the
+#' [terra::SpatRaster] returned
+#' by [region_slice()]. You can also use [terra::spatSample()] directly
+#' on a slice (which is a standard [terra::SpatRaster]).
 #'
-#' @param x a \code{terra::SpatRaster} returned
-#' by \code{region_slice}
+#' @param x a [terra::SpatRaster] returned
+#' by [region_slice()]
 #' @param size number of points sampled.
-#' @param method one of the sampling methods from \code{terra::spatSample}. It
+#' @param method one of the sampling methods from [terra::spatSample()]. It
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed

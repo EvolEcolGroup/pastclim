@@ -9,7 +9,7 @@
 #' values represent
 #' time before present, positive values time in the future). The slice needs
 #' to exist in the dataset. To check which slices are available, you can use
-#' \code{get_time_steps}.
+#' [get_time_steps()].
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -51,11 +51,11 @@ region_slice <-
 
 #' Extract a climate slice for a region
 #'
-#' Deprecated version of \code{region_slice}
+#' Deprecated version of region_slice()]
 #'
-#' @param ... arguments to be passed to \code{region_slice}
+#' @param ... arguments to be passed to [region_slice()]
 #' @returns a
-#' SpatRaster \code{terra::SpatRaster} object, with
+#' SpatRaster [terra::SpatRaster] object, with
 #' each variable as a layer.
 #'
 #' @export

@@ -18,7 +18,7 @@ region_slice(
 values represent
 time before present, positive values time in the future). The slice needs
 to exist in the dataset. To check which slices are available, you can use
-\code{get_time_steps}.}
+\code{\link[=get_time_steps]{get_time_steps()}}.}
 
 \item{bio_variables}{vector of names of variables to be extracted}
 

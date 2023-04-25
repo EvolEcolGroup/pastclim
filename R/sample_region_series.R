@@ -7,16 +7,16 @@
 #' number of points, but different locations, for each time step, provide a vector
 #' repeating the same value for each time step.
 #' 
-#' This function wraps \code{terra::spatSample} to appropriate sample the
-#' \code{terra::SpatRaster}s in the \code{terra::SpatRasterDataset} returned
-#' by \code{region_series}.
+#' This function wraps [terra::spatSample()] to appropriate sample the
+#' [terra::SpatRaster]s in the [terra::SpatRasterDataset] returned
+#' by [region_series()].
 #'
-#' @param x a \code{terra::SpatRasterDataset} returned
-#' by \code{region_series}
+#' @param x a [terra::SpatRasterDataset] returned
+#' by [region_series()]
 #' @param size number of points sampled. A single value is used to sample the same
 #' locations across all time steps, a vector of values to sample different locations
 #' at each time step.
-#' @param method one of the sampling methods from \code{terra::spatSample}. It
+#' @param method one of the sampling methods from [terra::spatSample()]. It
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed
@@ -41,14 +41,14 @@ sample_region_series<-function(x, size, method="random", replace=FALSE, na.rm=TR
   
 #' Sample the same locations from a region time series
 #'
-#' Internal function for fixed sampling from \code{sample_region_series}, 
+#' Internal function for fixed sampling from [sample_region_series()], 
 #' used when a single size is given.
 #'
-#' @param x a \code{terra::SpatRasterDataset} returned
-#' by \code{region_series}
+#' @param x a [terra::SpatRasterDataset] returned
+#' by [region_series()]
 #' @param size number of points sampled; the same
 #' locations across all time steps
-#' @param method one of the sampling methods from \code{terra::spatSample}. It
+#' @param method one of the sampling methods from [terra::spatSample()]. It
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed
@@ -95,13 +95,13 @@ sample_rs_fixed<-function(x, size, method="random", replace=FALSE, na.rm=TRUE)
 #' Sample the different number of points from a region time series
 #'
 #' Internal function for sampling different number of points for each
-#' timestep of a region series from \code{sample_region_series}, 
+#' timestep of a region series from [sample_region_series()], 
 #' used when size is a vector of values.
 #'
-#' @param x a \code{terra::SpatRasterDataset} returned
-#' by \code{region_series}
+#' @param x a [terra::SpatRasterDataset] returned
+#' by [region_series()]
 #' @param size a vector of the number of points sampled for each time step
-#' @param method one of the sampling methods from \code{terra::spatSample}. It
+#' @param method one of the sampling methods from [terra::spatSample()]. It
 #' defaults to "random"
 #' @param replace boolean determining whether we sample with replacement
 #' @param na.rm boolean determining whether NAs are removed

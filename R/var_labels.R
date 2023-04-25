@@ -1,17 +1,17 @@
 #' Generate pretty variable labels for plotting
 #'
-#' Generate pretty labels (in the form of an \code{expression}) that can be used
+#' Generate pretty labels (in the form of an [expression]) that can be used
 #' for plotting
 #'
 #' @param x either a character vector with the names of the variables, or a 
-#' \code{SpatRaster} generated with \code{region_slice}
+#' [terra::SpatRaster] generated with [region_slice())]
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
+#' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @param with_units boolean defining whether the label should include units
 #' @param abbreviated boolean defining whether the label should use abbreviations
 #' for the variable
-#' @returns a \code{expression} that can be used as a label in plots
+#' @returns a [expression] that can be used as a label in plots
 #'
 #' @export
 #' @examples

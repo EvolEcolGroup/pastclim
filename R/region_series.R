@@ -12,7 +12,7 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' \code{get_time_steps}.
+#' [get_time_steps()].
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"

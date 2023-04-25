@@ -22,5 +22,5 @@ Extract the climatic information from a region slice and organise it as
 a data frame. This is just a wrapper around \code{\link[terra:as.data.frame]{terra::as.data.frame()}}.
 }
 \details{
-To extract a data frame from a region series, see \code{df_from_region_series}.
+To extract a data frame from a region series, see \code{\link[=df_from_region_series]{df_from_region_series()}}.
 }
