@@ -88,7 +88,7 @@ each variable as a layer.</p>
 values represent
 time before present, positive values time in the future). The slice needs
 to exist in the dataset. To check which slices are available, you can use
-<code>get_time_steps</code>.</p></dd>
+<code><a href="get_time_steps.html">get_time_steps()</a></code>.</p></dd>
 
 
 <dt>bio_variables</dt>
@@ -108,13 +108,13 @@ in this file.</p></dd>
 
 <dt>ext</dt>
 <dd><p>an extent, coded as numeric vector (length=4;
-order= xmin, xmax, ymin, ymax) or a <code><a href="https://rdrr.io/pkg/terra/man/SpatExtent-class.html" class="external-link">terra::SpatExtent</a></code> object. If NULL,
+order= xmin, xmax, ymin, ymax) or a <a href="https://rdrr.io/pkg/terra/man/SpatExtent-class.html" class="external-link">terra::SpatExtent</a> object. If NULL,
 the full extent of the reconstruction is given.</p></dd>
 
 
 <dt>crop</dt>
 <dd><p>a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A <code>sf:sfg</code> or a <code><a href="https://rdrr.io/pkg/terra/man/SpatVector-class.html" class="external-link">terra::SpatVector</a></code> object
+of a continental mass). A <code><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">sf::sfg</a></code> or a <a href="https://rdrr.io/pkg/terra/man/SpatVector-class.html" class="external-link">terra::SpatVector</a> object
 is used to define the polygon.</p></dd>
 
 </dl></div>

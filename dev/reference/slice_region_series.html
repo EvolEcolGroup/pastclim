@@ -71,7 +71,7 @@ variables for a given dataset covering a region (or the whole world).</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>climate time series generated with <code>region_series</code></p></dd>
+<dd><p>climate time series generated with <code><a href="region_series.html">region_series()</a></code></p></dd>
 
 
 <dt>time_bp</dt>
@@ -79,15 +79,15 @@ variables for a given dataset covering a region (or the whole world).</p>
 for values in the past). The slices
 need to exist in the dataset. To check which slices are available, you
 can use <code>time_bp(x[[1]])</code> (note that you have to use
-the <code>time</code> function on the first element of the 'sds' object, i.e. on one
-of the 'SpatRaster' objects)</p></dd>
+the <code><a href="time_bp.html">time_bp()</a></code> function on the first element of the <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRasterDataset</a></code> object, i.e. on one
+of the <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> objects)</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a <code>SpatRaster</code> of the relevant slice.</p>
+<p>a SpatRaster of the relevant slice.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
