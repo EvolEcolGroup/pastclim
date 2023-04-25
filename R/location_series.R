@@ -2,7 +2,7 @@
 #'
 #' This function extract a time series of local climate for
 #'  a set of locations. Note that this function does not apply any interpolation
-#'  (as opposed to \code{location_slice}). If you have a coastal location that just
+#'  (as opposed to [location_slice()]). If you have a coastal location that just
 #'  falls into the water for the reconstructions, you will have to amend the coordinates
 #'  to put it more firmly on land.
 #'
@@ -28,7 +28,7 @@
 #' performed from the first ring of nearest neighbours; if climate is not
 #' available, NA will be returned for that location. The number of neighbours
 #' can be changed with the argument `directions`. `nn_interpol` defaults to FALSE
-#' (this is DIFFERENT from \code{location_slice}.
+#' (this is DIFFERENT from [location_slice()].
 #' @param buffer boolean determining whether the variable will be returned
 #' as the mean of a buffer around the focal cell. If set to TRUE, it overrides
 #' `nn_interpol` (which provides the same estimates as `buffer` but only for

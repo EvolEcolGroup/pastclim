@@ -43,7 +43,7 @@ information (i.e. they are under water or ice). By default, interpolation is onl
 performed from the first ring of nearest neighbours; if climate is not
 available, NA will be returned for that location. The number of neighbours
 can be changed with the argument \code{directions}. \code{nn_interpol} defaults to FALSE
-(this is DIFFERENT from \code{location_slice}.}
+(this is DIFFERENT from \code{\link[=location_slice]{location_slice()}}.}
 
 \item{buffer}{boolean determining whether the variable will be returned
 as the mean of a buffer around the focal cell. If set to TRUE, it overrides
@@ -65,7 +65,7 @@ a data.frame with the climatic variables of interest
 \description{
 This function extract a time series of local climate for
 a set of locations. Note that this function does not apply any interpolation
-(as opposed to \code{location_slice}). If you have a coastal location that just
+(as opposed to \code{\link[=location_slice]{location_slice()}}). If you have a coastal location that just
 falls into the water for the reconstructions, you will have to amend the coordinates
 to put it more firmly on land.
 }

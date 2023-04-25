@@ -3,7 +3,7 @@
 #' This function returns the path where climate reconstructions are stored.
 #' 
 #' The path is stored in an option for `pastclim` named `data_path`. If
-#' a configuration file was saved when using \code{set_data_path}, the path
+#' a configuration file was saved when using [set_data_path()], the path
 #' is retrieved from a file named "pastclim_data.txt", which
 #' is found in the directory returned by 
 #' `tools::R_user_dir("pastclim","config")` (i.e.

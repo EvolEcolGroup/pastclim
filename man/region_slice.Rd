@@ -30,21 +30,21 @@ reconstructions. All the variables of interest need to be included
 in this file.}
 
 \item{ext}{an extent, coded as numeric vector (length=4;
-order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+order= xmin, xmax, ymin, ymax) or a \link[terra:SpatExtent-class]{terra::SpatExtent} object. If NULL,
 the full extent of the reconstruction is given.}
 
 \item{crop}{a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object
+of a continental mass). A \code{sf:sfg} or a \link[terra:SpatVector-class]{terra::SpatVector} object
 is used to define the polygon.}
 }
 \value{
 a
-SpatRaster \code{terra::SpatRaster} object, with
+SpatRaster \link[terra:SpatRaster-class]{terra::SpatRaster} object, with
 each variable as a layer.
 }
 \description{
 This function extracts a slice of one or more climate variables for a given
 dataset covering a region (or the whole world). The function returns a
-SpatRaster \code{terra::SpatRaster} object, with
+SpatRaster \link[terra:SpatRaster-class]{terra::SpatRaster} object, with
 each variable as a layer.
 }

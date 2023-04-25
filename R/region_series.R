@@ -3,7 +3,7 @@
 #' This function extracts a time series of one or more climate variables for
 #' a given
 #' dataset covering a region (or the whole world). The function returns a
-#' SpatRasterDataset \code{terra::sds} object, with
+#' [terra::SpatRasterDataset] object, with
 #' each variable as a sub-dataset.
 #'
 #' @param time_bp time slices in years before present (negative values represent
@@ -20,13 +20,13 @@
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
 #' @param ext an extent, coded as numeric vector (length=4; 
-#' order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+#' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+#' of a continental mass). A \code{sf:sfg} or a [terra::SpatVector] object 
 #' is used to define the polygon.
 #' @returns a
-#' SpatRasterDataset \code{terra::sds} object, with
+#' [terra::SpatRasterDataset] object, with
 #' each variable as a sub-dataset.
 #'
 #' @import terra

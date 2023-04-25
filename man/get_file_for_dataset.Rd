@@ -10,7 +10,7 @@ get_file_for_dataset(variable, dataset)
 \item{variable}{one or more variable names to be downloaded}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 }
 \value{

@@ -5,9 +5,9 @@
 #'
 #' @param time_bp time slice in years before present (negative)
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
+#' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
-#' @returns a \code{terra::SpatRaster} of distances
+#' @returns a [terra::SpatRaster] of distances
 #'
 #' @import terra
 #' @export

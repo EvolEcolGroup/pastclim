@@ -169,9 +169,9 @@ location_slice <-
 
 #' Extract local climate for one or more locations for a given time slice.
 #'
-#' Deprecated version of \code{location_slice}
+#' Deprecated version of [location_slice()]
 #'
-#' @param ... arguments to be passed to \code{location_slice}
+#' @param ... arguments to be passed to [location_slice()]
 #' @returns a data.frame with the climatic variables of interest
 #'
 #' @export
