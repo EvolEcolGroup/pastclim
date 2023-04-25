@@ -18,6 +18,7 @@ devtools::check_win_devel()
 
 # TO DO MANUALLY: update cran-comments.md accordingly
 # upadte version number
+# update news
 
 # if everything passes, edit the cran-comments.md to explain any notes
 devtools::release()
