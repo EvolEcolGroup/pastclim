@@ -1,23 +1,23 @@
 #' Interpolate x to match mask y
 #'
-#' Fill in x to match cells available in y, using iwd (inverse-weighted
-#' distance) interpolation. Interpolation is fitted using \code{gstat::gstat};
-#' the default parameters for \code{gstat::gstat} are nmax=7 and idp = .5, but
+#' Fill in x to match cells available in y, using inverse distance weighted
+#' interpolation. Interpolation is fitted using [gstat::gstat()];
+#' the default parameters for [gstat::gstat()] are "nmax=7" and "idp=.5", but
 #' can be changed by providing arguments to this function (which will be passed
-#' to \code{gstat::gstat}). See \code{gstat::gstat} for details on the available
+#' to [gstat::gstat()]). See [gstat::gstat()] for details on the available
 #' parameters and their meaning.
 #'
-#' @param x the \code{terra::SpatRaster} of the variable of interest
-#' @param y the \code{terra::SpatRaster} the reference mask defining which
+#' @param x the [`terra::SpatRaster`] of the variable of interest
+#' @param y the [`terra::SpatRaster`] the reference mask defining which
 #' cells should have values
 #' @param nmax the number of nearest observations that should be used for a
 #'  kriging prediction or simulation, where nearest is defined in terms
-#'  of the space of the spatial locations (see \code{gstat::gstat} for details)
+#'  of the space of the spatial locations (see [gstat::gstat()] for details)
 #' @param set named list with optional parameters to be passed to gstat 
 #' (only set commands of gstat are allowed, and not all of them may be
 #' relevant; see the gstat manual for gstat stand-alone, URL and more details
-#' in the \code{gstat::gstat} help page)
-#' @param ... further parameters to be passed to \code{gstat::gstat}
+#' in the [gstat::gstat()] help page)
+#' @param ... further parameters to be passed to [gstat::gstat()]
 #' 
 #' @keywords internal
 

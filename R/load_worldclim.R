@@ -1,21 +1,21 @@
 #' Load a variable from WorldClim modern observations.
 #'
 #' This function loads previously downloaded annual and monthly variables 
-#' from the Worldclim 2.1 dataset. To save the variables in a compatible
-#' format, use \code{download_worldclim}
+#' from the WorldClim 2.1 dataset. To save the variables in a compatible
+#' format, use [download_worldclim()].
 #' 
-#' The function assumes that the file name is in the format wc*version*_*res*m_*var*.nc.
+#' The function assumes that the file name is in the format "wc*version*_*res*m_*var*.nc".
 #' For example, average temperature downloaded at 10 minutes resolution will be
-#' *wc21_10m_tavg.nc*.
+#' "*wc21_10m_tavg.nc*".
 #'
 #' @param var	character Valid variables names are "tmin", "tmax", "tavg", 
 #' "prec", "wind", "vapr", and "bio".
 #' @param res	numeric Valid resolutions are 10, 5, 2.5, 
 #' and 0.5 (minutes of a degree)
 #' @param path	character. Path where the dataset is stored. If left NULL, the data
-#' will be downloaded from the directory returned by \code{get_data_path()}
+#' will be downloaded from the directory returned by [get_data_path()]
 #' @param version	character or numeric. WorldClim version number. Only "2.1" supported at the moment
-#' @returns a \code{terra::SpatRaster} with the requested worldclim variable
+#' @returns a [`terra::SpatRaster`] with the requested WorldClim variable
 #'
 #' @keywords internal
 
@@ -33,5 +33,8 @@ load_worldclim <- function(var, res, path=NULL, version="2.1", ...) {
   if (!file.exists(wc_full_path)){
     stop(wc_full_path," does not exist; use download_wordclim() to download it")
   }
-  return(terra::rast(wc_full_path))
+  wordlclim_rast <- terra::rast(wc_full_path)
+  # turn this into a valide region_slice
+  time_bp(worldclim_rast)<- rep(0,terra::nlyr(worldclim_rast))
+  return(worldclim_rast)
 }

@@ -7,7 +7,7 @@
 delta_compute(x, ref_time, obs)
 }
 \arguments{
-\item{x}{a \code{terra::SpatRaster} for the variable of interest, with all
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} for the variable of interest, with all
 time steps of interest}
 
 \item{ref_time}{the time (BP) of the slice that is used to compute the delta}
@@ -15,12 +15,12 @@ time steps of interest}
 \item{obs}{the observations}
 }
 \value{
-a \code{terra::SpatRaster} of the delta
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the delta
 }
 \description{
 This function generates a delta (difference) raster, computed as the difference between
 model estimates (\code{x}) and some observations (\code{high_res_obs}). \code{x} is a
-\code{terra::SpatRaster} of the variable we want to downscale, and it
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the variable we want to downscale, and it
 can contain multiple time steps. \code{ref_time} sets the time slice for which
 the delta should be computed.
 }
@@ -29,6 +29,7 @@ If \code{obs} has a higher
 resolution than \code{x}, the latter is interpolated using a bilinear algorithm.
 For areas that are present in some time slices, but not in the observations
 (e.g. due to sea level change), the delta map is extended to cover the maximum
-cumulative land mask (over all time steps) using idw.
+cumulative land mask (over all time steps) using inverse distance weighted
+interpolation.
 }
 \keyword{internal}

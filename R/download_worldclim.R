@@ -1,12 +1,12 @@
 #' Download a WorldClim modern observations.
 #'
-#' This function downloads annual and monthly variables from the Worldclim 2.1 dataset.
+#' This function downloads annual and monthly variables from the WorldClim 2.1 dataset.
 #' These variables are saved in a format that can be read by 
-#' \code{load_worldclim}, and easily used for delta downscaling paleoclimate
+#' [load_worldclim()], and easily used for delta downscaling palaeoclimate
 #' observations
 #' 
-#' This function uses \code{geodata::worldclim_global} to download the data, and
-#' then converts them into a \code{terra::SpatRaster} in a format compatible
+#' This function uses [geodata::worldclim_global()] to download the data, and
+#' then converts them into a [`terra::SpatRaster`] in a format compatible
 #' with `pastclim`
 #'
 #' @param var	character Valid variables names are "tmin", "tmax", "tavg", 
@@ -14,10 +14,10 @@
 #' @param res	numeric Valid resolutions are 10, 5, 2.5, 
 #' and 0.5 (minutes of a degree)
 #' @param path	character. Path where to download the data to, If left NULL, the data
-#' will be downloaded from the directory returned by \code{get_data_path()}
+#' will be downloaded from the directory returned by [get_data_path()]
 #' @param version	character or numeric. WorldClim version number. Only "2.1" supported at the moment
 #' @param ... additional arguments passed to download.file
-#' @returns a \code{terra::SpatRaster} with the requested worldclim variable
+#' @returns a [`terra::SpatRaster`] with the requested WorldClim variable
 #'
 #' @keywords internal
 
