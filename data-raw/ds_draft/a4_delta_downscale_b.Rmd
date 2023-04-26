@@ -181,7 +181,7 @@ plot(tavg_model_lres_rast, main = time_bp(tavg_model_lres_rast))
 To compute the bioclim variables, we need to repeat the procedure above for
 temperature and precipitation for all months. Let us start with temperature. We
 loop over each month, create a `SpatRaster` of downscaled temperature, add it to
-a list, and finally conver the list into a `SpatRasterDataset`
+a list, and finally convert the list into a `SpatRasterDataset`
 
 ```{r}
 tavg_downscaled_list<-list()
