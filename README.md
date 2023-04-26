@@ -26,12 +26,14 @@ use `pastclim` in your research.
 install.packages("pastclim")
 ```
 
-If you want the latest development version, you can get it from GitHub.
-To install from GitHub, you will need to use `devtools`; if you haven't
-done so already, install it from CRAN with
+The version on CRAN is recommended for every day use. New features and bug fixes
+appear first on the `dev` branch on GitHub, before they make their way to CRAN.
+If you need to have early access to these new features, you can install `pastclim`
+directly from GitHub. To install from GitHub, you will need to use `devtools`; if you haven't
+done so already, get it from CRAN with
 `install.packages("devtools")`. Also, note that the `dev` version of
 `pastclim` tracks changes in the `dev` version of `terra`, so you will
-need to upgrade to both:
+need to upgrade both libraries with:
 
 ```{r install_dev, eval=FALSE}
 install.packages('terra', repos='https://rspatial.r-universe.dev')
@@ -73,7 +75,7 @@ vignette("pastclim_overview", package = "pastclim")
 ## Current issues
 
 If something does not work, check the [issues on GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether the problem
-has already been reported. If not, feel free to create an new issue. Please make sure you provide
+has already been reported. If not, feel free to create an new issue. Please make sure you have updated to the latest version of `pastclim` on CRAN, as well as updating all other packages on your system, and  provide
 [a reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) for the developers to investigate the problem.
 
 ---
@@ -88,54 +90,3 @@ has already been reported. If not, feel free to create an new issue. Please make
 This is an error related to garbage collection, which does not 
 affect the script being correctly executed, so it can be ignored. More discussion
 of this issue can be found on [stack**overflow**](https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second)
-
----
-
-### `terra` without NETCDF driver for macOS
-
-A number of versions of `terra` available as binaries for macOS X86-64 on CRAN (including the latest one) have
-been compiled without a NETCDF driver (the latest ARM library is OK). This prevents `pastclim`, which relies on `terra`, from 
-correctly reading files. Other packages that rely on `terra` are similarly 
-affected (e.g. `stars`; see this [bug](https://github.com/r-spatial/stars/issues/566))
-
-When loaded, `pastclim` checks if the driver is available; in case of
-a missing driver, you will get the error:
-
-```
-Error: The installed version of terra lacks support for reading netcdf files.
-pastclim needs netcdf support: you will need to reinstall terra,
-possibly from source, if there isn't a version with netcdf support
-on CRAN. Alternatively, try the latest development version from R-universe:
-install.packages('terra', repos='https://rspatial.r-universe.dev')
-```
-
-The easiest solution is probably to install the `dev` version of `terra` from
-[R-universe](https://r-universe.dev/organizations/) with:
-```
-install.packages('terra', repos='https://rspatial.r-universe.dev')
-```
-
-However, note that the `dev` version of `terra` is incompatible with the version
-of `pastclim` on CRAN. Therefore, you need to also upgrade `pastclim` to `dev`:
-```
-devtools::install_github("EvolEcolGroup/pastclim", ref="dev")
-```
-
-Alternatively, if you want to install a specific version of 
- `terra` from source, see instructions [here](https://github.com/rspatial/terra).
-
----
-
-### no slot of name "ptr" with `dev` version of `terra`
-
-the `dev` version of `terra` is incompatible with the version
-of `pastclim` on CRAN, leading to the following error.
-
-```
-Error in time_bp(climate_nc) : no slot of name "ptr" for this object of class "SpatRaster"
-```
-
-To solve this, you need to also upgrade `pastclim` to `dev`:
-```
-devtools::install_github("EvolEcolGroup/pastclim", ref="dev")
-```
