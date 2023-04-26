@@ -3,7 +3,7 @@
 #' Get the time steps (in time_bp) available in a given dataset.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). If set to
+#' values can be obtained with [get_available_datasets()]). If set to
 #' "custom", then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
@@ -24,9 +24,4 @@ get_time_steps <- function(dataset, path_to_nc = NULL) {
 
   climate_nc <- terra::rast(path_to_nc, subds=1)
   return(time_bp(climate_nc))
-  
-  # climate_nc <- ncdf4::nc_open(path_to_nc)
-  # time_steps <- (climate_nc$dim$time$vals)
-  # ncdf4::nc_close(climate_nc)
-  # return(time_steps)
 }

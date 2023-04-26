@@ -2,7 +2,7 @@
 #'
 #' This function extract a time series of local climate for
 #'  a set of locations. Note that this function does not apply any interpolation
-#'  (as opposed to \code{location_slice}). If you have a coastal location that just
+#'  (as opposed to [location_slice()]). If you have a coastal location that just
 #'  falls into the water for the reconstructions, you will have to amend the coordinates
 #'  to put it more firmly on land.
 #'
@@ -15,7 +15,7 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' \code{get_time_steps}.
+#' [get_time_steps()].
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -28,7 +28,7 @@
 #' performed from the first ring of nearest neighbours; if climate is not
 #' available, NA will be returned for that location. The number of neighbours
 #' can be changed with the argument `directions`. `nn_interpol` defaults to FALSE
-#' (this is DIFFERENT from \code{location_slice}.
+#' (this is DIFFERENT from [location_slice()].
 #' @param buffer boolean determining whether the variable will be returned
 #' as the mean of a buffer around the focal cell. If set to TRUE, it overrides
 #' `nn_interpol` (which provides the same estimates as `buffer` but only for
@@ -37,9 +37,9 @@
 #' @param directions character or matrix to indicate the directions in which
 #' cells are considered connected when using `nn_interpol` or `buffer`. 
 #' The following character values are allowed: "rook" or "4" for the 
-#' horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
-#' "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
-#' or "16" for knight and one-cell queen move neighbors. If directions
+#' horizontal and vertical neighbours; "bishop" to get the diagonal neighbours;
+#' "queen" or "8" to get the vertical, horizontal and diagonal neighbours;
+#' or "16" for knight and one-cell queen move neighbours. If directions
 #' is a matrix it should have odd dimensions and have logical (or 0, 1) values.
 #' @returns a data.frame with the climatic variables of interest
 #' @export
@@ -108,9 +108,9 @@ location_series <-
 
 #' Extract a time series of bioclimatic variables for one or more locations.
 #'
-#' Deprecated version of \code{location_series}
+#' Deprecated version of [location_series()]
 #'
-#' @param ... arguments to be passed to \code{series}
+#' @param ... arguments to be passed to [location_series()]
 #' @returns a data.frame with the climatic variables of interest
 #'
 #' @export

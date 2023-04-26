@@ -2,19 +2,19 @@
 % Please edit documentation in R/distance_from_sea.R
 \name{distance_from_sea}
 \alias{distance_from_sea}
-\title{Compute a raster of distances from the sea for each land pixed.}
+\title{Compute a raster of distances from the sea for each land pixel.}
 \usage{
 distance_from_sea(time_bp, dataset)
 }
 \arguments{
 \item{time_bp}{time slice in years before present (negative)}
 
-\item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+\item{dataset}{string defining the dataset to use (a list of possible
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 }
 \value{
-a \code{terra::SpatRaster} of distances
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of distances
 }
 \description{
 Get the land mask for a dataset at a given time point, and compute distance

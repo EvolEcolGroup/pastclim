@@ -7,11 +7,11 @@
 time_series_for_locations(...)
 }
 \arguments{
-\item{...}{arguments to be passed to \code{series}}
+\item{...}{arguments to be passed to \code{\link[=location_series]{location_series()}}}
 }
 \value{
 a data.frame with the climatic variables of interest
 }
 \description{
-Deprecated version of \code{location_series}
+Deprecated version of \code{\link[=location_series]{location_series()}}
 }

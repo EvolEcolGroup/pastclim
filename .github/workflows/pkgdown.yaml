@@ -32,6 +32,11 @@ jobs:
         with:
           extra-packages: any::pkgdown, local::.
           needs: website
+          
+      - name: Get dev terra for dev pastclim
+        if: ${{ github.base_ref == 'dev' }} || ${{ github.ref_name == 'dev' }}
+        run: install.packages('terra', repos='https://rspatial.r-universe.dev')
+        shell: Rscript {0}
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)

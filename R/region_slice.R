@@ -2,14 +2,14 @@
 #'
 #' This function extracts a slice of one or more climate variables for a given
 #' dataset covering a region (or the whole world). The function returns a
-#' SpatRaster \code{terra::SpatRaster} object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #'
 #' @param time_bp the time slice in years before present (negative
 #' values represent
 #' time before present, positive values time in the future). The slice needs
 #' to exist in the dataset. To check which slices are available, you can use
-#' \code{get_time_steps}.
+#' [get_time_steps()].
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -17,13 +17,13 @@
 #' reconstructions. All the variables of interest need to be included
 #' in this file.
 #' @param ext an extent, coded as numeric vector (length=4; 
-#' order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+#' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object 
 #' is used to define the polygon.
 #' @returns a
-#' SpatRaster \code{terra::SpatRaster} object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #' 
 #' @import terra
@@ -51,11 +51,11 @@ region_slice <-
 
 #' Extract a climate slice for a region
 #'
-#' Deprecated version of \code{region_slice}
+#' Deprecated version of region_slice()]
 #'
-#' @param ... arguments to be passed to \code{region_slice}
+#' @param ... arguments to be passed to [region_slice()]
 #' @returns a
-#' SpatRaster \code{terra::SpatRaster} object, with
+#' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
 #'
 #' @export

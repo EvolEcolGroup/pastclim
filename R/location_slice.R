@@ -31,9 +31,9 @@
 #' @param directions character or matrix to indicate the directions in which
 #' cells are considered connected when using `nn_interpol` or `buffer`. 
 #' The following character values are allowed: "rook" or "4" for the 
-#' horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
-#' "queen" or "8" to get the vertical, horizontal and diagonal neighbors;
-#' or "16" for knight and one-cell queen move neighbors. If directions
+#' horizontal and vertical neighbours; "bishop" to get the diagonal neighbours;
+#' "queen" or "8" to get the vertical, horizontal and diagonal neighbours;
+#' or "16" for knight and one-cell queen move neighbours. If directions
 #' is a matrix it should have odd dimensions and have logical (or 0, 1) values.
 #' @returns a data.frame with the climatic variables of interest.
 #' @export
@@ -169,9 +169,9 @@ location_slice <-
 
 #' Extract local climate for one or more locations for a given time slice.
 #'
-#' Deprecated version of \code{location_slice}
+#' Deprecated version of [location_slice()]
 #'
-#' @param ... arguments to be passed to \code{location_slice}
+#' @param ... arguments to be passed to [location_slice()]
 #' @returns a data.frame with the climatic variables of interest
 #'
 #' @export

@@ -6,7 +6,7 @@
 #' different reconstructions.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}).
+#' values can be obtained with [get_available_datasets()]).
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions.
 #' @param details boolean determining whether the output should include information

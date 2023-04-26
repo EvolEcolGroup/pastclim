@@ -4,7 +4,7 @@
 #' for a given dataset.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
+#' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a data.frame with columns id and category.
 #'
@@ -39,5 +39,6 @@ get_biome_classes <- function(dataset) {
       category = biomes_string
     )
   }
+  ncdf4::nc_close(nc_in)
   return(biome_categories)
 }
