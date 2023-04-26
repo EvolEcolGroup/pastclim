@@ -7,11 +7,13 @@
 var_labels(x, dataset, with_units = TRUE, abbreviated = FALSE)
 }
 \arguments{
-\item{x}{either a character vector with the names of the variables, or a 
-\code{SpatRaster} generated with \code{region_slice}}
+\item{x}{either a character vector with the names of the variables, or a
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} generated with [region_slice())]
+
+[region_slice())]: R:region_slice())}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 
 \item{with_units}{boolean defining whether the label should include units}
@@ -20,10 +22,10 @@ will not work on custom datasets.}
 for the variable}
 }
 \value{
-a \code{expression} that can be used as a label in plots
+a \link{expression} that can be used as a label in plots
 }
 \description{
-Generate pretty labels (in the form of an \code{expression}) that can be used
+Generate pretty labels (in the form of an \link{expression}) that can be used
 for plotting
 }
 \examples{

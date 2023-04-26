@@ -4,7 +4,7 @@
 \alias{Beyer2020}
 \title{Documentation for the Beyer2020 dataset}
 \description{
-This dataset covers the last 120k years, at intervals of 1/2 k years, and a 
+This dataset covers the last 120k years, at intervals of 1/2 k years, and a
 resolution of 0.5 degrees in latitude and longitude.
 }
 \details{
@@ -15,7 +15,7 @@ Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
 vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
 \doi{doi.org/10.1038/s41597-020-0552-1}
 
-The version included in `pastclim` has the ice sheets masked, as well as
+The version included in \code{pastclim} has the ice sheets masked, as well as
 internal seas (Black and Caspian Sea) removed. The latter are based on:
 
 \url{https://www.marineregions.org/gazetteer.php?p=details&id=4278}
@@ -31,10 +31,10 @@ to monthly estimates, and it was multiplied by 100 following
 
 Changelog
 
-v1.1.0 Added monthly variables. Files can be downloaded from: 
+v1.1.0 Added monthly variables. Files can be downloaded from:
 \url{https://zenodo.org/deposit/7062281}
 
 v1.0.0 Remove ice sheets and internal seas, and use correct formula for bio15.
-Files can be downloaded from: 
+Files can be downloaded from:
 \doi{doi.org/10.6084/m9.figshare.19723405.v1}
 }

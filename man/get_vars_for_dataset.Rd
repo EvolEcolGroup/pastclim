@@ -8,7 +8,7 @@ get_vars_for_dataset(dataset, path_to_nc = NULL, details = FALSE)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}).}
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}).}
 
 \item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
 reconstructions.}
@@ -22,6 +22,6 @@ a vector of variable names
 \description{
 This function lists the variables available for a given dataset. Note that
 the spelling and use of capitals in names might differ from the original
-publications, as `pastclim` harmonises the names of variables across
+publications, as \code{pastclim} harmonises the names of variables across
 different reconstructions.
 }

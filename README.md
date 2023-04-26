@@ -14,17 +14,28 @@
 This `R` library is designed to provide an easy way to extract and manipulate palaeoclimate
 reconstructions for ecological and anthropological analyses. 
 
-A paper
-describing the functionality of `pastclim` can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1). Please cite it if you
+The functionalities of `pastclim` are described in 
+[Leonardi et al. (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you
 use `pastclim` in your research.
 
 ## Install the library
 
-You will need to install the library from GitHub. For this step, you will need to
-use `devtools` (if you haven't done so already, install it from CRAN with `install.packages("devtools")`.
-Once you have `devtools`, simply use:
+`pastclim` is on CRAN, and the easiest way to install it is with:
+
+```{r install_cran, eval=FALSE}
+install.packages("pastclim")
 ```
-devtools::install_github("EvolEcolGroup/pastclim")
+
+If you want the latest development version, you can get it from GitHub.
+To install from GitHub, you will need to use `devtools`; if you haven't
+done so already, install it from CRAN with
+`install.packages("devtools")`. Also, note that the `dev` version of
+`pastclim` tracks changes in the `dev` version of `terra`, so you will
+need to upgrade to both:
+
+```{r install_dev, eval=FALSE}
+install.packages('terra', repos='https://rspatial.r-universe.dev')
+devtools::install_github("EvolEcolGroup/pastclim", ref="dev")
 ```
 
 ## Overview of functionality
@@ -32,6 +43,11 @@ devtools::install_github("EvolEcolGroup/pastclim")
 On its dedicated [website](https://evolecolgroup.github.io/pastclim/), you can find
 Articles giving you a step-by-step [overview of the package](https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html),
 and a [cheatsheet](https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf).
+There is also a
+[version](https://evolecolgroup.github.io/pastclim/dev/) of the site
+updated for the `dev` version (on the top left, the version number is in
+red, and will be in the format x.x.x.9xxx, indicating it is a
+development version).
 
 Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate 
 based on the HadCM3 

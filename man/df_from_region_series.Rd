@@ -7,9 +7,9 @@
 df_from_region_series(x, xy = TRUE)
 }
 \arguments{
-\item{x}{climate time series generated with \code{region_series}}
+\item{x}{climate time series generated with \code{\link[=region_series]{region_series()}}}
 
-\item{xy}{a boolean whether x and y coordinates should be added 
+\item{xy}{a boolean whether x and y coordinates should be added
 to the dataframe (default to TRUE)}
 }
 \value{
@@ -21,5 +21,5 @@ Extract the climatic information from a region series and organise them as
 a data frame.
 }
 \details{
-To extract a data frame from a region slice, see \code{df_from_region_slice}.
+To extract a data frame from a region slice, see \code{\link[=df_from_region_slice]{df_from_region_slice()}}.
 }

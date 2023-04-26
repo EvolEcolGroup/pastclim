@@ -8,7 +8,7 @@ download_dataset(dataset, bio_variables = NULL)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 
 \item{bio_variables}{one or more variable names to be downloaded. If left
@@ -19,6 +19,6 @@ TRUE if the dataset(s) was downloaded correctly.
 }
 \description{
 This function downloads palaeoclimate reconstructions. Files will be stored
-in the data path of `pastclim`, which can be inspected with
-\code{get_data_path} and changed with \code{set_data_path}
+in the data path of \code{pastclim}, which can be inspected with
+\code{\link[=get_data_path]{get_data_path()}} and changed with \code{\link[=set_data_path]{set_data_path()}}
 }

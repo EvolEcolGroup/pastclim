@@ -20,7 +20,7 @@ be a vector of times (the slices need
 to exist in the dataset), a list with a min and max element setting the
 range of values, or left to NULL to retrieve all time steps.
 To check which slices are available, you can use
-\code{get_time_steps}.}
+\code{\link[=get_time_steps]{get_time_steps()}}.}
 
 \item{bio_variables}{vector of names of variables to be extracted}
 
@@ -31,23 +31,23 @@ then a single nc file is used from "path_to_nc"}
 reconstructions. All the variables of interest need to be included in
 this file.}
 
-\item{ext}{an extent, coded as numeric vector (length=4; 
-order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+\item{ext}{an extent, coded as numeric vector (length=4;
+order= xmin, xmax, ymin, ymax) or a \link[terra:SpatExtent-class]{terra::SpatExtent} object. If NULL,
 the full extent of the reconstruction is given.}
 
 \item{crop}{a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+of a continental mass). A \code{\link[sf:st]{sf::sfg}} or a \link[terra:SpatVector-class]{terra::SpatVector} object
 is used to define the polygon.}
 }
 \value{
 a
-SpatRasterDataset \code{terra::sds} object, with
+\code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, with
 each variable as a sub-dataset.
 }
 \description{
 This function extracts a time series of one or more climate variables for
 a given
 dataset covering a region (or the whole world). The function returns a
-SpatRasterDataset \code{terra::sds} object, with
+\code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, with
 each variable as a sub-dataset.
 }

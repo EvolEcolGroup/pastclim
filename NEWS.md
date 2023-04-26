@@ -1,3 +1,6 @@
+# pastclim 1.2.4
+* Updates on how time is handled to stay in sync with changes in `terra`.
+
 # pastclim 1.2.3
 * Added lai to Krapp2021 (the variable is now also present in the original OSF
   repository for that dataset).

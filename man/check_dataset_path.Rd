@@ -19,7 +19,7 @@ TRUE if both dataset and path are valid.
 }
 \description{
 Check that the dataset and path_to_nc parameters are valid. Specifically,
-if `path_to_nc` should only be set if `dataset` is `custom` (and conversely,
-`custom` datasets require a `path_to_nc`).
+if \code{path_to_nc} should only be set if \code{dataset} is \code{custom} (and conversely,
+\code{custom} datasets require a \code{path_to_nc}).
 }
 \keyword{internal}

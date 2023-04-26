@@ -11,5 +11,5 @@ a character vector of the available datasets
 }
 \description{
 List the datasets available in pastclim. Most functions can also be
-used on custom datasets by setting `dataset="custom"`
+used on custom datasets by setting \code{dataset="custom"}
 }

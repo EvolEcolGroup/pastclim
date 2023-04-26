@@ -1,11 +1,11 @@
 #' Extract data frame from a region series
-#'
+#' 
 #' Extract the climatic information from a region series and organise them as
 #' a data frame.
 #' 
-#' To extract a data frame from a region slice, see \code{df_from_region_slice}.
+#' To extract a data frame from a region slice, see [df_from_region_slice()].
 #'
-#' @param x climate time series generated with \code{region_series}
+#' @param x climate time series generated with [region_series()]
 #' @param xy a boolean whether x and y coordinates should be added 
 #' to the dataframe (default to TRUE)
 #' @returns a data.frame where each cell each raster layer (i.e. timestep) is a
