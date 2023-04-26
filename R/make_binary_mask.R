@@ -4,7 +4,7 @@
 #' any other value to 1.
 #'
 #' @param x a [`terra::SpatRaster`]
-#' returns a [`terra::SpatRaster`] with 0s and 1s
+#' @returns a [`terra::SpatRaster`] with 0s and 1s
 #'
 #' @keywords internal
 

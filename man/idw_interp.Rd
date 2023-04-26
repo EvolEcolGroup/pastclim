@@ -23,6 +23,9 @@ in the \code{\link[gstat:gstat]{gstat::gstat()}} help page)}
 
 \item{...}{further parameters to be passed to \code{\link[gstat:gstat]{gstat::gstat()}}}
 }
+\value{
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the interpolated version of \emph{x}
+}
 \description{
 Fill in x to match cells available in y, using inverse distance weighted
 interpolation. Interpolation is fitted using \code{\link[gstat:gstat]{gstat::gstat()}};

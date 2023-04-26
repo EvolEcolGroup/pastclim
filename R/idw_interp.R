@@ -18,6 +18,7 @@
 #' relevant; see the gstat manual for gstat stand-alone, URL and more details
 #' in the [gstat::gstat()] help page)
 #' @param ... further parameters to be passed to [gstat::gstat()]
+#' @returns a [`terra::SpatRaster`] of the interpolated version of *x*
 #' 
 #' @keywords internal
 
