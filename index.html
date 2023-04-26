@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Methods to easily extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses, as described
-  in Leonardi et al. (2022) &lt;doi:10.1101/2022.05.18.492456&gt;.">
+  in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
 <title>Manipulate Time Series of Palaeoclimate Reconstructions  • pastclim</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -22,7 +22,7 @@
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Time Series of Palaeoclimate Reconstructions ">
 <meta property="og:description" content="Methods to easily extract and manipulate palaeoclimate
   reconstructions for ecological and anthropological analyses, as described
-  in Leonardi et al. (2022) &lt;doi:10.1101/2022.05.18.492456&gt;.">
+  in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
 <meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,17 +94,19 @@
 [![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 -->
 <p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses.</p>
-<p>A paper describing the functionality of <code>pastclim</code> can be found on <a href="https://www.biorxiv.org/content/10.1101/2022.05.18.492456v1" class="external-link">bioRxiv</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
+<p>The functionalities of <code>pastclim</code> are described in <a href="https://doi.org/10.1111/ecog.06481" class="external-link">Leonardi et al. (2023)</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
 <div class="section level2">
 <h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
 </h2>
-<p>You will need to install the library from GitHub. For this step, you will need to use <code>devtools</code> (if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Once you have <code>devtools</code>, simply use:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span><span class="op">)</span></span></code></pre>
+<p><code>pastclim</code> is on CRAN, and the easiest way to install it is with:</p>
+<p><code>{r install_cran, eval=FALSE} install.packages("pastclim")</code></p>
+<p>If you want the latest development version, you can get it from GitHub. To install from GitHub, you will need to use <code>devtools</code>; if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade to both:</p>
+<p><code>{r install_dev, eval=FALSE} install.packages('terra', repos='https://rspatial.r-universe.dev') devtools::install_github("EvolEcolGroup/pastclim", ref="dev")</code></p>
 </div>
 <div class="section level2">
 <h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
 </h2>
-<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>.</p>
+<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/dev/">version</a> of the site updated for the <code>dev</code> version (on the top left, the version number is in red, and will be in the format x.x.x.9xxx, indicating it is a development version).</p>
 <p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</p>
 <p>You can also build the vignettes when installing <code>pastclim</code> (note that you will need to have the necessary tools to build vignettes already installed; requirements depend on your OS):</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignette <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>

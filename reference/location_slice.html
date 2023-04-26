@@ -14,7 +14,7 @@ specific date associated with each location)."><meta property="og:image" content
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,13 +83,13 @@ specific date associated with each location).</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>a data.frame with columns `longitude`, ranging
--180 to 180, and `latitude`, from -90 to 90, plus optional
-columns `time_bp` and `name`. Alternatively, a vector of cell numbers.</p></dd>
+<dd><p>a data.frame with columns <code>longitude</code>, ranging
+-180 to 180, and <code>latitude</code>, from -90 to 90, plus optional
+columns <code>time_bp</code> and <code>name</code>. Alternatively, a vector of cell numbers.</p></dd>
 
 
 <dt>time_bp</dt>
-<dd><p>used if no `time_bp` column is present in `x`: the dates in
+<dd><p>used if no <code>time_bp</code> column is present in <code>x</code>: the dates in
 years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.</p></dd>
@@ -116,24 +116,24 @@ interpolation is used to estimate climate for cells that lack such
 information (i.e. they are under water or ice). By default, interpolation is only
 performed from the first ring of nearest neighbours; if climate is not
 available, NA will be returned for that location. The number of neighbours
-can be changed with the argument `directions`. `nn_interpol` defaults to TRUE.</p></dd>
+can be changed with the argument <code>directions</code>. <code>nn_interpol</code> defaults to TRUE.</p></dd>
 
 
 <dt>buffer</dt>
 <dd><p>boolean determining whether the variable will be returned
 as the mean of a buffer around the focal cell. If set to TRUE, it overrides
-`nn_interpol` (which provides the same estimates as `buffer` but only for
+<code>nn_interpol</code> (which provides the same estimates as <code>buffer</code> but only for
 locations that are in cells with an NA). The buffer size is determined
-by the argument `directions`. `buffer` defaults to FALSE.</p></dd>
+by the argument <code>directions</code>. <code>buffer</code> defaults to FALSE.</p></dd>
 
 
 <dt>directions</dt>
 <dd><p>character or matrix to indicate the directions in which
-cells are considered connected when using `nn_interpol` or `buffer`. 
-The following character values are allowed: "rook" or "4" for the 
-horizontal and vertical neighbors; "bishop" to get the diagonal neighbors;
-"queen" or "8" to get the vertical, horizontal and diagonal neighbors;
-or "16" for knight and one-cell queen move neighbors. If directions
+cells are considered connected when using <code>nn_interpol</code> or <code>buffer</code>.
+The following character values are allowed: "rook" or "4" for the
+horizontal and vertical neighbours; "bishop" to get the diagonal neighbours;
+"queen" or "8" to get the vertical, horizontal and diagonal neighbours;
+or "16" for knight and one-cell queen move neighbours. If directions
 is a matrix it should have odd dimensions and have logical (or 0, 1) values.</p></dd>
 
 </dl></div>
