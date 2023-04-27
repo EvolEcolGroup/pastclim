@@ -8,7 +8,7 @@ set_data_path(path_to_nc = data_path,
               copy_example = TRUE)
 ################################################################################
 
-test_that("time_bp", {
+test_that("time_bp for SpatRaster", {
   # using standard dataset
   climate_slice <- region_slice(
     c(-10000), c("bio01", "bio12"),
@@ -27,6 +27,18 @@ test_that("time_bp", {
   expect_true(all(time_bp(climate_slice)==c(-10000,-10000)))
   
 })
+
+test_that("time_bp for SpatRasterDataset", {
+  # using standard dataset
+  climate_series <- region_series(
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_true(all(time_bp(climate_series)==c(-20000,-15000, -10000, -5000, 0)))
+  # TODO this does not work for the moment, as terra can't change the time for a given SpatRaster within a SpatRasterDataset  
+ # time(climate_series$bio01)<-c(-20,-15,-10,-5,0)
+}
+)
 
 ################################################################################
 # clean up for the next test

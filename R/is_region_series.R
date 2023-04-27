@@ -27,6 +27,7 @@ is_region_series <- function (x, strict = FALSE) {
     all_times<-list()
     for (i in terra::varnames(x)){
       all_times[[i]] <- time_bp(x[i])
+      # TODO we should check that each variable has years as its units
     }
     return(length(unique(all_times))==1)
   }

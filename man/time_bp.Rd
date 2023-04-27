@@ -3,6 +3,7 @@
 \name{time_bp}
 \alias{time_bp}
 \alias{time_bp,SpatRaster-method}
+\alias{time_bp,SpatRasterDataset-method}
 \alias{time_bp<-}
 \alias{time_bp<-,SpatRaster-method}
 \title{Extract and set time in years before present for SpatRaster}
@@ -10,6 +11,8 @@
 time_bp(x)
 
 \S4method{time_bp}{SpatRaster}(x)
+
+\S4method{time_bp}{SpatRasterDataset}(x)
 
 time_bp(x) <- value
 
