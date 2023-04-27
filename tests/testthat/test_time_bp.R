@@ -35,8 +35,8 @@ test_that("time_bp for SpatRasterDataset", {
     dataset = "Example"
   )
   expect_true(all(time_bp(climate_series)==c(-20000,-15000, -10000, -5000, 0)))
-  # TODO this does not work for the moment, as terra can't change the time for a given SpatRaster within a SpatRasterDataset  
- # time(climate_series$bio01)<-c(-20,-15,-10,-5,0)
+  time_bp(climate_series)<-c(-20,-15,-10,-5,0)
+  expect_true(all(time(climate_series[1])==c(1930,1935,1940,1945,1950)))
 }
 )
 

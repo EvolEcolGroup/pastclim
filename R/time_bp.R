@@ -41,7 +41,7 @@ setMethod("time_bp", signature(x="SpatRasterDataset"),
               stop("this is not a valid region series; it should be a SpatRasterDataset where each dataset (i.e. variable) has the same time steps")
             }
             if (timeInfo(x[[1]])$step != "years") {
-              # as of 1.7.18, the bug in terra setting years to negative has ben fixed
+              # as of 1.7.18, the bug in terra setting years to negative has been fixed
               stop("The time units of SpatRaster are not 'years'.\n",
                    "It might be a problem with the time units not being properly set in the original nc file.\n",
                    "Set time units correctly with time_bp(x)<-c(-10000,-400).\n",
@@ -68,20 +68,19 @@ setMethod("time_bp<-", signature(x="SpatRaster"),
            }
 )
 
-# This does not work as there is no method at the moment to change time on a dataset in a SpatRasterDataset
-#' #' @rdname time_bp
-#' #' @export
-#' setMethod("time_bp<-", signature(x="SpatRasterDataset"),
-#'           function(x, value)  {
-#'             if (!is_region_series(x)) {
-#'               stop("this is not a valid region series; it should be a SpatRasterDataset where each dataset (i.e. variable) has the same time steps")
-#'             }
-#'             # convert yrs BP to yrs AD for terra
-#'             value_bp <- value+1950
-#'             for (i in 1:length(x)){
-#'               time(x[[1]],tstep="years")<-value_bp
-#'             }
-#'             return(x)
-#'           }
-#' )
+# This does not work as there is no method at the moment to change time on a dataset in a SpatRasterDataset#' @rdname time_bp
+#' @export
+setMethod("time_bp<-", signature(x="SpatRasterDataset"),
+          function(x, value)  {
+            if (!is_region_series(x)) {
+              stop("this is not a valid region series; it should be a SpatRasterDataset where each dataset (i.e. variable) has the same time steps")
+            }
+            # convert yrs BP to yrs AD for terra
+            value_bp <- value+1950
+            for (i in 1:length(x)){
+              time(x[i],tstep="years")<-value_bp
+            }
+            return(x)
+          }
+)
 
