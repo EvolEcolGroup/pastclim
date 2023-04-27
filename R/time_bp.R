@@ -68,7 +68,7 @@ setMethod("time_bp<-", signature(x="SpatRaster"),
            }
 )
 
-# This does not work as there is no method at the moment to change time on a dataset in a SpatRasterDataset#' @rdname time_bp
+#' @rdname time_bp
 #' @export
 setMethod("time_bp<-", signature(x="SpatRasterDataset"),
           function(x, value)  {

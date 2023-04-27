@@ -6,6 +6,7 @@
 \alias{time_bp,SpatRasterDataset-method}
 \alias{time_bp<-}
 \alias{time_bp<-,SpatRaster-method}
+\alias{time_bp<-,SpatRasterDataset-method}
 \title{Extract and set time in years before present for SpatRaster}
 \usage{
 time_bp(x)
@@ -17,6 +18,8 @@ time_bp(x)
 time_bp(x) <- value
 
 \S4method{time_bp}{SpatRaster}(x) <- value
+
+\S4method{time_bp}{SpatRasterDataset}(x) <- value
 }
 \arguments{
 \item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}}
