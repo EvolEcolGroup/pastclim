@@ -7,12 +7,12 @@
 sample_rs_variable(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{terra::SpatRasterDataset} returned
-by \code{region_series}}
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
+by \code{\link[=region_series]{region_series()}}}
 
 \item{size}{a vector of the number of points sampled for each time step}
 
-\item{method}{one of the sampling methods from \code{terra::spatSample}. It
+\item{method}{one of the sampling methods from \code{\link[terra:sample]{terra::spatSample()}}. It
 defaults to "random"}
 
 \item{replace}{boolean determining whether we sample with replacement}
@@ -25,7 +25,7 @@ the climate variables.
 }
 \description{
 Internal function for sampling different number of points for each
-timestep of a region series from \code{sample_region_series},
+timestep of a region series from \code{\link[=sample_region_series]{sample_region_series()}},
 used when size is a vector of values.
 }
 \keyword{internal}

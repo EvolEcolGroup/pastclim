@@ -2,7 +2,7 @@
 #'
 #' This function generates a delta (difference) raster, computed as the difference between
 #' model estimates (`x`) and some observations (`high_res_obs`). `x` is a 
-#' \code{terra::SpatRaster} of the variable we want to downscale, and it 
+#' [`terra::SpatRaster`] of the variable we want to downscale, and it 
 #' can contain multiple time steps. `ref_time` sets the time slice for which
 #' the delta should be computed. 
 #' 
@@ -10,13 +10,14 @@
 #' resolution than `x`, the latter is interpolated using a bilinear algorithm.
 #' For areas that are present in some time slices, but not in the observations
 #' (e.g. due to sea level change), the delta map is extended to cover the maximum
-#' cumulative land mask (over all time steps) using idw.
+#' cumulative land mask (over all time steps) using inverse distance weighted
+#' interpolation.
 #'
-#' @param x a \code{terra::SpatRaster} for the variable of interest, with all
+#' @param x a [`terra::SpatRaster`] for the variable of interest, with all
 #' time steps of interest
 #' @param ref_time the time (BP) of the slice that is used to compute the delta
 #' @param obs the observations
-#' @returns a \code{terra::SpatRaster} of the delta
+#' @returns a [`terra::SpatRaster`] of the delta
 #' @keywords internal
 
 delta_compute <- function(x, ref_time, obs) {

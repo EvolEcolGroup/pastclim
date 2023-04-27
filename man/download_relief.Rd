@@ -7,24 +7,24 @@
 download_relief(rast_template, ...)
 }
 \arguments{
-\item{rast_template}{a \code{terra::SpatRaster} providing the extent and
+\item{rast_template}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} providing the extent and
 resolution to be downloaded. This raster needs to have identical vertical
 and horizontal resolution, and standard lat/long projection.}
 
-\item{...}{additional parameters to be passed to \code{marmap::getNOAA.bathy}
+\item{...}{additional parameters to be passed to \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}}
 to customise how files are stored. See the manpage for that function for
 details}
 }
 \value{
-a \code{terra::SpatRaster} with the relief for the chosen region
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the relief for the chosen region
 }
 \description{
 This function downloads a relief (topography+bathymetry) dataset from the
 ETOPO2022 dataset.
 }
 \details{
-This function uses \code{marmap::getNOAA.bathy} to download the data, and
-then converts them into a \code{terra::SpatRaster} formatted to be compatible
+This function uses \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}} to download the data, and
+then converts them into a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} formatted to be compatible
 with \code{pastclim}
 }
 \keyword{internal}

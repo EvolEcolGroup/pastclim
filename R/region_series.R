@@ -3,7 +3,7 @@
 #' This function extracts a time series of one or more climate variables for
 #' a given
 #' dataset covering a region (or the whole world). The function returns a
-#' SpatRasterDataset \code{terra::sds} object, with
+#' [`terra::SpatRasterDataset`] object, with
 #' each variable as a sub-dataset.
 #'
 #' @param time_bp time slices in years before present (negative values represent
@@ -12,7 +12,7 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' \code{get_time_steps}.
+#' [get_time_steps()].
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -20,13 +20,13 @@
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
 #' @param ext an extent, coded as numeric vector (length=4; 
-#' order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+#' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object 
 #' is used to define the polygon.
 #' @returns a
-#' SpatRasterDataset \code{terra::sds} object, with
+#' [`terra::SpatRasterDataset`] object, with
 #' each variable as a sub-dataset.
 #'
 #' @import terra

@@ -1,4 +1,4 @@
-#' Internal functions to check whether we have downloaded a given variable
+#' Internal function to check whether we have downloaded a given variable
 #' for a dataset
 #'
 #' @param variable a vector of names of the variables of interest

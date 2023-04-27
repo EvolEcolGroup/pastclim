@@ -10,11 +10,11 @@ get_ice_mask(time_bp, dataset)
 \item{time_bp}{time slice in years before present (negative)}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
 will not work on custom datasets.}
 }
 \value{
-a binary \code{terra::SpatRaster} with the ice mask as 1s
+a binary \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the ice mask as 1s
 }
 \description{
 Get the ice mask for a dataset at a given time point.

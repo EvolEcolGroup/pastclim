@@ -3,8 +3,8 @@
 #' To compute BIOCLIM variables from 
 #' monthly average temperature and precipitation data. For modern data,
 #' this variables are generally computed using min and maximum temperature,
-#' but for many paleoclimatic reconstructions only average temperature is
-#' avaliable. Most variables, with the exception of BIO02 and BIO03, can
+#' but for many palaeoclimatic reconstructions only average temperature is
+#' available. Most variables, with the exception of BIO02 and BIO03, can
 #' be rephrased meaningfully in terms of mean temperature. 
 #' This function is a modified version of \code{predicts::bcvars}.
 #' 

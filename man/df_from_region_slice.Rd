@@ -7,8 +7,8 @@
 df_from_region_slice(x, xy = TRUE)
 }
 \arguments{
-\item{x}{climate time slice (i.e. a \code{terra::SpatRaster})
-generated with \code{region_slice}}
+\item{x}{climate time slice (i.e. a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}})
+generated with \code{\link[=region_slice]{region_slice()}}}
 
 \item{xy}{a boolean whether x and y coordinates should be added
 to the dataframe (default to TRUE)}
@@ -19,8 +19,8 @@ row, and the available variables are columns.
 }
 \description{
 Extract the climatic information from a region slice and organise it as
-a data frame. This is just a wrapper around \code{terra::as.data.frame}.
+a data frame. This is just a wrapper around \code{\link[terra:as.data.frame]{terra::as.data.frame()}}.
 }
 \details{
-To extract a data frame from a region series, see \code{df_from_region_series}.
+To extract a data frame from a region series, see \code{\link[=df_from_region_series]{df_from_region_series()}}.
 }

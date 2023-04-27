@@ -19,10 +19,10 @@
 
 #' Region outlines.
 #'
-#' An \code{sf} object containing outlines for major regions. Outlines that
+#' An [`sf::sf`] object containing outlines for major regions. Outlines that
 #' span the antimeridian have been split into multiple polygons.
 #'
-#' @format \code{sf} of outlines.
+#' @format [`sf::sf`] of outlines.
 #' \describe{
 #'   \item{name}{names of regions}
 #' }
@@ -30,11 +30,11 @@
 
 #' Region outlines unioned.
 #'
-#' An \code{sf} object containing outlines for major regions. Each outline is
+#' An [`sf::sf`] object containing outlines for major regions. Each outline is
 #' represented as a single polygon. If you want multiple polygons, use
 #' \link{region_outline}.
 #'
-#' @format \code{sf} of outlines.
+#' @format [`sf::sf`] of outlines.
 #' \describe{
 #'   \item{name}{names of regions}
 #' }

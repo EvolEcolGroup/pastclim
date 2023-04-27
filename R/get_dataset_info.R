@@ -2,7 +2,7 @@
 #'
 #' This function provides full information about a given dataset. A full
 #' list of datasets available in pastclim can be obtained with
-#' \code{get_available_datasets}
+#' [get_available_datasets()]
 #'
 #' @param dataset A dataset in pastclim
 #' @returns text describing the dataset

@@ -4,7 +4,7 @@
 #' for a given dataset.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
+#' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a data.frame with columns id and category.
 #'

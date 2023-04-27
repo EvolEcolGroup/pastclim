@@ -7,28 +7,31 @@
 idw_interp(x, y, nmax = 7, set = list(idp = 0.5), ...)
 }
 \arguments{
-\item{x}{the \code{terra::SpatRaster} of the variable of interest}
+\item{x}{the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the variable of interest}
 
-\item{y}{the \code{terra::SpatRaster} the reference mask defining which
+\item{y}{the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} the reference mask defining which
 cells should have values}
 
 \item{nmax}{the number of nearest observations that should be used for a
 kriging prediction or simulation, where nearest is defined in terms
-of the space of the spatial locations (see \code{gstat::gstat} for details)}
+of the space of the spatial locations (see \code{\link[gstat:gstat]{gstat::gstat()}} for details)}
 
 \item{set}{named list with optional parameters to be passed to gstat
 (only set commands of gstat are allowed, and not all of them may be
 relevant; see the gstat manual for gstat stand-alone, URL and more details
-in the \code{gstat::gstat} help page)}
+in the \code{\link[gstat:gstat]{gstat::gstat()}} help page)}
 
-\item{...}{further parameters to be passed to \code{gstat::gstat}}
+\item{...}{further parameters to be passed to \code{\link[gstat:gstat]{gstat::gstat()}}}
+}
+\value{
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the interpolated version of \emph{x}
 }
 \description{
-Fill in x to match cells available in y, using iwd (inverse-weighted
-distance) interpolation. Interpolation is fitted using \code{gstat::gstat};
-the default parameters for \code{gstat::gstat} are nmax=7 and idp = .5, but
+Fill in x to match cells available in y, using inverse distance weighted
+interpolation. Interpolation is fitted using \code{\link[gstat:gstat]{gstat::gstat()}};
+the default parameters for \code{\link[gstat:gstat]{gstat::gstat()}} are "nmax=7" and "idp=.5", but
 can be changed by providing arguments to this function (which will be passed
-to \code{gstat::gstat}). See \code{gstat::gstat} for details on the available
+to \code{\link[gstat:gstat]{gstat::gstat()}}). See \code{\link[gstat:gstat]{gstat::gstat()}} for details on the available
 parameters and their meaning.
 }
 \keyword{internal}

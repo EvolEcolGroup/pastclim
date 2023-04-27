@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [master, dev]
+    branches: [master, dev, cran_submission]
   pull_request:
     branches: [master, dev]
 
@@ -44,10 +44,10 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Get dev terra for dev pastclim
-        if: matrix.config.os == 'macos-latest' || ${{ github.base_ref == 'dev' }} || ${{ github.ref_name == 'dev' }}
-        run: install.packages('terra', repos='https://rspatial.r-universe.dev')
-        shell: Rscript {0}
+#      - name: Get dev terra for dev pastclim
+#        if: matrix.config.os == 'macos-latest' || ${{ github.base_ref == 'dev' }} || ${{ github.ref_name == 'dev' }}
+#        run: install.packages('terra', repos='https://rspatial.r-universe.dev')
+#        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:

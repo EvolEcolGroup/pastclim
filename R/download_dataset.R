@@ -2,10 +2,10 @@
 #'
 #' This function downloads palaeoclimate reconstructions. Files will be stored
 #' in the data path of `pastclim`, which can be inspected with
-#' \code{get_data_path} and changed with \code{set_data_path}
+#' [get_data_path()] and changed with [set_data_path()]
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with \code{get_available_datasets}). This function
+#' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @param bio_variables one or more variable names to be downloaded. If left
 #' to NULL, all variables available for this dataset will be downloaded
@@ -44,7 +44,7 @@ download_dataset <- function(dataset, bio_variables = NULL) {
     )
   }
 
-  # add biome to list of variables (we need it for generate landmask)
+  # add biome to list of variables (we need it to generate the landmask)
   if (!"biome" %in% bio_variables) {
     bio_variables <- c(bio_variables, "biome")
   }

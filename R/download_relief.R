@@ -3,17 +3,17 @@
 #' This function downloads a relief (topography+bathymetry) dataset from the
 #' ETOPO2022 dataset.
 #' 
-#' This function uses \code{marmap::getNOAA.bathy} to download the data, and
-#' then converts them into a \code{terra::SpatRaster} formatted to be compatible
+#' This function uses [marmap::getNOAA.bathy()] to download the data, and
+#' then converts them into a [`terra::SpatRaster`] formatted to be compatible
 #' with `pastclim`
 #'
-#' @param rast_template a \code{terra::SpatRaster} providing the extent and
+#' @param rast_template a [`terra::SpatRaster`] providing the extent and
 #' resolution to be downloaded. This raster needs to have identical vertical
 #' and horizontal resolution, and standard lat/long projection.
-#' @param ... additional parameters to be passed to \code{marmap::getNOAA.bathy}
+#' @param ... additional parameters to be passed to [marmap::getNOAA.bathy()]
 #' to customise how files are stored. See the manpage for that function for
 #' details
-#' @returns a \code{terra::SpatRaster} with the relief for the chosen region
+#' @returns a [`terra::SpatRaster`] with the relief for the chosen region
 #'
 #' @keywords internal
 

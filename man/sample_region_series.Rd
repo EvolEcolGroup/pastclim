@@ -7,14 +7,14 @@
 sample_region_series(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{terra::SpatRasterDataset} returned
-by \code{region_series}}
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
+by \code{\link[=region_series]{region_series()}}}
 
 \item{size}{number of points sampled. A single value is used to sample the same
 locations across all time steps, a vector of values to sample different locations
 at each time step.}
 
-\item{method}{one of the sampling methods from \code{terra::spatSample}. It
+\item{method}{one of the sampling methods from \code{\link[terra:sample]{terra::spatSample()}}. It
 defaults to "random"}
 
 \item{replace}{boolean determining whether we sample with replacement}
@@ -34,7 +34,7 @@ number of points, but different locations, for each time step, provide a vector
 repeating the same value for each time step.
 }
 \details{
-This function wraps \code{terra::spatSample} to appropriate sample the
-\code{terra::SpatRaster}s in the \code{terra::SpatRasterDataset} returned
-by \code{region_series}.
+This function wraps \code{\link[terra:sample]{terra::spatSample()}} to appropriate sample the
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}s in the \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
+by \code{\link[=region_series]{region_series()}}.
 }

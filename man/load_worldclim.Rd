@@ -14,21 +14,21 @@ load_worldclim(var, res, path = NULL, version = "2.1", ...)
 and 0.5 (minutes of a degree)}
 
 \item{path}{character. Path where the dataset is stored. If left NULL, the data
-will be downloaded from the directory returned by \code{get_data_path()}}
+will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}}
 
 \item{version}{character or numeric. WorldClim version number. Only "2.1" supported at the moment}
 }
 \value{
-a \code{terra::SpatRaster} with the requested worldclim variable
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the requested WorldClim variable
 }
 \description{
 This function loads previously downloaded annual and monthly variables
-from the Worldclim 2.1 dataset. To save the variables in a compatible
-format, use \code{download_worldclim}
+from the WorldClim 2.1 dataset. To save the variables in a compatible
+format, use \code{\link[=download_worldclim]{download_worldclim()}}.
 }
 \details{
-The function assumes that the file name is in the format wc\emph{version}\emph{\emph{res}m}\emph{var}.nc.
+The function assumes that the file name is in the format "wc\emph{version}\emph{\emph{res}m}\emph{var}.nc".
 For example, average temperature downloaded at 10 minutes resolution will be
-\emph{wc21_10m_tavg.nc}.
+"\emph{wc21_10m_tavg.nc}".
 }
 \keyword{internal}
