@@ -596,6 +596,17 @@ plot(climate_20k,
      fun=function() polys(ice_mask_vect, col="gray", lwd=0.5))
 ```
 
+Sometimes it is interesting to measure the distance from the coastline (e.g. 
+when modelling species that rely on brackish water, or to determine the distance
+from marine resources in archaeology). In `pastclim`, we can use use `distance_from_sea`,
+which accounts for sea level change based on the landmask:
+
+```{r, fig.width=6, fig.height=2.5}
+distances_sea <- distance_from_sea(time_bp = c(-20000,0), dataset="Example")
+distances_sea_australia <- crop(distances_sea, terra::ext(100,170,-60,20))
+plot(distances_sea_australia, main=time_bp(distances_sea_australia))
+```
+
 # Adding locations to region plots
 
 To plot locations on region plots, we first need to create a `SpatVector` object from
