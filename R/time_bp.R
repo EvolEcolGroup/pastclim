@@ -1,7 +1,7 @@
-#' Extract and set time in years before present for SpatRaster
+#' Extract and set time in years before present for SpatRaster and SpatRasterDataset
 #'
 #' This functions extracts and sets time in years BP (i.e. from 1950) for a
-#' [`terra::SpatRaster`]. In the [`terra::SpatRaster`] object, time is 
+#' [`terra::SpatRaster`] or  a [`terra::SpatRasterDataset`]. In a [`terra::SpatRaster`] object, time is 
 #' stored with unit "years", which
 #' are years from 0AD. This means that, when a summary of the 
 #' [`terra::SpatRaster`] is
