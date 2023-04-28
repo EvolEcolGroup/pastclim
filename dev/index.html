@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.3.9005</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +101,7 @@
 </h2>
 <p><code>pastclim</code> is on CRAN, and the easiest way to install it is with:</p>
 <p><code>{r install_cran, eval=FALSE} install.packages("pastclim")</code></p>
-<p>If you want the latest development version, you can get it from GitHub. To install from GitHub, you will need to use <code>devtools</code>; if you haven’t done so already, install it from CRAN with <code>install.packages("devtools")</code>. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade to both:</p>
+<p>The version on CRAN is recommended for every day use. New features and bug fixes appear first on the <code>dev</code> branch on GitHub, before they make their way to CRAN. If you need to have early access to these new features, you can install <code>pastclim</code> directly from GitHub. To install from GitHub, you will need to use <code>devtools</code>; if you haven’t done so already, get it from CRAN with <code>install.packages("devtools")</code>. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade both libraries with:</p>
 <p><code>{r install_dev, eval=FALSE} install.packages('terra', repos='https://rspatial.r-universe.dev') devtools::install_github("EvolEcolGroup/pastclim", ref="dev")</code></p>
 </div>
 <div class="section level2">
@@ -118,7 +118,7 @@
 <div class="section level2">
 <h2 id="current-issues">Current issues<a class="anchor" aria-label="anchor" href="#current-issues"></a>
 </h2>
-<p>If something does not work, check the <a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link">issues on GitHub</a> to see whether the problem has already been reported. If not, feel free to create an new issue. Please make sure you provide <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example" class="external-link">a reproducible example</a> for the developers to investigate the problem.</p>
+<p>If something does not work, check the <a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link">issues on GitHub</a> to see whether the problem has already been reported. If not, feel free to create an new issue. Please make sure you have updated to the latest version of <code>pastclim</code> on CRAN, as well as updating all other packages on your system, and provide <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example" class="external-link">a reproducible example</a> for the developers to investigate the problem.</p>
 <hr>
 <div class="section level3">
 <h3 id="error-in-xselffinalize">Error in x$.self$finalize()<a class="anchor" aria-label="anchor" href="#error-in-xselffinalize"></a>
@@ -126,34 +126,6 @@
 <p><code>pastclim</code> relies on <code>terra</code> to process rasters. There is a known bug in <code>terra</code> that leads to the occasional message:</p>
 <pre><code><span><span class="st">"Error in x$.self$finalize() : attempt to apply non-function"</span></span></code></pre>
 <p>This is an error related to garbage collection, which does not affect the script being correctly executed, so it can be ignored. More discussion of this issue can be found on <a href="https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second" class="external-link">stack<strong>overflow</strong></a></p>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="terra-without-netcdf-driver-for-macos">
-<code>terra</code> without NETCDF driver for macOS<a class="anchor" aria-label="anchor" href="#terra-without-netcdf-driver-for-macos"></a>
-</h3>
-<p>A number of versions of <code>terra</code> available as binaries for macOS X86-64 on CRAN (including the latest one) have been compiled without a NETCDF driver (the latest ARM library is OK). This prevents <code>pastclim</code>, which relies on <code>terra</code>, from correctly reading files. Other packages that rely on <code>terra</code> are similarly affected (e.g. <code>stars</code>; see this <a href="https://github.com/r-spatial/stars/issues/566" class="external-link">bug</a>)</p>
-<p>When loaded, <code>pastclim</code> checks if the driver is available; in case of a missing driver, you will get the error:</p>
-<pre><code>Error: The installed version of terra lacks support for reading netcdf files.
-pastclim needs netcdf support: you will need to reinstall terra,
-possibly from source, if there isn't a version with netcdf support
-on CRAN. Alternatively, try the latest development version from R-universe:
-install.packages('terra', repos='https://rspatial.r-universe.dev')</code></pre>
-<p>The easiest solution is probably to install the <code>dev</code> version of <code>terra</code> from <a href="https://r-universe.dev/organizations/" class="external-link">R-universe</a> with:</p>
-<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'terra'</span>, repos<span class="op">=</span><span class="st">'https://rspatial.r-universe.dev'</span><span class="op">)</span></span></code></pre>
-<p>However, note that the <code>dev</code> version of <code>terra</code> is incompatible with the version of <code>pastclim</code> on CRAN. Therefore, you need to also upgrade <code>pastclim</code> to <code>dev</code>:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></span></code></pre>
-<p>Alternatively, if you want to install a specific version of <code>terra</code> from source, see instructions <a href="https://github.com/rspatial/terra" class="external-link">here</a>.</p>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="no-slot-of-name-ptr-with-dev-version-of-terra">no slot of name “ptr” with <code>dev</code> version of <code>terra</code>
-<a class="anchor" aria-label="anchor" href="#no-slot-of-name-ptr-with-dev-version-of-terra"></a>
-</h3>
-<p>the <code>dev</code> version of <code>terra</code> is incompatible with the version of <code>pastclim</code> on CRAN, leading to the following error.</p>
-<pre><code>Error in time_bp(climate_nc) : no slot of name "ptr" for this object of class "SpatRaster"</code></pre>
-<p>To solve this, you need to also upgrade <code>pastclim</code> to <code>dev</code>:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>

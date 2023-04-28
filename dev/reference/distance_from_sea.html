@@ -12,7 +12,7 @@ from the sea for each land pixel."><meta property="og:image" content="https://ev
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.3.9005</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@ from the sea for each land pixel.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">distance_from_sea</span><span class="op">(</span><span class="va">time_bp</span>, <span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">distance_from_sea</span><span class="op">(</span>time_bp <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -75,7 +75,7 @@ from the sea for each land pixel.</p>
 
 
 <dt>dataset</dt>
-<dd><p>string defining dataset to be downloaded (a list of possible
+<dd><p>string defining the dataset to use (a list of possible
 values can be obtained with <code><a href="get_available_datasets.html">get_available_datasets()</a></code>). This function
 will not work on custom datasets.</p></dd>
 
@@ -84,7 +84,7 @@ will not work on custom datasets.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of distances</p>
+<p>a <code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of distances from the coastline in km</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
