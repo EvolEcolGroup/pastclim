@@ -8,7 +8,7 @@ set_data_path(path_to_nc = data_path,
               copy_example = TRUE)
 ################################################################################
 
-test_that("time_bp", {
+test_that("time_bp for SpatRaster", {
   # using standard dataset
   climate_slice <- region_slice(
     c(-10000), c("bio01", "bio12"),
@@ -27,6 +27,18 @@ test_that("time_bp", {
   expect_true(all(time_bp(climate_slice)==c(-10000,-10000)))
   
 })
+
+test_that("time_bp for SpatRasterDataset", {
+  # using standard dataset
+  climate_series <- region_series(
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_true(all(time_bp(climate_series)==c(-20000,-15000, -10000, -5000, 0)))
+  time_bp(climate_series)<-c(-20,-15,-10,-5,0)
+  expect_true(all(time(climate_series[1])==c(1930,1935,1940,1945,1950)))
+}
+)
 
 ################################################################################
 # clean up for the next test

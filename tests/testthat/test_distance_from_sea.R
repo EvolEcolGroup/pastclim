@@ -18,8 +18,9 @@ testthat::test_that("get biome classes", {
   wrong_landmask <- get_land_mask(time_bp=-20000,
                                   dataset="Example")
   expect_false(all(is.na(distance_spatrast[is.na(wrong_landmask)])))
-  
-  
+  # now get them all
+  distance_spatrast <- distance_from_sea(dataset="Example")
+  expect_true(all(time_bp(distance_spatrast)==get_time_steps(dataset="Example")))
 })
 
 ################################################################################

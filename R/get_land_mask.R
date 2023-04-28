@@ -1,8 +1,15 @@
 #' Get the land mask for a dataset.
 #'
-#' Get the land mask for a dataset at a given time point.
-#'
-#' @param time_bp time slice in years before present (negative)
+#' Get the land mask for a dataset, either for the whole series or for specific
+#' time points.
+#' 
+#' @param time_bp time slices in years before present (negative values represent
+#' time before present, positive values time in the future). This parameter can
+#' be a vector of times (the slices need
+#' to exist in the dataset), a list with a min and max element setting the
+#' range of values, or left to NULL to retrieve all time steps.
+#' To check which slices are available, you can use
+#' [get_time_steps()]. 
 #' @param dataset string defining dataset to be downloaded (a list of possible
 #' values can be obtained with [get_available_datasets()]). This function
 #' will not work on custom datasets.
@@ -11,14 +18,20 @@
 #' @import terra
 #' @export
 
-get_land_mask <- function(time_bp, dataset) {
-  climate_slice <- region_slice(
+get_land_mask <- function(time_bp=NULL, dataset) {
+  if (!dataset %in% get_available_datasets()){
+    stop("this function only works on the defaults datasets in pastclim\n",
+         "you can get a list with `get_available_datasets()`")
+  }
+  
+  climate_series <- region_series(
     time_bp = time_bp, bio_variables = "biome",
     dataset = dataset
   )
-  climate_slice$land_mask <- climate_slice[names(climate_slice)]
-  climate_slice$land_mask[climate_slice$land_mask != 28] <- TRUE
-  climate_slice$land_mask[climate_slice$land_mask == 28] <- NA
-  climate_slice <- terra::subset(climate_slice, "land_mask")
-  return(climate_slice)
+  land_mask <- climate_series["biome"]
+  land_mask[land_mask !=28] <- 1
+  land_mask[land_mask ==28] <- NA
+  names(land_mask) <- paste("land_mask", time_bp(land_mask), sep="_")
+  varnames(land_mask)<-"land_mask"
+  return(land_mask)
 }
