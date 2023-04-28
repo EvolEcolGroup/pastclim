@@ -607,9 +607,9 @@ europe_climate <- region_series(
 )
 ice_masks <- get_ice_mask(c(-20000, -15000, -10000, 0),
                           dataset = "Example")
-ice_contours<- lapply(ice_masks, as.polygons)
+ice_poly_list<- lapply(ice_masks, as.polygons)
 plot(europe_climate$bio01, main=time_bp(europe_climate),
-     fun=function(i) polys(ice_contours[[i]], 
+     fun=function(i) polys(ice_poly_list[[i]], 
                            col="gray",
                            lwd=0.5))
 ```
