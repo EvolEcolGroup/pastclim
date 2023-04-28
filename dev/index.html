@@ -90,24 +90,27 @@
 </div>
 <!-- badges: start -->
 
+<!-- badges: end -->
 <!-- old badges, kept for future reference
 [![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
 [![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 -->
 <p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses.</p>
-<p>The functionalities of <code>pastclim</code> are described in <a href="https://doi.org/10.1111/ecog.06481" class="external-link">Leonardi et al. (2023)</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
+<p>The functionalities of <code>pastclim</code> are described in <a href="https://doi.org/10.1111/ecog.06481" class="external-link">Leonardi et al. (2023)</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
 <div class="section level2">
 <h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
 </h2>
 <p><code>pastclim</code> is on CRAN, and the easiest way to install it is with:</p>
-<p><code>{r install_cran, eval=FALSE} install.packages("pastclim")</code></p>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pastclim"</span><span class="op">)</span></span></code></pre>
 <p>The version on CRAN is recommended for every day use. New features and bug fixes appear first on the <code>dev</code> branch on GitHub, before they make their way to CRAN. If you need to have early access to these new features, you can install <code>pastclim</code> directly from GitHub. To install from GitHub, you will need to use <code>devtools</code>; if you haven’t done so already, get it from CRAN with <code>install.packages("devtools")</code>. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade both libraries with:</p>
-<p><code>{r install_dev, eval=FALSE} install.packages('terra', repos='https://rspatial.r-universe.dev') devtools::install_github("EvolEcolGroup/pastclim", ref="dev")</code></p>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'terra'</span>, repos<span class="op">=</span><span class="st">'https://rspatial.r-universe.dev'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
 </h2>
-<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/dev/">version</a> of the site updated for the <code>dev</code> version (on the top left, the version number is in red, and will be in the format x.x.x.9xxx, indicating it is a development version).</p>
+<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/dev/">dev version</a> of the site updated for the <code>dev</code> branch of <code>pastclim</code> (on the top left of the dev website, the version number is in red and in the format x.x.x.9xxx, indicating it is a development version).</p>
 <p>Pastclim currently includes data from Beyer et al 2020, a reconstruction of climate based on the HadCM3 model for the last 120k years, and Krapp et al 2021, which covers the last 800k years. The reconstructions are bias-corrected and downscaled to 0.5 degree. More details on these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</p>
 <p>You can also build the vignettes when installing <code>pastclim</code> (note that you will need to have the necessary tools to build vignettes already installed; requirements depend on your OS):</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, build_vignette <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
