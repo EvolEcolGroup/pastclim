@@ -4,7 +4,7 @@
 \alias{distance_from_sea}
 \title{Compute a raster of distances from the sea for each land pixel.}
 \usage{
-distance_from_sea(time_bp, dataset)
+distance_from_sea(time_bp = NULL, dataset)
 }
 \arguments{
 \item{time_bp}{time slice in years before present (negative)}
@@ -14,7 +14,7 @@ values can be obtained with \code{\link[=get_available_datasets]{get_available_d
 will not work on custom datasets.}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of distances
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of distances from the coastline in km
 }
 \description{
 Get the land mask for a dataset at a given time point, and compute distance
