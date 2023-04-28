@@ -416,14 +416,14 @@ Note that `terra` stores dates in years as AD, not BP. You can inspect
 the times in years BP with:
 
 ```{r}
-time_bp(climate_region$bio01)
+time_bp(climate_region)
 ```
 
 We can then plot the time series of a given variable (we relabel the
 plots to use years bp):
 
 ```{r, fig.width=6, fig.height=5}
-terra::plot(climate_region$bio01, main=time_bp(climate_region$bio01))
+terra::plot(climate_region$bio01, main=time_bp(climate_region))
 ```
 
 To plot all climate variables for a given time step, we can slice the
@@ -573,7 +573,7 @@ terra::plot(biome_20k)
 
 The climate reconstructions do not show areas under permanent ice. Ice
 sheets are stored as class 28 in the "biome" variable. We can retrieve
-directly the ice and land masks with:
+directly the ice and land (all other biome categories) masks with:
 
 ```{r, fig.width=6, fig.height=2.5}
 ice_mask <- get_ice_mask(-20000, dataset = "Example")
@@ -595,6 +595,27 @@ an argument for `fun` within `plot`):
 plot(climate_20k, 
      fun=function() polys(ice_mask_vect, col="gray", lwd=0.5))
 ```
+
+In some other cases, we have multiple time points of the same variable and we
+want to see how the ice sheets change:
+```{r, fig.width=6, fig.height=5}
+europe_climate <- region_series(
+  time_bp = c(-20000, -15000, -10000, 0),
+  bio_variables = c("bio01"),
+  dataset = "Example",
+  ext = region_extent$Europe
+)
+ice_masks <- get_ice_mask(c(-20000, -15000, -10000, 0),
+                          dataset = "Example")
+ice_contours<- lapply(ice_masks, as.polygons)
+plot(europe_climate$bio01, main=time_bp(europe_climate),
+     fun=function(i) polys(ice_contours[[i]], 
+                           col="gray",
+                           lwd=0.5))
+```
+
+Note that to add the ice sheets, we build a function here that takes a single parameter, which is the
+index of the image (i.e. i from 1 to 4 in the plot above) used to subset the list of ice outlines.
 
 Sometimes it is interesting to measure the distance from the coastline (e.g. 
 when modelling species that rely on brackish water, or to determine the distance
