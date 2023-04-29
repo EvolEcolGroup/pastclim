@@ -33,7 +33,8 @@ load_worldclim <- function(var, res, path=NULL, version="2.1", ...) {
   if (!file.exists(wc_full_path)){
     stop(wc_full_path," does not exist; use download_wordclim() to download it")
   }
-  wordlclim_rast <- terra::rast(wc_full_path)
+  
+  worldclim_rast <- terra::rast(wc_full_path)
   # turn this into a valide region_slice
   time_bp(worldclim_rast)<- rep(0,terra::nlyr(worldclim_rast))
   return(worldclim_rast)
