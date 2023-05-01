@@ -21,7 +21,7 @@ test_that("load_dataset_list", {
   
   write.csv(new_table,
             file.path(tempdir(),"dataset_list_included.csv"),row.names = FALSE)
-  # now check the version
+  # now check the version when we reload the dataset
   expect_true(load_dataset_list(on_cran=TRUE)$dataset_list_v[1]=="99.0.0")
 })
 
