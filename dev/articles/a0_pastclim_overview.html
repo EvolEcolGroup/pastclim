@@ -918,12 +918,12 @@ generate the raster for the time slice of interest, and use
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    cell     x     y     bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 38644 -56.5 -17.5  21.95100 23.697807</span></span>
-<span><span class="co">#&gt; 2 19661  40.5  35.5  14.81775 25.219175</span></span>
-<span><span class="co">#&gt; 3  6103 162.5  73.5 -27.40845  4.857079</span></span>
-<span><span class="co">#&gt; 4 24350  49.5  22.5  21.62462 29.035872</span></span>
-<span><span class="co">#&gt; 5 11421  80.5  58.5 -11.73956 12.082767</span></span>
-<span><span class="co">#&gt; 6 40647 146.5 -22.5  18.79602 24.739601</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 22487 -13.5  27.5  16.64848 20.287451</span></span>
+<span><span class="co">#&gt; 2 24015  74.5  23.5  22.95801 29.311901</span></span>
+<span><span class="co">#&gt; 3  8989 168.5  65.5 -17.86857  4.477685</span></span>
+<span><span class="co">#&gt; 4 37552 -68.5 -14.5  16.05426 17.087502</span></span>
+<span><span class="co">#&gt; 5 31533  32.5   2.5  18.16630 19.294088</span></span>
+<span><span class="co">#&gt; 6  9985  84.5  62.5 -15.17250 10.297059</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -937,15 +937,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01     bio10     bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 1860 59.5 53.5  -6.669087 12.880203  322.4227  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3068 -7.5 38.5  10.304942 16.454361 1162.4956  -20000</span></span>
-<span><span class="co">#&gt; -20000.3  165 64.5 73.5 -29.953535  3.409307  121.7933  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1837 36.5 53.5   3.714950 19.068392  575.2892  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 2932 26.5 40.5  13.153019 24.612314  723.8525  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2332 21.5 47.5   9.304976 21.146391  596.9812  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2343 32.5 47.5   7.669677 21.710480  396.3961  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 2294 68.5 48.5   1.620139 23.592287  169.5506  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01    bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1273 67.5 60.5 -12.363914 11.35726 242.06337  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 2954 48.5 40.5   6.740897 15.19105 294.61429  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2788 52.5 42.5   7.392138 18.55368  83.49088  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2929 23.5 40.5  13.365722 24.51251 606.87909  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2816 -4.5 41.5  10.795736 21.33992 431.24634  -10000</span></span>
+<span><span class="co">#&gt; -10000.3  668 57.5 67.5  -6.341954 11.69772 350.34872  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2026 55.5 51.5   2.598756 23.77650 281.35019  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2186 45.5 49.5   6.306355 24.66267 323.79837  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
