@@ -16,12 +16,6 @@ dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?labe
 
 <!-- badges: end -->
 
-```{=html}
-<!-- old badges, kept for future reference
-[![CircleCI](https://circleci.com/gh/EvolEcolGroup/pastclim/tree/master.svg?style=shield&circle-token=928bdbe8f065e17b22642f66a8b9c13f29f2e3fb)](https://app.circleci.com/pipelines/github/EvolEcolGroup/pastclim?branch=master)
-[![R-CMD-check dev](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml/badge.svg?branch=dev)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
--->
-```
 This `R` library is designed to provide an easy way to extract and
 manipulate palaeoclimate reconstructions for ecological and
 anthropological analyses.
