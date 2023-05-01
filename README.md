@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # pastclim <img src="./man/figures/logo.png" align="right" width="150"/>
 
 <!-- badges: start -->
