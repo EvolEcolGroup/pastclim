@@ -39,6 +39,10 @@ idw_interp <- function(x, y, nmax=7, set=list(idp = .5), ...){
   names(x_df)[3] <-"this_var"
   names(x_gap_df)[3] <-"this_var"
   # interpolate those gaps with idw (time consuming...)
+  # it might make sense to parallelise this as shown here:
+  # https://gis.stackexchange.com/questions/237672/how-to-achieve-parallel-kriging-in-r-to-speed-up-the-process
+  # or even better, there is a powerful cpp version here:
+  # https://geobrinkmann.com/post/iwd/
   # add ... to the function to be able to take additional params to gstat
   idw_obj <- gstat::gstat(formula = this_var~1, locations = ~x+y, 
                           data = x_df, nmax=nmax,
