@@ -54,7 +54,6 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL,
   # apply the delta_rast to x
   x_high <- x_high + delta_rast
   
-  ##TODO
   ## Now loop over each layer of x_high, and run idw_gap to match the high
   ## resolution mask
   

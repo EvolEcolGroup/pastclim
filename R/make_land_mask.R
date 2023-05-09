@@ -46,7 +46,9 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
     relief_bin[relief_bin>sea_level[i]]<-NA
     relief_bin[!is.na(relief_bin)]<-1
     sea_patches<-patches(relief_bin)
+    # get mode of a vector (removing any NAs)
     modal_vector <- function(x) {
+      x <- x[!is.na(x)]
       ux <- unique(x)
       ux[which.max(tabulate(match(x, ux)))]
     }

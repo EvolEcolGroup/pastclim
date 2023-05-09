@@ -27,7 +27,7 @@ idw_interp <- function(x, y, nmax=7, set=list(idp = .5), ...){
   x<-terra::mask(x,y)
   x_bin <- make_binary_mask(x)
   y_bin <- make_binary_mask(y)
-  # delta gap (pixels for which we don't have a delta values)
+  # x gap (pixels for which we don't have a x values)
   x_gap <- y_bin - x_bin
   x_gap[x_gap==0]<-NA
   x_df <- terra::as.data.frame(x,xy=TRUE,na.rm=TRUE)

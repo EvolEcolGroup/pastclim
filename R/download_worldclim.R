@@ -17,7 +17,7 @@
 #' will be downloaded from the directory returned by [get_data_path()]
 #' @param version	character or numeric. WorldClim version number. Only "2.1" supported at the moment
 #' @param ... additional arguments passed to download.file
-#' @returns a [`terra::SpatRaster`] with the requested WorldClim variable
+#' @returns TRUE if the requested WorldClim variable was downloaded successfully
 #'
 #' @keywords internal
 
