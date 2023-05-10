@@ -25,14 +25,14 @@ should not be used for real analysis.
 
 ## Delta downscaling a dataset in `pastclim`
 
-The `terra` package can downscale reconstructions using a bilinear method. Other `R`
+The `terra` package can downscale reconstructions using bilinear interpolation. Other `R`
 packages also offer various approaches to downscale rasters.
 
 For palaeoclimate reconstructions, the delta method has been shown to be very effective
 (Beyer et al, REF), but sea level changes require some care on how to apply such a method.
 `pastclim` includes functions to use the delta method for downscaling. We will focus on South East
 Asia, as this area was greatly affected by sea level changes over the last glaciation. Specifically, we will look at the area around Borneo (for real applications, we would
-reccomend using a bigger extent in areas of large changes in land extent, as
+recommend using a bigger extent in areas of large changes in land extent, as
 interpolating over a small extent can lead to greater artefacts; for this example,
 we keep the extent small to reduce computational time).
 
@@ -85,11 +85,11 @@ WorldClim2 at 10 minute resolution (but other datasets such as CHELSA would be
 equally suitable). For WorldClim, there are some convenient functions to download
 and then load variables:
 ```{r eval=FALSE}
-pastclim:::download_worldclim("tavg",10)
+pastclim:::download_worldclim("tavg", 10)
 ```
 Once the variable is downloaded, we can load it at any time with:
 ```{r eval=FALSE}
-tavg_obs_hres_all<- pastclim:::load_worldclim("tavg",10)
+tavg_obs_hres_all<- pastclim:::load_worldclim("tavg", 10)
 ```
 
 ```{r echo=FALSE, results="hide"}

@@ -8,6 +8,7 @@ delta_downscale(
   x,
   delta_rast,
   x_landmask_high = NULL,
+  range_limits = NULL,
   nmax = 7,
   set = list(idp = 0.5),
   ...
@@ -22,6 +23,10 @@ time steps of interest}
 
 \item{x_landmask_high}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the same number of layers
 as x. If left NULL, the original landmask of x is used.}
+
+\item{range_limits}{range to which the downscaled reconstructions
+are forced to be within (usually based on the observed values). Ignored if
+left to NULL.}
 
 \item{nmax}{the number of nearest observations that should be used for a
 kriging prediction or simulation, where nearest is defined in terms

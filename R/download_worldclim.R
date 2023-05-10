@@ -44,6 +44,7 @@ download_worldclim <- function(var, res, path=NULL, version="2.1", ...) {
   }
   
   wc_rast<-geodata::worldclim_global(var=var, res=res, path=tempdir(), version="2.1")
+  time(wc_rast,tstep="months")<-1:12
   terra::writeCDF(wc_rast,file.path(path, wc_file_name),
                   compression=9)
   return(TRUE)

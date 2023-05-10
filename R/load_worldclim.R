@@ -35,7 +35,7 @@ load_worldclim <- function(var, res, path=NULL, version="2.1", ...) {
   }
   
   worldclim_rast <- terra::rast(wc_full_path)
-  # turn this into a valide region_slice
+  # turn this into a valid region_slice
   time_bp(worldclim_rast)<- rep(0,terra::nlyr(worldclim_rast))
   return(worldclim_rast)
 }

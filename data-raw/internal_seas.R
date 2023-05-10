@@ -1,0 +1,7 @@
+library(terra)
+azov<-terra::vect("azov_sea.shp")
+black <-  terra::vect("black_sea.shp")
+caspian <- terra::vect("Caspian_sea.shp")
+internal_seas <- rbind(azov, black, caspian)
+internal_seas_wrap <- terra::wrap(internal_seas)
+saveRDS(internal_seas_wrap,"internal_seas.RDS")

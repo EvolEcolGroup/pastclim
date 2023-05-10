@@ -2,7 +2,7 @@
 #'
 #' This function downloads monthly variables from the CHELSA 2.1 dataset.
 #' These variables are saved in a format that can be read by 
-#' [load_chelsa()], and easily used for delta downscaling palaeoclimate
+#' load_chelsa, and easily used for delta downscaling palaeoclimate
 #' observations.
 #' 
 #' Note that variables are named differently from Worldclim. "tas" is the mean
@@ -44,6 +44,7 @@ download_chelsa <- function(var, res, path=NULL, version="2.1", ...) {
   # combined them into a single raster object
   combined_rast <- terra::rast(file.path(tempdir(),"chelsa",var,chelsa_filenames))
   # save it as netcdf file
-  terra::writeCDF(wc_rast,file.path(path, wc_file_name),
+  chelsa_nc_name <- paste0("chelsa21_30sec_",var,".nc")
+  terra::writeCDF(combined_rast,file.path(path, chelsa_nc_name),
                   compression=9)
 }

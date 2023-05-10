@@ -19,6 +19,9 @@
 #' \code{pastclim::delta_compute}
 #' @param x_landmask_high a [`terra::SpatRaster`] with the same number of layers
 #' as x. If left NULL, the original landmask of x is used.
+#' @param range_limits range to which the downscaled reconstructions
+#' are forced to be within (usually based on the observed values). Ignored if
+#' left to NULL.
 #' @param nmax the number of nearest observations that should be used for a
 #'  kriging prediction or simulation, where nearest is defined in terms
 #'  of the space of the spatial locations (see [gstat::gstat()] for details)
@@ -32,7 +35,7 @@
 #' @keywords internal
 
 
-delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL,
+delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL, range_limits=NULL,
                             nmax=7, set=list(idp = .5), ...) {
   message("This function is still under development; do not use it for real analysis")
   # check that extent and resolutions are compatible
@@ -62,11 +65,14 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL,
     #    browser()
     x_high <- mask(x_high,x_landmask_high)
     # fill in any gaps that resulted from this step with idw
-    for (i in 1:terra::nlyr(x_high)){
+    for (i in seq_along(terra::nlyr(x_high))){
       x_high[[i]] <- idw_interp(x_high[[i]],x_landmask_high[[i]],
                                 nmax=nmax, set=set, ...)
     }
   }
-  
+  if (!is.null(range_limits)){
+    x_high[x_high<range_limits[1]]<-range_limits[1]
+    x_high[x_high>range_limits[2]]<-range_limits[2]
+  }
   return(x_high)
 }

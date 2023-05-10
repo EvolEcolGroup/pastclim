@@ -15,8 +15,8 @@ make_land_mask(relief_rast, time_bp, sea_level = NULL)
 computed using Spratt 2016)}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of 0s (sea) and 1s (land), where the
-layers are different times
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks (with land as 1's and sea
+as NAs), where the layers are different times
 }
 \description{
 Create a land mask for a given time step. The land mask is based on the simple

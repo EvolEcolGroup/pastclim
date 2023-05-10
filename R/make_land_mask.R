@@ -18,34 +18,36 @@
 #' @param time_bp the time of interest
 #' @param sea_level sea level at the time of interest (if left to NULL, this is
 #' computed using Spratt 2016)
-#' @returns a [`terra::SpatRaster`] of 0s (sea) and 1s (land), where the
-#' layers are different times
+#' @returns a [`terra::SpatRaster`] of the land masks (with land as 1's and sea
+#' as NAs), where the layers are different times
 #'
 #' @keywords internal
 
 make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
   message("This function is still under development; do not use it for real analysis")
   if (is.null(sea_level)){
-    # get sea level from Spratt 2016
-    sea_level_info <- utils::read.table(system.file("extdata/sea_level_spratt2016.txt",
-                                            package="pastclim"), header=TRUE)
-    time_calkaBP <- -time_bp/1000
-    ## TODO this is not safe, we should be getting the closest values
-    ## or even better interpolate
-    sea_level <- sea_level_info$SeaLev_longPC1[match(time_calkaBP, sea_level_info$age_calkaBP)]
-    sea_level <- sea_level - sea_level_info$SeaLev_longPC1[1] # rescale to have 0 for 0kBP
+    # # get sea level from Spratt 2016
+    # sea_level_info <- utils::read.table(system.file("extdata/sea_level_spratt2016.txt",
+    #                                         package="pastclim"), header=TRUE)
+    # time_calkaBP <- -time_bp/1000
+    # ## TODO this is not safe, we should be getting the closest values
+    # ## or even better interpolate
+    # sea_level <- sea_level_info$SeaLev_longPC1[match(time_calkaBP, sea_level_info$age_calkaBP)]
+    # sea_level <- sea_level - sea_level_info$SeaLev_longPC1[1] # rescale to have 0 for 0kBP
+    # 
+    sea_level <- get_sea_level(time_bp = time_bp)
   } else { # check that we have as many sea level estimates as times
     if (length(time_bp)!=length(sea_level)){
       stop ("time_bp and sea_level should have the same number of elements")
     }
   }
   land_mask <- NULL
-  for (i in 1:length(time_bp)) {
+  for (i in seq_along(time_bp)) {
     # create binary relief map for areas above and below the relevant sea level
     relief_bin<-relief_rast
     relief_bin[relief_bin>sea_level[i]]<-NA
     relief_bin[!is.na(relief_bin)]<-1
-    sea_patches<-patches(relief_bin)
+    sea_patches<-patches(relief_bin, directions=8)
     # get mode of a vector (removing any NAs)
     modal_vector <- function(x) {
       x <- x[!is.na(x)]

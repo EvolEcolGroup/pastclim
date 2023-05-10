@@ -21,7 +21,7 @@ will be downloaded from the directory returned by \code{\link[=get_data_path]{ge
 \item{...}{additional arguments passed to download.file}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the requested WorldClim variable
+TRUE if the requested WorldClim variable was downloaded successfully
 }
 \description{
 This function downloads annual and monthly variables from the WorldClim 2.1 dataset.
