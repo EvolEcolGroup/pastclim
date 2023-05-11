@@ -5,15 +5,15 @@
 #' load_chelsa, and easily used for delta downscaling palaeoclimate
 #' observations.
 #' 
-#' Note that variables are named differently from Worldclim. "tas" is the mean
-#' temperature ("tavg" in worldclim), with "tasmax" and "tasmin" being equivalent
+#' Note that variables are named differently from WorldClim. "tas" is the mean
+#' temperature ("tavg" in WorldClim), with "tasmax" and "tasmin" being equivalent
 #' to "tmax" and "tmin".
 #' 
 #' @param var	character Valid variables names are "tas", "tasmax","tasmin", and
 #' "prec".
 #' @param path	character. Path where to download the data to. If left NULL, the data
-#' will be downloaded from the directory returned by [get_data_path()]
-#' @returns TRUE if the requested CHELSA variable was downloaded successfully
+#' will be downloaded from the directory returned by [get_data_path()].
+#' @returns TRUE if the requested CHELSA variable was downloaded successfully.
 #'
 #' @keywords internal
 

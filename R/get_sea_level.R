@@ -23,7 +23,7 @@ get_sea_level <- function (time_bp){
   }
   ## TODO this is not safe, we should be getting the closest values
   ## or even better interpolate
-  sea_level <- approx(x=sea_level_info$age_calkaBP,
+  sea_level <- stats::approx(x=sea_level_info$age_calkaBP,
                       y= sea_level_info$SeaLev_longPC1,
                       xout=time_calkaBP)$y
   sea_level <- sea_level - sea_level_info$SeaLev_longPC1[1] # rescale to have 0 for 0kBP

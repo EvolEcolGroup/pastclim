@@ -19,8 +19,8 @@ a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the ice mask (1's),
 world (sea and land) as NA's
 }
 \description{
-Downscaling the ice mask presents some issues. The maks is a binary raster,
-so any standard downscalign appraoch will still look very blocky. We can
+Downscaling the ice mask presents some issues. The mask is a binary raster,
+so any standard downscaling approach will still look very blocky. We can
 smooth the contour by applying a Guassian filter. How strong that filter
 should be is very much a matter of personal opinion, as we do not have any
 data to compare to. This function attempts to use as sensible default value,

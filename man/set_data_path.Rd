@@ -8,7 +8,8 @@ set_data_path(
   path_to_nc = NULL,
   ask = TRUE,
   write_config = TRUE,
-  copy_example = TRUE
+  copy_example = TRUE,
+  on_CRAN = FALSE
 )
 }
 \arguments{
@@ -24,6 +25,10 @@ file}
 
 \item{copy_example}{boolean on whether the example dataset should be saved
 in the data_path}
+
+\item{on_CRAN}{boolean; users should NOT need this parameters. It is used to set up a
+data path in the temporary directory for examples and tests
+to run on CRAN.}
 }
 \value{
 TRUE if the path was set correctly

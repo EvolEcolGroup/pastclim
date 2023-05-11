@@ -11,20 +11,20 @@ download_chelsa(var, res, path = NULL, version = "2.1", ...)
 "prec".}
 
 \item{path}{character. Path where to download the data to. If left NULL, the data
-will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}}
+will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}.}
 }
 \value{
-TRUE if the requested CHELSA variable was downloaded successfully
+TRUE if the requested CHELSA variable was downloaded successfully.
 }
 \description{
 This function downloads monthly variables from the CHELSA 2.1 dataset.
 These variables are saved in a format that can be read by
-\code{\link[=load_chelsa]{load_chelsa()}}, and easily used for delta downscaling palaeoclimate
+load_chelsa, and easily used for delta downscaling palaeoclimate
 observations.
 }
 \details{
-Note that variables are named differently from Worldclim. "tas" is the mean
-temperature ("tavg" in worldclim), with "tasmax" and "tasmin" being equivalent
+Note that variables are named differently from WorldClim. "tas" is the mean
+temperature ("tavg" in WorldClim), with "tasmax" and "tasmin" being equivalent
 to "tmax" and "tmin".
 }
 \keyword{internal}

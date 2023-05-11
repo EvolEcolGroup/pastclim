@@ -132,7 +132,7 @@ set_data_path()
 
 ```{r echo=FALSE, results='hide'}
 library(pastclim)
-set_data_path_for_CRAN()
+set_data_path(on_CRAN = TRUE)
 ```
 
 ```         

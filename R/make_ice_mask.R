@@ -1,7 +1,7 @@
 #' Downscale an ice mask
 #'
-#' Downscaling the ice mask presents some issues. The maks is a binary raster,
-#' so any standard downscalign appraoch will still look very blocky. We can
+#' Downscaling the ice mask presents some issues. The mask is a binary raster,
+#' so any standard downscaling approach will still look very blocky. We can
 #' smooth the contour by applying a Guassian filter. How strong that filter
 #' should be is very much a matter of personal opinion, as we do not have any
 #' data to compare to. This function attempts to use as sensible default value,
@@ -18,7 +18,7 @@
 #' @keywords internal
 
 make_ice_mask <- function(ice_mask_low_res, land_mask_high_res, d=c(0.5,3)) {
-  ice_mask_low_res_bin <- pastclim:::make_binary_mask(ice_mask_low_res)
+  ice_mask_low_res_bin <- make_binary_mask(ice_mask_low_res)
   ice_mask_high_res <- resample(ice_mask_low_res_bin, land_mask_high_res, method="bilinear")
   gauss_filt <- focalMat(ice_mask_high_res, d, "Gauss")
   ice_mask_gf <- focal(ice_mask_high_res, w = gauss_filt)

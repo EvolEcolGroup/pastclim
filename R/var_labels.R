@@ -19,7 +19,7 @@
 #' 
 #' # set the data_path for this example to run on CRAN
 #' # users don't need to run this line
-#' set_data_path_for_CRAN()
+#' set_data_path(on_CRAN = TRUE)
 #' 
 #' # for a SpatRaster
 #' climate_20k <- region_slice(
