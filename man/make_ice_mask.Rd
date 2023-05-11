@@ -21,7 +21,7 @@ world (sea and land) as NA's
 \description{
 Downscaling the ice mask presents some issues. The mask is a binary raster,
 so any standard downscaling approach will still look very blocky. We can
-smooth the contour by applying a Guassian filter. How strong that filter
+smooth the contour by applying a Gaussian filter. How strong that filter
 should be is very much a matter of personal opinion, as we do not have any
 data to compare to. This function attempts to use as sensible default value,
 but it is worth exploring alternative values to find a good solution.
