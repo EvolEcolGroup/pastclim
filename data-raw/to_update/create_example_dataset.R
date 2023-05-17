@@ -1,16 +1,23 @@
+# This script generates the example dataset, extracting data from Beyer2020 for
+# only a few time steps, and upscaling to 1 degree to reduce the file size
+
+# TO UPDATE MANUALLY
 file_version <- "1.3.0"
+
+# everything else works automatically
+
+# generate the file name based on the version name
 file_name<-paste0("example_climate_v", file_version,".nc")
 
 setwd(tempdir())
 library(ClimateOperators)
 library(pastclim)
 
-this_file <- pastclim:::get_file_for_dataset("bio01", "Beyer2020")$file_name
-this_file <- file.path(get_data_path(), this_file)
-
+beyer_file <- pastclim:::get_file_for_dataset("bio01", "Beyer2020")$file_name
+beyer_file <- file.path(get_data_path(), this_file)
 
 ## subset to a few variables and time steps
-cdo (paste0("select,name=bio01,bio10,bio12,biome ",this_file," ex_all_time.nc"))
+cdo (paste0("select,name=bio01,bio10,bio12,biome ",beyer_file," ex_all_time.nc"))
 ncks ("-O -d time,51,71,5 ex_all_time.nc ex_subset.nc")
 ncatted ('-O -a description,global,m,c,"Sample dataset to be used in pastclim, a subset of Beyer2020" -h ex_subset.nc')
 

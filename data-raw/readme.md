@@ -1,6 +1,6 @@
 This file provides an overview of the scripts used to generate the data used in pastclim. All R scripts assume that you are in the root directory of the package.
 
-## scripts to create datasets for pastclim (accessible with data())
+## scripts to make data for pastclim (accessible with data())
 
 1. `dataset_list_included.R` is a script to update the internal dataframe which stores the link between variable names and file names and locations. It is based on `./data_files/dataset_list_included.csv`.
 
@@ -9,6 +9,11 @@ This file provides an overview of the scripts used to generate the data used in 
 3. `region_extent.R` create internal dataset of regional extents.
 
 4. `region_outlines.R` create outlines for regions.
+
+## scripts to make extdata for pastclim (stored in inst/extdata)
+
+1. `internal_seas` combines the .shp of the internal seas into an RDS object.
+
 
 ## helpful scripts (this should be turned into tests) - stored under ./helper_functions/
 
@@ -23,7 +28,7 @@ NOTE: these scripts were used with terra <1.6-41, which changed the way time
 is coded. Make sure that you check the scripts before running, as they might not
 function as expected. Scripts yet to be updated/checked have been moved to "to_update".
 
-## scripts to package the climate data into nc files
+## scripts to package the climate time series into nc files (old, these are being rewritten to clean up)
 
 1. `create_internal_seas_raster.R` generates a mask for internal seas (Caspian and Black sea) which are not removed in some reconstructions. We use a fix outline over time, as there are no good reconstructions through time of their depth levels. Based on `shapefiles_internal_seas.zip` This is used when editing the `beyer2020` dataset.
 
