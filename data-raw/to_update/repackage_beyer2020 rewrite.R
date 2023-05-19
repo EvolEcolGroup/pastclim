@@ -52,18 +52,22 @@ if (!file.exists(beyer2_filename)){
 dir.create("temp", warning=FALSE)
 # move to temp
 setwd("temp")
+## fix missing values
+cdo("-setmissval,1e+30", beyer1_filename, "LateQuaternary_Environment_miss.nc")
+cdo("-setmissval,1e+30", beyer2_filename, "LateQuaternary_Environment_MonthlyNPP_miss.nc")
+
 ## fix units
 ncatted(paste('-a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"',
-               beyer1_filename,"LateQuaternary_Environment_u.nc"))
+              "LateQuaternary_Environment_miss.nc","LateQuaternary_Environment_u.nc"))
 ncatted(paste('-a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"',
-              beyer2_filename,"LateQuaternary_MonthlyNPP_u.nc"))
+              "LateQuaternary_Environment_MonthlyNPP_miss.nc","LateQuaternary_MonthlyNPP_u.nc"))
 # copy over monthly npp data to main file
 ncks("-A -v mo_npp LateQuaternary_MonthlyNPP_u.nc LateQuaternary_Environment_u.nc")
 # clean up attributes
 ncatted ("-a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -a Source,global,d,, -a history_of_appended_files,global,d,, -h LateQuaternary_Environment_u.nc")
 
 # remove the unencessary NPP file
-file.remove("LateQuaternary_MonthlyNPP_u.nc")
+#file.remove("LateQuaternary_MonthlyNPP_u.nc")
 
 ################################################################################
 # Fix BIO15
