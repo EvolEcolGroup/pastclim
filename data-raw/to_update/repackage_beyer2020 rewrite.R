@@ -62,13 +62,28 @@ dir.create("temp", showWarnings=FALSE)
 unlink("./temp/*")
 # move to temp
 setwd("temp")
+
 ## fix missing values
 cdo("-setmissval,nan", beyer1_filename, "LateQuaternary_Environment_miss.nc")
 cdo("-setmissval,nan", beyer2_filename, "LateQuaternary_Environment_MonthlyNPP_miss.nc")
 
+## Convert biomes to short integers 
+## (which makes sure that later operations don't become unreliable due to floating point differences)
+## We need to ensure that missing values are properly respected (type conversion is messy in that respect)
+cdo("-select,name=biome", "LateQuaternary_Environment_miss.nc", "biome_only.nc")
+ncap2("-s 'biome=short(biome+1)'", "biome_only.nc","biome_plus_one.nc")
+cdo("-setmissval,-999", "biome_plus_one.nc","biome_new_nan.nc")
+ncap2("-s 'biome=biome-1'", "biome_new_nan.nc","biome_to_readd.nc")
+# re-add the biome that we have now fixed
+ncks("-x -v biome", "LateQuaternary_Environment_miss.nc","LateQuaternary_Environment_miss_no_biome.nc")
+ncks("-A -v biome", "biome_to_readd.nc","LateQuaternary_Environment_miss_no_biome.nc")
+# clean up
+unlink("biome*")
+unlink("LateQuaternary_Environment_miss.nc")
+
 ## fix units
 ncatted(paste('-a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"',
-              "LateQuaternary_Environment_miss.nc","LateQuaternary_Environment_u.nc"))
+              "LateQuaternary_Environment_miss_no_biome.nc","LateQuaternary_Environment_u.nc"))
 ncatted(paste('-a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"',
               "LateQuaternary_Environment_MonthlyNPP_miss.nc","LateQuaternary_MonthlyNPP_u.nc"))
 # copy over monthly npp data to main file
@@ -77,7 +92,7 @@ ncks("-A -v mo_npp LateQuaternary_MonthlyNPP_u.nc LateQuaternary_Environment_u.n
 ncatted ("-a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -a Source,global,d,, -a history_of_appended_files,global,d,, -h LateQuaternary_Environment_u.nc")
 
 # remove the unencessary NPP file
-file.remove(c("LateQuaternary_MonthlyNPP_u.nc","LateQuaternary_Environment_miss.nc","LateQuaternary_Environment_MonthlyNPP_miss.nc"))
+file.remove(c("LateQuaternary_MonthlyNPP_u.nc","LateQuaternary_Environment_miss_no_biome.nc","LateQuaternary_Environment_MonthlyNPP_miss.nc"))
 
 ################################################################################
 # Fix BIO15
@@ -100,6 +115,16 @@ for (i in 1:(dim(precipitation)[4])) {
 
 ncdf4::nc_close(nc_in)
 
+## Fix the time units
+nc_in <- ncdf4::nc_open("LateQuaternary_Environment_u.nc",
+                        write = TRUE
+)
+ncdf4::ncvar_put(nc_in, varid="time", ncdf4::ncvar_get(nc_in, "time")-120000)
+ncdf4::ncatt_put(nc_in,varid="time", attname = "units",attval = "years since 1950-01-01 00:00:00.0")
+ncdf4::ncatt_put(nc_in,varid="time", attname = "long_name",attval = "years BP")
+ncdf4::nc_close(nc_in)
+
+
 
 ## MISSING bring in the topography variables
 
@@ -109,8 +134,6 @@ select_string <- "-select,name=biome,npp,lai,BIO1,BIO4,BIO5,BIO6,BIO7,BIO8,BIO9,
 cdo(select_string,"LateQuaternary_Environment_u.nc","LateQuaternary_Environment_annual.nc")
 # fix climate units
 nc_in<-ncdf4::nc_open("LateQuaternary_Environment_annual.nc",write=TRUE)
-ncdf4::ncatt_put(nc_in,varid="time", attname = "units",attval = "years since 1950-01-01 00:00:00.0")
-ncdf4::ncatt_put(nc_in,varid="time", attname = "long_name",attval = "years BP")
 old_vars<-c('BIO1','BIO4','BIO5','BIO6','BIO7','BIO8','BIO9','BIO10','BIO11','BIO12','BIO13','BIO14','BIO15','BIO16','BIO17','BIO18','BIO19')
 new_vars<-c('bio01','bio04','bio05','bio06','bio07','bio08','bio09','bio10','bio11','bio12','bio13','bio14','bio15','bio16','bio17','bio18','bio19')
 for (i in 1:length(old_vars)){
@@ -133,9 +156,6 @@ file.copy (uncut_ann_filename,file.path(wkdir, uncut_ann_filename),
 
 ################################################################################
 # Extract the monthly variables
-# We need to work in a further subdirectory as we will first split the variables into individual fiels and then merge them back together
-
-
 select_string <- "-select,name=temperature,precipitation,cloudiness,relative_humidity,wind_speed,mo_npp"
 cdo("-z zip_9",select_string,"LateQuaternary_Environment_u.nc","LateQuaternary_Environment_monthly.nc")
 cdo("splitlevel","LateQuaternary_Environment_monthly.nc","Beyer2020_monthly")
@@ -168,19 +188,19 @@ ncdf4::ncatt_put(nc_in, varid = 0, attname = "pastclim_version",
                  attval=file_version)
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "history",
                  attval="")
-ncdf4::ncatt_put(nc_in,varid="time", attname = "units",attval = "years since 1950-01-01 00:00:00.0")
-ncdf4::ncatt_put(nc_in,varid="time", attname = "long_name",attval = "years BP")
 ncdf4::nc_close(nc_in)
 unlink("Beyer2020_monthly0*")
-file.copy (uncut_month_filename,file.path(wkdir, uncut_month_filename))
+file.copy (uncut_month_filename,file.path(wkdir, uncut_month_filename),
+           overwrite = TRUE)
 
 ################################
 # Now remove ice sheets and internal seas
 
 # create landmask
-cdo('select,name=biome LateQuaternary_Environment_u.nc beyer_biome.nc')
+cdo('select,name=biome ', uncut_ann_filename, 'beyer_biome.nc')
 cdo("-O -expr,'biome = ((biome < 28)) ? biome : -1' beyer_biome.nc beyer_biome2.nc")
-cdo("-O -expr,'biome = ((biome >= 0)) ? 1 : 0' beyer_biome2.nc beyer_land_only.nc")
+cdo("-O -expr,'biome = ((biome > 0)) ? 1 : 0' beyer_biome2.nc beyer_land_only.nc")
+
 file.remove("beyer_biome.nc","beyer_biome2.nc")
 
 # crop the icesheets
@@ -193,7 +213,6 @@ cdo("div ", uncut_month_filename,"beyer_land_only.nc","monthly_no_ice.nc")
 # create an internal sea raster
 library(pastclim)
 mask_base <- region_slice(time_bp = 0, "biome", dataset = "custom", path_to_nc = uncut_ann_filename)
-#internal_seas <- terra::vect(system.file("extdata/internal_seas.RDS",package="pastclim"))
 internal_seas <- terra::vect("~/git/pastclim/inst/extdata/internal_seas.RDS")
 internal_seas<- rasterize(internal_seas, mask_base)
 internal_seas[internal_seas == 1] <- 0
@@ -220,7 +239,7 @@ nc_in<-ncdf4::nc_open(ann_filename,write=TRUE)
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "description",
                  attval = "Annual variables from Beyer et al 2020, with ice sheets and internal seas removed, to be used by the R library pastclim")
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "history",
-                 attval="")
+                 attval="created with repackage_beyer2020.R")
 ncdf4::nc_close(nc_in)
 
 nc_in<-ncdf4::nc_open(month_filename,write=TRUE)
@@ -229,3 +248,6 @@ ncdf4::ncatt_put(nc_in, varid = 0, attname = "description",
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "history",
                  attval="created with repackage_beyer2020.R")
 ncdf4::nc_close(nc_in)
+
+file.copy (ann_filename,file.path(wkdir, ann_filename))
+file.copy (monthly_filename,file.path(wkdir, monthly_filename))
