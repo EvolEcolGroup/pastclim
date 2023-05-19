@@ -2,6 +2,11 @@
 # of variables. It generates both a "full" dataset with the ice sheets, and a "land"
 # dataset with land only (which is the default for pastclim)
 
+# it can be simply run with something like
+# nohup Rscript "~/git/pastclim/data-raw/to_update/repackage_beyer2020 rewrite.R" > repackage_beyer2020.log 2>&1 & 
+# nohup Rscript "repackage_beyer2020 rewrite.R" > repackage_beyer2020.log 2>&1 & 
+
+
 # ideally set up a conda environment before running this script
 # conda create --name beyer_repackage
 # conda activate beyer_repackage
@@ -53,6 +58,7 @@ if (!file.exists(beyer2_filename)){
 ################################################################################
 # Now combine the files into a single file
 dir.create("temp", showWarnings=FALSE)
+# empty it if it already exists
 unlink("./temp/*")
 # move to temp
 setwd("temp")
@@ -71,7 +77,7 @@ ncks("-A -v mo_npp LateQuaternary_MonthlyNPP_u.nc LateQuaternary_Environment_u.n
 ncatted ("-a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -a Source,global,d,, -a history_of_appended_files,global,d,, -h LateQuaternary_Environment_u.nc")
 
 # remove the unencessary NPP file
-file.remove("LateQuaternary_MonthlyNPP_u.nc")
+file.remove(c("LateQuaternary_MonthlyNPP_u.nc","LateQuaternary_Environment_miss.nc","LateQuaternary_Environment_MonthlyNPP_miss.nc"))
 
 ################################################################################
 # Fix BIO15
@@ -127,6 +133,9 @@ file.copy (uncut_ann_filename,file.path(wkdir, uncut_ann_filename),
 
 ################################################################################
 # Extract the monthly variables
+# We need to work in a further subdirectory as we will first split the variables into individual fiels and then merge them back together
+
+
 select_string <- "-select,name=temperature,precipitation,cloudiness,relative_humidity,wind_speed,mo_npp"
 cdo("-z zip_9",select_string,"LateQuaternary_Environment_u.nc","LateQuaternary_Environment_monthly.nc")
 cdo("splitlevel","LateQuaternary_Environment_monthly.nc","Beyer2020_monthly")
@@ -137,8 +146,8 @@ for (i in 1:12){
     month_id<-i
   }
   file_name<-paste0("Beyer2020_monthly","0000",month_id)
-  cdo("vertsum",paste0(file_name,".nc"),paste0(file_name,"s.nc"))
-  nc_in<-ncdf4::nc_open(paste0(file_name,"s.nc"),write=TRUE)
+  cdo("vertsum",paste0(file_name,".nc"),paste0(file_name,"split.nc"))
+  nc_in<-ncdf4::nc_open(paste0(file_name,"split.nc"),write=TRUE)
   var_names <- names(nc_in$var)
   for (this_var in var_names){
     this_var_long <- paste(month.name[i],
@@ -150,7 +159,7 @@ for (i in 1:12){
   ncdf4::nc_close(nc_in)
 }
 
-cdo ("-z zip_9", "merge","*s.nc",uncut_month_filename)
+cdo ("-z zip_9", "merge","*split.nc",uncut_month_filename)
 
 nc_in<-ncdf4::nc_open(paste0("Beyer2020_uncut_monthly_vars_v",file_version,".nc"),write=TRUE)
 ncdf4::ncatt_put(nc_in, varid = 0, attname = "description",
