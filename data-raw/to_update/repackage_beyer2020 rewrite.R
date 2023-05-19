@@ -8,6 +8,9 @@
 # conda install -c conda-forge mamba
 # mamba install -c conda-forge cdo
 
+library(reticulate)
+use_condaenv("beyer_repackage")
+
 # TO UPDATE MANUALLY
 file_version <- "1.3.1"
 # working directory where the final files will be stored
@@ -49,12 +52,13 @@ if (!file.exists(beyer2_filename)){
 
 ################################################################################
 # Now combine the files into a single file
-dir.create("temp", warning=FALSE)
+dir.create("temp", showWarnings=FALSE)
+unlink("./temp/*")
 # move to temp
 setwd("temp")
 ## fix missing values
-cdo("-setmissval,1e+30", beyer1_filename, "LateQuaternary_Environment_miss.nc")
-cdo("-setmissval,1e+30", beyer2_filename, "LateQuaternary_Environment_MonthlyNPP_miss.nc")
+cdo("-setmissval,nan", beyer1_filename, "LateQuaternary_Environment_miss.nc")
+cdo("-setmissval,nan", beyer2_filename, "LateQuaternary_Environment_MonthlyNPP_miss.nc")
 
 ## fix units
 ncatted(paste('-a units,longitude,m,c,"degrees_east"  -a units,latitude,m,c,"degrees_north"',
@@ -67,7 +71,7 @@ ncks("-A -v mo_npp LateQuaternary_MonthlyNPP_u.nc LateQuaternary_Environment_u.n
 ncatted ("-a Contact,global,d,, -a Citation,global,d,, -a Title,global,d,, -a Source,global,d,, -a history_of_appended_files,global,d,, -h LateQuaternary_Environment_u.nc")
 
 # remove the unencessary NPP file
-#file.remove("LateQuaternary_MonthlyNPP_u.nc")
+file.remove("LateQuaternary_MonthlyNPP_u.nc")
 
 ################################################################################
 # Fix BIO15
@@ -117,7 +121,8 @@ ncdf4::nc_close(nc_in)
 # now compress it and copy it over to the main directory
 cdo("pack","LateQuaternary_Environment_annual.nc",uncut_ann_filename)
 # copy it over to the output directory
-file.copy (uncut_ann_filename,file.path(wkdir, uncut_ann_filename))
+file.copy (uncut_ann_filename,file.path(wkdir, uncut_ann_filename),
+           overwrite = TRUE)
 
 
 ################################################################################
