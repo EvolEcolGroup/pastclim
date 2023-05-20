@@ -26,15 +26,6 @@
 make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
   message("This function is still under development; do not use it for real analysis")
   if (is.null(sea_level)){
-    # # get sea level from Spratt 2016
-    # sea_level_info <- utils::read.table(system.file("extdata/sea_level_spratt2016.txt",
-    #                                         package="pastclim"), header=TRUE)
-    # time_calkaBP <- -time_bp/1000
-    # ## TODO this is not safe, we should be getting the closest values
-    # ## or even better interpolate
-    # sea_level <- sea_level_info$SeaLev_longPC1[match(time_calkaBP, sea_level_info$age_calkaBP)]
-    # sea_level <- sea_level - sea_level_info$SeaLev_longPC1[1] # rescale to have 0 for 0kBP
-    # 
     sea_level <- get_sea_level(time_bp = time_bp)
   } else { # check that we have as many sea level estimates as times
     if (length(time_bp)!=length(sea_level)){

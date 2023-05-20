@@ -1,14 +1,14 @@
 #!/usr/bin/env Rscript
-
+library(pastclim)
 # arguments when running the code interactively
-params <- list(reference_filename="LateQuaternary_Environment_u.nc",
-               variable="BIO1",
-               etopo="etopo2022_60s_v1.nc")
+params <- list(reference_filename="Beyer2020_uncut_annual_vars_v1.3.1.nc",
+               variable="bio01",
+               etopo=file.path(get_data_path(),"etopo2022_60s_v1.nc"))
 
 # parsing options when run from the command line with Rscript
 if (!interactive()){
   library("optparse")
-  parser <- OptionParser(description="Compute topography")
+  parser <- OptionParser(description="Compute topographic variable (best used with a reference already cropped for sea ice and internal seas")
   
   parser <- add_option(parser, c("-rf", "--reference_filename"), action="store", 
                        type="character", help="reference file to be used to determine dimensions")
@@ -21,12 +21,12 @@ if (!interactive()){
   params <- parse_args(parser)
 }
 
-library(pastclim)
-
 # first create a template raster to fill in
-mask_nc <- terra::rast(param$reference_filename,
+mask_nc <- terra::rast(params$reference_filename,
     subds = params$variable)
 etopo <- terra::rast(params$etopo)
+# crop the extent 
+etopo <- terra::crop(etopo,mask_nc)
 time_steps_bp_all <- time_bp(mask_nc)
 time_steps_bp <- c(0,-15000,-20000)
 # convert to rows of sea level
@@ -34,24 +34,26 @@ time_steps_bp <- c(0,-15000,-20000)
 altitude_all <- NULL
 rugosity_all <- NULL
 
-problematic_cells <- list()
-
-
 for (i in time_steps_bp) {
-  pastclim:::get_sea_level(i)
+  sea_level_now <- pastclim:::get_sea_level(i)
 
   # repeat for the new set of cells that we have identified
   # we need to get a land_mask without internal seas
   #land_mask <- pastclim::climate_for_time_slice(i, "bio01", dataset)
-  land_mask <- mask_nc[which(time_steps_bp==i)]
+  land_mask <- mask_nc[[which(time_steps_bp==i)]]
+  
+  ## consider a stricter land mask with:
+  # pastclim:::make_land_mask(etopo,time_bp=0)->etopo_test
+  # to avoid having deep cells close to the coast not being picked up (e.g. South America)
+  # to speed up things, it would make sense to generate an "always sea map" that can be used to mask
+  # away some of the sea when computing the landmask
   
   land_mask[!is.na(land_mask)] <- 1
-  bi <- terra::boundaries(land_mask)
+  bi <- terra::boundaries(land_mask, inner=TRUE)
   bi_up <- terra::disagg(bi, fact = 30)
   boundary_cells <- which(terra::values(bi_up) == 1)
   # subset etopo to the landmask
-  etopo_now <- terra::crop(etopo, bi_up)
-  etopo_now <- terra::mask(etopo_now, bi_up)
+  etopo_now <- terra::mask(etopo, bi_up)
   # now set boundary_cells that are below sea level to NA
   boundary_under_water <-
     boundary_cells[etopo_now[boundary_cells] < sea_level_now]
