@@ -4,17 +4,17 @@
 \alias{load_etopo}
 \title{Load the ETOPO global relief}
 \usage{
-load_etopo(path = NULL, version = "1")
+load_etopo(path = NULL, resolution = 60, version = "1")
 }
 \arguments{
 \item{path}{character. Path where the dataset is stored. If left NULL, the data
 will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}}
 
-\item{version}{character or numeric. The ETOPO2022 version number.
-Only "1" supported at the moment}
-
 \item{resolution}{numeric resolution in arcsecs (one of 30, or 60).
 Defaults to 60 arcsecs.}
+
+\item{version}{character or numeric. The ETOPO2022 version number.
+Only "1" supported at the moment}
 }
 \description{
 This function loads previously downloaded ETOPO 2022 global relief dataset, at

@@ -15,7 +15,7 @@
 #'
 #' @keywords internal
 
-load_etopo <- function(path=NULL, version="1") {
+load_etopo <- function(path=NULL, resolution= 60, version="1") {
 
   if (is.null(path)){
     path <- get_data_path()

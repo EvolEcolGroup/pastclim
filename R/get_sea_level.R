@@ -19,7 +19,7 @@ get_sea_level <- function (time_bp){
     stop("this function only supports times in the past")
   }
   if (any(time_calkaBP>798)){
-    stop("the dataset of sea level reconstructions stopts at 798ky BP")
+    stop("the dataset of sea level reconstructions stops at 798ky BP")
   }
   ## TODO this is not safe, we should be getting the closest values
   ## or even better interpolate
