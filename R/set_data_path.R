@@ -39,7 +39,7 @@ set_data_path <- function(path_to_nc = NULL, ask = TRUE, write_config = TRUE,
   if (is.null(path_to_nc)) {
     data_dir <- tools::R_user_dir("pastclim", "data")
   } else {
-    data_dir <- normalizePath(path_to_nc)
+    data_dir <- normalizePath(path_to_nc, mustWork = FALSE)
   }
   if (ask){ # if we ask the user
     message_to_user<-paste0("The data_path will be set to ",
