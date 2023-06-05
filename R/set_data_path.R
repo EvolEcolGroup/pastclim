@@ -15,16 +15,31 @@
 #' file
 #' @param copy_example boolean on whether the example dataset should be saved
 #' in the data_path
+#' @param on_CRAN boolean; users should NOT need this parameters. It is used to set up a
+#' data path in the temporary directory for examples and tests
+#' to run on CRAN.
 #' @return TRUE if the path was set correctly
 #'
 #' @export
 
 set_data_path <- function(path_to_nc = NULL, ask = TRUE, write_config = TRUE,
-                          copy_example = TRUE) {
+                          copy_example = TRUE, on_CRAN = FALSE) {
+  # set up options that we will need for running on CRAN
+  if (on_CRAN) {
+    # set up data path for this test
+    path_to_nc <- file.path(tempdir(),"pastclim_data")
+    # clear it if it exists
+    unlink(path_to_nc, recursive = TRUE)
+    # set data path
+    ask <- FALSE
+    write_config <- FALSE
+    copy_example <- TRUE
+  } 
+  
   if (is.null(path_to_nc)) {
     data_dir <- tools::R_user_dir("pastclim", "data")
   } else {
-    data_dir <- path_to_nc
+    data_dir <- normalizePath(path_to_nc, mustWork = FALSE)
   }
   if (ask){ # if we ask the user
     message_to_user<-paste0("The data_path will be set to ",
@@ -104,24 +119,3 @@ copy_example_data <- function() {
   return(TRUE)
 }
 
-#' Set the data path for examples on CRAN
-#'
-#' Users should NOT need this function. It is used to set up a
-#' data path in the temporary directory for examples and tests
-#' to run on CRAN.
-#' 
-#' @returns None
-#' @export
-
-
-set_data_path_for_CRAN <- function() {
-  # set up data path for this test
-  data_path <- file.path(tempdir(),"pastclim_data")
-  # clear it if it exists
-  unlink(data_path, recursive = TRUE)
-  # set data path
-  set_data_path(path_to_nc = data_path,
-                ask = FALSE,
-                write_config = FALSE,
-                copy_example = TRUE)
-}

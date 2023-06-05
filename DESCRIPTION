@@ -26,18 +26,19 @@ RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
-  methods,
   terra (>= 1.7.18)
 Imports:
   curl,
+  methods,
   ncdf4,
   utils
 Suggests: 
-    rmarkdown,
-    knitr,
-    sf,
-    ggplot2,
-    testthat (>= 3.0.0),
-    spelling
+  rmarkdown,
+  geodata,
+  knitr,
+  ggplot2,
+  sf,
+  testthat (>= 3.0.0),
+  spelling
 VignetteBuilder: knitr
 Config/testthat/edition: 3

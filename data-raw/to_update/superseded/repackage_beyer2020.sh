@@ -30,10 +30,13 @@ ncatted -a units,time,m,c,"years since present" ../internal_seas.nc beyer_intern
 ncks -C -O -x -v crs beyer_internal_seas2.nc beyer_internal_seas3.nc
 ncatted -a grid_mapping,internal_seas,d,, beyer_internal_seas3.nc beyer_internal_seas4.nc
 cdo invertlat beyer_internal_seas4.nc beyer_internal_seas5.nc
+
 # remove internal seas
 cdo div LateQuaternary_Environment_no_ice.nc beyer_internal_seas5.nc LateQuaternary_Environment_no_internal_seas.nc
+
 # clean up unnecessary files
 rm beyer* LateQuaternary_Environment_no_ice.nc
+
 # recompress it
 nccopy -d9 LateQuaternary_Environment_no_internal_seas.nc Beyer2020_all_vars.nc
 rm LateQuaternary_Environment_no_internal_seas.nc

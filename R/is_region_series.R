@@ -4,10 +4,11 @@
 #' sub-dataset is a variable, and all variables have the same number of 
 #' time steps.
 #' 
-#' The standard test only checks that each SpatRaster has the same number of
-#' layers. The more thorough test (obtained with strict=TRUE) actually checks
-#' that all time steps are identical by comparing the result of 
-#' [terra::time()] applied to each variable
+#' The standard test only checks that all sub-datasets (each of which is a
+#' [`terra::SpatRaster`]) have the same number of
+#' layers. The more thorough test (obtained with *strict=TRUE*) actually checks
+#' that all variables have the same identical time steps by comparing the result of 
+#' [terra::time()] applied to each variable.
 #'
 #' @param x a [`terra::SpatRasterDataset`] representing a time series of
 #' regional reconstructions obtained from [region_series()].

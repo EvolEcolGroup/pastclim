@@ -44,7 +44,7 @@ download_dataset <- function(dataset, bio_variables = NULL) {
     )
   }
 
-  # add biome to list of variables (we need it for generate landmask)
+  # add biome to list of variables (we need it to generate the landmask)
   if (!"biome" %in% bio_variables) {
     bio_variables <- c(bio_variables, "biome")
   }

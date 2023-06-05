@@ -22,8 +22,9 @@ sub-dataset is a variable, and all variables have the same number of
 time steps.
 }
 \details{
-The standard test only checks that each SpatRaster has the same number of
-layers. The more thorough test (obtained with strict=TRUE) actually checks
-that all time steps are identical by comparing the result of
-\code{\link[terra:time]{terra::time()}} applied to each variable
+The standard test only checks that all sub-datasets (each of which is a
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}) have the same number of
+layers. The more thorough test (obtained with \emph{strict=TRUE}) actually checks
+that all variables have the same identical time steps by comparing the result of
+\code{\link[terra:time]{terra::time()}} applied to each variable.
 }
