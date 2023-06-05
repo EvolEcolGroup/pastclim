@@ -17,7 +17,7 @@ get_time_steps <- function(dataset, path_to_nc = NULL) {
 
   if (is.null(path_to_nc)) {
     # we get the first available file to get info for the dataset
-    possible_vars <- get_vars_for_dataset(dataset)
+    possible_vars <- get_vars_for_dataset(dataset, monthly = TRUE)
     this_file <- get_file_for_dataset(possible_vars[1], dataset)$file_name
     path_to_nc <- file.path(get_data_path(), this_file)
   }

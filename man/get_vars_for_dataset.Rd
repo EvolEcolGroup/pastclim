@@ -4,17 +4,28 @@
 \alias{get_vars_for_dataset}
 \title{Get a list of variables for a given dataset.}
 \usage{
-get_vars_for_dataset(dataset, path_to_nc = NULL, details = FALSE)
+get_vars_for_dataset(
+  dataset,
+  path_to_nc = NULL,
+  details = FALSE,
+  annual = TRUE,
+  monthly = FALSE
+)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
 values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}).}
 
 \item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
-reconstructions.}
+reconstructions. If a custom nc file is given, 'details', 'annual' and 'monthly'
+are ignored}
 
 \item{details}{boolean determining whether the output should include information
-including long names of variables and their units}
+including long names of variables and their units.}
+
+\item{annual}{boolean to show annual variables}
+
+\item{monthly}{boolean to show monthly variables}
 }
 \value{
 a vector of variable names

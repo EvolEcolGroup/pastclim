@@ -4,7 +4,7 @@ library(pastclim)
 download_dataset(dataset=dataset)
 this_path <- pastclim::get_data_path()
 vars_for_dataset <- pastclim:::get_file_for_dataset(
-  get_vars_for_dataset(dataset), dataset)
+  get_vars_for_dataset(dataset, monthly=TRUE), dataset)
 
 file1 <- ncdf4::nc_open(paste0(this_path, "/", vars_for_dataset$file_name[1]))
 n_steps <- file1$dim$time$len

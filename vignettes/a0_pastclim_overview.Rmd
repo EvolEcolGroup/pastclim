@@ -188,6 +188,13 @@ and
 get_vars_for_dataset(dataset = "Krapp2021")
 ```
 
+Note that, by default, only annual variables are shown. To see the available
+monthly variables, simply use:
+```{r}
+get_vars_for_dataset(dataset = "Beyer2020", annual=FALSE, monthly=TRUE)
+```
+
+
 For monthly variables, months are coded as "\_xx" at the end of the
 variable names; e.g. "temperature_02" is the mean monthly temperature
 for February. A more thorough description of each variable (including
