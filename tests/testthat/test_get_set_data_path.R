@@ -34,7 +34,7 @@ test_that("set and get data path", {
                             ask = FALSE,
                             write_config = FALSE,
                             copy_example = FALSE))
-  expect_equal(get_data_path(), data_path)
+  expect_equal(normalizePath(get_data_path()), normalizePath(data_path))
   # this should be empty
   expect_true(length(dir(data_path)) ==0)
   # now copy the data files
