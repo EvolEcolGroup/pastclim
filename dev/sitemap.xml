@@ -34,6 +34,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/Krapp2021.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/bioclim_vars-methods.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_available_dataset.html</loc>
   </url>
   <url>
@@ -70,7 +73,19 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/distance_from_sea.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/dot-cv.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_chelsa.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_dataset.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_etopo.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_available_datasets.html</loc>
@@ -100,6 +115,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_mis_time_steps.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_sea_level.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_time_steps.html</loc>
   </url>
   <url>
@@ -121,10 +139,25 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_dataset_list.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_etopo.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_worldclim.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_series.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_slice.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/make_binary_mask.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/make_ice_mask.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/make_land_mask.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/mis_boundaries.html</loc>
@@ -161,9 +194,6 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/set_data_path.html</loc>
-  </url>
-  <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/set_data_path_for_CRAN.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/slice_region_series.html</loc>

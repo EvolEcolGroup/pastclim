@@ -231,7 +231,7 @@ used:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_data_path.html">set_data_path</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.30</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.7.34</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; The data_path will be set to /home/andrea/.local/share/R/pastclim.</span></span>
 <span><span class="co">#&gt; A copy of the Example dataset will be copied there.</span></span>
 <span><span class="co">#&gt; This path will be saved by pastclim for future use.</span></span>
@@ -766,7 +766,7 @@ with:</p>
 <p>We can also add the ice sheets to plots of climatic variables. First,
 we need to turn the ice mask into polygons:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ice_mask_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.spatvector.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="va">ice_mask</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ice_mask_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.polygons.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="va">ice_mask</span><span class="op">)</span></span></code></pre></div>
 <p>We can then add the polygons to each layer (i.e. variable) of climate
 slice with the following code (note that, to add the polygons to every
 panel of the figure, we need to create a function that is used as an
@@ -917,13 +917,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x    y       bio01     bio10</span></span>
-<span><span class="co">#&gt; 1 18307 126.5 39.5   0.8892319 15.909046</span></span>
-<span><span class="co">#&gt; 2 35061 -39.5 -7.5  21.0226460 21.745466</span></span>
-<span><span class="co">#&gt; 3  9590  49.5 63.5 -13.7813082  9.578151</span></span>
-<span><span class="co">#&gt; 4 22502   1.5 27.5  19.1680298 28.890369</span></span>
-<span><span class="co">#&gt; 5  7098  77.5 70.5 -23.2336025  1.638318</span></span>
-<span><span class="co">#&gt; 6 17186  85.5 42.5  -2.9769359  8.028563</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell     x     y     bio01    bio10</span></span>
+<span><span class="co">#&gt; 1  9257  76.5  64.5 -17.26824  8.01642</span></span>
+<span><span class="co">#&gt; 2 44219 118.5 -32.5  13.53826 20.48524</span></span>
+<span><span class="co">#&gt; 3 30098  37.5   6.5  14.08719 14.95030</span></span>
+<span><span class="co">#&gt; 4 22145   4.5  28.5  18.04001 27.31165</span></span>
+<span><span class="co">#&gt; 5 24046 105.5  23.5  15.33862 20.49631</span></span>
+<span><span class="co">#&gt; 6 35492  31.5  -8.5  15.72068 16.74552</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -937,15 +937,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y     bio01    bio10     bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 3549 48.5 33.5  7.609619 18.07873  256.7110  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3459 43.5 34.5 17.942110 28.29053  201.0080  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 2496 15.5 45.5  3.948617 11.95538 1613.8387  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1569 23.5 56.5  4.719831 15.79781  619.2787  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 1991 20.5 51.5  6.805942 17.80018  583.4601  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2581 15.5 44.5  7.652542 19.67962 1454.1233  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2667 16.5 43.5 10.606719 23.71907 1130.4652  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 2279 53.5 48.5  5.664496 26.66123  177.0449  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y        bio01     bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1680 49.5 55.5  -5.85862541 13.705233 450.66321  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 3567 66.5 33.5   2.40782595 14.268757 387.72528  -20000</span></span>
+<span><span class="co">#&gt; -20000.3  338 67.5 71.5 -27.17118454  2.883088  73.30906  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2782 46.5 42.5   0.03825929 16.705790 778.49542  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2201 60.5 49.5   2.28993726 24.885805 174.39197  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 2100 44.5 50.5   4.92236614 23.133955 381.46793  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2621 55.5 44.5   7.87776375 27.090317 119.64726  -10000</span></span>
+<span><span class="co">#&gt; -10000.5  584 58.5 68.5  -7.82389212 11.113602 307.51611  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>

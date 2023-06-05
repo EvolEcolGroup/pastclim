@@ -78,7 +78,8 @@ the default configuration directory for the package as set in R &gt;= 4.0).</p>
 <span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ask <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  write_config <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  copy_example <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  copy_example <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  on_CRAN <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -103,6 +104,12 @@ file</p></dd>
 <dt>copy_example</dt>
 <dd><p>boolean on whether the example dataset should be saved
 in the data_path</p></dd>
+
+
+<dt>on_CRAN</dt>
+<dd><p>boolean; users should NOT need this parameters. It is used to set up a
+data path in the temporary directory for examples and tests
+to run on CRAN.</p></dd>
 
 </dl></div>
     <div class="section level2">
