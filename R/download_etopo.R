@@ -2,7 +2,9 @@
 #'
 #' This function downloads the ETOPO2022 global relief model at 30 or 60 arcsecs 
 #' resolution. This is a large file (>1Gb), and is worth downloading only 
-#' if you are planning to use it repeatedly. 
+#' if you are planning to use it repeatedly. If you only need a subregion, 
+#' especially at lower resolution, it is worth using [download_etopo_subset()],
+#' which fetches a subset of the dataset on the fly from the NOAA server. 
 #' 
 #' @param path	character. Path where to download the data to. If left NULL, the data
 #' will be downloaded from the directory returned by [get_data_path()], and automatically

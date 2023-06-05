@@ -29,6 +29,7 @@ Depends:
   terra (>= 1.7.18)
 Imports:
   curl,
+  gstat,
   methods,
   ncdf4,
   utils
@@ -37,6 +38,7 @@ Suggests:
   geodata,
   knitr,
   ggplot2,
+  marmap,
   sf,
   testthat (>= 3.0.0),
   spelling
