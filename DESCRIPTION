@@ -29,7 +29,6 @@ Depends:
   terra (>= 1.7.18)
 Imports:
   curl,
-  gstat,
   methods,
   ncdf4,
   utils
@@ -37,7 +36,6 @@ Suggests:
   rmarkdown,
   geodata,
   knitr,
-  marmap,
   ggplot2,
   sf,
   testthat (>= 3.0.0),

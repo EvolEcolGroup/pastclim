@@ -21,8 +21,6 @@ the download (including error codes)
 \description{
 This function downloads the ETOPO2022 global relief model at 30 or 60 arcsecs
 resolution. This is a large file (>1Gb), and is worth downloading only
-if you are planning to use it repeatedly. If you only need a subregion,
-especially at lower resolution, it is worth using \code{\link[=download_etopo_subset]{download_etopo_subset()}},
-which fetches a subset of the dataset on the fly from the NOAA server.
+if you are planning to use it repeatedly.
 }
 \keyword{internal}
