@@ -16,7 +16,7 @@ different reconstructions."><meta property="og:image" content="https://evolecolg
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,13 @@ different reconstructions.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_vars_for_dataset</span><span class="op">(</span><span class="va">dataset</span>, path_to_nc <span class="op">=</span> <span class="cn">NULL</span>, details <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_vars_for_dataset</span><span class="op">(</span></span>
+<span>  <span class="va">dataset</span>,</span>
+<span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  details <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  annual <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  monthly <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -83,12 +89,21 @@ values can be obtained with <code><a href="get_available_datasets.html">get_avai
 
 <dt>path_to_nc</dt>
 <dd><p>the path to the custom nc file containing the palaeoclimate
-reconstructions.</p></dd>
+reconstructions. If a custom nc file is given, 'details', 'annual' and 'monthly'
+are ignored</p></dd>
 
 
 <dt>details</dt>
 <dd><p>boolean determining whether the output should include information
-including long names of variables and their units</p></dd>
+including long names of variables and their units.</p></dd>
+
+
+<dt>annual</dt>
+<dd><p>boolean to show annual variables</p></dd>
+
+
+<dt>monthly</dt>
+<dd><p>boolean to show monthly variables</p></dd>
 
 </dl></div>
     <div class="section level2">
