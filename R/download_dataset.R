@@ -44,11 +44,12 @@ download_dataset <- function(dataset, bio_variables = NULL) {
     )
   }
 
-  # add biome to list of variables (we need it to generate the landmask)
-  if (!"biome" %in% bio_variables) {
-    bio_variables <- c(bio_variables, "biome")
+  if (dataset %in% c("Krapp2021", "Beyer2020", "Example")){
+    # add biome to list of variables (we need it to generate the landmask)
+    if (!"biome" %in% bio_variables) {
+      bio_variables <- c(bio_variables, "biome")
+    }    
   }
-
 
   # special case for the example dataset
   # as we have a copy on the package
@@ -60,10 +61,17 @@ download_dataset <- function(dataset, bio_variables = NULL) {
       file_details <- get_file_for_dataset(this_var, dataset)
       # only download the file if it is needed
       if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
+        # if it is a standard file to download
+        if (file_details$download_path!=""){
         curl::curl_download(file_details$download_path,
                             destfile = file.path(get_data_path(), file_details$file_name),
                             quiet = FALSE
-        )
+        )} else{ # we use a custom download function
+          # download_convert(dataset,bio_variables)
+          eval(parse(text=file_details$download_function))(dataset=dataset, 
+                                     bio_var = this_var,
+                                     filename = file.path(get_data_path(), file_details$file_name))
+        }
       }
     }
   }

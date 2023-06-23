@@ -72,7 +72,7 @@ check_available_variable <- function(variable, dataset) {
     stop(
       paste(missing_variables, collapse = ", "), " not available for ", dataset,
       "; available variables are ",
-      paste(get_vars_for_dataset(dataset), collapse = ", ")
+      paste(get_vars_for_dataset(dataset, monthly = TRUE), collapse = ", ")
     )
   } else {
     return(TRUE)
