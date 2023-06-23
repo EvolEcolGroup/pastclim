@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_available_datasets.R
 \name{list_available_datasets}
 \alias{list_available_datasets}
-\title{LIst all the available datasets.}
+\title{List all the available datasets.}
 \usage{
 list_available_datasets()
 }
