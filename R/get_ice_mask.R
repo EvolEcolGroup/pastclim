@@ -11,7 +11,7 @@
 #' To check which slices are available, you can use
 #' [get_time_steps()].
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). This function
+#' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a binary [`terra::SpatRaster`] with the ice mask as 1s
 #'
@@ -20,9 +20,9 @@
 
 get_ice_mask <- function(time_bp=NULL, dataset) {
   
-  if (!dataset %in% get_available_datasets()){
+  if (!dataset %in% list_available_datasets()){
     stop("this function only works on the defaults datasets in pastclim\n",
-         "you can get a list with `get_available_datasets()`")
+         "you can get a list with `list_available_datasets()`")
   }
   
   climate_series <- region_series(

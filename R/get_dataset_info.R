@@ -2,16 +2,16 @@
 #'
 #' This function provides full information about a given dataset. A full
 #' list of datasets available in pastclim can be obtained with
-#' [get_available_datasets()]
+#' [list_available_datasets()]
 #'
 #' @param dataset A dataset in pastclim
 #' @returns text describing the dataset
 #' @keywords internal
 
 get_dataset_info <- function(dataset) {
-  if (!dataset %in% get_available_datasets()){
-    stop("The dataset is not available in pastclim")
-  }
+#  if (!dataset %in% list_available_datasets()){
+#    stop("The dataset is not available in pastclim")
+#  }
   help_console(dataset)
 }
 

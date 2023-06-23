@@ -35,7 +35,7 @@ set_data_path(path_to_nc = data_path,
 ```
 
 ```{r}
-get_available_datasets()
+list_available_datasets()
 ```
 
 For each dataset, you can get detailed information using the 
@@ -50,8 +50,10 @@ pastclim:::get_dataset_info(dataset="Example")
 ```
 
 Here we provide the full documentation for each dataset (sorted in alphabetical order):
-```{r echo=FALSE}
-for (i in sort(get_available_datasets())){
+```{r echo=FALSE, eval=FALSE}
+list_datasets<-list_available_datasets()
+list_datasets<-c(list_datasets[!grepl("WorldClim_2.1",list_datasets)],"WorldClim_2.1")
+for (i in sort(list_datasets)){
   pastclim:::get_dataset_info(i)
   cat("\n#######################################################\n")
 }

@@ -5,7 +5,7 @@
 #' [get_data_path()] and changed with [set_data_path()]
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). This function
+#' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @param bio_variables one or more variable names to be downloaded. If left
 #' to NULL, all variables available for this dataset will be downloaded

@@ -1,6 +1,7 @@
 #' Download a WorldClim future predictions.
 #'
-#' This function downloads annual and monthly variables from the WorldClim 2.1 dataset.
+#' This function downloads annual and monthly variables from the WorldClim 2.1 
+#' predictions for the future. 
 #' @param dataset the name of the dataset
 #' @param bio_var the variable name
 #' @param filename the file name (full path) of the file to be saved
@@ -61,8 +62,9 @@ download_worldclim_future <- function(dataset, bio_var, filename){
     )
   wc_list[[i_step]] <- terra::rast(destfile)
 
+  message("this will take a few minutes")
   # and finally we save it as a netcdf file
-  time_bp(wc_list[[i_step]]) <- rep(dates_df$time_bp[dates_df$orig == i_step],nlyr(wc_rast))
+  time_bp(wc_list[[i_step]]) <- rep(dates_df$time_bp[dates_df$orig == i_step],nlyr(wc_list[[i_step]]))
   }
   
   var_names <- names(wc_list[[1]])

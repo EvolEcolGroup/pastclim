@@ -97,7 +97,7 @@ NULL
 #' There are multiple resolutions of
 #' 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
 #' of interest can be obtained by changing the ending of the dataset name 
-#' "WorldClim_2.1_XXXm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m
+#' "WorldClim_2.1_RESm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m
 #' Currently, only 10m and 5m are available on `pastclim`.
 #'
 #' @name WorldClim_2.1

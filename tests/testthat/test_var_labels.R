@@ -11,7 +11,7 @@ set_data_path(path_to_nc = data_path,
 test_that("var_labels for plots", {
   # check that we can correctly return expressions for every variable (i.e. 
   # that nothing is malforms and crashes the parsing)
-  for (i in get_available_datasets()){
+  for (i in list_available_datasets()){
     my_labels <- var_labels(get_vars_for_dataset(i), dataset = i)
     expect_true(inherits(my_labels,"expression"))
     my_labels <- var_labels(get_vars_for_dataset(i), dataset = i,

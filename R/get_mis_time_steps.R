@@ -5,7 +5,7 @@
 #' @param mis string giving the mis; it must use the same spelling as used in
 #' [mis_boundaries]
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). If set to
+#' values can be obtained with [list_available_datasets()]). If set to
 #' "custom", then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
