@@ -34,6 +34,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/Krapp2021.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/WorldClim_2.1.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/bioclim_vars-methods.html</loc>
   </url>
   <url>
@@ -86,6 +89,9 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim_present.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_available_datasets.html</loc>

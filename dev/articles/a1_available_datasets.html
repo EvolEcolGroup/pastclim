@@ -103,10 +103,11 @@ possible to get a list of all available datasets with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.34</span></span></code></pre></div>
+<span><span class="co">#&gt; terra 1.7.39</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Example"   "Beyer2020" "Krapp2021"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Example"           "Beyer2020"         "Krapp2021"        </span></span>
+<span><span class="co">#&gt; [4] "WorldClim_2.1_10m" "WorldClim_2.1_5m"</span></span></code></pre></div>
 <p>For each dataset, you can get detailed information using the help
 function:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -206,6 +207,68 @@ alphabetical order):</p>
 <span><span class="co">#&gt;      can be downloaded from:</span></span>
 <span><span class="co">#&gt;      doi:doi.org/10.6084/m9.figshare.19733680.v1</span></span>
 <span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.6084/m9.figshare.19733680.v1&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; #######################################################</span></span>
+<span><span class="co">#&gt; Documentation for the WorldClim datasets</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Description:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      The WorldClim version 2.1 climate datasets are based on a mean</span></span>
+<span><span class="co">#&gt;      1970-2000, and were released in January 2020. In 'pastclim', the</span></span>
+<span><span class="co">#&gt;      datasets are given a date of 1985 CE (the mid-point of the period</span></span>
+<span><span class="co">#&gt;      of interest), corresponding to a time_bp of 35.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Details:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
+<span><span class="co">#&gt;      publication:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial</span></span>
+<span><span class="co">#&gt;      resolution climate surfaces for global land areas. International</span></span>
+<span><span class="co">#&gt;      Journal of Climatology 37 (12): 4302-4315.</span></span>
+<span><span class="co">#&gt;      doi:doi.org/10.1002/joc.5086</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1002/joc.5086&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      There are monthly climate data for minimum, mean, and maximum</span></span>
+<span><span class="co">#&gt;      temperature, precipitation, and 19 &lt;e2&gt;&lt;80&gt;&lt;9c&gt;bioclimatic&lt;e2&gt;&lt;80&gt;&lt;9d&gt; variables.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      There are multiple resolutions of 10 arc-minutes, 5 arc-minutes,</span></span>
+<span><span class="co">#&gt;      2.5 arc-minute and 0.5 arc-minutes. The resolution of interest can</span></span>
+<span><span class="co">#&gt;      be obtained by changing the ending of the dataset name</span></span>
+<span><span class="co">#&gt;      "WorldClim_2.1_XXXm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m</span></span>
+<span><span class="co">#&gt;      Currently, only 10m and 5m are available on 'pastclim'.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; #######################################################</span></span>
+<span><span class="co">#&gt; Documentation for the WorldClim datasets</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Description:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      The WorldClim version 2.1 climate datasets are based on a mean</span></span>
+<span><span class="co">#&gt;      1970-2000, and were released in January 2020. In 'pastclim', the</span></span>
+<span><span class="co">#&gt;      datasets are given a date of 1985 CE (the mid-point of the period</span></span>
+<span><span class="co">#&gt;      of interest), corresponding to a time_bp of 35.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Details:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
+<span><span class="co">#&gt;      publication:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial</span></span>
+<span><span class="co">#&gt;      resolution climate surfaces for global land areas. International</span></span>
+<span><span class="co">#&gt;      Journal of Climatology 37 (12): 4302-4315.</span></span>
+<span><span class="co">#&gt;      doi:doi.org/10.1002/joc.5086</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1002/joc.5086&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      There are monthly climate data for minimum, mean, and maximum</span></span>
+<span><span class="co">#&gt;      temperature, precipitation, and 19 &lt;e2&gt;&lt;80&gt;&lt;9c&gt;bioclimatic&lt;e2&gt;&lt;80&gt;&lt;9d&gt; variables.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      There are multiple resolutions of 10 arc-minutes, 5 arc-minutes,</span></span>
+<span><span class="co">#&gt;      2.5 arc-minute and 0.5 arc-minutes. The resolution of interest can</span></span>
+<span><span class="co">#&gt;      be obtained by changing the ending of the dataset name</span></span>
+<span><span class="co">#&gt;      "WorldClim_2.1_XXXm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m</span></span>
+<span><span class="co">#&gt;      Currently, only 10m and 5m are available on 'pastclim'.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span></code></pre>
