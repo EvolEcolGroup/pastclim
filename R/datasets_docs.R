@@ -77,3 +77,44 @@ NULL
 #' @name Krapp2021
 NULL
 #> NULL
+
+#' Documentation for the WorldClim datasets
+#'
+#' The WorldClim version 2.1 climate datasets are based on a mean 1970-2000,
+#' and were released in January 2020. In `pastclim`, the datasets are given
+#' a date of 1985 CE (the mid-point of the period of interest), corresponding to
+#' a time_bp of 35.
+#' 
+#' If you use this dataset, make sure to cite the original publication:
+#'
+#' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution 
+#' climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315. 
+#' \doi{doi.org/10.1002/joc.5086}
+#' 
+#' There are monthly climate data for minimum, mean, and maximum temperature, precipitation,
+#' and 19 “bioclimatic” variables.
+#' 
+#' There are multiple resolutions of
+#' 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
+#' of interest can be obtained by changing the ending of the dataset name 
+#' "WorldClim_2.1_XXXm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m
+#' Currently, only 10m and 5m are available on `pastclim`.
+#'
+#' @name WorldClim_2.1
+NULL
+#> NULL
+
+#' Documentation for the WorldClim dataset at 10 arc-minute resolution
+#'
+#' @rdname WorldClim_2.1
+#' @name WorldClim_2.1_10m
+NULL
+#> NULL
+
+#' Documentation for the WorldClim dataset at 5 arc-minute resolution
+#'
+#' @rdname WorldClim_2.1
+#' @name WorldClim_2.1_5m
+NULL
+#> NULL
+
