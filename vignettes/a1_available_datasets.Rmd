@@ -50,7 +50,7 @@ pastclim:::get_dataset_info(dataset="Example")
 ```
 
 Here we provide the full documentation for each dataset (sorted in alphabetical order):
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE}
 list_datasets<-list_available_datasets()
 list_datasets<-c(list_datasets[!grepl("WorldClim_2.1",list_datasets)],"WorldClim_2.1")
 for (i in sort(list_datasets)){
