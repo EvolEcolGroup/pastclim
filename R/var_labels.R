@@ -6,7 +6,7 @@
 #' @param x either a character vector with the names of the variables, or a 
 #' [`terra::SpatRaster`] generated with [region_slice())]
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). This function
+#' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @param with_units boolean defining whether the label should include units
 #' @param abbreviated boolean defining whether the label should use abbreviations
@@ -34,9 +34,9 @@
 
 var_labels <- function(x, dataset, with_units=TRUE,
                        abbreviated = FALSE){
-  if (is.null(dataset) | !(dataset %in% get_available_datasets())){
+  if (is.null(dataset) | !(dataset %in% list_available_datasets())){
     stop("dataset should be one of ", 
-         paste(get_available_datasets(), collapse=", "))
+         paste(list_available_datasets(), collapse=", "))
   }
   if (inherits(x,"SpatRaster")){
     variables <- names(x)

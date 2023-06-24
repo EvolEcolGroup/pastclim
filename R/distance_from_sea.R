@@ -5,7 +5,7 @@
 #'
 #' @param time_bp time slice in years before present (negative)
 #' @param dataset string defining the dataset to use (a list of possible
-#' values can be obtained with [get_available_datasets()]). This function
+#' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a [`terra::SpatRaster`] of distances from the coastline in km
 #'

@@ -99,11 +99,10 @@ to others. Here are the necessary steps:
 
 2) Update the table used by `pastclim` to
 store information about available datasets. This table is found in
-"./inst/extdata/variable_table.csv".
+"./data-raw/data_files/dataset_list_included.csv".
 
-```{r}
-head(read.csv(system.file("extdata/dataset_list_included.csv",
-                     package="pastclim")), n=2)
+```{r echo=FALSE}
+head(pastclim:::dataset_list_included, n=2)
 ```
 
 This includes the following fields:
@@ -120,6 +119,11 @@ as `variable`)
 `file_name`: the name of the file for that variable.
 
 `download_path`: the URL to download the file.
+
+`donwload_function`: for datasets which can be easily converted by the user into
+a valid netcdf, it is possibly to leave `download_path` empty, and to create
+an internal function that downloads and converts the files. For an example, see
+the WorldClim datasets.
 
 `file_name_orig`: the name of the original file(s) used to create
 the *nc* dataset.

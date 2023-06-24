@@ -80,25 +80,40 @@ NULL
 
 #' Documentation for the WorldClim datasets
 #'
-#' The WorldClim version 2.1 climate datasets are based on a mean 1970-2000,
-#' and were released in January 2020. In `pastclim`, the datasets are given
+#' WorldClim version 2.1 is a database of high spatial resolution global weather and 
+#' climate data, covering both the present and future projections. 
+#' 
+#' The present reconstructions are based on the mean for the period 1970-2000, 
+#' and are available at multiple resolutions of
+#' 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
+#' of interest can be obtained by changing the ending of the dataset name 
+#' "WorldClim_2.1_RESm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m
+#' (currently, only 10m and 5m are currently available in `pastclim`). In `pastclim`, the datasets are given
 #' a date of 1985 CE (the mid-point of the period of interest), corresponding to
-#' a time_bp of 35.
+#' a time_bp of 35. There are 19 “bioclimatic” variables, as well as monthly 
+#' estimates for minimum, mean, and maximum temperature, and precipitation.
+#' 
+#' Future projections are based on the models in CMIP6, downscaled and de-biased
+#' using Worldclim 2.1 for the present as a baseline. Monthly values of minimum
+#' temperature, maximum temperature, and precipitation, as well as 19 bioclimatic
+#' variables were processed for
+#' 23 global climate models (GCMs), and for four 
+#' Shared Socio-economic Pathways (SSPs): 126, 245, 370 and 585. Model and
+#' SSP can be chosen by changing the ending of the dataset name
+#' "WorldClim_2.1_GCM_SSP_RESm". Available values for GCM are: ACCESS-CM2", 
+#' "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
+#' "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
+#' "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
+#' "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present recontructions
+#' (i.e. "10m", "5m", "2.5m", and "0.5m"). The dataset are averages over 20 year 
+#' periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
+#' In `pastclim`, the midpoints of the periods are used as the time stamps.
 #' 
 #' If you use this dataset, make sure to cite the original publication:
 #'
 #' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution 
 #' climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315. 
 #' \doi{doi.org/10.1002/joc.5086}
-#' 
-#' There are monthly climate data for minimum, mean, and maximum temperature, precipitation,
-#' and 19 “bioclimatic” variables.
-#' 
-#' There are multiple resolutions of
-#' 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
-#' of interest can be obtained by changing the ending of the dataset name 
-#' "WorldClim_2.1_XXXm", e.g. WorldClim_2.1_10m or WorldClim_2.1_5m
-#' Currently, only 10m and 5m are available on `pastclim`.
 #'
 #' @name WorldClim_2.1
 NULL

@@ -8,7 +8,7 @@ download_dataset(dataset, bio_variables = NULL)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
+values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function
 will not work on custom datasets.}
 
 \item{bio_variables}{one or more variable names to be downloaded. If left
