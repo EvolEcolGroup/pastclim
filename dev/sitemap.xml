@@ -91,6 +91,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim_future.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim_present.html</loc>
   </url>
   <url>
@@ -140,6 +143,9 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/is_region_series.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/list_available_datasets.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_dataset_list.html</loc>

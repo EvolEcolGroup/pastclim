@@ -146,7 +146,7 @@ names to layers in the raster:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.39</span></span>
+<span><span class="co">#&gt; terra 1.7.40</span></span>
 <span><span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"_"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we save the data as a <em>nc</em> file (we will use the temporary
@@ -197,12 +197,9 @@ are the necessary steps:</p>
 <li><p>Put your files in a freely available repository.</p></li>
 <li><p>Update the table used by <code>pastclim</code> to store
 information about available datasets. This table is found in
-“./inst/extdata/variable_table.csv”.</p></li>
+“./data-raw/data_files/dataset_list_included.csv”.</p></li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/dataset_list_included.csv"</span>,</span>
-<span>                     package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   variable ncvar dataset monthly                 file_name download_path</span></span>
+<pre><code><span><span class="co">#&gt;   variable ncvar dataset monthly                 file_name download_path</span></span>
 <span><span class="co">#&gt; 1    bio01  BIO1 Example   FALSE example_climate_v1.3.0.nc              </span></span>
 <span><span class="co">#&gt; 2    bio10 BIO10 Example   FALSE example_climate_v1.3.0.nc              </span></span>
 <span><span class="co">#&gt;   download_function file_name_orig download_path_orig version</span></span>
@@ -213,7 +210,7 @@ information about available datasets. This table is found in
 <span><span class="co">#&gt; 2 mean temperature of warmest quarter mean T of warmest qtr       year</span></span>
 <span><span class="co">#&gt;             units  units_exp dataset_list_v</span></span>
 <span><span class="co">#&gt; 1 degrees Celsius *degree*C*          1.3.9</span></span>
-<span><span class="co">#&gt; 2 degrees Celsius *degree*C*</span></span></code></pre></div>
+<span><span class="co">#&gt; 2 degrees Celsius *degree*C*</span></span></code></pre>
 <p>This includes the following fields:</p>
 <p><code>variable</code>: the variable name used by
 <code>pastclim</code></p>
@@ -223,6 +220,11 @@ can be the same as <code>variable</code>)</p>
 <p><code>monthly</code>: boolean on whether the variable is monthly.</p>
 <p><code>file_name</code>: the name of the file for that variable.</p>
 <p><code>download_path</code>: the URL to download the file.</p>
+<p><code>donwload_function</code>: for datasets which can be easily
+converted by the user into a valid netcdf, it is possibly to leave
+<code>download_path</code> empty, and to create an internal function
+that downloads and converts the files. For an example, see the WorldClim
+datasets.</p>
 <p><code>file_name_orig</code>: the name of the original file(s) used to
 create the <em>nc</em> dataset.</p>
 <p><code>download_path_orig</code>: the path of those original
