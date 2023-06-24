@@ -10,6 +10,12 @@ get_available_datasets()
 a character vector of the available datasets
 }
 \description{
-List the datasets available in pastclim. Most functions can also be
+List the datasets available in pastclim, which can be passed to functions
+in \code{pastclim} as values for the parameter \code{dataset}. Most functions can also be
 used on custom datasets by setting \code{dataset="custom"}
+}
+\details{
+This function provides a user-friendly list, summarising the many datasets
+available from WorldClim. A comprehensive list of all available datasets
+can be obtained with \link{list_available_datasets}.
 }

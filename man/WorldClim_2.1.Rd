@@ -33,7 +33,7 @@ SSP can be chosen by changing the ending of the dataset name
 "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
 "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present recontructions
 (i.e. "10m", "5m", "2.5m", and "0.5m"). The dataset are averages over 20 year
-periods (2021-2040, 241-2060, 2061-2080, 2081-2100).
+periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
 In \code{pastclim}, the midpoints of the periods are used as the time stamps.
 
 If you use this dataset, make sure to cite the original publication:

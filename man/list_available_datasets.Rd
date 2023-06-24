@@ -11,7 +11,7 @@ a character vector of the available datasets
 }
 \description{
 List the datasets available in pastclim. The list is comprehensive,
-and includes all combinations of models and future scenarios for worldclim.
-For a most user-friendly list, use \code{\link[=get_available_datasets]{get_available_datasets()}}. Most functions can also be
+and includes all combinations of models and future scenarios for WorldClim.
+For a more user-friendly list, use \code{\link[=get_available_datasets]{get_available_datasets()}}. Most functions can also be
 used on custom datasets by setting \code{dataset="custom"}
 }
