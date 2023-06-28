@@ -43,14 +43,17 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
       bio_variables = get_vars_for_dataset(dataset)[1],
       dataset = dataset
     )
-    
-    browser()
+    land_mask <- climate_series[[1]]
+    land_mask[!is.na(land_mask)]<-1
   } else {
     stop("no method yet for this dataset")
   }
   
-  
-  names(land_mask) <- paste("land_mask", time_bp(land_mask), sep="_")
+  if (is.null(time_ce)){
+    names(land_mask) <- paste("land_mask", time_bp(land_mask), sep="_")
+  } else {
+    names(land_mask) <- paste("land_mask", time(land_mask), sep="_")
+  }
   varnames(land_mask)<-"land_mask"
   return(land_mask)
 }
