@@ -94,7 +94,7 @@ NULL
 #' estimates for minimum, mean, and maximum temperature, and precipitation.
 #' 
 #' Future projections are based on the models in CMIP6, downscaled and de-biased
-#' using Worldclim 2.1 for the present as a baseline. Monthly values of minimum
+#' using WorldClim 2.1 for the present as a baseline. Monthly values of minimum
 #' temperature, maximum temperature, and precipitation, as well as 19 bioclimatic
 #' variables were processed for
 #' 23 global climate models (GCMs), and for four 
