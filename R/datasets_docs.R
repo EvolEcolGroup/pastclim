@@ -104,7 +104,7 @@ NULL
 #' "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
 #' "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
 #' "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
-#' "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present recontructions
+#' "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present reconstructions
 #' (i.e. "10m", "5m", "2.5m", and "0.5m"). The dataset are averages over 20 year 
 #' periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
 #' In `pastclim`, the midpoints of the periods are used as the time stamps.

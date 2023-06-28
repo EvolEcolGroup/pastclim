@@ -155,6 +155,24 @@ test_that("location_slice", {
   )
   expect_true(identical(this_climate[, -c(1:3)],
                         this_climate_timeoff[, -c(1:3)]))
+  
+  # now do the same with time_ce
+  locations_time_ce <- data.frame(
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
+    time_ce = c(0, -9750, -20375, -10475)+1950
+  )
+  this_climate_time_ce <- location_slice(
+    x = locations_time_ce[, c("longitude", "latitude")],
+    time_ce = locations_time_ce$time_ce, bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_true(all(this_climate_time_ce$time_ce ==this_climate_timeoff$time_bp+1950))
+  # using a data.frame
+  this_climate_time_ce_df <- location_slice(
+    x = locations_time_ce,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )  
 })
 
 ################################################################################

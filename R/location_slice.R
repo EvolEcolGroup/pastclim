@@ -6,11 +6,14 @@
 #'
 #' @param x a data.frame with columns `longitude`, ranging
 #' -180 to 180, and `latitude`, from -90 to 90, plus optional
-#' columns `time_bp` and `name`. Alternatively, a vector of cell numbers.
+#' columns `time_bp` or `time_ce` (depending on the units used) and
+#'  `name`. Alternatively, a vector of cell numbers.
 #' @param time_bp used if no `time_bp` column is present in `x`: the dates in
 #' years before present (negative
 #' values represent time before present, i.e. 1950, positive values time in the future)
 #' for each location.
+#' @param time_ce time in years CE as an alternative to `time_bp`.Only one of
+#' `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -41,6 +44,7 @@
 location_slice <-
   function(x,
            time_bp = NULL,
+           time_ce = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
@@ -48,6 +52,13 @@ location_slice <-
            buffer = FALSE,
            directions = 8) {
 
+    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
+    readd_ce <- FALSE # boolean whether we will need to readd time_ce instead of time_bp
+    if (any(!is.null(time_ce), "time_ce" %in% names(x))) {
+      readd_ce <- TRUE
+    }
+        
+    
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
     
     # if we are using standard datasets, check whether a variables exists
@@ -64,15 +75,22 @@ location_slice <-
         stop("x must have columns latitude and longitude")
       }
       # check how time has been provided
-      if (("time_bp" %in% names(x)) & !is.null(time_bp)){
-        stop("times should either be given as a column of x or as values for time_bp,",
+      # first make sure that, if there is a column, only one is provided
+      if (all(c("time_bp", "time_ce")%in% names(x))){
+        stop("in x, there should only be either a 'time_bp' column, or a 'time_ce' column")
+      }
+      # check whether we have time both in the df and in the vector
+      if (all(any(c("time_bp", "time_ce")%in% names(x)),
+              any(!is.null(time_bp),!is.null(time_ce)))){
+        stop("times should either be given as a column of x, or as values for time_bp or time_ce,",
              "not both at the same time!")
       }
-      if (!("time_bp" %in% names(x)) & is.null(time_bp)){
-        stop("missing times: they should either be given as a column of x or as values for time_bp")
+      # check if it is missing everywhere
+      if (all(all(!c("time_bp", "time_ce")%in% names(x)),
+              all(is.null(time_bp),is.null(time_ce)))){
+        stop("missing times: they should either be given as a column of x, or as values for time_bp or time_ce")
       }
        locations_data <- x
-       
     } else if (inherits(x,"numeric")) {
       locations_data <- data.frame(cell_number = x)
       
@@ -81,11 +99,15 @@ location_slice <-
     if (!is.null(time_bp)){
       locations_data$time_bp <- time_bp
     }
+    if ("time_ce" %in% names(locations_data)){
+      locations_data$time_bp <- locations_data$time_ce-1950
+    }
+
     #reorder input by time
     orig_id <- order(locations_data$time_bp)
     locations_data <- locations_data[order(locations_data$time_bp), ]
     time_indeces <- NULL
-    # store cooredinates in their own data.frame to be used for terra operations
+    # store coordinates in their own data.frame to be used for terra operations
     if (inherits(x, "data.frame")){
       coords <- locations_data [,c("longitude","latitude")]
     } else {
@@ -163,6 +185,11 @@ location_slice <-
     }
     locations_data <- locations_data[order(orig_id), ]
 
+    if (readd_ce){
+      locations_data$time_ce <- locations_data$time_bp + 1950
+      locations_data$time_ce_slice <- locations_data$time_bp_slice + 1950
+      locations_data<-locations_data[,!names(locations_data) %in% c("time_bp","time_bp_slice")]
+    }
     return(locations_data)
   }
 
