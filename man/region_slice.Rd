@@ -5,7 +5,8 @@
 \title{Extract a climate slice for a region}
 \usage{
 region_slice(
-  time_bp,
+  time_bp = NULL,
+  time_ce = NULL,
   bio_variables,
   dataset,
   path_to_nc = NULL,
@@ -19,6 +20,9 @@ values represent
 time before present, positive values time in the future). The slice needs
 to exist in the dataset. To check which slices are available, you can use
 \code{\link[=get_time_steps]{get_time_steps()}}.}
+
+\item{time_ce}{time slice in years CE. Only one of \code{time_bp} or \code{time_ce} should
+be used. (note that \code{\link[=get_time_steps]{get_time_steps()}} gives times in bp, not ce!)}
 
 \item{bio_variables}{vector of names of variables to be extracted}
 

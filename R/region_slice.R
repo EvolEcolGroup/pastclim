@@ -10,6 +10,8 @@
 #' time before present, positive values time in the future). The slice needs
 #' to exist in the dataset. To check which slices are available, you can use
 #' [get_time_steps()].
+#' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce` should
+#' be used. (note that [get_time_steps()] gives times in bp, not ce!)
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -30,7 +32,8 @@
 #' @export
 
 region_slice <-
-  function(time_bp,
+  function(time_bp = NULL,
+           time_ce = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
@@ -39,6 +42,7 @@ region_slice <-
     
     this_series <- region_series(
       time_bp = time_bp,
+      time_ce = time_ce,
       bio_variables = bio_variables,
       dataset = dataset,
       path_to_nc = path_to_nc,

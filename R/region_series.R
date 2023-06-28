@@ -13,6 +13,9 @@
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
 #' [get_time_steps()].
+#' @param time_ce time slice in years CE (see `time_bp` for options, but note
+#' that [get_time_steps()] gives times in bp, not ce!). Only one of
+#' `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -34,13 +37,17 @@
 
 region_series <-
   function(time_bp = NULL,
+           time_ce = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
            ext = NULL,
            crop = NULL) {
     
+    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
+    
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
+    
 
     if (!is.null(ext)){
       if(!any(inherits(ext,"SpatExtent"),
