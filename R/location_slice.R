@@ -126,7 +126,7 @@ location_slice <-
         this_var_nc <- this_var
       }
       if (is.null(time_indeces)) {
-        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
+        times <- get_time_bp_steps(dataset = "custom", path_to_nc = this_file)
         time_indeces <- time_bp_to_index(
           time_bp = locations_data$time_bp, time_steps = times
         )

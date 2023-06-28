@@ -21,7 +21,7 @@ testthat::test_that("get land mask", {
   expect_true(all(time_bp(this_mask)==my_times))
   # full series
   this_mask <- get_land_mask(dataset="Example")
-  expect_true(all(time_bp(this_mask)==get_time_steps(dataset="Example")))
+  expect_true(all(time_bp(this_mask)==get_time_bp_steps(dataset="Example")))
   # incorrect dataset
   expect_error(get_land_mask(dataset="blah"),"this function only works")
 })

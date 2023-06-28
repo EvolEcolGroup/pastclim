@@ -9,9 +9,10 @@
 #' values represent
 #' time before present, positive values time in the future). The slice needs
 #' to exist in the dataset. To check which slices are available, you can use
-#' [get_time_steps()].
-#' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce` should
-#' be used. (note that [get_time_steps()] gives times in bp, not ce!)
+#' [get_time_bp_steps()].
+#' @param time_ce time slice in years CE. 
+#' For available time slices in years CE, use [get_time_ce_steps()].
+#' Only one of `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"

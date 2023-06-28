@@ -172,7 +172,7 @@ get_vars_for_dataset(dataset = "Example")
 and the available time steps can be obtained with:
 
 ```{r}
-get_time_steps(dataset = "Example")
+get_time_bp_steps(dataset = "Example")
 ```
 
 For *Beyer2020* and *Krapp2021*, you can get a list of available

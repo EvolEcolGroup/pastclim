@@ -4,6 +4,8 @@
 #' from the sea for each land pixel.
 #'
 #' @param time_bp time slice in years before present (negative)
+#' @param time_ce time slice in years CE. 
+#' Only one of `time_bp` or `time_ce` should be used.
 #' @param dataset string defining the dataset to use (a list of possible
 #' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
@@ -12,8 +14,9 @@
 #' @import terra
 #' @export
 
-distance_from_sea <- function(time_bp=NULL, dataset) {
-  times <- get_time_steps(dataset = dataset)
+distance_from_sea <- function(time_bp=NULL, time_ce=NULL, dataset) {
+  time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
+  times <- get_time_bp_steps(dataset = dataset)
   # if we don't give times, just use all available
   if (is.null(time_bp)){
     time_bp <- times

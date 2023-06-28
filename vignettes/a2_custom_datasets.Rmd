@@ -76,7 +76,7 @@ custom_series
 As expected, there is only one variable ("bio01") and
 3 time steps (nlyr). We can get the times of those time steps with:
 ```{r}
-get_time_steps(dataset="custom", path_to_nc = nc_name)
+get_time_bp_steps(dataset="custom", path_to_nc = nc_name)
 ```
 
 And we can slice the series and plot a given time point:

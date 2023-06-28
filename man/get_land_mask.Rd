@@ -4,7 +4,7 @@
 \alias{get_land_mask}
 \title{Get the land mask for a dataset.}
 \usage{
-get_land_mask(time_bp = NULL, dataset)
+get_land_mask(time_bp = NULL, time_ce = NULL, dataset)
 }
 \arguments{
 \item{time_bp}{time slices in years before present (negative values represent
@@ -13,7 +13,11 @@ be a vector of times (the slices need
 to exist in the dataset), a list with a min and max element setting the
 range of values, or left to NULL to retrieve all time steps.
 To check which slices are available, you can use
-\code{\link[=get_time_steps]{get_time_steps()}}.}
+\code{\link[=get_time_bp_steps]{get_time_bp_steps()}}.}
+
+\item{time_ce}{time in years CE as an alternative to \code{time_bp}.Only one of
+\code{time_bp} or \code{time_ce} should be used. For available time slices in years CE, use
+\code{\link[=get_time_ce_steps]{get_time_ce_steps()}}.}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
 values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function

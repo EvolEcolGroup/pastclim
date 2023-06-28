@@ -12,10 +12,10 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' [get_time_steps()].
-#' @param time_ce time slice in years CE (see `time_bp` for options, but note
-#' that [get_time_steps()] gives times in bp, not ce!). Only one of
-#' `time_bp` or `time_ce` should be used.
+#' [get_time_bp_steps()].
+#' @param time_ce time slices in years CE (see `time_bp` for options). 
+#' For available time slices in years CE, use [get_time_ce_steps()].
+#' Only one of `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -92,7 +92,7 @@ region_series <-
       if (is.null(time_index)) {
         # as we have the file name, we can us the same code for custom and
         # standard datasets.
-        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
+        times <- get_time_bp_steps(dataset = "custom", path_to_nc = this_file)
         time_index <- time_bp_to_i_series(time_bp = time_bp,
                                      time_steps = times)
       }
