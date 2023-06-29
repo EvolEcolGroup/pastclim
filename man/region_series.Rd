@@ -6,6 +6,7 @@
 \usage{
 region_series(
   time_bp = NULL,
+  time_ce = NULL,
   bio_variables,
   dataset,
   path_to_nc = NULL,
@@ -20,7 +21,11 @@ be a vector of times (the slices need
 to exist in the dataset), a list with a min and max element setting the
 range of values, or left to NULL to retrieve all time steps.
 To check which slices are available, you can use
-\code{\link[=get_time_steps]{get_time_steps()}}.}
+\code{\link[=get_time_bp_steps]{get_time_bp_steps()}}.}
+
+\item{time_ce}{time slices in years CE (see \code{time_bp} for options).
+For available time slices in years CE, use \code{\link[=get_time_ce_steps]{get_time_ce_steps()}}.
+Only one of \code{time_bp} or \code{time_ce} should be used.}
 
 \item{bio_variables}{vector of names of variables to be extracted}
 

@@ -50,6 +50,7 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   destpath <- file.path(tempdir(),"to_unzip")
   utils::unzip(destfile,exdir=destpath)
   wc_rast <- terra::rast(dir(destpath, full.names = TRUE))
+  # sort out variable names
   if (!(grepl("altitude",bio_var))){
     # digits at the end of the name are the key identifier of each variable
     digits_at_end <- sprintf("%02d",
@@ -68,9 +69,26 @@ download_worldclim_present <- function(dataset, bio_var, filename){
 
   # and finally we save it as a netcdf file
   time_bp(wc_rast) <- rep(35,nlyr(wc_rast))
+  
+  # HACK
+  # temporary workaround to prevent problems with sf being loaded whilst writing netcdf
+  sf_load <- FALSE
+  if (isNamespaceLoaded("sf")){
+    unloadNamespace("sf")
+  }
+  
   terra::writeCDF(wc_rast,filename=filename, compression=9, 
                   split=TRUE, overwrite=TRUE)
+  
+  # fix time axis (this is a workaround if we open the file with sf)
+  nc_in <- ncdf4::nc_open(filename, write=TRUE)
+  ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
+  ncdf4::nc_close(nc_in)
+  if (sf_load){ # reload the namespace if it was there to start with
+    loadNamespace("sf")
+    attachNamespace("sf")
+  }
+  
   # clean up
   unlink(file.path(destpath,"*"))
 }
-

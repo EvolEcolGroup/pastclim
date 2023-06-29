@@ -15,7 +15,10 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' [get_time_steps()].
+#' [get_time_bp_steps()].
+#' @param time_ce time slice in years CE (see `time_bp` for options). 
+#' For available time slices in years CE, use [get_time_ce_steps()].
+#' Only one of `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -47,12 +50,15 @@
 location_series <-
   function(x,
            time_bp = NULL,
+           time_ce = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
            nn_interpol = FALSE,
            buffer = FALSE,
            directions = 8) {
+
+    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
     
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
@@ -60,10 +66,10 @@ location_series <-
     # and get the times
     if (dataset != "custom") {
       check_var_downloaded(bio_variables, dataset)
-      times <- get_time_steps(dataset = dataset, path_to_nc = path_to_nc)
+      times <- get_time_bp_steps(dataset = dataset, path_to_nc = path_to_nc)
     } else { # else check that the variables exist in the custom nc
       check_var_in_nc(bio_variables, path_to_nc)
-      times <- get_time_steps(dataset = "custom", path_to_nc = path_to_nc)
+      times <- get_time_bp_steps(dataset = "custom", path_to_nc = path_to_nc)
     }
     time_bp_i <- time_bp_to_i_series(time_bp = time_bp,
                                      time_steps = times)

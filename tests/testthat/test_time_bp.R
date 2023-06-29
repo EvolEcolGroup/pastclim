@@ -11,8 +11,9 @@ set_data_path(path_to_nc = data_path,
 test_that("time_bp for SpatRaster", {
   # using standard dataset
   climate_slice <- region_slice(
-    c(-10000), c("bio01", "bio12"),
-    "Example"
+    time_bp = c(-10000), 
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
   )
   expect_true(all(time_bp(climate_slice)==c(-10000,-10000)))
   # the method will only work on a SpatRaster

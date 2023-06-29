@@ -10,14 +10,19 @@ set_data_path(path_to_nc = data_path,
 
 test_that("climate_for_time_slice", {
   climate_region <- region_series(
-    c(-20000, -10000), c("bio01", "bio12"),
-    "Example"
+    time_bp = c(-20000, -10000), 
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
   )
   my_slice <- slice_region_series(climate_region, time_bp = -10000)
   expect_true(inherits(my_slice, "SpatRaster"))
   expect_true(length(my_slice) == 1)
   expect_true(terra::nlyr(my_slice) == 2)
   expect_true(all(varnames(my_slice) == c("bio01", "bio12")))
+  # now do the same with time_ce
+  my_slice_ce <- slice_region_series(climate_region, time_ce = -8050)
+  expect_identical(time(my_slice), time(my_slice_ce))
+  
   # use a time step that does not exist
   expect_error(
     slice_region_series(climate_region, time_bp = -19000),

@@ -19,7 +19,7 @@ get_mis_time_steps <- function(mis, dataset, path_to_nc = NULL) {
     stop("'mis' should be one of ", paste(mis_boundaries$mis, collapse = ","))
   }
 
-  time_steps <- get_time_steps(dataset = dataset, path_to_nc = path_to_nc)
+  time_steps <- get_time_bp_steps(dataset = dataset, path_to_nc = path_to_nc)
   mis_time_steps <- time_steps[time_steps > (mis_boundaries[mis_boundaries$mis
   == mis, "start"] * 1000) &
     time_steps <= (mis_boundaries[mis_boundaries$mis == mis, "end"] * 1000)]

@@ -4,17 +4,19 @@
 #' variables for a given dataset covering a region (or the whole world).
 #'
 #' @param x climate time series generated with [region_series()]
-#' @param time_bp time slices in years before present (i.e. 1950, negative integers
+#' @param time_bp time slice
+#' in years before present (i.e. 1950, negative integers
 #' for values in the past). The slices
 #' need to exist in the dataset. To check which slices are available, you
-#' can use `time_bp(x[[1]])` (note that you have to use
-#' the [time_bp()] function on the first element of the [`terra::SpatRasterDataset`] object, i.e. on one
-#' of the [`terra::SpatRaster`] objects)
+#' can use `time_bp(x)`.
+#' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce` should
+#' be used.
 #' @returns a [SpatRaster] of the relevant slice.
 #'
 #' @export
 
-slice_region_series <- function(x, time_bp) {
+slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
+  time_bp <- check_time_vars(time_bp=time_bp, time_ce=time_ce, allow_null = FALSE)
   if (length(time_bp) != 1) {
     stop("time_bp should be a single time step")
   }

@@ -9,7 +9,7 @@ ncdf4::ncatt_put(nc_in,varid="time", attname = "long_name",attval = "years BP")
 ncdf4::nc_close(nc_in)
 
 nc_in<-ncdf4::nc_open("Beyer2020_topography_v1.0.0.nc",write=TRUE)
-ncdf4::ncvar_put(nc_in,varid="time",vals=get_time_steps("custom","Beyer2020_annual_vars_v1.1.0_temp.nc"))
+ncdf4::ncvar_put(nc_in,varid="time",vals=get_time_bp_steps("custom","Beyer2020_annual_vars_v1.1.0_temp.nc"))
 ncdf4::ncatt_put(nc_in,varid="time", attname = "units",attval = "years since 1950-01-01 00:00:00.0")
 ncdf4::ncatt_put(nc_in,varid="time", attname = "long_name",attval = "years BP")
 ncdf4::nc_close(nc_in)

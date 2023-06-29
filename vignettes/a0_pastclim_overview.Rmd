@@ -172,7 +172,7 @@ get_vars_for_dataset(dataset = "Example")
 and the available time steps can be obtained with:
 
 ```{r}
-get_time_steps(dataset = "Example")
+get_time_bp_steps(dataset = "Example")
 ```
 
 For *Beyer2020* and *Krapp2021*, you can get a list of available
@@ -507,7 +507,7 @@ the area within the desired outline.
 ```{r, fig.width=6, fig.height=5}
 europe_climate_20k <- region_slice(
   time_bp = -20000,
-  c("bio01", "bio10", "bio12"),
+  bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example",
   crop = region_outline$Europe
 )
@@ -774,8 +774,9 @@ At first we will need to extract a region and time of choice, in this
 case Europe 10,000 years ago
 
 ```{r, fig.width=6, fig.height=4}
-europe_10k <- region_slice(dataset="Example", c("bio01"),
-                               time_bp=-10000, ext=region_extent$Europe)
+europe_10k <- region_slice(dataset="Example", 
+                           bio_variables = c("bio01"),
+                           time_bp=-10000, ext=region_extent$Europe)
 terra::plot(europe_10k)
 ```
 

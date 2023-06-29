@@ -4,17 +4,19 @@
 \alias{slice_region_series}
 \title{Extract a slice for a time series of climate variables for a region}
 \usage{
-slice_region_series(x, time_bp)
+slice_region_series(x, time_bp = NULL, time_ce = NULL)
 }
 \arguments{
 \item{x}{climate time series generated with \code{\link[=region_series]{region_series()}}}
 
-\item{time_bp}{time slices in years before present (i.e. 1950, negative integers
+\item{time_bp}{time slice
+in years before present (i.e. 1950, negative integers
 for values in the past). The slices
 need to exist in the dataset. To check which slices are available, you
-can use \code{time_bp(x[[1]])} (note that you have to use
-the \code{\link[=time_bp]{time_bp()}} function on the first element of the \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} object, i.e. on one
-of the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} objects)}
+can use \code{time_bp(x)}.}
+
+\item{time_ce}{time slice in years CE. Only one of \code{time_bp} or \code{time_ce} should
+be used.}
 }
 \value{
 a \link{SpatRaster} of the relevant slice.

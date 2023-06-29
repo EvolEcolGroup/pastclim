@@ -10,8 +10,9 @@ set_data_path(path_to_nc = data_path,
 
 test_that("is_region_series returns correct values", {
   climate_region <- region_series(
-    time_bp = list(min=-15000,max=0), c("bio01", "bio10", "bio12"),
-    "Example"
+    time_bp = list(min=-15000,max=0), 
+    bio_variables = c("bio01", "bio10", "bio12"),
+    dataset = "Example"
   )
   expect_true(is_region_series(climate_region))
   expect_true(is_region_series(climate_region, strict = TRUE))
@@ -24,8 +25,9 @@ test_that("is_region_series returns correct values", {
 
   # now remove a time step (all tests should fail)
   climate_region <- region_series(
-    time_bp = list(min=-15000,max=0), c("bio01", "bio10", "bio12"),
-    "Example"
+    time_bp = list(min=-15000,max=0), 
+    bio_variables = c("bio01", "bio10", "bio12"),
+    dataset = "Example"
   )
   climate_region[1] <- climate_region[1][[1:3]]
   expect_false(is_region_series(climate_region))
@@ -34,7 +36,7 @@ test_that("is_region_series returns correct values", {
   # now give it a slice
   europe_climate_20k <- region_slice(
     time_bp = -20000,
-    c("bio01", "bio10", "bio12"),
+    bio_variables = c("bio01", "bio10", "bio12"),
     dataset = "Example",
     ext = region_extent$Europe
   )

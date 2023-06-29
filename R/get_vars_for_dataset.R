@@ -27,8 +27,14 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE,
     check_available_dataset(dataset)
     variable_info <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset,]
     # select variable types
-    if (!all(monthly, annual)){
-      variable_info <- variable_info[variable_info$monthly==monthly,]
+    # if (!all(monthly, annual)){
+    #   variable_info <- variable_info[variable_info$monthly==monthly,]
+    # }
+    if (!monthly){
+      variable_info <- variable_info[variable_info$monthly==FALSE,]
+    }
+    if (!annual){
+      variable_info <- variable_info[variable_info$monthly!=FALSE,]
     }
     if (!details){
       return(variable_info$variable)

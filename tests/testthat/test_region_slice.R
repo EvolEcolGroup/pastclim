@@ -11,8 +11,9 @@ set_data_path(path_to_nc = data_path,
 test_that("region slice", {
   # using standard dataset
   climate_slice <- region_slice(
-    c(-10000), c("bio01", "bio12"),
-    "Example"
+    time_bp = c(-10000), 
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
   )
   expect_true(inherits(climate_slice, "SpatRaster"))
   expect_true(all(varnames(climate_slice) == c("bio01", "bio12")))
@@ -24,8 +25,9 @@ test_that("region slice", {
   path_to_example_nc <- system.file("/extdata/", example_filename,
                                     package = "pastclim"
   )
-  climate_slice <- region_slice(c(-10000), c("BIO1", "BIO10"),
-    "custom",
+  climate_slice <- region_slice(time_bp = c(-10000), 
+                                bio_variables = c("BIO1", "BIO10"),
+    dataset = "custom",
     path_to_nc = path_to_example_nc
   )
   expect_true(inherits(climate_slice, "SpatRaster"))
@@ -34,8 +36,9 @@ test_that("region slice", {
 
   expect_error(
     region_slice(
-      c(-10000, -20000), c("bio01", "bio12"),
-      "Example"
+      time_bp = c(-10000, -20000), 
+      bio_variables = c("bio01", "bio12"),
+      dataset = "Example"
     ),
     "time_bp should be a single time step"
   )

@@ -7,6 +7,7 @@
 location_slice(
   x,
   time_bp = NULL,
+  time_ce = NULL,
   bio_variables,
   dataset,
   path_to_nc = NULL,
@@ -18,12 +19,16 @@ location_slice(
 \arguments{
 \item{x}{a data.frame with columns \code{longitude}, ranging
 -180 to 180, and \code{latitude}, from -90 to 90, plus optional
-columns \code{time_bp} and \code{name}. Alternatively, a vector of cell numbers.}
+columns \code{time_bp} or \code{time_ce} (depending on the units used) and
+\code{name}. Alternatively, a vector of cell numbers.}
 
 \item{time_bp}{used if no \code{time_bp} column is present in \code{x}: the dates in
 years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.}
+
+\item{time_ce}{time in years CE as an alternative to \code{time_bp}.Only one of
+\code{time_bp} or \code{time_ce} should be used.}
 
 \item{bio_variables}{vector of names of variables to be extracted.}
 
