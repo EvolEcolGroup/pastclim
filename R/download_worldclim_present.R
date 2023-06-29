@@ -50,6 +50,7 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   destpath <- file.path(tempdir(),"to_unzip")
   utils::unzip(destfile,exdir=destpath)
   wc_rast <- terra::rast(dir(destpath, full.names = TRUE))
+  # sort out variable names
   if (!(grepl("altitude",bio_var))){
     # digits at the end of the name are the key identifier of each variable
     digits_at_end <- sprintf("%02d",
@@ -73,4 +74,3 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   # clean up
   unlink(file.path(destpath,"*"))
 }
-

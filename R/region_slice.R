@@ -50,7 +50,7 @@ region_slice <-
       ext = ext,
       crop = crop
     )
-    return(slice_region_series(x = this_series, time_bp = time_bp))
+    return(slice_region_series(x = this_series, time_bp = time_bp, time_ce=time_ce))
   }
 
 
