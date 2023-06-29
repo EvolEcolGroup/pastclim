@@ -12,6 +12,7 @@
 #' Defaults to 60 arcsecs.
 #' @param version	character or numeric. The ETOPO2022 version number. 
 #' Only "1" supported at the moment
+#' @returns a [`terra::SpatRaster`] of relief
 #'
 #' @keywords internal
 

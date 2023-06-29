@@ -75,13 +75,21 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   wc_sds <- terra::sds(sds_list)
   
   # temporary workaround to prevent problems with sf being loaded whilst writing netcdf
-  unloadNamespace("sf")
+  sf_load <- FALSE
+  if (isNamespaceLoaded("sf")){
+    unloadNamespace("sf")
+  }
+  
   terra::writeCDF(wc_sds,filename=filename, compression=9, 
                   overwrite=TRUE)
   # fix time axis (this is a workaround if we open the file with sf)
   nc_in <- ncdf4::nc_open(filename, write=TRUE)
   ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
   ncdf4::nc_close(nc_in)
+  if (sf_load){ # reload the namespace if it was there to start with
+    loadNamespace("sf")
+    attachNamespace("sf")
+  }
   
 }
 
