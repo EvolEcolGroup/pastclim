@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -335,35 +335,43 @@ alphabetical order):</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Details:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      The present reconstructions are based on the mean for the period</span></span>
+<span><span class="co">#&gt;      *Present-day reconstructions* are based on the mean for the period</span></span>
 <span><span class="co">#&gt;      1970-2000, and are available at multiple resolutions of 10</span></span>
 <span><span class="co">#&gt;      arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes.</span></span>
 <span><span class="co">#&gt;      The resolution of interest can be obtained by changing the ending</span></span>
-<span><span class="co">#&gt;      of the dataset name "WorldClim_2.1_RESm", e.g. WorldClim_2.1_10m</span></span>
-<span><span class="co">#&gt;      or WorldClim_2.1_5m (currently, only 10m and 5m are currently</span></span>
+<span><span class="co">#&gt;      of the dataset name _WorldClim_2.1_RESm_, e.g. _WorldClim_2.1_10m_</span></span>
+<span><span class="co">#&gt;      or _WorldClim_2.1_5m_ (currently, only 10m and 5m are currently</span></span>
 <span><span class="co">#&gt;      available in 'pastclim'). In 'pastclim', the datasets are given a</span></span>
 <span><span class="co">#&gt;      date of 1985 CE (the mid-point of the period of interest),</span></span>
 <span><span class="co">#&gt;      corresponding to a time_bp of 35. There are 19 &lt;e2&gt;&lt;80&gt;&lt;9c&gt;bioclimatic&lt;e2&gt;&lt;80&gt;&lt;9d&gt;</span></span>
 <span><span class="co">#&gt;      variables, as well as monthly estimates for minimum, mean, and</span></span>
 <span><span class="co">#&gt;      maximum temperature, and precipitation.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      Future projections are based on the models in CMIP6, downscaled</span></span>
-<span><span class="co">#&gt;      and de-biased using Worldclim 2.1 for the present as a baseline.</span></span>
+<span><span class="co">#&gt;      *Future projections* are based on the models in CMIP6, downscaled</span></span>
+<span><span class="co">#&gt;      and de-biased using WorldClim 2.1 for the present as a baseline.</span></span>
 <span><span class="co">#&gt;      Monthly values of minimum temperature, maximum temperature, and</span></span>
 <span><span class="co">#&gt;      precipitation, as well as 19 bioclimatic variables were processed</span></span>
 <span><span class="co">#&gt;      for 23 global climate models (GCMs), and for four Shared</span></span>
 <span><span class="co">#&gt;      Socio-economic Pathways (SSPs): 126, 245, 370 and 585. Model and</span></span>
 <span><span class="co">#&gt;      SSP can be chosen by changing the ending of the dataset name</span></span>
-<span><span class="co">#&gt;      "WorldClim_2.1_GCM_SSP_RESm". Available values for GCM are:</span></span>
-<span><span class="co">#&gt;      ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg",</span></span>
-<span><span class="co">#&gt;      "FIO-ESM-2-0", "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL",</span></span>
-<span><span class="co">#&gt;      "INM-CM5-0", "IPSL-CM6A-LR", "MIROC6", "MPI-ESM1-2-HR",</span></span>
-<span><span class="co">#&gt;      "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126", "ssp245",</span></span>
-<span><span class="co">#&gt;      "ssp370", and "ssp585". RES takes the same values as for present</span></span>
-<span><span class="co">#&gt;      recontructions (i.e. "10m", "5m", "2.5m", and "0.5m"). The dataset</span></span>
-<span><span class="co">#&gt;      are averages over 20 year periods (2021-2040, 2041-2060,</span></span>
-<span><span class="co">#&gt;      2061-2080, 2081-2100). In 'pastclim', the midpoints of the periods</span></span>
-<span><span class="co">#&gt;      are used as the time stamps.</span></span>
+<span><span class="co">#&gt;      _WorldClim_2.1_GCM_SSP_RESm_.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Available values for GCM are: "ACCESS-CM2", "BCC-CSM2-MR",</span></span>
+<span><span class="co">#&gt;      "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0", "GFDL-ESM4",</span></span>
+<span><span class="co">#&gt;      "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",</span></span>
+<span><span class="co">#&gt;      "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For</span></span>
+<span><span class="co">#&gt;      SSP, use: "ssp126", "ssp245", "ssp370", and "ssp585". RES takes</span></span>
+<span><span class="co">#&gt;      the same values as for present reconstructions (i.e. "10m", "5m",</span></span>
+<span><span class="co">#&gt;      "2.5m", and "0.5m"). Example dataset names are</span></span>
+<span><span class="co">#&gt;      _WorldClim_2.1_ACCESS-CM2_ssp245_10m_ and</span></span>
+<span><span class="co">#&gt;      _WorldClim_2.1_MRI-ESM2-0_ssp370_5m_</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      The dataset are averages over 20 year periods (2021-2040,</span></span>
+<span><span class="co">#&gt;      2041-2060, 2061-2080, 2081-2100). In 'pastclim', the midpoints of</span></span>
+<span><span class="co">#&gt;      the periods (2030, 2050, 2070, 2090) are used as the time stamps.</span></span>
+<span><span class="co">#&gt;      All 4 periods are automatically downloaded for each combination of</span></span>
+<span><span class="co">#&gt;      GCM model and SSP, and are selected as usual by defining the time</span></span>
+<span><span class="co">#&gt;      in functions such as 'region_slice()'.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
 <span><span class="co">#&gt;      publication:</span></span>

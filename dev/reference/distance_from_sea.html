@@ -12,7 +12,7 @@ from the sea for each land pixel."><meta property="og:image" content="https://ev
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,13 +65,18 @@ from the sea for each land pixel.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">distance_from_sea</span><span class="op">(</span>time_bp <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">distance_from_sea</span><span class="op">(</span>time_bp <span class="op">=</span> <span class="cn">NULL</span>, time_ce <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>time_bp</dt>
 <dd><p>time slice in years before present (negative)</p></dd>
+
+
+<dt>time_ce</dt>
+<dd><p>time slice in years CE.
+Only one of <code>time_bp</code> or <code>time_ce</code> should be used.</p></dd>
 
 
 <dt>dataset</dt>

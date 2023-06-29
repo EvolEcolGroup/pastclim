@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -258,7 +258,7 @@ list of variables available for this dataset with:</p>
 <span><span class="co">#&gt; [1] "bio01" "bio10" "bio12" "biome"</span></span></code></pre></div>
 <p>and the available time steps can be obtained with:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_steps.html">get_time_steps</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_bp_steps.html">get_time_bp_steps</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] -20000 -15000 -10000  -5000      0</span></span></code></pre></div>
 <p>For <em>Beyer2020</em> and <em>Krapp2021</em>, you can get a list of
 available variables for each dataset with:</p>
@@ -645,7 +645,7 @@ outline.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">europe_climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
 <span>  crop <span class="op">=</span> <span class="va">region_outline</span><span class="op">$</span><span class="va">Europe</span></span>
 <span><span class="op">)</span></span>
@@ -903,13 +903,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x     y     bio01    bio10</span></span>
-<span><span class="co">#&gt; 1 13546  45.5  52.5 -4.129196 13.61748</span></span>
-<span><span class="co">#&gt; 2 41967  26.5 -26.5 12.713254 18.81625</span></span>
-<span><span class="co">#&gt; 3 15377  76.5  47.5 -1.761293 14.84353</span></span>
-<span><span class="co">#&gt; 4 42318  17.5 -27.5 14.637626 19.85644</span></span>
-<span><span class="co">#&gt; 5 28910 -70.5   9.5 18.129061 18.86173</span></span>
-<span><span class="co">#&gt; 6 32982  41.5  -1.5 22.848251 24.74859</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell      x    y     bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 24200 -100.5 22.5  14.51895 17.403845</span></span>
+<span><span class="co">#&gt; 2 10024  123.5 62.5 -18.28489 12.444847</span></span>
+<span><span class="co">#&gt; 3 10338   77.5 61.5 -14.28904 10.413134</span></span>
+<span><span class="co">#&gt; 4 24389   88.5 22.5  23.12378 28.050959</span></span>
+<span><span class="co">#&gt; 5 31073  -67.5  3.5  22.48493 23.677666</span></span>
+<span><span class="co">#&gt; 6  8610  149.5 66.5 -21.04505  7.401155</span></span></code></pre></div>
 <p>We can also sample the background for multiple time steps (e.g. if we
 want to match the background to the number of samples based on their
 radiocarbon dates). So, for example, if we wanted 3 samples from 20k
@@ -923,15 +923,15 @@ years ago and 5 samples from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01    bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 1360 69.5 59.5 -11.861409 11.66581 278.0411  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3199 38.5 37.5  12.377118 22.96784 435.9910  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 3184 23.5 37.5  12.752196 23.29480 420.7291  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 3298 52.5 36.5  14.490919 29.97056 176.6760  -10000</span></span>
-<span><span class="co">#&gt; -10000.2  836 55.5 65.5  -4.253252 13.55937 400.1703  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2015 44.5 51.5   4.116668 22.49927 416.6555  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 3411 -4.5 34.5  15.208137 26.41383 673.8746  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 3568 67.5 33.5   3.652091 17.72495 474.8811  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01     bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1595 49.5 56.5 -6.7209439 13.192611  422.6559  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 3187 26.5 37.5 13.6674623 21.908756  587.2151  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2305 -5.5 47.5  5.7570705 12.603774 1235.3066  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 3174 13.5 37.5 15.5093622 24.444530  556.0422  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2433 37.5 46.5  9.2107792 22.281475  481.6635  -10000</span></span>
+<span><span class="co">#&gt; -10000.3  722 26.5 66.5 -7.1334538  2.856619  217.2508  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 1164 43.5 61.5 -0.1385055 15.422121  534.0804  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 1855 54.5 53.5  1.7625004 21.972734  400.4246  -10000</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downscaling">Downscaling<a class="anchor" aria-label="anchor" href="#downscaling"></a>
@@ -943,8 +943,9 @@ to downscale the data by using the relevant function from the
 <p>At first we will need to extract a region and time of choice, in this
 case Europe 10,000 years ago</p>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">europe_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Example"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span><span class="op">)</span>,</span>
-<span>                               time_bp<span class="op">=</span><span class="op">-</span><span class="fl">10000</span>, ext<span class="op">=</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">europe_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"Example"</span>, </span>
+<span>                           bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span><span class="op">)</span>,</span>
+<span>                           time_bp<span class="op">=</span><span class="op">-</span><span class="fl">10000</span>, ext<span class="op">=</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_10k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-59-1.png" width="576"></p>
 <p>We can then downscale using the <code><a href="https://rdrr.io/pkg/terra/man/disaggregate.html" class="external-link">disagg()</a></code> function from

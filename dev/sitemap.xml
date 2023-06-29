@@ -49,6 +49,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_dataset_path.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_time_vars.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_var_downloaded.html</loc>
   </url>
   <url>
@@ -127,7 +130,7 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_sea_level.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_time_steps.html</loc>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_time_bp_steps.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/get_varname.html</loc>

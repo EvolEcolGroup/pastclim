@@ -14,7 +14,7 @@ specific date associated with each location)."><meta property="og:image" content
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +71,7 @@ specific date associated with each location).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">location_slice</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time_ce <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">bio_variables</span>,</span>
 <span>  <span class="va">dataset</span>,</span>
 <span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -85,7 +86,8 @@ specific date associated with each location).</p>
     <dl><dt>x</dt>
 <dd><p>a data.frame with columns <code>longitude</code>, ranging
 -180 to 180, and <code>latitude</code>, from -90 to 90, plus optional
-columns <code>time_bp</code> and <code>name</code>. Alternatively, a vector of cell numbers.</p></dd>
+columns <code>time_bp</code> or <code>time_ce</code> (depending on the units used) and
+<code>name</code>. Alternatively, a vector of cell numbers.</p></dd>
 
 
 <dt>time_bp</dt>
@@ -93,6 +95,11 @@ columns <code>time_bp</code> and <code>name</code>. Alternatively, a vector of c
 years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.</p></dd>
+
+
+<dt>time_ce</dt>
+<dd><p>time in years CE as an alternative to <code>time_bp</code>.Only one of
+<code>time_bp</code> or <code>time_ce</code> should be used.</p></dd>
 
 
 <dt>bio_variables</dt>

@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,7 +174,7 @@ directory)</p>
 <p>As expected, there is only one variable (“bio01”) and 3 time steps
 (nlyr). We can get the times of those time steps with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_steps.html">get_time_steps</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"custom"</span>, path_to_nc <span class="op">=</span> <span class="va">nc_name</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_time_bp_steps.html">get_time_bp_steps</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"custom"</span>, path_to_nc <span class="op">=</span> <span class="va">nc_name</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]    0 -100 -200</span></span></code></pre></div>
 <p>And we can slice the series and plot a given time point:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
