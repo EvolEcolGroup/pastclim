@@ -69,8 +69,15 @@ download_worldclim_present <- function(dataset, bio_var, filename){
 
   # and finally we save it as a netcdf file
   time_bp(wc_rast) <- rep(35,nlyr(wc_rast))
+  # temporary workaround to prevent problems with sf being loaded whilst writing netcdf
+  unloadNamespace("sf")
   terra::writeCDF(wc_rast,filename=filename, compression=9, 
                   split=TRUE, overwrite=TRUE)
+  # fix time axis (this is a workaround if we open the file with sf)
+  nc_in <- ncdf4::nc_open(filename, write=TRUE)
+  ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
+  ncdf4::nc_close(nc_in)
+  
   # clean up
   unlink(file.path(destpath,"*"))
 }

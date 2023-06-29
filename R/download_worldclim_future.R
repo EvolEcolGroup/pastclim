@@ -24,9 +24,7 @@ download_worldclim_future <- function(dataset, bio_var, filename){
                          time_bp = (c(2030,2050,2070,2090)-1950))
   wc_gcm <- gcm[which(unlist(lapply(gcm,grepl, dataset)))]
   wc_scenario <- scenarios[which(unlist(lapply(scenarios,grepl, dataset)))]
-  
-  
-  
+
   #function to grab the number from the raster layer
   if (grepl("bio",bio_var)){
     postfix <- "bioc"
@@ -66,16 +64,24 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   # and finally we save it as a netcdf file
   time_bp(wc_list[[i_step]]) <- rep(dates_df$time_bp[dates_df$orig == i_step],nlyr(wc_list[[i_step]]))
   }
+  message("assembling all the data into a netcdf file for use with pastclim; this operation will take a couple of minutes...\n")
   
   var_names <- names(wc_list[[1]])
   sds_list <- list()
   for (i_var in var_names){
-    sds_list[[i_var]]<-terra::rast(lapply(wc_list, terra::subset,subset=var_names[1]))
+    sds_list[[i_var]]<-terra::rast(lapply(wc_list, terra::subset,subset=i_var))
     names(sds_list[[i_var]])<-rep(i_var,nlyr((sds_list[[i_var]])))
   }
   wc_sds <- terra::sds(sds_list)
   
+  # temporary workaround to prevent problems with sf being loaded whilst writing netcdf
+  unloadNamespace("sf")
   terra::writeCDF(wc_sds,filename=filename, compression=9, 
                   overwrite=TRUE)
+  # fix time axis (this is a workaround if we open the file with sf)
+  nc_in <- ncdf4::nc_open(filename, write=TRUE)
+  ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
+  ncdf4::nc_close(nc_in)
+  
 }
 

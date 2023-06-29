@@ -36,7 +36,6 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE,
     if (!annual){
       variable_info <- variable_info[variable_info$monthly!=FALSE,]
     }
-
     if (!details){
       return(variable_info$variable)
     } else {
