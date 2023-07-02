@@ -764,6 +764,8 @@ sampled_climate <- sample_region_series(climate_ts, size = c(3,5))
 sampled_climate
 ```
 
+We could then use these data to build a PCA.
+
 # Downscaling
 
 `pastclim` does not contain built-in code to change the spatial
