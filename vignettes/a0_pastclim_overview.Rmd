@@ -731,9 +731,9 @@ data frame with `df_from_region_series`.
 
 # Random sampling of background
 
-For a number of species distribution models, rather than using the
-complete background, we need to subsample background points to our
-presences. If we are interested in a single time step, we can simply
+In some instances (e.g. when the underlying raster is too large to handle),
+it might be desirable to sample the background instead of using all values. If
+we are interested in a single time step, we can simply
 generate the raster for the time slice of interest, and use
 `sample_region_slice`:
 
@@ -747,10 +747,11 @@ this_sample <- sample_region_slice(climate_20k, size = 100)
 head(this_sample)
 ```
 
-We can also sample the background for multiple time steps (e.g. if we
-want to match the background to the number of samples based on their
-radiocarbon dates). So, for example, if we wanted 3 samples from 20k
-years ago and 5 samples from 10k years ago:
+
+If we have samples from multiple time steps, we need to sample the background
+proportionally to the number of points in each time step. So, for example,
+if we wanted 30 samples from 20k
+years ago and 50 samples from 10k years ago:
 
 ```{r}
 climate_ts <- region_series(
