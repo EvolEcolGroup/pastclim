@@ -24,7 +24,7 @@ load_etopo <- function(path=NULL, resolution= 60, version="1") {
       stop("the provided path does not exist")
     }
   }
-  etopo_file_name <- paste0("etopo2022_",resolution,"s_",version,".nc")
+  etopo_file_name <- paste0("etopo2022_",resolution,"s_v",version,".nc")
   etopo_full_path<-file.path(path,etopo_file_name)
   if (!file.exists(etopo_full_path)){
     stop(etopo_full_path," does not exist; use download_etopo() to download it")
