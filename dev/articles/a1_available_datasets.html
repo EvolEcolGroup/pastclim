@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -105,6 +106,13 @@ possible to get a list of all available datasets with:</p>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
 <span><span class="co">#&gt; terra 1.7.41</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Example"   "Beyer2020" "Krapp2021"</span></span>
+<span><span class="co">#&gt; for present day reconstructions, use "WorldClim_2.1_RESm", where RES is an available resolution.</span></span>
+<span><span class="co">#&gt; for future predictions, use "WorldClim_2.1_GCM_SSP_RESm", where GCM is the GCM model, SSP is the Shared Societ-economic Pathways scenario.</span></span>
+<span><span class="co">#&gt; use help("WorldClim_2.1") for a list of available options</span></span></code></pre></div>
+<p>A more comprehensive list can be obtained with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] "Example"                                 </span></span>
 <span><span class="co">#&gt;   [2] "Beyer2020"                               </span></span>
@@ -225,7 +233,7 @@ possible to get a list of all available datasets with:</p>
 <span><span class="co">#&gt; [117] "WorldClim_2.1_UKESM1-0-LL_ssp585_5m"</span></span></code></pre></div>
 <p>For each dataset, you can get detailed information using the help
 function:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"Example"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Documentation for the Example dataset</span></span>
 <span><span class="co">#&gt; </span></span>
