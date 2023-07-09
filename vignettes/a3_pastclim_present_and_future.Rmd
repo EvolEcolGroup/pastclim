@@ -26,7 +26,7 @@ use other sources such as CHELSA.
 
 # Present reconstructions
 
-Present-day reconstructions for WordClim v2.1 are based on the mean for the period 1970-2000, 
+Present-day reconstructions for WorldClim v2.1 are based on the mean for the period 1970-2000, 
 and are available at multiple resolutions of
 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
 of interest can be obtained by changing the ending of the dataset name 
@@ -38,6 +38,7 @@ estimates for minimum, mean, and maximum temperature, and precipitation.
 
 So, the annual variables for the 10m arc-minutes dataset are:
 ```{r}
+library(pastclim)
 get_vars_for_dataset("WorldClim_2.1_10m")
 ```
 
@@ -53,9 +54,62 @@ download_dataset(dataset = "WorldClim_2.1_10m",
 ```
 
 We can then use `region_slice` to extract the data as a `SpatRaster`:
-```{r}
-climate_present <- region_slice(time_ce=1985, bio_variables = c("bio01","bio02","altitude"),
-             dataset="WorldClim_2.1_10m")
+```{r eval=FALSE}
+climate_present <- region_slice(time_ce=1985, 
+                                bio_variables = c("bio01","bio02","altitude"), 
+                                dataset="WorldClim_2.1_10m")
 ```
 
+# Future projections
 
+Future projections are based on the models in CMIP6, downscaled and de-biased
+using WorldClim 2.1 for the present as a baseline. Monthly values of minimum
+temperature, maximum temperature, and precipitation, as well as 19 bioclimatic
+variables were processed for
+23 global climate models (GCMs), and for four 
+Shared Socio-economic Pathways (SSPs): 126, 245, 370 and 585. Model and
+SSP can be chosen by changing the ending of the dataset name
+*WorldClim_2.1_GCM_SSP_RESm*.
+
+A complete list of available combinations can be obtained with:
+```{r}
+list_available_datasets()
+```
+
+So, if we are interested in the the HadGEM3-GC31-LL model, with ssp set
+to 245 and at 10 arc-minutes, we can get the available variables:
+
+```{r}
+get_vars_for_dataset(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")
+
+```
+
+We can now download "bio01" and "bio02" for that dataset with:
+```{r eval=FALSE}
+download_dataset(dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+                 bio_variables = c("bio01","bio02"))
+```
+
+The dataset are averages over 20 year 
+periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
+In `pastclim`, the midpoints of the periods (2030, 2050, 2070, 2090) are used as the time stamps. All 4 periods
+are automatically downloaded for each combination of GCM model and SSP, and can
+be selected
+as usual by defining the time in `region_slice`.
+
+```{r eval=FALSE}
+future_slice <- region_slice(time_ce = 2030,
+                              dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+                              bio_variables = c("bio01","bio02"))
+```
+
+Alternatively, it is possible to get the full time series of 4 slices with:
+```{r eval=FALSE}
+future_series <- region_series(dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+                              bio_variables = c("bio01","bio02"))
+```
+
+It is possible to simply use `time_ce(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")` to get the available time points for
+that dataset.
+
+Help for the WorldClim datasets (modern and future) can be accessed with `help("WorldClim_2.1")`

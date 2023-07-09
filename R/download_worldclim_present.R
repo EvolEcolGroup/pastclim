@@ -9,6 +9,10 @@
 #' @keywords internal
 
 download_worldclim_present <- function(dataset, bio_var, filename){
+  # reset warnings for gdal to terra default
+  # this is necessary if sf was loaded in the mean time
+  terra::gdal(warn = 3)
+  
   # get resolution from the dataset name and convert it to the original
   res_conversion <- data.frame(our_res = c("10m","5m","2.5m", "0.5m"),
                                       wc_res = c("10m","5m", "2.5m", "30s"))
@@ -70,13 +74,6 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   # and finally we save it as a netcdf file
   time_bp(wc_rast) <- rep(35,nlyr(wc_rast))
   
-  # HACK
-  # temporary workaround to prevent problems with sf being loaded whilst writing netcdf
-  sf_load <- FALSE
-  if (isNamespaceLoaded("sf")){
-    unloadNamespace("sf")
-  }
-  
   terra::writeCDF(wc_rast,filename=filename, compression=9, 
                   split=TRUE, overwrite=TRUE)
   
@@ -84,11 +81,7 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   nc_in <- ncdf4::nc_open(filename, write=TRUE)
   ncdf4::ncatt_put(nc_in, varid="time", attname="axis", attval = "T")
   ncdf4::nc_close(nc_in)
-  if (sf_load){ # reload the namespace if it was there to start with
-    loadNamespace("sf")
-    attachNamespace("sf")
-  }
-  
+
   # clean up
   unlink(file.path(destpath,"*"))
 }
