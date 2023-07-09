@@ -217,7 +217,7 @@ methods::setMethod("bioclim_vars", signature(prec="matrix", tavg="matrix"),
           }
 )
 
-#' Coefficient of variables (expressed as percentage)
+#' Coefficient of variation (expressed as percentage)
 #' 
 #' R function to compute the coefficient of variation 
 #' (expressed as a percentage). If there is only a single value, stats::sd = NA. 
