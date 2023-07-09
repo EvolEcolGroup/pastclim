@@ -1,0 +1,61 @@
+---
+title: "present and future"
+# output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{present and future}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+Whilst `pastclim` is mostly designed to handle palaeoclimate time series, it can
+also be used to manipulate present reconstructions and future projections.
+Currently, it uses the WorldClim datasets, but it could easily be adapted to 
+use other sources such as CHELSA.
+
+# Present reconstructions
+
+Present-day reconstructions for WordClim v2.1 are based on the mean for the period 1970-2000, 
+and are available at multiple resolutions of
+10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
+of interest can be obtained by changing the ending of the dataset name 
+*WorldClim_2.1_RESm*, e.g. *WorldClim_2.1_10m* or *WorldClim_2.1_5m*
+(currently, only 10m and 5m are currently available in `pastclim`). In `pastclim`, the datasets are given
+a date of 1985 CE (the mid-point of the period of interest), corresponding to
+a time_bp of 35. There are 19 “bioclimatic” variables, as well as monthly 
+estimates for minimum, mean, and maximum temperature, and precipitation.
+
+So, the annual variables for the 10m arc-minutes dataset are:
+```{r}
+get_vars_for_dataset("WorldClim_2.1_10m")
+```
+
+And the monthly variables
+```{r}
+get_vars_for_dataset("WorldClim_2.1_10m", monthly =TRUE, annual=FALSE)
+```
+
+We can manipulate data in the usual way. We start by downloading the dataset:
+```{r eval=FALSE}
+download_dataset(dataset = "WorldClim_2.1_10m", 
+                 bio_variables = c("bio01","bio02","altitude"))
+```
+
+We can then use `region_slice` to extract the data as a `SpatRaster`:
+```{r}
+climate_present <- region_slice(time_ce=1985, bio_variables = c("bio01","bio02","altitude"),
+             dataset="WorldClim_2.1_10m")
+```
+
+
