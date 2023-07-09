@@ -10,6 +10,9 @@
 #' @keywords internal
 
 download_worldclim_future <- function(dataset, bio_var, filename){
+  # reset warnings for gdal to terra default
+  # this is necessary if sf was loaded in the mean time
+  terra::gdal(warn = 3)
   # get resolution from the dataset name and convert it to the original
   res_conversion <- data.frame(our_res = c("10m","5m","2.5m", "0.5m"),
                                       wc_res = c("10m","5m", "2.5m", "30s"))

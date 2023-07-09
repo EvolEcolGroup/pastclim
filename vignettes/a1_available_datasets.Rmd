@@ -35,8 +35,14 @@ set_data_path(path_to_nc = data_path,
 ```
 
 ```{r}
+get_available_datasets()
+```
+
+A more comprehensive list can be obtained with:
+```{r}
 list_available_datasets()
 ```
+
 
 For each dataset, you can get detailed information using the 
 help function:
