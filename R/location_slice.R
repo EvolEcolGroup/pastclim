@@ -4,8 +4,9 @@
 #' at the appropriate times (selecting the closest time slice available for the
 #' specific date associated with each location).
 #'
-#' @param x a data.frame with columns `longitude`, ranging
-#' -180 to 180, and `latitude`, from -90 to 90, plus optional
+#' @param x a data.frame with columns x and y coordinates(see `coords` for 
+#' standard coordinate names, or
+#' how to use custom ones), plus optional
 #' columns `time_bp` or `time_ce` (depending on the units used) and
 #'  `name`. Alternatively, a vector of cell numbers.
 #' @param time_bp used if no `time_bp` column is present in `x`: the dates in

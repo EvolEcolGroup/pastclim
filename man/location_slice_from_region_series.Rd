@@ -16,8 +16,9 @@ location_slice_from_region_series(
 )
 }
 \arguments{
-\item{x}{a data.frame with columns \code{longitude}, ranging
--180 to 180, and \code{latitude}, from -90 to 90, plus optional
+\item{x}{a data.frame with columns x and y coordinates(see \code{coords} for
+standard coordinate names, or
+how to use custom ones), plus optional
 columns \code{time_bp} or \code{time_ce} (depending on the units used) and
 \code{name}. Alternatively, a vector of cell numbers.}
 
