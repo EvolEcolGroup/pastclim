@@ -49,6 +49,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_available_variable.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_coords_names.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/check_dataset_path.html</loc>
   </url>
   <url>
@@ -167,6 +170,9 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_slice.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_slice_from_region_series.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/make_binary_mask.html</loc>

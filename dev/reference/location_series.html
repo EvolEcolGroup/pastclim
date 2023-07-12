@@ -79,6 +79,7 @@ to put it more firmly on land.</p>
 <span>  <span class="va">x</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  time_ce <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  coords <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">bio_variables</span>,</span>
 <span>  <span class="va">dataset</span>,</span>
 <span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -91,9 +92,9 @@ to put it more firmly on land.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>a data.frame with columns <code>longitude</code>, ranging
--180 to 180, and <code>latitude</code>, from -90 to 90 (and an optional <code>name</code>),
-or a vector of cell numbers.</p></dd>
+<dd><p>a data.frame with columns of x and y coordinates (and an optional <code>name</code> column),
+or a vector of cell numbers. See <code>coords</code> for standard coordinate names, or
+how to use custom ones.</p></dd>
 
 
 <dt>time_bp</dt>
@@ -110,6 +111,13 @@ To check which slices are available, you can use
 <dd><p>time slice in years CE (see <code>time_bp</code> for options).
 For available time slices in years CE, use <code><a href="get_time_bp_steps.html">get_time_ce_steps()</a></code>.
 Only one of <code>time_bp</code> or <code>time_ce</code> should be used.</p></dd>
+
+
+<dt>coords</dt>
+<dd><p>a vector of length two giving the names of the "x" and "y"
+coordinates, as found in <code>data</code>. If left to NULL, the function will
+try to guess the columns based on standard names <code>c("x", "y")</code>, <code>c("X","Y")</code>,
+<code>c("longitude", "latitude")</code>, or <code>c("lon", "lat")</code></p></dd>
 
 
 <dt>bio_variables</dt>
