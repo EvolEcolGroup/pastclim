@@ -28,7 +28,7 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   wc_gcm <- gcm[which(unlist(lapply(gcm,grepl, dataset)))]
   wc_scenario <- scenarios[which(unlist(lapply(scenarios,grepl, dataset)))]
 
-  #function to grab the number from the raster layer
+  # set appropriate postfix and prefix based on variable names
   if (grepl("bio",bio_var)){
     postfix <- "bioc"
     var_prefix <- "bio"
@@ -42,6 +42,8 @@ download_worldclim_future <- function(dataset, bio_var, filename){
     postfix <- "prec"
     var_prefix <- "precipitation_"
   } else if (grepl("altitude",bio_var)){
+    # TODO this requires dispatching to a custom function that takes the elevation
+    # form the present, and then creates a special altitude file
     postfix <- "elev"
     var_prefix <- "elevation"
   }  

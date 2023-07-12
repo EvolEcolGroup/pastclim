@@ -50,7 +50,8 @@ names(bio01)<-paste("bio01",terra::time(bio01),sep="_")
 Now we save the data as a *nc* file (we will use the temporary directory)
 ```{r}
 nc_name <- file.path(tempdir(),"CHELSA_TraCE21k_bio01.nc")
-terra::writeCDF(bio01, filename = nc_name, varname = "bio01", overwrite=TRUE)
+terra::writeCDF(bio01, filename = nc_name, varname = "bio01",
+                compression = 9, overwrite=TRUE)
 ```
 
 We can now read in our custom netcdf file with `pastclim`.
