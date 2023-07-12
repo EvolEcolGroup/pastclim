@@ -151,15 +151,20 @@ location_slice_from_region_series <-
             neighbours_ids <-
               terra::adjacent(this_slice, cell_id, 
                               directions = directions, pairs = FALSE)
+           
             neighbours_values <-
               terra::extract(
                 x = this_slice,
                 y = neighbours_ids[1, ]
-              )[, bio_variables]
-            neighbours_values <- apply(neighbours_values,2,
+              )#[, bio_variables]
+            
+            neighbours_values_mean <- apply(neighbours_values,2,
                                        mean,na.rm = T)
+            if ("biome" %in% bio_variables){
+              neighbours_values_mean["biome"] <- mode(neighbours_values[,"biome"])
+            }
             locations_data[i, bio_variables] <-
-              neighbours_values[bio_variables]
+              neighbours_values_mean[bio_variables]
           }
         }
       }
@@ -198,4 +203,21 @@ climate_for_locations <- function(...) {
   #   )
   # }
   location_slice(...)
+}
+
+
+#' Mode
+#'
+#' Find the mode of vector x (note that, if multiple values have the same
+#' frequency, this function simply picks the first occurring one)
+#'
+#' @param x a vector
+#' @returns the mode
+#'
+#' @keywords internal
+
+mode <- function(x) {
+  x <- x[!is.na(x)]
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
 }

@@ -49,6 +49,15 @@ test_that("location_slice", {
   expect_false(this_climate[2, "bio01"]==this_climate_buffer[2, "bio01"])
   expect_true(this_climate[4, "bio01"]==this_climate_buffer[4, "bio01"])
 
+  # now use biome
+  this_climate_biome <- location_slice(
+    x = locations[, c("longitude", "latitude")],
+    time_bp = locations$time_bp, bio_variables = c("bio01", "bio12","biome"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  # checked value by hand
+  expect_true(this_climate_biome$biome[4]==17)
+  
   # now use the full dataframe for pretty labelling
   this_climate_df <- location_slice(
     x = locations,
