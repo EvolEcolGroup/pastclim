@@ -21,6 +21,18 @@ test_that("location_series", {
   )
   expect_true(nrow(locations_ts) == 20)
   
+  # now check with arbitrary coordinate names
+  locations_coords<-locations
+  names(locations_coords)[c(2,3)]<-c("x.long","y.lat")
+  locations_ts_coords <- location_series(
+    x = locations_coords,
+    coords = c("x.long","y.lat"),
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_equal(locations_ts[,c("bio01","bio12")],
+               locations_ts_coords[,c("bio01","bio12")])
+
   locations_ts <- location_series(
     x = locations[, c("longitude", "latitude")],
     time_bp = c(-20000,-10000,-5000),
@@ -87,7 +99,7 @@ test_that("location_series", {
       bio_variables = c("bio01", "bio12"),
       dataset = "Example"
     ),
-    "x should be a dataframe with"
+    "There are no recognised coordinate columns"
   )  
   
   
