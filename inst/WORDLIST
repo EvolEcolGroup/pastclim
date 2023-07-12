@@ -54,6 +54,7 @@ ci
 codecov
 com
 config
+coords
 csv
 cv
 dir

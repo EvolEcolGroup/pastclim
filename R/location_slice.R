@@ -14,6 +14,10 @@
 #' for each location.
 #' @param time_ce time in years CE as an alternative to `time_bp`.Only one of
 #' `time_bp` or `time_ce` should be used.
+#' @param coords a vector of length two giving the names of the "x" and "y"
+#' coordinates, as found in `data`. If left to NULL, the function will
+#' try to guess the columns based on standard names `c("x", "y")`, `c("X","Y")`,
+#'  `c("longitude", "latitude")`, or `c("lon", "lat")`
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -45,6 +49,7 @@ location_slice <-
   function(x,
            time_bp = NULL,
            time_ce = NULL,
+           coords = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
@@ -52,145 +57,21 @@ location_slice <-
            buffer = FALSE,
            directions = 8) {
 
-    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
-    readd_ce <- FALSE # boolean whether we will need to readd time_ce instead of time_bp
-    if (any(!is.null(time_ce), "time_ce" %in% names(x))) {
-      readd_ce <- TRUE
-    }
-        
     
-    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
-    
-    # if we are using standard datasets, check whether a variables exists
-    if (dataset != "custom") {
-      check_var_downloaded(bio_variables, dataset)
-    } else { # else check that the variables exist in the custom nc
-      check_var_in_nc(bio_variables, path_to_nc)
-    }
+    # get the region series for this dataset
+    climate_brick <- region_series(bio_variables=bio_variables,
+                                   dataset=dataset,
+                                   path_to_nc = path_to_nc)
+    # now simply wrap around location_slice_from_region_series
+    location_slice_from_region_series(x = x,
+                                       time_bp = time_bp,
+                                       time_ce = time_ce,
+                                       coords = coords,
+                                       region_series = climate_brick,
+                                       nn_interpol = nn_interpol,
+                                       buffer = buffer,
+                                       directions = directions)
 
-    # if we have a data.frame
-    if (inherits(x, "data.frame")){
-      # check that we have coordinates
-      if (!all(c("longitude","latitude") %in% names(x))){
-        stop("x must have columns latitude and longitude")
-      }
-      # check how time has been provided
-      # first make sure that, if there is a column, only one is provided
-      if (all(c("time_bp", "time_ce")%in% names(x))){
-        stop("in x, there should only be either a 'time_bp' column, or a 'time_ce' column")
-      }
-      # check whether we have time both in the df and in the vector
-      if (all(any(c("time_bp", "time_ce")%in% names(x)),
-              any(!is.null(time_bp),!is.null(time_ce)))){
-        stop("times should either be given as a column of x, or as values for time_bp or time_ce,",
-             "not both at the same time!")
-      }
-      # check if it is missing everywhere
-      if (all(all(!c("time_bp", "time_ce")%in% names(x)),
-              all(is.null(time_bp),is.null(time_ce)))){
-        stop("missing times: they should either be given as a column of x, or as values for time_bp or time_ce")
-      }
-       locations_data <- x
-    } else if (inherits(x,"numeric")) {
-      locations_data <- data.frame(cell_number = x)
-      
-    }
-    # add time_bp if needed
-    if (!is.null(time_bp)){
-      locations_data$time_bp <- time_bp
-    }
-    if ("time_ce" %in% names(locations_data)){
-      locations_data$time_bp <- locations_data$time_ce-1950
-    }
-
-    #reorder input by time
-    orig_id <- order(locations_data$time_bp)
-    locations_data <- locations_data[order(locations_data$time_bp), ]
-    time_indeces <- NULL
-    # store coordinates in their own data.frame to be used for terra operations
-    if (inherits(x, "data.frame")){
-      coords <- locations_data [,c("longitude","latitude")]
-    } else {
-      coords <- locations_data [,c("cell_number")]
-    }
-
-   
-    for (this_var in bio_variables) {
-      # get name of file that contains this variable
-      if (dataset != "custom") {
-        this_file <- get_file_for_dataset(this_var, dataset)$file_name
-        this_file <- file.path(get_data_path(), this_file)
-        this_var_nc <- get_varname(variable = this_var, dataset = dataset)
-      } else {
-        this_file <- path_to_nc
-        this_var_nc <- this_var
-      }
-      if (is.null(time_indeces)) {
-        times <- get_time_bp_steps(dataset = "custom", path_to_nc = this_file)
-        time_indeces <- time_bp_to_index(
-          time_bp = locations_data$time_bp, time_steps = times
-        )
-        locations_data$time_bp_slice <- times[time_indeces]
-        unique_time_indeces <- unique(time_indeces)
-      }
-      
-      climate_brick <- terra::rast(this_file, subds = this_var_nc)
-      # create column to store variable
-      locations_data[this_var] <- NA
-      for (j in unique_time_indeces) {
-        this_slice <- terra::subset(climate_brick, j)
-        this_slice_indeces <- which(time_indeces == j)
-        if (!buffer){ # get the specific values for those locations
-          this_climate <- terra::extract(
-            x = this_slice,
-            y = coords[this_slice_indeces, ])
-          locations_data[this_slice_indeces, this_var] <- this_climate[
-            ,
-            ncol(this_climate)
-          ]
-        } else { # set to NA as we will compute them with a buffer
-          locations_data[this_slice_indeces, this_var] <- NA
-        }
-
-        if (nn_interpol | buffer) {
-          locations_to_move <- this_slice_indeces[this_slice_indeces %in%
-            which(is.na(locations_data[, this_var]))]
-          if (length(locations_to_move) == 0) {
-            next
-          }
-          for (i in locations_to_move) {
-            if (inherits(x, "data.frame")) {
-              cell_id <-
-                terra::cellFromXY(climate_brick, as.matrix(coords[
-                  i,
-                ]))
-            } else {
-              cell_id <- coords[i]
-            }
-            neighbours_ids <-
-              terra::adjacent(climate_brick, cell_id, 
-                              directions = directions, pairs = FALSE)
-            neighbours_values <-
-              terra::extract(
-                x = this_slice,
-                y = neighbours_ids[1, ]
-              )[, 1]
-            locations_data[i, this_var] <-
-              mean(neighbours_values, na.rm = T)
-          }
-        }
-      }
-      locations_data[is.nan(locations_data[, this_var]), this_var] <-
-        NA
-    }
-    locations_data <- locations_data[order(orig_id), ]
-
-    if (readd_ce){
-      locations_data$time_ce <- locations_data$time_bp + 1950
-      locations_data$time_ce_slice <- locations_data$time_bp_slice + 1950
-      locations_data<-locations_data[,!names(locations_data) %in% c("time_bp","time_bp_slice")]
-    }
-    return(locations_data)
   }
 
 

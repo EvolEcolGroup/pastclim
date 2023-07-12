@@ -57,6 +57,30 @@ test_that("location_slice", {
   )
   expect_equal(this_climate_df[,c("bio01","bio12")],
                this_climate[,c("bio01","bio12")])
+  
+  # check alternative coordinate names
+  # now use the full dataframe for pretty labelling
+  locations_coords<-locations
+  names(locations_coords)[c(2,3)]<-c("x","y")
+  this_climate_coords <- location_slice(
+    x = locations_coords,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_equal(this_climate_df[,c("bio01","bio12")],
+               this_climate_coords[,c("bio01","bio12")])
+  
+  # now set to arbitrary names
+  names(locations_coords)[c(2,3)]<-c("x.long","y.lat")
+  this_climate_coords <- location_slice(
+    x = locations_coords,
+    coords = c("x.long","y.lat"),
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_equal(this_climate_df[,c("bio01","bio12")],
+               this_climate_coords[,c("bio01","bio12")])
+
   # check errors if we don't set up correctly with a dataframe
   # give time in both x and time_bp
   expect_error(this_climate_df <- location_slice(
@@ -75,7 +99,7 @@ test_that("location_slice", {
     x = locations[,c("longitude","time_bp")],
     bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
-  ) , "x must have columns latitude and longitude")  
+  ) , "There are no recognised coordinate columns")  
   
   # now test if we try a variable that is not available
   expect_error(
