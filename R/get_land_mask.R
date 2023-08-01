@@ -34,6 +34,7 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
       dataset = dataset
     )
     land_mask <- climate_series["biome"]
+    land_mask[land_mask<0] <- NA
     land_mask[land_mask !=28] <- 1
     land_mask[land_mask ==28] <- NA
     
