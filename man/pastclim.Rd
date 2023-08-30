@@ -3,6 +3,7 @@
 \docType{package}
 \name{pastclim}
 \alias{pastclim}
+\alias{pastclim-package}
 \title{pastclim}
 \description{
 This \code{R} library is designed to provide an easy way to extract and manipulate palaeoclimate

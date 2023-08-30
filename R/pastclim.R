@@ -25,6 +25,7 @@
 #'
 #' @docType package
 #' @name pastclim
+#' @aliases pastclim-package
 #' @import methods
 #' @import terra
 NULL
