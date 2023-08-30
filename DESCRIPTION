@@ -34,7 +34,6 @@ Imports:
   utils
 Suggests: 
   rmarkdown,
-  geodata,
   knitr,
   ggplot2,
   sf,
