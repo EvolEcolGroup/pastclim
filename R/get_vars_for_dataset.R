@@ -74,7 +74,9 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details=FALSE,
 check_available_variable <- function(variable, dataset) {
   # check that the variable is available for this dataset
   if (!all(variable %in% get_vars_for_dataset(dataset, monthly = TRUE))) {
-    missing_variables <- variable[!variable %in% get_vars_for_dataset(dataset)]
+    missing_variables <- variable[!variable %in% get_vars_for_dataset(dataset,
+                                                                      annual=TRUE,
+                                                                      monthly=TRUE)]
     stop(
       paste(missing_variables, collapse = ", "), " not available for ", dataset,
       "; available variables are ",
