@@ -97,9 +97,6 @@
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_etopo.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim.html</loc>
-  </url>
-  <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/download_worldclim_future.html</loc>
   </url>
   <url>
@@ -161,9 +158,6 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_etopo.html</loc>
-  </url>
-  <url>
-    <loc>https://evolecolgroup.github.io/pastclim/dev/reference/load_worldclim.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/dev/reference/location_series.html</loc>
