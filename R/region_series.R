@@ -97,6 +97,12 @@ region_series <-
                                      time_steps = times)
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
+      
+      # subset to time steps
+      if (!is.null(time_bp)){
+        var_brick <- terra::subset(var_brick, subset = time_index)
+      }
+
       # subset extent
       if (!is.null(ext)){
         var_brick <- terra::crop(var_brick, ext)
@@ -108,12 +114,8 @@ region_series <-
         var_brick <- terra::crop(var_brick, crop)
       }
       
-      if (!is.null(time_bp)){
-        climate_spatrasters[[this_var]] <- terra::subset(var_brick,
-                                       subset = time_index)
-      } else {
-        climate_spatrasters[[this_var]] <- var_brick
-      }
+      climate_spatrasters[[this_var]] <- var_brick
+
       varnames(climate_spatrasters[[this_var]]) <- this_var
       names(climate_spatrasters[[this_var]]) <- paste(this_var,
         time_bp(climate_spatrasters[[this_var]]),
