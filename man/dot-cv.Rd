@@ -2,7 +2,7 @@
 % Please edit documentation in R/bioclim_vars.R
 \name{.cv}
 \alias{.cv}
-\title{Coefficient of variables (expressed as percentage)}
+\title{Coefficient of variation (expressed as percentage)}
 \usage{
 .cv(x)
 }
