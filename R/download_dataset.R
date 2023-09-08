@@ -78,6 +78,7 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
                             destfile = file.path(get_data_path(), file_details$file_name),
                             quiet = FALSE
         )} else{ # we use a custom download function if the files have to be converted locally
+          browser()
           eval(parse(text=file_details$download_function))(dataset=dataset, 
                                      bio_var = this_var,
                                      filename = file.path(get_data_path(), file_details$file_name))

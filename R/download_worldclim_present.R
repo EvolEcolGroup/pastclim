@@ -16,6 +16,7 @@ download_worldclim_present <- function(dataset, bio_var, filename){
   # get resolution from the dataset name and convert it to the original
   res_conversion <- data.frame(our_res = c("10m","5m","2.5m", "0.5m"),
                                       wc_res = c("10m","5m", "2.5m", "30s"))
+  browser()
   wc_res <- res_conversion$wc_res[res_conversion$our_res==substr(dataset,
                                                                   start = 15,
                                                                   stop=nchar(dataset))]
