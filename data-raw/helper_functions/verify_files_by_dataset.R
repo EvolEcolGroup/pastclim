@@ -4,7 +4,7 @@ full_meta <- pastclim:::dataset_list_included
 in_dir <- get_data_path()
 problem_rows <- vector()
 for (i in 1:nrow(full_meta)){
-  pastclim::download_dataset(dataset = full_meta$dataset[i],
+  pastclim::download_dataset(dataset = as.character(full_meta$dataset[i]),
                    bio_variables = full_meta$variable[i])
   nc_in <- ncdf4::nc_open(file.path(in_dir, full_meta$file_name[i]))
   if (!full_meta$ncvar[i] %in% names(nc_in$var)){
