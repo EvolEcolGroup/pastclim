@@ -15,6 +15,6 @@ text describing the dataset
 \description{
 This function provides full information about a given dataset. A full
 list of datasets available in pastclim can be obtained with
-\code{get_available_datasets}
+\code{\link[=list_available_datasets]{list_available_datasets()}}
 }
 \keyword{internal}

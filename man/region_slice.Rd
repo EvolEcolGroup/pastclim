@@ -5,7 +5,8 @@
 \title{Extract a climate slice for a region}
 \usage{
 region_slice(
-  time_bp,
+  time_bp = NULL,
+  time_ce = NULL,
   bio_variables,
   dataset,
   path_to_nc = NULL,
@@ -18,7 +19,11 @@ region_slice(
 values represent
 time before present, positive values time in the future). The slice needs
 to exist in the dataset. To check which slices are available, you can use
-\code{get_time_steps}.}
+\code{\link[=get_time_bp_steps]{get_time_bp_steps()}}.}
+
+\item{time_ce}{time slice in years CE.
+For available time slices in years CE, use \code{\link[=get_time_ce_steps]{get_time_ce_steps()}}.
+Only one of \code{time_bp} or \code{time_ce} should be used.}
 
 \item{bio_variables}{vector of names of variables to be extracted}
 
@@ -29,22 +34,22 @@ then a single nc file is used from "path_to_nc"}
 reconstructions. All the variables of interest need to be included
 in this file.}
 
-\item{ext}{an extent, coded as numeric vector (length=4; 
-order= xmin, xmax, ymin, ymax) or a \code{terra::SpatExtent} object. If NULL,
+\item{ext}{an extent, coded as numeric vector (length=4;
+order= xmin, xmax, ymin, ymax) or a \link[terra:SpatExtent-class]{terra::SpatExtent} object. If NULL,
 the full extent of the reconstruction is given.}
 
 \item{crop}{a polygon used to crop the reconstructions (e.g. the outline
-of a continental mass). A \code{sf:sfg} or a \code{terra::SpatVector} object 
+of a continental mass). A \code{\link[sf:st]{sf::sfg}} or a \link[terra:SpatVector-class]{terra::SpatVector} object
 is used to define the polygon.}
 }
 \value{
 a
-SpatRaster \code{terra::SpatRaster} object, with
+SpatRaster \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, with
 each variable as a layer.
 }
 \description{
 This function extracts a slice of one or more climate variables for a given
 dataset covering a region (or the whole world). The function returns a
-SpatRaster \code{terra::SpatRaster} object, with
+SpatRaster \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, with
 each variable as a layer.
 }

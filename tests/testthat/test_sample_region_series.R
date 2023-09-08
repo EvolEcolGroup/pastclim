@@ -15,7 +15,7 @@ test_that("sample_region_series works correctly", {
   vars <- c("bio01", "bio10", "bio12")
   climate_ts <- region_series(
     time_bp = t_steps,
-    vars,
+    bio_variables = vars,
     dataset = "Example",
     ext = terra::ext(region_extent$Europe)
   )

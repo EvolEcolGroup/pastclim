@@ -33,7 +33,31 @@ test_that("location_slice", {
   expect_false(is.na(this_climate[1, "bio01"]))
   expect_true(is.na(this_climate[3, "bio01"]))
   expect_false(is.na(this_climate[4, "bio01"]))
+  
+  this_climate_buffer <- location_slice(
+    x = locations[, c("longitude", "latitude")],
+    time_bp = locations$time_bp, bio_variables = c("bio01", "bio12"),
+    dataset = "Example",
+    buffer=TRUE
+  )
+  expect_false(is.na(this_climate_buffer[1, "bio01"]))
+  expect_true(is.na(this_climate_buffer[3, "bio01"]))
+  expect_false(is.na(this_climate_buffer[4, "bio01"]))
+  # the underwater location should return the same value with nn_interpol and buffer
+  # but the other two values should differ
+  expect_false(this_climate[1, "bio01"]==this_climate_buffer[1, "bio01"])
+  expect_false(this_climate[2, "bio01"]==this_climate_buffer[2, "bio01"])
+  expect_true(this_climate[4, "bio01"]==this_climate_buffer[4, "bio01"])
 
+  # now use biome
+  this_climate_biome <- location_slice(
+    x = locations[, c("longitude", "latitude")],
+    time_bp = locations$time_bp, bio_variables = c("bio01", "bio12","biome"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  # checked value by hand
+  expect_true(this_climate_biome$biome[4]==17)
+  
   # now use the full dataframe for pretty labelling
   this_climate_df <- location_slice(
     x = locations,
@@ -42,6 +66,30 @@ test_that("location_slice", {
   )
   expect_equal(this_climate_df[,c("bio01","bio12")],
                this_climate[,c("bio01","bio12")])
+  
+  # check alternative coordinate names
+  # now use the full dataframe for pretty labelling
+  locations_coords<-locations
+  names(locations_coords)[c(2,3)]<-c("x","y")
+  this_climate_coords <- location_slice(
+    x = locations_coords,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_equal(this_climate_df[,c("bio01","bio12")],
+               this_climate_coords[,c("bio01","bio12")])
+  
+  # now set to arbitrary names
+  names(locations_coords)[c(2,3)]<-c("x.long","y.lat")
+  this_climate_coords <- location_slice(
+    x = locations_coords,
+    coords = c("x.long","y.lat"),
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_equal(this_climate_df[,c("bio01","bio12")],
+               this_climate_coords[,c("bio01","bio12")])
+
   # check errors if we don't set up correctly with a dataframe
   # give time in both x and time_bp
   expect_error(this_climate_df <- location_slice(
@@ -60,7 +108,7 @@ test_that("location_slice", {
     x = locations[,c("longitude","time_bp")],
     bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
-  ) , "x must have columns latitude and longitude")  
+  ) , "There are no recognised coordinate columns")  
   
   # now test if we try a variable that is not available
   expect_error(
@@ -140,6 +188,24 @@ test_that("location_slice", {
   )
   expect_true(identical(this_climate[, -c(1:3)],
                         this_climate_timeoff[, -c(1:3)]))
+  
+  # now do the same with time_ce
+  locations_time_ce <- data.frame(
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
+    time_ce = c(0, -9750, -20375, -10475)+1950
+  )
+  this_climate_time_ce <- location_slice(
+    x = locations_time_ce[, c("longitude", "latitude")],
+    time_ce = locations_time_ce$time_ce, bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )
+  expect_true(all(this_climate_time_ce$time_ce ==this_climate_timeoff$time_bp+1950))
+  # using a data.frame
+  this_climate_time_ce_df <- location_slice(
+    x = locations_time_ce,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example", nn_interpol = TRUE
+  )  
 })
 
 ################################################################################

@@ -10,8 +10,9 @@ set_data_path(path_to_nc = data_path,
 
 test_that("get df from region slice", {
   x <- region_slice(
-    time_bp = -10000, c("bio01", "bio10", "bio12"),
-    "Example"
+    time_bp = -10000, 
+    bio_variables = c("bio01", "bio10", "bio12"),
+    dataset = "Example"
   )
   df_slice <- df_from_region_slice(x)
   expect_true(all(c("x","y") %in% names(df_slice)))

@@ -1,3 +1,6 @@
+# a function to rewrite the global attributes of an nc file to create a dataset
+# for pastclim
+
 rewrite_global_attributes <-
   function(old_filename,
            new_filename,

@@ -8,7 +8,7 @@ get_biome_classes(dataset)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{get_available_datasets}). This function
+values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function
 will not work on custom datasets.}
 }
 \value{

@@ -7,13 +7,13 @@
 sample_rs_fixed(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{terra::SpatRasterDataset} returned
-by \code{region_series}}
+\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
+by \code{\link[=region_series]{region_series()}}}
 
 \item{size}{number of points sampled; the same
 locations across all time steps}
 
-\item{method}{one of the sampling methods from \code{terra::spatSample}. It
+\item{method}{one of the sampling methods from \code{\link[terra:sample]{terra::spatSample()}}. It
 defaults to "random"}
 
 \item{replace}{boolean determining whether we sample with replacement}
@@ -25,7 +25,7 @@ a data.frame with the sampled cells and their respective values for
 the climate variables.
 }
 \description{
-Internal function for fixed sampling from \code{sample_region_series}, 
+Internal function for fixed sampling from \code{\link[=sample_region_series]{sample_region_series()}},
 used when a single size is given.
 }
 \keyword{internal}

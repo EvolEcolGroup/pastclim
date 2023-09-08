@@ -1,7 +1,7 @@
 #' Clean the data path 
 #'
 #' This function deletes old reconstructions that have been superseded in the
-#' data_path. It assumes that the only files in data_path are part of pastclim
+#' data_path. It assumes that the only files in data_path are part of `pastclim`
 #' (i.e. there are no custom datasets stored in that directory).
 #'
 #' @param ask boolean on whether the user should be asked before deleting
@@ -17,7 +17,13 @@ clean_data_path <- function(ask=TRUE) {
   # remove some exceptions (we should check if the dataset list is still
   # current or whether it has become obsolete)
   files_now <- files_now[!files_now %in% c("pastclim_dataset_list.csv")]
+  # keep worldclim datasets
   files_now <- files_now[!substr(files_now,1,2)=="wc"]
+  # keep etopo datasets
+  files_now <- files_now[!substr(files_now,1,5)=="etopo"]
+  # keep chelsa datasets
+  files_now <- files_now[!substr(files_now,1,6)=="chelsa"]
+  
   
   possible_files <- unique(getOption("pastclim.dataset_list")$file_name)
   files_to_remove <- files_now[!files_now %in% possible_files]

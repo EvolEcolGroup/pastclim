@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_var_downloaded.R
 \name{check_var_downloaded}
 \alias{check_var_downloaded}
-\title{Internal functions to check whether we have downloaded a given variable
+\title{Internal function to check whether we have downloaded a given variable
 for a dataset}
 \usage{
 check_var_downloaded(variable, dataset)
@@ -16,7 +16,7 @@ check_var_downloaded(variable, dataset)
 TRUE if the variable has been downloaded.
 }
 \description{
-Internal functions to check whether we have downloaded a given variable
+Internal function to check whether we have downloaded a given variable
 for a dataset
 }
 \keyword{internal}

@@ -1,11 +1,22 @@
+# development
+* Improve `get_ice_mask()`, `get_land_mask()`, and `distance_from_sea()` to work
+  on series rather than just on slices.
+
+# pastclim 1.2.4
+* Updates on how time is handled to stay in sync with changes in `terra`.
+
 # pastclim 1.2.3
-* Added lai to Krapp2021 (the variable is now also present in the original OSF
+* Added *lai* to *Krapp2021* (the variable is now also present in the original OSF
   repository for that dataset).
+* Change column names in `data.frame` returned by `location_series()` to match
+  `location_slice()`
+* Allow for interpolation of nearest neighbours in `location_series()`, and allow
+  for a buffer on estimates returned by the `location_*()` functions.
 
 # pastclim 1.2.2
-* Update of Krapp2021 files to make them compatible with how terra now handles
+* Update of *Krapp2021* files to make them compatible with how `terra` now handles
   time. Users will have to re-download datasets. Old files can be removed with
-  'clean_data_path()'
+  `clean_data_path()`
 
 # pastclim 1.2.1
 * Small updates for CRAN submission.
@@ -27,9 +38,9 @@
   still work, but will raise a warning that the functions are deprecated.
 
 * Remove the need for `pastclimData`, we now put any data in the user dir returned
-  by R>=4.0.0. This removes the need of re-downloading the data when upgrading R.
+  by `R>=4.0.0`. This removes the need of re-downloading the data when upgrading `R`.
 
-* Add monthly variables to Beyer2020 and Krapp2021.
+* Add monthly variables to *Beyer2020* and *Krapp2021*.
 
 # pastclim 1.0.1
 

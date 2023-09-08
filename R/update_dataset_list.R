@@ -19,8 +19,14 @@ update_dataset_list <- function(on_cran=FALSE) {
   # if the github version is more recent, copy it into config
   if (utils::compareVersion(new_table_github$dataset_list_v[1], 
                             getOption("pastclim.dataset_list")$dataset_list_v[1])==1){
+    # set the config directory (we use the tempdir if we are on CRAN)
+    if (!on_cran){
+      config_dir <- tools::R_user_dir("pastclim", "config")
+    } else {
+      config_dir <- tempdir()
+    }
     file.copy(utils::read.csv(file.path(tempdir(), "dataset_list_included.csv")),
-              to= file.path(tools::R_user_dir("pastclim", "config"),"dataset_list_included.csv"))
+              to= file.path(config_dir,"dataset_list_included.csv"))
     load_dataset_list()
     message("The dataset list was updated.")
     return(TRUE)
