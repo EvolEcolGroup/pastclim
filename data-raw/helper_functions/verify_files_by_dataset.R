@@ -1,5 +1,6 @@
 # verify that all the variables in the tables are actually found in the files
 # this requires all data to have been downloaded
+library(pastclim)
 full_meta <- pastclim:::dataset_list_included
 in_dir <- get_data_path()
 problem_rows <- vector()
@@ -9,6 +10,7 @@ for (i in 1:nrow(full_meta)){
   nc_in <- ncdf4::nc_open(file.path(in_dir, full_meta$file_name[i]))
   if (!full_meta$ncvar[i] %in% names(nc_in$var)){
     message("problem with ",full_meta$ncvar[i]," in ", full_meta$file_name[i],"\n")
+    stop("we had a problem")
     problem_rows[i]<-TRUE
   } else {
     problem_rows[i]<-FALSE
