@@ -23,3 +23,8 @@ if (any(problem_rows)){
 } else {
   cat("all files are fine")
 }
+
+
+### There is a problem with how we are renaming variables when downloading future worldclim
+# monthly variables (it's not working)
+# check line 78

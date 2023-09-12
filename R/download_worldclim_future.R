@@ -81,6 +81,7 @@ download_worldclim_future <- function(dataset, bio_var, filename){
     sds_list[[new_var_name]]<-terra::rast(lapply(wc_list, terra::subset,subset=i_var))
     names(sds_list[[new_var_name]])<-rep(new_var_name,nlyr((sds_list[[new_var_name]])))
   }
+  browser()
   wc_sds <- terra::sds(sds_list)
 
   terra::writeCDF(wc_sds,filename=filename, compression=9, 
