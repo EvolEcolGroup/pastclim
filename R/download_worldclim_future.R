@@ -16,9 +16,7 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   # get resolution from the dataset name and convert it to the original
   res_conversion <- data.frame(our_res = c("10m","5m","2.5m", "0.5m"),
                                       wc_res = c("10m","5m", "2.5m", "30s"))
-  wc_res <- res_conversion$wc_res[res_conversion$our_res==substr(dataset,
-                                                                  start = regexpr("_\\d+\\.?\\d+m",dataset)+1,
-                                                                  stop=nchar(dataset))]
+  wc_res <- res_conversion$wc_res[res_conversion$our_res==tail(strsplit(dataset,"_")[[1]],1)]
   gcm <- c("ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
            "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
            "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL")
@@ -69,16 +67,22 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   # and finally we save it as a netcdf file
   time_bp(wc_list[[i_step]]) <- rep(dates_df$time_bp[dates_df$orig == i_step],nlyr(wc_list[[i_step]]))
   }
-  message("assembling all the data into a netcdf file for use with pastclim; this operation will take a couple of minutes...\n")
+  message("assembling all the data into a netcdf file for use with pastclim; this operation will take a few minutes...\n")
   
   var_names <- names(wc_list[[1]])
   sds_list <- list()
-  for (i_var in var_names){
-    sds_list[[i_var]]<-terra::rast(lapply(wc_list, terra::subset,subset=i_var))
-    names(sds_list[[i_var]])<-rep(i_var,nlyr((sds_list[[i_var]])))
+  for (i in 1:length(var_names)){
+    i_var <- var_names[i]
+    if (!any(postfix %in% c("bioc","elev"))){
+      new_var_name <-paste0(var_prefix,sprintf("%02d",i))
+    } else {
+      new_var_name <- i_var
+    }
+    sds_list[[new_var_name]]<-terra::rast(lapply(wc_list, terra::subset,subset=i_var))
+    names(sds_list[[new_var_name]])<-rep(new_var_name,nlyr((sds_list[[new_var_name]])))
   }
   wc_sds <- terra::sds(sds_list)
-  
+
   terra::writeCDF(wc_sds,filename=filename, compression=9, 
                   overwrite=TRUE)
   # fix time axis (this is a workaround if we open the file with sf)
