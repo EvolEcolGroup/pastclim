@@ -67,7 +67,7 @@ download_worldclim_future <- function(dataset, bio_var, filename){
   # and finally we save it as a netcdf file
   time_bp(wc_list[[i_step]]) <- rep(dates_df$time_bp[dates_df$orig == i_step],nlyr(wc_list[[i_step]]))
   }
-  message("assembling all the data into a netcdf file for use with pastclim; this operation will take a couple of minutes...\n")
+  message("assembling all the data into a netcdf file for use with pastclim; this operation will take a few minutes...\n")
   
   var_names <- names(wc_list[[1]])
   sds_list <- list()
@@ -81,7 +81,6 @@ download_worldclim_future <- function(dataset, bio_var, filename){
     sds_list[[new_var_name]]<-terra::rast(lapply(wc_list, terra::subset,subset=i_var))
     names(sds_list[[new_var_name]])<-rep(new_var_name,nlyr((sds_list[[new_var_name]])))
   }
-  browser()
   wc_sds <- terra::sds(sds_list)
 
   terra::writeCDF(wc_sds,filename=filename, compression=9, 
