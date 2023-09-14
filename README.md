@@ -54,7 +54,7 @@ updated for the `dev` branch of `pastclim` (on the top left of the dev
 website, the version number is in red and in the format x.x.x.9xxx,
 indicating it is a development version).
 
-Pastclim currently includes data from Beyer et al 2020, a reconstruction
+`pastclim` currently includes data from Beyer et al 2020, a reconstruction
 of climate based on the HadCM3 model for the last 120k years, and Krapp
 et al 2021, which covers the last 800k years. The reconstructions are
 bias-corrected and downscaled to 0.5 degree. More details on these
