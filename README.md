@@ -80,7 +80,7 @@ vignette("pastclim_overview", package = "pastclim")
 
 ------------------------------------------------------------------------
 
-## Current issues
+## When something does not work
 
 If something does not work, check the [issues on
 GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether
@@ -88,21 +88,5 @@ the problem has already been reported. If not, feel free to create an
 new issue. Please make sure you have updated to the latest version of
 `pastclim` on CRAN, as well as updating all other packages on your
 system, and provide [a reproducible
-example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem.
-
-------------------------------------------------------------------------
-
-### Error in x\$.self\$finalize()
-
-`pastclim` relies on `terra` to process rasters. There is a known bug in
-`terra` that leads to the occasional message:
-
-```         
-"Error in x$.self$finalize() : attempt to apply non-function"
-```
-
-This is an error related to garbage collection, which does not affect
-the script being correctly executed, so it can be ignored. More
-discussion of this issue can be found on
-[stack**overflow**](https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second)
