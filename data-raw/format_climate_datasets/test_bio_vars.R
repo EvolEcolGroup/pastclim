@@ -30,6 +30,9 @@ for (i in names(krapp_biovar)){
 }
 cor_all
 
+krapp_new[101,150]
+krapp_biovar[101,150]
+krapp_prec[101,150]
 
 # bio07, bio15
 
@@ -42,6 +45,7 @@ cor_all
 #bio05
 krapp_pastclim_biovar$bio10[101,150]
 krapp_biovar$bio10[101,150]
+
 
 krapp_temp[100,150]
 
