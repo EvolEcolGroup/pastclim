@@ -10,6 +10,7 @@ set_data_path(path_to_nc = data_path,
 
 testthat::test_that("get_and_check_available_datasets", {
   testthat::expect_true(all(c(
+    "Barreto2023",
     "Beyer2020",
     "Krapp2021",
     "Example"

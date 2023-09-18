@@ -22,9 +22,10 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
   # check the dataset exists
   available_datasets <- unique(getOption("pastclim.dataset_list")$dataset)
   if (!dataset %in% available_datasets) {
+    cat("'dataset' must be one of ")
+    get_available_datasets()
     stop(
-      "'dataset' must be one of ",
-      paste(available_datasets, collapse = ", ")
+      "Invalid 'dataset', for a comprehensive list of all possible combinations, use `list_available_datasets()`"
     )
   }
 
@@ -55,13 +56,19 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
     )
   }
 
-  if (dataset %in% c("Krapp2021", "Beyer2020", "Example")){
-    # add biome to list of variables (we need it to generate the landmask)
-    if (!"biome" %in% bio_variables) {
-      bio_variables <- c(bio_variables, "biome")
-    }    
-  }
+  # if (dataset %in% c("Krapp2021", "Beyer2020", "Example")){
+  #   # add biome to list of variables (we need it to generate the landmask)
+  #   if (!"biome" %in% bio_variables) {
+  #     bio_variables <- c(bio_variables, "biome")
+  #   }    
+  # }
 
+  # add biome to list of variables (we need it to generate the landmask)
+  if (all((!"biome" %in% bio_variables),("biome"%in%available_variables))) {
+    bio_variables <- c(bio_variables, "biome")
+  }
+  
+  
   # special case for the example dataset
   # as we have a copy on the package
   if (dataset == "Example"){

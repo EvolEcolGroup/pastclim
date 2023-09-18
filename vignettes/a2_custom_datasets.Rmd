@@ -143,7 +143,7 @@ the *nc* dataset.
 
 `units_exp`: units formatted to be included in `expression` when creating plot labels
 
-3) Once you have added lines detailing the variables in your dataset, run the script "./raw-data/dataset_list_included.R" to store
+3) Once you have added lines detailing the variables in your dataset, run the script "./raw-data/make_data/dataset_list_included.R" to store
 that information into the appropriate dataset in `pastclim`.
 
 4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` syntax. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.

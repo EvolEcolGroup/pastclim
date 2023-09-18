@@ -81,7 +81,12 @@ NULL
 #' Documentation for the WorldClim datasets
 #'
 #' WorldClim version 2.1 is a database of high spatial resolution global weather and 
-#' climate data, covering both the present and future projections. 
+#' climate data, covering both the present and future projections. If you use this
+#' dataset, make sure to cite the original publication:
+#'
+#' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution 
+#' climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315. 
+#' \doi{doi.org/10.1002/joc.5086}
 #' 
 #' **Present-day reconstructions** are based on the mean for the period 1970-2000, 
 #' and are available at multiple resolutions of
@@ -116,11 +121,6 @@ NULL
 #' are automatically downloaded for each combination of GCM model and SSP, and are selected
 #' as usual by defining the time in functions such as [region_slice()].
 #' 
-#' If you use this dataset, make sure to cite the original publication:
-#'
-#' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution 
-#' climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315. 
-#' \doi{doi.org/10.1002/joc.5086}
 #'
 #' @name WorldClim_2.1
 NULL
@@ -139,4 +139,47 @@ NULL
 #' @name WorldClim_2.1_5m
 NULL
 #> NULL
+
+#' Documentation for the Barreto et al 2023 dataset
+#'
+#' Spatio-temporal series of monthly temperature and precipitation and 17
+#' derived bioclimatic variables covering the last 5 Ma (Pliocene–Pleistocene),
+#' at intervals of 1,000 years, and a spatial resolution of 1
+#' degrees (see Barreto et al., 2023 for details).
+#' 
+#' PALEO-PGEM-Series is downscaled to 1° × 1° spatial resolution from the 
+#' outputs of the PALEO-PGEM emulator (Holden et al., 2019), which emulates 
+#' reasonable and extensively validated global estimates of monthly temperature 
+#' and precipitation for the Plio-Pleistocene every 1 kyr at a spatial 
+#' resolution of ~5° × 5° (Holden et al., 2016, 2019).
+#' 
+#' PALEO-PGEM-Series includes the mean and the standard deviation (i.e.,
+#' standard error) of the emulated climate over 10 stochastic GCM emulations
+#' to accommodate aspects of model uncertainty. This allows users to estimate 
+#' the robustness of their results in the face of the stochastic aspects of 
+#' the emulations. For more details, see Section 2.4 in Barreto et al. (2023).
+#' 
+#' Note that this is a very large dataset, with 5001 time slices. It takes
+#' approximately 1 minute to set up each variable when creating a region_slice or
+#' region_series. However, once the object has been created, other operations tend
+#' to be much faster (especially if you subset the dataset to a small number
+#' of time steps of interest).
+#' 
+#' If you use this dataset, make sure to cite the original publications:
+#' 
+#'  Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023). 
+#'  PALEO-PGEM-Series: A spatial time series of the global climate over the
+#'   last 5 million years (Plio-Pleistocene). Global Ecology and
+#'    Biogeography, 00, 1– 12.
+#'    \doi{doi.org/10.1111/geb.13683}
+#'    
+#' Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B., Tran, G. T.,
+#'  and Wilkinson, R. D. (2019): PALEO-PGEM v1.0: a statistical emulator of
+#'   Pliocene–Pleistocene climate, Geosci. Model Dev., 12, 5137–5155,
+#'    \doi{doi.org/10.5194/gmd-12-5137-2019}.
+#'
+#' @name Barreto2023
+NULL
+#> NULL
+
 
