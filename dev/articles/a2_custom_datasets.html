@@ -147,7 +147,7 @@ names to layers in the raster:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.48</span></span>
+<span><span class="co">#&gt; terra 1.7.49</span></span>
 <span><span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">bio01</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"_"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we save the data as a <em>nc</em> file (we will use the temporary
@@ -243,8 +243,8 @@ plain text table</p>
 <code>expression</code> when creating plot labels</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Once you have added lines detailing the variables in your
-dataset, run the script “./raw-data/dataset_list_included.R” to store
-that information into the appropriate dataset in
+dataset, run the script “./raw-data/make_data/dataset_list_included.R”
+to store that information into the appropriate dataset in
 <code>pastclim</code>.</p></li>
 <li><p>Provide information on the new dataset in the file
 “./R/dataset_docs”, using <code>roxygen2</code> syntax. Make sure that
