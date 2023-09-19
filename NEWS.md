@@ -1,6 +1,10 @@
 # development
+* Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years),
+and all the WorldClim data (present, and future projections with multiple models
+and emission scenarios).
 * Improve `get_ice_mask()`, `get_land_mask()`, and `distance_from_sea()` to work
   on series rather than just on slices.
+* Speed up `region_*()` functions when subsetting the extent/cropping.
 
 # pastclim 1.2.4
 * Updates on how time is handled to stay in sync with changes in `terra`.
