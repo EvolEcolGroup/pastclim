@@ -12,7 +12,8 @@ dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?labe
 
 This `R` library is designed to provide an easy way to extract and
 manipulate palaeoclimate reconstructions for ecological and
-anthropological analyses.
+anthropological analyses. It is also able to handle timeseries of future
+reconstructions.
 
 The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
@@ -54,10 +55,12 @@ updated for the `dev` branch of `pastclim` (on the top left of the dev
 website, the version number is in red and in the format x.x.x.9xxx,
 indicating it is a development version).
 
-`pastclim` currently includes data from Beyer et al 2020, a reconstruction
-of climate based on the HadCM3 model for the last 120k years, and Krapp
-et al 2021, which covers the last 800k years. The reconstructions are
-bias-corrected and downscaled to 0.5 degree. More details on these
+Pastclim currently includes data from Beyer et al 2020 (a reconstruction
+of climate based on the HadCM3 model for the last 120k years), Krapp
+et al 2021 (which covers the last 800k years with a statistical emulator of HadCM3),
+Barreto et al 2023 (covering the last 5M years using hte PALEO-PGEM emulator),
+and the WorldClim data (present, and future projections with a number of models and 
+emission scenarios). More details on each of these
 datasets can be found
 [here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html).
 There are also instructions on how to build and use [custom

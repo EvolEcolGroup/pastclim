@@ -64,39 +64,25 @@ vignette("pastclim_overview", package = "pastclim")
 Depending on the operating system you use, you might need additional
 packages to build a vignette.
 
-------------------------------------------------------------------------
-
-NOTE: `pastclim` relies on `terra` to process rasters. There is a known
-bug in `terra` that leads to the occasional message:
-
-```         
-"Error in x$.self$finalize() : attempt to apply non-function"
-```
-
-being reported. This is an error related to garbage collection, which
-does not affect the script being correctly executed, so it can be
-ignored. More discussion of this issue can be found on
-[stack**overflow**](https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second)
-
 # Download the data
 
 You will need to download climatic reconstructions before being able to
-do any real work with `pastclim`. Currently the library contains two
-datasets: *Beyer2020* which covers the last 120k years; and, for project
-that go further back in time, *Krapp2021* which goes back to 800kya. It
-is possible to add additional, custom datasets, but you will need some
-familiarity with handling `netcdf` files (see the vignette on 'custom
-dataset').
-
-```{r eval=FALSE}
-vignette("custom_datasets", package = "pastclim")
-```
+do any real work with `pastclim`.
+Pastclim currently includes data from Beyer et al 2020 (*Beyer2020*, a reconstruction
+of climate based on the HadCM3 model for the last 120k years), Krapp
+et al 2021 (*Krapp2021*, which covers the last 800k years with a statistical emulator of HadCM3),
+Barreto et al 2023 (*Barreto2023*), covering the last 5M years using hte PALEO-PGEM emulator),
+and the WorldClim data ("WorldClim_2.1_*", present, and future projections with a number of models and 
+emission scenarios). More information on each of these
+datasets can be found
+[here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html).
+For detailed instructions on how to use the WorldClim dataset, can be found in [this article](https://evolecolgroup.github.io/pastclim/articles/a3_pastclim_present_and_future.html)
+There are also instructions on how to build and use [custom
+datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html),
+but you will need some
+familiarity with handling `netcdf` files.
 
 A list of all datasets available can be obtained by typing
-
-```{r eval=FALSE}
-vignette("available_datasets", package = "pastclim")
-```
 
 Please be aware that using any dataset made available to `pastclim` will
 require to cite both `pastclim` as well as the original publication

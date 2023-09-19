@@ -11,7 +11,7 @@ set_data_path(path_to_nc = data_path,
 test_that("download_dataset", {
   expect_error(
     download_dataset("Beyer"),
-    "'dataset' must be one of "
+    "Invalid 'dataset',"
   )
   expect_error(
     download_dataset("Beyer2020",
