@@ -47,7 +47,9 @@ region_series <-
     time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
     
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
-    
+    if (dataset=="Barreto2023"){
+      message("This is a large dataset, it might take a while...")
+    }
 
     if (!is.null(ext)){
       if(!any(inherits(ext,"SpatExtent"),
