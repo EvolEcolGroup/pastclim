@@ -27,16 +27,13 @@ library(ncdf4)
 
 setwd(wkdir)
 
-#output file names
-uncut_ann_filename <- paste0("Krapp2021_uncut_annual_vars_v",file_version,".nc")
-uncut_month_filename <- paste0("Krapp2021_uncut_monthly_vars_v",file_version,".nc")
-ann_filename <- paste0("Krapp2021_annual_vars_v",file_version,".nc")
-month_filename <- paste0("Krapp2021_monthly_vars_v",file_version,".nc")
-
 # names of directory with original files
 download_dir <- file.path(wkdir,"original_files")
 if (!dir.exists("./repackaged")){
   dir.create("./repackaged")
+}
+if (!dir.exists("./repackaged")){
+  dir.create("./temp")
 }
 # create landmask
 cdo("select,name=biome ./original_files/biome4output_800ka.nc krapp_biome.nc")
@@ -49,9 +46,28 @@ for (file_id in list.files(download_dir,full.names = TRUE)){
   this_file <- basename(file_id)
   var1 <- strsplit(this_file,"_")[[1]][1]
   if (var1!="biome4output"){
+    if (var1 %in% c("bio13","bio14")){ # divide by 12
+      file_id_temp <- file.path("./temp",this_file)
+      cdo(paste0("-z zip_5 -b F32 -divc,12. ",file_id," ",file_id_temp))
+      file_id <- file_id_temp
+    } else if (var1 %in% c("bio16","bio17","bio18","bio19")) # divide by 4
+      file_id_temp <- file.path("./temp",this_file)
+    cdo(paste0("-z zip_5 -b F32 -divc,4. ",file_id," ",file_id_temp))
+    file_id <- file_id_temp
+    }
     new_file <- file.path("./repackaged", paste0("Krapp2021_",var1,"_v",file_version,".nc"))
 
     cdo(paste0("-z zip_9 div ",file_id," krapp_land_only.nc ",new_file))
+    
+    # bio12 (annual -> annual)-> no conversion (use as is)
+    # bio13 (annual -> monthly) -> /12
+    # bio14 (annual -> monthly) -> /12
+    # bio16 (annual -> quarterly) -> /4
+    # bio17 (annual -> quarterly) -> /4
+    # bio18 (annual -> quarterly) -> /4
+    # bio19 (annual -> quarterly) -> /4
+    
+    
     
   } else {
     ##TODO this has not been implemented yet!!!!
