@@ -231,7 +231,8 @@ methods::setMethod("bioclim_vars", signature(prec="matrix", tavg="matrix"),
 #' @keywords internal
 
 .cv <- function(x) {
-  m <- mean(abs(x))
+  #m <- mean(abs(x))
+  m <- mean(x)
   if (is.na(m)){return(NA)}
   if (m == 0) {
     return(0)

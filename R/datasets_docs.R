@@ -52,6 +52,9 @@ NULL
 #'
 #' This dataset covers the last 800k years, at intervals of 1k years, and a 
 #' resolution of 0.5 degrees in latitude and longitude.
+#' 
+#' The units of several variables have been changed to match what is used
+#' in WorldClim.
 #'
 #' If you use this dataset, make sure to cite the original publication:
 #'
@@ -66,6 +69,9 @@ NULL
 #' \url{https://pubs.usgs.gov/ds/691/ds691.pdf}
 #'
 #' Changelog
+#' 
+#' v1.4.0 Change units to match WorldClim. Fix variable duplication found
+#' on earlier versions of the dataset.
 #' 
 #' v1.1.0 Added monthly variables. Files can be downloaded from:
 #' \url{https://zenodo.org/record/7065055}
