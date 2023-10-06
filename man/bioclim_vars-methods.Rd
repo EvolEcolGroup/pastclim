@@ -7,7 +7,7 @@
 \alias{bioclim_vars,SpatRaster,SpatRaster-method}
 \alias{bioclim_vars,SpatRasterDataset,SpatRasterDataset-method}
 \alias{bioclim_vars,matrix,matrix-method}
-\title{Compute the BIOCLIM variables}
+\title{Compute bioclimatic variables}
 \usage{
 bioclim_vars(prec, tavg, ...)
 
@@ -32,7 +32,7 @@ bioclim_vars(prec, tavg, ...)
 the bioclim variables
 }
 \description{
-To compute BIOCLIM variables from
+Function to compute "bioclimatic" variables from
 monthly average temperature and precipitation data. For modern data,
 this variables are generally computed using min and maximum temperature,
 but for many palaeoclimatic reconstructions only average temperature is
@@ -42,26 +42,31 @@ This function is a modified version of \code{predicts::bcvars}.
 }
 \details{
 The variables are:
-BIO01 = Annual Mean Temperature
-BIO04 = Temperature Seasonality (standard deviation *100)
-BIO05 = Max Temperature of Warmest Month
-BIO06 = Min Temperature of Coldest Month
-BIO07 = Temperature Annual Range (P5-P6)
-BIO08 = Mean Temperature of Wettest Quarter
-BIO09 = Mean Temperature of Driest Quarter
-BIO10 = Mean Temperature of Warmest Quarter
-BIO11 = Mean Temperature of Coldest Quarter
-BIO12 = Annual Precipitation
-BIO13 = Precipitation of Wettest Month
-BIO14 = Precipitation of Driest Month
-BIO15 = Precipitation Seasonality (Coefficient of Variation)
-BIO16 = Precipitation of Wettest Quarter
-BIO17 = Precipitation of Driest Quarter
-BIO18 = Precipitation of Warmest Quarter
-BIO19 = Precipitation of Coldest Quarter
+\itemize{
+\item BIO01 = Annual Mean Temperature
+\item BIO04 = Temperature Seasonality (standard deviation x 100)
+\item BIO05 = Max Temperature of Warmest Month
+\item BIO06 = Min Temperature of Coldest Month
+\item BIO07 = Temperature Annual Range (P5-P6)
+\item BIO08 = Mean Temperature of Wettest Quarter
+\item BIO09 = Mean Temperature of Driest Quarter
+\item BIO10 = Mean Temperature of Warmest Quarter
+\item BIO11 = Mean Temperature of Coldest Quarter
+\item BIO12 = Annual Precipitation
+\item BIO13 = Precipitation of Wettest Month
+\item BIO14 = Precipitation of Driest Month
+\item BIO15 = Precipitation Seasonality (Coefficient of Variation)
+\item BIO16 = Precipitation of Wettest Quarter
+\item BIO17 = Precipitation of Driest Quarter
+\item BIO18 = Precipitation of Warmest Quarter
+\item BIO19 = Precipitation of Coldest Quarter
+}
 
 These summary Bioclimatic variables are after:
+
 Nix, 1986. A biogeographic analysis of Australian elapid snakes. In: R. Longmore (ed.).
 Atlas of elapid snakes of Australia. Australian Flora and Fauna Series 7.
 Australian Government Publishing Service, Canberra.
+
+and expanded following the ANUCLIM manual
 }
