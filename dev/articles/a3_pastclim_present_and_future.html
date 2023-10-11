@@ -117,7 +117,7 @@ minimum, mean, and maximum temperature, and precipitation.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.49</span></span>
+<span><span class="co">#&gt; terra 1.7.51</span></span>
 <span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span><span class="st">"WorldClim_2.1_10m"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "bio01"    "bio02"    "bio03"    "bio04"    "bio05"    "bio06"   </span></span>
 <span><span class="co">#&gt;  [7] "bio07"    "bio08"    "bio09"    "bio10"    "bio11"    "bio12"   </span></span>
@@ -125,7 +125,7 @@ minimum, mean, and maximum temperature, and precipitation.</p>
 <span><span class="co">#&gt; [19] "bio19"    "altitude"</span></span></code></pre></div>
 <p>And the monthly variables</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span><span class="st">"WorldClim_2.1_10m"</span>, monthly <span class="op">=</span><span class="cn">TRUE</span>, annual<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span><span class="st">"WorldClim_2.1_10m"</span>, monthly <span class="op">=</span> <span class="cn">TRUE</span>, annual <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "temperature_01"     "temperature_02"     "temperature_03"    </span></span>
 <span><span class="co">#&gt;  [4] "temperature_04"     "temperature_05"     "temperature_06"    </span></span>
 <span><span class="co">#&gt;  [7] "temperature_07"     "temperature_08"     "temperature_09"    </span></span>
@@ -145,14 +145,18 @@ minimum, mean, and maximum temperature, and precipitation.</p>
 <p>We can manipulate data in the usual way. We start by downloading the
 dataset:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>, </span>
-<span>                 bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio02"</span>,<span class="st">"altitude"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio02"</span>, <span class="st">"altitude"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>We can then use <code>region_slice</code> to extract the data as a
 <code>SpatRaster</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">climate_present</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span>time_ce<span class="op">=</span><span class="fl">1985</span>, </span>
-<span>                                bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio02"</span>,<span class="st">"altitude"</span><span class="op">)</span>, </span>
-<span>                                dataset<span class="op">=</span><span class="st">"WorldClim_2.1_10m"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">climate_present</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
+<span>  time_ce <span class="op">=</span> <span class="fl">1985</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio02"</span>, <span class="st">"altitude"</span><span class="op">)</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="future-projections">Future projections<a class="anchor" aria-label="anchor" href="#future-projections"></a>
@@ -295,8 +299,10 @@ variables:</p>
 <span><span class="co">#&gt; [19] "bio19"</span></span></code></pre></div>
 <p>We can now download “bio01” and “bio02” for that dataset with:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
-<span>                 bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio02"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio02"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>The dataset are averages over 20 year periods (2021-2040, 2041-2060,
 2061-2080, 2081-2100). In <code>pastclim</code>, the midpoints of the
 periods (2030, 2050, 2070, 2090) are used as the time stamps. All 4
@@ -304,14 +310,18 @@ periods are automatically downloaded for each combination of GCM model
 and SSP, and can be selected as usual by defining the time in
 <code>region_slice</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">future_slice</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span>time_ce <span class="op">=</span> <span class="fl">2030</span>,</span>
-<span>                              dataset<span class="op">=</span><span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
-<span>                              bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio02"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">future_slice</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
+<span>  time_ce <span class="op">=</span> <span class="fl">2030</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio02"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, it is possible to get the full time series of 4 slices
 with:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">future_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>dataset<span class="op">=</span><span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
-<span>                              bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio02"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">future_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m"</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio02"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>It is possible to simply use
 <code>time_ce(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")</code>
 to get the available time points for that dataset.</p>
