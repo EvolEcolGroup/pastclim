@@ -18,24 +18,24 @@
 #' @import terra
 #' @export
 
-get_ice_mask <- function(time_bp=NULL, dataset) {
-  
-  if (!dataset %in% list_available_datasets()){
-    stop("this function only works on the defaults datasets in pastclim\n",
-         "you can get a list with `list_available_datasets()`")
+get_ice_mask <- function(time_bp = NULL, dataset) {
+  if (!dataset %in% list_available_datasets()) {
+    stop(
+      "this function only works on the defaults datasets in pastclim\n",
+      "you can get a list with `list_available_datasets()`"
+    )
   }
-  if (dataset %in% c("Example","Beyer2020","Krapp2021")){
-    
-  climate_series <- region_series(
-    time_bp = time_bp, bio_variables = "biome",
-    dataset = dataset
-  )
-  ice_mask <- climate_series["biome"]
-  ice_mask[ice_mask !=28] <- NA
-  ice_mask[ice_mask ==28] <- 1
-  names(ice_mask) <- paste("ice_mask", time_bp(ice_mask), sep="_")
-  varnames(ice_mask)<-"ice_mask"
-  return(ice_mask)
+  if (dataset %in% c("Example", "Beyer2020", "Krapp2021")) {
+    climate_series <- region_series(
+      time_bp = time_bp, bio_variables = "biome",
+      dataset = dataset
+    )
+    ice_mask <- climate_series["biome"]
+    ice_mask[ice_mask != 28] <- NA
+    ice_mask[ice_mask == 28] <- 1
+    names(ice_mask) <- paste("ice_mask", time_bp(ice_mask), sep = "_")
+    varnames(ice_mask) <- "ice_mask"
+    return(ice_mask)
   } else {
     stop("ice masks are not available for this dataset")
   }

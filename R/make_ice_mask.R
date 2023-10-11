@@ -17,12 +17,12 @@
 #'
 #' @keywords internal
 
-make_ice_mask <- function(ice_mask_low_res, land_mask_high_res, d=c(0.5,3)) {
+make_ice_mask <- function(ice_mask_low_res, land_mask_high_res, d = c(0.5, 3)) {
   ice_mask_low_res_bin <- make_binary_mask(ice_mask_low_res)
-  ice_mask_high_res <- resample(ice_mask_low_res_bin, land_mask_high_res, method="bilinear")
+  ice_mask_high_res <- resample(ice_mask_low_res_bin, land_mask_high_res, method = "bilinear")
   gauss_filt <- focalMat(ice_mask_high_res, d, "Gauss")
   ice_mask_gf <- focal(ice_mask_high_res, w = gauss_filt)
-  ice_mask_gf[ice_mask_gf<0.5]<-NA
-  ice_mask_gf[!is.na(ice_mask_gf)]<-1
+  ice_mask_gf[ice_mask_gf < 0.5] <- NA
+  ice_mask_gf[!is.na(ice_mask_gf)] <- 1
   return(ice_mask_gf)
-}  
+}

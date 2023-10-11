@@ -4,7 +4,7 @@
 #' at the appropriate times (selecting the closest time slice available for the
 #' specific date associated with each location).
 #'
-#' @param x a data.frame with columns x and y coordinates(see `coords` for 
+#' @param x a data.frame with columns x and y coordinates(see `coords` for
 #' standard coordinate names, or
 #' how to use custom ones), plus optional
 #' columns `time_bp` or `time_ce` (depending on the units used) and
@@ -37,8 +37,8 @@
 #' locations that are in cells with an NA). The buffer size is determined
 #' by the argument `directions`. `buffer` defaults to FALSE.
 #' @param directions character or matrix to indicate the directions in which
-#' cells are considered connected when using `nn_interpol` or `buffer`. 
-#' The following character values are allowed: "rook" or "4" for the 
+#' cells are considered connected when using `nn_interpol` or `buffer`.
+#' The following character values are allowed: "rook" or "4" for the
 #' horizontal and vertical neighbours; "bishop" to get the diagonal neighbours;
 #' "queen" or "8" to get the vertical, horizontal and diagonal neighbours;
 #' or "16" for knight and one-cell queen move neighbours. If directions
@@ -57,22 +57,23 @@ location_slice <-
            nn_interpol = TRUE,
            buffer = FALSE,
            directions = 8) {
-
-    
     # get the region series for this dataset
-    climate_brick <- region_series(bio_variables=bio_variables,
-                                   dataset=dataset,
-                                   path_to_nc = path_to_nc)
+    climate_brick <- region_series(
+      bio_variables = bio_variables,
+      dataset = dataset,
+      path_to_nc = path_to_nc
+    )
     # now simply wrap around location_slice_from_region_series
-    location_slice_from_region_series(x = x,
-                                       time_bp = time_bp,
-                                       time_ce = time_ce,
-                                       coords = coords,
-                                       region_series = climate_brick,
-                                       nn_interpol = nn_interpol,
-                                       buffer = buffer,
-                                       directions = directions)
-
+    location_slice_from_region_series(
+      x = x,
+      time_bp = time_bp,
+      time_ce = time_ce,
+      coords = coords,
+      region_series = climate_brick,
+      nn_interpol = nn_interpol,
+      buffer = buffer,
+      directions = directions
+    )
   }
 
 

@@ -47,7 +47,7 @@ time_steps_bp <- time_steps_bp[!is.na(time_steps_bp)]
 
 for (i in time_steps_bp) {
   cat(i)
-  time_step_row <- - (i / 1000) + 1
+  time_step_row <- -(i / 1000) + 1
   # now check neighbours of each boundary cell, and expand out if < sea level
   sea_level_now <- sea_level$SeaLev_longPC1[time_step_row]
 
@@ -94,7 +94,8 @@ for (i in time_steps_bp) {
         )
       rugosity_missing_vals <- rugosity_extra[left_behind_cells]
       rugosity_missing_vals$focal_mean[
-        is.nan(rugosity_missing_vals$focal_mean)] <- NA
+        is.nan(rugosity_missing_vals$focal_mean)
+      ] <- NA
       rugosity_now[left_behind_cells] <- rugosity_missing_vals
       altitude_extra <-
         focal(
@@ -107,7 +108,8 @@ for (i in time_steps_bp) {
         )
       altitude_missing_vals <- altitude_extra[left_behind_cells]
       altitude_missing_vals$focal_mean[
-        is.nan(altitude_missing_vals$focal_mean)] <- NA
+        is.nan(altitude_missing_vals$focal_mean)
+      ] <- NA
       altitude_now[left_behind_cells] <- altitude_missing_vals
       left_behind <-
         terra::mask(land_mask, rugosity_now, inverse = TRUE)

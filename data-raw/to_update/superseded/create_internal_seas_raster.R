@@ -26,10 +26,11 @@ internal_seas[internal_seas == 1] <- NaN
 internal_seas[internal_seas == 0] <- 1
 internal_seas[is.nan(internal_seas)] <- 0
 writeCDF(internal_seas, "./inst/rawdata_scripts/temp_files/internal_seas.nc",
-         varname="internal_seas", overwrite=TRUE)
+  varname = "internal_seas", overwrite = TRUE
+)
 library(ClimateOperators)
-#cdo("--reduce_dim -copy ./inst/rawdata_scripts/temp_files/internal_seas_w_time.nc ./inst/rawdata_scripts/temp_files/internal_seas.nc")
-#unlink("./inst/rawdata_scripts/temp_files/internal_seas_w_time.nc")
+# cdo("--reduce_dim -copy ./inst/rawdata_scripts/temp_files/internal_seas_w_time.nc ./inst/rawdata_scripts/temp_files/internal_seas.nc")
+# unlink("./inst/rawdata_scripts/temp_files/internal_seas_w_time.nc")
 unlink("./inst/rawdata_scripts/temp_files/shapefiles_internal_seas",
   recursive = TRUE
 )

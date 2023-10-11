@@ -18,7 +18,6 @@
 
 download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
                              monthly = FALSE) {
-
   # check the dataset exists
   available_datasets <- unique(getOption("pastclim.dataset_list")$dataset)
   if (!dataset %in% available_datasets) {
@@ -34,12 +33,12 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
     getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset]
   # if variable is null, donwload all possible variables
   if (is.null(bio_variables)) {
-    bio_variables <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset,]
-    if (!monthly){
-      bio_variables <- bio_variables[bio_variables$monthly==FALSE,]
+    bio_variables <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset, ]
+    if (!monthly) {
+      bio_variables <- bio_variables[bio_variables$monthly == FALSE, ]
     }
-    if (!annual){
-      bio_variables <- bio_variables[bio_variables$monthly!=FALSE,]
+    if (!annual) {
+      bio_variables <- bio_variables[bio_variables$monthly != FALSE, ]
     }
     bio_variables <- bio_variables$variable
   }
@@ -60,18 +59,18 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
   #   # add biome to list of variables (we need it to generate the landmask)
   #   if (!"biome" %in% bio_variables) {
   #     bio_variables <- c(bio_variables, "biome")
-  #   }    
+  #   }
   # }
 
   # add biome to list of variables (we need it to generate the landmask)
-  if (all((!"biome" %in% bio_variables),("biome"%in%available_variables))) {
+  if (all((!"biome" %in% bio_variables), ("biome" %in% available_variables))) {
     bio_variables <- c(bio_variables, "biome")
   }
-  
-  
+
+
   # special case for the example dataset
   # as we have a copy on the package
-  if (dataset == "Example"){
+  if (dataset == "Example") {
     copy_example_data()
   } else {
     # download the file for each variable
@@ -80,14 +79,15 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
       # only download the file if it is needed
       if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
         # if it is a standard file to download
-        if (file_details$download_path!=""){
-        curl::curl_download(file_details$download_path,
-                            destfile = file.path(get_data_path(), file_details$file_name),
-                            quiet = FALSE
-        )} else{ # we use a custom download function if the files have to be converted locally
-          eval(parse(text=file_details$download_function))(dataset=dataset, 
-                                     bio_var = this_var,
-                                     filename = file.path(get_data_path(), file_details$file_name))
+        if (file_details$download_path != "") {
+          curl::curl_download(file_details$download_path,
+            destfile = file.path(get_data_path(), file_details$file_name),
+            quiet = FALSE
+          )
+        } else { # we use a custom download function if the files have to be converted locally
+          eval(parse(text = file_details$download_function))(dataset = dataset,
+            bio_var = this_var,
+            filename = file.path(get_data_path(), file_details$file_name))
         }
       }
     }

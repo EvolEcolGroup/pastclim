@@ -1,17 +1,19 @@
 # set up data path for this test
-data_path <- file.path(tempdir(),"pastclim_data")
+data_path <- file.path(tempdir(), "pastclim_data")
 unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
 # set data path
-set_data_path(path_to_nc = data_path,
-              ask = FALSE,
-              write_config = FALSE,
-              copy_example = TRUE)
+set_data_path(
+  path_to_nc = data_path,
+  ask = FALSE,
+  write_config = FALSE,
+  copy_example = TRUE
+)
 ################################################################################
 
 test_that("region slice", {
   # using standard dataset
   climate_slice <- region_slice(
-    time_bp = c(-10000), 
+    time_bp = c(-10000),
     bio_variables = c("bio01", "bio12"),
     dataset = "Example"
   )
@@ -21,12 +23,14 @@ test_that("region slice", {
 
   # do the same for a custom dataset
   example_filename <- getOption("pastclim.dataset_list")$file_name[
-    getOption("pastclim.dataset_list")$dataset=="Example"][1]
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1]
   path_to_example_nc <- system.file("/extdata/", example_filename,
-                                    package = "pastclim"
+    package = "pastclim"
   )
-  climate_slice <- region_slice(time_bp = c(-10000), 
-                                bio_variables = c("BIO1", "BIO10"),
+  climate_slice <- region_slice(
+    time_bp = c(-10000),
+    bio_variables = c("BIO1", "BIO10"),
     dataset = "custom",
     path_to_nc = path_to_example_nc
   )
@@ -36,7 +40,7 @@ test_that("region slice", {
 
   expect_error(
     region_slice(
-      time_bp = c(-10000, -20000), 
+      time_bp = c(-10000, -20000),
       bio_variables = c("bio01", "bio12"),
       dataset = "Example"
     ),
@@ -46,4 +50,4 @@ test_that("region slice", {
 
 ################################################################################
 # clean up for the next test
-unlink(data_path, recursive = TRUE)  
+unlink(data_path, recursive = TRUE)

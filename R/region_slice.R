@@ -10,7 +10,7 @@
 #' time before present, positive values time in the future). The slice needs
 #' to exist in the dataset. To check which slices are available, you can use
 #' [get_time_bp_steps()].
-#' @param time_ce time slice in years CE. 
+#' @param time_ce time slice in years CE.
 #' For available time slices in years CE, use [get_time_ce_steps()].
 #' Only one of `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted
@@ -19,16 +19,16 @@
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included
 #' in this file.
-#' @param ext an extent, coded as numeric vector (length=4; 
+#' @param ext an extent, coded as numeric vector (length=4;
 #' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object 
+#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object
 #' is used to define the polygon.
 #' @returns a
 #' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
-#' 
+#'
 #' @import terra
 #' @export
 
@@ -40,7 +40,6 @@ region_slice <-
            path_to_nc = NULL,
            ext = NULL,
            crop = NULL) {
-    
     this_series <- region_series(
       time_bp = time_bp,
       time_ce = time_ce,
@@ -50,7 +49,7 @@ region_slice <-
       ext = ext,
       crop = crop
     )
-    return(slice_region_series(x = this_series, time_bp = time_bp, time_ce=time_ce))
+    return(slice_region_series(x = this_series, time_bp = time_bp, time_ce = time_ce))
   }
 
 

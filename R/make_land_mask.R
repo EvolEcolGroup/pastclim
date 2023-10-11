@@ -25,20 +25,20 @@
 
 make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
   message("This function is still under development; do not use it for real analysis")
-  if (is.null(sea_level)){
+  if (is.null(sea_level)) {
     sea_level <- get_sea_level(time_bp = time_bp)
   } else { # check that we have as many sea level estimates as times
-    if (length(time_bp)!=length(sea_level)){
-      stop ("time_bp and sea_level should have the same number of elements")
+    if (length(time_bp) != length(sea_level)) {
+      stop("time_bp and sea_level should have the same number of elements")
     }
   }
   land_mask <- NULL
   for (i in seq_along(time_bp)) {
     # create binary relief map for areas above and below the relevant sea level
-    relief_bin<-relief_rast
-    relief_bin[relief_bin>sea_level[i]]<-NA
-    relief_bin[!is.na(relief_bin)]<-1
-    sea_patches<-patches(relief_bin, directions=8)
+    relief_bin <- relief_rast
+    relief_bin[relief_bin > sea_level[i]] <- NA
+    relief_bin[!is.na(relief_bin)] <- 1
+    sea_patches <- patches(relief_bin, directions = 8)
     # get mode of a vector (removing any NAs)
     modal_vector <- function(x) {
       x <- x[!is.na(x)]
@@ -46,17 +46,17 @@ make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
       ux[which.max(tabulate(match(x, ux)))]
     }
     patch_to_get <- modal_vector(values(sea_patches))
-    sea_patches[is.na(sea_patches)]<- -1
+    sea_patches[is.na(sea_patches)] <- -1
     sea_patches[sea_patches != patch_to_get] <- -1
-    sea_patches[sea_patches>0]<- NA
+    sea_patches[sea_patches > 0] <- NA
     sea_patches <- -sea_patches
     names(sea_patches) <- "mask"
-    if (is.null(land_mask)){
-      land_mask<-sea_patches
+    if (is.null(land_mask)) {
+      land_mask <- sea_patches
     } else {
-      add(land_mask)<-sea_patches
+      add(land_mask) <- sea_patches
     }
   }
-  terra::time(land_mask, tstep="years") <- (time_bp+1950)
+  terra::time(land_mask, tstep = "years") <- (time_bp + 1950)
   return(land_mask)
 }

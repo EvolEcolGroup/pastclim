@@ -9,9 +9,9 @@
 #' @keywords internal
 
 get_dataset_info <- function(dataset) {
-#  if (!dataset %in% list_available_datasets()){
-#    stop("The dataset is not available in pastclim")
-#  }
+  #  if (!dataset %in% list_available_datasets()){
+  #    stop("The dataset is not available in pastclim")
+  #  }
   help_console(dataset)
 }
 
@@ -29,23 +29,23 @@ get_dataset_info <- function(dataset) {
 #'
 #' @keywords internal
 
-help_console <- function(topic, format=c("text", "html", "latex"),
-                         lines=NULL, before=NULL, after=NULL) {  
-  format=match.arg(format)
+help_console <- function(topic, format = c("text", "html", "latex"),
+                         lines = NULL, before = NULL, after = NULL) {
+  format <- match.arg(format)
   if (!is.character(topic)) topic <- deparse(substitute(topic))
   getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
-  helpfile = getHelpFile(utils::help(topic))
-  hs <- utils::capture.output(switch(format, 
-                              text=tools::Rd2txt(helpfile,
-                                                 outputEncoding = "ASCII"),
-                              html=tools::Rd2HTML(helpfile),
-                              latex=tools::Rd2latex(helpfile)
-  )
-  )
+  helpfile <- getHelpFile(utils::help(topic))
+  hs <- utils::capture.output(switch(format,
+    text = tools::Rd2txt(helpfile,
+      outputEncoding = "ASCII"
+    ),
+    html = tools::Rd2HTML(helpfile),
+    latex = tools::Rd2latex(helpfile)
+  ))
   # replace strange formatting of title
-  hs[substr(hs,1,2)=="_\b"]<- gsub("_\b","",hs[substr(hs,1,2)=="_\b"],fixed = TRUE)
-  if(!is.null(lines)) hs <- hs[lines]
+  hs[substr(hs, 1, 2) == "_\b"] <- gsub("_\b", "", hs[substr(hs, 1, 2) == "_\b"], fixed = TRUE)
+  if (!is.null(lines)) hs <- hs[lines]
   hs <- c(before, hs, after)
-  cat(hs, sep="\n")
+  cat(hs, sep = "\n")
   invisible(hs)
 }
