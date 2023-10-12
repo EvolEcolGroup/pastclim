@@ -4,23 +4,24 @@ library(pastclim)
 full_meta <- pastclim:::dataset_list_included
 in_dir <- get_data_path()
 problem_rows <- vector()
-for (i in 1:nrow(full_meta)){
-  pastclim::download_dataset(dataset = as.character(full_meta$dataset[i]),
-                   bio_variables = full_meta$variable[i])
+for (i in 1:nrow(full_meta)) {
+  pastclim::download_dataset(
+    dataset = as.character(full_meta$dataset[i]),
+    bio_variables = full_meta$variable[i]
+  )
   nc_in <- ncdf4::nc_open(file.path(in_dir, full_meta$file_name[i]))
-  if (!full_meta$ncvar[i] %in% names(nc_in$var)){
-    message("problem with ",full_meta$ncvar[i]," in ", full_meta$file_name[i],"\n")
+  if (!full_meta$ncvar[i] %in% names(nc_in$var)) {
+    message("problem with ", full_meta$ncvar[i], " in ", full_meta$file_name[i], "\n")
     stop("we had a problem")
-    problem_rows[i]<-TRUE
+    problem_rows[i] <- TRUE
   } else {
-    problem_rows[i]<-FALSE
+    problem_rows[i] <- FALSE
   }
   ncdf4::nc_close(nc_in)
 }
 
-if (any(problem_rows)){
+if (any(problem_rows)) {
   which(problem_rows)
 } else {
   cat("all files are fine")
 }
-

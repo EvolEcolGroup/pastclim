@@ -2,7 +2,7 @@
 #'
 #' Get the land mask for a dataset, either for the whole series or for specific
 #' time points.
-#' 
+#'
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
 #' be a vector of times (the slices need
@@ -22,39 +22,40 @@
 #' @export
 
 get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
-  time_bp <- check_time_vars(time_bp=time_bp, time_ce= time_ce)
-  if (!dataset %in% list_available_datasets()){
-    stop("this function only works on the defaults datasets in pastclim\n",
-         "you can get a list with `list_available_datasets()`")
+  time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
+  if (!dataset %in% list_available_datasets()) {
+    stop(
+      "this function only works on the defaults datasets in pastclim\n",
+      "you can get a list with `list_available_datasets()`"
+    )
   }
-  
-  if (dataset %in% c("Example","Beyer2020","Krapp2021")){
+
+  if (dataset %in% c("Example", "Beyer2020", "Krapp2021")) {
     climate_series <- region_series(
       time_bp = time_bp, bio_variables = "biome",
       dataset = dataset
     )
     land_mask <- climate_series["biome"]
-    land_mask[land_mask<0] <- NA
-    land_mask[land_mask !=28] <- 1
-    land_mask[land_mask ==28] <- NA
-    
-  } else if(grepl("WorldClim", dataset)){
+    land_mask[land_mask < 0] <- NA
+    land_mask[land_mask != 28] <- 1
+    land_mask[land_mask == 28] <- NA
+  } else if (grepl("WorldClim", dataset)) {
     climate_series <- region_series(
-      time_bp = time_bp, 
+      time_bp = time_bp,
       bio_variables = get_vars_for_dataset(dataset)[1],
       dataset = dataset
     )
     land_mask <- climate_series[[1]]
-    land_mask[!is.na(land_mask)]<-1
+    land_mask[!is.na(land_mask)] <- 1
   } else {
     stop("no method yet for this dataset")
   }
-  
-  if (is.null(time_ce)){
-    names(land_mask) <- paste("land_mask", time_bp(land_mask), sep="_")
+
+  if (is.null(time_ce)) {
+    names(land_mask) <- paste("land_mask", time_bp(land_mask), sep = "_")
   } else {
-    names(land_mask) <- paste("land_mask", time(land_mask), sep="_")
+    names(land_mask) <- paste("land_mask", time(land_mask), sep = "_")
   }
-  varnames(land_mask)<-"land_mask"
+  varnames(land_mask) <- "land_mask"
   return(land_mask)
 }

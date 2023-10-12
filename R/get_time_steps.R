@@ -22,15 +22,17 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
     path_to_nc <- file.path(get_data_path(), this_file)
   }
 
-  climate_nc <- terra::rast(path_to_nc, subds=1)
+  climate_nc <- terra::rast(path_to_nc, subds = 1)
   return(time_bp(climate_nc))
 }
 
 #' @rdname get_time_bp_steps
 #' @export
 get_time_ce_steps <- function(dataset, path_to_nc = NULL) {
-  get_time_bp_steps(dataset = dataset, 
-                    path_to_nc = path_to_nc)+1950
+  get_time_bp_steps(
+    dataset = dataset,
+    path_to_nc = path_to_nc
+  ) + 1950
 }
 
 
@@ -38,8 +40,8 @@ get_time_ce_steps <- function(dataset, path_to_nc = NULL) {
 #' @export
 get_time_steps <- function(dataset, path_to_nc = NULL) {
   warning("this function is deprecated, use `get_time_bp_steps()` instead")
-  get_time_bp_steps(dataset = dataset, 
-                    path_to_nc = path_to_nc)
+  get_time_bp_steps(
+    dataset = dataset,
+    path_to_nc = path_to_nc
+  )
 }
-
-

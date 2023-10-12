@@ -1,4 +1,4 @@
-BIOCLIM
+ANUCLIM
 CHELSA
 CMCC
 CMD
@@ -16,6 +16,7 @@ GCM
 GCMs
 GFDL
 GISS
+Geosci
 HR
 HadCM
 HadGEM
@@ -29,9 +30,14 @@ MIROC
 MIS
 NA's
 OSF
+PALEO
+PGEM
 Palaeoclimate
+Pereira
+Plio
 RES
 RESm
+Rangel
 Riera
 SSP
 SSPs
@@ -40,6 +46,7 @@ SpatRaster
 SpatRasterDataset
 Spratt
 TraCE
+Tran
 UKESM
 WorldClim
 antimeridian
@@ -67,6 +74,7 @@ geoTIFF
 indeces
 knitr
 kya
+kyr
 lai
 landmask
 longname
@@ -78,7 +86,6 @@ palaeoclimate
 palaeoclimatic
 params
 prec
-resm
 sd
 ssp
 tas
@@ -90,10 +97,8 @@ tmax
 tmin
 unioned
 unioning
-vapr
 var
 varname
-wc
 www
 xmax
 xmin

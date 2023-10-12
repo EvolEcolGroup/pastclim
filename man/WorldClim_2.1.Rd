@@ -7,9 +7,14 @@
 \title{Documentation for the WorldClim datasets}
 \description{
 WorldClim version 2.1 is a database of high spatial resolution global weather and
-climate data, covering both the present and future projections.
+climate data, covering both the present and future projections. If you use this
+dataset, make sure to cite the original publication:
 }
 \details{
+Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
+climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315.
+\doi{doi.org/10.1002/joc.5086}
+
 \strong{Present-day reconstructions} are based on the mean for the period 1970-2000,
 and are available at multiple resolutions of
 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
@@ -42,10 +47,4 @@ periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
 In \code{pastclim}, the midpoints of the periods (2030, 2050, 2070, 2090) are used as the time stamps. All 4 periods
 are automatically downloaded for each combination of GCM model and SSP, and are selected
 as usual by defining the time in functions such as \code{\link[=region_slice]{region_slice()}}.
-
-If you use this dataset, make sure to cite the original publication:
-
-Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
-climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315.
-\doi{doi.org/10.1002/joc.5086}
 }

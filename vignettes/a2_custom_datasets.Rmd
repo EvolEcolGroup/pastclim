@@ -30,8 +30,8 @@ We store all the files in a single directory, and create a `spatRaster` from a l
 in that directory:
 
 ```{r}
-tiffs_path <- system.file("extdata/CHELSA_bio01",package="pastclim")
-list_of_tiffs <- file.path(tiffs_path,dir(tiffs_path))
+tiffs_path <- system.file("extdata/CHELSA_bio01", package = "pastclim")
+list_of_tiffs <- file.path(tiffs_path, dir(tiffs_path))
 bio01 <- terra::rast(list_of_tiffs)
 ```
 
@@ -43,46 +43,51 @@ Now we need to set the time axis of the raster (in this case, reconstructions ar
 
 ```{r}
 library(pastclim)
-time_bp(bio01)<-c(0,-100,-200)
-names(bio01)<-paste("bio01",terra::time(bio01),sep="_")
+time_bp(bio01) <- c(0, -100, -200)
+names(bio01) <- paste("bio01", terra::time(bio01), sep = "_")
 ```
 
 Now we save the data as a *nc* file (we will use the temporary directory)
 ```{r}
-nc_name <- file.path(tempdir(),"CHELSA_TraCE21k_bio01.nc")
-terra::writeCDF(bio01, filename = nc_name, varname = "bio01",
-                compression = 9, overwrite=TRUE)
+nc_name <- file.path(tempdir(), "CHELSA_TraCE21k_bio01.nc")
+terra::writeCDF(bio01,
+  filename = nc_name, varname = "bio01",
+  compression = 9, overwrite = TRUE
+)
 ```
 
 We can now read in our custom netcdf file with `pastclim`.
 
 ```{r echo=FALSE, results='hide'}
-data_path <- file.path(tempdir(),"pastclim_data")
+data_path <- file.path(tempdir(), "pastclim_data")
 # clear it in case it exists already
-unlink(data_path, recursive = TRUE) 
+unlink(data_path, recursive = TRUE)
 # set data path
-set_data_path(path_to_nc = data_path,
-              ask = FALSE,
-              write_config = FALSE,
-              copy_example = TRUE)
+set_data_path(
+  path_to_nc = data_path,
+  ask = FALSE,
+  write_config = FALSE,
+  copy_example = TRUE
+)
 ```
 
 ```{r}
-custom_series <- region_series(bio_variables = "bio01",
-                                dataset = "custom",
-                                path_to_nc = nc_name
+custom_series <- region_series(
+  bio_variables = "bio01",
+  dataset = "custom",
+  path_to_nc = nc_name
 )
 custom_series
 ```
 As expected, there is only one variable ("bio01") and
 3 time steps (nlyr). We can get the times of those time steps with:
 ```{r}
-get_time_bp_steps(dataset="custom", path_to_nc = nc_name)
+get_time_bp_steps(dataset = "custom", path_to_nc = nc_name)
 ```
 
 And we can slice the series and plot a given time point:
 ```{r}
-climate_100<-slice_region_series(custom_series, time_bp = -100)
+climate_100 <- slice_region_series(custom_series, time_bp = -100)
 terra::plot(climate_100)
 ```
 
@@ -103,7 +108,7 @@ store information about available datasets. This table is found in
 "./data-raw/data_files/dataset_list_included.csv".
 
 ```{r echo=FALSE}
-head(pastclim:::dataset_list_included, n=2)
+head(pastclim:::dataset_list_included, n = 2)
 ```
 
 This includes the following fields:
@@ -143,7 +148,7 @@ the *nc* dataset.
 
 `units_exp`: units formatted to be included in `expression` when creating plot labels
 
-3) Once you have added lines detailing the variables in your dataset, run the script "./raw-data/dataset_list_included.R" to store
+3) Once you have added lines detailing the variables in your dataset, run the script "./raw-data/make_data/dataset_list_included.R" to store
 that information into the appropriate dataset in `pastclim`.
 
 4) Provide information on the new dataset in the file "./R/dataset_docs", using `roxygen2` syntax. Make sure that you provide an appropriate reference for the original data, as it is important that users can refer back to the original source.

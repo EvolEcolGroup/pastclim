@@ -1,11 +1,13 @@
 # set up data path for this test
-data_path <- file.path(tempdir(),"pastclim_data")
+data_path <- file.path(tempdir(), "pastclim_data")
 unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
 # set data path
-set_data_path(path_to_nc = data_path,
-              ask = FALSE,
-              write_config = FALSE,
-              copy_example = TRUE)
+set_data_path(
+  path_to_nc = data_path,
+  ask = FALSE,
+  write_config = FALSE,
+  copy_example = TRUE
+)
 ################################################################################
 
 test_that("get_time_bp_steps requires correct variables", {
@@ -27,23 +29,25 @@ test_that("get_time_bp_steps for standard dataset", {
 })
 
 test_that("get_time_bp_steps for local file", {
-  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset=="Example"][1]
+  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset == "Example"][1]
   path_to_example_nc <- system.file("/extdata/", example_filename,
-                                    package = "pastclim"
+    package = "pastclim"
   )
-  expect_equal(get_time_bp_steps(
-    dataset = "custom",
-    path_to_nc = path_to_example_nc
-  ),
-  c(-20000, -15000, -10000, -5000, 0),
-  ignore_attr = TRUE
+  expect_equal(
+    get_time_bp_steps(
+      dataset = "custom",
+      path_to_nc = path_to_example_nc
+    ),
+    c(-20000, -15000, -10000, -5000, 0),
+    ignore_attr = TRUE
   )
-  expect_equal(get_mis_time_steps(
-    mis = "2", dataset = "custom",
-    path_to_nc = path_to_example_nc
-  ),
-  c(-20000, -15000),
-  ignore_attr = TRUE
+  expect_equal(
+    get_mis_time_steps(
+      mis = "2", dataset = "custom",
+      path_to_nc = path_to_example_nc
+    ),
+    c(-20000, -15000),
+    ignore_attr = TRUE
   )
 })
 

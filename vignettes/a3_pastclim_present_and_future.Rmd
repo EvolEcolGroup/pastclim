@@ -44,20 +44,24 @@ get_vars_for_dataset("WorldClim_2.1_10m")
 
 And the monthly variables
 ```{r}
-get_vars_for_dataset("WorldClim_2.1_10m", monthly =TRUE, annual=FALSE)
+get_vars_for_dataset("WorldClim_2.1_10m", monthly = TRUE, annual = FALSE)
 ```
 
 We can manipulate data in the usual way. We start by downloading the dataset:
 ```{r eval=FALSE}
-download_dataset(dataset = "WorldClim_2.1_10m", 
-                 bio_variables = c("bio01","bio02","altitude"))
+download_dataset(
+  dataset = "WorldClim_2.1_10m",
+  bio_variables = c("bio01", "bio02", "altitude")
+)
 ```
 
 We can then use `region_slice` to extract the data as a `SpatRaster`:
 ```{r eval=FALSE}
-climate_present <- region_slice(time_ce=1985, 
-                                bio_variables = c("bio01","bio02","altitude"), 
-                                dataset="WorldClim_2.1_10m")
+climate_present <- region_slice(
+  time_ce = 1985,
+  bio_variables = c("bio01", "bio02", "altitude"),
+  dataset = "WorldClim_2.1_10m"
+)
 ```
 
 # Future projections
@@ -81,13 +85,14 @@ to 245 and at 10 arc-minutes, we can get the available variables:
 
 ```{r}
 get_vars_for_dataset(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")
-
 ```
 
 We can now download "bio01" and "bio02" for that dataset with:
 ```{r eval=FALSE}
-download_dataset(dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
-                 bio_variables = c("bio01","bio02"))
+download_dataset(
+  dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+  bio_variables = c("bio01", "bio02")
+)
 ```
 
 The dataset are averages over 20 year 
@@ -98,15 +103,19 @@ be selected
 as usual by defining the time in `region_slice`.
 
 ```{r eval=FALSE}
-future_slice <- region_slice(time_ce = 2030,
-                              dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
-                              bio_variables = c("bio01","bio02"))
+future_slice <- region_slice(
+  time_ce = 2030,
+  dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+  bio_variables = c("bio01", "bio02")
+)
 ```
 
 Alternatively, it is possible to get the full time series of 4 slices with:
 ```{r eval=FALSE}
-future_series <- region_series(dataset="WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
-                              bio_variables = c("bio01","bio02"))
+future_series <- region_series(
+  dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
+  bio_variables = c("bio01", "bio02")
+)
 ```
 
 It is possible to simply use `time_ce(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")` to get the available time points for

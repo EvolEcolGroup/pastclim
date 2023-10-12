@@ -9,20 +9,22 @@
 #' @return A vector of length 2 with the valid names, in the correct order
 #' @keywords internal
 
-check_coords_names <-function(data, coords){
-  if (is.null(coords)){
-    valid_names <- list(c("x","y"), c("longitude", "latitude"), c("lon","lat"),
-                        c("X","Y"))
+check_coords_names <- function(data, coords) {
+  if (is.null(coords)) {
+    valid_names <- list(
+      c("x", "y"), c("longitude", "latitude"), c("lon", "lat"),
+      c("X", "Y")
+    )
   } else {
     valid_names <- list(coords)
   }
   # internal function to check that both x and y names are present
-  check_pair <- function(valid_names, var_names){
+  check_pair <- function(valid_names, var_names) {
     all(!is.na(match(valid_names, var_names)))
   }
   # find if we have any pair
   valid_pair <- which(unlist(lapply(valid_names, check_pair, names(data))))
-  if (length(valid_pair)!=1){
+  if (length(valid_pair) != 1) {
     stop("There are no recognised coordinate columns, set their names with 'coords'")
   }
 
