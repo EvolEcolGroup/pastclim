@@ -1,8 +1,7 @@
 #' Download the ETOPO Global relief model
 #'
 #' This function downloads the ETOPO2022 global relief model at 30 or 60 arcsecs
-#' resolution. This is a large file (>1Gb), and is worth downloading only
-#' if you are planning to use it repeatedly.
+#' resolution. This is a large file (>1Gb).
 #'
 #' @param path	character. Path where to download the data to. If left NULL, the data
 #' will be downloaded from the directory returned by [get_data_path()], and automatically
