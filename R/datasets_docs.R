@@ -151,13 +151,13 @@ NULL
 #' Spatio-temporal series of monthly temperature and precipitation and 17
 #' derived bioclimatic variables covering the last 5 Ma (Pliocene–Pleistocene),
 #' at intervals of 1,000 years, and a spatial resolution of 1
-#' degrees (see Barreto et al., 2023 for details).
+#' arc-degrees (see Barreto et al., 2023 for details).
 #'
-#' PALEO-PGEM-Series is downscaled to 1° × 1° spatial resolution from the
+#' PALEO-PGEM-Series is downscaled to 1 × 1 arc-degrees spatial resolution from the
 #' outputs of the PALEO-PGEM emulator (Holden et al., 2019), which emulates
 #' reasonable and extensively validated global estimates of monthly temperature
 #' and precipitation for the Plio-Pleistocene every 1 kyr at a spatial
-#' resolution of ~5° × 5° (Holden et al., 2016, 2019).
+#' resolution of ~5 × 5 arc-degrees (Holden et al., 2016, 2019).
 #'
 #' PALEO-PGEM-Series includes the mean and the standard deviation (i.e.,
 #' standard error) of the emulated climate over 10 stochastic GCM emulations
@@ -176,7 +176,7 @@ NULL
 #'  Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023).
 #'  PALEO-PGEM-Series: A spatial time series of the global climate over the
 #'   last 5 million years (Plio-Pleistocene). Global Ecology and
-#'    Biogeography, 00, 1– 12.
+#'    Biogeography, 32, 1034-1045,
 #'    \doi{doi.org/10.1111/geb.13683}
 #'
 #' Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B., Tran, G. T.,
