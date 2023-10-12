@@ -27,7 +27,7 @@ download_etopo <- function(path = NULL, resolution = 60) {
   } else if (resolution == 60) {
     etopo_url <- "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_bed_elev_netcdf/ETOPO_2022_v1_60s_N90W180_bed.nc"
   } else {
-    stop("resolution should be one of 30 or 60 arcsecs")
+    stop("resolution should be one of 30 or 60 arc-secs")
   }
 
   # download the files
