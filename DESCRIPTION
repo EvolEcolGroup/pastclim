@@ -29,6 +29,7 @@ Depends:
   terra (>= 1.7.18)
 Imports:
   curl,
+  lubridate,
   methods,
   ncdf4,
   utils
