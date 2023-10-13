@@ -14,7 +14,7 @@ time steps."><meta property="og:image" content="https://evolecolgroup.github.io/
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,7 @@ time steps."><meta property="og:image" content="https://evolecolgroup.github.io/
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -91,10 +92,11 @@ description above for details).</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The standard test only checks that each SpatRaster has the same number of
-layers. The more thorough test (obtained with strict=TRUE) actually checks
-that all time steps are identical by comparing the result of
-<code><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">terra::time()</a></code> applied to each variable</p>
+    <p>The standard test only checks that all sub-datasets (each of which is a
+<code><a href="https://rdrr.io/pkg/terra/man/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code>) have the same number of
+layers. The more thorough test (obtained with <em>strict=TRUE</em>) actually checks
+that all variables have the same identical time steps by comparing the result of
+<code><a href="https://rdrr.io/pkg/terra/man/time.html" class="external-link">terra::time()</a></code> applied to each variable.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

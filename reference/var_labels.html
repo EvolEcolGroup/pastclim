@@ -12,7 +12,7 @@ for plotting"><meta property="og:image" content="https://evolecolgroup.github.io
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +29,7 @@ for plotting"><meta property="og:image" content="https://evolecolgroup.github.io
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -78,7 +79,7 @@ for plotting</p>
 
 <dt>dataset</dt>
 <dd><p>string defining dataset to be downloaded (a list of possible
-values can be obtained with <code><a href="get_available_datasets.html">get_available_datasets()</a></code>). This function
+values can be obtained with <code><a href="list_available_datasets.html">list_available_datasets()</a></code>). This function
 will not work on custom datasets.</p></dd>
 
 
@@ -105,19 +106,21 @@ for the variable</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set the data_path for this example to run on CRAN</span></span></span>
 <span class="r-in"><span><span class="co"># users don't need to run this line</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="set_data_path_for_CRAN.html">set_data_path_for_CRAN</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="set_data_path.html">set_data_path</a></span><span class="op">(</span>on_CRAN <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># for a SpatRaster</span></span></span>
 <span class="r-in"><span><span class="va">climate_20k</span> <span class="op">&lt;-</span> <span class="fu"><a href="region_slice.html">region_slice</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span></span>
-<span class="r-in"><span>bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>dataset <span class="op">=</span> <span class="st">"Example"</span></span></span>
+<span class="r-in"><span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span></span>
+<span class="r-in"><span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu">var_labels</span><span class="op">(</span><span class="va">climate_20k</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="var_labels-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu">var_labels</span><span class="op">(</span><span class="va">climate_20k</span>, dataset <span class="op">=</span> <span class="st">"Example"</span>,</span></span>
-<span class="r-in"><span>                   abbreviated <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>, main <span class="op">=</span> <span class="fu">var_labels</span><span class="op">(</span><span class="va">climate_20k</span>,</span></span>
+<span class="r-in"><span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span></span>
+<span class="r-in"><span>  abbreviated <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="var_labels-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

@@ -14,7 +14,7 @@ specific date associated with each location)."><meta property="og:image" content
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,7 @@ specific date associated with each location)."><meta property="og:image" content
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -71,6 +72,8 @@ specific date associated with each location).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">location_slice</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time_ce <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  coords <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">bio_variables</span>,</span>
 <span>  <span class="va">dataset</span>,</span>
 <span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -83,9 +86,11 @@ specific date associated with each location).</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>a data.frame with columns <code>longitude</code>, ranging
--180 to 180, and <code>latitude</code>, from -90 to 90, plus optional
-columns <code>time_bp</code> and <code>name</code>. Alternatively, a vector of cell numbers.</p></dd>
+<dd><p>a data.frame with columns x and y coordinates(see <code>coords</code> for
+standard coordinate names, or
+how to use custom ones), plus optional
+columns <code>time_bp</code> or <code>time_ce</code> (depending on the units used) and
+<code>name</code>. Alternatively, a vector of cell numbers.</p></dd>
 
 
 <dt>time_bp</dt>
@@ -93,6 +98,18 @@ columns <code>time_bp</code> and <code>name</code>. Alternatively, a vector of c
 years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.</p></dd>
+
+
+<dt>time_ce</dt>
+<dd><p>time in years CE as an alternative to <code>time_bp</code>.Only one of
+<code>time_bp</code> or <code>time_ce</code> should be used.</p></dd>
+
+
+<dt>coords</dt>
+<dd><p>a vector of length two giving the names of the "x" and "y"
+coordinates, as found in <code>data</code>. If left to NULL, the function will
+try to guess the columns based on standard names <code>c("x", "y")</code>, <code>c("X","Y")</code>,
+<code>c("longitude", "latitude")</code>, or <code>c("lon", "lat")</code></p></dd>
 
 
 <dt>bio_variables</dt>

@@ -14,7 +14,7 @@ get_data_path() and changed with set_data_path()"><meta property="og:image" cont
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,7 @@ get_data_path() and changed with set_data_path()"><meta property="og:image" cont
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -68,20 +69,29 @@ in the data path of <code>pastclim</code>, which can be inspected with
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_dataset</span><span class="op">(</span><span class="va">dataset</span>, bio_variables <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_dataset</span><span class="op">(</span><span class="va">dataset</span>, bio_variables <span class="op">=</span> <span class="cn">NULL</span>, annual <span class="op">=</span> <span class="cn">TRUE</span>, monthly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dataset</dt>
 <dd><p>string defining dataset to be downloaded (a list of possible
-values can be obtained with <code><a href="get_available_datasets.html">get_available_datasets()</a></code>). This function
+values can be obtained with <code><a href="list_available_datasets.html">list_available_datasets()</a></code>). This function
 will not work on custom datasets.</p></dd>
 
 
 <dt>bio_variables</dt>
 <dd><p>one or more variable names to be downloaded. If left
-to NULL, all variables available for this dataset will be downloaded</p></dd>
+to NULL, all variables available for this dataset will be downloaded (the
+parameters <code>annual</code> and <code>monthly</code>, see below, define which types)</p></dd>
+
+
+<dt>annual</dt>
+<dd><p>boolean to download annual variables</p></dd>
+
+
+<dt>monthly</dt>
+<dd><p>boolean to download monthly variables</p></dd>
 
 </dl></div>
     <div class="section level2">

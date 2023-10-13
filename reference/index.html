@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,7 @@
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -67,6 +68,11 @@
 
       <dl><dt>
           
+          <code><a href="Barreto2023.html">Barreto2023</a></code> 
+        </dt>
+        <dd>Documentation for the Barreto et al 2023 dataset</dd>
+      </dl><dl><dt>
+          
           <code><a href="Beyer2020.html">Beyer2020</a></code> 
         </dt>
         <dd>Documentation for the Beyer2020 dataset</dd>
@@ -82,12 +88,22 @@
         <dd>Documentation for the Krapp2021 dataset</dd>
       </dl><dl><dt>
           
+          <code><a href="WorldClim_2.1.html">WorldClim_2.1</a></code> <code><a href="WorldClim_2.1.html">WorldClim_2.1_10m</a></code> <code><a href="WorldClim_2.1.html">WorldClim_2.1_5m</a></code> 
+        </dt>
+        <dd>Documentation for the WorldClim datasets</dd>
+      </dl><dl><dt>
+          
+          <code><a href="bioclim_vars-methods.html">bioclim_vars()</a></code> 
+        </dt>
+        <dd>Compute bioclimatic variables</dd>
+      </dl><dl><dt>
+          
           <code><a href="clean_data_path.html">clean_data_path()</a></code> 
         </dt>
         <dd>Clean the data path</dd>
       </dl><dl><dt>
           
-          <code><a href="climate_for_locations.html">climate_for_locations()</a></code> 
+          <code><a href="climate_for_locations.html">climate_for_locations()</a></code> <code><a href="climate_for_locations.html">climate_for_locations()</a></code> 
         </dt>
         <dd>Extract local climate for one or more locations for a given time slice.</dd>
       </dl><dl><dt>
@@ -157,7 +173,7 @@
         <dd>Get time steps for a given MIS</dd>
       </dl><dl><dt>
           
-          <code><a href="get_time_steps.html">get_time_steps()</a></code> 
+          <code><a href="get_time_bp_steps.html">get_time_bp_steps()</a></code> <code><a href="get_time_bp_steps.html">get_time_ce_steps()</a></code> <code><a href="get_time_bp_steps.html">get_time_steps()</a></code> 
         </dt>
         <dd>Get time steps for a given dataset</dd>
       </dl><dl><dt>
@@ -177,6 +193,11 @@
         <dd>Check the object is a valid region series</dd>
       </dl><dl><dt>
           
+          <code><a href="list_available_datasets.html">list_available_datasets()</a></code> 
+        </dt>
+        <dd>List all the available datasets.</dd>
+      </dl><dl><dt>
+          
           <code><a href="location_series.html">location_series()</a></code> 
         </dt>
         <dd>Extract a time series of bioclimatic variables for one or more locations.</dd>
@@ -187,12 +208,17 @@
         <dd>Extract local climate for one or more locations for a given time slice.</dd>
       </dl><dl><dt>
           
+          <code><a href="location_slice_from_region_series.html">location_slice_from_region_series()</a></code> 
+        </dt>
+        <dd>Extract local climate for one or more locations for a given time slice.</dd>
+      </dl><dl><dt>
+          
           <code><a href="mis_boundaries.html">mis_boundaries</a></code> 
         </dt>
         <dd>Time boundaries of marine isotope stages (MIS).</dd>
       </dl><dl><dt>
           
-          <code><a href="pastclim.html">pastclim</a></code> 
+          <code><a href="pastclim.html">pastclim</a></code> <code><a href="pastclim.html">pastclim-package</a></code> 
         </dt>
         <dd>pastclim</dd>
       </dl><dl><dt>
@@ -237,11 +263,6 @@
         <dd>Set the data path where climate reconstructions will be stored</dd>
       </dl><dl><dt>
           
-          <code><a href="set_data_path_for_CRAN.html">set_data_path_for_CRAN()</a></code> 
-        </dt>
-        <dd>Set the data path for examples on CRAN</dd>
-      </dl><dl><dt>
-          
           <code><a href="slice_region_series.html">slice_region_series()</a></code> 
         </dt>
         <dd>Extract a slice for a time series of climate variables for a region</dd>
@@ -249,7 +270,7 @@
           
           <code><a href="time_bp.html">time_bp()</a></code> <code><a href="time_bp.html">`time_bp&lt;-`()</a></code> 
         </dt>
-        <dd>Extract and set time in years before present for SpatRaster</dd>
+        <dd>Extract and set time in years before present for SpatRaster and SpatRasterDataset</dd>
       </dl><dl><dt>
           
           <code><a href="time_series_for_locations.html">time_series_for_locations()</a></code> 
@@ -270,6 +291,11 @@
           <code><a href="var_labels.html">var_labels()</a></code> 
         </dt>
         <dd>Generate pretty variable labels for plotting</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ybp2date.html">ybp2date()</a></code> <code><a href="ybp2date.html">date2ybp()</a></code> 
+        </dt>
+        <dd>Convert years BP from pastclim to lubridate date, or vice versa</dd>
       </dl></div>
   </main></div>
 

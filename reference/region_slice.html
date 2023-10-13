@@ -16,7 +16,7 @@ each variable as a layer."><meta property="og:image" content="https://evolecolgr
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,7 @@ each variable as a layer."><meta property="og:image" content="https://evolecolgr
     <a class="dropdown-item" href="../articles/a0_pastclim_overview.html">pastclim overview</a>
     <a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a>
     <a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a>
+    <a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a>
   </div>
 </li>
 <li class="nav-item">
@@ -72,7 +73,8 @@ each variable as a layer.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">region_slice</span><span class="op">(</span></span>
-<span>  <span class="va">time_bp</span>,</span>
+<span>  time_bp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time_ce <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">bio_variables</span>,</span>
 <span>  <span class="va">dataset</span>,</span>
 <span>  path_to_nc <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -88,7 +90,13 @@ each variable as a layer.</p>
 values represent
 time before present, positive values time in the future). The slice needs
 to exist in the dataset. To check which slices are available, you can use
-<code><a href="get_time_steps.html">get_time_steps()</a></code>.</p></dd>
+<code><a href="get_time_bp_steps.html">get_time_bp_steps()</a></code>.</p></dd>
+
+
+<dt>time_ce</dt>
+<dd><p>time slice in years CE.
+For available time slices in years CE, use <code><a href="get_time_bp_steps.html">get_time_ce_steps()</a></code>.
+Only one of <code>time_bp</code> or <code>time_ce</code> should be used.</p></dd>
 
 
 <dt>bio_variables</dt>

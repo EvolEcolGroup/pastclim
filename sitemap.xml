@@ -16,6 +16,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/articles/a3_pastclim_present_and_future.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/articles/index.html</loc>
   </url>
   <url>
@@ -28,6 +31,9 @@
     <loc>https://evolecolgroup.github.io/pastclim/news/index.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/Barreto2023.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/Beyer2020.html</loc>
   </url>
   <url>
@@ -37,13 +43,25 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/Krapp2021.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/WorldClim_2.1.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/bioclim_vars-methods.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_available_dataset.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_available_variable.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/check_coords_names.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_dataset_path.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/check_time_vars.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_var_downloaded.html</loc>
@@ -73,7 +91,22 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/distance_from_sea.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/dot-cv.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_chelsa.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_dataset.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_etopo.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_worldclim_future.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_worldclim_present.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_available_datasets.html</loc>
@@ -103,7 +136,10 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_mis_time_steps.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/reference/get_time_steps.html</loc>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/get_sea_level.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/get_time_bp_steps.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_varname.html</loc>
@@ -121,7 +157,13 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/is_region_series.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/list_available_datasets.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/load_dataset_list.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/load_etopo.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/location_series.html</loc>
@@ -130,7 +172,22 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/location_slice.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/location_slice_from_region_series.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/make_binary_mask.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/make_ice_mask.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/make_land_mask.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/mis_boundaries.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/mode.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/pastclim.html</loc>
@@ -166,9 +223,6 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/set_data_path.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/reference/set_data_path_for_CRAN.html</loc>
-  </url>
-  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/slice_region_series.html</loc>
   </url>
   <url>
@@ -191,5 +245,8 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/var_labels.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/ybp2date.html</loc>
   </url>
 </urlset>
