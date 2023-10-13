@@ -17,11 +17,11 @@ help_console(
 
 \item{format}{how the output should be formatted}
 
+\item{lines}{which lines should be printed}
+
 \item{before}{string to be printed before the output}
 
 \item{after}{string to be printed after the output}
-
-\item{which}{lines should be printed}
 }
 \value{
 text of the help file
