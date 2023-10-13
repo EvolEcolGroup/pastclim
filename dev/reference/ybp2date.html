@@ -94,12 +94,12 @@ negative numbers indicating years into the past, or a <code>POSIXct</code> date 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ybp2date</span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘lubridate’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-8050-01-01 UTC"</span>
 <span class="r-in"><span><span class="fu">ybp2date</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘lubridate’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1950-01-01 UTC"</span>
 <span class="r-in"><span><span class="co"># back and forth</span></span></span>
 <span class="r-in"><span><span class="fu">date2ybp</span><span class="op">(</span><span class="fu">ybp2date</span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘lubridate’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -10000</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
