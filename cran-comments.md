@@ -15,3 +15,6 @@ versions on mac of `terra`, on which `pastclim` relies, were problematic. This
 affected other packages as well: https://github.com/r-spatial/stars/issues/566
 Pastclim works on r-oldrel-windows-x86-64, as well as on all other release and
 devel versions.
+
+There were notes on a r-devel, which picked up a man page where a parameters
+was named incorrectly. That has been fixed in the current version.

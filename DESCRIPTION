@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Palaeoclimate Reconstructions 
-Version: 1.2.4
+Version: 1.2.4.9006
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -26,18 +26,19 @@ RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
-  methods,
   terra (>= 1.7.18)
 Imports:
   curl,
+  lubridate,
+  methods,
   ncdf4,
   utils
 Suggests: 
-    rmarkdown,
-    knitr,
-    sf,
-    ggplot2,
-    testthat (>= 3.0.0),
-    spelling
+  rmarkdown,
+  knitr,
+  ggplot2,
+  sf,
+  testthat (>= 3.0.0),
+  spelling
 VignetteBuilder: knitr
 Config/testthat/edition: 3

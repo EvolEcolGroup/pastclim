@@ -7,6 +7,8 @@
 location_series(
   x,
   time_bp = NULL,
+  time_ce = NULL,
+  coords = NULL,
   bio_variables,
   dataset,
   path_to_nc = NULL,
@@ -16,9 +18,9 @@ location_series(
 )
 }
 \arguments{
-\item{x}{a data.frame with columns \code{longitude}, ranging
--180 to 180, and \code{latitude}, from -90 to 90 (and an optional \code{name}),
-or a vector of cell numbers.}
+\item{x}{a data.frame with columns of x and y coordinates (and an optional \code{name} column),
+or a vector of cell numbers. See \code{coords} for standard coordinate names, or
+how to use custom ones.}
 
 \item{time_bp}{time slices in years before present (negative values represent
 time before present, positive values time in the future). This parameter can
@@ -26,7 +28,16 @@ be a vector of times (the slices need
 to exist in the dataset), a list with a min and max element setting the
 range of values, or left to NULL to retrieve all time steps.
 To check which slices are available, you can use
-\code{\link[=get_time_steps]{get_time_steps()}}.}
+\code{\link[=get_time_bp_steps]{get_time_bp_steps()}}.}
+
+\item{time_ce}{time slice in years CE (see \code{time_bp} for options).
+For available time slices in years CE, use \code{\link[=get_time_ce_steps]{get_time_ce_steps()}}.
+Only one of \code{time_bp} or \code{time_ce} should be used.}
+
+\item{coords}{a vector of length two giving the names of the "x" and "y"
+coordinates, as found in \code{data}. If left to NULL, the function will
+try to guess the columns based on standard names \code{c("x", "y")}, \code{c("X","Y")},
+\code{c("longitude", "latitude")}, or \code{c("lon", "lat")}}
 
 \item{bio_variables}{vector of names of variables to be extracted.}
 

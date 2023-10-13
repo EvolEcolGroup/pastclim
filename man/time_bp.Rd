@@ -3,17 +3,23 @@
 \name{time_bp}
 \alias{time_bp}
 \alias{time_bp,SpatRaster-method}
+\alias{time_bp,SpatRasterDataset-method}
 \alias{time_bp<-}
 \alias{time_bp<-,SpatRaster-method}
-\title{Extract and set time in years before present for SpatRaster}
+\alias{time_bp<-,SpatRasterDataset-method}
+\title{Extract and set time in years before present for SpatRaster and SpatRasterDataset}
 \usage{
 time_bp(x)
 
 \S4method{time_bp}{SpatRaster}(x)
 
+\S4method{time_bp}{SpatRasterDataset}(x)
+
 time_bp(x) <- value
 
 \S4method{time_bp}{SpatRaster}(x) <- value
+
+\S4method{time_bp}{SpatRasterDataset}(x) <- value
 }
 \arguments{
 \item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}}
@@ -25,7 +31,7 @@ a date in years BP (where negative numbers indicate a date in the past)
 }
 \description{
 This functions extracts and sets time in years BP (i.e. from 1950) for a
-\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}. In the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, time is
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} or  a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}}. In a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} object, time is
 stored with unit "years", which
 are years from 0AD. This means that, when a summary of the
 \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} is

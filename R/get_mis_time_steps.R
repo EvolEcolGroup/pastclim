@@ -5,7 +5,7 @@
 #' @param mis string giving the mis; it must use the same spelling as used in
 #' [mis_boundaries]
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). If set to
+#' values can be obtained with [list_available_datasets()]). If set to
 #' "custom", then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
@@ -19,7 +19,7 @@ get_mis_time_steps <- function(mis, dataset, path_to_nc = NULL) {
     stop("'mis' should be one of ", paste(mis_boundaries$mis, collapse = ","))
   }
 
-  time_steps <- get_time_steps(dataset = dataset, path_to_nc = path_to_nc)
+  time_steps <- get_time_bp_steps(dataset = dataset, path_to_nc = path_to_nc)
   mis_time_steps <- time_steps[time_steps > (mis_boundaries[mis_boundaries$mis
   == mis, "start"] * 1000) &
     time_steps <= (mis_boundaries[mis_boundaries$mis == mis, "end"] * 1000)]

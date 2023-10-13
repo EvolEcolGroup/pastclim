@@ -12,18 +12,21 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' [get_time_steps()].
+#' [get_time_bp_steps()].
+#' @param time_ce time slices in years CE (see `time_bp` for options).
+#' For available time slices in years CE, use [get_time_ce_steps()].
+#' Only one of `time_bp` or `time_ce` should be used.
 #' @param bio_variables vector of names of variables to be extracted
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
 #' reconstructions. All the variables of interest need to be included in
 #' this file.
-#' @param ext an extent, coded as numeric vector (length=4; 
+#' @param ext an extent, coded as numeric vector (length=4;
 #' order= xmin, xmax, ymin, ymax) or a [terra::SpatExtent] object. If NULL,
 #' the full extent of the reconstruction is given.
 #' @param crop a polygon used to crop the reconstructions (e.g. the outline
-#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object 
+#' of a continental mass). A [`sf::sfg`][sf::st] or a [terra::SpatVector] object
 #' is used to define the polygon.
 #' @returns a
 #' [`terra::SpatRasterDataset`] object, with
@@ -34,33 +37,42 @@
 
 region_series <-
   function(time_bp = NULL,
+           time_ce = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
            ext = NULL,
            crop = NULL) {
-    
-    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
+    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
 
-    if (!is.null(ext)){
-      if(!any(inherits(ext,"SpatExtent"),
-              all(inherits(ext,"numeric"), length(ext)==4))){
-        stop ("ext should be a numeric vector of length 4 or a terra::SpatExtent object created terra::ext")
+    check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
+    if (dataset == "Barreto2023") {
+      message("This is a large dataset, it might take a while...")
+    }
+
+    if (!is.null(ext)) {
+      if (!any(
+        inherits(ext, "SpatExtent"),
+        all(inherits(ext, "numeric"), length(ext) == 4)
+      )) {
+        stop("ext should be a numeric vector of length 4 or a terra::SpatExtent object created terra::ext")
       }
-      if (inherits(ext,"numeric")){
+      if (inherits(ext, "numeric")) {
         ext <- terra::ext(ext)
       }
     }
-    if (!is.null(crop)){
-      if(!any(inherits(crop,"SpatVector"),
-              inherits(crop,"sfg"))){
-        stop ("crop should be a sf::sfg or a terra::SpatVector object created with terra::vect")
+    if (!is.null(crop)) {
+      if (!any(
+        inherits(crop, "SpatVector"),
+        inherits(crop, "sfg")
+      )) {
+        stop("crop should be a sf::sfg or a terra::SpatVector object created with terra::vect")
       }
-      if(inherits(crop,"sfg")){
+      if (inherits(crop, "sfg")) {
         crop <- terra::vect(crop)
       }
     }
-    
+
     # check whether the variables exist for this dataset
     if (dataset != "custom") { # if we are using standard datasets
       check_var_downloaded(bio_variables, dataset)
@@ -85,28 +97,32 @@ region_series <-
       if (is.null(time_index)) {
         # as we have the file name, we can us the same code for custom and
         # standard datasets.
-        times <- get_time_steps(dataset = "custom", path_to_nc = this_file)
-        time_index <- time_bp_to_i_series(time_bp = time_bp,
-                                     time_steps = times)
+        times <- get_time_bp_steps(dataset = "custom", path_to_nc = this_file)
+        time_index <- time_bp_to_i_series(
+          time_bp = time_bp,
+          time_steps = times
+        )
       }
       var_brick <- terra::rast(this_file, subds = this_var_nc)
+
+      # subset to time steps
+      if (!is.null(time_bp)) {
+        var_brick <- terra::subset(var_brick, subset = time_index)
+      }
+
       # subset extent
-      if (!is.null(ext)){
+      if (!is.null(ext)) {
         var_brick <- terra::crop(var_brick, ext)
       }
       # subset to crop
-      if (!is.null(crop)){
+      if (!is.null(crop)) {
         terra::crs(crop) <- terra::crs(var_brick)
         var_brick <- terra::mask(var_brick, crop)
         var_brick <- terra::crop(var_brick, crop)
       }
-      
-      if (!is.null(time_bp)){
-        climate_spatrasters[[this_var]] <- terra::subset(var_brick,
-                                       subset = time_index)
-      } else {
-        climate_spatrasters[[this_var]] <- var_brick
-      }
+
+      climate_spatrasters[[this_var]] <- var_brick
+
       varnames(climate_spatrasters[[this_var]]) <- this_var
       names(climate_spatrasters[[this_var]]) <- paste(this_var,
         time_bp(climate_spatrasters[[this_var]]),

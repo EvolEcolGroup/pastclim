@@ -4,15 +4,20 @@
 \alias{download_dataset}
 \title{Download palaeoclimate reconstructions.}
 \usage{
-download_dataset(dataset, bio_variables = NULL)
+download_dataset(dataset, bio_variables = NULL, annual = TRUE, monthly = FALSE)
 }
 \arguments{
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
+values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function
 will not work on custom datasets.}
 
 \item{bio_variables}{one or more variable names to be downloaded. If left
-to NULL, all variables available for this dataset will be downloaded}
+to NULL, all variables available for this dataset will be downloaded (the
+parameters \code{annual} and \code{monthly}, see below, define which types)}
+
+\item{annual}{boolean to download annual variables}
+
+\item{monthly}{boolean to download monthly variables}
 }
 \value{
 TRUE if the dataset(s) was downloaded correctly.

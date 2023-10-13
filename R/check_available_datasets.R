@@ -9,7 +9,7 @@
 
 
 check_available_dataset <- function(dataset, include_custom = FALSE) {
-  available_datasets <- get_available_datasets()
+  available_datasets <- list_available_datasets()
   if (include_custom) {
     available_datasets <- c(available_datasets, "custom")
   }

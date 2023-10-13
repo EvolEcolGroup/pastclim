@@ -6,16 +6,23 @@
 #'  falls into the water for the reconstructions, you will have to amend the coordinates
 #'  to put it more firmly on land.
 #'
-#' @param x a data.frame with columns `longitude`, ranging
-#' -180 to 180, and `latitude`, from -90 to 90 (and an optional `name`),
-#' or a vector of cell numbers.
+#' @param x a data.frame with columns of x and y coordinates (and an optional `name` column),
+#' or a vector of cell numbers. See `coords` for standard coordinate names, or
+#' how to use custom ones.
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
 #' be a vector of times (the slices need
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' [get_time_steps()].
+#' [get_time_bp_steps()].
+#' @param time_ce time slice in years CE (see `time_bp` for options).
+#' For available time slices in years CE, use [get_time_ce_steps()].
+#' Only one of `time_bp` or `time_ce` should be used.
+#' @param coords a vector of length two giving the names of the "x" and "y"
+#' coordinates, as found in `data`. If left to NULL, the function will
+#' try to guess the columns based on standard names `c("x", "y")`, `c("X","Y")`,
+#'  `c("longitude", "latitude")`, or `c("lon", "lat")`
 #' @param bio_variables vector of names of variables to be extracted.
 #' @param dataset string defining the dataset to use. If set to "custom",
 #' then a single nc file is used from "path_to_nc"
@@ -35,8 +42,8 @@
 #' locations that are in cells with an NA). The buffer size is determined
 #' by the argument `directions`. `buffer` defaults to FALSE.
 #' @param directions character or matrix to indicate the directions in which
-#' cells are considered connected when using `nn_interpol` or `buffer`. 
-#' The following character values are allowed: "rook" or "4" for the 
+#' cells are considered connected when using `nn_interpol` or `buffer`.
+#' The following character values are allowed: "rook" or "4" for the
 #' horizontal and vertical neighbours; "bishop" to get the diagonal neighbours;
 #' "queen" or "8" to get the vertical, horizontal and diagonal neighbours;
 #' or "16" for knight and one-cell queen move neighbours. If directions
@@ -47,27 +54,32 @@
 location_series <-
   function(x,
            time_bp = NULL,
+           time_ce = NULL,
+           coords = NULL,
            bio_variables,
            dataset,
            path_to_nc = NULL,
            nn_interpol = FALSE,
            buffer = FALSE,
            directions = 8) {
-    
+    time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
+
     check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
     # if we are using standard datasets, check whether a variables exists
     # and get the times
     if (dataset != "custom") {
       check_var_downloaded(bio_variables, dataset)
-      times <- get_time_steps(dataset = dataset, path_to_nc = path_to_nc)
+      times <- get_time_bp_steps(dataset = dataset, path_to_nc = path_to_nc)
     } else { # else check that the variables exist in the custom nc
       check_var_in_nc(bio_variables, path_to_nc)
-      times <- get_time_steps(dataset = "custom", path_to_nc = path_to_nc)
+      times <- get_time_bp_steps(dataset = "custom", path_to_nc = path_to_nc)
     }
-    time_bp_i <- time_bp_to_i_series(time_bp = time_bp,
-                                     time_steps = times)
-    if (is.null(time_bp_i)){
+    time_bp_i <- time_bp_to_i_series(
+      time_bp = time_bp,
+      time_steps = times
+    )
+    if (is.null(time_bp_i)) {
       time_bp <- times
     } else {
       time_bp <- times[time_bp_i]
@@ -75,33 +87,36 @@ location_series <-
 
     # check coordinates data frame
     if (inherits(x, "data.frame")) {
-      if (!all(c("longitude","latitude") %in% names(x))){
-        stop ("x should be a dataframe with columns latitude and longitude")
-      }
+      coords <- check_coords_names(x, coords)
+
       # if names does not exist, add it
-      if (!"name" %in% names(x)){
-        x$name<-as.character(1:nrow(x))
+      if (!"name" %in% names(x)) {
+        x$name <- as.character(1:nrow(x))
       }
-      x <- x[,match(c("name","longitude", "latitude"), names(x))]
+      x <- x[, match(c("name", coords), names(x))]
       n_loc <- nrow(x)
       # now repeat it for each time step
-      x<- x[rep(1:nrow(x),length(time_bp)),]
-
-    }else if (inherits(x, "numeric")){
+      x <- x[rep(1:nrow(x), length(time_bp)), ]
+    } else if (inherits(x, "numeric")) {
       n_loc <- length(x)
-      x<- rep(x, length(time_bp))
+      x <- rep(x, length(time_bp))
     } else {
-      stop ("x should be either a data.frame or a numeric vector")
+      stop("x should be either a data.frame or a numeric vector")
     }
-    
+
     # now copy over the times to match the coordinates
-    time_bp <- rep(time_bp, each=n_loc)
+    time_bp <- rep(time_bp, each = n_loc)
     # and now feed the info to location_slice
-    location_ts <- location_slice(x=x, time_bp = time_bp, bio_variables = bio_variables,
-                                  dataset= dataset, path_to_nc=path_to_nc,
-                                  nn_interpol = nn_interpol, buffer = buffer,
-                                  directions = directions)
-    return(location_ts[,!names(location_ts) %in% "time_bp_slice"])
+    location_ts <- location_slice(
+      x = x, time_bp = time_bp, coords = coords, bio_variables = bio_variables,
+      dataset = dataset, path_to_nc = path_to_nc,
+      nn_interpol = nn_interpol, buffer = buffer,
+      directions = directions
+    )
+
+    # TODO if we had time_ce, we should convert back from time_bp
+
+    return(location_ts[, !names(location_ts) %in% "time_bp_slice"])
   }
 
 
@@ -125,5 +140,3 @@ time_series_for_locations <- function(...) {
   # }
   location_series(...)
 }
-
-
