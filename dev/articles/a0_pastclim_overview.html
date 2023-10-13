@@ -228,7 +228,7 @@ used:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_data_path.html">set_data_path</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.53</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.7.55</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; The data_path will be set to /home/andrea/.local/share/R/pastclim.</span></span>
 <span><span class="co">#&gt; A copy of the Example dataset will be copied there.</span></span>
 <span><span class="co">#&gt; This path will be saved by pastclim for future use.</span></span>
@@ -919,13 +919,13 @@ generate the raster for the time slice of interest, and use
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell      x    y      bio01     bio10</span></span>
-<span><span class="co">#&gt; 1  4126  -14.5 78.5 -24.554495  3.125561</span></span>
-<span><span class="co">#&gt; 2 22036 -104.5 28.5  13.361357 21.143742</span></span>
-<span><span class="co">#&gt; 3 16493  112.5 44.5  -4.204268 13.900687</span></span>
-<span><span class="co">#&gt; 4  6036   95.5 73.5 -25.463169  2.716092</span></span>
-<span><span class="co">#&gt; 5 15677   16.5 46.5   4.200297 12.966620</span></span>
-<span><span class="co">#&gt; 6 25795   54.5 18.5  20.273554 24.883375</span></span></code></pre></div>
+<span><span class="co">#&gt;    cell    x    y      bio01    bio10</span></span>
+<span><span class="co">#&gt; 1 27260 79.5 14.5 26.0443516 29.59566</span></span>
+<span><span class="co">#&gt; 2 25069 48.5 20.5 21.6022301 27.67044</span></span>
+<span><span class="co">#&gt; 3 22529 28.5 27.5 17.0900097 24.61561</span></span>
+<span><span class="co">#&gt; 4 14608 27.5 49.5  0.9046773 13.87594</span></span>
+<span><span class="co">#&gt; 5 15021 80.5 48.5 -3.6127317 12.89814</span></span>
+<span><span class="co">#&gt; 6 23961 20.5 23.5 18.7230949 24.94464</span></span></code></pre></div>
 <p>If we have samples from multiple time steps, we need to sample the
 background proportionally to the number of points in each time step. So,
 for example, if we wanted 30 samples from 20k years ago and 50 samples
@@ -939,15 +939,15 @@ from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01     bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1  163 62.5 73.5 -29.542343  2.441715 146.7908  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 2098 42.5 50.5  -1.841990 13.509008 396.8441  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 3356 25.5 35.5  14.037047 21.158142 513.8652  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 2944 38.5 40.5   7.164032 19.750088 524.3688  -10000</span></span>
-<span><span class="co">#&gt; -10000.2  749 53.5 66.5  -4.565384 12.638615 393.2508  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2835 14.5 41.5  12.099772 22.308689 860.8906  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2081 25.5 50.5   6.185443 18.567572 585.2748  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 1784 68.5 54.5  -0.359140 21.231092 255.4096  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y      bio01    bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 1508 47.5 57.5 -7.4262981 12.47972  446.9211  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 3025 34.5 39.5  6.3280730 14.28266  333.6010  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 1601 55.5 56.5 -6.8233223 13.08453  396.8469  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 1920 34.5 52.5  4.5883408 19.30335  596.7338  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 1455 -5.5 57.5  5.3910956 10.72550 2201.8074  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 1769 53.5 54.5  1.7074078 21.50149  436.9281  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 1330 39.5 59.5  0.8765289 15.82050  524.5095  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2799 63.5 42.5  9.9797945 29.87508   93.5507  -10000</span></span></code></pre></div>
 <p>We could then use these data to build a PCA.</p>
 </div>
 <div class="section level2">
