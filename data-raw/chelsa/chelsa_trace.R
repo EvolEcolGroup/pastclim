@@ -3,7 +3,8 @@
 # create a download function that simply tells the user to use download_chelsa_trace21k
 
 
-download_chelsa_trace21k <- function(time_bp, work_dir = tempdir()){
+download_chelsa_trace21k <- function(bio_variables = NULL, annual = TRUE,
+                                     monthly = FALSE, time_bp, work_dir = tempdir()){
   vers <- "1.0"
   chelsa_trace_path<- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace/" 
   avail_time_bp <- seq(0,-22000,-100)
@@ -30,6 +31,6 @@ download_chelsa_trace21k <- function(time_bp, work_dir = tempdir()){
   terra::writeCDF(this_var_rast, 
                   filename = file.path(get_data_path(),pastclim_nc_name), 
                   varname = i_var,
-                  compression = 9,
+                  compression = 6,
                   overwrite=TRUE) 
 }
