@@ -24,17 +24,21 @@ setGeneric("time_bp", function(x) {
 setMethod(
   "time_bp", signature(x = "SpatRaster"),
   function(x) {
-    if (timeInfo(x)$step != "years") {
+    if (timeInfo(x)$step == "years") {
+      time_bp <- terra::time(x) - 1950
+    } else if (any(inherits(terra::time(x), "POSIXct"), inherits(terra::time(x), "Date"))) {
+      time_bp <- date2ybp(terra::time(x))
+    } else {
       # as of 1.7.18, the bug in terra setting years to negative has ben fixed
       stop(
-        "The time units of SpatRaster are not 'years'.\n",
+        "The time units of SpatRaster are not 'years' or a 'days'.\n",
         "It might be a problem with the time units not being properly set in the original nc file.\n",
         "Set time units correctly with time_bp(x)<-c(-10000,-400).\n",
         "NOTE do NOT use terra:time, as that terra measures years from 0AD, not BP"
       )
     }
-    time_yr <- terra::time(x)
-    return(time_yr - 1950)
+    
+    return(time_bp)
   }
 )
 
@@ -46,17 +50,7 @@ setMethod(
     if (!is_region_series(x)) {
       stop("this is not a valid region series; it should be a SpatRasterDataset where each dataset (i.e. variable) has the same time steps")
     }
-    if (timeInfo(x[[1]])$step != "years") {
-      # as of 1.7.18, the bug in terra setting years to negative has been fixed
-      stop(
-        "The time units of SpatRaster are not 'years'.\n",
-        "It might be a problem with the time units not being properly set in the original nc file.\n",
-        "Set time units correctly with time_bp(x)<-c(-10000,-400).\n",
-        "NOTE do NOT use terra:time, as that terra measures years from 0AD, not BP"
-      )
-    }
-    time_yr <- terra::time(x[[1]])
-    return(time_yr - 1950)
+    time_bp(x[[1]])
   }
 )
 
