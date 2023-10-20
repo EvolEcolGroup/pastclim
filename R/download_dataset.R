@@ -31,7 +31,7 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
   # check that the variable is available for this dataset
   available_variables <-
     getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset]
-  # if variable is null, donwload all possible variables
+  # if variable is null, download all possible variables
   if (is.null(bio_variables)) {
     bio_variables <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset, ]
     if (!monthly) {
@@ -54,13 +54,6 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
       )
     )
   }
-
-  # if (dataset %in% c("Krapp2021", "Beyer2020", "Example")){
-  #   # add biome to list of variables (we need it to generate the landmask)
-  #   if (!"biome" %in% bio_variables) {
-  #     bio_variables <- c(bio_variables, "biome")
-  #   }
-  # }
 
   # add biome to list of variables (we need it to generate the landmask)
   if (all((!"biome" %in% bio_variables), ("biome" %in% available_variables))) {

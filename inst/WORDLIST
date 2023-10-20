@@ -1,10 +1,12 @@
 ANUCLIM
+Beusen
 CHELSA
 CMCC
 CMD
 CMIP
 CSM
 Chalki
+Doelman
 ESM
 ETOPO
 Edmundson
@@ -17,6 +19,7 @@ GCMs
 GFDL
 GISS
 Geosci
+Goldewijk
 HR
 HadCM
 HadGEM
@@ -45,6 +48,8 @@ Sci
 SpatRaster
 SpatRasterDataset
 Spratt
+Stehfest
+Syst
 TraCE
 Tran
 UKESM
