@@ -1,10 +1,12 @@
 # pastclim 2.0.0
 * Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)
 * Add all the WorldClim data (present, and future projections with multiple models
-and emission scenarios).
+  and emission scenarios).
+* Add the HYDE 3.3 database providing information on agriculture and population sizes
+  for the last 10k years.
 * Change the units of Krapp et al 2021 to match those of other datasets. Also, fix
-data duplication of some variables which has now also been fixed on the OSF repository
-for that dataset.
+  data duplication of some variables which has now also been fixed on the OSF repository
+  for that dataset.
 * Improve `get_ice_mask()`, `get_land_mask()`, and `distance_from_sea()` to work
   on series rather than just on slices.
 * Speed up `region_*()` functions when subsetting the extent/cropping.

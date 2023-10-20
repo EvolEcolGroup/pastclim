@@ -25,8 +25,8 @@ ybp2date <- function(x) {
 #' @rdname ybp2date
 #' @export
 date2ybp <- function(x) {
-  if (!inherits(x, "POSIXct")) {
-    stop("x should be a POSIXct object")
+  if (!any(inherits(x, "POSIXct"), inherits(x, "Date"))) {
+    stop("x should be a POSIXct or Date object")
   }
   lubridate::year(x) - 1950
 }
