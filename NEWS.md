@@ -1,4 +1,8 @@
 # pastclim 2.0.0
+* Allow time to be defined as CE besides BP. NOTE that this adds a parameter
+  to a number of functions. If those functions were used without explicitely
+  naming parameters, old code might give an error as the order of parameters
+  has now changed).
 * Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)
 * Add all the WorldClim data (present, and future projections with multiple models
   and emission scenarios).
@@ -10,7 +14,6 @@
 * Improve `get_ice_mask()`, `get_land_mask()`, and `distance_from_sea()` to work
   on series rather than just on slices.
 * Speed up `region_*()` functions when subsetting the extent/cropping.
-* Allow time to be defined as CE besides BP.
 
 # pastclim 1.2.4
 * Updates on how time is handled to stay in sync with changes in `terra`.
