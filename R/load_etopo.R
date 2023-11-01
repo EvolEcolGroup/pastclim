@@ -4,7 +4,7 @@
 #' 30 or 60 arcsec resolution. To save the variables in a compatible
 #' format, use [download_etopo()].
 #'
-#' The function assumes that the file name is *etopo2022_{resolution}s_v1.nc*
+#' The function assumes that the file name is `etopo2022_{resolution}s_v1.nc`
 #'
 #' @param path	character. Path where the dataset is stored. If left NULL, the data
 #' will be downloaded from the directory returned by [get_data_path()]
