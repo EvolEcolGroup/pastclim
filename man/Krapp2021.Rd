@@ -26,7 +26,7 @@ Note that, for bio15, we use the corrected version, which follows
 Changelog
 
 v1.4.0 Change units to match WorldClim. Fix variable duplication found
-on earlier versions of the dataset.
+on earlier versions of the dataset. \url{https://zenodo.org/records/8415273}
 
 v1.1.0 Added monthly variables. Files can be downloaded from:
 \url{https://zenodo.org/record/7065055}
