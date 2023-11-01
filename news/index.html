@@ -58,13 +58,13 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="pastclim-200">pastclim 2.0.0<a class="anchor" aria-label="anchor" href="#pastclim-200"></a></h2>
-<ul><li>Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)</li>
+<ul><li>Allow time to be defined as CE besides BP. NOTE that this adds a parameter to a number of functions. If those functions were used without explicitely naming parameters, old code might give an error as the order of parameters has now changed).</li>
+<li>Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)</li>
 <li>Add all the WorldClim data (present, and future projections with multiple models and emission scenarios).</li>
 <li>Add the HYDE 3.3 database providing information on agriculture and population sizes for the last 10k years.</li>
 <li>Change the units of Krapp et al 2021 to match those of other datasets. Also, fix data duplication of some variables which has now also been fixed on the OSF repository for that dataset.</li>
 <li>Improve <code><a href="../reference/get_ice_mask.html">get_ice_mask()</a></code>, <code><a href="../reference/get_land_mask.html">get_land_mask()</a></code>, and <code><a href="../reference/distance_from_sea.html">distance_from_sea()</a></code> to work on series rather than just on slices.</li>
 <li>Speed up <code>region_*()</code> functions when subsetting the extent/cropping.</li>
-<li>Allow time to be defined as CE besides BP.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.4" id="pastclim-124">pastclim 1.2.4<a class="anchor" aria-label="anchor" href="#pastclim-124"></a></h2><p class="text-muted">CRAN release: 2023-04-25</p>
