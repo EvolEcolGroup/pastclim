@@ -18,7 +18,7 @@ NULL
 #' Beyer, R.M.,
 #' Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
 #' vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
-#' \doi{doi.org/10.1038/s41597-020-0552-1}
+#' \doi{10.1038/s41597-020-0552-1}
 #'
 #' The version included in `pastclim` has the ice sheets masked, as well as
 #' internal seas (Black and Caspian Sea) removed. The latter are based on:
@@ -41,7 +41,7 @@ NULL
 #'
 #' v1.0.0 Remove ice sheets and internal seas, and use correct formula for bio15.
 #' Files can be downloaded from:
-#' \doi{doi.org/10.6084/m9.figshare.19723405.v1}
+#' \doi{10.6084/m9.figshare.19723405.v1}
 #'
 #'
 #' @name Beyer2020
@@ -61,7 +61,7 @@ NULL
 #' Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
 #' reconstruction of high-resolution global terrestrial climate for the last
 #' 800,000 years. Sci Data 8, 228 (2021).
-#' \doi{doi.org/10.1038/s41597-021-01009-3}
+#' \doi{10.1038/s41597-021-01009-3}
 #'
 #' The version included in `pastclim` has the ice sheets masked.
 #'
@@ -78,7 +78,7 @@ NULL
 #'
 #' v1.0.0 Remove ice sheets and use correct formula for bio15.
 #' Files can be downloaded from:
-#' \doi{doi.org/10.6084/m9.figshare.19733680.v1}
+#' \doi{10.6084/m9.figshare.19733680.v1}
 #'
 #' @name Krapp2021
 NULL
@@ -92,7 +92,7 @@ NULL
 #'
 #' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
 #' climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315.
-#' \doi{doi.org/10.1002/joc.5086}
+#' \doi{10.1002/joc.5086}
 #'
 #' **Present-day reconstructions** are based on the mean for the period 1970-2000,
 #' and are available at multiple resolutions of
@@ -177,12 +177,12 @@ NULL
 #'  PALEO-PGEM-Series: A spatial time series of the global climate over the
 #'   last 5 million years (Plio-Pleistocene). Global Ecology and
 #'    Biogeography, 32, 1034-1045,
-#'    \doi{doi.org/10.1111/geb.13683}
+#'    \doi{10.1111/geb.13683}
 #'
 #' Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B., Tran, G. T.,
 #'  and Wilkinson, R. D. (2019): PALEO-PGEM v1.0: a statistical emulator of
 #'   Pliocene–Pleistocene climate, Geosci. Model Dev., 12, 5137–5155,
-#'    \doi{doi.org/10.5194/gmd-12-5137-2019}.
+#'    \doi{10.5194/gmd-12-5137-2019}.
 #'
 #' @name Barreto2023
 NULL
@@ -212,7 +212,7 @@ NULL
 #'
 #' Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.: 
 #' Anthropogenic land-use estimates for the Holocene; HYDE 3.2, 
-#' Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{doi.org/10.5194/essd-9-1-2017}
+#' Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-1-2017}
 #'
 #' @name HYDE_3.3_baseline
 NULL
