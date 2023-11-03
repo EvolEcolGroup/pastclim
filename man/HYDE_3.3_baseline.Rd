@@ -27,5 +27,5 @@ for the HYDE 3.2 (there is no current publication for 3.3):
 
 Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:
 Anthropogenic land-use estimates for the Holocene; HYDE 3.2,
-Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{doi.org/10.5194/essd-9-1-2017}
+Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-1-2017}
 }

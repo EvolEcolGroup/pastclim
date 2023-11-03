@@ -9,7 +9,7 @@ download_etopo(path = NULL, resolution = 60)
 \arguments{
 \item{path}{character. Path where to download the data to. If left NULL, the data
 will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}, and automatically
-named "etopo2022_{resolution}s_v1.nc"}
+named \verb{etopo2022_\{resolution\}s_v1.nc}}
 
 \item{resolution}{numeric resolution in arcsecs (one of 30, or 60).
 Defaults to 60 arcsecs.}
