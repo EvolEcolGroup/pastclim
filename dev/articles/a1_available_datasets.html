@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9006</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,10 +104,11 @@ possible to get a list of all available datasets with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.55</span></span></code></pre></div>
+<span><span class="co">#&gt; terra 1.7.59</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Example"     "Beyer2020"   "Krapp2021"   "Barreto2023"</span></span>
+<span><span class="co">#&gt; [1] "Example"           "Beyer2020"         "Krapp2021"        </span></span>
+<span><span class="co">#&gt; [4] "Barreto2023"       "HYDE_3.3_baseline"</span></span>
 <span><span class="co">#&gt; for present day reconstructions, use "WorldClim_2.1_RESm", where RES is an available resolution.</span></span>
 <span><span class="co">#&gt; for future predictions, use "WorldClim_2.1_GCM_SSP_RESm", where GCM is the GCM model, SSP is the Shared Societ-economic Pathways scenario.</span></span>
 <span><span class="co">#&gt; use help("WorldClim_2.1") for a list of available options</span></span></code></pre></div>
@@ -231,7 +232,8 @@ possible to get a list of all available datasets with:</p>
 <span><span class="co">#&gt; [115] "WorldClim_2.1_UKESM1-0-LL_ssp370_10m"    </span></span>
 <span><span class="co">#&gt; [116] "WorldClim_2.1_UKESM1-0-LL_ssp370_5m"     </span></span>
 <span><span class="co">#&gt; [117] "WorldClim_2.1_UKESM1-0-LL_ssp585_10m"    </span></span>
-<span><span class="co">#&gt; [118] "WorldClim_2.1_UKESM1-0-LL_ssp585_5m"</span></span></code></pre></div>
+<span><span class="co">#&gt; [118] "WorldClim_2.1_UKESM1-0-LL_ssp585_5m"     </span></span>
+<span><span class="co">#&gt; [119] "HYDE_3.3_baseline"</span></span></code></pre></div>
 <p>For each dataset, you can get detailed information using the help
 function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -284,15 +286,14 @@ alphabetical order):</p>
 <span><span class="co">#&gt;      Barreto, E., Holden, P. B., Edwards, N. R., &amp; Rangel, T. F.</span></span>
 <span><span class="co">#&gt;      (2023). PALEO-PGEM-Series: A spatial time series of the global</span></span>
 <span><span class="co">#&gt;      climate over the last 5 million years (Plio-Pleistocene). Global</span></span>
-<span><span class="co">#&gt;      Ecology and Biogeography, 32, 1034-1045,</span></span>
-<span><span class="co">#&gt;      doi:doi.org/10.1111/geb.13683</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1111/geb.13683&gt;</span></span>
+<span><span class="co">#&gt;      Ecology and Biogeography, 32, 1034-1045, doi:10.1111/geb.13683</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.1111/geb.13683&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B.,</span></span>
 <span><span class="co">#&gt;      Tran, G. T., and Wilkinson, R. D. (2019): PALEO-PGEM v1.0: a</span></span>
 <span><span class="co">#&gt;      statistical emulator of Pliocene&lt;e2&gt;&lt;80&gt;&lt;93&gt;Pleistocene climate, Geosci.</span></span>
-<span><span class="co">#&gt;      Model Dev., 12, 5137&lt;e2&gt;&lt;80&gt;&lt;93&gt;5155, doi:doi.org/10.5194/gmd-12-5137-2019</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.5194/gmd-12-5137-2019&gt;.</span></span>
+<span><span class="co">#&gt;      Model Dev., 12, 5137&lt;e2&gt;&lt;80&gt;&lt;93&gt;5155, doi:10.5194/gmd-12-5137-2019</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.5194/gmd-12-5137-2019&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
@@ -310,8 +311,8 @@ alphabetical order):</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      Beyer, R.M., Krapp, M. &amp; Manica, A. High-resolution terrestrial</span></span>
 <span><span class="co">#&gt;      climate, bioclimate and vegetation for the last 120,000 years. Sci</span></span>
-<span><span class="co">#&gt;      Data 7, 236 (2020). doi:doi.org/10.1038/s41597-020-0552-1</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1038/s41597-020-0552-1&gt;</span></span>
+<span><span class="co">#&gt;      Data 7, 236 (2020). doi:10.1038/s41597-020-0552-1</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.1038/s41597-020-0552-1&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      The version included in 'pastclim' has the ice sheets masked, as</span></span>
 <span><span class="co">#&gt;      well as internal seas (Black and Caspian Sea) removed. The latter</span></span>
@@ -335,8 +336,8 @@ alphabetical order):</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      v1.0.0 Remove ice sheets and internal seas, and use correct</span></span>
 <span><span class="co">#&gt;      formula for bio15. Files can be downloaded from:</span></span>
-<span><span class="co">#&gt;      doi:doi.org/10.6084/m9.figshare.19723405.v1</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.6084/m9.figshare.19723405.v1&gt;</span></span>
+<span><span class="co">#&gt;      doi:10.6084/m9.figshare.19723405.v1</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.6084/m9.figshare.19723405.v1&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
@@ -347,6 +348,41 @@ alphabetical order):</p>
 <span><span class="co">#&gt;      This dataset is a subset of Beyer2020, used for the vignette of</span></span>
 <span><span class="co">#&gt;      pastclim. Do not use this dataset for any real work, as it might</span></span>
 <span><span class="co">#&gt;      not reflect the most up-to-date version of Beyer2020.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; #######################################################</span></span>
+<span><span class="co">#&gt; Documentation for HYDE 3.3 dataset</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Description:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      This database presents an update and expansion of the History</span></span>
+<span><span class="co">#&gt;      Database of the Global Environment (HYDE, v 3.3) and replaces</span></span>
+<span><span class="co">#&gt;      former HYDE 3.2 version from 2017. HYDE is and internally</span></span>
+<span><span class="co">#&gt;      consistent combination of updated historical population estimates</span></span>
+<span><span class="co">#&gt;      and land use. Categories include cropland, with a new distinction</span></span>
+<span><span class="co">#&gt;      into irrigated and rain fed crops (other than rice) and irrigated</span></span>
+<span><span class="co">#&gt;      and rain fed rice. Also grazing lands are provided, divided into</span></span>
+<span><span class="co">#&gt;      more intensively used pasture, converted rangeland and</span></span>
+<span><span class="co">#&gt;      non-converted natural (less intensively used) rangeland.</span></span>
+<span><span class="co">#&gt;      Population is represented by maps of total, urban, rural</span></span>
+<span><span class="co">#&gt;      population and population density as well as built-up area.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Details:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      The period covered is 10 000 BCE to 2023 CE. Spatial resolution is</span></span>
+<span><span class="co">#&gt;      5 arc minutes (approx. 85 km2 at the equator). The full HYDE 3.3</span></span>
+<span><span class="co">#&gt;      release contains: a Baseline estimate scenario, a Lower estimate</span></span>
+<span><span class="co">#&gt;      scenario and an Upper estimate scenario. Currently only the</span></span>
+<span><span class="co">#&gt;      baseline scenario is available in 'pastclim'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      If you use this dataset, make sure to cite the original</span></span>
+<span><span class="co">#&gt;      publication for the HYDE 3.2 (there is no current publication for</span></span>
+<span><span class="co">#&gt;      3.3):</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:</span></span>
+<span><span class="co">#&gt;      Anthropogenic land-use estimates for the Holocene; HYDE 3.2, Earth</span></span>
+<span><span class="co">#&gt;      Syst. Sci. Data, 9, 927-953, 2017. doi:10.5194/essd-9-1-2017</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.5194/essd-9-1-2017&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
@@ -368,8 +404,8 @@ alphabetical order):</p>
 <span><span class="co">#&gt;      Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based</span></span>
 <span><span class="co">#&gt;      reconstruction of high-resolution global terrestrial climate for</span></span>
 <span><span class="co">#&gt;      the last 800,000 years. Sci Data 8, 228 (2021).</span></span>
-<span><span class="co">#&gt;      doi:doi.org/10.1038/s41597-021-01009-3</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1038/s41597-021-01009-3&gt;</span></span>
+<span><span class="co">#&gt;      doi:10.1038/s41597-021-01009-3</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.1038/s41597-021-01009-3&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      The version included in 'pastclim' has the ice sheets masked.</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -380,14 +416,14 @@ alphabetical order):</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      v1.4.0 Change units to match WorldClim. Fix variable duplication</span></span>
 <span><span class="co">#&gt;      found on earlier versions of the dataset.</span></span>
+<span><span class="co">#&gt;      &lt;https://zenodo.org/records/8415273&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      v1.1.0 Added monthly variables. Files can be downloaded from:</span></span>
 <span><span class="co">#&gt;      &lt;https://zenodo.org/record/7065055&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      v1.0.0 Remove ice sheets and use correct formula for bio15. Files</span></span>
-<span><span class="co">#&gt;      can be downloaded from:</span></span>
-<span><span class="co">#&gt;      doi:doi.org/10.6084/m9.figshare.19733680.v1</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.6084/m9.figshare.19733680.v1&gt;</span></span>
+<span><span class="co">#&gt;      can be downloaded from: doi:10.6084/m9.figshare.19733680.v1</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.6084/m9.figshare.19733680.v1&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; #######################################################</span></span>
@@ -404,9 +440,8 @@ alphabetical order):</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial</span></span>
 <span><span class="co">#&gt;      resolution climate surfaces for global land areas. International</span></span>
-<span><span class="co">#&gt;      Journal of Climatology 37 (12): 4302-4315.</span></span>
-<span><span class="co">#&gt;      doi:doi.org/10.1002/joc.5086</span></span>
-<span><span class="co">#&gt;      &lt;https://doi.org/doi.org/10.1002/joc.5086&gt;</span></span>
+<span><span class="co">#&gt;      Journal of Climatology 37 (12): 4302-4315. doi:10.1002/joc.5086</span></span>
+<span><span class="co">#&gt;      &lt;https://doi.org/10.1002/joc.5086&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      *Present-day reconstructions* are based on the mean for the period</span></span>
 <span><span class="co">#&gt;      1970-2000, and are available at multiple resolutions of 10</span></span>

@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.2.4.9006</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,7 +117,7 @@ minimum, mean, and maximum temperature, and precipitation.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.55</span></span>
+<span><span class="co">#&gt; terra 1.7.59</span></span>
 <span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span><span class="st">"WorldClim_2.1_10m"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "bio01"    "bio02"    "bio03"    "bio04"    "bio05"    "bio06"   </span></span>
 <span><span class="co">#&gt;  [7] "bio07"    "bio08"    "bio09"    "bio10"    "bio11"    "bio12"   </span></span>
@@ -288,7 +288,8 @@ the dataset name <em>WorldClim_2.1_GCM_SSP_RESm</em>.</p>
 <span><span class="co">#&gt; [115] "WorldClim_2.1_UKESM1-0-LL_ssp370_10m"    </span></span>
 <span><span class="co">#&gt; [116] "WorldClim_2.1_UKESM1-0-LL_ssp370_5m"     </span></span>
 <span><span class="co">#&gt; [117] "WorldClim_2.1_UKESM1-0-LL_ssp585_10m"    </span></span>
-<span><span class="co">#&gt; [118] "WorldClim_2.1_UKESM1-0-LL_ssp585_5m"</span></span></code></pre></div>
+<span><span class="co">#&gt; [118] "WorldClim_2.1_UKESM1-0-LL_ssp585_5m"     </span></span>
+<span><span class="co">#&gt; [119] "HYDE_3.3_baseline"</span></span></code></pre></div>
 <p>So, if we are interested in the the HadGEM3-GC31-LL model, with ssp
 set to 245 and at 10 arc-minutes, we can get the available
 variables:</p>
