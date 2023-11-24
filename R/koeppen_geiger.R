@@ -31,7 +31,8 @@
 #' 
 #' @export
 
-methods::setGeneric("koeppen_geiger", function(prec, tavg, broad=FALSE, class_names=FALSE, ...) {
+methods::setGeneric("koeppen_geiger", function(prec, tavg, broad=FALSE,
+                                               class_names = TRUE, ...) {
   methods::standardGeneric("koeppen_geiger")
 })
 
@@ -39,7 +40,7 @@ methods::setGeneric("koeppen_geiger", function(prec, tavg, broad=FALSE, class_na
 #' @export
 methods::setMethod(
   "koeppen_geiger", signature(prec = "numeric", tavg = "numeric"),
-  function(prec, tavg, broad=FALSE, class_names=FALSE, ...) {
+  function(prec, tavg, broad=FALSE, class_names=TRUE, ...) {
     koeppen_geiger(prec = t(as.matrix(prec)), tavg = t(as.matrix(tavg),
                    broad = broad, class_names = class_names))
   }
@@ -49,7 +50,7 @@ methods::setMethod(
 #' @export
 methods::setMethod(
   "koeppen_geiger", signature(prec = "matrix", tavg = "matrix"),
-  function(prec, tavg, broad=FALSE, class_names=FALSE) {
+  function(prec, tavg, broad=FALSE, class_names=TRUE) {
   
   #TODO we should check that tavg is in celsius. Check if any is >100 to make
   # sure we don't have Kelvin
@@ -156,7 +157,7 @@ methods::setMethod(
     class[eval(parse(text = koeppen_classes[cc, 3]))] <- koeppen_classes[cc, 1]
   }
   
-  kg_classification <- data.frame(class = class)
+  kg_classification <- data.frame(id = class)
 
   if (broad){
     broad_class <- rep(0,nrow(tavg))
@@ -174,11 +175,11 @@ methods::setMethod(
 )
 
 #' @param filename filename to save the raster (optional).
-#' @rdname bioclim_vars-methods
+#' @rdname koeppen_geiger-methods
 #' @export
 methods::setMethod(
   "koeppen_geiger", signature(prec = "SpatRaster", tavg = "SpatRaster"),
-  function(prec, tavg, broad=FALSE, class_names=FALSE, filename="", ...) {
+  function(prec, tavg, broad=FALSE, class_names=TRUE, filename="", ...) {
     if (nlyr(prec) != 12) stop("nlyr(prec) is not 12")
     if (nlyr(tavg) != 12) stop("nlyr(tavg) is not 12")
     
@@ -187,28 +188,32 @@ methods::setMethod(
     readStart(x)
     on.exit(readStop(x))
     nc <- ncol(x)
-    n_layers <- 1+broad+class_names+broad*class_names
-    raster_names <- "koeppen_id"
-    if (broad){
-      raster_names <- c(raster_names, "broad_id")
-    }
-    if (class_names){
-      raster_names <- c(raster_names, "koeppen_names")
-      if (broad){
-        raster_names <- c(raster_names, "broad_names")
-      }      
-    }
-    out <- rast(prec, nlyr = n_layers)
+    raster_names <- "id"
+    out <- rast(prec, nlyr = 1)
     names(out) <- raster_names
     b <- writeStart(out, filename, ...)
     for (i in 1:b$n) {
       d <- readValues(x, b$row[i], b$nrows[i], 1, nc, TRUE, FALSE)
-      p <- koeppen_geiger(d[, 1:12], d[, 13:24], broad = broad, 
-                          class_names = class_names)
+      p <- koeppen_geiger(d[, 1:12], d[, 13:24], broad = FALSE, 
+                          class_names = FALSE)
       p <-as.matrix(p)
       writeValues(out, p, b$row[i], b$nrows[i])
     }
     writeStop(out)
+    levels(out)<-koeppen_classes
+    if (class_names){
+      if (!broad) {
+        activeCat(out, layer=1) <- "code"
+      } else {
+        activeCat(out, layer=1) <- "code_broad"
+      }
+    } else {
+      if (!broad) {
+        activeCat(out, layer=1) <- "id"
+      } else {
+        activeCat(out, layer=1) <- "id_broad"
+      }      
+    }
     return(out)
   }
 )
@@ -216,11 +221,11 @@ methods::setMethod(
 
 
 #' @param filename filename to save the raster (optional).
-#' @rdname bioclim_vars-methods
+#' @rdname koeppen_geiger-methods
 #' @export
 methods::setMethod(
   "koeppen_geiger", signature(prec = "SpatRasterDataset", tavg = "SpatRasterDataset"),
-  function(prec, tavg, filename = "", ...) {
+  function(prec, tavg, broad=FALSE, class_names = TRUE, filename = "", ...) {
     if (!all(is_region_series(prec), is_region_series(tavg))) {
       "prec and tavg should be generated with region_series"
     }

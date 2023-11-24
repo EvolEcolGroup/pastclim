@@ -3,9 +3,29 @@
 \docType{methods}
 \name{koeppen_geiger}
 \alias{koeppen_geiger}
+\alias{koeppen_geiger,SpatRaster,SpatRaster-method}
+\alias{koeppen_geiger,SpatRasterDataset,SpatRasterDataset-method}
 \title{Reconstruct biomes based on the Koeppen Geiger's classificaiton}
 \usage{
-koeppen_geiger(prec, tavg, broad = FALSE, class_names = FALSE, ...)
+koeppen_geiger(prec, tavg, broad = FALSE, class_names = TRUE, ...)
+
+\S4method{koeppen_geiger}{SpatRaster,SpatRaster}(
+  prec,
+  tavg,
+  broad = FALSE,
+  class_names = TRUE,
+  filename = "",
+  ...
+)
+
+\S4method{koeppen_geiger}{SpatRasterDataset,SpatRasterDataset}(
+  prec,
+  tavg,
+  broad = FALSE,
+  class_names = TRUE,
+  filename = "",
+  ...
+)
 }
 \arguments{
 \item{prec}{monthly precipitation}
@@ -18,6 +38,8 @@ koeppen_geiger(prec, tavg, broad = FALSE, class_names = FALSE, ...)
 addition to codes)}
 
 \item{...}{additional variables for specific methods}
+
+\item{filename}{filename to save the raster (optional).}
 }
 \value{
 a data.frame with the koeppen_geiger classification

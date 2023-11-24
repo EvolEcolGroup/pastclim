@@ -9,7 +9,6 @@
 \alias{bioclim_vars,matrix,matrix-method}
 \alias{koeppen_geiger,numeric,numeric-method}
 \alias{koeppen_geiger,matrix,matrix-method}
-\alias{koeppen_geiger,SpatRaster,SpatRaster-method}
 \title{Compute bioclimatic variables}
 \usage{
 bioclim_vars(prec, tavg, ...)
@@ -22,11 +21,9 @@ bioclim_vars(prec, tavg, ...)
 
 \S4method{bioclim_vars}{matrix,matrix}(prec, tavg)
 
-\S4method{koeppen_geiger}{numeric,numeric}(prec, tavg, broad = FALSE, class_names = FALSE, ...)
+\S4method{koeppen_geiger}{numeric,numeric}(prec, tavg, broad = FALSE, class_names = TRUE, ...)
 
-\S4method{koeppen_geiger}{matrix,matrix}(prec, tavg, broad = FALSE, class_names = FALSE)
-
-\S4method{koeppen_geiger}{SpatRaster,SpatRaster}(prec, tavg, broad = FALSE, class_names = FALSE, filename = "")
+\S4method{koeppen_geiger}{matrix,matrix}(prec, tavg, broad = FALSE, class_names = TRUE)
 }
 \arguments{
 \item{prec}{monthly precipitation}
