@@ -1,3 +1,6 @@
+# development version
+* Add functions for Koeppen Geiger's classification from monthly means.
+
 # pastclim 2.0.0
 * Allow time to be defined as CE besides BP. NOTE that this adds a parameter
   to a number of functions. If those functions were used without explicitly
