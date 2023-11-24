@@ -37,7 +37,7 @@ setMethod(
         "NOTE do NOT use terra:time, as that terra measures years from 0AD, not BP"
       )
     }
-    
+
     return(time_bp)
   }
 )

@@ -58,7 +58,7 @@ methods::setMethod(
   }
 )
 
-#' @param filename filename where the raster can be stored.
+#' @param filename filename to save the raster (optional).
 #' @rdname bioclim_vars-methods
 #' @export
 methods::setMethod(
@@ -89,7 +89,7 @@ methods::setMethod(
 )
 
 
-#' @param filename filename where the raster can be stored.
+#' @param filename filename to save the raster (optional).
 #' @rdname bioclim_vars-methods
 #' @export
 methods::setMethod(

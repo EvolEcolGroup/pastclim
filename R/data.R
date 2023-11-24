@@ -39,3 +39,10 @@
 #'   \item{name}{names of regions}
 #' }
 "region_outline_union"
+
+#' Koeppen-Geiger classes.
+#'
+#' A data.frame defining the details of each class
+#'
+#' @format A data.frame with multiple columns to describe.
+"koeppen_classes"
