@@ -214,6 +214,8 @@ methods::setMethod(
         activeCat(out, layer=1) <- "id_broad"
       }      
     }
+    terra::coltab(out)<-data.frame(values = koeppen_classes$id,
+                                   cols = koeppen_classes$colour)
     return(out)
   }
 )
