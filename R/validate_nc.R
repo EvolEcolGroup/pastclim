@@ -39,7 +39,7 @@ validate_nc <- function(path_to_nc) {
       "the time units are 'years since present'.\n",
       "terra interprets 'present' as 1970, which differs from the more\n",
       "usual 1950 used for radiocarbon dates. To avoid errors, define\n",
-      "explicitely the reference date, e.g. 'years since 1950'"
+      "explicitly the reference date, e.g. 'years since 1950'"
     )
   }
 

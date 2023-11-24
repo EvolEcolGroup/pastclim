@@ -27,8 +27,10 @@ test_that("get_time_bp_steps for standard dataset", {
     ignore_attr = TRUE
   )
   # expect error for dataset not downloaded yet
-  expect_error(get_time_bp_steps(dataset = "WorldClim_2.1_MRI-ESM2-0_ssp370_5m"),
-               "no variable has been downloaded")
+  expect_error(
+    get_time_bp_steps(dataset = "WorldClim_2.1_MRI-ESM2-0_ssp370_5m"),
+    "no variable has been downloaded"
+  )
 })
 
 test_that("get_time_bp_steps for local file", {
@@ -44,7 +46,6 @@ test_that("get_time_bp_steps for local file", {
     c(-20000, -15000, -10000, -5000, 0),
     ignore_attr = TRUE
   )
-
 })
 
 

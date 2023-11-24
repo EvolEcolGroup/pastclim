@@ -1,6 +1,6 @@
 # pastclim 2.0.0
 * Allow time to be defined as CE besides BP. NOTE that this adds a parameter
-  to a number of functions. If those functions were used without explicitely
+  to a number of functions. If those functions were used without explicitly
   naming parameters, old code might give an error as the order of parameters
   has now changed).
 * Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)
