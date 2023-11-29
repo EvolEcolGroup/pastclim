@@ -13,7 +13,7 @@ dataset, make sure to cite the original publication:
 \details{
 Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
 climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315.
-\doi{doi.org/10.1002/joc.5086}
+\doi{10.1002/joc.5086}
 
 \strong{Present-day reconstructions} are based on the mean for the period 1970-2000,
 and are available at multiple resolutions of

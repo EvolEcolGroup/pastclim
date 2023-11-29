@@ -34,10 +34,10 @@ Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023).
 PALEO-PGEM-Series: A spatial time series of the global climate over the
 last 5 million years (Plio-Pleistocene). Global Ecology and
 Biogeography, 32, 1034-1045,
-\doi{doi.org/10.1111/geb.13683}
+\doi{10.1111/geb.13683}
 
 Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B., Tran, G. T.,
 and Wilkinson, R. D. (2019): PALEO-PGEM v1.0: a statistical emulator of
 Pliocene–Pleistocene climate, Geosci. Model Dev., 12, 5137–5155,
-\doi{doi.org/10.5194/gmd-12-5137-2019}.
+\doi{10.5194/gmd-12-5137-2019}.
 }

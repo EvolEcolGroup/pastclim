@@ -13,7 +13,7 @@ If you use this dataset, make sure to cite the original publication:
 Beyer, R.M.,
 Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
 vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
-\doi{doi.org/10.1038/s41597-020-0552-1}
+\doi{10.1038/s41597-020-0552-1}
 
 The version included in \code{pastclim} has the ice sheets masked, as well as
 internal seas (Black and Caspian Sea) removed. The latter are based on:
@@ -36,5 +36,5 @@ v1.1.0 Added monthly variables. Files can be downloaded from:
 
 v1.0.0 Remove ice sheets and internal seas, and use correct formula for bio15.
 Files can be downloaded from:
-\doi{doi.org/10.6084/m9.figshare.19723405.v1}
+\doi{10.6084/m9.figshare.19723405.v1}
 }

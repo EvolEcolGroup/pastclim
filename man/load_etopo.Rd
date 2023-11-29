@@ -25,6 +25,6 @@ This function loads previously downloaded ETOPO 2022 global relief dataset, at
 format, use \code{\link[=download_etopo]{download_etopo()}}.
 }
 \details{
-The function assumes that the file name is \emph{etopo2022_{resolution}s_v1.nc}
+The function assumes that the file name is \verb{etopo2022_\{resolution\}s_v1.nc}
 }
 \keyword{internal}

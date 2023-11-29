@@ -27,7 +27,7 @@ years before present (negative
 values represent time before present, i.e. 1950, positive values time in the future)
 for each location.}
 
-\item{time_ce}{time in years CE as an alternative to \code{time_bp}.Only one of
+\item{time_ce}{time in years CE as an alternative to \code{time_bp}. Only one of
 \code{time_bp} or \code{time_ce} should be used.}
 
 \item{coords}{a vector of length two giving the names of the "x" and "y"

@@ -13,7 +13,7 @@
 #' years before present (negative
 #' values represent time before present, i.e. 1950, positive values time in the future)
 #' for each location.
-#' @param time_ce time in years CE as an alternative to `time_bp`.Only one of
+#' @param time_ce time in years CE as an alternative to `time_bp`. Only one of
 #' `time_bp` or `time_ce` should be used.
 #' @param coords a vector of length two giving the names of the "x" and "y"
 #' coordinates, as found in `data`. If left to NULL, the function will
