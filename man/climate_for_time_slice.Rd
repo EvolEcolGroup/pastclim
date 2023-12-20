@@ -17,3 +17,4 @@ each variable as a layer.
 \description{
 Deprecated version of region_slice()]
 }
+\keyword{deprecated}

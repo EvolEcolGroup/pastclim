@@ -195,27 +195,6 @@ location_slice_from_region_series <-
   }
 
 
-#' Extract local climate for one or more locations for a given time slice.
-#'
-#' Deprecated version of [location_slice()]
-#'
-#' @param ... arguments to be passed to [location_slice()]
-#' @returns a data.frame with the climatic variables of interest
-#'
-#' @export
-
-climate_for_locations <- function(...) {
-  warning("DEPRECATED: use 'location_slice' instead")
-  # if (!is.null(path_to_nc)) {
-  #   stop(
-  #     "the use of pastclimData is now deprecated",
-  #     "use 'set_path_data' instead"
-  #   )
-  # }
-  location_slice(...)
-}
-
-
 #' Mode
 #'
 #' Find the mode of vector x (note that, if multiple values have the same
