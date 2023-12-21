@@ -161,6 +161,13 @@ and the available time steps can be obtained with:
 get_time_bp_steps(dataset = "Example")
 ```
 
+We can also query the resolution of this dataset:
+```{r}
+get_resolution(dataset = "Example")
+```
+
+so, the *Example" dataset only has a resolution of 1x1 degree.
+
 For *Beyer2020* and *Krapp2021*, you can get a list of available
 variables for each dataset with:
 
