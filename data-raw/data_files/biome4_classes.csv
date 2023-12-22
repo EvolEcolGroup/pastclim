@@ -1,0 +1,30 @@
+id,category,colour
+0,Water bodies,47 61 73
+1,Tropical evergreen forest,11 33 6
+2,Tropical semi-deciduous forest,40 57 3
+3,Tropical deciduous forest/woodland,68 49 12
+4,Temperate deciduous forest,33 92 28
+5,Temperate conifer forest,10 51 44
+6,Warm mixed forest,0 0 40
+7,Cool mixed forest,79 100 79
+8,Cool conifer forest,0 60 9
+9,Cold mixed forest,44 14 20
+10,Evegreen taiga/montane forest,0 12 79
+11,Deciduous taiga/montane forest,40 70 100
+12,Tropical savanna,73 100 21
+13,Tropical xerophytic shrubland,55 63 15
+14,Temperate xerophytic shrubland,10 87 79
+15,Temperate sclerophyll woodland,55 63 15
+16,Temperate broadleaved savanna,45 100 20
+17,Open conifer woodland,100 60 87
+18,Boreal parkland,40 49 100
+19,Tropical grassland,100 73 21
+20,Temperate grassland,100 88 60
+21,Desert,97 100 79
+22,Steppe tundra,90 90 9
+23,Shrub tundra,40 100 60
+24,Dwarf shrub tundra,48 52 29
+25,Prostrate shrub tundra,82 62 60
+26,Cushion forb lichen moss tundra,60 40 100
+27,Barren,73 71 67
+28,Land ice,71 82 88
