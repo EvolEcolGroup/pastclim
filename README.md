@@ -2,17 +2,18 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check
-master](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/master?label=master&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
-[![R-CMD-check
-dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?label=dev&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check master](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/master?label=master&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?label=dev&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
+[![CRAN status](https://www.r-pkg.org/badges/version/pastclim)](https://CRAN.R-project.org/package=pastclim)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/pastclim)](https://github.com/r-hub/cranlogs.app)
 
 <!-- badges: end -->
 
 This `R` library is designed to provide an easy way to extract and
 manipulate palaeoclimate reconstructions for ecological and
-anthropological analyses.
+anthropological analyses. It is also able to handle time series of future
+reconstructions.
 
 The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
@@ -54,10 +55,12 @@ updated for the `dev` branch of `pastclim` (on the top left of the dev
 website, the version number is in red and in the format x.x.x.9xxx,
 indicating it is a development version).
 
-Pastclim currently includes data from Beyer et al 2020, a reconstruction
-of climate based on the HadCM3 model for the last 120k years, and Krapp
-et al 2021, which covers the last 800k years. The reconstructions are
-bias-corrected and downscaled to 0.5 degree. More details on these
+Pastclim currently includes data from Beyer et al 2020 (a reconstruction
+of climate based on the HadCM3 model for the last 120k years), Krapp
+et al 2021 (which covers the last 800k years with a statistical emulator of HadCM3),
+Barreto et al 2023 (covering the last 5M years using the PALEO-PGEM emulator),
+and the WorldClim data (present, and future projections with a number of models and 
+emission scenarios). More details on each of these
 datasets can be found
 [here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html).
 There are also instructions on how to build and use [custom
@@ -80,7 +83,7 @@ vignette("pastclim_overview", package = "pastclim")
 
 ------------------------------------------------------------------------
 
-## Current issues
+## When something does not work
 
 If something does not work, check the [issues on
 GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether
@@ -88,21 +91,6 @@ the problem has already been reported. If not, feel free to create an
 new issue. Please make sure you have updated to the latest version of
 `pastclim` on CRAN, as well as updating all other packages on your
 system, and provide [a reproducible
-example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem.
 
-------------------------------------------------------------------------
-
-### Error in x\$.self\$finalize()
-
-`pastclim` relies on `terra` to process rasters. There is a known bug in
-`terra` that leads to the occasional message:
-
-```         
-"Error in x$.self$finalize() : attempt to apply non-function"
-```
-
-This is an error related to garbage collection, which does not affect
-the script being correctly executed, so it can be ignored. More
-discussion of this issue can be found on
-[stack**overflow**](https://stackoverflow.com/questions/61598340/why-does-rastertopoints-generate-an-error-on-first-call-but-not-second)

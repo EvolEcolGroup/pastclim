@@ -15,3 +15,4 @@ a data.frame with the climatic variables of interest
 \description{
 Deprecated version of \code{\link[=location_slice]{location_slice()}}
 }
+\keyword{deprecated}

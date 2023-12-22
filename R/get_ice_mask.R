@@ -9,30 +9,34 @@
 #' to exist in the dataset), a list with a min and max element setting the
 #' range of values, or left to NULL to retrieve all time steps.
 #' To check which slices are available, you can use
-#' [get_time_steps()].
+#' [get_time_bp_steps()].
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [get_available_datasets()]). This function
+#' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
 #' @returns a binary [`terra::SpatRaster`] with the ice mask as 1s
 #'
 #' @import terra
 #' @export
 
-get_ice_mask <- function(time_bp=NULL, dataset) {
-  
-  if (!dataset %in% get_available_datasets()){
-    stop("this function only works on the defaults datasets in pastclim\n",
-         "you can get a list with `get_available_datasets()`")
+get_ice_mask <- function(time_bp = NULL, dataset) {
+  if (!dataset %in% list_available_datasets()) {
+    stop(
+      "this function only works on the defaults datasets in pastclim\n",
+      "you can get a list with `list_available_datasets()`"
+    )
   }
-  
-  climate_series <- region_series(
-    time_bp = time_bp, bio_variables = "biome",
-    dataset = dataset
-  )
-  ice_mask <- climate_series["biome"]
-  ice_mask[ice_mask !=28] <- NA
-  ice_mask[ice_mask ==28] <- 1
-  names(ice_mask) <- paste("ice_mask", time_bp(ice_mask), sep="_")
-  varnames(ice_mask)<-"ice_mask"
-  return(ice_mask)
+  if (dataset %in% c("Example", "Beyer2020", "Krapp2021")) {
+    climate_series <- region_series(
+      time_bp = time_bp, bio_variables = "biome",
+      dataset = dataset
+    )
+    ice_mask <- climate_series["biome"]
+    ice_mask[ice_mask != 28] <- NA
+    ice_mask[ice_mask == 28] <- 1
+    names(ice_mask) <- paste("ice_mask", time_bp(ice_mask), sep = "_")
+    varnames(ice_mask) <- "ice_mask"
+    return(ice_mask)
+  } else {
+    stop("ice masks are not available for this dataset")
+  }
 }

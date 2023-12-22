@@ -1,6 +1,6 @@
 # to this in the dev branch to make sure that all the fundamental issues have been resolved
 # run the spell checking
-usethis::use_spell_check(lang="en-GB")
+usethis::use_spell_check(lang = "en-GB")
 
 # check the links
 urlchecker::url_check()

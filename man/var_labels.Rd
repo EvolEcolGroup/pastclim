@@ -13,7 +13,7 @@ var_labels(x, dataset, with_units = TRUE, abbreviated = FALSE)
 [region_slice())]: R:region_slice())}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
+values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function
 will not work on custom datasets.}
 
 \item{with_units}{boolean defining whether the label should include units}
@@ -37,11 +37,13 @@ set_data_path(on_CRAN = TRUE)
 
 # for a SpatRaster
 climate_20k <- region_slice(
-time_bp = -20000,
-bio_variables = c("bio01", "bio10", "bio12"),
-dataset = "Example"
+  time_bp = -20000,
+  bio_variables = c("bio01", "bio10", "bio12"),
+  dataset = "Example"
 )
 terra::plot(climate_20k, main = var_labels(climate_20k, dataset = "Example"))
-terra::plot(climate_20k, main = var_labels(climate_20k, dataset = "Example",
-                   abbreviated = TRUE))
+terra::plot(climate_20k, main = var_labels(climate_20k,
+  dataset = "Example",
+  abbreviated = TRUE
+))
 }

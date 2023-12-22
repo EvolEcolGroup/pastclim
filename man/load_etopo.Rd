@@ -16,12 +16,15 @@ Defaults to 60 arcsecs.}
 \item{version}{character or numeric. The ETOPO2022 version number.
 Only "1" supported at the moment}
 }
+\value{
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of relief
+}
 \description{
 This function loads previously downloaded ETOPO 2022 global relief dataset, at
 30 or 60 arcsec resolution. To save the variables in a compatible
 format, use \code{\link[=download_etopo]{download_etopo()}}.
 }
 \details{
-The function assumes that the file name is \emph{etopo2022_{resolution}s_v1.nc}
+The function assumes that the file name is \verb{etopo2022_\{resolution\}s_v1.nc}
 }
 \keyword{internal}

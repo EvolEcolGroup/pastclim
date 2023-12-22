@@ -13,10 +13,10 @@ be a vector of times (the slices need
 to exist in the dataset), a list with a min and max element setting the
 range of values, or left to NULL to retrieve all time steps.
 To check which slices are available, you can use
-\code{\link[=get_time_steps]{get_time_steps()}}.}
+\code{\link[=get_time_bp_steps]{get_time_bp_steps()}}.}
 
 \item{dataset}{string defining dataset to be downloaded (a list of possible
-values can be obtained with \code{\link[=get_available_datasets]{get_available_datasets()}}). This function
+values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}). This function
 will not work on custom datasets.}
 }
 \value{
