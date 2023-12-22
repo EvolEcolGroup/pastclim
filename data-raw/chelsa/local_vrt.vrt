@@ -1,0 +1,31 @@
+<VRTDataset rasterXSize="43200" rasterYSize="20880">
+  <SRS dataAxisToSRSAxisMapping="2,1">GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AXIS["Latitude",NORTH],AXIS["Longitude",EAST],AUTHORITY["EPSG","4326"]]</SRS>
+  <GeoTransform> -1.8000013888885002e+02,  8.3333333000000006e-03,  0.0000000000000000e+00,  8.3999860415149982e+01,  0.0000000000000000e+00, -8.3333333000000006e-03</GeoTransform>
+  <VRTRasterBand dataType="Float32" band="1">
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace/bio/CHELSA_TraCE21k_bio01_-101_V1.0.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="Float32" BlockXSize="43200" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+    </ComplexSource>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Float32" band="2">
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace/bio/CHELSA_TraCE21k_bio01_-102_V1.0.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="Float32" BlockXSize="43200" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+    </ComplexSource>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Float32" band="3">
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace/bio/CHELSA_TraCE21k_bio01_-103_V1.0.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="Float32" BlockXSize="43200" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880" />
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>
