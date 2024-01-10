@@ -52,4 +52,5 @@ foo<-rast(vrt_path)
 x<- xml2::read_xml(vrt_path)
 time_node <- xml2::xml_find_all(x, xpath="Time")
 pastclim::time_bp(foo) <- as.numeric(strsplit(xml_text(time_node),",")[[1]])
-foo
+coords<-data.frame(longitude = c(5, -4, 27, -6, -24), latitude = c(7, 44, 36, 56, 31))
+extract(foo,coords)
