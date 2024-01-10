@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VRTDataset rasterXSize="43200" rasterYSize="20880">
+  <SRS dataAxisToSRSAxisMapping="2,1">GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AXIS["Latitude",NORTH],AXIS["Longitude",EAST],AUTHORITY["EPSG","4326"]]</SRS>
+  <GeoTransform> -1.8000013888885002e+02,  8.3333332999999989e-03,  0.0000000000000000e+00,  8.3999860415150010e+01,  0.0000000000000000e+00, -8.3333332999999989e-03</GeoTransform>
+  <VRTRasterBand dataType="UInt16" band="1">
+    <NoDataValue>-99999</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio1_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio1</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="2">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio2_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio2</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="Float32" band="3">
+    <NoDataValue>3.4028234663852886e+38</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio3_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="Float32" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>3.4028234663852886e+38</NODATA>
+    </ComplexSource>
+    <Description>bio3</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="4">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio4_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio4</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="5">
+    <NoDataValue>-99999</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio5_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio5</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="6">
+    <NoDataValue>-99999</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio6_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio6</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="7">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio7_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio7</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="8">
+    <NoDataValue>65535</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio8_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio8</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="9">
+    <NoDataValue>65535</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio9_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio9</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="10">
+    <NoDataValue>65535</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio10_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio10</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="11">
+    <NoDataValue>65535</NoDataValue>
+    <Offset>-273.15</Offset>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio11_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio11</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="12">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio12_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio12</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="13">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio13_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio13</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="14">
+    <NoDataValue>-99999</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio14_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>-99999</NODATA>
+    </ComplexSource>
+    <Description>bio14</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="15">
+    <NoDataValue>3.402823466e+38</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio15_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>3.402823466e+38</NODATA>
+    </ComplexSource>
+    <Description>bio15</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="16">
+    <NoDataValue>65535</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio16_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio16</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="17">
+    <NoDataValue>65535</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio17_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio17</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="18">
+    <NoDataValue>65535</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio18_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio18</Description>
+  </VRTRasterBand>
+  <VRTRasterBand dataType="UInt16" band="19">
+    <NoDataValue>65535</NoDataValue>
+    <Scale>0.1</Scale>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/vsicurl/https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/bio/CHELSA_bio19_1981-2010_V.2.1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="43200" RasterYSize="20880" DataType="UInt16" BlockXSize="43200" BlockYSize="1"/>
+      <SrcRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <DstRect xOff="0" yOff="0" xSize="43200" ySize="20880"/>
+      <NODATA>65535</NODATA>
+    </ComplexSource>
+    <Description>bio19</Description>
+  </VRTRasterBand>
+  <Time>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</Time>
+</VRTDataset>
