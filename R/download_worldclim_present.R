@@ -80,7 +80,7 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
   time_bp(wc_rast) <- rep(35, nlyr(wc_rast))
 
   terra::writeCDF(wc_rast,
-    filename = filename, compression = 9,
+    filename = filename, compression = 6,
     split = TRUE, overwrite = TRUE
   )
 
