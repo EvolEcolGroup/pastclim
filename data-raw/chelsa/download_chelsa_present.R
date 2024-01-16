@@ -4,11 +4,14 @@
 #' @param dataset the name of the dataset
 #' @param bio_var the variable name
 #' @param filename NOT USED, only used for compatibility with other download functions
+#' HOWEVER, it would make sense to use this to set the vrt file name!!!!
+#' This would make it consistent with other donwload functions
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
-#'
+#' 
 #' @keywords internal
 
 download_chelsa_present <- function(dataset, bio_var, filename=NULL) {
+  # if the last 3 letters are vsi, this is a virtual dataset
   if (substr(dataset,nchar(dataset)-2,nchar(dataset))=="vsi"){
     virtual <- TRUE
   } else {
@@ -52,9 +55,9 @@ download_chelsa_present <- function(dataset, bio_var, filename=NULL) {
     )
   }
   # create the vrt file
-  vrt_path <- vrt(x = chelsa_url,
-                  filename = file.path(get_data_path(),vrt_file_name),
-                  options="-separate", overwrite=TRUE, return_filename=TRUE)
+  vrt_path <- terra::vrt(x = chelsa_url,
+                         filename = file.path(get_data_path(),vrt_file_name),
+                         options="-separate", overwrite=TRUE, return_filename=TRUE)
   # update band description and time axis
   time_vector <- rep(40,length(chelsa_url))
   if (var_prefix=="bio"){
@@ -64,16 +67,26 @@ download_chelsa_present <- function(dataset, bio_var, filename=NULL) {
   } else if (var_prefix=="tas"){
     band_vector <- paste0("temperature_",1:12)
   }
+  
+  ## Edit the vrt metadata
   # read vrt file
   x<- xml2::read_xml(vrt_path)
+  # add metadata to indicate that we have a time axis
+  xml2::xml_add_child(x,"Metadata",.where=0)
+  metadata_node <- xml2::xml_find_first(x, xpath="Metadata")
+  xml2::xml_add_child(metadata_node,"MDI",key="has_time","true")
   # add band description and times
   band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
   for (i_node in seq_len(length(band_nodes))){
-    xml2::xml_add_child(band_nodes[i_node],"Description", band_vector[i_node])
-    xml2::xml_add_child(band_nodes[i_node],"Time", time_vector[i_node])
+    xml2::xml_add_child(band_nodes[i_node],"Description", band_vector[i_node],
+                        .where = 0)
+    xml2::xml_add_child(band_nodes[i_node],"Metadata",.where = 1)
+    metadata_node <- xml2::xml_find_first(band_nodes[i_node], xpath="Metadata")
+    xml2::xml_add_child(metadata_node,"MDI",key="time",time_vector[i_node])
   }
   # overwrite vrt file with the new version
   xml2::write_xml(x, vrt_path)
+  
   return(TRUE)
 }
 
@@ -82,8 +95,31 @@ download_chelsa_present <- function(dataset, bio_var, filename=NULL) {
 
 
 #######################
+#' Get time axis from vrt
+#'
+#' This function extract time information for the bands in a vrt. It first checks 
+#' that the vrt dataset has a metadata element with key "has_time" set to TRUE. If that
+#' is the case, for each band, it extract the metadata with key "time" and returns
+#' them as numeric (i.e. converting them from character).
+#' Note that an error is returned if there are duplicated time elements for any of the
+#' bands (whilst duplicated elements are valid in the XML schema for VRT, they do
+#' not make sense for the time axis).
+#' @param vrt_path path to the XML file defining the vrt dataset
+#' @returns a vector of times, one per band
+#'
+#' @keywords internal
 get_vrt_times <- function(vrt_path) {
   x<- xml2::read_xml(vrt_path)
-  band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
-  as.numeric(xml2::xml_text(xml2::xml_find_first(band_nodes, ".//Time")))
+  has_time_node <- xml2::xml_find_first(x, "./Metadata/MDI[@key = 'has_time']")
+  if (inherits(has_time_node,"xml_missing")){
+    stop ("metadata element 'has_time' missing; time information not available for this raster")
+  } else if (!as.logical(xml2::xml_text(has_time_node))){
+    stop ("time metadata element 'has_time' not equal to TRUE; time information not available for this raster")
+  }
+  time_band <- as.numeric(xml2::xml_text(xml2::xml_find_all(x, "./VRTRasterBand/Metadata/MDI[@key = 'time']")))
+  if (length(time_band)==length(xml2::xml_find_all(x, "./VRTRasterBand"))){
+    return(time_band)
+  } else {
+    stop("duplicated time elements in at least one band")
+  }
 }
