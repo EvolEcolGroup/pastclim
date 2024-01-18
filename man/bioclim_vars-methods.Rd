@@ -26,7 +26,7 @@ bioclim_vars(prec, tavg, ...)
 
 \item{...}{additional variables for specific methods}
 
-\item{filename}{filename where the raster can be stored.}
+\item{filename}{filename to save the raster (optional).}
 }
 \value{
 the bioclim variables

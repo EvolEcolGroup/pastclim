@@ -1,10 +1,12 @@
 ANUCLIM
+Beusen
 CHELSA
 CMCC
 CMD
 CMIP
 CSM
 Chalki
+Doelman
 ESM
 ETOPO
 Edmundson
@@ -17,6 +19,7 @@ GCMs
 GFDL
 GISS
 Geosci
+Goldewijk
 HR
 HadCM
 HadGEM
@@ -24,10 +27,14 @@ Hijmans
 INM
 IPSL
 Iho
+Koeppen
+KoeppenGeiger
+Köppen
 LR
 Longmore
 MIROC
 MIS
+McVicar
 NA's
 OSF
 PALEO
@@ -45,9 +52,12 @@ Sci
 SpatRaster
 SpatRasterDataset
 Spratt
+Stehfest
+Syst
 TraCE
 Tran
 UKESM
+Vergopolan
 WorldClim
 antimeridian
 arcsec
@@ -69,7 +79,6 @@ discretisation
 doi
 ecog
 ed
-etopo
 geoTIFF
 indeces
 knitr
@@ -83,6 +92,7 @@ mis
 nc
 netcdf
 nlyr
+org
 palaeoclimate
 palaeoclimatic
 params

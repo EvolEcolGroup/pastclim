@@ -2,11 +2,11 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check
-master](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/master?label=master&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
-[![R-CMD-check
-dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?label=dev&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check master](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/master?label=master&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?label=dev&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/master/graph/badge.svg?token=NflUsWlnQR)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
+[![CRAN status](https://www.r-pkg.org/badges/version/pastclim)](https://CRAN.R-project.org/package=pastclim)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/pastclim)](https://github.com/r-hub/cranlogs.app)
 
 <!-- badges: end -->
 
@@ -93,3 +93,4 @@ new issue. Please make sure you have updated to the latest version of
 system, and provide [a reproducible
 example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem.
+

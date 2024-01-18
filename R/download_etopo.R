@@ -5,7 +5,7 @@
 #'
 #' @param path	character. Path where to download the data to. If left NULL, the data
 #' will be downloaded from the directory returned by [get_data_path()], and automatically
-#' named "etopo2022_{resolution}s_v1.nc"
+#' named `etopo2022_{resolution}s_v1.nc`
 #' @param resolution numeric resolution in arcsecs (one of 30, or 60).
 #' Defaults to 60 arcsecs.
 #' @returns a dataframe produced by [curl::multi_download()] with information about

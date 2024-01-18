@@ -161,6 +161,13 @@ and the available time steps can be obtained with:
 get_time_bp_steps(dataset = "Example")
 ```
 
+We can also query the resolution of this dataset:
+```{r}
+get_resolution(dataset = "Example")
+```
+
+so, the *Example" dataset only has a resolution of 1x1 degree.
+
 For *Beyer2020* and *Krapp2021*, you can get a list of available
 variables for each dataset with:
 
@@ -557,20 +564,25 @@ detailing the extension of biomes.
 get_biome_classes("Example")
 ```
 
-If we need to plot the extent of a specific biome, for example the
-desert, we first extract the variable and then subset it to just the
-class we are interested in using its ID (21, in this case):
-
-```{r, fig.width=6, fig.height=2.5}
+We can get the biome for 20k years ago and plot it with:
+```{r, fig.width=8, fig.height=6}
 biome_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("biome"),
   dataset = "Example"
 )
+plot(biome_20k)
+```
+
+Note that the legend is massive. When plotting multiple time slices, it is best
+to use `legned=FALSE` in the plotting statement to avoid having the legend.
+If we need to plot the extent of a specific biome, for example the
+desert, we can simply set the other levels to NA:
+
+```{r, fig.width=6, fig.height=2.5}
 biome_20k$desert <- biome_20k$biome
-biome_20k$desert[biome_20k$desert != 21] <- FALSE
-biome_20k$desert[biome_20k$desert == 21] <- TRUE
-terra::plot(biome_20k)
+biome_20k$desert[biome_20k$desert != 21] <- NA
+terra::plot(biome_20k$desert)
 ```
 
 The climate reconstructions do not show areas under permanent ice. Ice
