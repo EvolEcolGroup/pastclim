@@ -228,7 +228,7 @@ used:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_data_path.html">set_data_path</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.7.67</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.7.69</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; The data_path will be set to /home/andrea/.local/share/R/pastclim.</span></span>
 <span><span class="co">#&gt; A copy of the Example dataset will be copied there.</span></span>
 <span><span class="co">#&gt; This path will be saved by pastclim for future use.</span></span>
@@ -426,7 +426,7 @@ thus allowing us to see how climate changed over time:</p>
 each location (the small <em>Example</em> dataset only contains 5 time
 slices):</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Iho Eleru"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Iho Eleru"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          name longitude latitude time_bp    bio01    bio12</span></span>
 <span><span class="co">#&gt; 1   Iho Eleru         5        7  -20000 22.55133 1577.238</span></span>
 <span><span class="co">#&gt; 1.1 Iho Eleru         5        7  -15000 23.27008 1850.715</span></span>
@@ -437,7 +437,7 @@ slices):</p>
 certain time steps, depending on sea level and ice sheet extent. This is
 the case for Oronsay:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Oronsay"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Oronsay"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        name longitude latitude time_bp    bio01    bio12</span></span>
 <span><span class="co">#&gt; 4   Oronsay        -6       56  -20000       NA       NA</span></span>
 <span><span class="co">#&gt; 4.1 Oronsay        -6       56  -15000       NA       NA</span></span>
@@ -531,11 +531,11 @@ problem:</p>
 <span><span class="co">#&gt; time (years): -18050</span></span></code></pre></div>
 <p>and plot these three variables (the layers of the raster):</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-27-1.png" width="576"></p>
 <p>We can add more informative labels with <code>var_labels</code>:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>,</span>
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>,</span>
 <span>  main <span class="op">=</span> <span class="fu"><a href="../reference/var_labels.html">var_labels</a></span><span class="op">(</span><span class="va">climate_20k</span>, dataset <span class="op">=</span> <span class="st">"Example"</span>, abbreviated <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-28-1.png" width="576"></p>
@@ -581,13 +581,13 @@ can inspect the times in years BP with:</p>
 <p>We can then plot the time series of a given variable (we relabel the
 plots to use years bp):</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">$</span><span class="va">bio01</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">$</span><span class="va">bio01</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">climate_region</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-32-1.png" width="576"></p>
 <p>To plot all climate variables for a given time step, we can slice the
 time series:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">slice_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">climate_region</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">10000</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">slice_10k</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">slice_10k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-33-1.png" width="576"></p>
 <p>Instead of giving a minimum and maximum time step, you can also
 provide specific time steps to <code>region_series</code>. Note that
@@ -621,7 +621,7 @@ for a given MIS in a dataset. For example, for MIS 1, we get:</p>
 <p>Often we want to focus a given region. There are a number of preset
 rectangular extents in <code>pastclim</code>:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Africa"    "America"   "Asia"      "Europe"    "Eurasia"   "N_America"</span></span>
 <span><span class="co">#&gt; [7] "Oceania"   "S_America"</span></span></code></pre></div>
 <p>We can get the corners of the European extent:</p>
@@ -637,7 +637,7 @@ rectangular extents in <code>pastclim</code>:</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
 <span>  ext <span class="op">=</span> <span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-38-1.png" width="576"></p>
 <p>As we can see in the plot, cutting Europe using a rectangular shape
 keeps a portion of Northern Africa in the map. <code>pastclim</code>
@@ -645,7 +645,7 @@ includes a number of pre-generated masks for the main continental
 masses, stored in the dataset <code>region_outline</code> in an
 <code><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">sf::sfc</a></code> object. We can get a list with:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Africa"    "Eurasia"   "N_America" "Oceania"   "S_America" "Europe"</span></span></code></pre></div>
 <p>We can then use the function <code>crop</code> within
 <code>region_slice</code> to only keep the area within the desired
@@ -657,7 +657,7 @@ outline.</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
 <span>  crop <span class="op">=</span> <span class="va">region_outline</span><span class="op">$</span><span class="va">Europe</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-40-1.png" width="576"></p>
 <p>We can combine multiple regions together. For example, we can crop to
 Africa and Eurasia by unioning the two individual outlines:</p>
@@ -671,7 +671,7 @@ Africa and Eurasia by unioning the two individual outlines:</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
 <span>  crop <span class="op">=</span> <span class="va">afr_eurasia</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_afr_eurasia</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-41-1.png" width="576"></p>
 <p>Note that outlines that cross the antimeridian are split into
 multiple polygons (so that they can be used without projecting the
@@ -680,11 +680,11 @@ hand side of the plot. <code>continent_outlines_union</code> provides
 the same outlines as single polygons (in case you want to use a
 projection).</p>
 <p>You can also use your own custom outline (i.e. a polygon, coded as a
-<code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code> object) as a mask to limit the area covered by
+<code><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">terra::vect</a></code> object) as a mask to limit the area covered by
 the raster. Note that you need to reuse the first vertex as the last
 vertex, to close the polygon:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">custom_vec</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,</span></span>
+<code class="sourceCode R"><span><span class="va">custom_vec</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,</span></span>
 <span><span class="st">                              119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,</span></span>
 <span><span class="st">                              -25 -40, -25 64, 0 70))"</span><span class="op">)</span></span>
 <span><span class="va">climate_20k_custom</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
@@ -693,7 +693,7 @@ vertex, to close the polygon:</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
 <span>  crop <span class="op">=</span> <span class="va">custom_vec</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_custom</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k_custom</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-42-1.png" width="576"></p>
 <p><code>region_series</code> takes the same <code>ext</code> and
 <code>crop</code> options as <code>region_slice</code> to limit the
@@ -743,7 +743,7 @@ detailing the extension of biomes.</p>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biome"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">biome_20k</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">biome_20k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-44-1.png" width="768"></p>
 <p>Note that the legend is massive. When plotting multiple time slices,
 it is best to use <code>legned=FALSE</code> in the plotting statement to
@@ -753,7 +753,7 @@ NA:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">biome_20k</span><span class="op">$</span><span class="va">desert</span> <span class="op">&lt;-</span> <span class="va">biome_20k</span><span class="op">$</span><span class="va">biome</span></span>
 <span><span class="va">biome_20k</span><span class="op">$</span><span class="va">desert</span><span class="op">[</span><span class="va">biome_20k</span><span class="op">$</span><span class="va">desert</span> <span class="op">!=</span> <span class="fl">21</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">biome_20k</span><span class="op">$</span><span class="va">desert</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">biome_20k</span><span class="op">$</span><span class="va">desert</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-45-1.png" width="576"></p>
 <p>The climate reconstructions do not show areas under permanent ice.
 Ice sheets are stored as class 28 in the “biome” variable. We can
@@ -762,19 +762,19 @@ with:</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ice_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
 <span><span class="va">land_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_land_mask.html">get_land_mask</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ice_mask</span>, <span class="va">land_mask</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ice_mask</span>, <span class="va">land_mask</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-46-1.png" width="576"></p>
 <p>We can also add the ice sheets to plots of climatic variables. First,
 we need to turn the ice mask into polygons:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ice_mask_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.polygons.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="va">ice_mask</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ice_mask_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/as.polygons.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="va">ice_mask</span><span class="op">)</span></span></code></pre></div>
 <p>We can then add the polygons to each layer (i.e. variable) of climate
 slice with the following code (note that, to add the polygons to every
 panel of the figure, we need to create a function that is used as an
 argument for <code>fun</code> within <code>plot</code>):</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>,</span>
-<span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_mask_vect</span>, col <span class="op">=</span> <span class="st">"gray"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_20k</span>,</span>
+<span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_mask_vect</span>, col <span class="op">=</span> <span class="st">"gray"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-48-1.png" width="576"></p>
 <p>In some other cases, we have multiple time points of the same
@@ -790,10 +790,10 @@ variable and we want to see how the ice sheets change:</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">ice_poly_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ice_masks</span>, <span class="va">as.polygons</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate</span><span class="op">$</span><span class="va">bio01</span>,</span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate</span><span class="op">$</span><span class="va">bio01</span>,</span>
 <span>  main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">europe_climate</span><span class="op">)</span>,</span>
 <span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_poly_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_poly_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>      col <span class="op">=</span> <span class="st">"gray"</span>,</span>
 <span>      lwd <span class="op">=</span> <span class="fl">0.5</span></span>
 <span>    <span class="op">)</span></span>
@@ -829,7 +829,7 @@ which accounts for sea level change based on the landmask:</p>
 <code>SpatVector</code> object from the dataframe of metadata,
 specifying the names of the columns with the x and y coordinates:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">locations_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">locations</span>, geom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">locations_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">locations</span>, geom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">locations_vect</span></span>
 <span><span class="co">#&gt;  class       : SpatVector </span></span>
 <span><span class="co">#&gt;  geometry    : points </span></span>
@@ -846,18 +846,18 @@ that, to add the points to every panel of the figure, we need to create
 a function that is used as an argument for <code>fun</code> within
 <code>plot</code>):</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
-<span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_vect</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
+<span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_vect</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-52-1.png" width="576"></p>
 <p>Only the points within the extent of the region will be plotted (so,
 in this case, only the European locations).</p>
 <p>We can combine ice sheets and locations in a single plot:</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_climate_20k</span>,</span>
 <span>  fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_mask_vect</span>, col <span class="op">=</span> <span class="st">"gray"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_vect</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">polys</a></span><span class="op">(</span><span class="va">ice_mask_vect</span>, col <span class="op">=</span> <span class="st">"gray"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_vect</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-53-1.png" width="576"></p>
@@ -876,10 +876,10 @@ PCA:</p>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">climate_values_10k</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_from_region_slice.html">df_from_region_slice</a></span><span class="op">(</span><span class="va">climate_10k</span><span class="op">)</span></span>
-<span><span class="va">climate_10k_pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">climate_values_10k</span><span class="op">[</span>, <span class="va">bio_vars</span><span class="op">]</span>,</span>
+<span><span class="va">climate_10k_pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">climate_values_10k</span><span class="op">[</span>, <span class="va">bio_vars</span><span class="op">]</span>,</span>
 <span>  scale <span class="op">=</span> <span class="cn">TRUE</span>, center <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
 <span>  pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"lightgray"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -897,16 +897,16 @@ background:</p>
 <span>  time_bp <span class="op">=</span> <span class="va">locations_10k</span><span class="op">$</span><span class="va">time_bp</span>, bio_variables <span class="op">=</span> <span class="va">bio_vars</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">locations_10k_pca_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">climate_10k_pca</span>,</span>
+<span><span class="va">locations_10k_pca_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">climate_10k_pca</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="va">climate_loc_10k</span><span class="op">[</span>, <span class="va">bio_vars</span><span class="op">]</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>And now we can plot the points on top of the background</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">~</span> <span class="va">climate_10k_pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
 <span>  pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"lightgray"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_10k_pca_scores</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/lines.html" class="external-link">points</a></span><span class="op">(</span><span class="va">locations_10k_pca_scores</span>, pch <span class="op">=</span> <span class="fl">20</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-56-1.png" width="384"></p>
 <p>If we want to pool the background from multiple time steps, we can
 simple use <code>region_series</code> to get a series, and then
@@ -928,14 +928,14 @@ generate the raster for the time slice of interest, and use
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">this_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_slice.html">sample_region_slice</a></span><span class="op">(</span><span class="va">climate_20k</span>, size <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cell     x     y       bio01      bio10</span></span>
-<span><span class="co">#&gt; 1 23595  14.5  24.5  18.8996239 25.9281139</span></span>
-<span><span class="co">#&gt; 2 23660  79.5  24.5  22.2613220 28.5153141</span></span>
-<span><span class="co">#&gt; 3 40159  18.5 -21.5  15.7633095 21.2389030</span></span>
-<span><span class="co">#&gt; 4 19186 -74.5  36.5   0.8414429 15.8736525</span></span>
-<span><span class="co">#&gt; 5 39813  32.5 -20.5  17.3636112 21.1184731</span></span>
-<span><span class="co">#&gt; 6  4244 103.5  78.5 -30.4631557  0.3604677</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">this_sample</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    cell      x     y      bio01     bio10</span></span>
+<span><span class="co">#&gt; 1 47636  -64.5 -42.5  11.286942 19.079348</span></span>
+<span><span class="co">#&gt; 2 19864 -116.5  34.5   8.534391 17.518620</span></span>
+<span><span class="co">#&gt; 3  7834   93.5  68.5 -25.007378  1.982765</span></span>
+<span><span class="co">#&gt; 4 34033   12.5  -4.5  21.747126 23.745924</span></span>
+<span><span class="co">#&gt; 5  7493  112.5  69.5 -24.177691  6.810633</span></span>
+<span><span class="co">#&gt; 6 18444  -96.5  38.5  -1.531375 13.383559</span></span></code></pre></div>
 <p>If we have samples from multiple time steps, we need to sample the
 background proportionally to the number of points in each time step. So,
 for example, if we wanted 30 samples from 20k years ago and 50 samples
@@ -945,19 +945,19 @@ from 10k years ago:</p>
 <span>  time_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20000</span>, <span class="op">-</span><span class="fl">10000</span><span class="op">)</span>,</span>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio10"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>,</span>
-<span>  ext <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span></span>
+<span>  ext <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y      bio01    bio10    bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1  934 68.5 64.5 -17.097080  8.52768 207.7012  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 2837 16.5 41.5  10.653622 19.14846 710.9316  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 3122 46.5 38.5   5.495730 16.87338 295.1208  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 1006 55.5 63.5  -3.034965 14.78242 465.2495  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 1310 19.5 59.5   3.412132 12.82526 575.8498  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 2937 31.5 40.5   8.945764 20.53917 472.9149  -10000</span></span>
-<span><span class="co">#&gt; -10000.4 2538 57.5 45.5   6.523138 27.37524 124.0607  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 3225 64.5 37.5  15.284414 31.16352 130.4455  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y     bio01    bio10     bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2063  7.5 50.5  1.449658 10.35576  638.9052  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 1776 60.5 54.5 -6.931206 12.89876  395.7798  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 2313  2.5 47.5  4.251993 11.07058  768.5643  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 3018 27.5 39.5 13.544699 24.86363  721.9885  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 3058 67.5 39.5  7.353146 22.51484  342.0563  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 2648 -2.5 43.5 11.070605 17.84750 1152.4823  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2158 17.5 49.5  6.305172 16.95971  754.4548  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 2260 34.5 48.5  7.818924 22.63008  464.8002  -10000</span></span></code></pre></div>
 <p>We could then use these data to build a PCA.</p>
 </div>
 <div class="section level2">
@@ -975,16 +975,16 @@ case Europe 10,000 years ago</p>
 <span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span><span class="op">)</span>,</span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">10000</span>, ext <span class="op">=</span> <span class="va">region_extent</span><span class="op">$</span><span class="va">Europe</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_10k</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_10k</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-59-1.png" width="576"></p>
-<p>We can then downscale using the <code><a href="https://rdrr.io/pkg/terra/man/disaggregate.html" class="external-link">disagg()</a></code> function from
+<p>We can then downscale using the <code><a href="https://rspatial.github.io/terra/reference/disaggregate.html" class="external-link">disagg()</a></code> function from
 the <code>terra</code> package, requiring an aggregation factor
 expressed as number of cells in each direction (horizontally,
 vertically, and, if needed, over layers). In the example below we used
 25 both horizontally and vertically, using bilinear interpolation.</p>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">europe_ds</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/disaggregate.html" class="external-link">disagg</a></span><span class="op">(</span><span class="va">europe_10k</span>, fact <span class="op">=</span> <span class="fl">25</span>, method <span class="op">=</span> <span class="st">"bilinear"</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_ds</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">europe_ds</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/disaggregate.html" class="external-link">disagg</a></span><span class="op">(</span><span class="va">europe_10k</span>, fact <span class="op">=</span> <span class="fl">25</span>, method <span class="op">=</span> <span class="st">"bilinear"</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">europe_ds</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a0_pastclim_overview_files/figure-html/unnamed-chunk-60-1.png" width="576"></p>
 <p>Note that, whilst we have smoothed the climate, the land mask has not
 changed, and thus it still has very blocky edges.</p>
