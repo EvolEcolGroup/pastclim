@@ -25,8 +25,14 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
     path_to_nc <- file.path(get_data_path(), possible_files[1])
   }
 
-  climate_nc <- terra::rast(path_to_nc, subds = 1)
-  return(time_bp(climate_nc))
+  # if the last 4 chars are vrt, this is a virtual raster
+  if (substr(path_to_nc,nchar(path_to_nc)-2,nchar(path_to_nc))=="vrt"){
+    return(unique(vrt_get_times(path_to_nc)))
+  } else {
+    climate_nc <- terra::rast(path_to_nc, subds = 1)
+    return(time_bp(climate_nc))
+  }
+  
 }
 
 #' @rdname get_time_bp_steps

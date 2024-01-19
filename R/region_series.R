@@ -103,8 +103,16 @@ region_series <-
           time_steps = times
         )
       }
-      var_brick <- terra::rast(this_file, subds = this_var_nc)
-
+      browser()
+      # retrieve time axis for virtual file
+      if (substr(this_file,nchar(this_file)-2,nchar(this_file))=="vrt"){
+        var_brick <- terra::rast(this_file, lyrs = this_var_nc)
+        ## TODO this is wrong, we need to recover the correct time axis for this variable...
+        ## BUG!!!!!!!!!!!!!!!!!!!!!!!
+        time_bp(var_brick) <- unique(vrt_get_times(this_file))
+      } else {
+        var_brick <- terra::rast(this_file, subds = this_var_nc)
+      }
       # subset to time steps
       if (!is.null(time_bp)) {
         var_brick <- terra::subset(var_brick, subset = time_index)

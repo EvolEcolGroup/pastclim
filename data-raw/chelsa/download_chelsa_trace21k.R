@@ -40,10 +40,7 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename=NULL, time_bp=NU
                                 as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var)))))
   }
   vers <- "1.0"
-  
-  
-  
-  
+
   # convert time to an index to select the correct file
   avail_time_bp <- seq(0,-22000,-100)
   if (is.null(time_bp)){
