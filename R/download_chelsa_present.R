@@ -7,7 +7,7 @@
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
 #' @examples
 #' download_chelsa_present(dataset = "CHELSA_2.1_vsi", bio_var = "bio_06",
-#' filename = "CHELSA_2.1_bio_vsi.vrt)
+#' filename = "CHELSA_2.1_bio_vsi.vrt")
 #' 
 #' @keywords internal
 
@@ -29,7 +29,7 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
   } else { # download the files
     stop("not implemented yet!")
     # if we do not have a directory, create one
-    chelsa_dir <- file.path(get_data_path(),"chelsa2.1")
+    chelsa_dir <- file.path(get_data_path(),"chelsa_2.1")
     if(!dir.exists(chelsa_dir)){
       dir.create(chelsa_dir)
     }
