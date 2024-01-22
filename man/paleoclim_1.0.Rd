@@ -5,12 +5,13 @@
 \alias{paleoclim_1.0_10m}
 \alias{paleoclim_1.0_5m}
 \alias{paleoclim_1.0_2.5m}
-\title{Documentation for paleoclim}
+\title{Documentation for \emph{Paleoclim}}
 \description{
-Paleoclim is a set of high resolution paleoclimate reconstructions, mostly
-based on teh CESM model, downscaled with the CHELSA dataset to 3  different
-spatial resolutions; from 2.5 arc-minutes (~5 km), 5 arc-minutes (~10 km),
-and 10 arc-minutes (~20 km). All 19 biovariables are available.
+\emph{Paleoclim} is a set of high resolution paleoclimate reconstructions, mostly
+based on the CESM model, downscaled with the CHELSA dataset to 3  different
+spatial resolutions: \code{paleoclim_1.0_2.5m} at 2.5 arc-minutes (~5 km),
+\code{paleoclim_1.0_5m} at 5 arc-minutes (~10 km),
+and \code{paleoclim_1.0_10m} 10 arc-minutes (~20 km). All 19 biovariables are available.
 There are only a limited number of time slices available for this dataset;
 furthermore, currently only time slices from present to 130ka are available
 in \code{pastclim}.

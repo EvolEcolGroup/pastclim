@@ -188,7 +188,7 @@ NULL
 NULL
 #> NULL
 
-#' Documentation for HYDE 3.3 dataset
+#' Documentation for *HYDE 3.3* dataset
 #'
 #' This database presents an update and expansion of the History Database of
 #' the Global Environment (HYDE, v 3.3) and replaces former HYDE 3.2
@@ -202,7 +202,7 @@ NULL
 #' population and population density as well as built-up area.
 #'
 #' The period covered is 10 000 BCE to 2023 CE. Spatial resolution is
-#' 5 arc minutes (approx. 85 km2 at the equator). The full HYDE 3.3 release
+#' 5 arc minutes (approx. 85 km2 at the equator). The full *HYDE 3.3* release
 #' contains: a Baseline estimate scenario, a Lower estimate scenario and an
 #' Upper estimate scenario. Currently only the baseline scenario is available
 #' in `pastclim`
@@ -221,12 +221,12 @@ NULL
 NULL
 #> NULL
 
-#' Documentation for CHELSA 2.1
+#' Documentation for *CHELSA 2.1*
 #'
 #' Stub description for the CHELSA dataset
 #' 
 #' If you use this dataset, make sure to cite the original publication
-#' for the CHELSA dataset:
+#' for the *CHELSA* dataset:
 #'
 #' Karger, D.N., Conrad, O., Böhner, J., Kawohl, T., Kreft, H., 
 #' Soria-Auza, R.W., Zimmermann, N.E., Linder, P., Kessler, M. (2017) 
@@ -237,12 +237,13 @@ NULL
 NULL
 #> NULL
 
-#' Documentation for paleoclim
+#' Documentation for *Paleoclim*
 #'
-#' Paleoclim is a set of high resolution paleoclimate reconstructions, mostly
-#' based on teh CESM model, downscaled with the CHELSA dataset to 3  different 
-#' spatial resolutions; from 2.5 arc-minutes (~5 km), 5 arc-minutes (~10 km), 
-#' and 10 arc-minutes (~20 km). All 19 biovariables are available.
+#' *Paleoclim* is a set of high resolution paleoclimate reconstructions, mostly
+#' based on the CESM model, downscaled with the CHELSA dataset to 3  different 
+#' spatial resolutions: `paleoclim_1.0_2.5m` at 2.5 arc-minutes (~5 km),
+#'  `paleoclim_1.0_5m` at 5 arc-minutes (~10 km), 
+#' and `paleoclim_1.0_10m` 10 arc-minutes (~20 km). All 19 biovariables are available.
 #' There are only a limited number of time slices available for this dataset;
 #' furthermore, currently only time slices from present to 130ka are available 
 #' in `pastclim`.

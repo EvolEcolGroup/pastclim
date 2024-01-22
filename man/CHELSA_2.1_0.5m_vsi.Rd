@@ -2,13 +2,13 @@
 % Please edit documentation in R/datasets_docs.R
 \name{CHELSA_2.1_0.5m_vsi}
 \alias{CHELSA_2.1_0.5m_vsi}
-\title{Documentation for CHELSA 2.1}
+\title{Documentation for \emph{CHELSA 2.1}}
 \description{
 Stub description for the CHELSA dataset
 }
 \details{
 If you use this dataset, make sure to cite the original publication
-for the CHELSA dataset:
+for the \emph{CHELSA} dataset:
 
 Karger, D.N., Conrad, O., Böhner, J., Kawohl, T., Kreft, H.,
 Soria-Auza, R.W., Zimmermann, N.E., Linder, P., Kessler, M. (2017)

@@ -2,13 +2,16 @@ ANUCLIM
 Auza
 Beusen
 Böhner
+CESM
 CHELSA
 CMCC
 CMD
 CMIP
 CSM
+Carnaval
 Chalki
 Doelman
+Dolan
 ESM
 ETOPO
 Edmundson
@@ -45,6 +48,8 @@ OSF
 PALEO
 PGEM
 Palaeoclimate
+PaleoClim
+Paleoclim
 Pereira
 Plio
 RES
@@ -69,6 +74,7 @@ WorldClim
 antimeridian
 arcsecs
 bioclim
+biovariables
 bp
 ce
 cheatsheet
@@ -102,6 +108,7 @@ org
 palaeoclimate
 palaeoclimatic
 paleoclim
+paleoclimate
 params
 sd
 ssp
