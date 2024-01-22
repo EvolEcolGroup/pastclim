@@ -5,16 +5,14 @@
 #' @param bio_var the variable name
 #' @param filename the filename as stored in the `data_path` of `pastclim`
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
-#' @examples
-#' download_chelsa_present(dataset = "CHELSA_2.1_0.5m_vsi", bio_var = "bio_06",
-#' filename = "CHELSA_2.1_0.5m_bio06_vsi.vrt")
 #' 
 #' @keywords internal
 
+
+# download_chelsa_present(dataset = "CHELSA_2.1_0.5m_vsi", bio_var = "bio_06",
+# filename = "CHELSA_2.1_0.5m_bio06_vsi.vrt")
+
 download_chelsa_present <- function(dataset, bio_var, filename) {
-  
-  stop("this function does not work as the vrt are not valid (multivar vrt, non-functional",
-       " need a vrt per variables")
   
   # if the last 3 letters are vsi, this is a virtual dataset
   if (substr(dataset,nchar(dataset)-2,nchar(dataset))=="vsi"){
@@ -44,9 +42,11 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
                         quiet = FALSE
     )
   }
+  browser()
   # create the vrt file
+  # TODO we shoudl capture a warning here and abort
   vrt_path <- terra::vrt(x = chelsa_url,
-                         filename = file.path(get_data_dir(),filename),
+                         filename = file.path(get_data_path(),filename),
                          options="-separate", overwrite=TRUE, return_filename=TRUE)
 
   # edit the vrt metadata
