@@ -27,7 +27,7 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
 
   # if the last 4 chars are vrt, this is a virtual raster
   if (substr(path_to_nc,nchar(path_to_nc)-2,nchar(path_to_nc))=="vrt"){
-    return(unique(vrt_get_times(path_to_nc)))
+    return(vrt_get_meta(path_to_nc)$time_bp)
   } else {
     climate_nc <- terra::rast(path_to_nc, subds = 1)
     return(time_bp(climate_nc))

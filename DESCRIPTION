@@ -32,13 +32,15 @@ Imports:
   lubridate,
   methods,
   ncdf4,
-  utils
+  utils,
+  xml2
 Suggests: 
-  rmarkdown,
-  knitr,
   ggplot2,
+  httr,
+  knitr,
+  rmarkdown,
   sf,
-  testthat (>= 3.0.0),
-  spelling
+  spelling,
+  testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3

@@ -6,12 +6,16 @@
 #' @param filename the filename as stored in the `data_path` of `pastclim`
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
 #' @examples
-#' download_chelsa_present(dataset = "CHELSA_2.1", bio_var = "bio_06",
-#' filename = "CHELSA_2.1)
+#' download_chelsa_present(dataset = "CHELSA_2.1_vsi", bio_var = "bio_06",
+#' filename = "CHELSA_2.1_bio_vsi.vrt")
 #' 
 #' @keywords internal
 
 download_chelsa_present <- function(dataset, bio_var, filename) {
+  
+  stop("this function does not work as the vrt are not valid (multivar vrt, non-functional",
+       " need a vrt per variables")
+  
   # if the last 3 letters are vsi, this is a virtual dataset
   if (substr(dataset,nchar(dataset)-2,nchar(dataset))=="vsi"){
     virtual <- TRUE
@@ -29,7 +33,7 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
   } else { # download the files
     stop("not implemented yet!")
     # if we do not have a directory, create one
-    chelsa_dir <- file.path(get_data_path(),"chelsa2.1")
+    chelsa_dir <- file.path(get_data_path(),"chelsa_2.1")
     if(!dir.exists(chelsa_dir)){
       dir.create(chelsa_dir)
     }
@@ -42,16 +46,16 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
   }
   # create the vrt file
   vrt_path <- terra::vrt(x = chelsa_url,
-                         filename = file.path(get_data_path(),filename),
+                         filename = filename,
                          options="-separate", overwrite=TRUE, return_filename=TRUE)
   # create band description and time axis
   time_vector <- rep(40,length(chelsa_url))
-  if (var_prefix=="bio"){
+  if ("bio"== substr(bio_var,1,3)){
     band_vector <- paste0("bio",sprintf("%02d", 1:19))
-  } else if (var_prefix=="pr"){
-    band_vector <- paste0("precipitation_",1:12)
-  } else if (var_prefix=="tas"){
+  } else if ("tem" == substr(bio_var,1,3)){
     band_vector <- paste0("temperature_",1:12)
+  } else if ("pre" == substr(bio_var,1,3)){  
+    band_vector <- paste0("precipitation_",1:12)
   }
 
   # edit the vrt metadata

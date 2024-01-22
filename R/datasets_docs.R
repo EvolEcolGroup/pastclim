@@ -217,3 +217,19 @@ NULL
 #' @name HYDE_3.3_baseline
 NULL
 #> NULL
+
+#' Documentation for CHELSA 2.1
+#'
+#' Stub description for the CHELSA dataset
+#' 
+#' If you use this dataset, make sure to cite the original publication
+#' for the CHELSA dataset:
+#'
+#' Karger, D.N., Conrad, O., Böhner, J., Kawohl, T., Kreft, H., 
+#' Soria-Auza, R.W., Zimmermann, N.E., Linder, P., Kessler, M. (2017) 
+#' Climatologies at high resolution for the Earth land surface areas. 
+#' Scientific Data. 4 170122. \doi{10.1038/sdata.2017.122}
+#'
+#' @name CHELSA_2.1_0.5m_vsi
+NULL
+#> NULL

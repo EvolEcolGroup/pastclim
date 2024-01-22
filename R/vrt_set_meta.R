@@ -1,10 +1,10 @@
 #######################
 #' Set vrt metadata
 #'
-#' This function sets the metadata information to a vrt file. For each band, it
-#' adds a Description field (used to name the band), and a time.
+#' This function sets the metadata information to a vrt file. It creates some dataset
+#' wide metadata, as well as band specific descriptions and times.
 #' @param vrt_path path to the XML file defining the vrt dataset
-#' @param description_vector a vector of descriptions (same length as the number of bands)
+#' @param description a string with the description of the variable in this dataset
 #' @param time_vector a vector of descriptions (same length as the number of bands)
 #' @returns TRUE if the file was updated correctly
 #'

@@ -104,9 +104,10 @@ region_series <-
         )
       }
       # retrieve time axis for virtual file
+      
       if (substr(this_file,nchar(this_file)-2,nchar(this_file))=="vrt"){
         var_brick <- terra::rast(this_file, lyrs = this_var_nc)
-        time_bp(var_brick) <- unique(vrt_get_times(this_file))
+        #time_bp(var_brick) <- unique(vrt_get_times(this_file))
       } else {
         var_brick <- terra::rast(this_file, subds = this_var_nc)
       }

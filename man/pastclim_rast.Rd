@@ -4,7 +4,13 @@
 \alias{pastclim_rast}
 \title{Read a raster for pastclim}
 \usage{
-pastclim_rast(x, bio_var_orig, bio_var_pastclim)
+pastclim_rast(
+  x,
+  bio_var_orig,
+  bio_var_pastclim,
+  var_longname = NULL,
+  var_units = NULL
+)
 }
 \arguments{
 \item{x}{filename of the raster}

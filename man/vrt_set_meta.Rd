@@ -9,15 +9,15 @@ vrt_set_meta(vrt_path, description, time_vector)
 \arguments{
 \item{vrt_path}{path to the XML file defining the vrt dataset}
 
-\item{time_vector}{a vector of descriptions (same length as the number of bands)}
+\item{description}{a string with the description of the variable in this dataset}
 
-\item{description_vector}{a vector of descriptions (same length as the number of bands)}
+\item{time_vector}{a vector of descriptions (same length as the number of bands)}
 }
 \value{
 TRUE if the file was updated correctly
 }
 \description{
-This function sets the metadata information to a vrt file. For each band, it
-adds a Description field (used to name the band), and a time.
+This function sets the metadata information to a vrt file. It creates some dataset
+wide metadata, as well as band specific descriptions and times.
 }
 \keyword{internal}

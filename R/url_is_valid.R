@@ -7,6 +7,7 @@
 #'
 #' @keywords internal
 url_is_valid <- function(url, verbose = FALSE) {
+  if (requireNamespace("httr", quietly = TRUE)) {
     HTTP_STATUS_OK <- 200
     hd <- httr::HEAD(url)
     status <- hd$all_headers[[1]]$status
@@ -14,6 +15,12 @@ url_is_valid <- function(url, verbose = FALSE) {
       message("status is ",status)
     }
     return(exists = status == HTTP_STATUS_OK)
+  } else {
+    stop(
+      "to use this function, first install package 'httr' with\n",
+      "install.packages('httr')")  
+  }
+
 }
 
 

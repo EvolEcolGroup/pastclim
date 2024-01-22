@@ -27,7 +27,8 @@ test_that("pastclim_rast handles vrt correctly", {
   expect_identical(names(vrt_rast),
                         paste(bio_var_pastclim,time_vector, sep="_"))
   expect_identical(time_bp(vrt_rast),time_vector)
-  expect_identical
+  expect_identical(longnames(vrt_rast),bio_longname)
+  expect_identical(units(vrt_rast),rep(bio_units, nlyr(vrt_rast)))
 }
 )
 
@@ -38,7 +39,16 @@ test_that("pastclim_rast handles nc correctly", {
   )
   bio_var_orig <- "BIO1"
   bio_var_pastclim <- "bio01"
-  time_vector <- c(0,-10,-1000)
+  time_vector <- c(-20000,-15000,-10000,-5000,0)
+  bio_longname <- "annual mean temperature"
+  bio_units <- "degrees Celsius"
   nc_rast <- pastclim_rast(path_to_example_nc, bio_var_orig, bio_var_pastclim)
+  # check raster metadata
+  expect_identical(varnames(nc_rast),bio_var_pastclim)
+  expect_identical(names(nc_rast),
+                   paste(bio_var_pastclim,time_vector, sep="_"))
+  expect_identical(time_bp(nc_rast),time_vector)
+  expect_identical(longnames(nc_rast),bio_longname)
+  expect_identical(units(nc_rast),rep(bio_units, nlyr(nc_rast)))
 }
 )

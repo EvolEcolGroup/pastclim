@@ -14,7 +14,7 @@ filenames_paleoclim <- function(dataset, bio_var, version=NULL){
   resolution <- strsplit(dataset,"_")[[1]][3]
   # if resolution is 2.5, we need to change it to 2_5
   resolution <- gsub(".", "_", resolution, fixed = TRUE)
-  time_period_codes <- c("LH", "MH")
+  time_period_codes <- c("LH", "MH") #, "EH", "YDS", "BA", "HS1", "LIG"
   # compose download paths
   paste0("http://sdmtoolbox.org/paleoclim.org/data/",
          time_period_codes,"/",time_period_codes,"_v1_",resolution,".zip")
