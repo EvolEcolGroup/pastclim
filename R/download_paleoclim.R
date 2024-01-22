@@ -3,15 +3,16 @@
 #' This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
 #' @param dataset the name of the dataset
 #' @param bio_var the variable name
-#' @param filename the filename as stored in the `data_path` of `pastclim`
+#' @param filename (NOT USED FOR THIS FUNCTION: the data come as zip of all bio
+#' variables, so we generate multiple files, not a single one)
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
 #' @examples
-#' download_paleoclim(dataset = "paleoclim_1.0_10m", bio_var = "bio_06",
-#' filename = "paleoclim_10.vrt")
+#' download_paleoclim(dataset = "paleoclim_1.0_10m", bio_var = "bio_06")
 #' 
 #' @keywords internal
 
-download_paleoclim <- function(dataset, bio_var, filename) {
+download_paleoclim <- function(dataset, bio_var, filename = NULL) {
+  version <- "1.0.0" # version of the vrt so that we can change things later
   
   # compose download paths
   download_url <- filenames_paleoclim(dataset=dataset,
@@ -29,28 +30,31 @@ download_paleoclim <- function(dataset, bio_var, filename) {
                        resume = TRUE
   )
   # create band description and time axis
-  time_period_codes <- c("LH", "MH") #, "EH", "YDS", "BA", "HS1", "LIG"
-  time_vector <- c(-5000,-3000)
+#  time_period_codes <- c("LH", "MH", "EH", "YDS", "BA", "HS1", "LIG")
+  time_vector <- c(0,-2250,-6250, -10000, -12300, -13800,-15850, -130000)
   band_vector <- paste0("bio",sprintf("%02d", 1:19))
-  
-  # now unpack the files (files have the same name within each zip file, so
-  # we need to extract them into subdirectories)
-  # or can we use vsizip
-  # this is wrong, we need to create files by variable
-  for (i in seq_ln(length(band_vector))){
+  # the zip with present day reconstructions has an additional directory
+  resolution <- strsplit(dataset,"_")[[1]][3]
+  # if resolution is 2.5, we need to change it to 2_5
+  resolution <- gsub(".", "_", resolution, fixed = TRUE)
+  resolution <- paste0(resolution,"in") # to get 10min
+  paleoclim_path[1] <- file.path(paleoclim_path[1],resolution)
+  # create a vrt for each variable
+  for (i in seq_len(length(band_vector))){
+    # build the vsizip paths
     paleoclim_vsizip <- paste0("/vsizip/",file.path(paleoclim_path,paste0("bio_",i,".tif")))
     # TODO to add the really old time slices, we need to substitute these for certain variables
     # with a blank raster
-    
+    vrt_filename <- paste0(dataset,"_",band_vector[i],"_v",version,".vrt")
     # create the vrt file
     vrt_path <- terra::vrt(x = paleoclim_vsizip,
-                           filename = file.path(get_data_path(),filename),
+                           filename = file.path(get_data_path(),vrt_filename),
                            options="-separate", overwrite=TRUE, return_filename=TRUE)
     # edit the vrt metadata
     vrt_set_meta(vrt_path = vrt_path, 
-                 description = band_vector[i]),
+                 description = band_vector[i],
                  time_vector = time_vector)
-  }
+   }
   
   return(TRUE)
 }

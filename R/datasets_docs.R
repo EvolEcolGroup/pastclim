@@ -233,3 +233,25 @@ NULL
 #' @name CHELSA_2.1_0.5m_vsi
 NULL
 #> NULL
+
+#' Documentation for paleoclim
+#'
+#' Stub description for the paleoclim dataset
+#' 
+#' If you use this dataset, make sure to cite the original publication
+#' for the paleclim dataset:
+#'
+#' Brown, Hill, Dolan, Carnaval, Haywood (2018) PaleoClim, high spatial
+#'  resolution paleoclimate surfaces for global land areas.  
+#'  Nature – Scientific Data. 5:180254
+#'
+#' @name paleoclim_1.0
+NULL
+#> NULL
+
+#' Documentation for the paleoclim dataset at 10 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_10m
+NULL
+#> NULL

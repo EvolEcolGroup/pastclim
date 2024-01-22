@@ -29,6 +29,13 @@ test_that("pastclim_rast handles vrt correctly", {
   expect_identical(time_bp(vrt_rast),time_vector)
   expect_identical(longnames(vrt_rast),bio_longname)
   expect_identical(units(vrt_rast),rep(bio_units, nlyr(vrt_rast)))
+  
+  # error if we ask for the 
+  expect_error(vrt_rast <- pastclim_rast(x = vrt_path, bio_var_orig = "bio95", 
+                                         bio_var_pastclim = bio_var_pastclim, 
+                                         var_longname = bio_longname,
+                                         var_units = bio_units),
+               "the file ")
 }
 )
 

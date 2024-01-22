@@ -19,7 +19,7 @@ pastclim_rast <- function (x, bio_var_orig, bio_var_pastclim, var_longname = NUL
     # check that the variable name is as expected
     vrt_meta <- vrt_get_meta(x)
     if (vrt_meta$description!=bio_var_orig){
-      stop("the file ", x, " does not include the expected variable", bio_var_orig)
+      stop("the file ", x, " does not include the expected variable ", bio_var_orig)
     }
     time_vector <- vrt_meta$time_bp
     var_rast <- terra::rast(x)
