@@ -10,15 +10,15 @@ set_data_path(
 )
 ################################################################################
 
-test_that("get_file_for_dataset", {
-  expect_true(nrow(get_file_for_dataset("bio01", "Example")) == 1)
+test_that("get_var_meta", {
+  expect_true(nrow(get_var_meta("bio01", "Example")) == 1)
   expect_error(
-    get_file_for_dataset("bio19", "Example"),
+    get_var_meta("bio19", "Example"),
     "bio19 not"
   )
-  expect_true(nrow(get_file_for_dataset("bio01", "Beyer2020")) == 1)
+  expect_true(nrow(get_var_meta("bio01", "Beyer2020")) == 1)
   expect_error(
-    get_file_for_dataset("bio01", "Beyer"),
+    get_var_meta("bio01", "Beyer"),
     "^'dataset' must be one of "
   )
 })

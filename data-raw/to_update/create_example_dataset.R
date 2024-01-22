@@ -13,7 +13,7 @@ setwd(tempdir())
 library(ClimateOperators)
 library(pastclim)
 
-beyer_file <- pastclim:::get_file_for_dataset("bio01", "Beyer2020")$file_name
+beyer_file <- pastclim:::get_var_meta("bio01", "Beyer2020")$file_name
 beyer_file <- file.path(get_data_path(), this_file)
 
 ## subset to a few variables and time steps

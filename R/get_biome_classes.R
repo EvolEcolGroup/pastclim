@@ -15,7 +15,7 @@ get_biome_classes <- function(dataset) {
   # test that we ahve the biome variable
   check_var_downloaded("biome", dataset)
   # get file name for biome
-  this_file <- get_file_for_dataset("biome", dataset)$file_name
+  this_file <- get_var_meta("biome", dataset)$file_name
   this_file <- file.path(data_path, this_file)
   nc_in <- ncdf4::nc_open(this_file)
   biome_attributes <- ncdf4::ncatt_get(nc_in, "biome")

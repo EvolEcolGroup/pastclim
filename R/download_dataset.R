@@ -68,7 +68,7 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
   } else {
     # download the file for each variable
     for (this_var in bio_variables) {
-      file_details <- get_file_for_dataset(this_var, dataset)
+      file_details <- get_var_meta(this_var, dataset)
       # only download the file if it is needed
       if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
         # if it is a standard file to download

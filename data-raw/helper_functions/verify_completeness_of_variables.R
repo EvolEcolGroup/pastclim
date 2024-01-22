@@ -3,7 +3,7 @@ dataset <- "Krapp2021"
 library(pastclim)
 download_dataset(dataset = dataset)
 this_path <- pastclim::get_data_path()
-vars_for_dataset <- pastclim:::get_file_for_dataset(
+vars_for_dataset <- pastclim:::get_var_meta(
   get_vars_for_dataset(dataset, monthly = TRUE), dataset
 )
 

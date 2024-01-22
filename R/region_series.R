@@ -86,12 +86,17 @@ region_series <-
     for (this_var in bio_variables) {
       # get name of file that contains this variable
       if (dataset != "custom") {
-        this_file <- get_file_for_dataset(this_var, dataset)$file_name
+        var_meta <- get_var_meta(this_var, dataset)
+        this_file <- var_meta$file_name
         this_file <- file.path(get_data_path(), this_file)
-        this_var_nc <- get_varname(variable = this_var, dataset = dataset)
+        this_var_orig <- get_varname(variable = this_var, dataset = dataset)
+        this_var_longname <- var_meta$long_name
+        this_var_units <- var_meta$units
       } else {
         this_file <- file.path(path_to_nc)
-        this_var_nc <- this_var
+        this_var_orig <- this_var
+        this_var_longname <- NULL
+        this_var_units <- NULL
       }
       # figure out the time indeces the first time we run this
       if (is.null(time_index)) {
@@ -104,13 +109,15 @@ region_series <-
         )
       }
       # retrieve time axis for virtual file
-      
-      if (substr(this_file,nchar(this_file)-2,nchar(this_file))=="vrt"){
-        var_brick <- terra::rast(this_file, lyrs = this_var_nc)
-        #time_bp(var_brick) <- unique(vrt_get_times(this_file))
-      } else {
-        var_brick <- terra::rast(this_file, subds = this_var_nc)
-      }
+      var_brick <- pastclim_rast(x = this_file, bio_var_orig = this_var_orig,
+                                 bio_var_pastclim = this_var, var_longname = this_var_longname,
+                                 var_units = this_var_units)
+      # if (substr(this_file,nchar(this_file)-2,nchar(this_file))=="vrt"){
+      #   var_brick <- terra::rast(this_file, lyrs = this_var_orig)
+      #   #time_bp(var_brick) <- unique(vrt_get_times(this_file))
+      # } else {
+      #   var_brick <- terra::rast(this_file, subds = this_var_orig)
+      # }
       # subset to time steps
       if (!is.null(time_bp)) {
         var_brick <- terra::subset(var_brick, subset = time_index)
@@ -129,11 +136,11 @@ region_series <-
 
       climate_spatrasters[[this_var]] <- var_brick
 
-      varnames(climate_spatrasters[[this_var]]) <- this_var
-      names(climate_spatrasters[[this_var]]) <- paste(this_var,
-        time_bp(climate_spatrasters[[this_var]]),
-        sep = "_"
-      )
+      # varnames(climate_spatrasters[[this_var]]) <- this_var
+      # names(climate_spatrasters[[this_var]]) <- paste(this_var,
+      #   time_bp(climate_spatrasters[[this_var]]),
+      #   sep = "_"
+      # )
     }
     climate_sds <- terra::sds(climate_spatrasters)
     return(climate_sds)

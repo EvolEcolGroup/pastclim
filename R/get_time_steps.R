@@ -25,10 +25,10 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
     path_to_nc <- file.path(get_data_path(), possible_files[1])
   }
 
-  # if the last 4 chars are vrt, this is a virtual raster
+  # no point loading the raster fully if we have a virtual raster
   if (substr(path_to_nc,nchar(path_to_nc)-2,nchar(path_to_nc))=="vrt"){
     return(vrt_get_meta(path_to_nc)$time_bp)
-  } else {
+  } else { # if we have an nc file, we load it in full
     climate_nc <- terra::rast(path_to_nc, subds = 1)
     return(time_bp(climate_nc))
   }

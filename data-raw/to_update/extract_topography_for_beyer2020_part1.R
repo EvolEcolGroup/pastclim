@@ -9,7 +9,7 @@ etopo1 <- terra::rast("ETOPO1_Ice_c_gmt4.grd")
 sea_level <- read.table("spratt2016.txt", header = TRUE, row.names = 1)
 
 # get the file needed to create a mask
-mask_file <- pastclim:::get_file_for_dataset("bio01", dataset)$file_name
+mask_file <- pastclim:::get_var_meta("bio01", dataset)$file_name
 mask_nc <- terra::rast(paste0(
   system.file("extdata", package = "pastclimData"),
   "/", mask_file
