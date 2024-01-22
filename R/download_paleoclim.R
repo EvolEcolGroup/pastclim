@@ -5,9 +5,7 @@
 #' @param bio_var the variable name
 #' @param filename (NOT USED FOR THIS FUNCTION: the data come as zip of all bio
 #' variables, so we generate multiple files, not a single one)
-#' @returns TRUE if the requested CHELSA variable was downloaded successfully
-#' @examples
-#' download_paleoclim(dataset = "paleoclim_1.0_10m", bio_var = "bio_06")
+#' @returns TRUE if the requested paleoclim variable was downloaded successfully
 #' 
 #' @keywords internal
 

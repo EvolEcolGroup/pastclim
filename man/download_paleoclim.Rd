@@ -15,13 +15,9 @@ download_paleoclim(dataset, bio_var, filename = NULL)
 variables, so we generate multiple files, not a single one)}
 }
 \value{
-TRUE if the requested CHELSA variable was downloaded successfully
+TRUE if the requested paleoclim variable was downloaded successfully
 }
 \description{
 This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
-}
-\examples{
-download_paleoclim(dataset = "paleoclim_1.0_10m", bio_var = "bio_06")
-
 }
 \keyword{internal}
