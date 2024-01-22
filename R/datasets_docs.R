@@ -207,6 +207,9 @@ NULL
 #' Upper estimate scenario. Currently only the baseline scenario is available
 #' in `pastclim`
 #'
+#' More details on the dataset are available on its 
+#' dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
+#' 
 #' If you use this dataset, make sure to cite the original publication
 #' for the HYDE 3.2 (there is no current publication for 3.3):
 #'
@@ -236,10 +239,17 @@ NULL
 
 #' Documentation for paleoclim
 #'
-#' Stub description for the paleoclim dataset
+#' Paleoclim is a set of high resolution paleoclimate reconstructions, mostly
+#' based on teh CESM model, downscaled with the CHELSA dataset to 3  different 
+#' spatial resolutions; from 2.5 arc-minutes (~5 km), 5 arc-minutes (~10 km), 
+#' and 10 arc-minutes (~20 km). All 19 biovariables are available.
+#' There are only a limited number of time slices available for this dataset;
+#' furthermore, currently only time slices from present to 130ka are available 
+#' in `pastclim`.
 #' 
-#' If you use this dataset, make sure to cite the original publication
-#' for the paleclim dataset:
+#' More details on the dataset are available on its dedicated \href{http://www.paleoclim.org/}{website}.
+#' 
+#' If you use this dataset, make sure to cite the original publication:
 #'
 #' Brown, Hill, Dolan, Carnaval, Haywood (2018) PaleoClim, high spatial
 #'  resolution paleoclimate surfaces for global land areas.  
@@ -255,3 +265,18 @@ NULL
 #' @name paleoclim_1.0_10m
 NULL
 #> NULL
+
+#' Documentation for the paleoclim dataset at 5 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_5m
+NULL
+#> NULL
+
+#' Documentation for the paleoclim dataset at 2.5 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_2.5m
+NULL
+#> NULL
+

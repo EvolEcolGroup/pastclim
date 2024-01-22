@@ -22,6 +22,9 @@ contains: a Baseline estimate scenario, a Lower estimate scenario and an
 Upper estimate scenario. Currently only the baseline scenario is available
 in \code{pastclim}
 
+More details on the dataset are available on its
+dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
+
 If you use this dataset, make sure to cite the original publication
 for the HYDE 3.2 (there is no current publication for 3.3):
 

@@ -3,13 +3,22 @@
 \name{paleoclim_1.0}
 \alias{paleoclim_1.0}
 \alias{paleoclim_1.0_10m}
+\alias{paleoclim_1.0_5m}
+\alias{paleoclim_1.0_2.5m}
 \title{Documentation for paleoclim}
 \description{
-Stub description for the paleoclim dataset
+Paleoclim is a set of high resolution paleoclimate reconstructions, mostly
+based on teh CESM model, downscaled with the CHELSA dataset to 3  different
+spatial resolutions; from 2.5 arc-minutes (~5 km), 5 arc-minutes (~10 km),
+and 10 arc-minutes (~20 km). All 19 biovariables are available.
+There are only a limited number of time slices available for this dataset;
+furthermore, currently only time slices from present to 130ka are available
+in \code{pastclim}.
 }
 \details{
-If you use this dataset, make sure to cite the original publication
-for the paleclim dataset:
+More details on the dataset are available on its dedicated \href{http://www.paleoclim.org/}{website}.
+
+If you use this dataset, make sure to cite the original publication:
 
 Brown, Hill, Dolan, Carnaval, Haywood (2018) PaleoClim, high spatial
 resolution paleoclimate surfaces for global land areas.
