@@ -4,14 +4,14 @@
 \alias{vrt_set_meta}
 \title{Set vrt metadata}
 \usage{
-vrt_set_meta(vrt_path, description_vector, time_vector)
+vrt_set_meta(vrt_path, description, time_vector)
 }
 \arguments{
 \item{vrt_path}{path to the XML file defining the vrt dataset}
 
-\item{description_vector}{a vector of descriptions (same length as the number of bands)}
-
 \item{time_vector}{a vector of descriptions (same length as the number of bands)}
+
+\item{description_vector}{a vector of descriptions (same length as the number of bands)}
 }
 \value{
 TRUE if the file was updated correctly

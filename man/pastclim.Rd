@@ -30,28 +30,3 @@ The reconstructions are bias-corrected and downscaled to 0.5 degree. More detail
 can be found \href{https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html}{here}.
 There are also instructions on how to build and use \href{https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html}{custom datasets}.
 }
-\seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/EvolEcolGroup/pastclim}
-  \item \url{https://evolecolgroup.github.io/pastclim/}
-  \item Report bugs at \url{https://github.com/EvolEcolGroup/pastclim/issues}
-}
-
-}
-\author{
-\strong{Maintainer}: Andrea Manica \email{am315@cam.ac.uk}
-
-Authors:
-\itemize{
-  \item Michela Leonardi
-}
-
-Other contributors:
-\itemize{
-  \item Emily Y. Hallet [contributor]
-  \item Robert Beyer [contributor]
-  \item Mario Krapp [contributor]
-}
-
-}
