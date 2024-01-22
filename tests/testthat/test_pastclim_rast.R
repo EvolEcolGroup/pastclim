@@ -3,7 +3,7 @@
 temp_dir <- tempdir()
 vrt_filename <- file.path(temp_dir,"test.vrt")
 
-test_that("editing vrt meta", {
+test_that("pastclim_rast handles vrt correctly", {
   tif_files <- list.files(system.file("extdata/CHELSA_bio01", package="pastclim"),
              full.names = TRUE)
   # create the file
@@ -11,10 +11,11 @@ test_that("editing vrt meta", {
                          filename = vrt_filename,
                          options="-separate", overwrite=TRUE, return_filename=TRUE)
   
-  description_vector <- paste0("band_name_",1:3)
+  description_vector <- paste0("band_name_1")
   time_vector <- c(0,-10,-1000)
-  expect_true(vrt_set_meta(vrt_path, description_vector, time_vector))
-  vrt_rast <- terra::rast(vrt_path)
+  # set metadata
+  expect_true(vrt_set_meta(vrt_path, rep(description_vector, length(time_vector)), time_vector))
+  vrt_rast <- pastclim_rast(vrt_path, bio_var = description_vector[1])
   expect_true(identical(names(vrt_rast),description_vector))
   expect_true(identical(vrt_get_times(vrt_path = vrt_path),time_vector))
   expect_true(identical(vrt_get_names(vrt_path = vrt_path),description_vector))

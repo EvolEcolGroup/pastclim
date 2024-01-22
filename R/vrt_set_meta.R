@@ -17,6 +17,7 @@ vrt_set_meta <- function (vrt_path, description_vector, time_vector){
   xml2::xml_add_child(x,"Metadata",.where=0)
   metadata_node <- xml2::xml_find_first(x, xpath="Metadata")
   xml2::xml_add_child(metadata_node,"MDI",key="has_time","true")
+  xml2::xml_add_child(metadata_node,"MDI",key="pastclim_bp","true")
   # add band description and times
   band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
   for (i_node in seq_len(length(band_nodes))){
