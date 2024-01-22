@@ -9,19 +9,19 @@
 #'
 #' @keywords internal
 filenames_chelsa_present <- function(dataset, bio_var, version=NULL){
-  # based on the variable, set the vars prefix (which include all version of
-  # that variables, e.g. all bio, or all monthly precipitations)
+  var_index <- substr(bio_var,nchar(bio_var)-1,nchar(bio_var))
+  
   if ("bio"== substr(bio_var,1,3)){
     var_prefix <- "bio"
-    var_indices <- paste0(var_prefix,1:19)
+    var_index <- paste0(var_prefix,as.numeric(var_index)) # strip leading 0
   } else if ("tem" == substr(bio_var,1,3)){
     var_prefix <- "tas"
-    var_indices <- paste0(var_prefix,"_",sprintf("%02d", 1:12))
+    var_index <- paste0(var_prefix,"_",var_index)
   } else if ("pre" == substr(bio_var,1,3)){  
     var_prefix <- "pr"
-    var_indices <- paste0(var_prefix,"_",sprintf("%02d", 1:12))
+    var_index <- paste0(var_prefix,"_",var_index)
   }
   # compose download paths
   paste0("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/",
-                         var_prefix,"/CHELSA_",var_indices,"_1981-2010_V.2.1.tif")
+                         var_prefix,"/CHELSA_",var_index,"_1981-2010_V.2.1.tif")
 }

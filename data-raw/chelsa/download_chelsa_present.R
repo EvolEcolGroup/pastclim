@@ -6,8 +6,8 @@
 #' @param filename the filename as stored in the `data_path` of `pastclim`
 #' @returns TRUE if the requested CHELSA variable was downloaded successfully
 #' @examples
-#' download_chelsa_present(dataset = "CHELSA_2.1_vsi", bio_var = "bio_06",
-#' filename = "CHELSA_2.1_bio_vsi.vrt")
+#' download_chelsa_present(dataset = "CHELSA_2.1_0.5m_vsi", bio_var = "bio_06",
+#' filename = "CHELSA_2.1_0.5m_bio06_vsi.vrt")
 #' 
 #' @keywords internal
 
@@ -37,7 +37,7 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
     if(!dir.exists(chelsa_dir)){
       dir.create(chelsa_dir)
     }
-    # and now download the files
+    # and now download the files (so the url is actually a local file)
     chelsa_url <- file.path(chelsa_dir,basename(download_url))
     curl::curl_download(download_url,
                         destfile = chelsa_url,
@@ -46,21 +46,12 @@ download_chelsa_present <- function(dataset, bio_var, filename) {
   }
   # create the vrt file
   vrt_path <- terra::vrt(x = chelsa_url,
-                         filename = filename,
+                         filename = file.path(get_data_dir(),filename),
                          options="-separate", overwrite=TRUE, return_filename=TRUE)
-  # create band description and time axis
-  time_vector <- rep(40,length(chelsa_url))
-  if ("bio"== substr(bio_var,1,3)){
-    band_vector <- paste0("bio",sprintf("%02d", 1:19))
-  } else if ("tem" == substr(bio_var,1,3)){
-    band_vector <- paste0("temperature_",1:12)
-  } else if ("pre" == substr(bio_var,1,3)){  
-    band_vector <- paste0("precipitation_",1:12)
-  }
 
   # edit the vrt metadata
-  return(vrt_set_meta(vrt_path = vrt_path, description_vector = band_vector,
-                        time_vector = time_vector))
+  return(vrt_set_meta(vrt_path = vrt_path, description = bio_var,
+                        time_vector = 40))
 }
 
 
