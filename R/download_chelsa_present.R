@@ -11,6 +11,8 @@
 
 # download_chelsa_present(dataset = "CHELSA_2.1_0.5m_vsi", bio_var = "bio06",
 # filename = "CHELSA_2.1_0.5m_bio06_vsi.vrt")
+# download_chelsa_present(dataset = "CHELSA_2.1_0.5m", bio_var = "bio06",
+# filename = "CHELSA_2.1_0.5m_bio06.vrt")
 
 download_chelsa_present <- function(dataset, bio_var, filename) {
   

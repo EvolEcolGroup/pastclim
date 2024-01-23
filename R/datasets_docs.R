@@ -223,7 +223,8 @@ NULL
 
 #' Documentation for *CHELSA 2.1*
 #'
-#' Stub description for the CHELSA dataset
+#' Stub description for the CHELSA dataset. Explain the vsi versions for virtual
+#' datasets.
 #' 
 #' If you use this dataset, make sure to cite the original publication
 #' for the *CHELSA* dataset:
@@ -233,7 +234,7 @@ NULL
 #' Climatologies at high resolution for the Earth land surface areas. 
 #' Scientific Data. 4 170122. \doi{10.1038/sdata.2017.122}
 #'
-#' @name CHELSA_2.1_0.5m_vsi
+#' @name CHELSA_2.1
 NULL
 #> NULL
 

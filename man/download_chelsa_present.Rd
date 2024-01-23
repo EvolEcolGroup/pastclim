@@ -11,7 +11,7 @@ download_chelsa_present(dataset, bio_var, filename)
 
 \item{bio_var}{the variable name}
 
-\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim}}
+\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim} (includes the full data path)}
 }
 \value{
 TRUE if the requested CHELSA variable was downloaded successfully
