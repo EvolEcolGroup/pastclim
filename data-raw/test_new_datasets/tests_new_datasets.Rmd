@@ -1,0 +1,75 @@
+---
+title: "Testing new datasets"
+output: html_document
+date: "2024-01-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## A quick check for the new datasets
+
+We now have a lot of new dataset. Let's try a couple of variables to check that they all work
+
+```{r}
+list_available_datasets()
+```
+
+## CHELSA present
+
+Start with a virtual dataset:
+
+```{r}
+bio_vars <- c("bio03","temperature_01")
+dataset = "CHELSA_2.1_0.5m_vsi"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+```
+Now use it:
+```{r}
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio03
+test_rast$temperature_01
+```
+
+Now the real dataset (downloading the files)
+```{r}
+dataset = "CHELSA_2.1_0.5m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio03
+test_rast$temperature_01
+
+```
+
+##CHELSA future
+
+Again, a virtual dataset first
+```{r}
+dataset = "CHELSA_2.1_MPI-ESM1-2-HR_ssp370_0.5m_vsi"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio03
+test_rast$temperature_01
+
+```
+
+And now the downloading data:
+```{r}
+dataset = "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio03
+test_rast$temperature_01
+
+```
+
+## Paleoclim
+```{r}
+dataset = "paleoclim_1.0_10m"
+download_dataset(dataset=dataset, bio_variables = c("bio01","bio11"))
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio03
+test_rast$temperature_01
+
+```

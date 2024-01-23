@@ -23,10 +23,11 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
   }
   # and now download the files
   paleoclim_path <- file.path(paleoclim_dir,basename(download_url))
+  # this server does not allow to resume downloads
   download_res <- curl::multi_download(download_url,
-                       destfiles = paleoclim_path,
-                       resume = TRUE
+                       destfiles = paleoclim_path
   )
+
   # create band description and time axis
 #  time_period_codes <- c("LH", "MH", "EH", "YDS", "BA", "HS1", "LIG")
   time_vector <- c(0,-2250,-6250, -10000, -12300, -13800,-15850, -130000)

@@ -16,8 +16,8 @@ test_that("filenames_chelsa_present are correct", {
     expect_true(url_is_valid(bio_files[sample(1:3,1)]))
   }
   # monthly variables
-  variables <- c(paste0("temperature",sprintf("%02d", 1:12)),
-                 paste0("precipitation",sprintf("%02d", 1:12)))
+  variables <- c(paste0("temperature_",sprintf("%02d", 1:12)),
+                 paste0("precipitation_",sprintf("%02d", 1:12)))
   
   for (i in seq_len(length(target_datasets))){
     bio_files <- filenames_chelsa_future(dataset = target_datasets[i], 

@@ -4,7 +4,7 @@
 \alias{CHELSA_2.1}
 \title{Documentation for \emph{CHELSA 2.1}}
 \description{
-Stub description for the CHELSA dataset. Explan the vsi versions for virtual
+Stub description for the CHELSA dataset. Explain the vsi versions for virtual
 datasets.
 }
 \details{

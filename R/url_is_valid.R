@@ -9,12 +9,13 @@
 url_is_valid <- function(url, verbose = FALSE) {
   if (requireNamespace("httr", quietly = TRUE)) {
     HTTP_STATUS_OK <- 200
+    HTTP_STATUS_REDIRECT_SUCCESS <- 302
     hd <- httr::HEAD(url)
     status <- hd$all_headers[[1]]$status
     if (verbose){
       message("status is ",status)
     }
-    return(exists = status == HTTP_STATUS_OK)
+    return(status %in% c(HTTP_STATUS_OK, HTTP_STATUS_REDIRECT_SUCCESS))
   } else {
     stop(
       "to use this function, first install package 'httr' with\n",
