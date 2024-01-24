@@ -86,7 +86,7 @@ test_rast$bio12
 ```
 
 
-## Worldclim
+## WorldClim
 ```{r}
 bio_vars <- c("bio01","bio12")
 dataset = "WorldClim_2.1_10m"

@@ -19,7 +19,7 @@ in \code{pastclim}.
 \details{
 More details on the dataset are available on its dedicated \href{http://www.paleoclim.org/}{website}.
 
-If you use this dataset, make sure to cite the original publication:
+IMPORTANT: If you use this dataset, make sure to cite the original publication:
 
 Brown, Hill, Dolan, Carnaval, Haywood (2018) PaleoClim, high spatial
 resolution paleoclimate surfaces for global land areas.

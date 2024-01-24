@@ -25,7 +25,7 @@ in \code{pastclim}
 More details on the dataset are available on its
 dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
 
-If you use this dataset, make sure to cite the original publication
+IMPORTANT: If you use this dataset, make sure to cite the original publication
 for the HYDE 3.2 (there is no current publication for 3.3):
 
 Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:

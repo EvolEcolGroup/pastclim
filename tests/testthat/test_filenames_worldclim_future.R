@@ -12,7 +12,7 @@ test_that("filenames_worldclim_future are correct", {
   # annual variables
   variables <- c(paste0("bio",sprintf("%02d", 1:19)))
   
-  target_datasets <- paste("Worldclim_2.1", datasets,
+  target_datasets <- paste("WorldClim_2.1", datasets,
         sample(scenarios, length(datasets),replace = TRUE),
         resolutions, sep="_")
   # remove combinations for which there are no data

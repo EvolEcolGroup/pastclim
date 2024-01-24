@@ -10,7 +10,9 @@ vrt_get_meta(vrt_path)
 \item{vrt_path}{path to the XML file defining the vrt dataset}
 }
 \value{
-list of two elements: \code{description}, and \code{time_bp}
+list of three elements: vector \code{description} and \code{time_bp} defining
+each band, and a boolean \code{time_bp} show determining whether times should be given
+as time_bp when labelling bands by terra
 }
 \description{
 This function extract metadata information from a vrt. It returns the description

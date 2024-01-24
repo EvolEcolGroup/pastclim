@@ -6,11 +6,12 @@
 #' @param vrt_path path to the XML file defining the vrt dataset
 #' @param description a string with the description of the variable in this dataset
 #' @param time_vector a vector of descriptions (same length as the number of bands)
+#' @param time_bp boolean defining whether time is in BP or (if FALSE) CE
 #' @returns TRUE if the file was updated correctly
 #'
 #' @keywords internal
 ## Edit the vrt metadata
-vrt_set_meta <- function (vrt_path, description, time_vector){
+vrt_set_meta <- function (vrt_path, description, time_vector, time_bp=TRUE){
   # read vrt file
   x<- xml2::read_xml(vrt_path)
   # TODO ideally we should check that we don't already have metadata to avoid writing it twice
@@ -23,7 +24,7 @@ vrt_set_meta <- function (vrt_path, description, time_vector){
   xml2::xml_add_child(x,"Description",description,.where=0)
   xml2::xml_add_child(x,"Metadata",.where=1)
   metadata_node <- xml2::xml_find_first(x, xpath="Metadata")
-  xml2::xml_add_child(metadata_node,"MDI",key="pastclim_time_bp","true")
+  xml2::xml_add_child(metadata_node,"MDI",key="pastclim_time_bp",tolower(as.character(time_bp)))
   # add band description and times
   band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
   if (length(band_nodes)!=length(time_vector)){

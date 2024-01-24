@@ -30,11 +30,11 @@ download_chelsa <- function(dataset, bio_var, filename) {
   if (length(unlist(strsplit(dataset, "_")))<5){
     download_url <- filenames_chelsa_present(dataset=dataset,
                                              bio_var = bio_var)
-    time_vector <- 40
+    time_vector <- 1990
   } else {
     download_url <- filenames_chelsa_future(dataset=dataset,
                                              bio_var = bio_var)
-    time_vector <- c(2025, 2055, 2075)-1950 # in bp
+    time_vector <- c(2025, 2055, 2075)
   }
   
   
@@ -64,8 +64,13 @@ download_chelsa <- function(dataset, bio_var, filename) {
                          overwrite=TRUE, return_filename=TRUE)
 
   # edit the vrt metadata
-  return(vrt_set_meta(vrt_path = vrt_path, description = bio_var,
-                        time_vector = time_vector))
+  edit_res <- vrt_set_meta(vrt_path = vrt_path, description = bio_var,
+                           time_vector = time_vector, time_bp=TRUE)
+  if (!edit_res){
+    file.remove(vrt_path)
+    stop("something went wrong setting up this dataset")
+  }
+  return()
 }
 
 

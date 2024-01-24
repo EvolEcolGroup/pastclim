@@ -1,6 +1,6 @@
-#' Generate file names to download the Worldclim present dataset
+#' Generate file names to download the WorldClim present dataset
 #'
-#' This function creates a vector of paths needed to download the Worldclim present
+#' This function creates a vector of paths needed to download the WorldClim present
 #' dataset
 #' @param dataset the name of the dataset of interest
 #' @param bio_var the variable of interest

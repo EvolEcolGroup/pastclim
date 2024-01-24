@@ -8,7 +8,7 @@ file_names<-paste0("CHELSA_2.1_0.5m_",var_names,"_v",version,vsi,".vrt")
 write.csv(file_names, "chelsa_file_names.csv")
 
 
-# Worldclim future
+# WorldClim present
 var_names <- c(paste0("bio",sprintf("%02d", 1:19)),
                "altitude",
                paste0("temperature_",sprintf("%02d", 1:12)),
@@ -17,11 +17,11 @@ var_names <- c(paste0("bio",sprintf("%02d", 1:19)),
                paste0("temperature_max_",sprintf("%02d", 1:12)))
 version <- "2.0.0"
 vsi <- ""  ## change to "_vsi" for virtual datasets
-file_names<-paste0("WorldClim_2.1_10m_",var_names,"_v",version,vsi,".vrt")
+file_names<-paste0("WorldClim_2.1_5m_",var_names,"_v",version,vsi,".vrt")
 write.csv(file_names, "wc_current_file_names.csv")
 
 
-# Worldclim future
+# WorldClim future
 var_names <- c(paste0("bio",sprintf("%02d", 1:19)),
                paste0("precipitation_",sprintf("%02d", 1:12)),
                paste0("temperature_min_",sprintf("%02d", 1:12)),

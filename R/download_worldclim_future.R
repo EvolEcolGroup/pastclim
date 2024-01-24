@@ -1,11 +1,11 @@
 #' Download the worldclim future time series.
 #'
-#' This function downloads annual and monthly variables from the Worldclim v2.1 dataset
+#' This function downloads annual and monthly variables from the WorldClim v2.1 dataset
 #' for future projections.
 #' 
 #' Note: the data come as tiffs each containing all bio (or prec/temp)
 #' variables for a given time step. From these, we generate a vrt per variable. So,
-#' since we donwlaod the full set for a give variable type, we create all the vrts
+#' since we download the full set for a give variable type, we create all the vrts
 #' for that variable type (e.g. all the bio). We use the filename to get the version
 #' name, and then at the end to check that we did generate it correctly given our
 #' programmatic way of creating the names of all vrt files.
@@ -22,7 +22,7 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
   # compose download paths
     download_url <- filenames_worldclim_future(dataset=dataset,
                                             bio_var = bio_var)
-    time_vector <- (c(2030, 2050, 2070, 2090) - 1950)
+    time_vector <- c(2030, 2050, 2070, 2090)
   
   # create band vectors
   # function to grab the number from the raster layer
@@ -59,8 +59,9 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
                            options=c("-b", i,"-separate"), overwrite=TRUE, return_filename=TRUE),
              warning  = function(w) {
                # don't throw an error if we get a warning because of the old gadal version
+               # which only saves the first band and ignores the -b option
                if (!grepl("Only the first one",w)){
-                 file.de
+                 file.remove(vrt_path)
                  stop("vrt creation failed with ", w,"\n try to redownload this dataset")
                }
                
@@ -78,7 +79,8 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
     # edit the vrt metadata
     vrt_set_meta(vrt_path = vrt_path, 
                  description = band_vector[i],
-                 time_vector = time_vector)
+                 time_vector = time_vector,
+                 time_bp = FALSE)
    }
   if (!file.exists(filename)){
     stop("something went wrong setting up this dataset")

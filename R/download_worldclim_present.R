@@ -14,7 +14,7 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
   # compose download paths
   download_url <- filenames_worldclim_present(dataset=dataset,
                                              bio_var = bio_var)
-  time_vector <- 35
+  time_vector <- 1985
   
   # create band vectors
   # function to grab the number from the raster layer
@@ -43,7 +43,7 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
     quiet = FALSE
   )
   # for all variables (except altitude) we match file names to bands based on the id at the end of the file name
-  files_in_zip <- unzip(worldclim_url, list=TRUE)$Name
+  files_in_zip <- utils::unzip(worldclim_url, list=TRUE)$Name
   if (!grepl("altitude", bio_var)){
     files_in_zip_id <- as.numeric(gsub("^.*_([0-9]+)\\.tif$", "\\1", files_in_zip))
     if (!all(seq_len(length(band_vector) %in% files_in_zip_id))){
@@ -71,7 +71,8 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
     # edit the vrt metadata
     vrt_set_meta(vrt_path = vrt_path, 
                  description = band_vector[i],
-                 time_vector = time_vector)
+                 time_vector = time_vector,
+                 time_bp = FALSE)
   }
   if (!file.exists(filename)){
     stop("something went wrong setting up this dataset")
