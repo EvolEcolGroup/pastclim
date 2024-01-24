@@ -10,5 +10,7 @@ test_that("filenames_worldclim_present are correct", {
   expect_true(url_is_valid(bio_files))
   bio_files <- filenames_worldclim_present(dataset="WorldClim_2.1_5m", bio_var = "precipitation_01")
   expect_true(url_is_valid(bio_files))
+  bio_files <- filenames_worldclim_present(dataset="WorldClim_2.1_5m", bio_var = "altitude")
+  expect_true(url_is_valid(bio_files))
 }
 )

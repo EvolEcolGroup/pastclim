@@ -40,4 +40,5 @@ filenames_worldclim_present <- function(dataset, bio_var, version=NULL){
   
   base_url <- "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1"
   full_url <- paste(base_url, wc_res, postfix, sep = "_")
+  full_url
 }
