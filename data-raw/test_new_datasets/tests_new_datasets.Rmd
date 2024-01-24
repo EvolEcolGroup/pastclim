@@ -34,6 +34,7 @@ test_rast$temperature_01
 
 Now the real dataset (downloading the files)
 ```{r}
+bio_vars <- c("bio03","temperature_01")
 dataset = "CHELSA_2.1_0.5m"
 download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
@@ -46,6 +47,7 @@ test_rast$temperature_01
 
 Again, a virtual dataset first
 ```{r}
+bio_vars <- c("bio03","temperature_01")
 dataset = "CHELSA_2.1_MPI-ESM1-2-HR_ssp370_0.5m_vsi"
 download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
@@ -56,6 +58,7 @@ test_rast$temperature_01
 
 And now the downloading data:
 ```{r}
+bio_vars <- c("bio03","temperature_01")
 dataset = "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m"
 download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
@@ -66,10 +69,28 @@ test_rast$temperature_01
 
 ## Paleoclim
 ```{r}
+bio_vars <- c("bio03","bio12")
 dataset = "paleoclim_1.0_10m"
-download_dataset(dataset=dataset, bio_variables = c("bio01","bio11"))
+download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
 test_rast$bio03
-test_rast$temperature_01
+test_rast$bio12
 
 ```
+
+
+## Worldclim
+
+
+
+Future projections
+```{r}
+bio_vars <- c("bio01","bio12")
+dataset = "WorldClim_2.1_MPI-ESM1-2-HR_ssp370_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio01
+test_rast$bio12
+
+```
+

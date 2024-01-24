@@ -34,7 +34,7 @@ download_chelsa <- function(dataset, bio_var, filename) {
   } else {
     download_url <- filenames_chelsa_future(dataset=dataset,
                                              bio_var = bio_var)
-    time_vector <- c(2025, 2055, 2075)
+    time_vector <- c(2025, 2055, 2075)-1950 # in bp
   }
   
   

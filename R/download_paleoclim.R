@@ -1,6 +1,6 @@
 #' Download the paleoclim time series.
 #'
-#' This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
+#' This function downloads annual and monthly variables from the Paleoclim V1.0 dataset.
 #' @param dataset the name of the dataset
 #' @param bio_var the variable name
 #' @param filename (NOT USED FOR THIS FUNCTION: the data come as zip of all bio
