@@ -40,7 +40,7 @@ Available values for GCM are: "GFDL-ESM4", "IPSL-CM6A-LR", "MPI-ESM1-2-HR",
 "ssp370",	and "ssp585". RES is currently limited to "0.5m". Example dataset names are
 \emph{CHELSA_2.1_GFDL-ESM4_ssp126_0.5m} and \emph{CHELSA_2.1_UKESM1-0-LL_ssp370_0.5m}
 
-As for present recontructions, an alternative to
+As for present reconstructions, an alternative to
 downloading the very large files is to use virtual rasters. Simply append
 "_vis" to the name of the dataset of interest (\emph{CHELSA_2.1_GFDL-ESM4_ssp126_0.5m_vsi}).
 
