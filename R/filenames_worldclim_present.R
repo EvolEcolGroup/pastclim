@@ -4,11 +4,10 @@
 #' dataset
 #' @param dataset the name of the dataset of interest
 #' @param bio_var the variable of interest
-#' @param version the version of the dataset (currently unused)
 #' @returns a vector of times, one per band
 #'
 #' @keywords internal
-filenames_worldclim_present <- function(dataset, bio_var, version=NULL){
+filenames_worldclim_present <- function(dataset, bio_var){
   # get resolution from the dataset name and convert it to the original
   res_conversion <- data.frame(
     our_res = c("10m", "5m", "2.5m", "0.5m"),

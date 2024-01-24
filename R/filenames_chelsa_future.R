@@ -4,17 +4,11 @@
 #' dataset
 #' @param dataset the name of the dataset of interest
 #' @param bio_var the variable of interest
-#' @param version the version of the dataset (currently unused)
 #' @returns a vector of times, one per band
 #'
 #' @keywords internal
 
-# CHELSA_2.1_GFDL-ESM4_ssp126_0.5m
-# "GFDL-ESM4","IPSL-CM6A-LR", "MPI-ESM1-2-HR","MRI-ESM2-0","UKESM1-0-LL"
-# c("ssp126","ssp370","ssp585")
-# time_steps <- c(2025, 2055, 2075)
-
-filenames_chelsa_future <- function(dataset, bio_var, version=NULL){
+filenames_chelsa_future <- function(dataset, bio_var){
   # split the dataset name: model is element 3 and scenario element 4
   dataset_parsed <- unlist(strsplit(dataset,"_"))
   

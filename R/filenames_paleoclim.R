@@ -5,11 +5,10 @@
 #' "paleoclim_1.0_2.5m"
 #' @param dataset the name of the dataset of interest (currently unused)
 #' @param bio_var the variable of interest
-#' @param version the version of the dataset (currently unused)
 #' @returns a vector of times, one per band
 #'
 #' @keywords internal
-filenames_paleoclim <- function(dataset, bio_var, version=NULL){
+filenames_paleoclim <- function(dataset, bio_var){
   
   resolution <- strsplit(dataset,"_")[[1]][3]
   # if resolution is 2.5, we need to change it to 2_5

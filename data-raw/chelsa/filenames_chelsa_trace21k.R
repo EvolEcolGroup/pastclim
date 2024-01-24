@@ -1,5 +1,5 @@
 filenames_chelsa_trace21k<- function(dataset, bio_var, version=NULL){
-  if (dataset=="CHELSA_trace21k_v1.0"){
+  if (dataset=="CHELSA_trace21k_1.0"){
     version <- "1.0" 
   }
   

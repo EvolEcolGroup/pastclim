@@ -1,6 +1,6 @@
 # test that the files names generated for chelsa present do point to a valid file
 
-test_that("filenames_chelsa_present are correct", {
+test_that("filenames_chelsa_future are correct", {
   skip_if_offline()
   datasets <- c("GFDL-ESM4","IPSL-CM6A-LR", "MPI-ESM1-2-HR","MRI-ESM2-0","UKESM1-0-LL")
   scenarios <- c("ssp126","ssp370","ssp585")

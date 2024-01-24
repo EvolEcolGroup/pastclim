@@ -4,14 +4,12 @@
 \alias{filenames_chelsa_present}
 \title{Generate file names to download the chelsa present dataset}
 \usage{
-filenames_chelsa_present(dataset, bio_var, version = NULL)
+filenames_chelsa_present(dataset, bio_var)
 }
 \arguments{
 \item{dataset}{the name of the dataset of interest (currently unused)}
 
 \item{bio_var}{the variable of interest}
-
-\item{version}{the version of the dataset (currently unused)}
 }
 \value{
 a vector of times, one per band

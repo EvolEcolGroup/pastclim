@@ -65,12 +65,12 @@ download_chelsa <- function(dataset, bio_var, filename) {
 
   # edit the vrt metadata
   edit_res <- vrt_set_meta(vrt_path = vrt_path, description = bio_var,
-                           time_vector = time_vector, time_bp=TRUE)
+                           time_vector = time_vector, time_bp=FALSE)
   if (!edit_res){
     file.remove(vrt_path)
     stop("something went wrong setting up this dataset")
   }
-  return()
+  return(TRUE)
 }
 
 

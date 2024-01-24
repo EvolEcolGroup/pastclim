@@ -4,11 +4,10 @@
 #' dataset
 #' @param dataset the name of the dataset of interest
 #' @param bio_var the variable of interest
-#' @param version the version of the dataset (currently unused)
 #' @returns a vector of times, one per band
 #'
 #' @keywords internal
-filenames_worldclim_future <- function(dataset, bio_var, version=NULL){
+filenames_worldclim_future <- function(dataset, bio_var){
   
   wc_res <- strsplit(dataset,"_")[[1]][5]
   # if resolution is 0.5m, we need to change it to 30s
