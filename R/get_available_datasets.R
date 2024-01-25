@@ -18,5 +18,5 @@ get_available_datasets <- function() {
   print(sort(all_datasets))
   message('for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.')
   message('for future predictions, use "WorldClim_2.1_GCM_SSP_RESm" or "CHELSA_2.1_GCM_SSP_RESm", where GCM is the GCM model, SSP is the Shared Socio-economic Pathways scenario.')
-  message('use help("WorldClim_2.1") or help("CHELSA_2.1) for a list of available options')
+  message('use help("WorldClim_2.1") or help("CHELSA_2.1") for a list of available options')
 }
