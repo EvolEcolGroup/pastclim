@@ -16,10 +16,10 @@ Soria-Auza, R.W., Zimmermann, N.E., Linder, P., Kessler, M. (2017)
 Climatologies at high resolution for the Earth land surface areas.
 Scientific Data. 4 170122. \doi{10.1038/sdata.2017.122}
 
-#' \strong{Present-day reconstructions} are based on the mean for the period 1981-2000
+\strong{Present-day reconstructions} are based on the mean for the period 1981-2000
 and are available at at the high resolution of 0.5 arc-minutes (\emph{CHELSA_2.1_0.5m}).
 In \code{pastclim}, the datasets are given
-a date of 1985 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly
+a date of 1990 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly
 estimates for mean temperature, and precipitation. The dataset is very large, as it
 includes estimates for the oceans as well as the land masses. An alternative to
 downloading the very large files is to use virtual rasters, which allow the

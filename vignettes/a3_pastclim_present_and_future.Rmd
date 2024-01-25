@@ -16,24 +16,25 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+# boolean to turn off chunks that download large datasets
+eval_chunk <- FALSE 
 ```
 
 
 Whilst `pastclim` is mostly designed to handle palaeoclimate time series, it can
 also be used to manipulate present reconstructions and future projections.
-Currently, it uses the WorldClim datasets, but it could easily be adapted to 
-use other sources such as CHELSA.
+Currently, it covers the WorldClim and the CHELSA datasets, but it could easily be adapted to 
+use other sources.
 
 # Present reconstructions
 
+## WorldClim
 Present-day reconstructions for WorldClim v2.1 are based on the mean for the period 1970-2000, 
 and are available at multiple resolutions of
 10 arc-minutes, 5 arc-minutes, 2.5 arc-minute and 0.5 arc-minutes. The resolution
 of interest can be obtained by changing the ending of the dataset name 
-*WorldClim_2.1_RESm*, e.g. *WorldClim_2.1_10m* or *WorldClim_2.1_5m*
-(currently, only 10m and 5m are currently available in `pastclim`). In `pastclim`, the datasets are given
-a date of 1985 CE (the mid-point of the period of interest), corresponding to
-a time_bp of 35. There are 19 “bioclimatic” variables, as well as monthly 
+*WorldClim_2.1_RESm*, e.g. *WorldClim_2.1_10m* or *WorldClim_2.1_5m*. In `pastclim`, the datasets are given
+a date of 1985 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly 
 estimates for minimum, mean, and maximum temperature, and precipitation.
 
 So, the annual variables for the 10m arc-minutes dataset are:
@@ -48,7 +49,7 @@ get_vars_for_dataset("WorldClim_2.1_10m", monthly = TRUE, annual = FALSE)
 ```
 
 We can manipulate data in the usual way. We start by downloading the dataset:
-```{r eval=FALSE}
+```{r eval=eval_chunk}
 download_dataset(
   dataset = "WorldClim_2.1_10m",
   bio_variables = c("bio01", "bio02", "altitude")
@@ -56,7 +57,7 @@ download_dataset(
 ```
 
 We can then use `region_slice` to extract the data as a `SpatRaster`:
-```{r eval=FALSE}
+```{r eval=eval_chunk}
 climate_present <- region_slice(
   time_ce = 1985,
   bio_variables = c("bio01", "bio02", "altitude"),
@@ -64,7 +65,69 @@ climate_present <- region_slice(
 )
 ```
 
+## CHELSA
+Present-day reconstructions for CHELSA v2.1 are based on the mean for the period 1981-2000, 
+and are available at the high resolution of 0.5 arc-minutes. *CHELSA_2.1_0.5m*. In `pastclim`, the datasets are given
+a date of 1990 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly 
+estimates for minimum, mean, and maximum temperature, and precipitation.
+
+So, the annual variables for the CHELSA dataset are:
+```{r}
+library(pastclim)
+get_vars_for_dataset("CHELSA_2.1_0.5m")
+```
+
+And the monthly variables
+```{r}
+get_vars_for_dataset("CHELSA_2.1_0.5m", monthly = TRUE, annual = FALSE)
+```
+
+We can manipulate data in the usual way. We start by downloading the dataset:
+```{r eval=eval_chunk}
+download_dataset(
+  dataset = "CHELSA_2.1_0.5m",
+  bio_variables = c("bio01", "bio02")
+)
+```
+
+We can then use `region_slice` to extract the data as a `SpatRaster`:
+```{r eval=eval_chunk}
+climate_present <- region_slice(
+  time_ce = 1990,
+  bio_variables = c("bio01", "bio02"),
+  dataset = "CHELSA_2.1_0.5m"
+)
+```
+
+The datasets for each variable are very large due to the high resolution. Besides
+downloading the data, it is also possible to use a virtual raster, leaving the 
+files on the server, and only downloading the pixels that are needed. We can achieve
+that by using the dataset *CHELSA_2.1_0.5_vsi*. 
+
+We still need to download the 
+dataset first, but rather than downloading all the files, this sets up the virtual raster
+(and so it is very fast!):
+
+```{r}
+download_dataset(dataset = "CHELSA_2.1_0.5m_vsi", 
+                 bio_variables = c("bio12","temperature_01"))
+```
+
+Once downloaded, we can use it as any other dataset:
+```{r}
+climate_present <- region_slice(
+  time_ce = 1990,
+  bio_variables = c("bio12","temperature_01"),
+  dataset = "CHELSA_2.1_0.5m_vsi"
+)
+```
+
+This is ideal if you just need to extract climate for a number of locations, and
+do not need to get the full map.
+
 # Future projections
+
+## WorldClim
 
 Future projections are based on the models in CMIP6, downscaled and de-biased
 using WorldClim 2.1 for the present as a baseline. Monthly values of minimum
@@ -77,7 +140,7 @@ SSP can be chosen by changing the ending of the dataset name
 
 A complete list of available combinations can be obtained with:
 ```{r}
-list_available_datasets()
+list_available_datasets()[grepl("WorldClim_2.1",list_available_datasets())]
 ```
 
 So, if we are interested in the the HadGEM3-GC31-LL model, with ssp set
@@ -88,21 +151,21 @@ get_vars_for_dataset(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")
 ```
 
 We can now download "bio01" and "bio02" for that dataset with:
-```{r eval=FALSE}
+```{r eval=eval_chunk}
 download_dataset(
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
   bio_variables = c("bio01", "bio02")
 )
 ```
 
-The dataset are averages over 20 year 
+The datasets are averages over 20 year 
 periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
 In `pastclim`, the midpoints of the periods (2030, 2050, 2070, 2090) are used as the time stamps. All 4 periods
 are automatically downloaded for each combination of GCM model and SSP, and can
 be selected
 as usual by defining the time in `region_slice`.
 
-```{r eval=FALSE}
+```{r eval=eval_chunk}
 future_slice <- region_slice(
   time_ce = 2030,
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
@@ -111,14 +174,75 @@ future_slice <- region_slice(
 ```
 
 Alternatively, it is possible to get the full time series of 4 slices with:
-```{r eval=FALSE}
+```{r eval=eval_chunk}
 future_series <- region_series(
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
   bio_variables = c("bio01", "bio02")
 )
 ```
 
-It is possible to simply use `time_ce(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")` to get the available time points for
+It is possible to simply use `get_time_ce_steps(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")` to get the available time points for
 that dataset.
 
 Help for the WorldClim datasets (modern and future) can be accessed with `help("WorldClim_2.1")`
+
+## CHELSA
+
+Future projections are based on the models in CMIP6, downscaled and de-biased
+using CHELSA 2.1 for the present as a baseline. Monthly values of mean temperature, 
+and precipitation, as well as 19 bioclimatic
+variables were processed for
+5 global climate models (GCMs), and for three 
+Shared Socio-economic Pathways (SSPs): 126, 370 and 585. Model and
+SSP can be chosen by changing the ending of the dataset name
+*CHELSA_2.1_GCM_SSP_0.5m*.
+
+A complete list of available combinations can be obtained with:
+```{r}
+list_available_datasets()[grepl("CHELSA_2.1",list_available_datasets())]
+```
+
+Note that there is a virtual option for each dataset.
+So, if we are interested in the the GFDL-ESM4 model, with ssp set
+to 126 , we can get the available variables:
+
+```{r}
+get_vars_for_dataset(dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m", monthly=TRUE)
+```
+
+We can now download "bio01" and "bio02" for that dataset, using the virtual version, with:
+```{r eval=eval_chunk}
+download_dataset(
+  dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
+  bio_variables = c("bio01", "bio02")
+)
+```
+
+The datasets are averages over 30 year 
+periods (2011-2040, 2041-2070, 2071-2100).
+In `pastclim`, the midpoints of the periods (2025, 2055, 2075)  are used as the time stamps. All 3 periods
+are automatically downloaded for a given combination of GCM model and SSP, and can
+be selected
+as usual by defining the time in `region_slice`.
+
+```{r eval=eval_chunk}
+future_slice <- region_slice(
+  time_ce = 2025,
+  dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
+  bio_variables = c("bio01", "bio02")
+)
+```
+
+Alternatively, it is possible to get the full time series of 4 slices with:
+```{r eval=eval_chunk}
+future_series <- region_series(
+  dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
+  bio_variables = c("bio01", "bio02")
+)
+```
+
+It is possible to simply use `get_time_ce_steps(dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi")` to get the available time points for
+that dataset.
+
+Help for the WorldClim datasets (modern and future) can be accessed with `help("CHELSA_2.1")`
+
