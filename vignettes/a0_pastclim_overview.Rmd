@@ -71,18 +71,26 @@ do any real work with `pastclim`.
 Pastclim currently includes data from Beyer et al 2020 (*Beyer2020*, a reconstruction
 of climate based on the HadCM3 model for the last 120k years), Krapp
 et al 2021 (*Krapp2021*, which covers the last 800k years with a statistical emulator of HadCM3),
-Barreto et al 2023 (*Barreto2023*), covering the last 5M years using the PALEO-PGEM emulator),
-and the WorldClim data ("WorldClim_2.1_*", present, and future projections with a number of models and 
+Barreto et al 2023 (*Barreto2023*), covering the last 5M years using the PALEO-PGEM emulator), the CHELSA-TraCE21k, covering the last 21k years at high spatial and temporal resolution (*CHELSA_trace21k_0.5m_vsi*),
+the HYDE3.3 database of land use reconstructions for the last 10k years (*HYDE_3.3_baseline*)
+the *paleoclim* dataset, a selected few time steps over the last 120k years at various resolutions (*paleoclim_RESm*),
+and the WorldClim and CHELSA data (*WorldClim_2.1_* and *CHELSA_2.1_*, present, and future projections with a number of models and 
 emission scenarios). More information on each of these
 datasets can be found
-[here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html).
-For detailed instructions on how to use the WorldClim dataset, can be found in [this article](https://evolecolgroup.github.io/pastclim/articles/a3_pastclim_present_and_future.html)
+[here](https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html), or using the help
+page for a given dataset.
+For detailed instructions on how to use the WorldClim and CHELSA datasets for present and future reconstructions can be found in [this article](https://evolecolgroup.github.io/pastclim/articles/a3_pastclim_present_and_future.html)
 There are also instructions on how to build and use [custom
 datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html),
 but you will need some
 familiarity with handling `netcdf` files.
 
-A list of all datasets available can be obtained by typing
+A list of all datasets available can be obtained by typing:
+```{r}
+library(pastclim)
+get_available_datasets()
+```
+
 
 Please be aware that using any dataset made available to `pastclim` will
 require to cite both `pastclim` as well as the original publication
