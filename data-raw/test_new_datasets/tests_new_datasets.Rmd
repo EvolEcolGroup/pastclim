@@ -13,9 +13,11 @@ before trying this out.
 
 ## A quick check for the new datasets
 
+
 We now have a lot of new dataset. Let's try a couple of variables to check that they all work
 
 ```{r}
+library(pastclim)
 list_available_datasets()
 ```
 
