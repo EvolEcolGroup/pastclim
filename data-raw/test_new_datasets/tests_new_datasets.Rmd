@@ -104,7 +104,7 @@ bio_vars <- c("temperature_min_03")
 dataset = "WorldClim_2.1_10m"
 download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
-test_rast$altitude
+test_rast$temperature_min_03
 ```
 
 ```{r}
@@ -112,7 +112,7 @@ bio_vars <- c("altitude")
 dataset = "WorldClim_2.1_10m"
 download_dataset(dataset=dataset, bio_variables = bio_vars)
 test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
-test_rast$temperature_min_03
+test_rast$altitude
 ```
 
 
