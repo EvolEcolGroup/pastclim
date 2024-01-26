@@ -33,13 +33,13 @@ Imports:
   methods,
   ncdf4,
   utils,
-  xml2
+  xml2,
+  sf
 Suggests: 
   ggplot2,
   httr,
   knitr,
   rmarkdown,
-  sf,
   spelling,
   testthat (>= 3.0.0)
 VignetteBuilder: knitr

@@ -58,11 +58,22 @@ download_chelsa <- function(dataset, bio_var, filename) {
   }
   # create the vrt file
   # TODO we should capture a warning here and abort
-  vrt_path <- terra::vrt(x = chelsa_url,
-                         filename = filename,
-                         options="-separate", 
-                         overwrite=TRUE, return_filename=TRUE)
+  # vrt_path <- terra::vrt(x = chelsa_url,
+  #                        filename = filename,
+  #                        options="-separate", 
+  #                        overwrite=TRUE, return_filename=TRUE)
+  #############################################
+  # workaround
+  sf::gdal_utils(
+    util = "buildvrt",
+    source = chelsa_url,
+    destination = filename,
+    options = c("-separate","-overwrite")
+  )
 
+  vrt_path <- filename
+  #############################
+  
   # edit the vrt metadata
   edit_res <- vrt_set_meta(vrt_path = vrt_path, description = bio_var,
                            time_vector = time_vector, time_bp=FALSE)
