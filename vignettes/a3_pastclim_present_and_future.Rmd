@@ -108,13 +108,13 @@ We still need to download the
 dataset first, but rather than downloading all the files, this sets up the virtual raster
 (and so it is very fast!):
 
-```{r}
+```{r eval=eval_chunk}
 download_dataset(dataset = "CHELSA_2.1_0.5m_vsi", 
                  bio_variables = c("bio12","temperature_01"))
 ```
 
 Once downloaded, we can use it as any other dataset:
-```{r}
+```{r eval=eval_chunk}
 climate_present <- region_slice(
   time_ce = 1990,
   bio_variables = c("bio12","temperature_01"),
