@@ -2,14 +2,20 @@
 # we work in the temp directory
 
 test_that("pastclim_rast handles vrt correctly", {
-  vrt_filename <- file.path(tempdir(),"test.vrt")
+  vrt_path <- file.path(tempdir(),"test.vrt")
   tif_files <- list.files(system.file("extdata/CHELSA_bio01", package="pastclim"),
              full.names = TRUE)
   # create the file
-  vrt_path <- terra::vrt(x = tif_files,
-                         filename = vrt_filename,
-                         options="-separate", overwrite=TRUE, return_filename=TRUE)
-  
+  # vrt_path <- terra::vrt(x = tif_files,
+  #                        filename = vrt_path,
+  #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+  sf::gdal_utils(
+    util = "buildvrt",
+    source = tif_files,
+    destination = vrt_path,
+    options = c("-separate","-overwrite")
+  )
+
   bio_var_orig <- "band_name_1"
   bio_var_pastclim <- "bio01"
   time_vector <- c(0,-10,-1000)

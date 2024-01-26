@@ -74,19 +74,16 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename=NULL, time_bp=NU
 
   
   # we capture warnings from the vrt to make sure that all is well
-  tryCatch(vrt_path <- terra::vrt(x = chelsa_url,
-                                  filename = filename,
-                                  options=c("-separate"), overwrite=TRUE, return_filename=TRUE),
-           warning  = function(w) {
-             # don't throw an error if we get a warning because of the old gadal version
-             # which only saves the first band and ignores the -b option
-             if (!grepl("Only the first one",w)){
-               file.remove(vrt_path)
-               stop("vrt creation failed with ", w,"\n try to redownload this dataset")
-             }
-             
-           })
-  
+ # vrt_path <- terra::vrt(x = chelsa_url,
+ #                                  filename = filename,
+ #                                  options=c("-separate"), overwrite=TRUE, return_filename=TRUE)
+ vrt_path <- filename
+ sf::gdal_utils(
+   util = "buildvrt",
+   source = chelsa_url,
+   destination = filename,
+   options = c("-separate","-overwrite")
+ )
 
   # edit the vrt metadata
   edit_res <- vrt_set_meta(vrt_path = vrt_path, description = bio_var,

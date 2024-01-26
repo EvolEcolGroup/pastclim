@@ -16,7 +16,7 @@ vrt_set_meta(vrt_path, description, time_vector, time_bp = TRUE)
 \item{time_bp}{boolean defining whether time is in BP or (if FALSE) CE}
 }
 \value{
-TRUE if the file was updated correctly
+TRUE if the file was updated correctly, FALSE if the update failed
 }
 \description{
 This function sets the metadata information to a vrt file. It creates some dataset

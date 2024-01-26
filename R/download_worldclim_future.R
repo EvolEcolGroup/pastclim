@@ -54,18 +54,34 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
     vrt_path <- file.path(get_data_path(), paste0(dataset,"_",band_vector[i],"_v",version,".vrt"))
     # create the vrt file
     # we capture warnings from the vrt to make sure that all is well
-    tryCatch(vrt_path <- terra::vrt(x = worldclim_url,
-                           filename = vrt_path,
-                           options=c("-b", i,"-separate"), overwrite=TRUE, return_filename=TRUE),
-             warning  = function(w) {
-               # don't throw an error if we get a warning because of the old gadal version
-               # which only saves the first band and ignores the -b option
-               if (!grepl("Only the first one",w)){
-                 file.remove(vrt_path)
-                 stop("vrt creation failed with ", w,"\n try to redownload this dataset")
-               }
-               
-             })
+    # withCallingHandlers({
+    #   vrt_path <- terra::vrt(x = worldclim_url,
+    #                          filename = vrt_path,
+    #                          options=c("-b", i,"-separate"), overwrite=TRUE, return_filename=TRUE)
+    # }, warning = function(w) {
+    #   if (!grepl("Only the first one",w)){
+    #     file.remove(vrt_path)
+    #     stop("vrt creation failed with ", w,"\n try to redownload this dataset")
+    #   }
+    #   invokeRestart("muffleWarning")
+    # })
+    
+    withCallingHandlers({
+      sf::gdal_utils(
+        util = "buildvrt",
+        source = worldclim_url,
+        destination = vrt_path,
+        options = c("-b", i,"-separate","-overwrite")
+      )
+    }, warning = function(w) {
+      if (!grepl("Only the first one",w)){
+        file.remove(vrt_path)
+        stop("vrt creation failed with ", w,"\n try to redownload this dataset")
+      }
+      invokeRestart("muffleWarning")
+    })
+    
+    
     ######################################################################
     # in gdal <3.8, the -b is ignored, and only the first band is used
     # so, we edit the SourceBand for each band
@@ -77,12 +93,16 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
     ######################################################################
     
     # edit the vrt metadata
-    vrt_set_meta(vrt_path = vrt_path, 
+    edit_res <- vrt_set_meta(vrt_path = vrt_path, 
                  description = band_vector[i],
                  time_vector = time_vector,
                  time_bp = FALSE)
+    if (!edit_res){
+      file.remove(vrt_path)
+      stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
+    }
    }
-  if (!file.exists(filename)){
+  if (!file.exists(vrt_path)){
     stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
   }
   return(TRUE)

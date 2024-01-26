@@ -65,14 +65,25 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
     }
     vrt_filename <- paste0(dataset,"_",band_vector[i],"_v",version,".vrt")
     # create the vrt file
-    vrt_path <- terra::vrt(x = worldclim_vsizip,
-                           filename = file.path(get_data_path(),vrt_filename),
-                           options="-separate", overwrite=TRUE, return_filename=TRUE)
+    # vrt_path <- terra::vrt(x = worldclim_vsizip,
+    #                        filename = file.path(get_data_path(),vrt_filename),
+    #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+    vrt_path <- file.path(get_data_path(),vrt_filename)
+    sf::gdal_utils(
+      util = "buildvrt",
+      source = worldclim_vsizip,
+      destination = vrt_path,
+      options = c("-separate","-overwrite")
+    )
     # edit the vrt metadata
-    vrt_set_meta(vrt_path = vrt_path, 
-                 description = band_vector[i],
-                 time_vector = time_vector,
-                 time_bp = FALSE)
+    edit_res <- vrt_set_meta(vrt_path = vrt_path, 
+                             description = band_vector[i],
+                             time_vector = time_vector,
+                             time_bp = FALSE)
+    if (!edit_res){
+      file.remove(vrt_path)
+      stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
+    }
   }
   if (!file.exists(filename)){
     stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")

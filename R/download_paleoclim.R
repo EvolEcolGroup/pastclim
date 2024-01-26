@@ -46,9 +46,16 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
     # with a blank raster
     vrt_filename <- paste0(dataset,"_",band_vector[i],"_v",version,".vrt")
     # create the vrt file
-    vrt_path <- terra::vrt(x = paleoclim_vsizip,
-                           filename = file.path(get_data_path(),vrt_filename),
-                           options="-separate", overwrite=TRUE, return_filename=TRUE)
+    # vrt_path <- terra::vrt(x = paleoclim_vsizip,
+    #                        filename = file.path(get_data_path(),vrt_filename),
+    #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+    vrt_path <- file.path(get_data_path(),vrt_filename)
+    sf::gdal_utils(
+      util = "buildvrt",
+      source = paleoclim_vsizip,
+      destination = vrt_path,
+      options = c("-separate","-overwrite")
+    )
     # edit the vrt metadata
     edit_res <- vrt_set_meta(vrt_path = vrt_path, 
                  description = band_vector[i],

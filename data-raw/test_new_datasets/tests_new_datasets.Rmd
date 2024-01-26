@@ -1,6 +1,6 @@
 ---
 title: "Testing new datasets"
-output: html_document
+output: pdf_document
 date: "2024-01-23"
 ---
 
