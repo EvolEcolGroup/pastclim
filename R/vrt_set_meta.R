@@ -7,7 +7,7 @@
 #' @param description a string with the description of the variable in this dataset
 #' @param time_vector a vector of descriptions (same length as the number of bands)
 #' @param time_bp boolean defining whether time is in BP or (if FALSE) CE
-#' @returns TRUE if the file was updated correctly
+#' @returns TRUE if the file was updated correctly, FALSE if the update failed
 #'
 #' @keywords internal
 ## Edit the vrt metadata
@@ -18,7 +18,8 @@ vrt_set_meta <- function (vrt_path, description, time_vector, time_bp=TRUE){
   # check that we don't alreayd have metadata information needed for pastclim
   has_time_node <- xml2::xml_find_first(x, "./Metadata/MDI[@key = 'pastclim_time_bp']")
   if (!inherits(has_time_node,"xml_missing")){
-    stop ("metadata for pastclim is already present")
+    warning ("metadata for pastclim is already present")
+    return(FALSE)
   }
   # add metadata to indicate that we have a time axis
   xml2::xml_add_child(x,"Description",description,.where=0)
@@ -28,7 +29,8 @@ vrt_set_meta <- function (vrt_path, description, time_vector, time_bp=TRUE){
   # add band description and times
   band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
   if (length(band_nodes)!=length(time_vector)){
-    stop("the vrt has a different number of bands from the length of the time vector")
+    warning("the vrt has a different number of bands from the length of the time vector")
+    return(FALSE)
   }
   for (i_node in seq_len(length(band_nodes))){
     # add a unique description label for this band (variable_time combination)
