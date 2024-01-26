@@ -68,7 +68,7 @@ download_chelsa <- function(dataset, bio_var, filename) {
                            time_vector = time_vector, time_bp=FALSE)
   if (!edit_res){
     file.remove(vrt_path)
-    stop("something went wrong setting up this dataset", , "\n the dataset wil need downloading again")
+    stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
   }
   return(TRUE)
 }

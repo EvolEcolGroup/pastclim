@@ -93,7 +93,7 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename=NULL, time_bp=NU
                            time_vector = time_bp, time_bp=TRUE)
   if (!edit_res){
     file.remove(vrt_path)
-    stop("something went wrong setting up this dataset", , "\n the dataset wil need downloading again")
+    stop("something went wrong setting up this dataset", "\n the dataset wil need downloading again")
   }
   return()
 }

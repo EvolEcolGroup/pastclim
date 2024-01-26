@@ -83,7 +83,7 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
                  time_bp = FALSE)
    }
   if (!file.exists(filename)){
-    stop("something went wrong setting up this dataset")
+    stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
   }
   return(TRUE)
 }
