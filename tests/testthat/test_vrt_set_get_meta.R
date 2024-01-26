@@ -23,8 +23,18 @@ test_that("setting and getting vrt meta", {
     get_time_bp_steps(dataset="custom", path_to_nc = vrt_path),time_vector))
   
   
-  # expect an error if we try to set the metadata a second time
-  expect_error(vrt_set_meta(vrt_path, description, time_vector),
+  # expect a warning if we try to set the metadata a second time
+  expect_warning(vrt_res <- vrt_set_meta(vrt_path, description, time_vector),
                "metadata for pastclim is already present")
+  expect_false(vrt_res)
+  
+  # expect a warning if we pass an incorrect number of times
+  vrt_path <- terra::vrt(x = tif_files,
+                         filename = vrt_filename,
+                         options="-separate", overwrite=TRUE, return_filename=TRUE)
+  expect_warning(vrt_res <- vrt_set_meta(vrt_path, description, c(time_vector,4)),
+                 "the vrt has a different number of")
+  expect_false(vrt_res)
+  
 }
 )

@@ -50,10 +50,15 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
                            filename = file.path(get_data_path(),vrt_filename),
                            options="-separate", overwrite=TRUE, return_filename=TRUE)
     # edit the vrt metadata
-    vrt_set_meta(vrt_path = vrt_path, 
+    edit_res <- vrt_set_meta(vrt_path = vrt_path, 
                  description = band_vector[i],
                  time_vector = time_vector)
-   }
+     if (!edit_res){
+      file.remove(vrt_path)
+      stop("something went wrong setting up ", band_vector[i], "\n the dataset wil need downloading again")
+    }
+  }
+
   
   return(TRUE)
 }
