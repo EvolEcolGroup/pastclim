@@ -49,7 +49,7 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
     land_mask <- climate_series[[1]]
     land_mask[!is.na(land_mask)] <- 1
   } else {
-    stop("no method yet for this dataset")
+    stop("this method has not been yet developed for this dataset")
   }
 
   if (is.null(time_ce)) {

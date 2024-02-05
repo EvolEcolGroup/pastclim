@@ -1,7 +1,9 @@
 #' Get the ice mask for a dataset.
 #'
 #' Get the ice mask for a dataset, either for the whole series or for specific
-#' time points.
+#' time points. 
+#' 
+#' Note that not all datasets have ice information.
 #'
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
