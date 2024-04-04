@@ -1,4 +1,4 @@
-#' Get the file details for a variable and dataset.
+#' Get the metadata for a variable in a given dataset.
 #'
 #' Internal getter function
 #'
@@ -6,9 +6,10 @@
 #' @param dataset string defining dataset to be downloaded (a list of possible
 #' values can be obtained with [list_available_datasets()]). This function
 #' will not work on custom datasets.
-#' @returns the filename for that variable and dataset
+#' @returns the metadata (including filename) for that variable in that dataset
+#' @keywords internal
 
-get_file_for_dataset <- function(variable, dataset) {
+get_var_meta <- function(variable, dataset) {
   check_available_variable(variable, dataset)
   return(getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$variable %in% variable &
     getOption("pastclim.dataset_list")$dataset == dataset, ])

@@ -28,7 +28,7 @@ region_series. However, once the object has been created, other operations tend
 to be much faster (especially if you subset the dataset to a small number
 of time steps of interest).
 
-If you use this dataset, make sure to cite the original publications:
+IMPORTANT: If you use this dataset, make sure to cite the original publications:
 
 Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023).
 PALEO-PGEM-Series: A spatial time series of the global climate over the

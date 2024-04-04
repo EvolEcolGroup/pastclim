@@ -2,15 +2,15 @@
 % Please edit documentation in R/datasets_docs.R
 \name{WorldClim_2.1}
 \alias{WorldClim_2.1}
-\alias{WorldClim_2.1_10m}
-\alias{WorldClim_2.1_5m}
 \title{Documentation for the WorldClim datasets}
 \description{
 WorldClim version 2.1 is a database of high spatial resolution global weather and
-climate data, covering both the present and future projections. If you use this
-dataset, make sure to cite the original publication:
+climate data, covering both the present and future projections.
 }
 \details{
+IMPORTANT: If you use this
+dataset, make sure to cite the original publication:
+
 Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
 climate surfaces for global land areas. International Journal of Climatology 37 (12): 4302-4315.
 \doi{10.1002/joc.5086}
@@ -21,8 +21,7 @@ and are available at multiple resolutions of
 of interest can be obtained by changing the ending of the dataset name
 \emph{WorldClim_2.1_RESm}, e.g. \emph{WorldClim_2.1_10m} or \emph{WorldClim_2.1_5m}
 (currently, only 10m and 5m are currently available in \code{pastclim}). In \code{pastclim}, the datasets are given
-a date of 1985 CE (the mid-point of the period of interest), corresponding to
-a time_bp of 35. There are 19 “bioclimatic” variables, as well as monthly
+a date of 1985 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly
 estimates for minimum, mean, and maximum temperature, and precipitation.
 
 \strong{Future projections} are based on the models in CMIP6, downscaled and de-biased
@@ -40,7 +39,9 @@ Available values for GCM are: "ACCESS-CM2",
 "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
 "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present reconstructions
 (i.e. "10m", "5m", "2.5m", and "0.5m"). Example dataset names are
-\emph{WorldClim_2.1_ACCESS-CM2_ssp245_10m} and \emph{WorldClim_2.1_MRI-ESM2-0_ssp370_5m}
+\emph{WorldClim_2.1_ACCESS-CM2_ssp245_10m} and \emph{WorldClim_2.1_MRI-ESM2-0_ssp370_5m}.
+Four combination (namely \emph{FIO-ESM-2-0_ssp370}, \emph{GFDL-ESM4_ssp245},
+\emph{GFDL-ESM4_ssp585}, and \emph{HadGEM3-GC31-LL_ssp370}) are NOT available.
 
 The dataset are averages over 20 year
 periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).

@@ -4,25 +4,23 @@
 \alias{download_etopo}
 \title{Download the ETOPO Global relief model}
 \usage{
-download_etopo(path = NULL, resolution = 60)
+download_etopo(path = NULL, resolution = 1)
 }
 \arguments{
 \item{path}{character. Path where to download the data to. If left NULL, the data
 will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}, and automatically
 named \verb{etopo2022_\{resolution\}s_v1.nc}}
 
-\item{resolution}{numeric resolution in arcsecs (one of 30, or 60).
-Defaults to 60 arcsecs.}
+\item{resolution}{numeric resolution in arc-minute (one of 0.5, or 1).
+Defaults to 1 arc-minute.}
 }
 \value{
 a dataframe produced by \code{\link[curl:multi_download]{curl::multi_download()}} with information about
 the download (including error codes)
 }
 \description{
-This function downloads the ETOPO2022 global relief model at 30 or 60 arcsecs
-resolution. This is a large file (>1Gb), and is worth downloading only
-if you are planning to use it repeatedly. If you only need a subregion,
-especially at lower resolution, it is worth using \code{\link[=download_etopo_subset]{download_etopo_subset()}},
-which fetches a subset of the dataset on the fly from the NOAA server.
+This function downloads the ETOPO2022 global relief model at
+0.5 or 1 arc-minute (i.e. 30 or 60 arc-seconds) resolution.
+This is a large file (>1Gb).
 }
 \keyword{internal}

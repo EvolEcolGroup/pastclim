@@ -9,5 +9,5 @@
 #' @export
 
 list_available_datasets <- function() {
-  return(unique(as.character(getOption("pastclim.dataset_list")$dataset)))
+  return(sort(unique(as.character(getOption("pastclim.dataset_list")$dataset))))
 }
