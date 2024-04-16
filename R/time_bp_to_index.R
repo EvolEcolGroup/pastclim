@@ -10,6 +10,18 @@
 time_bp_to_index <- function(time_bp, time_steps) {
   # give warning if some dates are too extreme
   time_steps_ordered <- sort(time_steps)
+  # if you have only one time step within your database you cannot calculate the range between min and max time steps
+  # the following if statement was added because otherwise you would get NAs 
+  if (length(time_steps_ordered) == 1) {
+    # get indeces
+    time_indeces <-
+      sapply(time_bp, function(a, b) {
+        which.min(abs(a - b))
+      }, time_steps)
+    return(time_indeces)
+  } else {
+  # if your database has more than one time step, then you need to calculate the range between the min and the max time steps
+  # this allow to check if the dates within your data frame are within a sensible range of the database's time steps 
   range_minmax <- c(
     head(time_steps_ordered, n = 1)[1] -
       (abs(head(time_steps_ordered, n = 2)[1] - head(time_steps_ordered, n = 2)[2]) / 2),
@@ -30,4 +42,5 @@ time_bp_to_index <- function(time_bp, time_steps) {
       which.min(abs(a - b))
     }, time_steps)
   return(time_indeces)
+  }
 }
