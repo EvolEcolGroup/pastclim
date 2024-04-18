@@ -30,19 +30,23 @@ delta_compute <- function(x, ref_time, obs) {
   if (terra::nlyr(obs)>1){
     stop("obs should only contain one layer of observations")
   }
-  if (terra::ext(obs)!=terra::ext(x_modern)){
-    stop("x_modern and high_res_obs don't have the same extent")
-  }
+#  if (terra::ext(obs)!=terra::ext(x_modern)){
+    #stop("x_modern and high_res_obs don't have the same extent")
+#    obs <- terra::crop(obs, x_modern)
+#  }
   # disaggregate the x_modern SpatRaster to the resolution of
   # the high res with "bilinear" interpolation
-  x_modern_high<-disagg(x_modern, fact = round(terra::res( x_modern)/terra::res(obs)),
-                        method="bilinear")
+#  x_modern_high<-disagg(x_modern, fact = round(terra::res( x_modern)/terra::res(obs)),
+#                        method="bilinear")
+  # This is safer, as it always works
+  # TODO we could check if it is possible to disagg, or whether we need to resample
+  x_modern_high <- resample(x_modern, obs)
+  
   # compute anomalies against the modern
   delta <- obs - x_modern_high
   # mask for maximum land extent
   max_land <- max(x,na.rm=TRUE)
-  max_land <- disagg(max_land, fact = round(terra::res( x)/terra::res(obs)),
-                     method="near")
+  max_land <- resample(max_land, obs)
   delta_interp <- idw_interp(delta,max_land)
   return(delta_interp)
 }

@@ -38,6 +38,11 @@
 delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL, range_limits=NULL,
                             nmax=7, set=list(idp = .5), ...) {
   message("This function is still under development; do not use it for real analysis")
+  # sort out the extents
+  # the extent of the delta rast wins as we sorted it out in delta_compute
+  x <- resample(x, delta_rast)
+  x_landmask_high <- resample(x_landmask_high, delta_rast)
+  
   # check that extent and resolutions are compatible
   if (terra::ext(delta_rast)!=terra::ext(x)){
     stop("x and delta_rast don't have the same extent")
