@@ -20,6 +20,13 @@ filenames_paleoclim <- function(dataset, bio_var){
   # add present
   pastclim_urls <- c(paste0("http://sdmtoolbox.org/paleoclim.org/data/chelsa_cur/CHELSA_cur_V1_2B_r",
          resolution, ".zip"), pastclim_urls)
+  # add LGM
+  lgm_url <- paste0("http://sdmtoolbox.org/paleoclim.org/data/chelsa_LGM/chelsa_LGM_v1_2B_r",
+        resolution, ".zip")
+  
+  # add LGM at the correct position 
+  pastclim_urls <- append(pastclim_urls, lgm_url, after = 7)
+  
   return(pastclim_urls)
 }
 
