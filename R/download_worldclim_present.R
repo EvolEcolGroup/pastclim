@@ -44,6 +44,8 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
   )
   # for all variables (except altitude) we match file names to bands based on the id at the end of the file name
   files_in_zip <- utils::unzip(worldclim_url, list=TRUE)$Name
+  # TODO remove any readme from this list
+  files_in_zip <- files_in_zip[!files_in_zip %in% c("readme.txt")]
   if (!grepl("altitude", bio_var)){
     files_in_zip_id <- as.numeric(gsub("^.*_([0-9]+)\\.tif$", "\\1", files_in_zip))
     if (!all(seq_len(length(band_vector) %in% files_in_zip_id))){
