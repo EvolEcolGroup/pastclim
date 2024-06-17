@@ -30,14 +30,16 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
 
   # create band description and time axis
 #  time_period_codes <- c("LH", "MH", "EH", "YDS", "BA", "HS1", "LIG")
-  time_vector <- c(0,-2250,-6250, -10000, -12300, -13800,-15850, -130000)
+  time_vector <- c(0,-2250,-6250, -10000, -12300, -13800,-15850, -21000, -130000)
   band_vector <- paste0("bio",sprintf("%02d", 1:19))
-  # the zip with present day reconstructions has an additional directory
   resolution <- strsplit(dataset,"_")[[1]][3]
   # if resolution is 2.5, we need to change it to 2_5
   resolution <- gsub(".", "_", resolution, fixed = TRUE)
   resolution <- paste0(resolution,"in") # to get 10min
+  # the zip with present day reconstructions has an additional directory
+  # same for zip with LGM reconstructions
   paleoclim_path[1] <- file.path(paleoclim_path[1],resolution)
+  paleoclim_path[8] <- file.path(paleoclim_path[8],resolution)
   # create a vrt for each variable
   for (i in seq_len(length(band_vector))){
     # build the vsizip paths
