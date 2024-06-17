@@ -21,7 +21,7 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
   # check the dataset exists
   available_datasets <- unique(getOption("pastclim.dataset_list")$dataset)
   if (!dataset %in% available_datasets) {
-    cat("'dataset' must be one of ")
+    message("'dataset' must be one of ")
     get_available_datasets()
     stop(
       "Invalid 'dataset', for a comprehensive list of all possible combinations, use `list_available_datasets()`"

@@ -12,7 +12,7 @@ set_data_path(
 
 test_that("download_dataset", {
   expect_error(
-    download_dataset("Beyer"),
+    suppressMessages(download_dataset("Beyer")),
     "Invalid 'dataset',"
   )
   expect_error(
