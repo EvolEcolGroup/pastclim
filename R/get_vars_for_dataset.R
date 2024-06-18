@@ -98,7 +98,7 @@ check_available_variable <- function(variable, dataset) {
 #' @param variable string defining the variable name
 #' @param dataset string defining dataset to be downloaded
 #' @returns the name of the variable
-#'
+#' @keywords internal
 
 get_varname <- function(variable, dataset) {
   return(getOption("pastclim.dataset_list")$ncvar[getOption("pastclim.dataset_list")$variable == variable &

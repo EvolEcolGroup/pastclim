@@ -83,7 +83,7 @@ location_slice <-
 #'
 #' @param ... arguments to be passed to [location_slice()]
 #' @returns a data.frame with the climatic variables of interest
-#'
+#' @keywords deprecated
 #' @export
 
 climate_for_locations <- function(...) {

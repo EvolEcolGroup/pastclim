@@ -51,7 +51,20 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
   } else {
     stop("this method has not been yet developed for this dataset")
   }
-
+  # sort out categories
+  # we pass a list so that each level if turned into a categorical variable
+  levels(land_mask) <-
+    rep(list(data.frame(id=1, category= c("land"))),
+        terra::nlyr(land_mask))
+  terra::coltab(land_mask) <- rep (list(
+    data.frame(
+      values = c(1),
+      cols = c("#1C540F")
+    )
+  ), terra::nlyr(land_mask))
+  
+  
+  
   if (is.null(time_ce)) {
     names(land_mask) <- paste("land_mask", time_bp(land_mask), sep = "_")
   } else {
