@@ -198,14 +198,14 @@ NULL
 #' in `pastclim`
 #'
 #' More details on the dataset are available on its 
-#' dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
+#' dedicated \href{https://landuse.sites.uu.nl/hyde-project/}{website}.
 #' 
 #' IMPORTANT: If you use this dataset, make sure to cite the original publication
 #' for the HYDE 3.2 (there is no current publication for 3.3):
 #'
 #' Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:
 #' Anthropogenic land-use estimates for the Holocene; HYDE 3.2,
-#' Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-1-2017}
+#' Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-927-2017}
 #'
 #' @name HYDE_3.3_baseline
 NULL
@@ -319,7 +319,7 @@ NULL
 #'    using the CHELSA V1.2 algorithm.
 #' 
 #' More details on the dataset are available on its dedicated
-#'  \href{https://chelsa-climate.org/chelsa-trace21k//}{website}.
+#'  \href{https://chelsa-climate.org/chelsa-trace21k/}{website}.
 #'  
 #'  An alternative to
 #' downloading very large files is to use virtual rasters. Simply append
