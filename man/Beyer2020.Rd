@@ -8,7 +8,7 @@ This dataset covers the last 120k years, at intervals of 1/2 k years, and a
 resolution of 0.5 degrees in latitude and longitude.
 }
 \details{
-If you use this dataset, make sure to cite the original publication:
+IMPORTANT: If you use this dataset, make sure to cite the original publication:
 
 Beyer, R.M.,
 Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and

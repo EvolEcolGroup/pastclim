@@ -26,3 +26,6 @@ a binary \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the ice ma
 Get the ice mask for a dataset, either for the whole series or for specific
 time points.
 }
+\details{
+Note that not all datasets have ice information.
+}

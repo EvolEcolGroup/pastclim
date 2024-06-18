@@ -109,7 +109,6 @@ location_slice_from_region_series <-
       coords_df <- locations_data[, c("cell_number")]
     }
 
-
     # now sort out the time slices corresponding to each location
     times <- time_bp(climate_brick)
     time_indeces <- time_bp_to_index(
@@ -129,7 +128,7 @@ location_slice_from_region_series <-
           x = this_slice,
           y = locations_data[locations_data$time_bp_slice == i_time, coords]
         )
-        # sor tout the indexing here
+        # sort out the indexing here
         locations_data[locations_data$time_bp_slice == i_time, bio_variables] <-
           this_climate[
             ,
@@ -139,6 +138,10 @@ location_slice_from_region_series <-
         locations_data[this_slice_indeces, ] <- NA
       }
 
+      # factors don't behave nicely when adding new elements, cast to character
+      if ("biome" %in% names(locations_data)){
+        locations_data$biome <- as.character(locations_data$biome)
+      }
       if (nn_interpol | buffer) {
         locations_to_move <- this_slice_indeces[this_slice_indeces %in%
           which(!stats::complete.cases(locations_data))]
@@ -165,12 +168,12 @@ location_slice_from_region_series <-
               y = neighbours_ids[1, ]
             ) # [, bio_variables]
 
-          neighbours_values_mean <- apply(neighbours_values, 2,
+          neighbours_values_mean <- apply(neighbours_values[,!names(neighbours_values) %in% "biome"], 2,
             mean,
             na.rm = T
           )
           if ("biome" %in% bio_variables) {
-            neighbours_values_mean["biome"] <- mode(neighbours_values[, "biome"])
+            neighbours_values_mean["biome"] <- mode(as.numeric(neighbours_values[, "biome"]))
           }
           locations_data[i, bio_variables] <-
             neighbours_values_mean[bio_variables]
@@ -191,29 +194,14 @@ location_slice_from_region_series <-
       locations_data$time_ce_slice <- locations_data$time_bp_slice + 1950
       locations_data <- locations_data[, !names(locations_data) %in% c("time_bp", "time_bp_slice")]
     }
+    
+    # reintroduce the factor
+    if ("biome" %in% bio_variables){
+      locations_data$biome <- factor(levels(region_series$biome)[[1]]$category[as.numeric(locations_data$biome)],
+                                     levels = levels(region_series$biome)[[1]]$category)
+    }
     return(locations_data)
   }
-
-
-#' Extract local climate for one or more locations for a given time slice.
-#'
-#' Deprecated version of [location_slice()]
-#'
-#' @param ... arguments to be passed to [location_slice()]
-#' @returns a data.frame with the climatic variables of interest
-#'
-#' @export
-
-climate_for_locations <- function(...) {
-  warning("DEPRECATED: use 'location_slice' instead")
-  # if (!is.null(path_to_nc)) {
-  #   stop(
-  #     "the use of pastclimData is now deprecated",
-  #     "use 'set_path_data' instead"
-  #   )
-  # }
-  location_slice(...)
-}
 
 
 #' Mode

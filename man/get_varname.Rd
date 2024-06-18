@@ -17,3 +17,4 @@ the name of the variable
 \description{
 Internal function to get the varname for this variable
 }
+\keyword{internal}

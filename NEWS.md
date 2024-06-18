@@ -1,6 +1,13 @@
+# pastclim 2.1.0
+* Add all CHELSA present and future datasets (including the use of virtual rasters to avoid downloading all data)
+* Add paleoclim at multiple resolutions
+* Add CHELSA-TraCE21k (including the use of virtual rasters to avoid downloading all data)
+* Re-implement the import for WorldClim datasets to avoid repackaging the data (it should lead to faster downloads, but it will force a re-download if the dataset was already present).
+* Add functions for Koeppen Geiger's classification from monthly means.
+
 # pastclim 2.0.0
 * Allow time to be defined as CE besides BP. NOTE that this adds a parameter
-  to a number of functions. If those functions were used without explicitely
+  to a number of functions. If those functions were used without explicitly
   naming parameters, old code might give an error as the order of parameters
   has now changed).
 * Add Barreto et al 2023 (based on PALEO-PGEM, covering the last 5 M years)

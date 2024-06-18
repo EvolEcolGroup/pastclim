@@ -1,7 +1,9 @@
 #' Get the ice mask for a dataset.
 #'
 #' Get the ice mask for a dataset, either for the whole series or for specific
-#' time points.
+#' time points. 
+#' 
+#' Note that not all datasets have ice information.
 #'
 #' @param time_bp time slices in years before present (negative values represent
 #' time before present, positive values time in the future). This parameter can
@@ -33,6 +35,18 @@ get_ice_mask <- function(time_bp = NULL, dataset) {
     ice_mask <- climate_series["biome"]
     ice_mask[ice_mask != 28] <- NA
     ice_mask[ice_mask == 28] <- 1
+    # sort out categories
+      # we pass a list so that each level if turned into a categorical variable
+      levels(ice_mask) <-
+        rep(list(data.frame(id=1, category= c("ice"))),
+            terra::nlyr(ice_mask))
+      terra::coltab(ice_mask) <- rep (list(
+        data.frame(
+          values = c(1),
+          cols = c("#B5D1E0")
+        )
+      ), terra::nlyr(ice_mask))
+
     names(ice_mask) <- paste("ice_mask", time_bp(ice_mask), sep = "_")
     varnames(ice_mask) <- "ice_mask"
     return(ice_mask)

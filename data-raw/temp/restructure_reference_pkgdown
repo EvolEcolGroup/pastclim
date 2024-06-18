@@ -1,0 +1,51 @@
+reference:
+  - title: "Getting datasets"
+    desc: "Functions to download datasets"
+    contents: 
+      - get_available_datasets
+      - list_available_datasets
+      - get_vars_for_dataset
+      - download_dataset
+      - update_dataset_list
+      - get_data_path
+      - set_data_path
+      - clean_data_path
+  - title: "Extracting climate"
+    desc: "Functions for extracting climate info."
+    contents:
+      - location_slice
+      - location_series
+      - region_slice
+      - region_series
+      - slice_region_series
+      - df_from_region_series
+      - df_from_region_slice
+      - get_biome_classes
+      - get_ice_mask
+      - get_land_mask
+      - is_region_series
+      - get_time_bp_steps
+      - get_mis_time_steps
+      - validate_nc
+  - title: "Computing additional variables"
+    desc: "Functions for compute new variables from climate"
+    contents:
+      - bioclim_vars
+      - distance_from_sea
+      - koeppen_geiger
+  - title: "Useful info to cut datasets"
+    desc: "Functions for compute new variables from climate"
+    contents:
+      - region_extent
+      - region_outline
+      - region_outline_union
+      - mis_boundaries
+  - title: "Datasets"
+    desc: "Documentation for datasets available in pastclim"
+    contents:
+      - Barreto2023
+      - Beyer2020
+      - Example
+      - HYDE_3.3_baseline
+      - Krapp2021
+      - WorldClim_2.1

@@ -16,14 +16,23 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
   check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
   if (is.null(path_to_nc)) {
-    # we get the first available file to get info for the dataset
-    possible_vars <- get_vars_for_dataset(dataset, monthly = TRUE)
-    this_file <- get_file_for_dataset(possible_vars[1], dataset)$file_name
-    path_to_nc <- file.path(get_data_path(), this_file)
+    possible_files <- dataset_list_included$file_name[dataset_list_included$dataset == dataset]
+    possible_files <- possible_files[possible_files %in% list.files(get_data_path())]
+    # check that at least one file is available
+    if (length(possible_files) == 0) {
+      stop("no variable has been downloaded for this dataset yet")
+    }
+    path_to_nc <- file.path(get_data_path(), possible_files[1])
   }
 
-  climate_nc <- terra::rast(path_to_nc, subds = 1)
-  return(time_bp(climate_nc))
+  # no point loading the raster fully if we have a virtual raster
+  if (substr(path_to_nc,nchar(path_to_nc)-2,nchar(path_to_nc))=="vrt"){
+    return(vrt_get_meta(path_to_nc)$time_bp)
+  } else { # if we have an nc file, we load it in full
+    climate_nc <- terra::rast(path_to_nc, subds = 1)
+    return(time_bp(climate_nc))
+  }
+  
 }
 
 #' @rdname get_time_bp_steps

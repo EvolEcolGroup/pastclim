@@ -14,8 +14,9 @@
 get_available_datasets <- function() {
   all_datasets <- unique(as.character(getOption("pastclim.dataset_list")$dataset))
   all_datasets <- all_datasets[!grepl("WorldClim_2.1", all_datasets)]
-  print(all_datasets)
-  message('for present day reconstructions, use "WorldClim_2.1_RESm", where RES is an available resolution.')
-  message('for future predictions, use "WorldClim_2.1_GCM_SSP_RESm", where GCM is the GCM model, SSP is the Shared Societ-economic Pathways scenario.')
-  message('use help("WorldClim_2.1") for a list of available options')
+  all_datasets <- all_datasets[!grepl("CHELSA_2.1", all_datasets)]
+  message(paste(sort(all_datasets), collapse = ", "))
+  message('for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.')
+  message('for future predictions, use "WorldClim_2.1_GCM_SSP_RESm" or "CHELSA_2.1_GCM_SSP_RESm", where GCM is the GCM model, SSP is the Shared Socio-economic Pathways scenario.')
+  message('use help("WorldClim_2.1") or help("CHELSA_2.1") for a list of available options')
 }

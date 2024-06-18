@@ -1,52 +1,90 @@
-#' Download the CHELSA modern observations.
+#' Download the CHELSA modern and future observations.
 #'
-#' This function downloads monthly variables from the CHELSA 2.1 dataset.
-#' These variables are saved in a format that can be read by
-#' load_chelsa, and easily used for delta downscaling palaeoclimate
-#' observations.
-#'
-#' Note that variables are named differently from WorldClim. "tas" is the mean
-#' temperature ("tavg" in WorldClim), with "tasmax" and "tasmin" being equivalent
-#' to "tmax" and "tmin".
-#'
-#' @param var	character Valid variables names are "tas", "tasmax","tasmin", and
-#' "prec".
-#' @param path	character. Path where to download the data to. If left NULL, the data
-#' will be downloaded from the directory returned by [get_data_path()].
-#' @returns TRUE if the requested CHELSA variable was downloaded successfully.
-#'
+#' This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
+#' @param dataset the name of the dataset
+#' @param bio_var the variable name
+#' @param filename the filename as stored in the `data_path` of `pastclim` (includes the full data path)
+#' @returns TRUE if the requested CHELSA variable was downloaded successfully
+#' 
 #' @keywords internal
 
-download_chelsa <- function(var, res, path = NULL, version = "2.1", ...) {
-  if (!var %in% c("tas", "tasmax", "taxmin", "prec")) {
-    stop('Valid variables names are "tas", "tasmax","tasmin", and "prec".')
-  }
 
-  if (is.null(path)) {
-    path <- get_data_path()
+# download_chelsa(dataset = "CHELSA_2.1_0.5m_vsi", bio_var = "bio06",
+# filename = file.path(get_data_path(), "CHELSA_2.1_0.5m_bio06_vsi.vrt"))
+# download_chelsa(dataset = "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m_vsi", bio_var = "bio06",
+# filename = file.path(get_data_path(), "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m_bio06_vsi.vrt"))
+# download_chelsa(dataset = "CHELSA_2.1_0.5m", bio_var = "bio06",
+# filename = file.path(get_data_path(), "CHELSA_2.1_0.5m_bio06.vrt"))
+
+download_chelsa <- function(dataset, bio_var, filename) {
+  
+  # if the last 3 letters are vsi, this is a virtual dataset
+  if (substr(dataset,nchar(dataset)-2,nchar(dataset))=="vsi"){
+    virtual <- TRUE
   } else {
-    if (!dir.exists(path)) {
-      stop("the provided path does not exist")
+    virtual <- FALSE
+  }
+  
+  # compose download paths
+  # the lenght of the dataset name determines whether it's present or future
+  if (length(unlist(strsplit(dataset, "_")))<5){
+    download_url <- filenames_chelsa_present(dataset=dataset,
+                                             bio_var = bio_var)
+    time_vector <- 1990
+  } else {
+    download_url <- filenames_chelsa_future(dataset=dataset,
+                                             bio_var = bio_var)
+    time_vector <- c(2025, 2055, 2075)
+  }
+  
+  
+  if (virtual){
+    # add prefix for vsi dataset
+    chelsa_url <- paste0("/vsicurl/", download_url) # urls of target files
+  } else { # download the files
+    # if we do not have a directory, create one
+    chelsa_dir <- file.path(get_data_path(),"chelsa_2.1")
+    if(!dir.exists(chelsa_dir)){
+      dir.create(chelsa_dir)
+    }
+    # and now download the files (so the url is actually a local file)
+    chelsa_url <- file.path(chelsa_dir,basename(download_url))
+    download_res <- curl::multi_download(download_url,
+                        destfiles = chelsa_url, resume = TRUE
+    )
+    if(any(!download_res$success)){
+      stop("something went wrong downloading the data; try again")
     }
   }
+  # create the vrt file
+  # TODO we should capture a warning here and abort
+  # vrt_path <- terra::vrt(x = chelsa_url,
+  #                        filename = filename,
+  #                        options="-separate", 
+  #                        overwrite=TRUE, return_filename=TRUE)
+  #############################################
+  # workaround
+  sf::gdal_utils(
+    util = "buildvrt",
+    source = chelsa_url,
+    destination = filename,
+    options = c("-separate","-overwrite")
+  )
 
-  month_values <- sprintf("%02d", 1:12)
-  chelsa_filenames <- paste("CHELSA", var, month_values, "1981-2010_V.2.1.tif", sep = "_")
-  chelsa_urls <- paste0(
-    "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/tas/",
-    chelsa_filenames
-  )
-  # create the destination directory if needed
-  dir.create(file.path(tempdir(), "chelsa", var), showWarnings = FALSE, recursive = TRUE)
-  # download the files
-  curl::multi_download(chelsa_urls,
-    destfile = file.path(tempdir(), "chelsa", var, chelsa_filenames)
-  )
-  # combined them into a single raster object
-  combined_rast <- terra::rast(file.path(tempdir(), "chelsa", var, chelsa_filenames))
-  # save it as netcdf file
-  chelsa_nc_name <- paste0("chelsa21_30sec_", var, ".nc")
-  terra::writeCDF(combined_rast, file.path(path, chelsa_nc_name),
-    compression = 9
-  )
+  vrt_path <- filename
+  #############################
+  
+  # edit the vrt metadata
+  edit_res <- vrt_set_meta(vrt_path = vrt_path, description = bio_var,
+                           time_vector = time_vector, time_bp=FALSE)
+  if (!edit_res){
+    file.remove(vrt_path)
+    stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
+  }
+  return(TRUE)
 }
+
+
+
+
+
