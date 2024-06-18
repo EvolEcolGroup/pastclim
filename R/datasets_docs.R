@@ -13,7 +13,7 @@ NULL
 #' This dataset covers the last 120k years, at intervals of 1/2 k years, and a
 #' resolution of 0.5 degrees in latitude and longitude.
 #'
-#' If you use this dataset, make sure to cite the original publication:
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication:
 #'
 #' Beyer, R.M.,
 #' Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
@@ -56,7 +56,7 @@ NULL
 #' The units of several variables have been changed to match what is used
 #' in WorldClim.
 #'
-#' If you use this dataset, make sure to cite the original publication:
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication:
 #'
 #' Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
 #' reconstruction of high-resolution global terrestrial climate for the last
@@ -87,7 +87,9 @@ NULL
 #' Documentation for the WorldClim datasets
 #'
 #' WorldClim version 2.1 is a database of high spatial resolution global weather and
-#' climate data, covering both the present and future projections. If you use this
+#' climate data, covering both the present and future projections. 
+#' 
+#' IMPORTANT: If you use this
 #' dataset, make sure to cite the original publication:
 #'
 #' Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution
@@ -100,8 +102,7 @@ NULL
 #' of interest can be obtained by changing the ending of the dataset name
 #' *WorldClim_2.1_RESm*, e.g. *WorldClim_2.1_10m* or *WorldClim_2.1_5m*
 #' (currently, only 10m and 5m are currently available in `pastclim`). In `pastclim`, the datasets are given
-#' a date of 1985 CE (the mid-point of the period of interest), corresponding to
-#' a time_bp of 35. There are 19 “bioclimatic” variables, as well as monthly
+#' a date of 1985 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly
 #' estimates for minimum, mean, and maximum temperature, and precipitation.
 #'
 #' **Future projections** are based on the models in CMIP6, downscaled and de-biased
@@ -119,7 +120,9 @@ NULL
 #' "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
 #' "ssp245",	"ssp370",	and "ssp585". RES takes the same values as for present reconstructions
 #' (i.e. "10m", "5m", "2.5m", and "0.5m"). Example dataset names are
-#' *WorldClim_2.1_ACCESS-CM2_ssp245_10m* and *WorldClim_2.1_MRI-ESM2-0_ssp370_5m*
+#' *WorldClim_2.1_ACCESS-CM2_ssp245_10m* and *WorldClim_2.1_MRI-ESM2-0_ssp370_5m*.
+#' Four combination (namely *FIO-ESM-2-0_ssp370*, *GFDL-ESM4_ssp245*, 
+#' *GFDL-ESM4_ssp585*, and *HadGEM3-GC31-LL_ssp370*) are NOT available.
 #'
 #' The dataset are averages over 20 year
 #' periods (2021-2040, 2041-2060, 2061-2080, 2081-2100).
@@ -132,19 +135,6 @@ NULL
 NULL
 #> NULL
 
-#' Documentation for the WorldClim dataset at 10 arc-minute resolution
-#'
-#' @rdname WorldClim_2.1
-#' @name WorldClim_2.1_10m
-NULL
-#> NULL
-
-#' Documentation for the WorldClim dataset at 5 arc-minute resolution
-#'
-#' @rdname WorldClim_2.1
-#' @name WorldClim_2.1_5m
-NULL
-#> NULL
 
 #' Documentation for the Barreto et al 2023 dataset
 #'
@@ -171,7 +161,7 @@ NULL
 #' to be much faster (especially if you subset the dataset to a small number
 #' of time steps of interest).
 #'
-#' If you use this dataset, make sure to cite the original publications:
+#' IMPORTANT: If you use this dataset, make sure to cite the original publications:
 #'
 #'  Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023).
 #'  PALEO-PGEM-Series: A spatial time series of the global climate over the
@@ -188,7 +178,7 @@ NULL
 NULL
 #> NULL
 
-#' Documentation for HYDE 3.3 dataset
+#' Documentation for *HYDE 3.3* dataset
 #'
 #' This database presents an update and expansion of the History Database of
 #' the Global Environment (HYDE, v 3.3) and replaces former HYDE 3.2
@@ -202,12 +192,15 @@ NULL
 #' population and population density as well as built-up area.
 #'
 #' The period covered is 10 000 BCE to 2023 CE. Spatial resolution is
-#' 5 arc minutes (approx. 85 km2 at the equator). The full HYDE 3.3 release
+#' 5 arc minutes (approx. 85 km2 at the equator). The full *HYDE 3.3* release
 #' contains: a Baseline estimate scenario, a Lower estimate scenario and an
 #' Upper estimate scenario. Currently only the baseline scenario is available
 #' in `pastclim`
 #'
-#' If you use this dataset, make sure to cite the original publication
+#' More details on the dataset are available on its 
+#' dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
+#' 
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication
 #' for the HYDE 3.2 (there is no current publication for 3.3):
 #'
 #' Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:
@@ -215,5 +208,138 @@ NULL
 #' Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-1-2017}
 #'
 #' @name HYDE_3.3_baseline
+NULL
+#> NULL
+
+#' Documentation for *CHELSA 2.1*
+#'
+#' *CHELSA* version 2.1 is a database of high spatial resolution global weather and
+#' climate data, covering both the present and future projections. 
+#' 
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication
+#' for the *CHELSA* dataset:
+#'
+#' Karger, D.N., Conrad, O., Böhner, J., Kawohl, T., Kreft, H., 
+#' Soria-Auza, R.W., Zimmermann, N.E., Linder, P., Kessler, M. (2017) 
+#' Climatologies at high resolution for the Earth land surface areas. 
+#' Scientific Data. 4 170122. \doi{10.1038/sdata.2017.122}
+#' 
+#' **Present-day reconstructions** are based on the mean for the period 1981-2000
+#' and are available at at the high resolution of 0.5 arc-minutes (*CHELSA_2.1_0.5m*).
+#' In `pastclim`, the datasets are given
+#' a date of 1990 CE (the mid-point of the period of interest). There are 19 “bioclimatic” variables, as well as monthly
+#' estimates for mean temperature, and precipitation. The dataset is very large, as it
+#' includes estimates for the oceans as well as the land masses. An alternative to
+#' downloading the very large files is to use virtual rasters, which allow the
+#' data to remain on the server, with only the pixels required for a given operation
+#' being downloaded. Virtual rasters can be used by choosing (*CHELSA_2.1_0.5m_vsi*)
+#'
+#' **Future projections** are based on the models in CMIP6, downscaled and de-biased
+#' using the CHELSA algorithm 2.1. Monthly values of mean temperature, 
+#' and total precipitation, as well as 19 bioclimatic
+#' variables were processed for
+#' 5 global climate models (GCMs), and for three
+#' Shared Socio-economic Pathways (SSPs): 126, 370 and 585. Model and
+#' SSP can be chosen by changing the ending of the dataset name
+#' *CHELSA_2.1_GCM_SSP_RESm*.
+#'
+#' Available values for GCM are: "GFDL-ESM4", "IPSL-CM6A-LR", "MPI-ESM1-2-HR",
+#' "MRI-ESM2-0", and "UKESM1-0-LL". For SSP, use: "ssp126",
+#' "ssp370",	and "ssp585". RES is currently limited to "0.5m". Example dataset names are
+#' *CHELSA_2.1_GFDL-ESM4_ssp126_0.5m* and *CHELSA_2.1_UKESM1-0-LL_ssp370_0.5m*
+#' 
+#' As for present reconstructions, an alternative to
+#' downloading the very large files is to use virtual rasters. Simply append
+#' "_vis" to the name of the dataset of interest (*CHELSA_2.1_GFDL-ESM4_ssp126_0.5m_vsi*).
+#'
+#' The dataset are averages over 30 year
+#' periods (2011-2040, 2041-2070, 2071-2100).
+#' In `pastclim`, the midpoints of the periods (2025, 2055, 2075) are used as the time stamps. All 3 periods
+#' are automatically downloaded for each combination of GCM model and SSP, and are selected
+#' as usual by defining the time in functions such as [region_slice()].
+#' 
+#' @name CHELSA_2.1
+NULL
+#> NULL
+
+#' Documentation for *Paleoclim*
+#'
+#' *Paleoclim* is a set of high resolution paleoclimate reconstructions, mostly
+#' based on the CESM model, downscaled with the CHELSA dataset to 3  different 
+#' spatial resolutions: `paleoclim_1.0_2.5m` at 2.5 arc-minutes (~5 km),
+#'  `paleoclim_1.0_5m` at 5 arc-minutes (~10 km), 
+#' and `paleoclim_1.0_10m` 10 arc-minutes (~20 km). All 19 biovariables are available.
+#' There are only a limited number of time slices available for this dataset;
+#' furthermore, currently only time slices from present to 130ka are available 
+#' in `pastclim`.
+#' 
+#' More details on the dataset are available on its dedicated \href{http://www.paleoclim.org/}{website}.
+#' 
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication:
+#'
+#' Brown, Hill, Dolan, Carnaval, Haywood (2018) PaleoClim, high spatial
+#'  resolution paleoclimate surfaces for global land areas.  
+#'  Nature – Scientific Data. 5:180254
+#'
+#' @name paleoclim_1.0
+NULL
+#> NULL
+
+#' Documentation for the paleoclim dataset at 10 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_10m
+NULL
+#> NULL
+
+#' Documentation for the paleoclim dataset at 5 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_5m
+NULL
+#> NULL
+
+#' Documentation for the paleoclim dataset at 2.5 arc-minute resolution
+#'
+#' @rdname paleoclim_1.0
+#' @name paleoclim_1.0_2.5m
+NULL
+#> NULL
+
+#' Documentation for *CHELSA-TracCE21k*
+#'
+#' CHELSA-TraCE21k data provides monthly climate data for temperature and 
+#' precipitation at 30 arc-sec spatial resolution in 100-year time steps for the
+#'  last 21,000 years. Palaeo-orography at high spatial resolution and at each 
+#'  time step is created by combining high resolution information on glacial 
+#'  cover from current and Last Glacial Maximum (LGM) glacier databases with 
+#'  the interpolation of a dynamic ice sheet model (ICE6G) and a coupling to
+#'   mean annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
+#'    palaeo-orography, mean annual temperature and precipitation was downscaled 
+#'    using the CHELSA V1.2 algorithm.
+#' 
+#' More details on the dataset are available on its dedicated
+#'  \href{https://chelsa-climate.org/chelsa-trace21k//}{website}.
+#'  
+#'  An alternative to
+#' downloading very large files is to use virtual rasters. Simply append
+#' "_vis" to the name of the dataset of interest (*CHELSA_trace21k_1.0_0.5m_vsi*).
+#' This is the recommended approach, and it is currently the only available version of the dataset.
+#' 
+#' IMPORTANT: If you use this dataset, make sure to cite the original publication:
+#'
+#' Karger, D.N., Nobis, M.P., Normand, S., Graham, C.H., Zimmermann, N. (2023)
+#'  CHELSA-TraCE21k – High resolution (1 km) downscaled transient temperature 
+#'  and precipitation data since the Last Glacial Maximum. Climate of the Past.
+#'    \doi{10.5194/cp-2021-30}
+#'
+#' @name CHELSA_trace21k_1.0
+NULL
+#> NULL
+
+#' Documentation for the CHELSA trace21k dataset at 0.5 arc-minute resolution
+#'
+#' @rdname CHELSA_trace21k_1.0
+#' @name CHELSA_trace21k_1.0_0.5m_vsi
 NULL
 #> NULL

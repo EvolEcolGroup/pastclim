@@ -11,7 +11,7 @@ resolution of 0.5 degrees in latitude and longitude.
 The units of several variables have been changed to match what is used
 in WorldClim.
 
-If you use this dataset, make sure to cite the original publication:
+IMPORTANT: If you use this dataset, make sure to cite the original publication:
 
 Krapp, M., Beyer, R.M., Edmundson, S.L. et al. A statistics-based
 reconstruction of high-resolution global terrestrial climate for the last

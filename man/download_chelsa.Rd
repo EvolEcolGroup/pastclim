@@ -2,29 +2,21 @@
 % Please edit documentation in R/download_chelsa.R
 \name{download_chelsa}
 \alias{download_chelsa}
-\title{Download the CHELSA modern observations.}
+\title{Download the CHELSA modern and future observations.}
 \usage{
-download_chelsa(var, res, path = NULL, version = "2.1", ...)
+download_chelsa(dataset, bio_var, filename)
 }
 \arguments{
-\item{var}{character Valid variables names are "tas", "tasmax","tasmin", and
-"prec".}
+\item{dataset}{the name of the dataset}
 
-\item{path}{character. Path where to download the data to. If left NULL, the data
-will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}.}
+\item{bio_var}{the variable name}
+
+\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim} (includes the full data path)}
 }
 \value{
-TRUE if the requested CHELSA variable was downloaded successfully.
+TRUE if the requested CHELSA variable was downloaded successfully
 }
 \description{
-This function downloads monthly variables from the CHELSA 2.1 dataset.
-These variables are saved in a format that can be read by
-load_chelsa, and easily used for delta downscaling palaeoclimate
-observations.
-}
-\details{
-Note that variables are named differently from WorldClim. "tas" is the mean
-temperature ("tavg" in WorldClim), with "tasmax" and "tasmin" being equivalent
-to "tmax" and "tmin".
+This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
 }
 \keyword{internal}

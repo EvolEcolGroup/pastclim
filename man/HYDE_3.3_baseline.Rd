@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets_docs.R
 \name{HYDE_3.3_baseline}
 \alias{HYDE_3.3_baseline}
-\title{Documentation for HYDE 3.3 dataset}
+\title{Documentation for \emph{HYDE 3.3} dataset}
 \description{
 This database presents an update and expansion of the History Database of
 the Global Environment (HYDE, v 3.3) and replaces former HYDE 3.2
@@ -17,12 +17,15 @@ population and population density as well as built-up area.
 }
 \details{
 The period covered is 10 000 BCE to 2023 CE. Spatial resolution is
-5 arc minutes (approx. 85 km2 at the equator). The full HYDE 3.3 release
+5 arc minutes (approx. 85 km2 at the equator). The full \emph{HYDE 3.3} release
 contains: a Baseline estimate scenario, a Lower estimate scenario and an
 Upper estimate scenario. Currently only the baseline scenario is available
 in \code{pastclim}
 
-If you use this dataset, make sure to cite the original publication
+More details on the dataset are available on its
+dedicated \href{https://hyde-portal.geo.uu.nl/}{website}.
+
+IMPORTANT: If you use this dataset, make sure to cite the original publication
 for the HYDE 3.2 (there is no current publication for 3.3):
 
 Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:

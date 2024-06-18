@@ -39,7 +39,8 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
     land_mask[land_mask < 0] <- NA
     land_mask[land_mask != 28] <- 1
     land_mask[land_mask == 28] <- NA
-  } else if (grepl("WorldClim", dataset)) {
+  } else if (any(grepl("WorldClim", dataset),
+                 grepl("paleoclim", dataset))) {
     climate_series <- region_series(
       time_bp = time_bp,
       bio_variables = get_vars_for_dataset(dataset)[1],
@@ -48,7 +49,7 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
     land_mask <- climate_series[[1]]
     land_mask[!is.na(land_mask)] <- 1
   } else {
-    stop("no method yet for this dataset")
+    stop("this method has not been yet developed for this dataset")
   }
   # sort out categories
   # we pass a list so that each level if turned into a categorical variable

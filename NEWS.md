@@ -1,4 +1,8 @@
 # development version
+* Add all CHELSA present and future datasets (including the use of virtual rasters to avoid downloading all data)
+* Add paleoclim at multiple resolutions
+* Add CHELSA-TraCE21k (including the use of virtual rasters to avoid downloading all data)
+* Re-implement the import for WorldClim datasets to avoid repackaging the data (it should lead to faster downloads, but it will force a re-download if the dataset was already present).
 * Add functions for Koeppen Geiger's classification from monthly means.
 
 # pastclim 2.0.0

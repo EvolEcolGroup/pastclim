@@ -1,0 +1,151 @@
+---
+title: "Testing new datasets"
+output: pdf_document
+date: "2024-01-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First update `pastclim` to the latest commit in branch `chelsa`. Close RStudio and restart it
+before trying this out.
+
+## A quick check for the new datasets
+
+
+We now have a lot of new dataset. Let's try a couple of variables to check that they all work
+
+```{r}
+library(pastclim)
+list_available_datasets()
+```
+
+## CHELSA present
+
+Start with a virtual dataset:
+
+```{r}
+bio_vars <- c("bio12","temperature_01")
+dataset = "CHELSA_2.1_0.5m_vsi"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+```
+Now use it:
+```{r}
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio12
+test_rast$temperature_01
+```
+
+NOTE: bio12 is precipitation (it should go into the several thousands), whilst
+temperature_01 is the Jan temp (so range, from -50 to 40 or something along those lines
+depending on which dataset you are looking at). Ideally, the units should be informative.
+
+Now the real dataset (downloading the files)
+```{r}
+bio_vars <- c("bio12","temperature_01")
+dataset = "CHELSA_2.1_0.5m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio12
+test_rast$temperature_01
+
+```
+
+##CHELSA future
+
+Again, a virtual dataset first
+```{r}
+bio_vars <- c("bio12","temperature_01")
+dataset = "CHELSA_2.1_MPI-ESM1-2-HR_ssp370_0.5m_vsi"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio12
+test_rast$temperature_01
+
+```
+
+And now the downloading data:
+```{r}
+bio_vars <- c("bio12","temperature_01")
+dataset = "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio12
+test_rast$temperature_01
+
+```
+
+## Paleoclim
+```{r}
+bio_vars <- c("bio12","bio12")
+dataset = "paleoclim_1.0_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio12
+test_rast$bio12
+
+```
+
+
+## WorldClim
+```{r}
+bio_vars <- c("bio01","bio12")
+dataset = "WorldClim_2.1_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio01
+test_rast$bio12
+
+```
+
+```{r}
+bio_vars <- c("temperature_min_03")
+dataset = "WorldClim_2.1_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$temperature_min_03
+```
+
+```{r}
+bio_vars <- c("altitude")
+dataset = "WorldClim_2.1_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$altitude
+```
+
+
+Future projections
+```{r}
+bio_vars <- c("bio01","bio12")
+dataset = "WorldClim_2.1_MPI-ESM1-2-HR_ssp370_10m"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio01
+test_rast$bio12
+
+```
+
+## Chelsa Trace21k
+```{r}
+bio_vars <- c("bio06")
+dataset = "CHELSA_trace21k_1.0_0.5m_vsi"
+download_dataset(dataset=dataset, bio_variables = bio_vars)
+test_rast<-region_series(bio_variables = bio_vars, dataset = dataset)
+test_rast$bio06
+```
+Don't plot this series, it has over 200 remote time steps, with each time step hundreds of megabytes in size.
+But you could try etracting climate for a couple of points:
+```{r}
+locations <- data.frame(
+  name = c("Iho Eleru", "La Riera", "Chalki", "Oronsay", "Atlantis"),
+  longitude = c(5, -4, 27, -6, -24), latitude = c(7, 44, 36, 56, 31),
+  time_bp = c(-11200, -18738, -10227, -10200, -11600)
+)
+location_slice(
+  x = locations, bio_variables = c("bio06"),
+  dataset = "CHELSA_trace21k_1.0_0.5m_vsi", nn_interpol = FALSE
+)
+```
+Note that, since CHELSA trace21k includes the ocean, we get estimates for every single point!
