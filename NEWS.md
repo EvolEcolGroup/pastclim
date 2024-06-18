@@ -1,4 +1,4 @@
-# development version
+# pastclim 2.1.0
 * Add all CHELSA present and future datasets (including the use of virtual rasters to avoid downloading all data)
 * Add paleoclim at multiple resolutions
 * Add CHELSA-TraCE21k (including the use of virtual rasters to avoid downloading all data)
