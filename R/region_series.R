@@ -135,7 +135,7 @@ region_series <-
       }
 
       # special treatment for biome variables
-      if (this_var_nc == "biome") {
+      if (this_var == "biome") {
         # we pass a list so that each level if turned into a categorical variable
         levels(var_brick) <-
           rep(list(get_biome_classes(dataset = dataset)),
