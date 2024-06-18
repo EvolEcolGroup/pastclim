@@ -61,7 +61,7 @@ region_slice <-
 #' @returns a
 #' SpatRaster [`terra::SpatRaster`] object, with
 #' each variable as a layer.
-#'
+#' @keywords deprecated
 #' @export
 
 climate_for_time_slice <- function(...) {
