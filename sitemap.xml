@@ -4,6 +4,12 @@
     <loc>https://evolecolgroup.github.io/pastclim/404.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/LICENSE.html</loc>
   </url>
   <url>
@@ -37,6 +43,12 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/Beyer2020.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/CHELSA_2.1.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/CHELSA_trace21k_1.0.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/Example.html</loc>
   </url>
   <url>
@@ -50,6 +62,9 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/bioclim_vars-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/biome4_classes.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/check_available_dataset.html</loc>
@@ -100,16 +115,40 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_chelsa.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_chelsa_trace21k.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_dataset.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_etopo.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/download_paleoclim.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_worldclim_future.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/download_worldclim_present.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_chelsa_future.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_chelsa_present.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_chelsa_trace21k.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_paleoclim.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_worldclim_future.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/filenames_worldclim_present.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_available_datasets.html</loc>
@@ -127,9 +166,6 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_downloaded_datasets.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/reference/get_file_for_dataset.html</loc>
-  </url>
-  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_ice_mask.html</loc>
   </url>
   <url>
@@ -139,10 +175,16 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_mis_time_steps.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/get_resolution.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_sea_level.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_time_bp_steps.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/get_var_meta.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/get_varname.html</loc>
@@ -158,6 +200,12 @@
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/is_region_series.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/koeppen_classes.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/koeppen_geiger-methods.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/list_available_datasets.html</loc>
@@ -193,7 +241,13 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/mode.html</loc>
   </url>
   <url>
-    <loc>https://evolecolgroup.github.io/pastclim/reference/pastclim.html</loc>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/paleoclim_1.0.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/pastclim-package.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/pastclim_rast.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/region_extent.html</loc>
@@ -244,10 +298,19 @@
     <loc>https://evolecolgroup.github.io/pastclim/reference/update_dataset_list.html</loc>
   </url>
   <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/url_is_valid.html</loc>
+  </url>
+  <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/validate_nc.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/var_labels.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/vrt_get_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://evolecolgroup.github.io/pastclim/reference/vrt_set_meta.html</loc>
   </url>
   <url>
     <loc>https://evolecolgroup.github.io/pastclim/reference/ybp2date.html</loc>
