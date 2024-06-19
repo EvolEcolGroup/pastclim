@@ -16,7 +16,7 @@ source("./data-raw/helper_functions/check_returns_in_documentation.R")
 # update version number
 # update news
 
-# first check with rhub
+# first check with rhub (TO UPDATE, it now runs on github actions)
 pastclim_checks <- rhub::check_for_cran()
 
 # check on macos and windows via devtools

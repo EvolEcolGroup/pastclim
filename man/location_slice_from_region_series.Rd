@@ -35,7 +35,7 @@ coordinates, as found in \code{data}. If left to NULL, the function will
 try to guess the columns based on standard names \code{c("x", "y")}, \code{c("X","Y")},
 \code{c("longitude", "latitude")}, or \code{c("lon", "lat")}}
 
-\item{region_series}{a \code{\link{SpatRasterDataset}} obtained with \code{\link[=region_series]{region_series()}}}
+\item{region_series}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} obtained with \code{\link[=region_series]{region_series()}}}
 
 \item{nn_interpol}{boolean determining whether nearest neighbour
 interpolation is used to estimate climate for cells that lack such

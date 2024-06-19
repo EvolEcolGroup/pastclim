@@ -1,5 +1,7 @@
 # this file tests the setting and getting of metadata from a vrt file
 # we work in the temp directory
+skip_on_cran()
+# buildvrt from gdal is not properly installed on the linux machine on CRAN
 test_that("setting and getting vrt meta", {
   vrt_path <- file.path(tempdir(),"test.vrt")
   tif_files <- list.files(system.file("extdata/CHELSA_bio01", package="pastclim"),

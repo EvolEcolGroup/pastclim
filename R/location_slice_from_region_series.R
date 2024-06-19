@@ -19,7 +19,7 @@
 #' coordinates, as found in `data`. If left to NULL, the function will
 #' try to guess the columns based on standard names `c("x", "y")`, `c("X","Y")`,
 #'  `c("longitude", "latitude")`, or `c("lon", "lat")`
-#' @param region_series a [`SpatRasterDataset`] obtained with [region_series()]
+#' @param region_series a [`terra::SpatRasterDataset`] obtained with [region_series()]
 #' @param nn_interpol boolean determining whether nearest neighbour
 #' interpolation is used to estimate climate for cells that lack such
 #' information (i.e. they are under water or ice). By default, interpolation is only

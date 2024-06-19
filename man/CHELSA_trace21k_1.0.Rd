@@ -17,7 +17,7 @@ using the CHELSA V1.2 algorithm.
 }
 \details{
 More details on the dataset are available on its dedicated
-\href{https://chelsa-climate.org/chelsa-trace21k//}{website}.
+\href{https://chelsa-climate.org/chelsa-trace21k/}{website}.
 
 An alternative to
 downloading very large files is to use virtual rasters. Simply append

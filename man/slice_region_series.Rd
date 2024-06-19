@@ -19,7 +19,7 @@ can use \code{time_bp(x)}.}
 be used.}
 }
 \value{
-a \link{SpatRaster} of the relevant slice.
+a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the relevant slice.
 }
 \description{
 This function extracts a time slice from time series of one or more climate

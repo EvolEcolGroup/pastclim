@@ -12,3 +12,4 @@ ci_dependencies
 ^CRAN-SUBMISSION$
 ^codecov.yml
 ^data-raw$
+.covrignore
