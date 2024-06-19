@@ -1,11 +1,12 @@
-## This is a re-submission
-DOI incorrectly started with doi.org/; they have all now been fixed and raised
-no issues with any check.
+## This is a minor release
+It provides access to more paleoclimatic datasets, without major changes in
+functionality.
 
 ## Test environments
 - R-hub windows-x86_64-devel (r-devel)
-- R-hub ubuntu-gcc-release (r-release)
-- R-hub fedora-clang-devel (r-devel)
+- R-hub linux (r-devel)
+- R-hub macos (r-devel)
+- R-hub macos-arm64 (r-devel)
 - devtools::check_mac_release
 
 No NOTES on any environment.
