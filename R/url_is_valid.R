@@ -10,7 +10,7 @@ url_is_valid <- function(url, verbose = FALSE) {
   if (requireNamespace("httr", quietly = TRUE)) {
     HTTP_STATUS_OK <- 200
     HTTP_STATUS_REDIRECT_SUCCESS <- 302
-    hd <- httr::HEAD(url, timeout(3))
+    hd <- httr::HEAD(url, timeout(30))
     status <- hd$all_headers[[1]]$status
     if (verbose){
       message("status is ",status)
