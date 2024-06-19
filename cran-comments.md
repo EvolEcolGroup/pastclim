@@ -8,7 +8,7 @@ Check: Rd cross-references, Result: NOTE
    Please provide package anchors for all Rd \link{} targets not in the
    package itself and the base packages.
    
-Those links have now been fixed ith teh appropriate package anchor
+Those links have now been fixed with the appropriate package anchors.
 
 ## Test environments
 - R-hub linux (r-devel)
