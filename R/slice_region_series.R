@@ -11,7 +11,7 @@
 #' can use `time_bp(x)`.
 #' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce` should
 #' be used.
-#' @returns a [SpatRaster] of the relevant slice.
+#' @returns a [`terra::SpatRaster`] of the relevant slice.
 #'
 #' @export
 
