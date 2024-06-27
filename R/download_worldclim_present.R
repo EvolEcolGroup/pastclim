@@ -84,11 +84,13 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
                              time_bp = FALSE)
     if (!edit_res){
       file.remove(vrt_path)
-      stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
+      stop("something went wrong setting up this dataset (", vrt_path," could not be created correctly)",
+           "\n the dataset will need downloading again")
     }
   }
   if (!file.exists(filename)){
-    stop("something went wrong setting up this dataset", "\n the dataset will need downloading again")
+    stop("something went wrong setting up this dataset (", filename," is missing)",
+         "\n the dataset will need downloading again")
   }  
   return(TRUE)
 
