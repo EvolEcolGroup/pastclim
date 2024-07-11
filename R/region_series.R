@@ -134,6 +134,21 @@ region_series <-
         var_brick <- terra::crop(var_brick, crop)
       }
 
+      # special treatment for biome variables
+      if (this_var == "biome") {
+        # we pass a list so that each level if turned into a categorical variable
+        levels(var_brick) <-
+          rep(list(get_biome_classes(dataset = dataset)),
+              terra::nlyr(var_brick))
+        terra::coltab(var_brick) <- rep (list(
+          data.frame(
+            values = get_biome_classes(dataset = dataset)$id,
+            cols = pastclim::biome4_classes$colour[match(get_biome_classes(dataset = dataset)$id,
+                                                         pastclim::biome4_classes$id)]
+          )
+        ), terra::nlyr(var_brick))
+      }
+      
       climate_spatrasters[[this_var]] <- var_brick
 
       # varnames(climate_spatrasters[[this_var]]) <- this_var

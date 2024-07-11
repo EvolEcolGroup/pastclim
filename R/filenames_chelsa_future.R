@@ -17,6 +17,12 @@ filenames_chelsa_future <- function(dataset, bio_var){
   if ("bio"== substr(bio_var,1,3)){
     var_prefix <- "bio"
     var_index <- paste0(var_prefix,as.numeric(var_index)) # strip leading 0
+  } else if (length(grep(pattern="temperature_min",bio_var))){
+    var_prefix <- "tasmin"
+    var_index <- paste0(var_prefix,"_",var_index)        
+  } else if (length(grep(pattern="temperature_max",bio_var)) ){
+    var_prefix <- "tasmax"
+    var_index <- paste0(var_prefix,"_",var_index)  
   } else if ("tem" == substr(bio_var,1,3)){
     var_prefix <- "tas"
     var_index <- paste0(var_prefix,"_",var_index)

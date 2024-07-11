@@ -32,6 +32,7 @@ Other contributors:
   \item Emily Y. Hallet [contributor]
   \item Robert Beyer [contributor]
   \item Mario Krapp [contributor]
+  \item Andrea V. Pozzi [contributor]
 }
 
 }

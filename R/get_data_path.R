@@ -37,10 +37,11 @@ get_data_path <- function(silent = FALSE) {
       "pastclim_data.txt"
     ))[1, 1]
     if (!dir.exists(path_to_nc)) {
-      stop(
+      warning(
         "The path ", path_to_nc, " from the config file does not exist!\n",
         "You can reset the path with `set_data_path`."
       )
+      return(NULL)
     }
     return(path_to_nc)
   }
