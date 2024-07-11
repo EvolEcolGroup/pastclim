@@ -13,6 +13,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+download_data = TRUE
+create_custom_data = TRUE
 ```
 
 # THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
@@ -22,48 +25,71 @@ by using the prefix `pastclim:::`. The `:::` accesses internal functions. You wi
 also get a message reminding you that these functions are not final and thus
 should not be used for real analysis.
 
+# Downscaling
+
+Climate reconstructions from global circulation models are often at coarser resolutions
+than desired for ecological analyses. Downscaling is the process of generating
+a finer resolution raster from a coarser resolution raster. There are many methods
+to downscale rasters, and several are implemented in specific `R` packages. For
+example, the `terra` package can downscale reconstructions using bilinear interpolation,
+a statistical approach that is simple and fast. For paleoclimate reconstructions,
+the delta method has been shown to be very effective (Beyer et al, REF). The delta
+method is a simple method that computes the difference between the observed and
+modelled values at a given time step (generally the present), and then applies 
+this difference to the modelled
+values at other time steps. This approach makes the important assumption that the fine scale structure
+of the deviations between large scale model and finer scale observations is constant
+over time. Whilst such an assumption is likely to hold reasonably well in the short
+term, it may not hold over longer time scales.
 
 ## Delta downscaling a dataset in `pastclim`
 
-The `terra` package can downscale reconstructions using a bilinear method. Other `R`
-packages also offer various approaches to downscale rasters.
-
-For palaeoclimate reconstructions, the delta method has been shown to be very effective
-(Beyer et al, REF), but sea level changes require some care on how to apply such a method.
-`pastclim` includes functions to use the delta method for downscaling. We will focus on South East
-Asia, as this area was greatly affected by sea level changes over the last glaciation. Specifically, we will look at the area around Borneo (for real applications, we would
-reccomend using a bigger extent in areas of large changes in land extent, as
+`pastclim` includes functions to use the delta method for downscaling. In this example,
+we will focus on Europe,
+as it shows nicely the issues of sea level change and ice sheets, which need to 
+be accounted for when applying the delta downscale method. For real applications, we would
+recommend using a bigger extent in areas of large changes in land extent, as
 interpolating over a small extent can lead to greater artefacts; for this example,
-we keep the extent small to reduce computational time).
+we keep the extent small to reduce computational time.
 
 ## An example for one variable
 
-When downscaling, it is generally a better idea to downscale the monthly variables,
-and then recompute the BIOCLIM variables. We will use the monthly variables
-from the Beyer2020 dataset, and focus on the time steps that are also available
-in the Example dataset (i.e. a subset of the full Beyer2020 dataset, to reduce
-computational time):
+Whilst we are often interested in downscaling composite bioclimatic variables (such
+as the warmest quarter), downscaling should be applied directly to monthly estimates
+of temperature and precipitation, and high resolution bioclimatic variables should
+be computed from these downscaled monthly estimates. This approach ensures that
+the downscaled bioclimatic variables are consistent with each other.
+
+For downscaling, we will use the WorldClim2 dataset as our high resolution observations.
+We will use the Example dataset (a subset of the Beyer2020 dataset) as our low 
+resolution model reconstructions. We start by extracting monthly temperature 
+for Europe for both datasets:
 ```{r}
-library(terra)
 library(pastclim)
+download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
 europe_ext <- pastclim::region_extent$Europe
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
 time_steps <- get_time_steps(dataset = "Example")
-```
-
-The series for this region can be generated with the following command (note
-that you will need the appropriate variables for the Beyer2020 dataset downloaded
-on your computer, use `download_dataset` if needed):
-```{r eval=TRUE}
 tavg_series <- region_series(bio_variables =tavg_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
                               ext = europe_ext)
 ```
 
-```{r echo=FALSE, results="hide"}
-#tavg_series <- terra::sds(system.file("extdata/delta/tavg_series.nc",
-#                                       package="pastclim"))
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(tavg_series, 
+               file = file.path(system.file("extdata/delta/",package="pastclim"),
+                                "tavg_series.RDS"))
+
+
+```
+
+```{r echo=FALSE, results="hide", eval=!download_data}
+europe_ext <- pastclim::region_extent$Europe
+tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
+time_steps <- get_time_steps(dataset = "Example")
+tavg_series <- terra::sds(system.file("extdata/delta/tavg_series.RDS",
+                                      package="pastclim"))
 
 ```
 
@@ -83,8 +109,18 @@ uses 0.5x0.5 degree cells). We now need a set of
 high resolutions observations for the variable of interest that we will use to 
 generate the delta raster used to downscale reconstructions. We will use data from
 WorldClim2 at 10 minute resolution (but other datasets such as CHELSA would be
-equally suitable). For WorldClim, there are some convenient functions to download
-and then load variables:
+equally suitable):
+
+```{r eval=download_data}
+tavg_obs_hres <- download_dataset(dataset = "WorldClim_2.1_10m", 
+                                  bio_variables = tavg_vars)
+
+
+
+
+```
+
+
 ```{r eval=FALSE}
 pastclim:::download_worldclim("tavg",10)
 ```
