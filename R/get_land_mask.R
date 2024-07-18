@@ -40,7 +40,8 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
     land_mask[land_mask != 28] <- 1
     land_mask[land_mask == 28] <- NA
   } else if (any(grepl("WorldClim", dataset),
-                 grepl("paleoclim", dataset))) {
+                 grepl("paleoclim", dataset),
+                 grepl("Barreto2023", dataset))) {
     climate_series <- region_series(
       time_bp = time_bp,
       bio_variables = get_vars_for_dataset(dataset)[1],
