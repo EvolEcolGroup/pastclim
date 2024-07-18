@@ -128,6 +128,10 @@ location_slice_from_region_series <-
           x = this_slice,
           y = locations_data[locations_data$time_bp_slice == i_time, coords]
         )
+        # factors don't behave nicely when adding new elements, cast to character
+        if ("biome" %in% names(this_climate)){
+          this_climate$biome <- as.character(this_climate$biome)
+        }        
         # sort out the indexing here
         locations_data[locations_data$time_bp_slice == i_time, bio_variables] <-
           this_climate[
@@ -138,10 +142,6 @@ location_slice_from_region_series <-
         locations_data[this_slice_indeces, ] <- NA
       }
 
-      # factors don't behave nicely when adding new elements, cast to character
-      if ("biome" %in% names(locations_data)){
-        locations_data$biome <- as.character(locations_data$biome)
-      }
       if (nn_interpol | buffer) {
         locations_to_move <- this_slice_indeces[this_slice_indeces %in%
           which(!stats::complete.cases(locations_data))]
@@ -168,12 +168,15 @@ location_slice_from_region_series <-
               y = neighbours_ids[1, ]
             ) # [, bio_variables]
 
-          neighbours_values_mean <- apply(neighbours_values[,!names(neighbours_values) %in% "biome"], 2,
-            mean,
-            na.rm = T
+          # neighbours_values_mean <- apply(neighbours_values[,!names(neighbours_values) %in% "biome"], 2,
+          #   mean,
+          #   na.rm = T
+          #   )
+          neighbours_values_mean <- colMeans(neighbours_values[,!names(neighbours_values) %in% "biome",drop=FALSE], 
+                                            na.rm = T  
           )
           if ("biome" %in% bio_variables) {
-            neighbours_values_mean["biome"] <- mode(as.numeric(neighbours_values[, "biome"]))
+            neighbours_values_mean["biome"] <- mode(as.character(neighbours_values[, "biome"]))
           }
           locations_data[i, bio_variables] <-
             neighbours_values_mean[bio_variables]
@@ -197,7 +200,7 @@ location_slice_from_region_series <-
     
     # reintroduce the factor
     if ("biome" %in% bio_variables){
-      locations_data$biome <- factor(levels(region_series$biome)[[1]]$category[as.numeric(locations_data$biome)],
+      locations_data$biome <- factor(locations_data$biome,
                                      levels = levels(region_series$biome)[[1]]$category)
     }
     return(locations_data)
