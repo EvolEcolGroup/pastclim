@@ -216,6 +216,19 @@ test_that("location_slice", {
     bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
   )
+  
+
+  # test a single variable
+  location_slice_single <- location_slice(
+    x = locations_time_ce[, c("longitude", "latitude")],
+    time_ce = locations_time_ce$time_ce, bio_variables = "bio01",
+    dataset = "Example")
+  
+  location_slice_single <- location_slice(
+    x = locations_time_ce[, c("longitude", "latitude")],
+    time_ce = locations_time_ce$time_ce, bio_variables = "biome",
+    dataset = "Example")
+  
 })
 
 ################################################################################
