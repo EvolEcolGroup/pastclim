@@ -62,9 +62,9 @@ library(pastclim)
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
 download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
 time_steps <- get_time_bp_steps(dataset = "Example")
-n_europe_ext <- c(-10,20,45,70)
+n_europe_ext <- c(-10,15,45,60)
 ```
-```{reval=download_data}
+```{r eval=download_data}
 tavg_series <- region_series(bio_variables = tavg_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
@@ -217,14 +217,14 @@ land_mask_high_res <- mask(land_mask_high_res,
                                 inverse=TRUE)
 plot(land_mask_high_res)
 ```
-We can now remove the internal seas.
-```{r}
+
+If it was a region with internal seas, we could then remove them with:
+```{r eval=FALSE}
 internal_seas <- readRDS(system.file("extdata/internal_seas.RDS",
                                        package="pastclim"))
 land_mask_high <- mask(land_mask_high_res, 
                                 internal_seas, 
                                 inverse=TRUE)
-plot(land_mask_high)
 ```
 
 We can now compute a delta raster and use it to downscale the model
@@ -276,7 +276,7 @@ tavg_downscaled
 As expected, we have 12 months (subdatasets), each with 5 time steps.
 
 We now want to repeat the same procedure for precipitation. In this example
-we will downscale precipitaiton in its natural scale, but often we use logs.
+we will downscale precipitation in its natural scale, but often we use logs.
 We now need to create a series for precipitation:
 ```{r eval=download_data}
 prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
