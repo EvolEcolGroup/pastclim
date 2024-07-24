@@ -168,7 +168,7 @@ For the ice mask, we can:
 
 ```{r}
 ice_mask_low_res <- get_ice_mask(time_bp=time_steps,dataset="Beyer2020")
-ice_mask_high_res <- pastclim:::make_ice_mask (ice_mask_low_res = ice_mask_low_res,
+ice_mask_high_res <- pastclim:::downscale_ice_mask (ice_mask_low_res = ice_mask_low_res,
                                     land_mask_high_res = land_mask_high_res)
 plot(ice_mask_high_res)
 ```

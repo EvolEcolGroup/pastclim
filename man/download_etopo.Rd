@@ -4,7 +4,7 @@
 \alias{download_etopo}
 \title{Download the ETOPO Global relief model}
 \usage{
-download_etopo(path = NULL, resolution = 1)
+download_etopo(path = NULL, resolution = 1, force = FALSE)
 }
 \arguments{
 \item{path}{character. Path where to download the data to. If left NULL, the data
@@ -13,6 +13,8 @@ named \verb{etopo2022_\{resolution\}s_v1.nc}}
 
 \item{resolution}{numeric resolution in arc-minute (one of 0.5, or 1).
 Defaults to 1 arc-minute.}
+
+\item{force}{logical. If TRUE, the file will be downloaded even if it already exists.}
 }
 \value{
 a dataframe produced by \code{\link[curl:multi_download]{curl::multi_download()}} with information about
@@ -23,4 +25,3 @@ This function downloads the ETOPO2022 global relief model at
 0.5 or 1 arc-minute (i.e. 30 or 60 arc-seconds) resolution.
 This is a large file (>1Gb).
 }
-\keyword{internal}

@@ -58,4 +58,3 @@ distance weighted algorithm (as implemented in \code{\link[gstat:gstat]{gstat::g
 to interpolate the missing values. See the manpage for \code{\link[gstat:gstat]{gstat::gstat()}}
 for more parameters that can change the behaviour of the iwd interpolation.
 }
-\keyword{internal}

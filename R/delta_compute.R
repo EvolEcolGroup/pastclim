@@ -18,10 +18,9 @@
 #' @param ref_time the time (BP) of the slice that is used to compute the delta
 #' @param obs the observations
 #' @returns a [`terra::SpatRaster`] of the delta
-#' @keywords internal
+#' @export
 
 delta_compute <- function(x, ref_time, obs) {
-  message("This function is still under development; do not use it for real analysis")
   ref_index <- which(time_bp(x)==ref_time)
   if(length(ref_index)!=1){
     stop("ref_time should be a time in x")

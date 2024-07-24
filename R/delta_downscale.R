@@ -32,12 +32,11 @@
 #' @param ... further parameters to be passed to [gstat::gstat()]
 #' @returns a [`terra::SpatRaster`] of the downscaled variable, where each
 #' layers is a time step.
-#' @keywords internal
+#' @export
 
 
 delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL, range_limits=NULL,
                             nmax=7, set=list(idp = .5), ...) {
-  message("This function is still under development; do not use it for real analysis")
   # sort out the extents
   # the extent of the delta rast wins as we sorted it out in delta_compute
   x <- resample(x, delta_rast)
@@ -55,9 +54,14 @@ delta_downscale <- function(x, delta_rast,  x_landmask_high=NULL, range_limits=N
     }
   }
 
-  # downscale x with bilinear
-  x_high <- disagg(x, fact = round(terra::res( x)/terra::res(delta_rast)),
-                   method="bilinear")
+  # downscale x with bilinear if needed
+  disagg_fact <- round(terra::res(delta_rast)/terra::res(x))
+  if (!all(disagg_fact==1)){
+    x_high <- disagg(x, fact = round(terra::res( x)/terra::res(delta_rast)),
+                     method="bilinear")
+  } else {
+    x_high <- x
+  }
   
   # apply the delta_rast to x
   x_high <- x_high + delta_rast

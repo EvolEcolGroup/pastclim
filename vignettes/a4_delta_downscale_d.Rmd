@@ -14,16 +14,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-download_data = TRUE
-create_custom_data = TRUE
+download_data <- FALSE
+create_custom_data <- FALSE
 ```
-
-# THIS IS WORK IN PROGRESS, DO NOT USE FOR ANY ANALYSIS
-
-Note that we will use the draft functions for downscaling, which can be accessed
-by using the prefix `pastclim:::`. The `:::` accesses internal functions. You will
-also get a message reminding you that these functions are not final and thus
-should not be used for real analysis.
 
 # Downscaling
 
@@ -32,7 +25,7 @@ than desired for ecological analyses. Downscaling is the process of generating
 a finer resolution raster from a coarser resolution raster. There are many methods
 to downscale rasters, and several are implemented in specific `R` packages. For
 example, the `terra` package can downscale reconstructions using bilinear interpolation,
-a statistical approach that is simple and fast. For paleoclimate reconstructions,
+a statistical approach that is simple and fast. For palaeoclimate reconstructions,
 the delta method has been shown to be very effective (Beyer et al, REF). The delta
 method is a simple method that computes the difference between the observed and
 modelled values at a given time step (generally the present), and then applies 
@@ -63,33 +56,36 @@ the downscaled bioclimatic variables are consistent with each other.
 For downscaling, we will use the WorldClim2 dataset as our high resolution observations.
 We will use the Example dataset (a subset of the Beyer2020 dataset) as our low 
 resolution model reconstructions. We start by extracting monthly temperature 
-for Europe for both datasets:
+for northern Europe for both datasets:
 ```{r}
 library(pastclim)
-download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
-europe_ext <- pastclim::region_extent$Europe
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
-time_steps <- get_time_steps(dataset = "Example")
-tavg_series <- region_series(bio_variables =tavg_vars,
+download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
+time_steps <- get_time_bp_steps(dataset = "Example")
+n_europe_ext <- c(-10,20,45,70)
+```
+```{reval=download_data}
+tavg_series <- region_series(bio_variables = tavg_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
-                              ext = europe_ext)
+                              ext = n_europe_ext)
 ```
 
 ```{r echo=FALSE, results="hide", eval=create_custom_data}
 terra::saveRDS(tavg_series, 
-               file = file.path(system.file("extdata/delta/",package="pastclim"),
-                                "tavg_series.RDS"))
-
+               file = "../inst/extdata/delta/tavg_series.RDS") 
 
 ```
 
 ```{r echo=FALSE, results="hide", eval=!download_data}
-europe_ext <- pastclim::region_extent$Europe
-tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
-time_steps <- get_time_steps(dataset = "Example")
-tavg_series <- terra::sds(system.file("extdata/delta/tavg_series.RDS",
+library(pastclim)
+tavg_series <- terra::readRDS(system.file("extdata/delta/tavg_series.RDS",
                                       package="pastclim"))
+# get back the time units that are lost when saving the rds
+old_names <- names(tavg_series) # there is a bug in terra
+terra::time(tavg_series, tstep="years") <- terra::time(tavg_series)
+names(tavg_series) <- old_names
+rm(old_names)
 
 ```
 
@@ -111,41 +107,36 @@ generate the delta raster used to downscale reconstructions. We will use data fr
 WorldClim2 at 10 minute resolution (but other datasets such as CHELSA would be
 equally suitable):
 
-```{r eval=download_data}
-tavg_obs_hres <- download_dataset(dataset = "WorldClim_2.1_10m", 
-                                  bio_variables = tavg_vars)
-
-
-
-
-```
-
-
-```{r eval=FALSE}
-pastclim:::download_worldclim("tavg",10)
-```
 Once the variable is downloaded, we can load it at any time with:
-```{r eval=TRUE}
-tavg_obs_hres_all<- pastclim:::load_worldclim("tavg",10)
+```{r eval=download_data}
+download_dataset(dataset = "WorldClim_2.1_10m", bio_variables = tavg_vars)
+tavg_obs_hres_all<- region_series(bio_variables = tavg_vars,
+                             time_ce =  1985,
+                             dataset = "WorldClim_2.1_10m",
+                              ext = n_europe_ext)
 ```
 
-```{r echo=FALSE, results="hide"}
-#tavg_obs_hres_all<- terra::rast(system.file("extdata/delta/tavg_obs_hres_all.nc",
-#                                            package="pastclim"))
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(tavg_obs_hres_all, 
+               file = "../inst/extdata/delta/tavg_obs_hres_all.RDS") 
 ```
 
-For later use, we store the range of the variable (we need it from the full world distribution)
+```{r echo=FALSE, results="hide", eval=!download_data}
+tavg_obs_hres_all<- terra::readRDS(system.file("extdata/delta/tavg_obs_hres_all.RDS",
+                                            package="pastclim"))
+```
+
+For later use, we store the range of the variable, which we will use to bound
+the downscaled values (arguably, it would be better to grab these limits from the
+full world distribution, but for this example, we will use the European range)
 ```{r}
-#tavg_obs_range <- c(min(global(tavg_obs_hres_all,"min",na.rm=TRUE)),
-#                    max(global(tavg_obs_hres_all,"max",na.rm=TRUE)))
-tavg_obs_range <- range(minmax(tavg_obs_hres_all, 
-                                compute = TRUE))
+tavg_obs_range <- range(unlist(lapply(tavg_obs_hres_all,minmax, compute=TRUE)))
 tavg_obs_range
 ```
 
 We want to crop these reconstructions to the extent of interest
 ```{r, fig.width=4, fig.height=4}
-tavg_obs_hres_all <- terra::crop(tavg_obs_hres_all, europe_ext)
+tavg_obs_hres_all <- terra::crop(tavg_obs_hres_all, n_europe_ext)
 # extract the January raster
 tavg_obs_hres_rast <- tavg_obs_hres_all[[1]]
 plot(tavg_obs_hres_rast)
@@ -162,30 +153,24 @@ If that was not the case, we would use `terra::crop` to match the extents.
 
 We also need a high resolution global relief map (i.e. integrating both 
 topographic and bathymetric values) to reconstruct past
-coastlines following sea level change. The relief raster will need to have
-the same extent and resolution as the high resolution observations. We
-can download one (based on ETOPO2022) with:
+coastlines following sea level change. We can download the ETOPO2022 relief
+data, and resample to match the extent and resolution as the high resolution observations.
 
-```{r eval=TRUE}
-relief_rast <- pastclim:::download_relief(tavg_obs_hres_rast)
+```{r eval=download_data}
+download_etopo()
+relief_rast <- load_etopo()
+relief_rast <- terra::resample(relief_rast, tavg_obs_hres_rast)
+```
+
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(relief_rast, 
+               file = "../inst/extdata/delta/relief_rast.RDS") 
 
 ```
 
-```{r echo=FALSE, results="hide"}
-#relief_rast <- terra::rast(system.file("extdata/delta/relief.nc",
-#                                       package="pastclim"))
-```
-
-We can quickly confirm that the resulting relief raster has the same extent 
-as the model reconstructions,
-as well as the same resolution of the high resolution climate observations:
-
-```{r}
-ext(relief_rast) == ext(tavg_model_lres_rast)
-
-ext(relief_rast) == ext(tavg_obs_hres_rast)
-ncol(relief_rast) == ncol(tavg_obs_hres_rast)
-nrow(relief_rast) == nrow(tavg_obs_hres_rast)
+```{r echo=FALSE, results="hide", eval=!download_data}
+relief_rast <- terra::readRDS(system.file("extdata/delta/relief_rast.RDS",
+                                       package="pastclim"))
 ```
 
 We can now generate a high resolution land mask for the periods of interest. By
@@ -194,7 +179,7 @@ reference can be used by setting sea levels for each time step (see the man page
 for `make_land_mask` for details):
 
 ```{r, fig.width=6, fig.height=5}
-land_mask_high_res <- pastclim:::make_land_mask(relief_rast = relief_rast, 
+land_mask_high_res <- make_land_mask(relief_rast = relief_rast, 
                                 time_bp = time_bp(tavg_model_lres_rast))
 plot(land_mask_high_res, main=time_bp(land_mask_high_res))
 ```
@@ -202,9 +187,23 @@ plot(land_mask_high_res, main=time_bp(land_mask_high_res))
 Note that this land mask does take ice sheets into account, and the Black and Caspian sea are missing.
 For the ice mask, we can:
 
-```{r}
+```{r eval=download_data}
 ice_mask_low_res <- get_ice_mask(time_bp=time_steps,dataset="Beyer2020")
-ice_mask_high_res <- pastclim:::make_ice_mask (ice_mask_low_res = ice_mask_low_res,
+ice_mask_high_res <- downscale_ice_mask (ice_mask_low_res = ice_mask_low_res,
+                                    land_mask_high_res = land_mask_high_res)
+plot(ice_mask_high_res)
+```
+
+
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(ice_mask_low_res, 
+               file = "../inst/extdata/delta/ice_mask_low_res.RDS") 
+```
+
+```{r echo=FALSE, eval=!download_data}
+ice_mask_low_res<- terra::readRDS(system.file("extdata/delta/ice_mask_low_res.RDS",
+                                            package="pastclim"))
+ice_mask_high_res <- downscale_ice_mask (ice_mask_low_res = ice_mask_low_res,
                                     land_mask_high_res = land_mask_high_res)
 plot(ice_mask_high_res)
 ```
@@ -232,9 +231,9 @@ We can now compute a delta raster and use it to downscale the model
 reconstructions:
 
 ```{r}
-delta_rast<-pastclim:::delta_compute(x=tavg_model_lres_rast, ref_time = 0, 
+delta_rast<-delta_compute(x=tavg_model_lres_rast, ref_time = 0, 
                                      obs = tavg_obs_hres_rast)
-model_downscaled <- pastclim:::delta_downscale (x = tavg_model_lres_rast, 
+model_downscaled <- delta_downscale (x = tavg_model_lres_rast, 
                                                 delta_rast = delta_rast,
                                                 x_landmask_high = land_mask_high_res,
                                                 range_limits=tavg_obs_range)
@@ -260,9 +259,9 @@ a list, and finally convert the list into a `SpatRasterDataset`
 ```{r}
 tavg_downscaled_list<-list()
 for (i in 1:12){
-  delta_rast<-pastclim:::delta_compute(x=tavg_series[[i]], ref_time = 0, 
+  delta_rast<-delta_compute(x=tavg_series[[i]], ref_time = 0, 
                                        obs = tavg_obs_hres_all[[i]])
-  tavg_downscaled_list[[i]] <- pastclim:::delta_downscale (x = tavg_series[[i]], 
+  tavg_downscaled_list[[i]] <- delta_downscale (x = tavg_series[[i]], 
                                                   delta_rast = delta_rast,
                                                   x_landmask_high = land_mask_high_res,
                                                   range_limits=tavg_obs_range)
@@ -276,45 +275,66 @@ tavg_downscaled
 ```
 As expected, we have 12 months (subdatasets), each with 5 time steps.
 
+We now want to repeat the same procedure for precipitation. In this example
+we will downscale precipitaiton in its natural scale, but often we use logs.
 We now need to create a series for precipitation:
-```{r eval=TRUE}
+```{r eval=download_data}
 prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
 prec_series <- region_series(bio_variables = prec_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
-                             ext = europe_ext)
+                             ext = n_europe_ext)
 ```
 
-```{r echo=FALSE, results="hide"}
-#prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
-#prec_series <- terra::sds(system.file("extdata/delta/prec_series.nc",
-#                           package="pastclim"))
-```
 
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(prec_series, 
+               file = "../inst/extdata/delta/prec_series.RDS") 
+
+```
+```{r echo=FALSE, results="hide", eval=!download_data}
+prec_vars <- c(paste0("precipitation_0",1:9),paste0("precipitation_",10:12))
+prec_series <- terra::readRDS(system.file("extdata/delta/prec_series.RDS",
+                                      package="pastclim"))
+# get back the time units that are lost when saving the rds
+old_names <- names(prec_series) # there is a bug in terra
+terra::time(prec_series, tstep="years") <- terra::time(prec_series)
+names(prec_series) <- old_names
+rm(old_names)
+```
 Get some high resolution observations:
-```{r, eval=TRUE}
-pastclim:::download_worldclim("prec",10)
-prec_obs_hres_all <- pastclim:::load_worldclim("prec",10)
-prec_obs_range <- range(minmax(prec_obs_hres_all, 
-                                compute = TRUE))
-
-#prec_obs_range <- c(min(global(prec_obs_hres_all,"min",na.rm=TRUE)),
-#                    max(global(prec_obs_hres_all,"max",na.rm=TRUE)))
-prec_obs_hres_all <- terra::crop(prec_obs_hres_all, europe_ext)
+```{r eval=download_data}
+download_dataset(dataset = "WorldClim_2.1_10m", bio_variables = prec_vars)
+prec_obs_hres_all<- region_series(bio_variables = prec_vars,
+                             time_ce =  1985,
+                             dataset = "WorldClim_2.1_10m",
+                              ext = n_europe_ext)
 ```
 
-```{r echo=FALSE, results="hide"}
-#prec_obs_hres_all <-terra::rast(system.file("extdata/delta/prec_obs_hres_all.nc",
-#                                            package = "pastclim"))
+```{r echo=FALSE, results="hide", eval=create_custom_data}
+terra::saveRDS(prec_obs_hres_all, 
+               file = "../inst/extdata/delta/prec_obs_hres_all.RDS") 
 ```
+
+```{r echo=FALSE, results="hide", eval=!download_data}
+prec_obs_hres_all<- terra::readRDS(system.file("extdata/delta/prec_obs_hres_all.RDS",
+                                            package="pastclim"))
+```
+
+Estimate the range of observed precipitation:
+```{r}
+prec_obs_range <- range(unlist(lapply(prec_obs_hres_all,minmax, compute=TRUE)))
+prec_obs_range
+```
+
 
 And finally downscale precipitation: 
 ```{r}
 prec_downscaled_list<-list()
 for (i in 1:12){
-  delta_rast<-pastclim:::delta_compute(x=prec_series[[i]], ref_time = 0, 
+  delta_rast<-delta_compute(x=prec_series[[i]], ref_time = 0, 
                                        obs = prec_obs_hres_all[[i]])
-  prec_downscaled_list[[i]] <- pastclim:::delta_downscale (x = prec_series[[i]], 
+  prec_downscaled_list[[i]] <- delta_downscale (x = prec_series[[i]], 
                                                   delta_rast = delta_rast,
                                                   x_landmask_high = land_mask_high_res,
                                                   range_limits = prec_obs_range)

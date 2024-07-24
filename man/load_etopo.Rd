@@ -26,4 +26,3 @@ The function assumes that the file name is \verb{etopo2022_\{resolution\}m_v1.nc
 To save the file in the default path with an appropriate name and file format,
 simply use \code{\link[=download_etopo]{download_etopo()}}.
 }
-\keyword{internal}

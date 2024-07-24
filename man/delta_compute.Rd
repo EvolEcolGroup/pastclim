@@ -32,4 +32,3 @@ For areas that are present in some time slices, but not in the observations
 cumulative land mask (over all time steps) using inverse distance weighted
 interpolation.
 }
-\keyword{internal}

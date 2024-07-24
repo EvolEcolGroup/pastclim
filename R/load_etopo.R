@@ -14,7 +14,7 @@
 #' Only "1" supported at the moment
 #' @returns a [`terra::SpatRaster`] of relief
 #'
-#' @keywords internal
+#' @export
 
 load_etopo <- function(path = NULL, resolution = 1, version = "1") {
   if (is.null(path)) {
