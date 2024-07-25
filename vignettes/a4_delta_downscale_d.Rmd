@@ -60,11 +60,11 @@ for northern Europe for both datasets:
 ```{r}
 library(pastclim)
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
-download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
 time_steps <- get_time_bp_steps(dataset = "Example")
 n_europe_ext <- c(-10,15,45,60)
 ```
 ```{r eval=download_data}
+download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
 tavg_series <- region_series(bio_variables = tavg_vars,
                              time_bp =  time_steps,
                              dataset = "Beyer2020",
