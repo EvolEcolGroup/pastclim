@@ -1,7 +1,7 @@
 ---
 title: "delta downscaling"
-output: rmarkdown::pdf_document
-#output: rmarkdown::html_vignette
+#output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{delta downscaling}
   %\VignetteEngine{knitr::rmarkdown}
