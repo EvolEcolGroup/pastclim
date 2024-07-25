@@ -79,6 +79,7 @@ terra::saveRDS(tavg_series,
 
 ```{r echo=FALSE, results="hide", eval=!download_data}
 library(pastclim)
+set_data_path(on_CRAN = TRUE)
 tavg_series <- terra::readRDS(system.file("extdata/delta/tavg_series.RDS",
                                       package="pastclim"))
 # get back the time units that are lost when saving the rds
