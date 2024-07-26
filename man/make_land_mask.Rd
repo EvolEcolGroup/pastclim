@@ -33,4 +33,3 @@ covered by ice at the two poles will show up as sea. This means that, for any
 reconstruction including Greenland or Antarctica, the resulting land mask will
 need to be modified to include the appropriate ice sheets.
 }
-\keyword{internal}

@@ -42,12 +42,23 @@ test_that("koeppen geiger for numeric and matrix", {
 })
 
 test_that("koeppen geiger for SpatRaster and SpatRasterDataset", {
-  prec_series <- terra::sds(system.file("/extdata/delta/prec_series.nc",
+  prec_series <- terra::readRDS(system.file("/extdata/delta/prec_series.RDS",
                                         package = "pastclim"
   ))
-  tavg_series <- terra::sds(system.file("/extdata/delta/tavg_series.nc",
+  # get back the time units that are lost when saving the rds
+  old_names <- names(prec_series) # there is a bug in terra
+  terra::time(prec_series, tstep="years") <- terra::time(prec_series)
+  names(prec_series) <- old_names
+  rm(old_names)
+  
+  tavg_series <- terra::readRDS(system.file("/extdata/delta/tavg_series.RDS",
                                         package = "pastclim"
   ))
+  # get back the time units that are lost when saving the rds
+  old_names <- names(tavg_series) # there is a bug in terra
+  terra::time(tavg_series, tstep="years") <- terra::time(tavg_series)
+  names(tavg_series) <- old_names
+  rm(old_names)
   prec_present <- pastclim::slice_region_series(prec_series, time_bp = 0)
   tavg_present <- pastclim::slice_region_series(tavg_series, time_bp = 0)
   koeppen_raster <- koeppen_geiger(
@@ -55,7 +66,6 @@ test_that("koeppen geiger for SpatRaster and SpatRasterDataset", {
     tavg = tavg_present
   )
   expect_true(inherits(koeppen_raster,"SpatRaster"))
-  # expect mostly Af
   koeppen_series <- koeppen_geiger(
     prec = prec_series,
     tavg = tavg_series

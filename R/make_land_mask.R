@@ -21,10 +21,9 @@
 #' @returns a [`terra::SpatRaster`] of the land masks (with land as 1's and sea
 #' as NAs), where the layers are different times
 #'
-#' @keywords internal
+#' @export
 
 make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
-  message("This function is still under development; do not use it for real analysis")
   if (is.null(sea_level)) {
     sea_level <- get_sea_level(time_bp = time_bp)
   } else { # check that we have as many sea level estimates as times
