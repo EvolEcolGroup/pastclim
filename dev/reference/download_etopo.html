@@ -11,7 +11,7 @@ This is a large file (&amp;gt;1Gb)."><meta property="og:image" content="https://
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.0001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,7 @@ This is a large file (&amp;gt;1Gb)."><meta property="og:image" content="https://
     <li><a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="../articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link" href=".././pastclim_cheatsheet.pdf">Cheatsheet</a></li>
@@ -52,7 +53,7 @@ This is a large file (&gt;1Gb).</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_etopo</span><span class="op">(</span>path <span class="op">=</span> <span class="cn">NULL</span>, resolution <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_etopo</span><span class="op">(</span>path <span class="op">=</span> <span class="cn">NULL</span>, resolution <span class="op">=</span> <span class="fl">1</span>, force <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,6 +69,10 @@ named <code>etopo2022_{resolution}s_v1.nc</code></p></dd>
 <dt id="arg-resolution">resolution<a class="anchor" aria-label="anchor" href="#arg-resolution"></a></dt>
 <dd><p>numeric resolution in arc-minute (one of 0.5, or 1).
 Defaults to 1 arc-minute.</p></dd>
+
+
+<dt id="arg-force">force<a class="anchor" aria-label="anchor" href="#arg-force"></a></dt>
+<dd><p>logical. If TRUE, the file will be downloaded even if it already exists.</p></dd>
 
 </dl></div>
     <div class="section level2">

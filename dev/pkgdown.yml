@@ -6,7 +6,8 @@ articles:
   a1_available_datasets: a1_available_datasets.html
   a2_custom_datasets: a2_custom_datasets.html
   a3_pastclim_present_and_future: a3_pastclim_present_and_future.html
-last_built: 2024-07-18T08:39Z
+  a4_delta_downscale_d: a4_delta_downscale_d.html
+last_built: 2024-07-26T08:08Z
 urls:
   reference: https://evolecolgroup.github.io/pastclim/reference
   article: https://evolecolgroup.github.io/pastclim/articles
