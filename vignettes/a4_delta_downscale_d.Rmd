@@ -57,6 +57,10 @@ For downscaling, we will use the WorldClim2 dataset as our high resolution obser
 We will use the Example dataset (a subset of the Beyer2020 dataset) as our low 
 resolution model reconstructions. We start by extracting monthly temperature 
 for northern Europe for both datasets:
+```{r initialis_pastclim, echo=FALSE, results="hide", eval=!download_data}
+library(pastclim)
+set_data_path(on_CRAN = TRUE)
+```
 ```{r}
 library(pastclim)
 tavg_vars <- c(paste0("temperature_0",1:9),paste0("temperature_",10:12))
