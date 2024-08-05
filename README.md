@@ -76,8 +76,8 @@ datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.h
 If something does not work, check the [issues on
 GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether
 the problem has already been reported. If not, feel free to create an
-new issue. Please make sure you have updated to the latest version of
-`pastclim` on CRAN, as well as updating all other packages on your
+new issue. Please make sure you have updated to the latest development version of
+`pastclim` (as the bug might have already been fixed), as well as updating all other packages on your
 system, and provide [a reproducible
 example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem.
