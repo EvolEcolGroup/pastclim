@@ -118,8 +118,7 @@ use 3 time step for illustrative purposes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tiffs_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/CHELSA_bio01"</span>, package <span class="op">=</span> <span class="st">"pastclim"</span><span class="op">)</span></span>
 <span><span class="va">list_of_tiffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tiffs_path</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">tiffs_path</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">bio01</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">list_of_tiffs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: [rast] unknown extent</span></span></code></pre></div>
+<span><span class="va">bio01</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">list_of_tiffs</span><span class="op">)</span></span></code></pre></div>
 <p><em>NOTE: <code>terra</code> has changed the way it handles time when
 reading from netcdf. The dev version of <code>terra</code> can more
 easily format netcdf files correctly, but this vignette presents a
@@ -155,8 +154,8 @@ directory)</p>
 <span><span class="co">#&gt; dimensions  : 174, 360 (nrow, ncol)</span></span>
 <span><span class="co">#&gt; nlyr        : 3 </span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
-<span><span class="co">#&gt; extent      : 0, 360, 0, 174  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs </span></span>
+<span><span class="co">#&gt; extent      : -180.0001, 179.9999, -90.00014, 83.99986  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (EPSG:4326) </span></span>
 <span><span class="co">#&gt; source(s)   : CHELSA_TraCE21k_bio01.nc </span></span>
 <span><span class="co">#&gt; names       : bio01</span></span></code></pre></div>
 <p>As expected, there is only one variable (“bio01”) and 3 time steps
@@ -167,8 +166,7 @@ directory)</p>
 <p>And we can slice the series and plot a given time point:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slice_region_series.html">slice_region_series</a></span><span class="op">(</span><span class="va">custom_series</span>, time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">100</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: [is.lonlat] coordinates are out of range for lon/lat</span></span></code></pre></div>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climate_100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a2_custom_datasets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Note that these reconstructions include the ocean and the ice sheets,
 and it would be much better to remove them as they are not needed for
