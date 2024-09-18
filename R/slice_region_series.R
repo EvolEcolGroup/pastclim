@@ -27,6 +27,9 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
   if (!time_bp %in% time_bp(x[[1]])) {
     stop("time_bp is not a time slice within the region series x")
   }
+  if (any(make.names(sapply(x, varnames)) != sapply(x, varnames))) {
+    stop("'region_series' subdatasets must have valid varnames")
+  }
   # get index
   time_index <- which(time_bp(x[[1]]) == time_bp)
   # now slice it and convert it to a SpatRaster
@@ -37,6 +40,6 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
       terra::add(climate_spatraster) <- subset(x[[i]], time_index)
     }
   }
-  names(climate_spatraster) <- varnames(x)
+  names(climate_spatraster) <- varnames(climate_spatraster)
   return(climate_spatraster)
 }

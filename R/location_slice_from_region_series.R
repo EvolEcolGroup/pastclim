@@ -53,7 +53,7 @@ location_slice_from_region_series <-
     # get the region series for this dataset
     climate_brick <- region_series
     # Check that region_series has valid names
-    if (is.null(names(region_series)) | any(nchar(names(region_series)) == 0)) {
+    if (is.null(names(region_series)) || any(make.names(names(region_series)) != names(region_series))) {
       stop("The subdatasets in 'region_series' must have valid names.")
     }
     bio_variables <- names(region_series)
