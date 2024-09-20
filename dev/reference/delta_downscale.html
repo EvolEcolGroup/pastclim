@@ -98,18 +98,18 @@ left to NULL.</p></dd>
 <dt id="arg-nmax">nmax<a class="anchor" aria-label="anchor" href="#arg-nmax"></a></dt>
 <dd><p>the number of nearest observations that should be used for a
 kriging prediction or simulation, where nearest is defined in terms
-of the space of the spatial locations (see <code><a href="https://rdrr.io/pkg/gstat/man/gstat.html" class="external-link">gstat::gstat()</a></code> for details)</p></dd>
+of the space of the spatial locations (see <code><a href="https://r-spatial.github.io/gstat/reference/gstat.html" class="external-link">gstat::gstat()</a></code> for details)</p></dd>
 
 
 <dt id="arg-set">set<a class="anchor" aria-label="anchor" href="#arg-set"></a></dt>
 <dd><p>named list with optional parameters to be passed to gstat
 (only set commands of gstat are allowed, and not all of them may be
 relevant; see the gstat manual for gstat stand-alone, URL and more details
-in the <code><a href="https://rdrr.io/pkg/gstat/man/gstat.html" class="external-link">gstat::gstat()</a></code> help page)</p></dd>
+in the <code><a href="https://r-spatial.github.io/gstat/reference/gstat.html" class="external-link">gstat::gstat()</a></code> help page)</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further parameters to be passed to <code><a href="https://rdrr.io/pkg/gstat/man/gstat.html" class="external-link">gstat::gstat()</a></code></p></dd>
+<dd><p>further parameters to be passed to <code><a href="https://r-spatial.github.io/gstat/reference/gstat.html" class="external-link">gstat::gstat()</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -122,8 +122,8 @@ layers is a time step.</p>
     <p>It is possible to also provide a high resolution landmask to this function.
 For cells which are not included in the original simulation (e.g. because
 the landmask was discretised at lower resolution), an inverse
-distance weighted algorithm (as implemented in <code><a href="https://rdrr.io/pkg/gstat/man/gstat.html" class="external-link">gstat::gstat()</a></code>) is used
-to interpolate the missing values. See the manpage for <code><a href="https://rdrr.io/pkg/gstat/man/gstat.html" class="external-link">gstat::gstat()</a></code>
+distance weighted algorithm (as implemented in <code><a href="https://r-spatial.github.io/gstat/reference/gstat.html" class="external-link">gstat::gstat()</a></code>) is used
+to interpolate the missing values. See the manpage for <code><a href="https://r-spatial.github.io/gstat/reference/gstat.html" class="external-link">gstat::gstat()</a></code>
 for more parameters that can change the behaviour of the iwd interpolation.</p>
     </div>
 
@@ -136,7 +136,7 @@ for more parameters that can change the behaviour of the iwd interpolation.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
