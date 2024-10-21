@@ -54,7 +54,7 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename=NULL, time_bp=NU
   yr_id<-avail_yr_id[match(time_bp,avail_time_bp)]
 
   # create file names for a given variable
-  chelsa_trace_root <- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace"
+  chelsa_trace_root <- "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/"
   download_url <- file.path(chelsa_trace_root, var_prefix, paste0("CHELSA_TraCE21k_",var_index,"_",yr_id,"_V",vers,".tif"))
  
   if (virtual){
