@@ -19,6 +19,20 @@ The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
 `pastclim` in your research.
 
+------------------------------------------------------------------------
+## CHELSA paths have changed
+
+The paths to the CHELSA datasets have changed. Until we get the fix to CRAN, 
+you will need to use the
+`dev` version of `pastclim` to access the new paths. The `dev` version
+is available from the `r-universe` repository of the Evolutionary Ecology
+Group. You can install it with:
+
+```
+install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")
+```
+
+
 ## Install the library
 
 `pastclim` is on CRAN, and the easiest way to install it is with:
