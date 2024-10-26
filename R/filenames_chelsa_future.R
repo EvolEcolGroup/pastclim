@@ -32,14 +32,15 @@ filenames_chelsa_future <- function(dataset, bio_var){
   }
   time_steps <- c("2011-2040","2041-2070","2071-2100")
   time_steps_underscore <- c("2011_2040","2041_2070","2071_2100")
+  chelsa_root <- "https://os.zhdk.cloud.switch.ch/chelsav2/GLOBAL/climatologies/"
   # compose download paths
   if (var_prefix=="bio"){
-    chelsa_files <- paste0("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/",
+    chelsa_files <- paste0(chelsa_root,
                            time_steps,"/",dataset_parsed[3],"/",dataset_parsed[4],"/",
                            var_prefix,"/CHELSA_",var_index,"_",time_steps,"_",
                            tolower(dataset_parsed[3]),"_",dataset_parsed[4],"_V.2.1.tif")
   } else {
-    chelsa_files <- paste0("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/",
+    chelsa_files <- paste0(chelsa_root,
                            time_steps,"/",dataset_parsed[3],"/",dataset_parsed[4],"/",
                            var_prefix,"/CHELSA_",tolower(dataset_parsed[3]),
                            "_r1i1p1f1_w5e5_",dataset_parsed[4], "_",var_index,
