@@ -37,6 +37,11 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
       terra::add(climate_spatraster) <- subset(x[[i]], time_index)
     }
   }
-  names(climate_spatraster) <- varnames(climate_spatraster) #<- names(x)
+  #names(climate_spatraster) <- names(x) #varnames(climate_spatraster)
+  if (any(varnames(climate_spatraster) == "")) {
+    names(climate_spatraster) <- names(x)  # Use names from `x` if any element is empty
+  } else {
+    names(climate_spatraster) <- varnames(climate_spatraster)  # Use varnames if all elements are non-empty
+  }  
   return(climate_spatraster)
 }
