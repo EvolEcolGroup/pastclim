@@ -19,7 +19,7 @@ The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
 `pastclim` in your research.
 
-------------------------------------------------------------------------
+
 ## CHELSA paths have changed
 
 The paths to the CHELSA datasets have changed. Until we get the fix to CRAN, 
