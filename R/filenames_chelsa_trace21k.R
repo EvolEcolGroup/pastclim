@@ -35,6 +35,7 @@ filenames_chelsa_trace21k<- function(dataset, bio_var){
                         as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var))))
   }
   # create file names for a given variable
-  chelsa_trace_root <- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace"
+  #chelsa_trace_root <- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V1/chelsa_trace"
+  chelsa_trace_root <- "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace"
   file.path(chelsa_trace_root, var_prefix, paste0("CHELSA_TraCE21k_",var_index,"_",yr_id,"_V",version,".tif"))
 }

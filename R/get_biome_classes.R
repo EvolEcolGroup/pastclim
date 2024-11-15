@@ -20,7 +20,7 @@ get_biome_classes <- function(dataset) {
   nc_in <- ncdf4::nc_open(this_file)
   biome_attributes <- ncdf4::ncatt_get(nc_in, "biome")
   # format the table
-  if (dataset == "Beyer2020" | dataset == "Example") {
+  if (dataset == "Beyer2020" || dataset == "Example") {
     indeces_biomes <- which(substr(names(biome_attributes), 1, 5) == "biome")
     biome_categories <- data.frame(
       id = 0:(length(indeces_biomes) - 1),

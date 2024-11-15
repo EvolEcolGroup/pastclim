@@ -18,7 +18,7 @@ vrt_set_meta <- function (vrt_path, description, time_vector, time_bp=TRUE){
   # check that we don't alreayd have metadata information needed for pastclim
   has_time_node <- xml2::xml_find_first(x, "./Metadata/MDI[@key = 'pastclim_time_bp']")
   if (!inherits(has_time_node,"xml_missing")){
-    warning ("metadata for pastclim is already present")
+    warning ("metadata for pastclim is already present in ", vrt_path)
     return(FALSE)
   }
   # add metadata to indicate that we have a time axis
@@ -29,7 +29,7 @@ vrt_set_meta <- function (vrt_path, description, time_vector, time_bp=TRUE){
   # add band description and times
   band_nodes <- xml2::xml_find_all(x, xpath="VRTRasterBand")
   if (length(band_nodes)!=length(time_vector)){
-    warning("the vrt has a different number of bands from the length of the time vector")
+    warning("the vrt ",vrt_path," has a different number of bands from the length of the time vector")
     return(FALSE)
   }
   for (i_node in seq_len(length(band_nodes))){

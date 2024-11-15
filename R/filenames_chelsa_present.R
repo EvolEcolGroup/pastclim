@@ -31,6 +31,7 @@ filenames_chelsa_present <- function(dataset, bio_var){
     var_index <- paste0(var_prefix,"_",var_index)
   }
   # compose download paths
-  paste0("https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/",
-                         var_prefix,"/CHELSA_",var_index,"_1981-2010_V.2.1.tif")
+  chelsa_root <- "https://os.zhdk.cloud.switch.ch/chelsav2/GLOBAL/climatologies/1981-2010/"
+#  chelsa_root <- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/"
+  paste0(chelsa_root, var_prefix,"/CHELSA_",var_index,"_1981-2010_V.2.1.tif")
 }

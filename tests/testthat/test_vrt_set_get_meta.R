@@ -48,7 +48,7 @@ test_that("setting and getting vrt meta", {
     options = c("-separate","-overwrite")
   )
   expect_warning(vrt_res <- vrt_set_meta(vrt_path, description, c(time_vector,4)),
-                 "the vrt has a different number of")
+                 "the vrt")
   expect_false(vrt_res)
   
 }
