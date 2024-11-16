@@ -12,7 +12,7 @@ vrt_get_meta(vrt_path)
 \value{
 list of three elements: vector \code{description} and \code{time_bp} defining
 each band, and a boolean \code{time_bp} show determining whether times should be given
-as time_bp when labelling bands by terra
+as time_bp when labelling bands by \code{terra}.
 }
 \description{
 This function extract metadata information from a vrt. It returns the description
