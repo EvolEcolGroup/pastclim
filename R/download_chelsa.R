@@ -39,6 +39,9 @@ download_chelsa <- function(dataset, bio_var, filename) {
   
   
   if (virtual){
+    if (!all(unlist(lapply(download_url,url_is_valid)))){
+      stop("invalid URL for variable ", bio_var,"; either the server can not be reached at the moment, or the path has changed")
+    }
     # add prefix for vsi dataset
     chelsa_url <- paste0("/vsicurl/", download_url) # urls of target files
   } else { # download the files
