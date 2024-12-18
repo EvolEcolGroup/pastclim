@@ -139,7 +139,7 @@ datasets</a>, but you will need some familiarity with handling
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.8.2</span></span>
+<span><span class="co">#&gt; terra 1.8.6</span></span>
 <span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m</span></span>
 <span><span class="co">#&gt; for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.</span></span>
@@ -519,7 +519,7 @@ problem:</p>
 <span><span class="co">#&gt; dimensions  : 150, 360, 3  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </span></span>
 <span><span class="co">#&gt; sources     : example_climate_v1.3.0.nc:BIO1  </span></span>
 <span><span class="co">#&gt;               example_climate_v1.3.0.nc:BIO10  </span></span>
 <span><span class="co">#&gt;               example_climate_v1.3.0.nc:BIO12  </span></span>
@@ -556,7 +556,7 @@ sub-dataset:</p>
 <span><span class="co">#&gt; nlyr        : 4, 4, 4 </span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </span></span>
 <span><span class="co">#&gt; source(s)   : example_climate_v1.3.0.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 <p>Each of these sub-dataset is a <code>SpatRaster</code>, with time
@@ -567,7 +567,7 @@ steps as layers:</p>
 <span><span class="co">#&gt; dimensions  : 150, 360, 4  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </span></span>
 <span><span class="co">#&gt; source      : example_climate_v1.3.0.nc:BIO1 </span></span>
 <span><span class="co">#&gt; varname     : bio01 (annual mean temperature) </span></span>
 <span><span class="co">#&gt; names       :    bio01_-15000,    bio01_-10000,     bio01_-5000,         bio01_0 </span></span>
@@ -611,7 +611,7 @@ for a given MIS in a dataset. For example, for MIS 1, we get:</p>
 <span><span class="co">#&gt; nlyr        : 3, 3, 3 </span></span>
 <span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </span></span>
 <span><span class="co">#&gt; source(s)   : example_climate_v1.3.0.nc </span></span>
 <span><span class="co">#&gt; names       : bio01, bio10, bio12</span></span></code></pre></div>
 </div>
@@ -663,7 +663,7 @@ outline.</p>
 Africa and Eurasia by unioning the two individual outlines:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE</span></span>
 <span><span class="va">afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">st_union</a></span><span class="op">(</span><span class="va">region_outline</span><span class="op">$</span><span class="va">Africa</span>, <span class="va">region_outline</span><span class="op">$</span><span class="va">Eurasia</span><span class="op">)</span></span>
 <span><span class="va">climate_20k_afr_eurasia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_bp <span class="op">=</span> <span class="op">-</span><span class="fl">20000</span>,</span>
@@ -943,15 +943,15 @@ from 10k years ago:</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_region_series.html">sample_region_series</a></span><span class="op">(</span><span class="va">climate_ts</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sampled_climate</span></span>
-<span><span class="co">#&gt;          cell    x    y     bio01     bio10     bio12 time_bp</span></span>
-<span><span class="co">#&gt; -20000.1 3010 19.5 39.5 11.405086 19.345711 1000.7158  -20000</span></span>
-<span><span class="co">#&gt; -20000.2 3367 36.5 35.5 13.070941 21.583271  658.2184  -20000</span></span>
-<span><span class="co">#&gt; -20000.3 2729 -6.5 42.5  1.555535  8.271003 1393.2020  -20000</span></span>
-<span><span class="co">#&gt; -10000.1 3274 28.5 36.5 17.501736 28.305464  973.9351  -10000</span></span>
-<span><span class="co">#&gt; -10000.2 2697 46.5 43.5  9.789731 25.253517  433.5954  -10000</span></span>
-<span><span class="co">#&gt; -10000.3 1652 21.5 55.5  5.449332 16.197599  750.3496  -10000</span></span>
-<span><span class="co">#&gt; -10000.4  723 27.5 66.5 -7.382193  2.715217  322.7987  -10000</span></span>
-<span><span class="co">#&gt; -10000.5 3461 45.5 34.5 20.095482 35.738621  223.0041  -10000</span></span></code></pre></div>
+<span><span class="co">#&gt;          cell    x    y     bio01    bio10    bio12 time_bp</span></span>
+<span><span class="co">#&gt; -20000.1 2975 69.5 40.5  7.911747 19.28238 297.1093  -20000</span></span>
+<span><span class="co">#&gt; -20000.2 2501 20.5 45.5  6.244859 15.19815 573.4572  -20000</span></span>
+<span><span class="co">#&gt; -20000.3 1755 39.5 54.5 -5.482119 11.96673 528.3978  -20000</span></span>
+<span><span class="co">#&gt; -10000.1 2285 59.5 48.5  3.014839 25.31847 158.6382  -10000</span></span>
+<span><span class="co">#&gt; -10000.2 2842 21.5 41.5  9.267602 20.80721 666.6100  -10000</span></span>
+<span><span class="co">#&gt; -10000.3 1407 31.5 58.5  2.976714 15.65665 533.5095  -10000</span></span>
+<span><span class="co">#&gt; -10000.4 2155 14.5 49.5  6.449201 16.99319 594.5905  -10000</span></span>
+<span><span class="co">#&gt; -10000.5 3251  5.5 36.5 12.860595 23.52949 663.8296  -10000</span></span></code></pre></div>
 <p>We could then use these data to build a PCA.</p>
 </div>
 <div class="section level2">

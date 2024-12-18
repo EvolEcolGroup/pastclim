@@ -59,7 +59,7 @@ the delta should be computed.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delta_compute</span><span class="op">(</span><span class="va">x</span>, <span class="va">ref_time</span>, <span class="va">obs</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delta_compute</span><span class="op">(</span><span class="va">x</span>, <span class="va">ref_time</span>, <span class="va">obs</span>, max_land <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -77,6 +77,10 @@ time steps of interest</p></dd>
 
 <dt id="arg-obs">obs<a class="anchor" aria-label="anchor" href="#arg-obs"></a></dt>
 <dd><p>the observations</p></dd>
+
+
+<dt id="arg-max-land">max_land<a class="anchor" aria-label="anchor" href="#arg-max-land"></a></dt>
+<dd><p>a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> with the maximum land extent</p></dd>
 
 </dl></div>
     <div class="section level2">
