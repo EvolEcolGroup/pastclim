@@ -4,7 +4,7 @@
 \alias{delta_compute}
 \title{Compute a delta raster.}
 \usage{
-delta_compute(x, ref_time, obs)
+delta_compute(x, ref_time, obs, max_land = NULL)
 }
 \arguments{
 \item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} for the variable of interest, with all
@@ -13,6 +13,8 @@ time steps of interest}
 \item{ref_time}{the time (BP) of the slice that is used to compute the delta}
 
 \item{obs}{the observations}
+
+\item{max_land}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the maximum land extent}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the delta

@@ -17,10 +17,11 @@
 #' time steps of interest
 #' @param ref_time the time (BP) of the slice that is used to compute the delta
 #' @param obs the observations
+#' @param max_land a [`terra::SpatRaster`] with the maximum land extent
 #' @returns a [`terra::SpatRaster`] of the delta
 #' @export
 
-delta_compute <- function(x, ref_time, obs) {
+delta_compute <- function(x, ref_time, obs, max_land = NULL) {
   ref_index <- which(time_bp(x)==ref_time)
   if(length(ref_index)!=1){
     stop("ref_time should be a time in x")
@@ -44,8 +45,10 @@ delta_compute <- function(x, ref_time, obs) {
   # compute anomalies against the modern
   delta <- obs - x_modern_high
   # mask for maximum land extent
-  max_land <- max(x,na.rm=TRUE)
-  max_land <- resample(max_land, obs)
+  if (is.null(max_land)) {
+    max_land <- max(x,na.rm=TRUE)
+    max_land <- resample(max_land, obs)
+  }
   delta_interp <- idw_interp(delta,max_land)
   return(delta_interp)
 }
