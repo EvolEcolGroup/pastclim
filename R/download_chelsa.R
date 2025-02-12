@@ -67,11 +67,14 @@ download_chelsa <- function(dataset, bio_var, filename) {
   #                        overwrite=TRUE, return_filename=TRUE)
   #############################################
   # workaround
+  if(file.exists(filename)){
+    file.remove(filename)
+  }
   sf::gdal_utils(
     util = "buildvrt",
     source = chelsa_url,
     destination = filename,
-    options = c("-separate","-overwrite")
+    options = c("-separate")
   )
 
   vrt_path <- filename
