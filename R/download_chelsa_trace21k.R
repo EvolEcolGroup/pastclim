@@ -81,11 +81,15 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename=NULL, time_bp=NU
  #                                  filename = filename,
  #                                  options=c("-separate"), overwrite=TRUE, return_filename=TRUE)
  vrt_path <- filename
+ 
+ if(file.exists(filename)){
+   file.remove(filename)
+ }
  sf::gdal_utils(
    util = "buildvrt",
    source = chelsa_url,
    destination = filename,
-   options = c("-separate","-overwrite")
+   options = c("-separate")
  )
 
   # edit the vrt metadata

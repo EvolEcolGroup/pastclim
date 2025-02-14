@@ -11,11 +11,14 @@ test_that("pastclim_rast handles vrt correctly", {
   # vrt_path <- terra::vrt(x = tif_files,
   #                        filename = vrt_path,
   #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+  if(file.exists(vrt_path)){
+    file.remove(vrt_path)
+  }
   sf::gdal_utils(
     util = "buildvrt",
     source = tif_files,
     destination = vrt_path,
-    options = c("-separate","-overwrite")
+    options = c("-separate")
   )
 
   bio_var_orig <- "band_name_1"
