@@ -78,13 +78,13 @@ There are two places to get help with `pastclim`:
 1) If you are unsure how to do something, go to [StackOverflow](https://stackoverflow.com/) and,
 after checking that a similar question has not been asked yet, tag your question 
 with `terra` and `r` (there is no `pastclim` tag yet, as there aren't enough questions),
-and make sure `tidysdm` is in the title. This will ensure that the developers
+and make sure `pastclim` is in the title. This will ensure that the developers
 see your question and can help you. If you have not received an answer after a couple of days,
 feel free to drop us an email in case we missed your post.
 
 2) If you have found a bug, or have a feature request, please open an issue on our
 [GitHub repository]((https://github.com/EvolEcolGroup/pastclim/issues). Before doing so, please 
-make sure that you have updated to the latest **development** version of
+make sure that you have installed the latest **development** version of
 `pastclim` (as the bug might have already been fixed), as well as updating 
 all other packages on your system. If the problem persists, and there is no issue
 already opened that deals with your bug, file a new issue **providing** a [reproducible
