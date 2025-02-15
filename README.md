@@ -85,14 +85,25 @@ datasets](https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.h
 
 ------------------------------------------------------------------------
 
-## When something does not work
+## Getting help
 
-If something does not work, check the [issues on
-GitHub](https://github.com/EvolEcolGroup/pastclim/issues) to see whether
-the problem has already been reported. If not, feel free to create an
-new issue. Please make sure you have updated to the latest version of
-`pastclim` on CRAN, as well as updating all other packages on your
-system, and provide [a reproducible
+There are two places to get help with `pastclim`:
+
+1) If you are unsure how to do something, go to [StackOverflow](https://stackoverflow.com/) and,
+after checking that a similar question has not been asked yet, tag your question 
+with `terra` and `r` (there is no `pastclim` tag yet, as there aren't enough questions),
+and make sure `pastclim` is in the title. This will ensure that the developers
+see your question and can help you. If you have not received an answer after a couple of days,
+feel free to drop us an email in case we missed your post.
+
+2) If you think you have found a bug, or have a feature request, please open an issue on our
+[GitHub repository]((https://github.com/EvolEcolGroup/pastclim/issues). Before doing so, please 
+make sure that you have installed the latest **development** version of
+`pastclim` (as the bug might have already been fixed), as well as updating 
+all other packages on your system. If the problem persists, and there is no issue
+already opened that deals with your bug, file a new issue **providing** a [reproducible
 example](https://reprex.tidyverse.org/)
-for the developers to investigate the problem.
+for the developers to investigate the problem. A small **reproducible example** is
+crucial in allowing us to understand the problem and fix it, so please do your best to
+come up with the shortest btg of code needed to show the bug.
 
