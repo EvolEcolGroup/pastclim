@@ -52,11 +52,14 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
     #                        filename = file.path(get_data_path(),vrt_filename),
     #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
     vrt_path <- file.path(get_data_path(),vrt_filename)
+    if(file.exists(vrt_path)){
+      file.remove(vrt_path)
+    }
     sf::gdal_utils(
       util = "buildvrt",
       source = paleoclim_vsizip,
       destination = vrt_path,
-      options = c("-separate","-overwrite")
+      options = c("-separate")
     )
     # edit the vrt metadata
     edit_res <- vrt_set_meta(vrt_path = vrt_path, 

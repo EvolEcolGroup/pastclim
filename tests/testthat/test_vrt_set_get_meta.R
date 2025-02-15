@@ -10,11 +10,13 @@ test_that("setting and getting vrt meta", {
   # vrt_path <- terra::vrt(x = tif_files,
   #                        filename = vrt_path,
   #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+  if (file.exists(vrt_path)) {file.remove(vrt_path)}
+  
   sf::gdal_utils(
     util = "buildvrt",
     source = tif_files,
     destination = vrt_path,
-    options = c("-separate","-overwrite")
+    options = c("-separate")
   )
   
   
@@ -41,11 +43,12 @@ test_that("setting and getting vrt meta", {
   # vrt_path <- terra::vrt(x = tif_files,
   #                        filename = vrt_path,
   #                        options="-separate", overwrite=TRUE, return_filename=TRUE)
+  if (file.exists(vrt_path)) {file.remove(vrt_path)}
   sf::gdal_utils(
     util = "buildvrt",
     source = tif_files,
     destination = vrt_path,
-    options = c("-separate","-overwrite")
+    options = c("-separate")
   )
   expect_warning(vrt_res <- vrt_set_meta(vrt_path, description, c(time_vector,4)),
                  "the vrt")

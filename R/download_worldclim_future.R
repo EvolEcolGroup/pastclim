@@ -66,12 +66,15 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
     #   invokeRestart("muffleWarning")
     # })
     
+    if(file.exists(vrt_path)){
+      file.remove(vrt_path)
+    }
     withCallingHandlers({
       sf::gdal_utils(
         util = "buildvrt",
         source = worldclim_url,
         destination = vrt_path,
-        options = c("-b", i,"-separate","-overwrite")
+        options = c("-b", i,"-separate")
       )
     }, warning = function(w) {
       if (!grepl("Only the first one",w)){
