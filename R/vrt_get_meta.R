@@ -12,7 +12,7 @@
 #' @param vrt_path path to the XML file defining the vrt dataset
 #' @returns list of three elements: vector `description` and `time_bp` defining 
 #' each band, and a boolean `time_bp` show determining whether times should be given
-#' as time_bp when labeling bands by terra
+#' as time_bp when labelling bands by `terra`.
 #'
 #' @keywords internal
 vrt_get_meta <- function(vrt_path) {
