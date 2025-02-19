@@ -15,7 +15,19 @@ test_that("filenames_chelsa_trace21k are correct", {
   expect_true(url_is_valid(bio_files[length(bio_files)]))
   
   bio_files <- filenames_chelsa_trace21k(data="CHELSA_trace21k_1.0_0.5m",
+                                         bio_var = "temperature_max_08")
+  expect_true(url_is_valid(bio_files[1]))
+  expect_true(url_is_valid(bio_files[sample(2:199,1)]))
+  expect_true(url_is_valid(bio_files[length(bio_files)]))
+  
+  bio_files <- filenames_chelsa_trace21k(data="CHELSA_trace21k_1.0_0.5m",
                                          bio_var = "temperature_min_11")
+  expect_true(url_is_valid(bio_files[1]))
+  expect_true(url_is_valid(bio_files[sample(2:199,1)]))
+  expect_true(url_is_valid(bio_files[length(bio_files)]))
+  
+  bio_files <- filenames_chelsa_trace21k(data="CHELSA_trace21k_1.0_0.5m",
+                                         bio_var = "temperature_min_01")
   expect_true(url_is_valid(bio_files[1]))
   expect_true(url_is_valid(bio_files[sample(2:199,1)]))
   expect_true(url_is_valid(bio_files[length(bio_files)]))

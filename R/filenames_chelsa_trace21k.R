@@ -22,13 +22,11 @@ filenames_chelsa_trace21k<- function(dataset, bio_var){
   } else if (grepl("temperature_min", bio_var)){
     var_prefix <- "tasmin"
     var_index <- paste0(var_prefix,"_",
-                        sprintf("%02d", 
-                                as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var)))))
+                                as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var))))
   } else if (grepl("temperature_max", bio_var)){
     var_prefix <- "tasmax"
     var_index <- paste0(var_prefix,"_",
-                        sprintf("%02d", 
-                                as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var)))))
+                                as.numeric(substr(bio_var,nchar(bio_var)-1,nchar(bio_var))))
   } else if (grepl("precipitation", bio_var)){
     var_prefix <- "pr"
     var_index <- paste0(var_prefix,"_",
