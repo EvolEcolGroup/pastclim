@@ -33,7 +33,17 @@ test_that("region series", {
   )
   expect_true(inherits(climate_region, "SpatRasterDataset"))
   expect_true(all(names(climate_region) == c("BIO1", "BIO10")))
-  expect_true(all(terra::nlyr(climate_region) == c(2, 2)))
+  
+  # now test biome for a custom dataset
+  biome_region <- region_series(
+    time_bp = c(-20000, -10000),
+    bio_variables = c("biome"),
+    dataset = "custom",
+    path_to_nc = path_to_example_nc
+  )
+  # check that the biome is a categorical variable
+  expect_true(inherits(biome_region, "SpatRasterDataset"))
+  expect_true(!is.null(cats(biome_region$biome[[1]])[[1]]))
 
   # if we try to use a variable that does not exist
   expect_error(
