@@ -12,20 +12,22 @@ downscale_ice_mask(
 )
 }
 \arguments{
-\item{ice_mask_low_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the low resolution ice mask
-to downscale (e.g. as obtained with \code{\link[=get_ice_mask]{get_ice_mask()}})}
+\item{ice_mask_low_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the low resolution ice
+mask to downscale (e.g. as obtained with \code{\link[=get_ice_mask]{get_ice_mask()}})}
 
-\item{land_mask_high_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks at different
-times (e.g. as obtained from \code{\link[=make_land_mask]{make_land_mask()}}). The ice mask will be cropped
-and matched for the resolution of this land mask.}
+\item{land_mask_high_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks at
+different times (e.g. as obtained from \code{\link[=make_land_mask]{make_land_mask()}}). The ice mask
+will be cropped and matched for the resolution of this land mask.}
 
-\item{d}{a numeric vector of length 2, specifying the parameters for the Gaussian
-filter. The first value is the standard deviation of the Gaussian filter (sigma), and the
-second value is the size of the matrix to return. The default is c(0.5, 3).}
+\item{d}{a numeric vector of length 2, specifying the parameters for the
+Gaussian filter. The first value is the standard deviation of the Gaussian
+filter (sigma), and the second value is the size of the matrix to return.
+The default is c(0.5, 3).}
 
-\item{expand_xy}{a numeric vector of length 2, specifying the number of units to
-expand the extent of the ice mask in the x and y directions when applying the Gaussian
-filter. This is to avoid edge effects. The default is c(5,5).}
+\item{expand_xy}{a numeric vector of length 2, specifying the number of units
+to expand the extent of the ice mask in the x and y directions when
+applying the Gaussian filter. This is to avoid edge effects. The default is
+c(5,5).}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the ice mask (1's), with the rest of the
@@ -40,9 +42,9 @@ data to compare to. This function attempts to use a sensible default value,
 but it is worth exploring alternative values to find a good solution.
 }
 \details{
-The Guassian filter can lead to edge effects. To minimise such effects,
-this function initially crops the ice mask to an extent that is larger
-than \code{land_mask_high_res}, as defined by \code{expand_xy}. After applying
-the Gaussian filter, the resulting raster is then cropped to the exact size
-of \code{land_mask_high_res}.
+The Guassian filter can lead to edge effects. To minimise such effects, this
+function initially crops the ice mask to an extent that is larger than
+\code{land_mask_high_res}, as defined by \code{expand_xy}. After applying the Gaussian
+filter, the resulting raster is then cropped to the exact size of
+\code{land_mask_high_res}.
 }

@@ -11,12 +11,14 @@ download_chelsa(dataset, bio_var, filename)
 
 \item{bio_var}{the variable name}
 
-\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim} (includes the full data path)}
+\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim}
+(includes the full data path)}
 }
 \value{
 TRUE if the requested CHELSA variable was downloaded successfully
 }
 \description{
-This function downloads annual and monthly variables from the CHELSA v2.1 dataset.
+This function downloads annual and monthly variables from the CHELSA v2.1
+dataset.
 }
 \keyword{internal}

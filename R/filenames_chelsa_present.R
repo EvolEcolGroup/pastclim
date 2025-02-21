@@ -7,31 +7,29 @@
 #' @returns a vector of times, one per band
 #'
 #' @keywords internal
-filenames_chelsa_present <- function(dataset, bio_var){
-  var_index <- substr(bio_var,nchar(bio_var)-1,nchar(bio_var))
-  
-  if ("bio"== substr(bio_var,1,3)){
+filenames_chelsa_present <- function(dataset, bio_var) {
+  var_index <- substr(bio_var, nchar(bio_var) - 1, nchar(bio_var))
+
+  if ("bio" == substr(bio_var, 1, 3)) {
     var_prefix <- "bio"
-    var_index <- paste0(var_prefix,as.numeric(var_index)) # strip leading 0
-  } else if (length(grep(pattern="npp",bio_var))){  
+    var_index <- paste0(var_prefix, as.numeric(var_index)) # strip leading 0
+  } else if (length(grep(pattern = "npp", bio_var))) {
     var_prefix <- "bio"
-    var_index <- "npp"  
-  } else if (length(grep(pattern="temperature_min",bio_var))){
+    var_index <- "npp"
+  } else if (length(grep(pattern = "temperature_min", bio_var))) {
     var_prefix <- "tasmin"
-    var_index <- paste0(var_prefix,"_",var_index)        
-  } else if (length(grep(pattern="temperature_max",bio_var)) ){
+    var_index <- paste0(var_prefix, "_", var_index)
+  } else if (length(grep(pattern = "temperature_max", bio_var))) {
     var_prefix <- "tasmax"
-    var_index <- paste0(var_prefix,"_",var_index)        
-    
-  } else if (length(grep(pattern="temperature_",bio_var))){
+    var_index <- paste0(var_prefix, "_", var_index)
+  } else if (length(grep(pattern = "temperature_", bio_var))) {
     var_prefix <- "tas"
-    var_index <- paste0(var_prefix,"_",var_index)    
-  } else if ("pre" == substr(bio_var,1,3)){  
+    var_index <- paste0(var_prefix, "_", var_index)
+  } else if ("pre" == substr(bio_var, 1, 3)) {
     var_prefix <- "pr"
-    var_index <- paste0(var_prefix,"_",var_index)
+    var_index <- paste0(var_prefix, "_", var_index)
   }
   # compose download paths
-  chelsa_root <- "https://os.zhdk.cloud.switch.ch/chelsav2/GLOBAL/climatologies/1981-2010/"
-#  chelsa_root <- "https://os.zhdk.cloud.switch.ch/envicloud/chelsa/chelsa_V2/GLOBAL/climatologies/1981-2010/"
-  paste0(chelsa_root, var_prefix,"/CHELSA_",var_index,"_1981-2010_V.2.1.tif")
+  chelsa_root <- "https://os.zhdk.cloud.switch.ch/chelsav2/GLOBAL/climatologies/1981-2010/" # nolint
+  paste0(chelsa_root, var_prefix, "/CHELSA_", var_index, "_1981-2010_V.2.1.tif")
 }

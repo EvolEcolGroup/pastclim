@@ -11,8 +11,8 @@ download_etopo_subset(rast_template, ...)
 resolution to be downloaded. This raster needs to have identical vertical
 and horizontal resolution, and standard lat/long projection.}
 
-\item{...}{additional parameters to be passed to \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}}
-to customise how files are stored. See the manpage for that function for
+\item{...}{additional parameters to be passed to \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}} to
+customise how files are stored. See the manpage for that function for
 details}
 }
 \value{
@@ -24,15 +24,14 @@ dataset.
 }
 \details{
 Use this function if you only need part of the dataset, or you need a
-relatively low resolution. This function fetches the necessary subset on
-the fly from the NOAA server. If you plan to use the ETOPO2022 dataset
+relatively low resolution. This function fetches the necessary subset on the
+fly from the NOAA server. If you plan to use the ETOPO2022 dataset
 extensively, it is worthwhile downloading it permanently to your computer
-with \code{\link[=download_etopo]{download_etopo()}}, but beware that it is a large file (>1Gb).
-This function uses \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}} to download the data, and
-then converts them into a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} formatted to be compatible
-with \code{pastclim}.
-NOTE: this function does not save the relief, it returns a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}.
-If you plan to reuse this relief multiple times, it would be wise to save it
-with \code{\link[terra:writeCDF]{terra::writeCDF()}}.
+with \code{\link[=download_etopo]{download_etopo()}}, but beware that it is a large file (>1Gb). This
+function uses \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}} to download the data, and then
+converts them into a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} formatted to be compatible with
+\code{pastclim}. NOTE: this function does not save the relief, it returns a
+\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}. If you plan to reuse this relief multiple times, it
+would be wise to save it with \code{\link[terra:writeCDF]{terra::writeCDF()}}.
 }
 \keyword{internal}

@@ -17,11 +17,11 @@ get_vars_for_dataset(
 values can be obtained with \code{\link[=list_available_datasets]{list_available_datasets()}}).}
 
 \item{path_to_nc}{the path to the custom nc file containing the palaeoclimate
-reconstructions. If a custom nc file is given, 'details', 'annual' and 'monthly'
-are ignored}
+reconstructions. If a custom nc file is given, 'details', 'annual' and
+'monthly' are ignored}
 
-\item{details}{boolean determining whether the output should include information
-including long names of variables and their units.}
+\item{details}{boolean determining whether the output should include
+information including long names of variables and their units.}
 
 \item{annual}{boolean to show annual variables}
 

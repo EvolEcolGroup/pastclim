@@ -6,12 +6,12 @@
 #' different reconstructions.
 #'
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [list_available_datasets()]).
+#'   values can be obtained with [list_available_datasets()]).
 #' @param path_to_nc the path to the custom nc file containing the palaeoclimate
-#' reconstructions. If a custom nc file is given, 'details', 'annual' and 'monthly'
-#' are ignored
-#' @param details boolean determining whether the output should include information
-#' including long names of variables and their units.
+#'   reconstructions. If a custom nc file is given, 'details', 'annual' and
+#'   'monthly' are ignored
+#' @param details boolean determining whether the output should include
+#'   information including long names of variables and their units.
 #' @param annual boolean to show annual variables
 #' @param monthly boolean to show monthly variables
 #' @returns a vector of variable names
@@ -25,11 +25,9 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details = FALSE,
       stop("path_to_nc should only be set for 'custom' dataset")
     }
     check_available_dataset(dataset)
-    variable_info <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset, ]
-    # select variable types
-    # if (!all(monthly, annual)){
-    #   variable_info <- variable_info[variable_info$monthly==monthly,]
-    # }
+    variable_info <- getOption("pastclim.dataset_list")[
+      getOption("pastclim.dataset_list")$dataset == dataset,
+    ]
     if (!monthly) {
       variable_info <- variable_info[variable_info$monthly == FALSE, ]
     }
@@ -101,6 +99,8 @@ check_available_variable <- function(variable, dataset) {
 #' @keywords internal
 
 get_varname <- function(variable, dataset) {
-  return(getOption("pastclim.dataset_list")$ncvar[getOption("pastclim.dataset_list")$variable == variable &
-    getOption("pastclim.dataset_list")$dataset == dataset])
+  return(getOption("pastclim.dataset_list")$ncvar[
+    getOption("pastclim.dataset_list")$variable == variable &
+      getOption("pastclim.dataset_list")$dataset == dataset
+  ])
 }

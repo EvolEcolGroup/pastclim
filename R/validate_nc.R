@@ -1,9 +1,9 @@
 #' Validate an netcdf file for pastclim
 #'
 #' This function validates a netcdf file as a potential dataset for `pastclim`.
-#' The key checks are:
-#' a) that the dimensions (longitude, latitude and time) have been set correctly.
-#' b) that all variables have the appropriate metadata (longname and units)
+#' The key checks are: a) that the dimensions (longitude, latitude and time)
+#' have been set correctly. b) that all variables have the appropriate metadata
+#' (longname and units)
 #'
 #' @param path_to_nc path to the nc file of interest
 #' @returns TRUE if the file is valid.
@@ -26,7 +26,9 @@ validate_nc <- function(path_to_nc) {
     stop("the dimension names should be: longitude, latitude and time")
   }
   # check that time has the correct units of 'years since XXXX'
-  if (identical(grep(pattern = "^years since", nc_in$dim$time$units), integer(0))) {
+  if (identical(
+    grep(pattern = "^years since", nc_in$dim$time$units), integer(0)
+  )) {
     ncdf4::nc_close(nc_in)
     stop(
       "the time units should start with 'years since', but this file has\n",
@@ -53,8 +55,8 @@ validate_nc <- function(path_to_nc) {
     }
   }
 
-  # at some point, check that we have units that can be converted to pretty labels
-
+  # TODO at some point, check that we have units that can be converted to pretty
+  # labels
   ncdf4::nc_close(nc_in)
   return(TRUE)
 }

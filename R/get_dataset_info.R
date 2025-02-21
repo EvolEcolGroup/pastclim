@@ -19,7 +19,9 @@ get_dataset_info <- function(dataset) {
 #'
 #' This function prints a help file to console. It is based on a function published on
 #' R-bloggers:
+# nolint start
 #' from https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
+# nolint end
 #' @param topic The topic of the help
 #' @param format how the output should be formatted
 #' @param lines which lines should be printed
@@ -33,8 +35,8 @@ help_console <- function(topic, format = c("text", "html", "latex"),
                          lines = NULL, before = NULL, after = NULL) {
   format <- match.arg(format)
   if (!is.character(topic)) topic <- deparse(substitute(topic))
-  getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
-  helpfile <- getHelpFile(utils::help(topic))
+  get_help_file <- utils::getFromNamespace(".getHelpFile", "utils")
+  helpfile <- get_help_file(utils::help(topic))
   hs <- utils::capture.output(switch(format,
     text = tools::Rd2txt(helpfile,
       outputEncoding = "ASCII"

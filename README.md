@@ -105,5 +105,5 @@ already opened that deals with your bug, file a new issue **providing** a [repro
 example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem. A small **reproducible example** is
 crucial in allowing us to understand the problem and fix it, so please do your best to
-come up with the shortest btg of code needed to show the bug.
+come up with the shortest big of code needed to show the bug.
 

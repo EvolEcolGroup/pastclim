@@ -1,17 +1,18 @@
 #' Download the ETOPO Global relief model
 #'
-#' This function downloads the ETOPO2022 global relief model at
-#' 0.5 or 1 arc-minute (i.e. 30 or 60 arc-seconds) resolution.
-#' This is a large file (>1Gb).
+#' This function downloads the ETOPO2022 global relief model at 0.5 or 1
+#' arc-minute (i.e. 30 or 60 arc-seconds) resolution. This is a large file
+#' (>1Gb).
 #'
-#' @param path	character. Path where to download the data to. If left NULL, the data
-#' will be downloaded from the directory returned by [get_data_path()], and automatically
-#' named `etopo2022_{resolution}s_v1.nc`
+#' @param path	character. Path where to download the data to. If left NULL, the
+#'   data will be downloaded from the directory returned by [get_data_path()],
+#'   and automatically named `etopo2022_{resolution}s_v1.nc`
 #' @param resolution numeric resolution in arc-minute (one of 0.5, or 1).
-#' Defaults to 1 arc-minute.
-#' @param force logical. If TRUE, the file will be downloaded even if it already exists.
-#' @returns a dataframe produced by [curl::multi_download()] with information about
-#' the download (including error codes)
+#'   Defaults to 1 arc-minute.
+#' @param force logical. If TRUE, the file will be downloaded even if it already
+#'   exists.
+#' @returns a dataframe produced by [curl::multi_download()] with information
+#'   about the download (including error codes)
 #'
 #' @export
 
@@ -39,18 +40,21 @@ download_etopo <- function(path = NULL, resolution = 1, force = FALSE) {
     message("the file already exists; use `force = TRUE` to download it again")
     return(invisible())
   }
-  
+
   res <- curl::multi_download(etopo_url,
     destfile = etopo_filename
   )
   if (!res$success) {
     warning("the download failed!")
     # if a truncated file was left behind, remove it
-    if (file.exists(etopo_filename)){
+    if (file.exists(etopo_filename)) {
       file.remove(etopo_filename)
     }
   } else {
-    message("the download was successul; access the relief data with `load_etopo()`")
+    message(
+      "the download was successul; access the relief ",
+      "data with `load_etopo()`"
+    )
   }
   res
 }

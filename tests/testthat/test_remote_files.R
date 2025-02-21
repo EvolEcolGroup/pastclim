@@ -1,3 +1,4 @@
+# nolint start
 ## This is a resource intensive test. It downloads all files in the dataset_list
 ## and then validates them. It is only run if the appropriate environment
 ## variable is set, and thus skipped most of the time
@@ -5,11 +6,13 @@
 ## Sys.setenv(PASTCLIM_TEST = "download_full")
 ## remember to unset it once you are done
 ## Sys.unsetenv("PASTCLIM_TEST")
+# nolint end
 
 
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,

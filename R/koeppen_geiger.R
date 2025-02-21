@@ -63,7 +63,6 @@ methods::setGeneric("koeppen_geiger", function(prec, tavg, broad = FALSE,
 methods::setMethod(
   "koeppen_geiger", signature(prec = "matrix", tavg = "matrix"),
   function(prec, tavg, broad = FALSE, class_names = TRUE) {
-
     # sure we don't have Kelvin
     if (ncol(prec) != 12) {
       stop("prec needs to have 12 columns")
@@ -84,8 +83,8 @@ methods::setMethod(
     if (any(tavg > 100)) {
       stop("tavg should be in degrees celsius, but the current input is Kelvin")
     }
-        
-    if (!inherits(tavg, "matrix")){
+
+    if (!inherits(tavg, "matrix")) {
       stop("only one valid row of data, this function needs at least two")
     }
 

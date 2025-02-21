@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 # boolean to turn off chunks that download large datasets
-eval_chunk <- FALSE 
+eval_chunk <- FALSE
 ```
 
 
@@ -109,15 +109,17 @@ dataset first, but rather than downloading all the files, this sets up the virtu
 (and so it is very fast!):
 
 ```{r eval=eval_chunk}
-download_dataset(dataset = "CHELSA_2.1_0.5m_vsi", 
-                 bio_variables = c("bio12","temperature_01"))
+download_dataset(
+  dataset = "CHELSA_2.1_0.5m_vsi",
+  bio_variables = c("bio12", "temperature_01")
+)
 ```
 
 Once downloaded, we can use it as any other dataset:
 ```{r eval=eval_chunk}
 climate_present <- region_slice(
   time_ce = 1990,
-  bio_variables = c("bio12","temperature_01"),
+  bio_variables = c("bio12", "temperature_01"),
   dataset = "CHELSA_2.1_0.5m_vsi"
 )
 ```
@@ -140,7 +142,7 @@ SSP can be chosen by changing the ending of the dataset name
 
 A complete list of available combinations can be obtained with:
 ```{r}
-list_available_datasets()[grepl("WorldClim_2.1",list_available_datasets())]
+list_available_datasets()[grepl("WorldClim_2.1", list_available_datasets())]
 ```
 
 So, if we are interested in the the HadGEM3-GC31-LL model, with ssp set
@@ -199,7 +201,7 @@ SSP can be chosen by changing the ending of the dataset name
 
 A complete list of available combinations can be obtained with:
 ```{r}
-list_available_datasets()[grepl("CHELSA_2.1",list_available_datasets())]
+list_available_datasets()[grepl("CHELSA_2.1", list_available_datasets())]
 ```
 
 Note that there is a virtual option for each dataset.
@@ -207,7 +209,7 @@ So, if we are interested in the the GFDL-ESM4 model, with ssp set
 to 126 , we can get the available variables:
 
 ```{r}
-get_vars_for_dataset(dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m", monthly=TRUE)
+get_vars_for_dataset(dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m", monthly = TRUE)
 ```
 
 We can now download "bio01" and "bio02" for that dataset, using the virtual version, with:

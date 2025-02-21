@@ -24,16 +24,21 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
     message("'dataset' must be one of ")
     get_available_datasets()
     stop(
-      "Invalid 'dataset', for a comprehensive list of all possible combinations, use `list_available_datasets()`"
+      "Invalid 'dataset', for a comprehensive list of all possible ",
+      "combinations, use `list_available_datasets()`"
     )
   }
 
   # check that the variable is available for this dataset
   available_variables <-
-    getOption("pastclim.dataset_list")$variable[getOption("pastclim.dataset_list")$dataset == dataset]
+    getOption("pastclim.dataset_list")$variable[
+      getOption("pastclim.dataset_list")$dataset == dataset
+    ]
   # if variable is null, download all possible variables
   if (is.null(bio_variables)) {
-    bio_variables <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset, ]
+    bio_variables <- getOption("pastclim.dataset_list")[
+      getOption("pastclim.dataset_list")$dataset == dataset,
+    ]
     if (!monthly) {
       bio_variables <- bio_variables[bio_variables$monthly == FALSE, ]
     }
@@ -77,7 +82,9 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
             destfile = file.path(get_data_path(), file_details$file_name),
             quiet = FALSE
           )
-        } else { # we use a custom download function if the files have to be converted locally
+        } else {
+          # we use a custom download function if the files have to be converted
+          # locally
           eval(parse(text = file_details$download_function))(dataset = dataset,
             bio_var = this_var,
             filename = file.path(get_data_path(), file_details$file_name))

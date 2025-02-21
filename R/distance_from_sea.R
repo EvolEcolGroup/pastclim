@@ -26,7 +26,6 @@ distance_from_sea <- function(time_bp = NULL, time_ce = NULL, dataset) {
     time_bp = time_bp,
     time_steps = times
   )
-  distances_list <- list()
   for (i in 1:length(time_index)) {
     this_time <- times[time_index[i]]
     this_land_mask <- get_land_mask(
@@ -39,16 +38,20 @@ distance_from_sea <- function(time_bp = NULL, time_ce = NULL, dataset) {
       dataset = dataset
     )
     coastlines_with_ice[coastlines_with_ice > -1] <- 1
-    coastlines_polyline <- terra::as.polygons(coastlines_with_ice) # first get polygon
-    coastlines_polyline <- terra::as.lines(coastlines_polyline) # then extract line
+    # first get polygon
+    coastlines_polyline <- terra::as.polygons(coastlines_with_ice)
+    # then extract line
+    coastlines_polyline <- terra::as.lines(coastlines_polyline)
 
     distances_rast <- terra::distance(this_land_mask[[1]],
       coastlines_polyline,
       unit = "km"
     )
     distances_rast <- terra::mask(distances_rast, this_land_mask)
-    # browser()
-    names(distances_rast) <- paste("distance_from_sea", time_bp(distances_rast), sep = "_")
+    names(distances_rast) <- paste("distance_from_sea",
+      time_bp(distances_rast),
+      sep = "_"
+    )
     if (i == 1) {
       distances_all <- distances_rast
     } else {
