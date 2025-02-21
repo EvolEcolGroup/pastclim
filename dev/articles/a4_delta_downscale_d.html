@@ -331,7 +331,27 @@ we use logs. We now need to create a series for precipitation:</p>
 <span><span class="va">prec_downscaled</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/sds.html" class="external-link">sds</a></span><span class="op">(</span><span class="va">prec_downscaled_list</span><span class="op">)</span></span></code></pre></div>
 <p>We are now ready to compute the bioclim variables:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bioclim_downscaled</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/bioclim_vars-methods.html">bioclim_vars</a></span><span class="op">(</span>tavg <span class="op">=</span> <span class="va">tavg_downscaled</span>, prec <span class="op">=</span> <span class="va">prec_downscaled</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">bioclim_downscaled</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/bioclim_vars-methods.html">bioclim_vars</a></span><span class="op">(</span>tavg <span class="op">=</span> <span class="va">tavg_downscaled</span>, prec <span class="op">=</span> <span class="va">prec_downscaled</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(prec, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(tavg, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(prec, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(tavg, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(prec, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(tavg, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(prec, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(tavg, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(prec, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span>
+<span><span class="co">#&gt; Warning in slice_region_series(tavg, time_bp = time_slices[i]): varnames was</span></span>
+<span><span class="co">#&gt; empty, so we will use the names to label the layers</span></span></code></pre></div>
 <p>Let’s inspect the object:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bioclim_downscaled</span></span>
