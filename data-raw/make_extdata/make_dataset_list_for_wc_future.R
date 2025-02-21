@@ -25,14 +25,15 @@ dates_df <- data.frame(
 resolutions <- c(10, 5, 2.5, 0.5) # add 2.5 and 0.5
 library(dplyr)
 library(stringr)
-wc_future <- wc_template[0,]
+wc_future <- wc_template[0, ]
 for (i_gcm in gcm) {
   for (i_scenario in scenarios) {
     # skip for the model scenarios that don't exist
-    if (!any((i_gcm == "FIO-ESM-2-0" & i_scenario == "ssp370"),
-             (i_gcm == "GFDL-ESM4" & i_scenario == "ssp245"),
-             (i_gcm == "GFDL-ESM4" & i_scenario == "ssp585"),
-             (i_gcm == "HadGEM3-GC31-LL" & i_scenario == "ssp370")
+    if (!any(
+      (i_gcm == "FIO-ESM-2-0" & i_scenario == "ssp370"),
+      (i_gcm == "GFDL-ESM4" & i_scenario == "ssp245"),
+      (i_gcm == "GFDL-ESM4" & i_scenario == "ssp585"),
+      (i_gcm == "HadGEM3-GC31-LL" & i_scenario == "ssp370")
     )) {
       for (i_res in resolutions) {
         wc_this <- wc_template %>%

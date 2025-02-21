@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -25,7 +26,8 @@ test_that("location_slice", {
   # using a data frame of locations and a separate vector of
   this_climate <- location_slice_from_region_series(
     x = locations[, c("longitude", "latitude")],
-    time_bp = locations$time_bp, region_series = this_series, nn_interpol = FALSE
+    time_bp = locations$time_bp, region_series = this_series,
+    nn_interpol = FALSE
   )
   expect_false(is.na(this_climate[1, "bio01"]))
   expect_true(is.na(this_climate[3, "bio01"]))

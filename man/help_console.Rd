@@ -27,8 +27,8 @@ help_console(
 text of the help file
 }
 \description{
-This function prints a help file to console. It is based on a function published on
-R-bloggers:
+This function prints a help file to console. It is based on a function
+published on R-bloggers:
 from https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
 }
 \keyword{internal}

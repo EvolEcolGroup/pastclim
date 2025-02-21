@@ -15,7 +15,7 @@ filenames_worldclim_future(dataset, bio_var)
 a vector of times, one per band
 }
 \description{
-This function creates a vector of paths needed to download the WorldClim present
-dataset
+This function creates a vector of paths needed to download the WorldClim
+present dataset
 }
 \keyword{internal}

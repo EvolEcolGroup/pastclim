@@ -10,25 +10,34 @@
 time_bp_to_index <- function(time_bp, time_steps) {
   # give warning if some dates are too extreme
   time_steps_ordered <- sort(time_steps)
-  # if you have only one time step within your database you cannot calculate the range between min and max time steps
-  # the following if statement was added because otherwise you would get NAs 
+  # if you have only one time step within your database you cannot calculate the
+  # range between min and max time steps the following if statement was added
+  # because otherwise you would get NAs
   if (length(time_steps_ordered) != 1) {
-  # calculate the range between the min and the max time steps
-  # this allow to check if the dates within your data frame are within a sensible range of the database's time steps 
-  range_minmax <- c(
-    head(time_steps_ordered, n = 1)[1] -
-      (abs(head(time_steps_ordered, n = 2)[1] - head(time_steps_ordered, n = 2)[2]) / 2),
-    tail(time_steps_ordered, n = 1)[1] +
-      (abs(tail(time_steps_ordered, n = 2)[1] - tail(time_steps_ordered, n = 2)[2]) / 2)
-  )
-  if (any(time_bp < range_minmax[1]) | any(time_bp > range_minmax[2])) {
-    warning(
-      "Some dates are out of the range of the available time series.\n",
-      "They will be assigned to the most extreme time point available, but this\n",
-      "might not make sense. The potentially problematic dates are:\n",
-      time_bp[which((time_bp < range_minmax[1]) | (time_bp > range_minmax[2]))]
+    # calculate the range between the min and the max time steps this allow to
+    # check if the dates within your data frame are within a sensible range of
+    # the database's time steps
+    # nolint start (the brackets are too many)
+    range_minmax <- c(
+      head(time_steps_ordered, n = 1)[1] -
+        (abs(head(time_steps_ordered, n = 2)[1] -
+          head(time_steps_ordered, n = 2)[2]) / 2),
+      tail(time_steps_ordered, n = 1)[1] +
+        (abs(tail(time_steps_ordered, n = 2)[1] -
+          tail(time_steps_ordered, n = 2)[2]) / 2)
     )
-   }
+    # nolint end
+    if (any(time_bp < range_minmax[1]) || any(time_bp > range_minmax[2])) {
+      warning(
+        "Some dates are out of the range of the available time series.\n",
+        "They will be assigned to the most extreme time point available, ",
+        "but this\n",
+        "might not make sense. The potentially problematic dates are:\n",
+        time_bp[
+          which((time_bp < range_minmax[1]) | (time_bp > range_minmax[2]))
+        ]
+      )
+    }
   }
   # get indeces
   time_indeces <-

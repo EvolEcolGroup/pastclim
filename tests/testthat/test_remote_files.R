@@ -1,3 +1,4 @@
+# nolint start
 ## This is a resource intensive test. It downloads all files in the dataset_list
 ## and then validates them. It is only run if the appropriate environment
 ## variable is set, and thus skipped most of the time
@@ -5,11 +6,13 @@
 ## Sys.setenv(PASTCLIM_TEST = "download_full")
 ## remember to unset it once you are done
 ## Sys.unsetenv("PASTCLIM_TEST")
+# nolint end
 
 
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -32,7 +35,7 @@ test_that("download and validate all files", {
   }
   # check that the variables in the table are found in the respective files
   meta_table <- getOption("pastclim.dataset_list")
-  for (i_row in 1:nrow(meta_table)) {
+  for (i_row in seq_len(nrow(meta_table))) {
     nc_in <- ncdf4::nc_open(file.path(in_dir, meta_table$file_name[i]))
     # check below if !! works to unquote the expression
     expect_true(!!meta_table$ncvar[i] %in% names(nc_in$var))

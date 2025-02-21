@@ -18,15 +18,15 @@ will not work on custom datasets.}
 
 \item{with_units}{boolean defining whether the label should include units}
 
-\item{abbreviated}{boolean defining whether the label should use abbreviations
-for the variable}
+\item{abbreviated}{boolean defining whether the label should use
+abbreviations for the variable}
 }
 \value{
 a \link{expression} that can be used as a label in plots
 }
 \description{
-Generate pretty labels (in the form of an \link{expression}) that can be used
-for plotting
+Generate pretty labels (in the form of an \link{expression}) that can be used for
+plotting
 }
 \examples{
 var_labels("bio01", dataset = "Example")

@@ -4,19 +4,20 @@
 #' variables for a given dataset covering a region (or the whole world).
 #'
 #' @param x climate time series generated with [region_series()]
-#' @param time_bp time slice
-#' in years before present (i.e. 1950, negative integers
-#' for values in the past). The slices
-#' need to exist in the dataset. To check which slices are available, you
-#' can use `time_bp(x)`.
-#' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce` should
-#' be used.
+#' @param time_bp time slice in years before present (i.e. 1950, negative
+#'   integers for values in the past). The slices need to exist in the dataset.
+#'   To check which slices are available, you can use `time_bp(x)`.
+#' @param time_ce time slice in years CE. Only one of `time_bp` or `time_ce`
+#'   should be used.
 #' @returns a [`terra::SpatRaster`] of the relevant slice.
 #'
 #' @export
 
 slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
-  time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce, allow_null = FALSE)
+  time_bp <- check_time_vars(
+    time_bp = time_bp, time_ce = time_ce,
+    allow_null = FALSE
+  )
   if (length(time_bp) != 1) {
     stop("time_bp should be a single time step")
   }
@@ -30,14 +31,13 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
   # get index
   time_index <- which(time_bp(x[[1]]) == time_bp)
   # now slice it and convert it to a SpatRaster
-  for (i in 1:length(x)) {
+  for (i in seq_along(x)) {
     if (i == 1) {
       climate_spatraster <- subset(x[[i]], time_index)
     } else {
       terra::add(climate_spatraster) <- subset(x[[i]], time_index)
     }
   }
-  #names(climate_spatraster) <- names(x) #varnames(climate_spatraster)
   # fix names if varclimates are empty
   if (any(varnames(climate_spatraster) == "")) {
     # Use names from `x` if any element is empty
@@ -45,7 +45,7 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
     message("varnames was empty, so we will use the names to label the layers")
   } else {
     # Use varnames if all elements are non-empty
-    names(climate_spatraster) <- varnames(climate_spatraster)  
-  }  
+    names(climate_spatraster) <- varnames(climate_spatraster)
+  }
   return(climate_spatraster)
 }

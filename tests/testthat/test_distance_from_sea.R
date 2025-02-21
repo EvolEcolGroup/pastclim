@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -28,7 +29,11 @@ testthat::test_that("get biome classes", {
   expect_false(all(is.na(distance_spatrast[is.na(wrong_landmask)])))
   # now get them all
   distance_spatrast <- distance_from_sea(dataset = "Example")
-  expect_true(all(time_bp(distance_spatrast) == get_time_bp_steps(dataset = "Example")))
+  expect_true(
+    all(
+      time_bp(distance_spatrast) == get_time_bp_steps(dataset = "Example")
+    )
+  )
 })
 
 ################################################################################

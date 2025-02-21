@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -45,8 +46,8 @@ test_that("location_slice", {
   expect_false(is.na(this_climate_buffer[1, "bio01"]))
   expect_true(is.na(this_climate_buffer[3, "bio01"]))
   expect_false(is.na(this_climate_buffer[4, "bio01"]))
-  # the underwater location should return the same value with nn_interpol and buffer
-  # but the other two values should differ
+  # the underwater location should return the same value with nn_interpol and
+  # buffer but the other two values should differ
   expect_false(this_climate[1, "bio01"] == this_climate_buffer[1, "bio01"])
   expect_false(this_climate[2, "bio01"] == this_climate_buffer[2, "bio01"])
   expect_true(this_climate[4, "bio01"] == this_climate_buffer[4, "bio01"])
@@ -147,7 +148,9 @@ test_that("location_slice", {
   )
 
   # now test a custom dataset
-  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset == "Example"][1]
+  example_filename <- getOption("pastclim.dataset_list")$file_name[
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1] # nolint
   path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )
@@ -209,26 +212,31 @@ test_that("location_slice", {
     time_ce = locations_time_ce$time_ce, bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
   )
-  expect_true(all(this_climate_time_ce$time_ce == this_climate_timeoff$time_bp + 1950))
+  expect_true(
+    all(
+      this_climate_time_ce$time_ce == this_climate_timeoff$time_bp + 1950
+    )
+  )
   # using a data.frame
   this_climate_time_ce_df <- location_slice(
     x = locations_time_ce,
     bio_variables = c("bio01", "bio12"),
     dataset = "Example", nn_interpol = TRUE
   )
-  
+
 
   # test a single variable
   location_slice_single <- location_slice(
     x = locations_time_ce[, c("longitude", "latitude")],
     time_ce = locations_time_ce$time_ce, bio_variables = "bio01",
-    dataset = "Example")
-  
+    dataset = "Example"
+  )
+
   location_slice_single <- location_slice(
     x = locations_time_ce[, c("longitude", "latitude")],
     time_ce = locations_time_ce$time_ce, bio_variables = "biome",
-    dataset = "Example")
-  
+    dataset = "Example"
+  )
 })
 
 ################################################################################

@@ -17,6 +17,7 @@ download_worldclim_present(dataset, bio_var, filename)
 TRUE if the requested WorldClim variable was downloaded successfully
 }
 \description{
-This function downloads annual and monthly variables from the WorldClim 2.1 dataset.
+This function downloads annual and monthly variables from the WorldClim 2.1
+dataset.
 }
 \keyword{internal}
