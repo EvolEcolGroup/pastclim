@@ -38,10 +38,14 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
     }
   }
   #names(climate_spatraster) <- names(x) #varnames(climate_spatraster)
+  # fix names if varclimates are empty
   if (any(varnames(climate_spatraster) == "")) {
-    names(climate_spatraster) <- names(x)  # Use names from `x` if any element is empty
+    # Use names from `x` if any element is empty
+    names(climate_spatraster) <- names(x)
+    warning("varnames was empty, so we will use the names to label the layers")
   } else {
-    names(climate_spatraster) <- varnames(climate_spatraster)  # Use varnames if all elements are non-empty
+    # Use varnames if all elements are non-empty
+    names(climate_spatraster) <- varnames(climate_spatraster)  
   }  
   return(climate_spatraster)
 }
