@@ -42,7 +42,7 @@ slice_region_series <- function(x, time_bp = NULL, time_ce = NULL) {
   if (any(varnames(climate_spatraster) == "")) {
     # Use names from `x` if any element is empty
     names(climate_spatraster) <- names(x)
-    warning("varnames was empty, so we will use the names to label the layers")
+    message("varnames was empty, so we will use the names to label the layers")
   } else {
     # Use varnames if all elements are non-empty
     names(climate_spatraster) <- varnames(climate_spatraster)  
