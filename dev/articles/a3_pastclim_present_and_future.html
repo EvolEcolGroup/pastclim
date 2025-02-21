@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,13 +202,15 @@ the pixels that are needed. We can achieve that by using the dataset
 downloading all the files, this sets up the virtual raster (and so it is
 very fast!):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"CHELSA_2.1_0.5m_vsi"</span>, </span>
-<span>                 bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span>,<span class="st">"temperature_01"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"CHELSA_2.1_0.5m_vsi"</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span>, <span class="st">"temperature_01"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Once downloaded, we can use it as any other dataset:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate_present</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_slice.html">region_slice</a></span><span class="op">(</span></span>
 <span>  time_ce <span class="op">=</span> <span class="fl">1990</span>,</span>
-<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span>,<span class="st">"temperature_01"</span><span class="op">)</span>,</span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio12"</span>, <span class="st">"temperature_01"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"CHELSA_2.1_0.5m_vsi"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>This is ideal if you just need to extract climate for a number of
@@ -230,7 +232,7 @@ models (GCMs), and for four Shared Socio-economic Pathways (SSPs): 126,
 the dataset name <em>WorldClim_2.1_GCM_SSP_RESm</em>.</p>
 <p>A complete list of available combinations can be obtained with:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"WorldClim_2.1"</span>,<span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"WorldClim_2.1"</span>, <span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;   [1] "WorldClim_2.1_0.5m"                       </span></span>
 <span><span class="co">#&gt;   [2] "WorldClim_2.1_10m"                        </span></span>
 <span><span class="co">#&gt;   [3] "WorldClim_2.1_2.5m"                       </span></span>
@@ -494,7 +496,7 @@ SSP can be chosen by changing the ending of the dataset name
 <em>CHELSA_2.1_GCM_SSP_0.5m</em>.</p>
 <p>A complete list of available combinations can be obtained with:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"CHELSA_2.1"</span>,<span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"CHELSA_2.1"</span>, <span class="fu"><a href="../reference/list_available_datasets.html">list_available_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;  [1] "CHELSA_2.1_0.5m"                         </span></span>
 <span><span class="co">#&gt;  [2] "CHELSA_2.1_0.5m_vsi"                     </span></span>
 <span><span class="co">#&gt;  [3] "CHELSA_2.1_GFDL-ESM4_ssp126_0.5m"        </span></span>
@@ -531,7 +533,10 @@ SSP can be chosen by changing the ending of the dataset name
 interested in the the GFDL-ESM4 model, with ssp set to 126 , we can get
 the available variables:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m"</span>, monthly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_vars_for_dataset.html">get_vars_for_dataset</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m"</span>,</span>
+<span>  monthly <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "bio01"            "bio02"            "bio03"            "bio04"           </span></span>
 <span><span class="co">#&gt;  [5] "bio05"            "bio06"            "bio07"            "bio08"           </span></span>
 <span><span class="co">#&gt;  [9] "bio09"            "bio10"            "bio11"            "bio12"           </span></span>

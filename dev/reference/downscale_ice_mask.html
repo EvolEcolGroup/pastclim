@@ -17,7 +17,7 @@ but it is worth exploring alternative values to find a good solution."><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,26 +75,28 @@ but it is worth exploring alternative values to find a good solution.</p>
 
 
 <dl><dt id="arg-ice-mask-low-res">ice_mask_low_res<a class="anchor" aria-label="anchor" href="#arg-ice-mask-low-res"></a></dt>
-<dd><p>a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of the low resolution ice mask
-to downscale (e.g. as obtained with <code><a href="get_ice_mask.html">get_ice_mask()</a></code>)</p></dd>
+<dd><p>a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of the low resolution ice
+mask to downscale (e.g. as obtained with <code><a href="get_ice_mask.html">get_ice_mask()</a></code>)</p></dd>
 
 
 <dt id="arg-land-mask-high-res">land_mask_high_res<a class="anchor" aria-label="anchor" href="#arg-land-mask-high-res"></a></dt>
-<dd><p>a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of the land masks at different
-times (e.g. as obtained from <code><a href="make_land_mask.html">make_land_mask()</a></code>). The ice mask will be cropped
-and matched for the resolution of this land mask.</p></dd>
+<dd><p>a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> of the land masks at
+different times (e.g. as obtained from <code><a href="make_land_mask.html">make_land_mask()</a></code>). The ice mask
+will be cropped and matched for the resolution of this land mask.</p></dd>
 
 
 <dt id="arg-d">d<a class="anchor" aria-label="anchor" href="#arg-d"></a></dt>
-<dd><p>a numeric vector of length 2, specifying the parameters for the Gaussian
-filter. The first value is the standard deviation of the Gaussian filter (sigma), and the
-second value is the size of the matrix to return. The default is c(0.5, 3).</p></dd>
+<dd><p>a numeric vector of length 2, specifying the parameters for the
+Gaussian filter. The first value is the standard deviation of the Gaussian
+filter (sigma), and the second value is the size of the matrix to return.
+The default is c(0.5, 3).</p></dd>
 
 
 <dt id="arg-expand-xy">expand_xy<a class="anchor" aria-label="anchor" href="#arg-expand-xy"></a></dt>
-<dd><p>a numeric vector of length 2, specifying the number of units to
-expand the extent of the ice mask in the x and y directions when applying the Gaussian
-filter. This is to avoid edge effects. The default is c(5,5).</p></dd>
+<dd><p>a numeric vector of length 2, specifying the number of units
+to expand the extent of the ice mask in the x and y directions when
+applying the Gaussian filter. This is to avoid edge effects. The default is
+c(5,5).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -104,11 +106,11 @@ world (sea and land) as NA's</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The Guassian filter can lead to edge effects. To minimise such effects,
-this function initially crops the ice mask to an extent that is larger
-than <code>land_mask_high_res</code>, as defined by <code>expand_xy</code>. After applying
-the Gaussian filter, the resulting raster is then cropped to the exact size
-of <code>land_mask_high_res</code>.</p>
+    <p>The Guassian filter can lead to edge effects. To minimise such effects, this
+function initially crops the ice mask to an extent that is larger than
+<code>land_mask_high_res</code>, as defined by <code>expand_xy</code>. After applying the Gaussian
+filter, the resulting raster is then cropped to the exact size of
+<code>land_mask_high_res</code>.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

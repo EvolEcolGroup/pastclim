@@ -9,7 +9,7 @@ dataset."><meta property="og:image" content="https://evolecolgroup.github.io/pas
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,8 +64,8 @@ and horizontal resolution, and standard lat/long projection.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional parameters to be passed to <code><a href="https://rdrr.io/pkg/marmap/man/getNOAA.bathy.html" class="external-link">marmap::getNOAA.bathy()</a></code>
-to customise how files are stored. See the manpage for that function for
+<dd><p>additional parameters to be passed to <code><a href="https://rdrr.io/pkg/marmap/man/getNOAA.bathy.html" class="external-link">marmap::getNOAA.bathy()</a></code> to
+customise how files are stored. See the manpage for that function for
 details</p></dd>
 
 </dl></div>
@@ -76,16 +76,15 @@ details</p></dd>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Use this function if you only need part of the dataset, or you need a
-relatively low resolution. This function fetches the necessary subset on
-the fly from the NOAA server. If you plan to use the ETOPO2022 dataset
+relatively low resolution. This function fetches the necessary subset on the
+fly from the NOAA server. If you plan to use the ETOPO2022 dataset
 extensively, it is worthwhile downloading it permanently to your computer
-with <code><a href="download_etopo.html">download_etopo()</a></code>, but beware that it is a large file (&gt;1Gb).
-This function uses <code><a href="https://rdrr.io/pkg/marmap/man/getNOAA.bathy.html" class="external-link">marmap::getNOAA.bathy()</a></code> to download the data, and
-then converts them into a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> formatted to be compatible
-with <code>pastclim</code>.
-NOTE: this function does not save the relief, it returns a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code>.
-If you plan to reuse this relief multiple times, it would be wise to save it
-with <code><a href="https://rspatial.github.io/terra/reference/writeCDF.html" class="external-link">terra::writeCDF()</a></code>.</p>
+with <code><a href="download_etopo.html">download_etopo()</a></code>, but beware that it is a large file (&gt;1Gb). This
+function uses <code><a href="https://rdrr.io/pkg/marmap/man/getNOAA.bathy.html" class="external-link">marmap::getNOAA.bathy()</a></code> to download the data, and then
+converts them into a <code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code> formatted to be compatible with
+<code>pastclim</code>. NOTE: this function does not save the relief, it returns a
+<code><a href="https://rspatial.github.io/terra/reference/SpatRaster-class.html" class="external-link">terra::SpatRaster</a></code>. If you plan to reuse this relief multiple times, it
+would be wise to save it with <code><a href="https://rspatial.github.io/terra/reference/writeCDF.html" class="external-link">terra::writeCDF()</a></code>.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

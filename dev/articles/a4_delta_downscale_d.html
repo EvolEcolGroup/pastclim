@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,15 +126,17 @@ datasets:</p>
 <span><span class="co">#&gt; terra 1.8.26</span></span></code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
-<span><span class="va">tavg_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_0"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_"</span>,<span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tavg_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">time_steps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_time_bp_steps.html">get_time_bp_steps</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"Example"</span><span class="op">)</span></span>
-<span><span class="va">n_europe_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">45</span>,<span class="fl">60</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">n_europe_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">45</span>, <span class="fl">60</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>, bio_variables <span class="op">=</span> <span class="va">tavg_vars</span><span class="op">)</span></span>
-<span><span class="va">tavg_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="va">tavg_vars</span>,</span>
-<span>                             time_bp <span class="op">=</span>  <span class="va">time_steps</span>,</span>
-<span>                             dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>,</span>
-<span>                              ext <span class="op">=</span> <span class="va">n_europe_ext</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">tavg_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  bio_variables <span class="op">=</span> <span class="va">tavg_vars</span>,</span>
+<span>  time_bp <span class="op">=</span> <span class="va">time_steps</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>,</span>
+<span>  ext <span class="op">=</span> <span class="va">n_europe_ext</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Downscaling is performed one variable at a time. We will start with
 temperature in January. So, we first need to extract the
 <code>SpatRaster</code> of model low resolution data from the
@@ -166,16 +168,22 @@ such as CHELSA would be equally suitable):</p>
 <p>Once the variable is downloaded, we can load it at any time with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>, bio_variables <span class="op">=</span> <span class="va">tavg_vars</span><span class="op">)</span></span>
-<span><span class="va">tavg_obs_hres_all</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="va">tavg_vars</span>,</span>
-<span>                             time_ce <span class="op">=</span>  <span class="fl">1985</span>,</span>
-<span>                             dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>,</span>
-<span>                              ext <span class="op">=</span> <span class="va">n_europe_ext</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">tavg_obs_hres_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  bio_variables <span class="op">=</span> <span class="va">tavg_vars</span>,</span>
+<span>  time_ce <span class="op">=</span> <span class="fl">1985</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>,</span>
+<span>  ext <span class="op">=</span> <span class="va">n_europe_ext</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>For later use, we store the range of the variable, which we will use
 to bound the downscaled values (arguably, it would be better to grab
 these limits from the full world distribution, but for this example, we
 will use the European range)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tavg_obs_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tavg_obs_hres_all</span>,<span class="va">minmax</span>, compute<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">tavg_obs_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tavg_obs_hres_all</span>, <span class="va">minmax</span>, compute <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">tavg_obs_range</span></span>
 <span><span class="co">#&gt; [1] -10.40350  24.43275</span></span></code></pre></div>
 <p>We want to crop these reconstructions to the extent of interest</p>
@@ -188,7 +196,7 @@ will use the European range)</p>
 <p>We need to make sure that the extent of the modern observations is
 the same as the extent of the model reconstructions:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">tavg_obs_hres_rast</span><span class="op">)</span><span class="op">==</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">tavg_obs_hres_rast</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>If that was not the case, we would use <code><a href="https://rspatial.github.io/terra/reference/crop.html" class="external-link">terra::crop</a></code> to
 match the extents.</p>
@@ -207,43 +215,54 @@ et al 2016, but a different reference can be used by setting sea levels
 for each time step (see the man page for <code>make_land_mask</code> for
 details):</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">land_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_land_mask.html">make_land_mask</a></span><span class="op">(</span>relief_rast <span class="op">=</span> <span class="va">relief_rast</span>, </span>
-<span>                                time_bp <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>, main<span class="op">=</span><span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">land_mask_high_res</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">land_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_land_mask.html">make_land_mask</a></span><span class="op">(</span></span>
+<span>  relief_rast <span class="op">=</span> <span class="va">relief_rast</span>,</span>
+<span>  time_bp <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">land_mask_high_res</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a4_delta_downscale_d_files/figure-html/unnamed-chunk-17-1.png" width="576"></p>
 <p>Note that this land mask does take ice sheets into account, and the
 Black and Caspian sea are missing. For the ice mask, we can:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ice_mask_low_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span>time_bp<span class="op">=</span><span class="va">time_steps</span>,dataset<span class="op">=</span><span class="st">"Beyer2020"</span><span class="op">)</span></span>
-<span><span class="va">ice_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/downscale_ice_mask.html">downscale_ice_mask</a></span> <span class="op">(</span>ice_mask_low_res <span class="op">=</span> <span class="va">ice_mask_low_res</span>,</span>
-<span>                                    land_mask_high_res <span class="op">=</span> <span class="va">land_mask_high_res</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ice_mask_low_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ice_mask.html">get_ice_mask</a></span><span class="op">(</span>time_bp <span class="op">=</span> <span class="va">time_steps</span>, dataset <span class="op">=</span> <span class="st">"Beyer2020"</span><span class="op">)</span></span>
+<span><span class="va">ice_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/downscale_ice_mask.html">downscale_ice_mask</a></span><span class="op">(</span></span>
+<span>  ice_mask_low_res <span class="op">=</span> <span class="va">ice_mask_low_res</span>,</span>
+<span>  land_mask_high_res <span class="op">=</span> <span class="va">land_mask_high_res</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ice_mask_high_res</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a4_delta_downscale_d_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <p>Note that there is no ice mask for the last two time steps.</p>
 <p>We can now remove the ice mask from the land mask:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">land_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>, </span>
-<span>                                <span class="va">ice_mask_high_res</span>, </span>
-<span>                                inverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">land_mask_high_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>,</span>
+<span>  <span class="va">ice_mask_high_res</span>,</span>
+<span>  inverse <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">land_mask_high_res</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a4_delta_downscale_d_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <p>If it was a region with internal seas, we could then remove them
 with:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">internal_seas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/serialize.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/internal_seas.RDS"</span>,</span>
-<span>                                       package<span class="op">=</span><span class="st">"pastclim"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">land_mask_high</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>, </span>
-<span>                                <span class="va">internal_seas</span>, </span>
-<span>                                inverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>  package <span class="op">=</span> <span class="st">"pastclim"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">land_mask_high</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/mask.html" class="external-link">mask</a></span><span class="op">(</span><span class="va">land_mask_high_res</span>,</span>
+<span>  <span class="va">internal_seas</span>,</span>
+<span>  inverse <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>We can now compute a delta raster and use it to downscale the model
 reconstructions:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">delta_rast</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">tavg_model_lres_rast</span>, ref_time <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>                                     obs <span class="op">=</span> <span class="va">tavg_obs_hres_rast</span><span class="op">)</span></span>
-<span><span class="va">model_downscaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">tavg_model_lres_rast</span>, </span>
-<span>                                                delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
-<span>                                                x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
-<span>                                                range_limits<span class="op">=</span><span class="va">tavg_obs_range</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">delta_rast</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">tavg_model_lres_rast</span>, ref_time <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  obs <span class="op">=</span> <span class="va">tavg_obs_hres_rast</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">model_downscaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">tavg_model_lres_rast</span>,</span>
+<span>  delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
+<span>  x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
+<span>  range_limits <span class="op">=</span> <span class="va">tavg_obs_range</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">model_downscaled</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
 <span><span class="co">#&gt; dimensions  : 90, 150, 5  (nrow, ncol, nlyr)</span></span>
@@ -273,14 +292,18 @@ with temperature. We loop over each month, create a
 <code>SpatRaster</code> of downscaled temperature, add it to a list, and
 finally convert the list into a <code>SpatRasterDataset</code></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tavg_downscaled_list</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">delta_rast</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">tavg_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, ref_time <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>                                       obs <span class="op">=</span> <span class="va">tavg_obs_hres_all</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">tavg_downscaled_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">tavg_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, </span>
-<span>                                                  delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
-<span>                                                  x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
-<span>                                                  range_limits<span class="op">=</span><span class="va">tavg_obs_range</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">tavg_downscaled_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">delta_rast</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">tavg_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, ref_time <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    obs <span class="op">=</span> <span class="va">tavg_obs_hres_all</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">tavg_downscaled_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">tavg_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
+<span>    x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
+<span>    range_limits <span class="op">=</span> <span class="va">tavg_obs_range</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">tavg_downscaled</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/sds.html" class="external-link">sds</a></span><span class="op">(</span><span class="va">tavg_downscaled_list</span><span class="op">)</span></span></code></pre></div>
 <p>Quickly inspect the resulting dataset:</p>
@@ -300,38 +323,55 @@ steps.</p>
 example we will downscale precipitation in its natural scale, but often
 we use logs. We now need to create a series for precipitation:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">prec_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"precipitation_0"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"precipitation_"</span>,<span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">prec_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="va">prec_vars</span>,</span>
-<span>                             time_bp <span class="op">=</span>  <span class="va">time_steps</span>,</span>
-<span>                             dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>,</span>
-<span>                             ext <span class="op">=</span> <span class="va">n_europe_ext</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">prec_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"precipitation_0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"precipitation_"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">prec_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  bio_variables <span class="op">=</span> <span class="va">prec_vars</span>,</span>
+<span>  time_bp <span class="op">=</span> <span class="va">time_steps</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"Beyer2020"</span>,</span>
+<span>  ext <span class="op">=</span> <span class="va">n_europe_ext</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Get some high resolution observations:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/download_dataset.html">download_dataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>, bio_variables <span class="op">=</span> <span class="va">prec_vars</span><span class="op">)</span></span>
-<span><span class="va">prec_obs_hres_all</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span> <span class="va">prec_vars</span>,</span>
-<span>                             time_ce <span class="op">=</span>  <span class="fl">1985</span>,</span>
-<span>                             dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>,</span>
-<span>                              ext <span class="op">=</span> <span class="va">n_europe_ext</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">prec_obs_hres_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  bio_variables <span class="op">=</span> <span class="va">prec_vars</span>,</span>
+<span>  time_ce <span class="op">=</span> <span class="fl">1985</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"WorldClim_2.1_10m"</span>,</span>
+<span>  ext <span class="op">=</span> <span class="va">n_europe_ext</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Estimate the range of observed precipitation:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">prec_obs_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">prec_obs_hres_all</span>,<span class="va">minmax</span>, compute<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">prec_obs_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">prec_obs_hres_all</span>, <span class="va">minmax</span>,</span>
+<span>      compute <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">prec_obs_range</span></span>
 <span><span class="co">#&gt; [1]  10 365</span></span></code></pre></div>
 <p>And finally downscale precipitation:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">prec_downscaled_list</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">delta_rast</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">prec_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, ref_time <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>                                       obs <span class="op">=</span> <span class="va">prec_obs_hres_all</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="va">prec_downscaled_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">prec_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, </span>
-<span>                                                  delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
-<span>                                                  x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
-<span>                                                  range_limits <span class="op">=</span> <span class="va">prec_obs_range</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">prec_downscaled_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">delta_rast</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_compute.html">delta_compute</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">prec_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, ref_time <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    obs <span class="op">=</span> <span class="va">prec_obs_hres_all</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">prec_downscaled_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/delta_downscale.html">delta_downscale</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">prec_series</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    delta_rast <span class="op">=</span> <span class="va">delta_rast</span>,</span>
+<span>    x_landmask_high <span class="op">=</span> <span class="va">land_mask_high_res</span>,</span>
+<span>    range_limits <span class="op">=</span> <span class="va">prec_obs_range</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">prec_downscaled</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/sds.html" class="external-link">sds</a></span><span class="op">(</span><span class="va">prec_downscaled_list</span><span class="op">)</span></span></code></pre></div>
 <p>We are now ready to compute the bioclim variables:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bioclim_downscaled</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/bioclim_vars-methods.html">bioclim_vars</a></span><span class="op">(</span>tavg <span class="op">=</span> <span class="va">tavg_downscaled</span>, prec <span class="op">=</span> <span class="va">prec_downscaled</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">bioclim_downscaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bioclim_vars-methods.html">bioclim_vars</a></span><span class="op">(</span></span>
+<span>  tavg <span class="op">=</span> <span class="va">tavg_downscaled</span>,</span>
+<span>  prec <span class="op">=</span> <span class="va">prec_downscaled</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; varnames was empty, so we will use the names to label the layers</span></span>
 <span><span class="co">#&gt; varnames was empty, so we will use the names to label the layers</span></span>
 <span><span class="co">#&gt; varnames was empty, so we will use the names to label the layers</span></span>
@@ -360,14 +400,19 @@ we use logs. We now need to create a series for precipitation:</p>
 <p><img src="a4_delta_downscale_d_files/figure-html/unnamed-chunk-38-1.png" width="700"></p>
 <p>We can now save the downscaled <code>sds</code> to a netcdf file:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bioclim_downscaled</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"/EA_bioclim_downscaled.nc"</span><span class="op">)</span>, overwrite<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/writeCDF.html" class="external-link">writeCDF</a></span><span class="op">(</span><span class="va">bioclim_downscaled</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"/EA_bioclim_downscaled.nc"</span><span class="op">)</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>And then use it as a custom dataset for any function in
 <code>pastclim</code>. Let’s extract a region series for three
 variables:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">custom_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span>bio_variables <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>,<span class="st">"bio04"</span>,<span class="st">"bio19"</span><span class="op">)</span>,</span>
-<span>                             dataset <span class="op">=</span> <span class="st">"custom"</span>,</span>
-<span>                             path_to_nc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"/EA_bioclim_downscaled.nc"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">custom_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/region_series.html">region_series</a></span><span class="op">(</span></span>
+<span>  bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio04"</span>, <span class="st">"bio19"</span><span class="op">)</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"custom"</span>,</span>
+<span>  path_to_nc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"/EA_bioclim_downscaled.nc"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>We can quickly inspect the resulting <code>sds</code> object:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_data</span></span>
@@ -383,7 +428,7 @@ variables:</p>
 <p>And plot it (it should be identical to the earlier plot obtained when
 we created the dataset):</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/panel.html" class="external-link">panel</a></span><span class="op">(</span><span class="va">custom_data</span><span class="op">$</span><span class="va">bio01</span>, main<span class="op">=</span><span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">custom_data</span><span class="op">$</span><span class="va">bio01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/panel.html" class="external-link">panel</a></span><span class="op">(</span><span class="va">custom_data</span><span class="op">$</span><span class="va">bio01</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">custom_data</span><span class="op">$</span><span class="va">bio01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="a4_delta_downscale_d_files/figure-html/unnamed-chunk-42-1.png" width="700"></p>
 </div>
 </div>
