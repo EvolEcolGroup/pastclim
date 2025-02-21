@@ -44,6 +44,7 @@ filenames_worldclim_future <- function(dataset, bio_var) {
   base_file <- paste("wc2.1", wc_res, postfix, wc_gcm, wc_scenario, sep = "_")
   base_url <- paste(base_url, base_file, sep = "/")
   full_url <- paste0(base_url, "_", time_steps, ".tif")
+  return(full_url)
 }
 
 # some combinations are not valid

@@ -17,6 +17,7 @@ time_bp_to_index <- function(time_bp, time_steps) {
     # calculate the range between the min and the max time steps this allow to
     # check if the dates within your data frame are within a sensible range of
     # the database's time steps
+    # nolint start (the brackets are too many)
     range_minmax <- c(
       head(time_steps_ordered, n = 1)[1] -
         (abs(head(time_steps_ordered, n = 2)[1] -
@@ -25,6 +26,7 @@ time_bp_to_index <- function(time_bp, time_steps) {
         (abs(tail(time_steps_ordered, n = 2)[1] -
           tail(time_steps_ordered, n = 2)[2]) / 2)
     )
+    # nolint end
     if (any(time_bp < range_minmax[1]) || any(time_bp > range_minmax[2])) {
       warning(
         "Some dates are out of the range of the available time series.\n",

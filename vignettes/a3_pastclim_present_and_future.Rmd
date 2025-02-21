@@ -209,7 +209,10 @@ So, if we are interested in the the GFDL-ESM4 model, with ssp set
 to 126 , we can get the available variables:
 
 ```{r}
-get_vars_for_dataset(dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m", monthly = TRUE)
+get_vars_for_dataset(
+  dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m",
+  monthly = TRUE
+)
 ```
 
 We can now download "bio01" and "bio02" for that dataset, using the virtual version, with:

@@ -213,10 +213,10 @@ methods::setMethod(
       p[, "bio09"] <- NA
     } else {
       # P8. Mean Temperature of Wettest Quarter
-      wetqrt <- cbind(1:nrow(p), as.integer(apply(wet, 1, which.max)))
+      wetqrt <- cbind(seq_len(nrow(p)), as.integer(apply(wet, 1, which.max)))
       p[, "bio08"] <- tmp[wetqrt]
       # P9. Mean Temperature of Driest Quarter
-      dryqrt <- cbind(1:nrow(p), as.integer(apply(wet, 1, which.min)))
+      dryqrt <- cbind(seq_len(nrow(p)), as.integer(apply(wet, 1, which.min)))
       p[, "bio09"] <- tmp[dryqrt]
     }
     # P10 Mean Temperature of Warmest Quarter
@@ -230,10 +230,10 @@ methods::setMethod(
       p[, "bio19"] <- NA
     } else {
       # P18. Precipitation of Warmest Quarter
-      hot <- cbind(1:nrow(p), as.integer(apply(tmp, 1, which.max)))
+      hot <- cbind(seq_len(nrow(p)), as.integer(apply(tmp, 1, which.max)))
       p[, "bio18"] <- wet[hot]
       # P19. Precipitation of Coldest Quarter
-      cold <- cbind(1:nrow(p), as.integer(apply(tmp, 1, which.min)))
+      cold <- cbind(seq_len(nrow(p)), as.integer(apply(tmp, 1, which.min)))
       p[, "bio19"] <- wet[cold]
     }
 
@@ -248,14 +248,11 @@ methods::setMethod(
 #' However, one could argue that cv =0; and NA may break the code that
 #' receives it. The function returns 0 if the mean is close to zero.
 #'
-#' This is ODD: abs to avoid very small (or zero) mean with e.g. -5:5
-#'
 #' @param x a vector of values
 #' @returns the cv
 #' @keywords internal
 
 .cv <- function(x) {
-  # m <- mean(abs(x))
   m <- mean(x)
   if (is.na(m)) {
     return(NA)

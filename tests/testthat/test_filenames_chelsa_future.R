@@ -3,8 +3,10 @@
 
 test_that("filenames_chelsa_future are correct", {
   skip_if_offline()
-  datasets <- c("GFDL-ESM4", "IPSL-CM6A-LR", "MPI-ESM1-2-HR",
-                "MRI-ESM2-0", "UKESM1-0-LL")
+  datasets <- c(
+    "GFDL-ESM4", "IPSL-CM6A-LR", "MPI-ESM1-2-HR",
+    "MRI-ESM2-0", "UKESM1-0-LL"
+  )
   scenarios <- c("ssp126", "ssp370", "ssp585")
   # annual variables
   variables <- c(paste0("bio", sprintf("%02d", 1:19)))

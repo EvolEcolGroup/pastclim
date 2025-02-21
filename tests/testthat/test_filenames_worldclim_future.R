@@ -19,11 +19,14 @@ test_that("filenames_worldclim_future are correct", {
     sep = "_"
   )
   # remove combinations for which there are no data
+  # nolint start (messy set of conditions)
   target_datasets <- target_datasets[
     !(grepl("FIO-ESM-2-0_ssp370", x = target_datasets) |
-    grepl("GFDL-ESM4_ssp245", x = target_datasets) |
-    grepl("GFDL-ESM4_ssp585", x = target_datasets) |
-    grepl("HadGEM3-GC31-LL_ssp370", x = target_datasets))]
+      grepl("GFDL-ESM4_ssp245", x = target_datasets) |
+      grepl("GFDL-ESM4_ssp585", x = target_datasets) |
+      grepl("HadGEM3-GC31-LL_ssp370", x = target_datasets))
+  ]
+  # nolint end
 
   for (i in seq_len(length(target_datasets))) {
     bio_files <- filenames_worldclim_future(

@@ -26,9 +26,9 @@ download_etopo <- function(path = NULL, resolution = 1, force = FALSE) {
   }
 
   if (resolution == 0.5) {
-    etopo_url <- "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/30s/30s_bed_elev_netcdf/ETOPO_2022_v1_30s_N90W180_bed.nc"
+    etopo_url <- "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/30s/30s_bed_elev_netcdf/ETOPO_2022_v1_30s_N90W180_bed.nc" # nolint
   } else if (resolution == 1) {
-    etopo_url <- "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_bed_elev_netcdf/ETOPO_2022_v1_60s_N90W180_bed.nc"
+    etopo_url <- "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_bed_elev_netcdf/ETOPO_2022_v1_60s_N90W180_bed.nc" # nolint
   } else {
     stop("resolution should be one of '0.5' or '1' arc-minutes")
   }

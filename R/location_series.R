@@ -90,12 +90,12 @@ location_series <-
 
       # if names does not exist, add it
       if (!"name" %in% names(x)) {
-        x$name <- as.character(1:nrow(x))
+        x$name <- as.character(seq_len(nrow(x)))
       }
       x <- x[, match(c("name", coords), names(x))]
       n_loc <- nrow(x)
       # now repeat it for each time step
-      x <- x[rep(1:nrow(x), length(time_bp)), ]
+      x <- x[rep(seq_len(nrow(x)), length(time_bp)), ]
     } else if (inherits(x, "numeric")) {
       n_loc <- length(x)
       x <- rep(x, length(time_bp))

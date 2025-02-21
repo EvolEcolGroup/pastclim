@@ -23,7 +23,8 @@ test_that("region series", {
 
   # do the same for a custom dataset
   example_filename <- getOption("pastclim.dataset_list")$file_name[
-    getOption("pastclim.dataset_list")$dataset == "Example"][1] # nolint
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1] # nolint
   path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )

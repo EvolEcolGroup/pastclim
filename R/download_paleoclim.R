@@ -32,7 +32,7 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
   )
 
   # create band description and time axis
-  #  time_period_codes <- c("LH", "MH", "EH", "YDS", "BA", "HS1", "LIG")
+  #  time_period_codes <- c("LH", "MH", "EH", "YDS", "BA", "HS1", "LIG") # nolint
   time_vector <- c(
     0, -2250, -6250, -10000, -12300, -13800, -15850,
     -21000, -130000

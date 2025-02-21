@@ -2,6 +2,13 @@ linters: linters_with_defaults(
     return_linter = NULL
   )
 exclusions: list(
-    "data-raw"
+    "data-raw",
+    "R/koeppen_geiger.R" = list(
+      object_name_linter = Inf, # variable names from conversion of Matlab
+      object_usage_linter = Inf # we should at some point remove these variables
+    ),
+    "R/url_is_valid.R" = list(
+      object_name_linter = Inf # variable names to match http codes
+    )
   )
 encoding: "UTF-8"

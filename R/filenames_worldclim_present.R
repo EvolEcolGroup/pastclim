@@ -20,22 +20,16 @@ filenames_worldclim_present <- function(dataset, bio_var) {
   # function to grab the number from the raster layer
   if (grepl("bio", bio_var)) {
     postfix <- "bio.zip"
-    var_prefix <- "bio"
   } else if (grepl("temperature_min", bio_var)) {
     postfix <- "tmin.zip"
-    var_prefix <- "temperature_min_"
   } else if (grepl("temperature_max", bio_var)) {
     postfix <- "tmax.zip"
-    var_prefix <- "temperature_max_"
   } else if (grepl("temperature_", bio_var)) {
     postfix <- "tavg.zip"
-    var_prefix <- "temperature_"
   } else if (grepl("precipitation_", bio_var)) {
     postfix <- "prec.zip"
-    var_prefix <- "precipitation_"
   } else if (grepl("altitude", bio_var)) {
     postfix <- "elev.zip"
-    var_prefix <- "elevation"
   }
 
   base_url <- "https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1"

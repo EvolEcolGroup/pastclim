@@ -143,9 +143,11 @@ For later use, we store the range of the variable, which we will use to bound
 the downscaled values (arguably, it would be better to grab these limits from the
 full world distribution, but for this example, we will use the European range)
 ```{r}
-tavg_obs_range <- range(unlist(lapply(tavg_obs_hres_all, minmax,
-  compute = TRUE
-)))
+tavg_obs_range <- range(
+  unlist(
+    lapply(tavg_obs_hres_all, minmax, compute = TRUE)
+  )
+)
 tavg_obs_range
 ```
 
@@ -369,7 +371,13 @@ prec_obs_hres_all <- terra::readRDS(
 
 Estimate the range of observed precipitation:
 ```{r}
-prec_obs_range <- range(unlist(lapply(prec_obs_hres_all, minmax, compute = TRUE)))
+prec_obs_range <- range(
+  unlist(
+    lapply(prec_obs_hres_all, minmax,
+      compute = TRUE
+    )
+  )
+)
 prec_obs_range
 ```
 

@@ -26,7 +26,7 @@ distance_from_sea <- function(time_bp = NULL, time_ce = NULL, dataset) {
     time_bp = time_bp,
     time_steps = times
   )
-  for (i in 1:length(time_index)) {
+  for (i in seq_along(time_index)) {
     this_time <- times[time_index[i]]
     this_land_mask <- get_land_mask(
       time_bp = this_time,

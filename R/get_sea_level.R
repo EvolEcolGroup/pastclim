@@ -19,7 +19,7 @@ get_sea_level <- function(time_bp) {
     ),
     header = TRUE
   )
-  time_calkaBP <- -time_bp / 1000
+  time_calkaBP <- -time_bp / 1000 # nolint
   if (any(time_calkaBP < 0)) {
     stop("this function only supports times in the past")
   }

@@ -35,7 +35,7 @@ test_that("download and validate all files", {
   }
   # check that the variables in the table are found in the respective files
   meta_table <- getOption("pastclim.dataset_list")
-  for (i_row in 1:nrow(meta_table)) {
+  for (i_row in seq_len(nrow(meta_table))) {
     nc_in <- ncdf4::nc_open(file.path(in_dir, meta_table$file_name[i]))
     # check below if !! works to unquote the expression
     expect_true(!!meta_table$ncvar[i] %in% names(nc_in$var))

@@ -24,7 +24,8 @@ test_that("download_dataset", {
   )
   # check that only the example climate is in the data directory
   example_filename <- getOption("pastclim.dataset_list")$file_name[
-    getOption("pastclim.dataset_list")$dataset == "Example"][1]
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1]
   expect_true(example_filename %in% list.files(get_data_path()))
   # expect no error as the dataset exists
   expect_error(download_dataset("Example"), NA)

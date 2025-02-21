@@ -9,16 +9,13 @@
 #' @keywords internal
 
 get_dataset_info <- function(dataset) {
-  #  if (!dataset %in% list_available_datasets()){
-  #    stop("The dataset is not available in pastclim")
-  #  }
   help_console(dataset)
 }
 
 #' Print help to console
 #'
-#' This function prints a help file to console. It is based on a function published on
-#' R-bloggers:
+#' This function prints a help file to console. It is based on a function
+#' published on R-bloggers:
 # nolint start
 #' from https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
 # nolint end
@@ -45,7 +42,8 @@ help_console <- function(topic, format = c("text", "html", "latex"),
     latex = tools::Rd2latex(helpfile)
   ))
   # replace strange formatting of title
-  hs[substr(hs, 1, 2) == "_\b"] <- gsub("_\b", "", hs[substr(hs, 1, 2) == "_\b"], fixed = TRUE)
+  hs[substr(hs, 1, 2) == "_\b"] <-
+    gsub("_\b", "", hs[substr(hs, 1, 2) == "_\b"], fixed = TRUE)
   if (!is.null(lines)) hs <- hs[lines]
   hs <- c(before, hs, after)
   cat(hs, sep = "\n")

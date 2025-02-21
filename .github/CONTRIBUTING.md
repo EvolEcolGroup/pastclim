@@ -32,10 +32,27 @@ devtools::check()
 ```
 Make sure that you have resolved all warnings and notes raised by
 `devtools::check()`!
-Once you have followed **those 3 steps**, you are ready to make your Pull
-Request. Your changes will go through automatic continuous integration, which
-will check the impact of those changes on multiple platforms. If everything goes
-well, you will see a green tick on your submission.
+
+Finally, make sure that your code follows the `tidyverse` style. The easiest
+way to ensure that is to use a combination of [styler] to style your code,
+and lintr to check that it is compliant. Note that `lintr` is run automatically
+via a GitHub action for all Pull Requsts.
+So,
+```
+styler::style_pkg()
+```
+will style the code, and
+```
+lintr::lint_package()
+```
+will check that all is well. Sometimes it is a bit tricky to get your code
+to pass a `lintr` test. If you are struggling, still make a Pull Request, and
+we will help you sorting out the formatting.
+
+Once you have followed **those 4 steps**, you are ready to make your Pull Request.
+Your changes will go through automatic continuous integration, which will check
+the impact of those changes on multiple platforms. If everything goes well, you
+will see a green tick on your submission.
 
 ## Fixing typos
 If you spot typos, spelling mistakes, or grammatical errors in the
@@ -73,10 +90,15 @@ New code should follow the tidyverse [style guide](https://style.tidyverse.org).
 You can use the [styler](https://CRAN.R-project.org/package=styler) package to
 apply these styles, but please don't restyle code that has nothing to do with
 your PR.
+We use [lintr](https://lintr.r-lib.org/index.html) for automatic linting 
+of all pull requests via GitHub actions,
+so it is worth checking locally that you have fixed all lints before you
+make a PR.
+
 Lots of commenting in the code helps maintainability; so, if in doubt, always add
 an explanation to your new code.
 
 ## Code of Conduct
-Please note that the tidyverse project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By contributing to this project you agree to abide
+Please read the [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md), which is based on the one from the tidyverse. By contributing to this project you agree to abide
 by its terms.

@@ -20,7 +20,8 @@ test_that("get_mis_time_steps for standard dataset", {
 
 test_that("get_mis_time_steps for local file", {
   example_filename <- getOption("pastclim.dataset_list")$file_name[
-    getOption("pastclim.dataset_list")$dataset == "Example"][1] # nolint
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1] # nolint
   path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )

@@ -31,7 +31,9 @@ testthat::test_that("get biome classes", {
   distance_spatrast <- distance_from_sea(dataset = "Example")
   expect_true(
     all(
-      time_bp(distance_spatrast) == get_time_bp_steps(dataset = "Example")))
+      time_bp(distance_spatrast) == get_time_bp_steps(dataset = "Example")
+    )
+  )
 })
 
 ################################################################################

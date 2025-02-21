@@ -40,7 +40,9 @@ downscale_ice_mask <- function(ice_mask_low_res, land_mask_high_res,
   ice_mask_high_res <- resample(ice_mask_low_res_bin,
     extend(
       land_mask_high_res,
-      terra::ext(as.vector(terra::ext(land_mask_high_res)) +
+      terra::ext(as.vector(
+        terra::ext(land_mask_high_res)
+      ) +
         c(-expand_xy[1], +expand_xy[1], -expand_xy[2], +expand_xy[2]))
     ),
     method = "bilinear"
