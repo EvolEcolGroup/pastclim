@@ -70,19 +70,13 @@ test_that("koeppen geiger for SpatRaster and SpatRasterDataset", {
     package = "pastclim"
   ))
   # get back the time units that are lost when saving the rds
-  old_names <- names(prec_series) # there is a bug in terra
   terra::time(prec_series, tstep = "years") <- terra::time(prec_series)
-  names(prec_series) <- old_names
-  rm(old_names)
 
   tavg_series <- terra::readRDS(system.file("/extdata/delta/tavg_series.RDS",
     package = "pastclim"
   ))
   # get back the time units that are lost when saving the rds
-  old_names <- names(tavg_series) # there is a bug in terra
   terra::time(tavg_series, tstep = "years") <- terra::time(tavg_series)
-  names(tavg_series) <- old_names
-  rm(old_names)
   prec_present <- pastclim::slice_region_series(prec_series, time_bp = 0)
   tavg_present <- pastclim::slice_region_series(tavg_series, time_bp = 0)
   koeppen_raster <- koeppen_geiger(
