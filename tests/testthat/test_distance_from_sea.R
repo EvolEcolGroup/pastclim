@@ -12,10 +12,12 @@ set_data_path(
 ################################################################################
 
 testthat::test_that("get biome classes", {
+
   distance_spatrast <- distance_from_sea(
     time_bp = -10000,
     dataset = "Example"
   )
+
   # check that we have distances for land only for the correct landmask
   correct_landmask <- get_land_mask(
     time_bp = -10000,
