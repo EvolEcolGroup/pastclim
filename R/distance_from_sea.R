@@ -32,21 +32,15 @@ distance_from_sea <- function(time_bp = NULL, time_ce = NULL, dataset) {
       time_bp = this_time,
       dataset = dataset
     )
+
     coastlines_with_ice <- region_slice(
       time_bp = this_time,
       bio_variables = "biome",
       dataset = dataset
     )
-    coastlines_with_ice[coastlines_with_ice > -1] <- 1
-    # first get polygon
-    coastlines_polyline <- terra::as.polygons(coastlines_with_ice)
-    # then extract line
-    coastlines_polyline <- terra::as.lines(coastlines_polyline)
+    coastlines_bin <- make_binary_mask(coastlines_with_ice)
+    distances_rast <- distance(coastlines_bin, target = 1, unit = "km")
 
-    distances_rast <- terra::distance(this_land_mask[[1]],
-      coastlines_polyline,
-      unit = "km"
-    )
     distances_rast <- terra::mask(distances_rast, this_land_mask)
     names(distances_rast) <- paste("distance_from_sea",
       time_bp(distances_rast),
