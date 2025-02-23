@@ -65,7 +65,6 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename = NULL,
   download_url <- download_url[match(yr_id, file_yr_id)]
 
   if (virtual) {
-    browser()
     if (!all(unlist(lapply(download_url, url_is_valid)))) {
       stop(
         "invalid URL for variable ", bio_var,
