@@ -1,6 +1,6 @@
-# pastclim dev
-* Add delta downscaling functions
-* Fix chelsa paths to match new URLs
+# pastclim 2.2.0
+* Add functions to perform delta downscale of climate data.
+* Fix chelsa paths to match new URLs.
 
 # pastclim 2.1.0
 * Add all CHELSA present and future datasets (including the use of virtual rasters to avoid downloading all data)
