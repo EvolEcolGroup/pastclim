@@ -1,14 +1,14 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Climate Reconstructions 
-Version: 2.1.0.9005
+Version: 2.2.0
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
        person("Robert", "Beyer", role = "ctb"),
        person("Mario", "Krapp", role = "ctb"),
        person(c("Andrea", "V."), "Pozzi", role = "ctb"),
-       person("Andrea", "Manica", role = c("aut","cre"),
+       person("Andrea", "Manica", role = c("aut","cre","cph"),
          email = "am315@cam.ac.uk")
      )
 Maintainer: Andrea Manica <am315@cam.ac.uk>

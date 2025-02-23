@@ -101,8 +101,6 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename = NULL,
   if (file.exists(filename)) {
     file.remove(filename)
   }
-  message("This operation will take little while, as it needs to collate\n",
-          " information from many files...")
   sf::gdal_utils(
     util = "buildvrt",
     source = chelsa_url,
