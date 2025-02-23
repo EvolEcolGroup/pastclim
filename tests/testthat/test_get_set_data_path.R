@@ -17,7 +17,8 @@ test_that("get data path when config not present", {
 test_that("set and get data path", {
   # now set the path in a subdirectory of tempdir
   data_path <- file.path(tempdir(), "pastclim_data")
-  unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+  # it should not exist, but remove it just in case
+  unlink(data_path, recursive = TRUE)
   # set data path
   expect_true(set_data_path(
     path_to_nc = data_path,
@@ -30,8 +31,12 @@ test_that("set and get data path", {
   options(pastclim.data_path = NULL) # reset the option
 
   # use dir with spaces (as it is the case for the default data dir on MacOS)
-  data_path <- file.path(tempdir(), "/Users/pkgbuilds/Library/Application Support/org.R-project.R/R/pastclim")
-  unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+  data_path <- file.path(
+    tempdir(),
+    "/Users/pkgbuilds/Library/Application Support/org.R-project.R/R/pastclim"
+  ) # nolint
+  # it should not exist, but remove it just in case
+  unlink(data_path, recursive = TRUE)
   expect_true(set_data_path(
     path_to_nc = data_path,
     ask = FALSE,

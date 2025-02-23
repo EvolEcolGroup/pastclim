@@ -11,6 +11,8 @@
 
 get_var_meta <- function(variable, dataset) {
   check_available_variable(variable, dataset)
-  return(getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$variable %in% variable &
-    getOption("pastclim.dataset_list")$dataset == dataset, ])
+  return(getOption("pastclim.dataset_list")[
+    getOption("pastclim.dataset_list")$variable %in% variable &
+      getOption("pastclim.dataset_list")$dataset == dataset,
+  ])
 }

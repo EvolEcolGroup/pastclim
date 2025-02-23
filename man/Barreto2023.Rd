@@ -6,35 +6,35 @@
 \description{
 Spatio-temporal series of monthly temperature and precipitation and 17
 derived bioclimatic variables covering the last 5 Ma (Pliocene–Pleistocene),
-at intervals of 1,000 years, and a spatial resolution of 1
-arc-degrees (see Barreto et al., 2023 for details).
+at intervals of 1,000 years, and a spatial resolution of 1 arc-degrees (see
+Barreto et al., 2023 for details).
 }
 \details{
-PALEO-PGEM-Series is downscaled to 1 × 1 arc-degrees spatial resolution from the
-outputs of the PALEO-PGEM emulator (Holden et al., 2019), which emulates
+PALEO-PGEM-Series is downscaled to 1 × 1 arc-degrees spatial resolution from
+the outputs of the PALEO-PGEM emulator (Holden et al., 2019), which emulates
 reasonable and extensively validated global estimates of monthly temperature
 and precipitation for the Plio-Pleistocene every 1 kyr at a spatial
 resolution of ~5 × 5 arc-degrees (Holden et al., 2016, 2019).
 
 PALEO-PGEM-Series includes the mean and the standard deviation (i.e.,
-standard error) of the emulated climate over 10 stochastic GCM emulations
-to accommodate aspects of model uncertainty. This allows users to estimate
-the robustness of their results in the face of the stochastic aspects of
-the emulations. For more details, see Section 2.4 in Barreto et al. (2023).
+standard error) of the emulated climate over 10 stochastic GCM emulations to
+accommodate aspects of model uncertainty. This allows users to estimate the
+robustness of their results in the face of the stochastic aspects of the
+emulations. For more details, see Section 2.4 in Barreto et al. (2023).
 
 Note that this is a very large dataset, with 5001 time slices. It takes
-approximately 1 minute to set up each variable when creating a region_slice or
-region_series. However, once the object has been created, other operations tend
-to be much faster (especially if you subset the dataset to a small number
-of time steps of interest).
+approximately 1 minute to set up each variable when creating a region_slice
+or region_series. However, once the object has been created, other operations
+tend to be much faster (especially if you subset the dataset to a small
+number of time steps of interest).
 
-IMPORTANT: If you use this dataset, make sure to cite the original publications:
+IMPORTANT: If you use this dataset, make sure to cite the original
+publications:
 
 Barreto, E., Holden, P. B., Edwards, N. R., & Rangel, T. F. (2023).
-PALEO-PGEM-Series: A spatial time series of the global climate over the
-last 5 million years (Plio-Pleistocene). Global Ecology and
-Biogeography, 32, 1034-1045,
-\doi{10.1111/geb.13683}
+PALEO-PGEM-Series: A spatial time series of the global climate over the last
+5 million years (Plio-Pleistocene). Global Ecology and Biogeography, 32,
+1034-1045, \doi{10.1111/geb.13683}
 
 Holden, P. B., Edwards, N. R., Rangel, T. F., Pereira, E. B., Tran, G. T.,
 and Wilkinson, R. D. (2019): PALEO-PGEM v1.0: a statistical emulator of

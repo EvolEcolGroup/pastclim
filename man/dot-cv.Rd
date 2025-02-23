@@ -18,7 +18,4 @@ R function to compute the coefficient of variation
 However, one could argue that cv =0; and NA may break the code that
 receives it. The function returns 0 if the mean is close to zero.
 }
-\details{
-This is ODD: abs to avoid very small (or zero) mean with e.g. -5:5
-}
 \keyword{internal}

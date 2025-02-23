@@ -12,11 +12,13 @@
 #' @export
 
 update_dataset_list <- function(on_cran = FALSE) {
-  curl::curl_download("https://raw.githubusercontent.com/EvolEcolGroup/pastclim/dataset_list/dataset_list_included.csv",
+  curl::curl_download("https://raw.githubusercontent.com/EvolEcolGroup/pastclim/dataset_list/dataset_list_included.csv", # nolint
     destfile = file.path(tempdir(), "dataset_list_included.csv"),
     quiet = FALSE
   )
-  new_table_github <- utils::read.csv(file.path(tempdir(), "dataset_list_included.csv"))
+  new_table_github <- utils::read.csv(
+    file.path(tempdir(), "dataset_list_included.csv")
+  )
   # if the github version is more recent, copy it into config
   if (utils::compareVersion(
     new_table_github$dataset_list_v[1],
@@ -28,14 +30,20 @@ update_dataset_list <- function(on_cran = FALSE) {
     } else {
       config_dir <- tempdir()
     }
-    file.copy(utils::read.csv(file.path(tempdir(), "dataset_list_included.csv")),
+    file.copy(
+      utils::read.csv(
+        file.path(tempdir(), "dataset_list_included.csv")
+      ),
       to = file.path(config_dir, "dataset_list_included.csv")
     )
     load_dataset_list()
     message("The dataset list was updated.")
     return(TRUE)
   } else {
-    message("The dataset list currently installed is already the latest version.")
+    message(
+      "The dataset list currently installed is already ",
+      "the latest version."
+    )
     return(FALSE)
   }
 }

@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,

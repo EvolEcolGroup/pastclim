@@ -17,15 +17,15 @@ pastclim_rast(
 
 \item{bio_var_orig}{the variable name as present in the file}
 
-\item{bio_var_pastclim}{the variable name as used by pastclim (thus allowing us
-to rename the variable)}
+\item{bio_var_pastclim}{the variable name as used by pastclim (thus allowing
+us to rename the variable)}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}
 }
 \description{
-This function is a wrapper around \code{\link[terra:rast]{terra::rast()}}, with additional logic
-to correctly import time for vrt datasets (time is stored as custom metadata
-in pastclim-generated vrt files)
+This function is a wrapper around \code{\link[terra:rast]{terra::rast()}}, with additional logic to
+correctly import time for vrt datasets (time is stored as custom metadata in
+pastclim-generated vrt files)
 }
 \keyword{internal}

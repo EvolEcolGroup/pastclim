@@ -29,7 +29,10 @@ time_bp_to_i_series <- function(time_bp, time_steps) {
   } else if (is.null(time_bp)) {
     time_index <- NULL
   } else {
-    stop("time_bp can only be NULL, a numeric vector, or a list with min and max values")
+    stop(
+      "time_bp can only be NULL, a numeric vector, or a list with ",
+      "min and max values"
+    )
   }
   return(time_index)
 }

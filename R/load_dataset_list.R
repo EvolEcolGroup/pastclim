@@ -29,7 +29,8 @@ load_dataset_list <- function(on_cran = FALSE) {
       "dataset_list_included.csv"
     ))
     table_in_config$dataset <- as.factor(table_in_config$dataset)
-    # we should check that the new table includes all the columns in the original file
+    # we should check that the new table includes all the columns in the
+    # original file
     if (utils::compareVersion(
       table_in_config$dataset_list_v[1],
       dataset_list_included$dataset_list_v[1]

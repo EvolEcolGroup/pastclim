@@ -16,8 +16,12 @@ get_resolution <- function(dataset, path_to_nc = NULL) {
   check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
   if (is.null(path_to_nc)) {
-    possible_files <- dataset_list_included$file_name[dataset_list_included$dataset == dataset]
-    possible_files <- possible_files[possible_files %in% list.files(get_data_path())]
+    possible_files <- dataset_list_included$file_name[
+      dataset_list_included$dataset == dataset
+    ]
+    possible_files <- possible_files[
+      possible_files %in% list.files(get_data_path())
+    ]
     # check that at least one file is available
     if (length(possible_files) == 0) {
       stop("no variable has been downloaded for this dataset yet")

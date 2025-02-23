@@ -13,3 +13,5 @@ ci_dependencies
 ^codecov.yml
 ^data-raw$
 .covrignore
+.lintr
+revdep

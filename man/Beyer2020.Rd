@@ -8,11 +8,11 @@ This dataset covers the last 120k years, at intervals of 1/2 k years, and a
 resolution of 0.5 degrees in latitude and longitude.
 }
 \details{
-IMPORTANT: If you use this dataset, make sure to cite the original publication:
+IMPORTANT: If you use this dataset, make sure to cite the original
+publication:
 
-Beyer, R.M.,
-Krapp, M. & Manica, A. High-resolution terrestrial climate, bioclimate and
-vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
+Beyer, R.M., Krapp, M. & Manica, A. High-resolution terrestrial climate,
+bioclimate and vegetation for the last 120,000 years. Sci Data 7, 236 (2020).
 \doi{10.1038/s41597-020-0552-1}
 
 The version included in \code{pastclim} has the ice sheets masked, as well as
@@ -34,7 +34,6 @@ Changelog
 v1.1.0 Added monthly variables. Files can be downloaded from:
 \url{https://zenodo.org/deposit/7062281}
 
-v1.0.0 Remove ice sheets and internal seas, and use correct formula for bio15.
-Files can be downloaded from:
-\doi{10.6084/m9.figshare.19723405.v1}
+v1.0.0 Remove ice sheets and internal seas, and use correct formula for
+bio15. Files can be downloaded from: \doi{10.6084/m9.figshare.19723405.v1}
 }

@@ -10,6 +10,8 @@ devtools::check(remote = TRUE, manual = TRUE)
 
 source("./data-raw/helper_functions/check_returns_in_documentation.R")
 
+# IMPORTANT: check that no browser() have been left in any file!
+
 # now create a cran_submission branch for the final remote tests
 
 # TO DO MANUALLY: update cran-comments.md accordingly

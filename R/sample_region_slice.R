@@ -19,7 +19,8 @@
 
 #' @export
 
-sample_region_slice <- function(x, size, method = "random", replace = FALSE, na.rm = TRUE) {
+sample_region_slice <- function(x, size, method = "random", replace = FALSE,
+                                na.rm = TRUE) { # nolint
   if (length(size) != 1) {
     stop("size should be a single value")
   }

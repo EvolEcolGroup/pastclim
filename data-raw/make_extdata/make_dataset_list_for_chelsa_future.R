@@ -1,9 +1,9 @@
 # start this script from this directory
 chelsa_template <- read.csv("../data_files/chelsa_future_template.csv")
 gcm <- c(
-  "GFDL-ESM4","IPSL-CM6A-LR", "MPI-ESM1-2-HR","MRI-ESM2-0","UKESM1-0-LL"
+  "GFDL-ESM4", "IPSL-CM6A-LR", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL"
 )
-scenarios <- c("ssp126","ssp370","ssp585")
+scenarios <- c("ssp126", "ssp370", "ssp585")
 
 resolutions <- c(0.5) # add 2.5 and 0.5
 library(dplyr)
@@ -21,7 +21,7 @@ for (i_gcm in gcm) {
           dataset = str_replace(dataset, "YYY", i_scenario),
           file_name = str_replace(file_name, "YYY", i_scenario)
         )
-      #%>%
+      # %>%
       #  mutate(
       #    dataset = str_replace(dataset, "ZZZ", as.character(i_res)),
       #    file_name = str_replace(file_name, "ZZZ", as.character(i_res))

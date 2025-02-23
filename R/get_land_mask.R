@@ -4,18 +4,17 @@
 #' time points.
 #'
 #' @param time_bp time slices in years before present (negative values represent
-#' time before present, positive values time in the future). This parameter can
-#' be a vector of times (the slices need
-#' to exist in the dataset), a list with a min and max element setting the
-#' range of values, or left to NULL to retrieve all time steps.
-#' To check which slices are available, you can use
-#' [get_time_bp_steps()].
+#'   time before present, positive values time in the future). This parameter
+#'   can be a vector of times (the slices need to exist in the dataset), a list
+#'   with a min and max element setting the range of values, or left to NULL to
+#'   retrieve all time steps. To check which slices are available, you can use
+#'   [get_time_bp_steps()].
 #' @param time_ce time in years CE as an alternative to `time_bp`.Only one of
-#' `time_bp` or `time_ce` should be used. For available time slices in years CE, use
-#' [get_time_ce_steps()].
+#'   `time_bp` or `time_ce` should be used. For available time slices in years
+#'   CE, use [get_time_ce_steps()].
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [list_available_datasets()]). This function
-#' will not work on custom datasets.
+#'   values can be obtained with [list_available_datasets()]). This function
+#'   will not work on custom datasets.
 #' @returns a binary [`terra::SpatRaster`] with the land mask as 1s
 #'
 #' @import terra
@@ -39,8 +38,11 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
     land_mask[land_mask < 0] <- NA
     land_mask[land_mask != 28] <- 1
     land_mask[land_mask == 28] <- NA
-  } else if (any(grepl("WorldClim", dataset),
-                 grepl("paleoclim", dataset))) {
+  } else if (any(
+    grepl("WorldClim", dataset),
+    grepl("paleoclim", dataset),
+    grepl("Barreto2023", dataset)
+  )) {
     climate_series <- region_series(
       time_bp = time_bp,
       bio_variables = get_vars_for_dataset(dataset)[1],
@@ -54,17 +56,19 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
   # sort out categories
   # we pass a list so that each level if turned into a categorical variable
   levels(land_mask) <-
-    rep(list(data.frame(id=1, category= c("land"))),
-        terra::nlyr(land_mask))
-  terra::coltab(land_mask) <- rep (list(
+    rep(
+      list(data.frame(id = 1, category = c("land"))),
+      terra::nlyr(land_mask)
+    )
+  terra::coltab(land_mask) <- rep(list(
     data.frame(
       values = c(1),
       cols = c("#1C540F")
     )
   ), terra::nlyr(land_mask))
-  
-  
-  
+
+
+
   if (is.null(time_ce)) {
     names(land_mask) <- paste("land_mask", time_bp(land_mask), sep = "_")
   } else {

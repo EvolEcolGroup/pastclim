@@ -7,23 +7,22 @@
 load_etopo(path = NULL, resolution = 1, version = "1")
 }
 \arguments{
-\item{path}{character. Path where the dataset is stored. If left NULL, the data
-will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}}
+\item{path}{character. Path where the dataset is stored. If left NULL, the
+data will be downloaded from the directory returned by \code{\link[=get_data_path]{get_data_path()}}}
 
 \item{resolution}{numeric resolution in arc-minute (one of 0.5, or 1).
 Defaults to 1 arc-minute.}
 
-\item{version}{character or numeric. The ETOPO2022 version number.
-Only "1" supported at the moment}
+\item{version}{character or numeric. The ETOPO2022 version number. Only "1"
+supported at the moment}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of relief
 }
 \description{
-This function loads previously downloaded ETOPO 2022 global relief dataset, at
-0.5 or 1 arc-minute (i.e. 30 or 60 arc-seconds) resolution.
-The function assumes that the file name is \verb{etopo2022_\{resolution\}m_v1.nc}
-To save the file in the default path with an appropriate name and file format,
-simply use \code{\link[=download_etopo]{download_etopo()}}.
+This function loads previously downloaded ETOPO 2022 global relief dataset,
+at 0.5 or 1 arc-minute (i.e. 30 or 60 arc-seconds) resolution. The function
+assumes that the file name is \verb{etopo2022_\{resolution\}m_v1.nc} To save the
+file in the default path with an appropriate name and file format, simply use
+\code{\link[=download_etopo]{download_etopo()}}.
 }
-\keyword{internal}

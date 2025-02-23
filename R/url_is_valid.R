@@ -12,17 +12,14 @@ url_is_valid <- function(url, verbose = FALSE) {
     HTTP_STATUS_REDIRECT_SUCCESS <- 302
     hd <- httr::HEAD(url, httr::timeout(30))
     status <- hd$all_headers[[1]]$status
-    if (verbose){
-      message("status is ",status)
+    if (verbose) {
+      message("status is ", status)
     }
     return(status %in% c(HTTP_STATUS_OK, HTTP_STATUS_REDIRECT_SUCCESS))
   } else {
     stop(
       "to use this function, first install package 'httr' with\n",
-      "install.packages('httr')")  
+      "install.packages('httr')"
+    )
   }
-
 }
-
-
-

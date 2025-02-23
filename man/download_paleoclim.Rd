@@ -18,6 +18,7 @@ variables, so we generate multiple files, not a single one)}
 TRUE if the requested paleoclim variable was downloaded successfully
 }
 \description{
-This function downloads annual and monthly variables from the Paleoclim V1.0 dataset.
+This function downloads annual and monthly variables from the Paleoclim V1.0
+dataset.
 }
 \keyword{internal}

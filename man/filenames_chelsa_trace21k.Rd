@@ -15,6 +15,7 @@ filenames_chelsa_trace21k(dataset, bio_var)
 a vector of times, one per band
 }
 \description{
-This function creates a vector of paths needed to download the CHELSA trace21k
+This function creates a vector of paths needed to download the CHELSA
+trace21k
 }
 \keyword{internal}

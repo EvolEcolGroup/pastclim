@@ -4,31 +4,30 @@
 \alias{HYDE_3.3_baseline}
 \title{Documentation for \emph{HYDE 3.3} dataset}
 \description{
-This database presents an update and expansion of the History Database of
-the Global Environment (HYDE, v 3.3) and replaces former HYDE 3.2
-version from 2017. HYDE is and internally consistent combination of
-updated historical population estimates and land use. Categories
-include cropland, with a new distinction into irrigated and rain fed
-crops (other than rice) and irrigated and rain fed rice. Also grazing
-lands are provided, divided into more intensively used pasture,
-converted rangeland and non-converted natural (less intensively used)
-rangeland. Population is represented by maps of total, urban, rural
-population and population density as well as built-up area.
+This database presents an update and expansion of the History Database of the
+Global Environment (HYDE, v 3.3) and replaces former HYDE 3.2 version from
+2017. HYDE is and internally consistent combination of updated historical
+population estimates and land use. Categories include cropland, with a new
+distinction into irrigated and rain fed crops (other than rice) and irrigated
+and rain fed rice. Also grazing lands are provided, divided into more
+intensively used pasture, converted rangeland and non-converted natural (less
+intensively used) rangeland. Population is represented by maps of total,
+urban, rural population and population density as well as built-up area.
 }
 \details{
-The period covered is 10 000 BCE to 2023 CE. Spatial resolution is
-5 arc minutes (approx. 85 km2 at the equator). The full \emph{HYDE 3.3} release
+The period covered is 10 000 BCE to 2023 CE. Spatial resolution is 5 arc
+minutes (approx. 85 km2 at the equator). The full \emph{HYDE 3.3} release
 contains: a Baseline estimate scenario, a Lower estimate scenario and an
-Upper estimate scenario. Currently only the baseline scenario is available
-in \code{pastclim}
+Upper estimate scenario. Currently only the baseline scenario is available in
+\code{pastclim}
 
-More details on the dataset are available on its
-dedicated \href{https://landuse.sites.uu.nl/hyde-project/}{website}.
+More details on the dataset are available on its dedicated
+\href{https://landuse.sites.uu.nl/hyde-project/}{website}.
 
-IMPORTANT: If you use this dataset, make sure to cite the original publication
-for the HYDE 3.2 (there is no current publication for 3.3):
+IMPORTANT: If you use this dataset, make sure to cite the original
+publication for the HYDE 3.2 (there is no current publication for 3.3):
 
-Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.:
-Anthropogenic land-use estimates for the Holocene; HYDE 3.2,
-Earth Syst. Sci. Data, 9, 927-953, 2017. \doi{10.5194/essd-9-927-2017}
+Klein Goldewijk, K., Beusen, A., Doelman, J., and Stehfest, E.: Anthropogenic
+land-use estimates for the Holocene; HYDE 3.2, Earth Syst. Sci. Data, 9,
+927-953, 2017. \doi{10.5194/essd-9-927-2017}
 }

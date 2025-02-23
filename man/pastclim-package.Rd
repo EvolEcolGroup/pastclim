@@ -4,11 +4,11 @@
 \name{pastclim-package}
 \alias{pastclim}
 \alias{pastclim-package}
-\title{pastclim: Manipulate Time Series of Palaeoclimate Reconstructions}
+\title{pastclim: Manipulate Time Series of Climate Reconstructions}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Methods to easily extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) \doi{10.1111/ecog.06481}.
+Methods to easily extract and manipulate climate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) \doi{10.1111/ecog.06481}. The package includes datasets of palaeoclimate reconstructions, present observations, and future projections from multiple climate models.
 }
 \seealso{
 Useful links:
