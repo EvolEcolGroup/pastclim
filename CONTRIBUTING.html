@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link" href="./pastclim_cheatsheet.pdf">Cheatsheet</a></li>
@@ -36,7 +37,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.png" class="logo" alt=""><h1>Contributing to pastclim</h1>
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/master/.github/CONTRIBUTING.md" class="external-link"><code>.github/CONTRIBUTING.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/v2.2.0/.github/CONTRIBUTING.md" class="external-link"><code>.github/CONTRIBUTING.md</code></a></small>
     </div>
 
 <div id="contributing-to-pastclim" class="section level1">
@@ -44,15 +45,19 @@
 <p>This document outlines how to contribute to the development of <code>pastclim</code>. The package is maintained on a voluntary basis, so help is always appreciated.</p>
 <div class="section level2">
 <h2 id="the-basic-process-of-contributing">The basic process of contributing<a class="anchor" aria-label="anchor" href="#the-basic-process-of-contributing"></a></h2>
-<p>Development work for <code>pastclim</code> occurs in the <code>dev</code> branch. So, if you want to propose any changes, you should work on <code>dev</code>. Start by forking the project onto your github repository, make the changes directly in your fork (either in the <code>dev</code> branch, or make a custom branch). After updating all the documentation and checking that all tests pass (see below), start a Pull Request. Your proposed changes will be reviewed, and you might be asked to fix/improve your code. This can be an iterative process, requiring a few rounds of revision depending on the complexity of the code.</p>
-<p>Functions should be documented using <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html" class="external-link"><code>roxygen</code></a>. If any of your changes affects the documentation , you should rebuild it. From the root directory of the package, simply run:</p>
+<p>Development work for <code>pastclim</code> occurs in the <code>dev</code> branch. So, if you want to propose any changes, you should work on <code>dev</code>. Start by forking the project onto your github repository, make the changes directly in your fork (either in the <code>dev</code> branch, or make a custom branch). After updating all the documentation and checking that all tests pass (see below), start a Pull Request. Your proposed changes will be reviewed, and you might be asked to fix/improve your code. This can be an iterative process, requiring a few rounds of revision depending on the complexity of the code. Functions should be documented using <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html" class="external-link"><code>roxygen</code></a>. If any of your changes affects the documentation , you should rebuild it. From the root directory of the package, simply run:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>If you implemented a new functionality, or patched a bug, you should consider whether you should add an appropriate unit test. <code>pastclim</code> uses the <code>testthat</code> framework for unit tests. You should make sure that tests work with :</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>Finally, before you submit a push request, you should check that your changes don’t break the build. You can do that with <code>check</code>, which also builds the vignette and runs the tests.:</p>
 <pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>Make sure that you have resolved all warnings and notes raised by <code>devtools::check()</code>!</p>
-<p>Once you have followed <strong>those 3 steps</strong>, you are ready to make your Pull Request. Your changes will go through automatic continuous integration, which will check the impact of those changes on multiple platforms. If everything goes well, you will see a green tick on your submission.</p>
+<p>Finally, make sure that your code follows the <code>tidyverse</code> style. The easiest way to ensure that is to use a combination of [styler] to style your code, and lintr to check that it is compliant. Note that <code>lintr</code> is run automatically via a GitHub action for all Pull Requsts. So,</p>
+<pre><code><span><span class="fu">styler</span><span class="fu">::</span><span class="fu">style_pkg</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>will style the code, and</p>
+<pre><code><span><span class="fu">lintr</span><span class="fu">::</span><span class="fu">lint_package</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>will check that all is well. Sometimes it is a bit tricky to get your code to pass a <code>lintr</code> test. If you are struggling, still make a Pull Request, and we will help you sorting out the formatting.</p>
+<p>Once you have followed <strong>those 4 steps</strong>, you are ready to make your Pull Request. Your changes will go through automatic continuous integration, which will check the impact of those changes on multiple platforms. If everything goes well, you will see a green tick on your submission.</p>
 </div>
 <div class="section level2">
 <h2 id="fixing-typos">Fixing typos<a class="anchor" aria-label="anchor" href="#fixing-typos"></a></h2>
@@ -60,21 +65,16 @@
 </div>
 <div class="section level2">
 <h2 id="functional-changes">Functional changes<a class="anchor" aria-label="anchor" href="#functional-changes"></a></h2>
-<p>If you want to make a change that impacts the functioning of <code>pastclim</code>, it’s a good idea to first file an issue explaining what you have in mind. If the change is meant to fix a bug, then<br>
-add a minimal <a href="https://www.tidyverse.org/help/#reprex" class="external-link">reprex</a>.</p>
-<p>A good reprex is also the perfect starting point for writing a unit test, which should accompany any functional change in the code. Unit tests are also essential when fixing bugs, so that you can both demonstrate that the fix work, and prevent future changes from undoing your work. For unit testing, we use <code>testthat</code>; you will find tests under <code>tests</code>, with a file dedicated to each function, following the convention <code>test_my_function.R</code> for naming files. When creating tests, try to make use built-in datasets, rather than adding data files to the package.</p>
-<p>Ideally, the body of your Pull Request will include the phrase <code>Fixes #issue-number</code>, where <code>issue_number</code> is the number on Github. In this way, your Pull Request will be automatically linked to the issue, and the issue will be closed when the Pull Request is merged in.</p>
-<p>For user-facing changes, add a bullet to the top of <code>NEWS.md</code> (i.e. just below the first header). Follow the style described in <a href="https://style.tidyverse.org/news.html" class="external-link uri">https://style.tidyverse.org/news.html</a>.</p>
-<p>Our continuous integration checks that the Pull Request does not reduce test coverage.</p>
+<p>If you want to make a change that impacts the functioning of <code>pastclim</code>, it’s a good idea to first file an issue explaining what you have in mind. If the change is meant to fix a bug, then add a minimal <a href="https://www.tidyverse.org/help/#reprex" class="external-link">reprex</a>. A good reprex is also the perfect starting point for writing a unit test, which should accompany any functional change in the code. Unit tests are also essential when fixing bugs, so that you can both demonstrate that the fix work, and prevent future changes from undoing your work. For unit testing, we use <code>testthat</code>; you will find tests under <code>tests</code>, with a file dedicated to each function, following the convention <code>test_my_function.R</code> for naming files. When creating tests, try to make use built-in datasets, rather than adding data files to the package. Ideally, the body of your Pull Request will include the phrase <code>Fixes #issue-number</code>, where <code>issue_number</code> is the number on Github. In this way, your Pull Request will be automatically linked to the issue, and the issue will be closed when the Pull Request is merged in. For user-facing changes, add a bullet to the top of <code>NEWS.md</code> (i.e. just below the first header). Follow the style described in <a href="https://style.tidyverse.org/news.html" class="external-link uri">https://style.tidyverse.org/news.html</a>. Our continuous integration checks that the Pull Request does not reduce test coverage.</p>
 <div class="section level3">
 <h3 id="code-style">Code style<a class="anchor" aria-label="anchor" href="#code-style"></a></h3>
-<p>New code should follow the tidyverse <a href="https://style.tidyverse.org" class="external-link">style guide</a>. You can use the <a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a> package to apply these styles, but please don’t restyle code that has nothing to do with your PR.</p>
-<p>Lots of commenting in the code helps mantainability; so, if in doubt, always add an explanation to your new code.</p>
+<p>New code should follow the tidyverse <a href="https://style.tidyverse.org" class="external-link">style guide</a>. You can use the <a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a> package to apply these styles, but please don’t restyle code that has nothing to do with your PR. We use <a href="https://lintr.r-lib.org/index.html" class="external-link">lintr</a> for automatic linting of all pull requests via GitHub actions, so it is worth checking locally that you have fixed all lints before you make a PR.</p>
+<p>Lots of commenting in the code helps maintainability; so, if in doubt, always add an explanation to your new code.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a></h2>
-<p>Please note that the tidyverse project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project you agree to abide by its terms.</p>
+<p>Please read the <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>, which is based on the one from the tidyverse. By contributing to this project you agree to abide by its terms.</p>
 </div>
 </div>
 

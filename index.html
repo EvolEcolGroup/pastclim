@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Manipulate Time Series of Palaeoclimate Reconstructions • pastclim</title>
+<title>Manipulate Time Series of Climate Reconstructions • pastclim</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -16,9 +16,9 @@
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Time Series of Palaeoclimate Reconstructions">
-<meta name="description" content="Methods to easily extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
-<meta property="og:description" content="Methods to easily extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate Time Series of Climate Reconstructions">
+<meta name="description" content="Methods to easily extract and manipulate climate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;. The package includes datasets of palaeoclimate reconstructions, present observations, and future projections from multiple climate models.">
+<meta property="og:description" content="Methods to easily extract and manipulate climate reconstructions for ecological and anthropological analyses, as described in Leonardi et al. (2023) &lt;doi:10.1111/ecog.06481&gt;. The package includes datasets of palaeoclimate reconstructions, present observations, and future projections from multiple climate models.">
 <meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,7 @@
     <li><a class="dropdown-item" href="articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -73,35 +74,53 @@
 <!-- badges: end -->
 <p>This <code>R</code> library is designed to provide an easy way to extract and manipulate palaeoclimate reconstructions for ecological and anthropological analyses. It is also able to handle time series of future reconstructions.</p>
 <p>The functionalities of <code>pastclim</code> are described in <a href="https://doi.org/10.1111/ecog.06481" class="external-link">Leonardi et al. (2023)</a>. Please cite it if you use <code>pastclim</code> in your research.</p>
-<div class="section level2">
-<h2 id="chelsa-paths-have-changed">CHELSA paths have changed<a class="anchor" aria-label="anchor" href="#chelsa-paths-have-changed"></a>
-</h2>
-<p>The paths to the CHELSA datasets have changed. Until we get the fix to CRAN, you will need to use the <code>dev</code> version of <code>pastclim</code> to access the new paths. The <code>dev</code> version is available from the <code>r-universe</code> repository of the Evolutionary Ecology Group. You can install it with:</p>
-<pre><code>install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")</code></pre>
-</div>
-<div class="section level2">
-<h2 id="install-the-library">Install the library<a class="anchor" aria-label="anchor" href="#install-the-library"></a>
-</h2>
-<p><code>pastclim</code> is on CRAN, and the easiest way to install it is with:</p>
-<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pastclim"</span><span class="op">)</span></span></code></pre>
-<p>The version on CRAN is recommended for every day use. New features and bug fixes appear first on the <code>dev</code> branch on GitHub, before they make their way to CRAN. If you need to have early access to these new features, you can install the development version of <code>pastclim</code> directly from GitHub, using <code>devtools</code>, or more simply get a compiled version from r-universe. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade both libraries with:</p>
-<pre><code>install.packages('terra', repos='https://rspatial.r-universe.dev')
-install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")</code></pre>
-</div>
-<div class="section level2">
-<h2 id="overview-of-functionality">Overview of functionality<a class="anchor" aria-label="anchor" href="#overview-of-functionality"></a>
-</h2>
-<p>On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/dev/">dev version</a> of the site updated for the <code>dev</code> branch of <code>pastclim</code> (on the top left of the dev website, the version number is in red and in the format x.x.x.9xxx, indicating it is a development version).</p>
-<p><code>pastclim</code> currently includes data from Beyer et al 2020 (a reconstruction of climate based on the HadCM3 model for the last 120k years), Krapp et al 2021 (which covers the last 800k years with a statistical emulator of HadCM3), Barreto et al 2023 (covering the last 5M years using the PALEO-PGEM emulator), PaleoClim (providing a few time steps from different palaeoclimate models downscaled to higher resolution), CHELSA-Trace21K (a transient reconstruction of the last 21k years, downscaled to 1km resolution), the HYDE3.3 database of land use reconstructions for the last 10k years, and the WorldClim and CHELSA data (present, and future projections with a number of models and emission scenarios). More details on each of these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</p>
-<hr>
-</div>
+<table class="table">
+<colgroup><col width="100%"></colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">## CHELSA paths have changed</td>
+</tr>
+<tr class="even">
+<td align="left">The paths to the CHELSA datasets have changed. Until we get the fix to CRAN, you will need to use the <code>dev</code> version of <code>pastclim</code> to access the new paths. The <code>dev</code> version is available from the <code>r-universe</code> repository of the Evolutionary Ecology Group. You can install it with:</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")</code></td>
+</tr>
+<tr class="even">
+<td align="left">## Install the library</td>
+</tr>
+<tr class="odd">
+<td align="left">
+<code>pastclim</code> is on CRAN, and the easiest way to install it is with:</td>
+</tr>
+<tr class="even">
+<td align="left"><code>install.packages("pastclim")</code></td>
+</tr>
+<tr class="odd">
+<td align="left">The version on CRAN is recommended for every day use. New features and bug fixes appear first on the <code>dev</code> branch on GitHub, before they make their way to CRAN. If you need to have early access to these new features, you can install the development version of <code>pastclim</code> directly from GitHub, using <code>devtools</code>, or more simply get a compiled version from r-universe. Also, note that the <code>dev</code> version of <code>pastclim</code> tracks changes in the <code>dev</code> version of <code>terra</code>, so you will need to upgrade both libraries with:</td>
+</tr>
+<tr class="even">
+<td align="left"><code>install.packages('terra', repos='https://rspatial.r-universe.dev') install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")</code></td>
+</tr>
+<tr class="odd">
+<td align="left">## Overview of functionality</td>
+</tr>
+<tr class="even">
+<td align="left">On its dedicated <a href="https://evolecolgroup.github.io/pastclim/">website</a>, you can find Articles giving you a step-by-step <a href="https://evolecolgroup.github.io/pastclim/articles/a0_pastclim_overview.html">overview of the package</a>, and a <a href="https://evolecolgroup.github.io/pastclim/pastclim_cheatsheet.pdf">cheatsheet</a>. There is also a <a href="https://evolecolgroup.github.io/pastclim/dev/">dev version</a> of the site updated for the <code>dev</code> branch of <code>pastclim</code> (on the top left of the dev website, the version number is in red and in the format x.x.x.9xxx, indicating it is a development version).</td>
+</tr>
+<tr class="odd">
+<td align="left">
+<code>pastclim</code> currently includes data from Beyer et al 2020 (a reconstruction of climate based on the HadCM3 model for the last 120k years), Krapp et al 2021 (which covers the last 800k years with a statistical emulator of HadCM3), Barreto et al 2023 (covering the last 5M years using the PALEO-PGEM emulator), PaleoClim (providing a few time steps from different palaeoclimate models downscaled to higher resolution), CHELSA-Trace21K (a transient reconstruction of the last 21k years, downscaled to 1km resolution), the HYDE3.3 database of land use reconstructions for the last 10k years, and the WorldClim and CHELSA data (present, and future projections with a number of models and emission scenarios). More details on each of these datasets can be found <a href="https://evolecolgroup.github.io/pastclim/articles/a1_available_datasets.html">here</a>. There are also instructions on how to build and use <a href="https://evolecolgroup.github.io/pastclim/articles/a2_custom_datasets.html">custom datasets</a>.</td>
+</tr>
+</tbody>
+</table>
 <div class="section level2">
 <h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h2>
 <p>There are two places to get help with <code>pastclim</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>If you are unsure how to do something, go to <a href="https://stackoverflow.com/" class="external-link">StackOverflow</a> and, after checking that a similar question has not been asked yet, tag your question with <code>terra</code> and <code>r</code> (there is no <code>pastclim</code> tag yet, as there aren’t enough questions), and make sure <code>pastclim</code> is in the title. This will ensure that the developers see your question and can help you. If you have not received an answer after a couple of days, feel free to drop us an email in case we missed your post.</p></li>
-<li><p>If you think you have found a bug, or have a feature request, please open an issue on our [GitHub repository]((<a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link uri">https://github.com/EvolEcolGroup/pastclim/issues</a>). Before doing so, please make sure that you have installed the latest <strong>development</strong> version of <code>pastclim</code> (as the bug might have already been fixed), as well as updating all other packages on your system. If the problem persists, and there is no issue already opened that deals with your bug, file a new issue <strong>providing</strong> a <a href="https://reprex.tidyverse.org/" class="external-link">reproducible example</a> for the developers to investigate the problem. A small <strong>reproducible example</strong> is crucial in allowing us to understand the problem and fix it, so please do your best to come up with the shortest bit of code needed to show the bug.</p></li>
+<li><p>If you have found a bug, or have a feature request, please open an issue on our [GitHub repository]((<a href="https://github.com/EvolEcolGroup/pastclim/issues" class="external-link uri">https://github.com/EvolEcolGroup/pastclim/issues</a>). Before doing so, please make sure that you have installed the latest <strong>development</strong> version of <code>pastclim</code> (as the bug might have already been fixed), as well as updating all other packages on your system. If the problem persists, and there is no issue already opened that deals with your bug, file a new issue <strong>providing</strong> a <a href="https://reprex.tidyverse.org/" class="external-link">reproducible example</a> for the developers to investigate the problem. A small <strong>reproducible example</strong> is crucial in allowing us to understand the problem and fix it, so please do your best to come up with the shortest big of code needed to show the bug.</p></li>
 </ol>
 </div>
 </div>
@@ -141,7 +160,7 @@ install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")</
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Michela Leonardi <br><small class="roles"> Author </small>  </li>
-<li>Andrea Manica <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Andrea Manica <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>

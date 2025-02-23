@@ -3,17 +3,17 @@
 precipitation at 30 arc-sec spatial resolution in 100-year time steps for the
 last 21,000 years. Palaeo-orography at high spatial resolution and at each
 time step is created by combining high resolution information on glacial
-cover from current and Last Glacial Maximum (LGM) glacier databases with
-the interpolation of a dynamic ice sheet model (ICE6G) and a coupling to
-mean annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
+cover from current and Last Glacial Maximum (LGM) glacier databases with the
+interpolation of a dynamic ice sheet model (ICE6G) and a coupling to mean
+annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
 palaeo-orography, mean annual temperature and precipitation was downscaled
 using the CHELSA V1.2 algorithm."><meta property="og:description" content="CHELSA-TraCE21k data provides monthly climate data for temperature and
 precipitation at 30 arc-sec spatial resolution in 100-year time steps for the
 last 21,000 years. Palaeo-orography at high spatial resolution and at each
 time step is created by combining high resolution information on glacial
-cover from current and Last Glacial Maximum (LGM) glacier databases with
-the interpolation of a dynamic ice sheet model (ICE6G) and a coupling to
-mean annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
+cover from current and Last Glacial Maximum (LGM) glacier databases with the
+interpolation of a dynamic ice sheet model (ICE6G) and a coupling to mean
+annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
 palaeo-orography, mean annual temperature and precipitation was downscaled
 using the CHELSA V1.2 algorithm."><meta property="og:image" content="https://evolecolgroup.github.io/pastclim/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +23,7 @@ using the CHELSA V1.2 algorithm."><meta property="og:image" content="https://evo
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@ using the CHELSA V1.2 algorithm."><meta property="og:image" content="https://evo
     <li><a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="../articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link" href=".././pastclim_cheatsheet.pdf">Cheatsheet</a></li>
@@ -52,7 +53,7 @@ using the CHELSA V1.2 algorithm."><meta property="og:image" content="https://evo
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Documentation for <em>CHELSA-TracCE21k</em></h1>
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/master/R/datasets_docs.R" class="external-link"><code>R/datasets_docs.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/v2.2.0/R/datasets_docs.R" class="external-link"><code>R/datasets_docs.R</code></a></small>
       <div class="d-none name"><code>CHELSA_trace21k_1.0.Rd</code></div>
     </div>
 
@@ -61,9 +62,9 @@ using the CHELSA V1.2 algorithm."><meta property="og:image" content="https://evo
 precipitation at 30 arc-sec spatial resolution in 100-year time steps for the
 last 21,000 years. Palaeo-orography at high spatial resolution and at each
 time step is created by combining high resolution information on glacial
-cover from current and Last Glacial Maximum (LGM) glacier databases with
-the interpolation of a dynamic ice sheet model (ICE6G) and a coupling to
-mean annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
+cover from current and Last Glacial Maximum (LGM) glacier databases with the
+interpolation of a dynamic ice sheet model (ICE6G) and a coupling to mean
+annual temperatures from CCSM3-TraCE21k. Based on the reconstructed
 palaeo-orography, mean annual temperature and precipitation was downscaled
 using the CHELSA V1.2 algorithm.</p>
     </div>
@@ -73,14 +74,15 @@ using the CHELSA V1.2 algorithm.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>More details on the dataset are available on its dedicated
 <a href="https://chelsa-climate.org/chelsa-trace21k/" class="external-link">website</a>.</p>
-<p>An alternative to
-downloading very large files is to use virtual rasters. Simply append
-"_vis" to the name of the dataset of interest (<em>CHELSA_trace21k_1.0_0.5m_vsi</em>).
-This is the recommended approach, and it is currently the only available version of the dataset.</p>
-<p>IMPORTANT: If you use this dataset, make sure to cite the original publication:</p>
+<p>An alternative to downloading very large files is to use virtual rasters.
+Simply append "_vis" to the name of the dataset of interest
+(<em>CHELSA_trace21k_1.0_0.5m_vsi</em>). This is the recommended approach, and it is
+currently the only available version of the dataset.</p>
+<p>IMPORTANT: If you use this dataset, make sure to cite the original
+publication:</p>
 <p>Karger, D.N., Nobis, M.P., Normand, S., Graham, C.H., Zimmermann, N. (2023)
-CHELSA-TraCE21k – High resolution (1 km) downscaled transient temperature
-and precipitation data since the Last Glacial Maximum. Climate of the Past.
+CHELSA-TraCE21k – High resolution (1 km) downscaled transient temperature and
+precipitation data since the Last Glacial Maximum. Climate of the Past.
 <a href="https://doi.org/10.5194/cp-2021-30" class="external-link">doi:10.5194/cp-2021-30</a></p>
     </div>
 

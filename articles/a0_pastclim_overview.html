@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@
     <li><a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="../articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -68,7 +69,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>pastclim overview</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/master/vignettes/a0_pastclim_overview.Rmd" class="external-link"><code>vignettes/a0_pastclim_overview.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/v2.2.0/vignettes/a0_pastclim_overview.Rmd" class="external-link"><code>vignettes/a0_pastclim_overview.Rmd</code></a></small>
       <div class="d-none name"><code>a0_pastclim_overview.Rmd</code></div>
     </div>
 
@@ -101,7 +102,10 @@ indicating it is a development version).</p>
 <p>If you want to build the vignette directly in <code>R</code> when
 installing <code>pastclim</code> from GitHub, you can :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>, ref <span class="op">=</span> <span class="st">"dev"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EvolEcolGroup/pastclim"</span>,</span>
+<span>  ref <span class="op">=</span> <span class="st">"dev"</span>,</span>
+<span>  build_vignettes <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>And read it directly in R with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"pastclim_overview"</span>, package <span class="op">=</span> <span class="st">"pastclim"</span><span class="op">)</span></span></code></pre></div>
@@ -137,7 +141,7 @@ datasets</a>, but you will need some familiarity with handling
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.8.24</span></span>
+<span><span class="co">#&gt; terra 1.8.27</span></span>
 <span><span class="fu"><a href="../reference/get_available_datasets.html">get_available_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m</span></span>
 <span><span class="co">#&gt; for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.</span></span>
@@ -371,12 +375,12 @@ climatic reconstructions.</p>
 <span>  x <span class="op">=</span> <span class="va">locations</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;        name longitude latitude time_bp time_bp_slice     bio01         bio12</span></span>
-<span><span class="co">#&gt; 1 Iho Eleru         5        7  -11200        -10000 25.346703  2.204595e+03</span></span>
-<span><span class="co">#&gt; 2  La Riera        -4       44  -18738        -20000  5.741851  1.149570e+03</span></span>
-<span><span class="co">#&gt; 3    Chalki        27       36  -10227        -10000        NA -9.000000e+33</span></span>
-<span><span class="co">#&gt; 4   Oronsay        -6       56  -10200        -10000  6.937467  1.362824e+03</span></span>
-<span><span class="co">#&gt; 5  Atlantis       -24       31  -11600        -10000        NA -9.000000e+33</span></span></code></pre></div>
+<span><span class="co">#&gt;        name longitude latitude time_bp time_bp_slice     bio01    bio12</span></span>
+<span><span class="co">#&gt; 1 Iho Eleru         5        7  -11200        -10000 25.346703 2204.595</span></span>
+<span><span class="co">#&gt; 2  La Riera        -4       44  -18738        -20000  5.741851 1149.570</span></span>
+<span><span class="co">#&gt; 3    Chalki        27       36  -10227        -10000        NA       NA</span></span>
+<span><span class="co">#&gt; 4   Oronsay        -6       56  -10200        -10000  6.937467 1362.824</span></span>
+<span><span class="co">#&gt; 5  Atlantis       -24       31  -11600        -10000        NA       NA</span></span></code></pre></div>
 <p><code>pastclim</code> finds the closest time step (slice) available
 for a given date, and outputs the slice used in column
 <code>time_bp_slice</code> (the <em>Example</em> dataset that we use in
@@ -394,12 +398,12 @@ or more land pixels:</p>
 <span>  x <span class="op">=</span> <span class="va">locations</span>, bio_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bio01"</span>, <span class="st">"bio12"</span><span class="op">)</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"Example"</span>, nn_interpol <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;        name longitude latitude time_bp time_bp_slice     bio01         bio12</span></span>
-<span><span class="co">#&gt; 1 Iho Eleru         5        7  -11200        -10000 25.346703  2.204595e+03</span></span>
-<span><span class="co">#&gt; 2  La Riera        -4       44  -18738        -20000  5.741851  1.149570e+03</span></span>
-<span><span class="co">#&gt; 3    Chalki        27       36  -10227        -10000 17.432425 -5.625000e+33</span></span>
-<span><span class="co">#&gt; 4   Oronsay        -6       56  -10200        -10000  6.937467  1.362824e+03</span></span>
-<span><span class="co">#&gt; 5  Atlantis       -24       31  -11600        -10000        NA -9.000000e+33</span></span></code></pre></div>
+<span><span class="co">#&gt;        name longitude latitude time_bp time_bp_slice     bio01     bio12</span></span>
+<span><span class="co">#&gt; 1 Iho Eleru         5        7  -11200        -10000 25.346703 2204.5950</span></span>
+<span><span class="co">#&gt; 2  La Riera        -4       44  -18738        -20000  5.741851 1149.5703</span></span>
+<span><span class="co">#&gt; 3    Chalki        27       36  -10227        -10000 17.432425  723.1012</span></span>
+<span><span class="co">#&gt; 4   Oronsay        -6       56  -10200        -10000  6.937467 1362.8245</span></span>
+<span><span class="co">#&gt; 5  Atlantis       -24       31  -11600        -10000        NA        NA</span></span></code></pre></div>
 <p>For Chalki, we can see that the problem is indeed that, since it is a
 small island, it is not well represented in the reconstructions (bear in
 mind that the <code>Example</code> dataset is very coarse in spatial
@@ -432,12 +436,12 @@ certain time steps, depending on sea level and ice sheet extent. This is
 the case for Oronsay:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">locations_ts</span>, <span class="va">name</span> <span class="op">==</span> <span class="st">"Oronsay"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        name longitude latitude time_bp    bio01         bio12</span></span>
-<span><span class="co">#&gt; 4   Oronsay        -6       56  -20000       NA -9.000000e+33</span></span>
-<span><span class="co">#&gt; 4.1 Oronsay        -6       56  -15000       NA -9.000000e+33</span></span>
-<span><span class="co">#&gt; 4.2 Oronsay        -6       56  -10000 6.937467  1.362824e+03</span></span>
-<span><span class="co">#&gt; 4.3 Oronsay        -6       56   -5000 8.167976  1.462253e+03</span></span>
-<span><span class="co">#&gt; 4.4 Oronsay        -6       56       0 8.185000  1.434490e+03</span></span></code></pre></div>
+<span><span class="co">#&gt;        name longitude latitude time_bp    bio01    bio12</span></span>
+<span><span class="co">#&gt; 4   Oronsay        -6       56  -20000       NA       NA</span></span>
+<span><span class="co">#&gt; 4.1 Oronsay        -6       56  -15000       NA       NA</span></span>
+<span><span class="co">#&gt; 4.2 Oronsay        -6       56  -10000 6.937467 1362.824</span></span>
+<span><span class="co">#&gt; 4.3 Oronsay        -6       56   -5000 8.167976 1462.253</span></span>
+<span><span class="co">#&gt; 4.4 Oronsay        -6       56       0 8.185000 1434.490</span></span></code></pre></div>
 <p>We can quickly plot <code>bio01</code> through time for the
 locations:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">

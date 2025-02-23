@@ -9,7 +9,7 @@ variables for a given dataset covering a region (or the whole world)."><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,7 @@ variables for a given dataset covering a region (or the whole world)."><meta pro
     <li><a class="dropdown-item" href="../articles/a1_available_datasets.html">available datasets</a></li>
     <li><a class="dropdown-item" href="../articles/a2_custom_datasets.html">custom dataset</a></li>
     <li><a class="dropdown-item" href="../articles/a3_pastclim_present_and_future.html">present and future</a></li>
+    <li><a class="dropdown-item" href="../articles/a4_delta_downscale_d.html">delta downscaling</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link" href=".././pastclim_cheatsheet.pdf">Cheatsheet</a></li>
@@ -38,7 +39,7 @@ variables for a given dataset covering a region (or the whole world)."><meta pro
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extract a slice for a time series of climate variables for a region</h1>
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/master/R/slice_region_series.R" class="external-link"><code>R/slice_region_series.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/v2.2.0/R/slice_region_series.R" class="external-link"><code>R/slice_region_series.R</code></a></small>
       <div class="d-none name"><code>slice_region_series.Rd</code></div>
     </div>
 
@@ -61,16 +62,14 @@ variables for a given dataset covering a region (or the whole world).</p>
 
 
 <dt id="arg-time-bp">time_bp<a class="anchor" aria-label="anchor" href="#arg-time-bp"></a></dt>
-<dd><p>time slice
-in years before present (i.e. 1950, negative integers
-for values in the past). The slices
-need to exist in the dataset. To check which slices are available, you
-can use <code>time_bp(x)</code>.</p></dd>
+<dd><p>time slice in years before present (i.e. 1950, negative
+integers for values in the past). The slices need to exist in the dataset.
+To check which slices are available, you can use <code>time_bp(x)</code>.</p></dd>
 
 
 <dt id="arg-time-ce">time_ce<a class="anchor" aria-label="anchor" href="#arg-time-ce"></a></dt>
-<dd><p>time slice in years CE. Only one of <code>time_bp</code> or <code>time_ce</code> should
-be used.</p></dd>
+<dd><p>time slice in years CE. Only one of <code>time_bp</code> or <code>time_ce</code>
+should be used.</p></dd>
 
 </dl></div>
     <div class="section level2">
