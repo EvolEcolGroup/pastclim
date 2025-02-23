@@ -12,10 +12,10 @@ check_var_downloaded <- function(variable, dataset) {
   check_available_variable(variable, dataset)
 
   # test if we have downloaded already
-  if (!all(variable %in% get_downloaded_datasets()
-  [[dataset]])) {
-    missing_vars <- variable[!variable %in%
-      get_downloaded_datasets()[[dataset]]]
+  if (!all(variable %in% get_downloaded_datasets()[[dataset]])) {
+    missing_vars <- variable[
+      !variable %in% get_downloaded_datasets()[[dataset]]
+    ]
     stop(
       "variable (", paste(missing_vars, collapse = ", "),
       ") not yet downloaded, use `download_dataset()`"

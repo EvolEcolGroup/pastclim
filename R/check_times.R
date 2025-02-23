@@ -10,7 +10,10 @@
 
 check_time_vars <- function(time_bp, time_ce, allow_null = TRUE) {
   if (all(!is.null(time_bp), !is.null(time_ce))) {
-    stop("both time_bp and time_ce were provide, the function can only accept one of the two")
+    stop(
+      "both time_bp and time_ce were provide, the function can only ",
+      "accept one of the two"
+    )
   }
   if (all(is.null(time_bp), is.null(time_ce))) {
     if (allow_null) {

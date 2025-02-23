@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -21,7 +22,9 @@ test_that("region series", {
   expect_true(all(terra::nlyr(climate_region) == c(2, 2)))
 
   # do the same for a custom dataset
-  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset == "Example"][1]
+  example_filename <- getOption("pastclim.dataset_list")$file_name[
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1] # nolint
   path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )
@@ -33,7 +36,17 @@ test_that("region series", {
   )
   expect_true(inherits(climate_region, "SpatRasterDataset"))
   expect_true(all(names(climate_region) == c("BIO1", "BIO10")))
-  expect_true(all(terra::nlyr(climate_region) == c(2, 2)))
+
+  # now test biome for a custom dataset
+  biome_region <- region_series(
+    time_bp = c(-20000, -10000),
+    bio_variables = c("biome"),
+    dataset = "custom",
+    path_to_nc = path_to_example_nc
+  )
+  # check that the biome is a categorical variable
+  expect_true(inherits(biome_region, "SpatRasterDataset"))
+  expect_true(!is.null(cats(biome_region$biome[[1]])[[1]]))
 
   # if we try to use a variable that does not exist
   expect_error(

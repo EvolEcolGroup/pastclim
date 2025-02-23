@@ -24,16 +24,16 @@
 #' prec <- matrix(
 #'   c(
 #'     66, 51, 53, 53, 33, 34.2, 70.9, 58, 54, 104.3, 81.2, 82.8, 113.3,
-#'     97.4, 89, 109.7, 89, 93.4, 99.8, 92.6, 85.3, 102.3, 84, 81.6, 108.6, 88.4,
-#'     82.7, 140.1, 120.4, 111.6, 120.4, 113.9, 96.7, 90, 77.4, 79.1
+#'     97.4, 89, 109.7, 89, 93.4, 99.8, 92.6, 85.3, 102.3, 84, 81.6, 108.6,
+#'     88.4, 82.7, 140.1, 120.4, 111.6, 120.4, 113.9, 96.7, 90, 77.4, 79.1
 #'   ),
 #'   ncol = 12, byrow = TRUE
 #' )
 #' tavg <- matrix(
 #'   c(
 #'     -0.2, 1.7, 2.9, 0.3, 4.2, 5, 4, 9, 9.2, 7.3, 12.6, 12.7, 12.1,
-#'     17.2, 17, 15.5, 20.5, 20.3, 17.9, 22.8, 22.9, 17.4, 22.3, 22.4, 13.2, 18.2,
-#'     18.6, 8.8, 13, 13.6, 3.5, 6.4, 7.5, 0.3, 2.1, 3.4
+#'     17.2, 17, 15.5, 20.5, 20.3, 17.9, 22.8, 22.9, 17.4, 22.3, 22.4, 13.2,
+#'     18.2, 18.6, 8.8, 13, 13.6, 3.5, 6.4, 7.5, 0.3, 2.1, 3.4
 #'   ),
 #'   ncol = 12, byrow = TRUE
 #' )
@@ -63,7 +63,6 @@ methods::setGeneric("koeppen_geiger", function(prec, tavg, broad = FALSE,
 methods::setMethod(
   "koeppen_geiger", signature(prec = "matrix", tavg = "matrix"),
   function(prec, tavg, broad = FALSE, class_names = TRUE) {
-
     # sure we don't have Kelvin
     if (ncol(prec) != 12) {
       stop("prec needs to have 12 columns")
@@ -84,8 +83,8 @@ methods::setMethod(
     if (any(tavg > 100)) {
       stop("tavg should be in degrees celsius, but the current input is Kelvin")
     }
-        
-    if (!inherits(tavg, "matrix")){
+
+    if (!inherits(tavg, "matrix")) {
       stop("only one valid row of data, this function needs at least two")
     }
 
@@ -176,16 +175,18 @@ methods::setMethod(
 
     class <- rep(0, nrow(tavg))
 
-    for (cc in 1:nrow(pastclim::koeppen_classes)) {
-      class[eval(parse(text = pastclim::koeppen_classes[cc, 3]))] <- pastclim::koeppen_classes[cc, 1]
+    for (cc in seq_len(nrow(pastclim::koeppen_classes))) {
+      class[eval(parse(text = pastclim::koeppen_classes[cc, 3]))] <-
+        pastclim::koeppen_classes[cc, 1]
     }
 
     kg_classification <- data.frame(id = class)
 
     if (broad) {
       broad_class <- rep(0, nrow(tavg))
-      for (cc in 1:nrow(pastclim::koeppen_classes)) {
-        broad_class[eval(parse(text = pastclim::koeppen_classes[cc, 3]))] <- pastclim::koeppen_classes[cc, 2]
+      for (cc in seq_len(nrow(pastclim::koeppen_classes))) {
+        broad_class[eval(parse(text = pastclim::koeppen_classes[cc, 3]))] <-
+          pastclim::koeppen_classes[cc, 2]
       }
       kg_classification$broad <- broad_class
     }
@@ -255,7 +256,10 @@ methods::setMethod(
 #' @rdname koeppen_geiger-methods
 #' @export
 methods::setMethod(
-  "koeppen_geiger", signature(prec = "SpatRasterDataset", tavg = "SpatRasterDataset"),
+  "koeppen_geiger", signature(
+    prec = "SpatRasterDataset",
+    tavg = "SpatRasterDataset"
+  ),
   function(prec, tavg, broad = FALSE, class_names = TRUE, filename = "", ...) {
     if (!all(is_region_series(prec), is_region_series(tavg))) {
       "prec and tavg should be generated with region_series"
@@ -268,7 +272,7 @@ methods::setMethod(
     }
     time_slices <- time_bp(prec[[1]])
     # loop over the time slices
-    for (i in 1:length(time_slices)) {
+    for (i in seq_along(time_slices)) {
       prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
       tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
       koeppen_slice <- koeppen_geiger(prec_slice, tavg_slice)

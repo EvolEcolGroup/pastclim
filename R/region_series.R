@@ -55,7 +55,10 @@ region_series <-
         inherits(ext, "SpatExtent"),
         all(inherits(ext, "numeric"), length(ext) == 4)
       )) {
-        stop("ext should be a numeric vector of length 4 or a terra::SpatExtent object created terra::ext")
+        stop(
+          "ext should be a numeric vector of length 4 or a ",
+          "terra::SpatExtent object created terra::ext"
+        )
       }
       if (inherits(ext, "numeric")) {
         ext <- terra::ext(ext)
@@ -66,7 +69,10 @@ region_series <-
         inherits(crop, "SpatVector"),
         inherits(crop, "sfg")
       )) {
-        stop("crop should be a sf::sfg or a terra::SpatVector object created with terra::vect")
+        stop(
+          "crop should be a sf::sfg or a terra::SpatVector ",
+          "object created with terra::vect"
+        )
       }
       if (inherits(crop, "sfg")) {
         crop <- terra::vect(crop)
@@ -109,15 +115,11 @@ region_series <-
         )
       }
       # retrieve time axis for virtual file
-      var_brick <- pastclim_rast(x = this_file, bio_var_orig = this_var_orig,
-                                 bio_var_pastclim = this_var, var_longname = this_var_longname,
-                                 var_units = this_var_units)
-      # if (substr(this_file,nchar(this_file)-2,nchar(this_file))=="vrt"){
-      #   var_brick <- terra::rast(this_file, lyrs = this_var_orig)
-      #   #time_bp(var_brick) <- unique(vrt_get_times(this_file))
-      # } else {
-      #   var_brick <- terra::rast(this_file, subds = this_var_orig)
-      # }
+      var_brick <- pastclim_rast(
+        x = this_file, bio_var_orig = this_var_orig,
+        bio_var_pastclim = this_var, var_longname = this_var_longname,
+        var_units = this_var_units
+      )
       # subset to time steps
       if (!is.null(time_bp)) {
         var_brick <- terra::subset(var_brick, subset = time_index)
@@ -136,26 +138,30 @@ region_series <-
 
       # special treatment for biome variables
       if (this_var == "biome") {
-        # we pass a list so that each level if turned into a categorical variable
-        levels(var_brick) <-
-          rep(list(get_biome_classes(dataset = dataset)),
-              terra::nlyr(var_brick))
-        terra::coltab(var_brick) <- rep (list(
-          data.frame(
-            values = get_biome_classes(dataset = dataset)$id,
-            cols = pastclim::biome4_classes$colour[match(get_biome_classes(dataset = dataset)$id,
-                                                         pastclim::biome4_classes$id)]
-          )
-        ), terra::nlyr(var_brick))
+        if (dataset != "custom") {
+          # we pass a list so that each level if turned into a categorical
+          # variable
+          levels(var_brick) <-
+            rep(
+              list(get_biome_classes(dataset = dataset)),
+              terra::nlyr(var_brick)
+            )
+          terra::coltab(var_brick) <- rep(list(
+            data.frame(
+              values = get_biome_classes(dataset = dataset)$id,
+              cols = pastclim::biome4_classes$colour[match(
+                get_biome_classes(dataset = dataset)$id,
+                pastclim::biome4_classes$id
+              )]
+            )
+          ), terra::nlyr(var_brick))
+        } else {
+          # for custom datasets, we just turn them into a factor
+          var_brick <- terra::as.factor(var_brick)
+        }
       }
-      
-      climate_spatrasters[[this_var]] <- var_brick
 
-      # varnames(climate_spatrasters[[this_var]]) <- this_var
-      # names(climate_spatrasters[[this_var]]) <- paste(this_var,
-      #   time_bp(climate_spatrasters[[this_var]]),
-      #   sep = "_"
-      # )
+      climate_spatrasters[[this_var]] <- var_brick
     }
     climate_sds <- terra::sds(climate_spatrasters)
     return(climate_sds)

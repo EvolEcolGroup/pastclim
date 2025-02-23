@@ -11,18 +11,22 @@ download_chelsa_trace21k(dataset, bio_var, filename = NULL, time_bp = NULL)
 
 \item{bio_var}{the variable name}
 
-\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim} (includes the full data path)}
+\item{filename}{the filename as stored in the \code{data_path} of \code{pastclim}
+(includes the full data path)}
 
-\item{time_bp}{the time steps for which the dataset should be built (NULL for all time steps)}
+\item{time_bp}{the time steps for which the dataset should be built (NULL for
+all time steps)}
 }
 \value{
 TRUE if the requested CHELSA variable was downloaded successfully
 }
 \description{
-This function downloads annual and monthly variables from the CHELSA trace v1.0 dataset.
+This function downloads annual and monthly variables from the CHELSA trace
+v1.0 dataset.
 }
 \details{
-As this dataset is huge, we should not download all files in most situations. For this
-reason, time_bp has to be set for downloading (but it is allowed for virtual datasets)
+As this dataset is huge, we should not download all files in most situations.
+For this reason, time_bp has to be set for downloading (but it is allowed for
+virtual datasets)
 }
 \keyword{internal}

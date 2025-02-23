@@ -1,16 +1,16 @@
 #' Generate pretty variable labels for plotting
 #'
-#' Generate pretty labels (in the form of an [expression]) that can be used
-#' for plotting
+#' Generate pretty labels (in the form of an [expression]) that can be used for
+#' plotting
 #'
 #' @param x either a character vector with the names of the variables, or a
-#' [`terra::SpatRaster`] generated with [region_slice())]
+#'   [`terra::SpatRaster`] generated with [region_slice())]
 #' @param dataset string defining dataset to be downloaded (a list of possible
-#' values can be obtained with [list_available_datasets()]). This function
-#' will not work on custom datasets.
+#'   values can be obtained with [list_available_datasets()]). This function
+#'   will not work on custom datasets.
 #' @param with_units boolean defining whether the label should include units
-#' @param abbreviated boolean defining whether the label should use abbreviations
-#' for the variable
+#' @param abbreviated boolean defining whether the label should use
+#'   abbreviations for the variable
 #' @returns a [expression] that can be used as a label in plots
 #'
 #' @export
@@ -34,7 +34,7 @@
 #' ))
 var_labels <- function(x, dataset, with_units = TRUE,
                        abbreviated = FALSE) {
-  if (is.null(dataset) | !(dataset %in% list_available_datasets())) {
+  if (is.null(dataset) || !(dataset %in% list_available_datasets())) {
     stop(
       "dataset should be one of ",
       paste(list_available_datasets(), collapse = ", ")
@@ -49,11 +49,16 @@ var_labels <- function(x, dataset, with_units = TRUE,
   }
 
   # get variable details for this dataset
-  sub_table <- getOption("pastclim.dataset_list")[getOption("pastclim.dataset_list")$dataset == dataset, ]
+  sub_table <- getOption("pastclim.dataset_list")[
+    getOption("pastclim.dataset_list")$dataset == dataset,
+  ]
 
   indeces <- match(variables, sub_table$variable)
   if (any(is.na(indeces))) {
-    stop(variables[which(is.na(indeces))], " does not exist in dataset ", dataset)
+    stop(
+      variables[which(is.na(indeces))], " does not exist in dataset ",
+      dataset
+    )
   }
 
   pretty_names <- c()
@@ -63,8 +68,11 @@ var_labels <- function(x, dataset, with_units = TRUE,
     } else {
       base_name <- sub_table$abbreviated_name[i]
     }
-    if (sub_table$units[i] != "" & with_units) {
-      this_name <- paste('"', base_name, ' ("', sub_table$units_exp[i], '")"', sep = "")
+    if (sub_table$units[i] != "" && with_units) {
+      this_name <- paste('"', base_name, ' ("', sub_table$units_exp[i],
+        '")"',
+        sep = ""
+      )
     } else {
       this_name <- paste('"', base_name, '"', sep = "")
     }

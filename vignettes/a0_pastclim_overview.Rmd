@@ -52,7 +52,10 @@ If you want to build the vignette directly in `R` when installing
 `pastclim` from GitHub, you can :
 
 ```{r install_vignette, eval=FALSE}
-devtools::install_github("EvolEcolGroup/pastclim", ref = "dev", build_vignettes = TRUE)
+devtools::install_github("EvolEcolGroup/pastclim",
+  ref = "dev",
+  build_vignettes = TRUE
+)
 ```
 
 And read it directly in R with:

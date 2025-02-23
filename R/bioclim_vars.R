@@ -1,12 +1,12 @@
 #' Compute bioclimatic variables
 #'
-#' Function to compute "bioclimatic" variables from
-#' monthly average temperature and precipitation data. For modern data,
-#' this variables are generally computed using min and maximum temperature,
-#' but for many palaeoclimatic reconstructions only average temperature is
-#' available. Most variables, with the exception of BIO02 and BIO03, can
-#' be rephrased meaningfully in terms of mean temperature.
-#' This function is a modified version of \code{predicts::bcvars}.
+#' Function to compute "bioclimatic" variables from monthly average temperature
+#' and precipitation data. For modern data, this variables are generally
+#' computed using min and maximum temperature, but for many palaeoclimatic
+#' reconstructions only average temperature is available. Most variables, with
+#' the exception of BIO02 and BIO03, can be rephrased meaningfully in terms of
+#' mean temperature. This function is a modified version of
+#' \code{predicts::bcvars}.
 #'
 #' The variables are:
 #' * BIO01 = Annual Mean Temperature
@@ -29,11 +29,11 @@
 #'
 #' These summary Bioclimatic variables are after:
 #'
-#' Nix, 1986. A biogeographic analysis of Australian elapid snakes. In: R. Longmore (ed.).
-#'     Atlas of elapid snakes of Australia. Australian Flora and Fauna Series 7.
-#'     Australian Government Publishing Service, Canberra.
+#' Nix, 1986. A biogeographic analysis of Australian elapid snakes. In: R.
+#' Longmore (ed.). Atlas of elapid snakes of Australia. Australian Flora and
+#' Fauna Series 7. Australian Government Publishing Service, Canberra.
 #'
-#'  and expanded following the ANUCLIM manual
+#' and expanded following the ANUCLIM manual
 #'
 #'
 #' @param tavg monthly average temperatures
@@ -93,7 +93,10 @@ methods::setMethod(
 #' @rdname bioclim_vars-methods
 #' @export
 methods::setMethod(
-  "bioclim_vars", signature(prec = "SpatRasterDataset", tavg = "SpatRasterDataset"),
+  "bioclim_vars", signature(
+    prec = "SpatRasterDataset",
+    tavg = "SpatRasterDataset"
+  ),
   function(prec, tavg, filename = "", ...) {
     if (!all(is_region_series(prec), is_region_series(tavg))) {
       "prec and tavg should be generated with region_series"
@@ -106,7 +109,7 @@ methods::setMethod(
     }
     time_slices <- time_bp(prec[[1]])
     # loop over the time slices
-    for (i in 1:length(time_slices)) {
+    for (i in seq_along(time_slices)) {
       prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
       tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
       biovars_slice <- bioclim_vars(prec_slice, tavg_slice)
@@ -210,10 +213,10 @@ methods::setMethod(
       p[, "bio09"] <- NA
     } else {
       # P8. Mean Temperature of Wettest Quarter
-      wetqrt <- cbind(1:nrow(p), as.integer(apply(wet, 1, which.max)))
+      wetqrt <- cbind(seq_len(nrow(p)), as.integer(apply(wet, 1, which.max)))
       p[, "bio08"] <- tmp[wetqrt]
       # P9. Mean Temperature of Driest Quarter
-      dryqrt <- cbind(1:nrow(p), as.integer(apply(wet, 1, which.min)))
+      dryqrt <- cbind(seq_len(nrow(p)), as.integer(apply(wet, 1, which.min)))
       p[, "bio09"] <- tmp[dryqrt]
     }
     # P10 Mean Temperature of Warmest Quarter
@@ -227,10 +230,10 @@ methods::setMethod(
       p[, "bio19"] <- NA
     } else {
       # P18. Precipitation of Warmest Quarter
-      hot <- cbind(1:nrow(p), as.integer(apply(tmp, 1, which.max)))
+      hot <- cbind(seq_len(nrow(p)), as.integer(apply(tmp, 1, which.max)))
       p[, "bio18"] <- wet[hot]
       # P19. Precipitation of Coldest Quarter
-      cold <- cbind(1:nrow(p), as.integer(apply(tmp, 1, which.min)))
+      cold <- cbind(seq_len(nrow(p)), as.integer(apply(tmp, 1, which.min)))
       p[, "bio19"] <- wet[cold]
     }
 
@@ -245,14 +248,11 @@ methods::setMethod(
 #' However, one could argue that cv =0; and NA may break the code that
 #' receives it. The function returns 0 if the mean is close to zero.
 #'
-#' This is ODD: abs to avoid very small (or zero) mean with e.g. -5:5
-#'
 #' @param x a vector of values
 #' @returns the cv
 #' @keywords internal
 
 .cv <- function(x) {
-  # m <- mean(abs(x))
   m <- mean(x)
   if (is.na(m)) {
     return(NA)

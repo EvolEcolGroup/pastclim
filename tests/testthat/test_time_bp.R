@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -36,7 +37,10 @@ test_that("time_bp for SpatRasterDataset", {
     bio_variables = c("bio01", "bio12"),
     dataset = "Example"
   )
-  expect_true(all(time_bp(climate_series) == c(-20000, -15000, -10000, -5000, 0)))
+  expect_true(all(time_bp(climate_series) == c(
+    -20000, -15000, -10000,
+    -5000, 0
+  )))
   time_bp(climate_series) <- c(-20, -15, -10, -5, 0)
   expect_true(all(time(climate_series[1]) == c(1930, 1935, 1940, 1945, 1950)))
 })

@@ -25,7 +25,10 @@ check_coords_names <- function(data, coords) {
   # find if we have any pair
   valid_pair <- which(unlist(lapply(valid_names, check_pair, names(data))))
   if (length(valid_pair) != 1) {
-    stop("There are no recognised coordinate columns, set their names with 'coords'")
+    stop(
+      "There are no recognised coordinate columns, set their names ",
+      "with 'coords'"
+    )
   }
 
   return(valid_names[[valid_pair]])

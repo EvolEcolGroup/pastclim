@@ -1,6 +1,7 @@
 # set up data path for this test
 data_path <- file.path(tempdir(), "pastclim_data")
-unlink(data_path, recursive = TRUE) # it should not exist, but remove it just in case
+# it should not exist, but remove it just in case
+unlink(data_path, recursive = TRUE)
 # set data path
 set_data_path(
   path_to_nc = data_path,
@@ -37,11 +38,16 @@ test_that("get_vars_for_dataset returns appropriate object", {
 
 
 test_that("get_vars_for_dataset for local file", {
-  example_filename <- getOption("pastclim.dataset_list")$file_name[getOption("pastclim.dataset_list")$dataset == "Example"][1]
+  example_filename <- getOption("pastclim.dataset_list")$file_name[
+    getOption("pastclim.dataset_list")$dataset == "Example"
+  ][1]
   path_to_example_nc <- system.file("/extdata/", example_filename,
     package = "pastclim"
   )
-  vars <- get_vars_for_dataset(dataset = "custom", path_to_nc = path_to_example_nc)
+  vars <- get_vars_for_dataset(
+    dataset = "custom",
+    path_to_nc = path_to_example_nc
+  )
   expect_true(inherits(vars, "character"))
   vars <- get_vars_for_dataset(
     dataset = "custom", path_to_nc = path_to_example_nc,

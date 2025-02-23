@@ -1,0 +1,3 @@
+variable,ncvar,dataset,monthly,file_name,download_path,download_function,file_name_orig,download_path_orig,version,long_name,abbreviated_name,time_frame,units,units_exp,dataset_list_v
+npp,npp,CHELSA_2.1_XXX_YYY_0.5m,FALSE,CHELSA_2.1_XXX_YYY_0.5m_npp_v1.0.0.vrt,,download_chelsa,,,1.0.0,net primary productivity,NPP,year,gC per m^2 per year,*gC~m^-2~yr^-1*,
+npp,npp,CHELSA_2.1_XXX_YYY_0.5m_vsi,FALSE,CHELSA_2.1_XXX_YYY_0.5m_npp_v1.0.0_vsi.vrt,,download_chelsa,,,1.0.0,net primary productivity,NPP,year,gC per m^2 per year,*gC~m^-2~yr^-1*,
