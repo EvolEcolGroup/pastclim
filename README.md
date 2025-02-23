@@ -19,7 +19,6 @@ The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
 `pastclim` in your research.
 
-------------------------------------------------------------------------
 ## CHELSA paths have changed
 
 The paths to the CHELSA datasets have changed. Until we get the fix to CRAN, 
@@ -31,7 +30,6 @@ Group. You can install it with:
 ```
 install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")
 ```
-
 
 ## Install the library
 
@@ -96,7 +94,7 @@ and make sure `pastclim` is in the title. This will ensure that the developers
 see your question and can help you. If you have not received an answer after a couple of days,
 feel free to drop us an email in case we missed your post.
 
-2) If you have found a bug, or have a feature request, please open an issue on our
+2) If you think you have found a bug, or have a feature request, please open an issue on our
 [GitHub repository]((https://github.com/EvolEcolGroup/pastclim/issues). Before doing so, please 
 make sure that you have installed the latest **development** version of
 `pastclim` (as the bug might have already been fixed), as well as updating 
@@ -105,5 +103,4 @@ already opened that deals with your bug, file a new issue **providing** a [repro
 example](https://reprex.tidyverse.org/)
 for the developers to investigate the problem. A small **reproducible example** is
 crucial in allowing us to understand the problem and fix it, so please do your best to
-come up with the shortest big of code needed to show the bug.
-
+come up with the shortest bit of code needed to show the bug.
