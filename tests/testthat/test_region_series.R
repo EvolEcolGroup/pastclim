@@ -74,7 +74,7 @@ test_that("region series", {
       bio_variables = c("bio01", "bio19"),
       dataset = "Krapp2021"
     ),
-    "^variable \\(bio01, bio19\\) not yet downloaded"
+    regexp = "variable\\(s\\) \\(bio01, bio19\\) not yet downloaded"
   )
 
   # if we try to use a file that does not exist

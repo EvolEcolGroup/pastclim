@@ -19,8 +19,8 @@ check_var_downloaded <- function(variable, dataset) {
     stop(
       "variable(s) (", paste(missing_vars, collapse = ", "),
       ") not yet downloaded, use `download_dataset(dataset = \"", dataset,
-      "\", bio_variables = c(", 
-      paste0('"',missing_vars,'"', collapse = ", "), "))`"
+      "\", bio_variables = c(",
+      paste0('"', missing_vars, '"', collapse = ", "), "))`"
     )
   }
   return(TRUE)
