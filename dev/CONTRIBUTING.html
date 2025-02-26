@@ -55,7 +55,7 @@
 <p>Finally, make sure that your code follows the <code>tidyverse</code> style. The easiest way to ensure that is to use a combination of [styler] to style your code, and lintr to check that it is compliant. Note that <code>lintr</code> is run automatically via a GitHub action for all Pull Requsts. So,</p>
 <pre><code><span><span class="fu">styler</span><span class="fu">::</span><span class="fu">style_pkg</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>will style the code, and</p>
-<pre><code><span><span class="fu">lintr</span><span class="fu">::</span><span class="fu"><a href="https://lintr.r-lib.org/reference/lint.html" class="external-link">lint_package</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="fu">lintr</span><span class="fu">::</span><span class="fu">lint_package</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>will check that all is well. Sometimes it is a bit tricky to get your code to pass a <code>lintr</code> test. If you are struggling, still make a Pull Request, and we will help you sorting out the formatting.</p>
 <p>Once you have followed <strong>those 4 steps</strong>, you are ready to make your Pull Request. Your changes will go through automatic continuous integration, which will check the impact of those changes on multiple platforms. If everything goes well, you will see a green tick on your submission.</p>
 </div>
