@@ -18,7 +18,7 @@ check_var_downloaded <- function(variable, dataset) {
     ]
     stop(
       "variable (", paste(missing_vars, collapse = ", "),
-      ") not yet downloaded, use `download_dataset()`"
+      ") not yet downloaded, use `download_dataset(\"", dataset, "\")`"
     )
   }
   return(TRUE)
