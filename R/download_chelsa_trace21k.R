@@ -64,6 +64,12 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename = NULL,
   file_yr_id <- as.numeric(gsub(".*_(\\-?\\d+)_.*", "\\1", download_url))
   download_url <- download_url[match(yr_id, file_yr_id)]
 
+  # hack to deal with missing file in temperature_min_07
+  if (bio_var=="temperature_min_07"){
+    download_url[grep("CHELSA_TraCE21k_tasmin_7_-13_V1.0.tif",download_url)]<-
+      "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/tasmin/CHELSA_TraCE21k_tasmin_7_-12_V1.0.tif" #nolint
+  }
+  
   if (virtual) {
     if (!all(unlist(lapply(download_url, url_is_valid)))) {
       stop(
