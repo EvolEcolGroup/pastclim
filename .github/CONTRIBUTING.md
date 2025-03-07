@@ -3,7 +3,9 @@ This document outlines how to contribute to the development of `pastclim`. The
 package is maintained on a voluntary basis, so help is always appreciated.
 
 ## The basic process of contributing
-Development work for `pastclim` occurs in the `dev` branch. So, if you want to
+Development work for `pastclim` occurs in the `dev` branch.
+
+So, if you want to
 propose any changes, you should work on `dev`. Start by forking the project onto
 your github repository, make the changes directly in your fork (either in the
 `dev` branch, or make a custom branch). After updating all the documentation and
@@ -13,7 +15,7 @@ can be an iterative process, requiring a few rounds of revision depending on the
 complexity of the code.
 Functions should be documented using
 [`roxygen`](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
-If any of your changes affects the documentation , you should rebuild it. From
+If any of your changes affects the documentation, you should rebuild it. From
 the root directory of the package, simply run:
 ```
 devtools::document()
@@ -34,9 +36,9 @@ Make sure that you have resolved all warnings and notes raised by
 `devtools::check()`!
 
 Finally, make sure that your code follows the `tidyverse` style. The easiest
-way to ensure that is to use a combination of [styler] to style your code,
-and lintr to check that it is compliant. Note that `lintr` is run automatically
-via a GitHub action for all Pull Requsts.
+way to ensure that is to use a combination of `styler` to style your code,
+and `lintr` to check that it is compliant. Note that `lintr` is run automatically
+via a GitHub action for all Pull Requests.
 So,
 ```
 styler::style_pkg()
@@ -69,20 +71,25 @@ is meant to fix a bug, then add a minimal
 [reprex](https://www.tidyverse.org/help/#reprex).
 A good reprex is also the perfect starting point for writing a unit test, which
 should accompany any functional change in the code. Unit tests are also
-essential when fixing bugs, so that you can both demonstrate that the fix work,
-and prevent future changes from undoing your work. For unit testing, we use
+essential when fixing bugs, so that you can both demonstrate that the fix works,
+and prevent future changes from undoing your work.
+
+For unit testing, we use
 `testthat`; you will find tests under `tests`, with a file dedicated to each
 function, following the convention `test_my_function.R` for naming files. When
-creating tests, try to make use built-in datasets, rather than adding data files
+creating tests, try to make use of built-in datasets, rather than adding data files
 to the package.
-Ideally, the body of your Pull Request will include the phrase `Fixes
-#issue-number`, where `issue_number` is the number on Github. In this way, your
+Ideally, the body of your Pull Request will include the phrase 
+`Fixes #issue-number`, where `issue_number` is the number on Github. In this way, your
 Pull Request will be automatically linked to the issue, and the issue will be
 closed when the Pull Request is merged in.
 For user-facing changes, add a bullet to the top of `NEWS.md` (i.e. just below
-the first header). Follow the style described in
+the first header). 
+
+Plese follow the coding style described in
 <https://style.tidyverse.org/news.html>.
-Our continuous integration checks that the Pull Request does not reduce test
+Our continuous integration checks for style, as well as ensuring that the 
+Pull Request does not reduce test
 coverage.
 
 ### Code style
@@ -100,5 +107,6 @@ an explanation to your new code.
 
 ## Code of Conduct
 Please read the [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md), which is based on the one from the tidyverse. By contributing to this project you agree to abide
+Conduct](CODE_OF_CONDUCT.md), which is based on the one from the tidyverse. 
+By contributing to this project you agree to abide
 by its terms.
