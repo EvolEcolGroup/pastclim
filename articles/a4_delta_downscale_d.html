@@ -69,7 +69,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>delta downscaling</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/v2.2.0/vignettes/a4_delta_downscale_d.Rmd" class="external-link"><code>vignettes/a4_delta_downscale_d.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/EvolEcolGroup/pastclim/blob/main/vignettes/a4_delta_downscale_d.Rmd" class="external-link"><code>vignettes/a4_delta_downscale_d.Rmd</code></a></small>
       <div class="d-none name"><code>a4_delta_downscale_d.Rmd</code></div>
     </div>
 
@@ -122,7 +122,7 @@ the Beyer2020 dataset) as our low resolution model reconstructions. We
 start by extracting monthly temperature for northern Europe for both
 datasets:</p>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.8.27</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.8.32</span></span></code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="va">tavg_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
@@ -153,7 +153,7 @@ temperature in January. So, we first need to extract the
 <span><span class="co">#&gt; min values  :     -23.3037052,      -15.498360,      -11.794130,       -8.754138,       -9.613334 </span></span>
 <span><span class="co">#&gt; max values  :      -0.1343476,        3.690956,        6.295014,        7.745749,        6.616667 </span></span>
 <span><span class="co">#&gt; unit        : degrees Celsius, degrees Celsius, degrees Celsius, degrees Celsius, degrees Celsius </span></span>
-<span><span class="co">#&gt; time (years): -18050 to 1950</span></span></code></pre></div>
+<span><span class="co">#&gt; time (years): -18050 to 1950 (2 steps)</span></span></code></pre></div>
 <p>And we can now plot it:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -272,7 +272,7 @@ reconstructions:</p>
 <span><span class="co">#&gt; names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0 </span></span>
 <span><span class="co">#&gt; min values  :    -10.403500,     -10.40350,    -10.403500,     -9.289666,    -10.300500 </span></span>
 <span><span class="co">#&gt; max values  :      1.350215,       4.70648,      7.546785,      8.997520,      7.445105 </span></span>
-<span><span class="co">#&gt; time (years): -18050 to 1950</span></span></code></pre></div>
+<span><span class="co">#&gt; time (years): -18050 to 1950 (2 steps)</span></span></code></pre></div>
 <p>Let’s inspect the resulting data:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/panel.html" class="external-link">panel</a></span><span class="op">(</span><span class="va">model_downscaled</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">model_downscaled</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
