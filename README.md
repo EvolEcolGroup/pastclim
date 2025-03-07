@@ -4,10 +4,9 @@
 
 [![R-CMD-check main](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/main?label=main&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
 [![R-CMD-check dev](https://img.shields.io/github/checks-status/EvolEcolGroup/pastclim/dev?label=dev&logo=GitHub)](https://github.com/EvolEcolGroup/pastclim/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/branch/main/graph/badge.svg?token=NflUsWlnQR)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
+[![Codecov](https://codecov.io/gh/EvolEcolGroup/pastclim/graph/badge.svg)](https://app.codecov.io/gh/EvolEcolGroup/pastclim)
 [![CRAN status](https://www.r-pkg.org/badges/version/pastclim)](https://CRAN.R-project.org/package=pastclim)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/pastclim)](https://github.com/r-hub/cranlogs.app)
-
 <!-- badges: end -->
 
 This `R` library is designed to provide an easy way to extract and
