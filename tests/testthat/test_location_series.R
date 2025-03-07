@@ -95,7 +95,7 @@ test_that("location_series", {
       bio_variables = c("bio01", "bio12"),
       dataset = "Krapp2021"
     ),
-    "variable \\(bio01, bio12\\) not yet downloaded"
+    regexp = "variable\\(s\\) \\(bio01, bio12\\) not yet downloaded"
   )
 
   # test if we use a dataframe missing some coordinates
