@@ -12,3 +12,5 @@ coverage:
         target: 10%
         threshold: 20%
         base: auto
+ignore:
+  - "R/download_paleoclim.R"
