@@ -14,3 +14,5 @@ coverage:
         base: auto
 ignore:
   - "R/download_paleoclim.R"
+  - "R/bathy_to_spatraster.R"
+  - "R/download_etopo_subset.R"
