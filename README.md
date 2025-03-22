@@ -10,9 +10,10 @@
 <!-- badges: end -->
 
 This `R` library is designed to provide an easy way to extract and
-manipulate palaeoclimate reconstructions for ecological and
-anthropological analyses. It is also able to handle time series of future
-reconstructions.
+manipulate climate data for ecological and
+anthropological analyses.  The package gives access to multiple datasets of 
+present observations, palaeoclimate reconstructions, and future projections 
+from multiple climate models.
 
 The functionalities of `pastclim` are described in [Leonardi et al.
 (2023)](https://doi.org/10.1111/ecog.06481). Please cite it if you use
