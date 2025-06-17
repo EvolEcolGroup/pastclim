@@ -43,12 +43,37 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
 
   # and now download the files (so the url is actually a local file)
   worldclim_url <- file.path(worldclim_dir, basename(download_url))
-  download_res <- curl::multi_download(download_url,
-    destfiles = worldclim_url
-  )
+  # extract the resolution from the dataset name 
+  resolution <- sub(".*_(\\d+\\.?\\d*)m$", "\\1", dataset)
+  
+  if (as.numeric(resolution) > 5){
+    download_res <- curl::multi_download(download_url,
+                                         destfiles = worldclim_url
+    )
+  } else {
+    # create a list to store the results 
+    download_res <- data.frame(
+      url = character(length(download_url)),
+      success = logical(length(download_url))
+    )
+    
+    
+    for (i in seq_along(download_url)){
+      download_res$url[i] <- curl::curl_download(download_url[i],
+                                          destfile = worldclim_url[i],
+                                          quiet = FALSE
+      )
+      download_res$success[i]<- file.exists(worldclim_url[i])
+    }
+  }
+  
+  # download_res <- curl::multi_download(download_url,
+  #    destfiles = worldclim_url
+  #  )
+  
   if (any(!download_res$success)) {
-    print(download_res[!download_res$success,])
-    stop("something went wrong downloading the data; try again")
+     print(download_res[!download_res$success,])
+     stop("something went wrong downloading the data; try again")
   }
 
 
