@@ -1,10 +1,18 @@
-path <- "/media/andrea/Elements/resolve2017/"
+#path <- "/media/andrea/Elements/resolve2017/"
+path <- normalizePath("~/project_temp/resolve2017/")
 # create the path if it does not exist
 if (!dir.exists(path)) {
   dir.create(path)
 }
-# download the resolve dataset
-# download.file("https://storage.googleapis.com/teow2016/Ecoregions2017.zip", destfile = file.path(path, "Ecoregions2017.zip"))
+file_name <- "Ecoregions2017.zip"
+# check if the file exists
+if (!file.exists(file.path(path, file_name))) {
+  # if not, download it
+  download.file(
+    "https://storage.googleapis.com/teow2016/Ecoregions2017.zip",
+    destfile = file.path(path, file_name)
+  )
+}
 
 # read the zipped file
 ecoregions <- terra::vect(paste0("/vsizip/", file.path(path, "Ecoregions2017.zip")))
@@ -14,8 +22,8 @@ worldclim_pres <- pastclim::region_slice(
   dataset = "WorldClim_2.1_10m"
 )
 ecoregions_rast <- terra::rast(terra::ext(worldclim_pres),
-  resolution = terra::res(worldclim_pres),
-  crs = terra::crs(worldclim_pres)
+                               resolution = terra::res(worldclim_pres),
+                               crs = terra::crs(worldclim_pres)
 )
 
 # rasterise the biomes at the resolutions of Worldclim
@@ -36,10 +44,10 @@ time(ecoregions_rast, "years") <- time(worldclim_pres)
 # now save this
 ncdf_filename <- file.path(path, "ecoregions_1985.nc")
 terra::writeCDF(ecoregions_rast,
-  varname = "biome",
-  longname = "biome from RESOLVE Ecoregions 2017",
-  filename = ncdf_filename, prec = "integer",
-  overwrite = TRUE
+                varname = "biome",
+                longname = "biome from RESOLVE Ecoregions 2017",
+                filename = ncdf_filename, prec = "integer",
+                overwrite = TRUE
 )
 # fix a few things in the netcdf file
 nc_in <- ncdf4::nc_open(ncdf_filename, write = TRUE)
@@ -50,8 +58,8 @@ format_line <- function(x) {
   paste0(paste(x, collapse = "  "), "; ")
 }
 ncdf4::ncatt_put(nc_in,
-  varid = "biome", attname = "biomes",
-  attval = paste(apply(ecoregions_meta[[1]], 1, format_line), collapse = "")
+                 varid = "biome", attname = "biomes",
+                 attval = paste(apply(ecoregions_meta[[1]], 1, format_line), collapse = "")
 )
 ncdf4::nc_close(nc_in)
 
