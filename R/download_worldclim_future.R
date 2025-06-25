@@ -47,7 +47,7 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
     destfiles = worldclim_url
   )
   if (any(!download_res$success)) {
-    print(download_res[!download_res$success,])
+    print(download_res[!download_res$success, ])
     stop("something went wrong downloading the data; try again")
   }
 
