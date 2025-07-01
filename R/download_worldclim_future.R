@@ -72,8 +72,8 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
   #  )
   
   if (any(!download_res$success)) {
-     print(download_res[!download_res$success,])
-     stop("something went wrong downloading the data; try again")
+    print(download_res[!download_res$success, ])
+    stop("something went wrong downloading the data; try again")
   }
 
 
