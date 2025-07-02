@@ -12,7 +12,6 @@ set_data_path(
 ################################################################################
 
 testthat::test_that("get biome classes", {
-
   distance_spatrast <- distance_from_sea(
     time_bp = -10000,
     dataset = "Example"
