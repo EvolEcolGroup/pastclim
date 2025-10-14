@@ -82,6 +82,42 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
             destfile = file.path(get_data_path(), file_details$file_name),
             quiet = FALSE
           )
+        }
+        # if hyde swap dates
+        if (dataset == "HYDE_3.3_baseline") {
+          # read in dataset with ncdf4
+          hyde_nc <- ncdf4::nc_open(file.path(
+            get_data_path(),
+            file_details$file_name
+          ))
+          hyde_time_nc <- ncdf4::ncvar_get(hyde_nc, "time")
+          # check if unsorted dates
+          if (is.unsorted(hyde_time_nc)) {
+            stop("Dates in HYDE dataset are unsorted,
+                     please file an issue.")
+          } else {
+            hyde_terra <- terra::rast(file.path(
+              get_data_path(),
+              file_details$file_name
+            ))
+            hyde_terra_time <- terra::time(hyde_terra)
+            # check if unsorted dates
+            if (is.unsorted(hyde_terra_time)) {
+              # sort dates
+              hyde_terra_time_sorted <- sort(hyde_terra_time)
+              # replace dates in terra object
+              terra::time(hyde_terra) <- hyde_terra_time_sorted
+              # write out the sorted file
+              terra::writeCDF(hyde_terra,
+                filename = file.path(
+                  get_data_path(),
+                  file_details$file_name
+                ),
+                overwrite = TRUE
+              )
+            }
+          }
+          # check if unsorted dates
         } else {
           # we use a custom download function if the files have to be converted
           # locally
