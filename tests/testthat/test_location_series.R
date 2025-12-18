@@ -46,6 +46,26 @@ test_that("location_series", {
     dataset = "Example"
   )
   expect_true(nrow(locations_ts) == 12)
+  
+  # do the same for time-ce
+  locations_ts_ce <- location_series(
+    x = locations[, c("longitude", "latitude")],
+    time_ce = c(-20000, -10000, -5000)+1950,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  expect_true(nrow(locations_ts_ce) == 12)
+  # test that time_ce is a column in the output
+  expect_true("time_ce" %in% names(locations_ts_ce))
+  # test that time_bp is not a column in the output
+  expect_false("time_bp" %in% names(locations_ts_ce))
+  # test that the values are the same as when using time_bp
+  expect_equal(
+    locations_ts$bio01,
+    locations_ts_ce$bio01
+  )
+  
+  
 
   locations_ts <- location_series(
     x = locations[, c("longitude", "latitude")],

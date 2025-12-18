@@ -79,19 +79,7 @@ location_series <-
     if (is.null(time_bp)) {
       time_bp <- time_bp(climate_brick)
     }
-#     
-# 
-#     
-#     
-#     # if we are using standard datasets, check whether a variables exists
-#     # and get the times
-#     if (dataset != "custom") {
-#       check_var_downloaded(bio_variables, dataset)
-# #      times <- get_time_bp_steps(dataset = dataset, path_to_nc = path_to_nc)
-#     } else { # else check that the variables exist in the custom nc
-#       check_var_in_nc(bio_variables, path_to_nc)
-# #      times <- get_time_bp_steps(dataset = "custom", path_to_nc = path_to_nc)
-#     }
+
     time_bp_i <- time_bp_to_i_series(
       time_bp = time_bp,
       time_steps = times
@@ -145,6 +133,11 @@ location_series <-
     
     
     # TODO if we had time_ce, we should convert back from time_bp
+    if (!is.null(time_ce)) {
+      location_ts$time_ce <- location_ts$time_bp + 1950
+      # remove the time_bp column
+      location_ts <- location_ts[, !names(location_ts) %in% "time_bp"]
+    }
 
     return(location_ts[, !names(location_ts) %in% "time_bp_slice"])
   }
