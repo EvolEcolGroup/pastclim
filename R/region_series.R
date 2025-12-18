@@ -104,22 +104,27 @@ region_series <-
         this_var_longname <- NULL
         this_var_units <- NULL
       }
-      # figure out the time indeces the first time we run this
-      if (is.null(time_index)) {
-        # as we have the file name, we can us the same code for custom and
-        # standard datasets.
-        times <- get_time_bp_steps(dataset = "custom", path_to_nc = this_file)
-        time_index <- time_bp_to_i_series(
-          time_bp = time_bp,
-          time_steps = times
-        )
-      }
+
       # retrieve time axis for virtual file
       var_brick <- pastclim_rast(
         x = this_file, bio_var_orig = this_var_orig,
         bio_var_pastclim = this_var, var_longname = this_var_longname,
         var_units = this_var_units
       )
+      
+      # figure out the time indeces the first time we run this
+      if (is.null(time_index)) {
+        # get times from the var_brick
+        times <- time_bp(var_brick)
+        # convert it to indeces
+        time_index <- time_bp_to_i_series(
+          time_bp = time_bp,
+          time_steps = times
+        )
+      }
+      
+      
+      
       # subset to time steps
       if (!is.null(time_bp)) {
         var_brick <- terra::subset(var_brick, subset = time_index)
