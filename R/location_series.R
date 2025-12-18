@@ -120,7 +120,7 @@ location_series <-
     # )
 
     # now simply wrap around location_slice_from_region_series
-    location_ts <- location_slice_from_region_series(
+    location_ts <- location_slice_from_region_series_new(
       x = x,
       time_bp = time_bp,
       time_ce = NULL,

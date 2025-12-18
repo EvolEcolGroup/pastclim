@@ -7,13 +7,13 @@
 bathy_to_spatraster(bathy)
 }
 \arguments{
-\item{bathy}{a \code{\link[marmap:as.bathy]{marmap::bathy}} to convert}
+\item{bathy}{a \code{marmap::bathy} to convert}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the relief for the chosen region
 }
 \description{
-This function converts a \code{\link[marmap:as.bathy]{marmap::bathy}} object to
+This function converts a \code{marmap::bathy} object to
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}.
 }
 \keyword{internal}

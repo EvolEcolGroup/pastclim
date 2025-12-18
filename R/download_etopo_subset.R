@@ -8,7 +8,7 @@
 #' fly from the NOAA server. If you plan to use the ETOPO2022 dataset
 #' extensively, it is worthwhile downloading it permanently to your computer
 #' with [download_etopo()], but beware that it is a large file (>1Gb). This
-#' function uses [marmap::getNOAA.bathy()] to download the data, and then
+#' function uses `marmap::getNOAA.bathy()` to download the data, and then
 #' converts them into a [`terra::SpatRaster`] formatted to be compatible with
 #' `pastclim`. NOTE: this function does not save the relief, it returns a
 #' [`terra::SpatRaster`]. If you plan to reuse this relief multiple times, it
@@ -17,7 +17,7 @@
 #' @param rast_template a [`terra::SpatRaster`] providing the extent and
 #'   resolution to be downloaded. This raster needs to have identical vertical
 #'   and horizontal resolution, and standard lat/long projection.
-#' @param ... additional parameters to be passed to [marmap::getNOAA.bathy()] to
+#' @param ... additional parameters to be passed to `marmap::getNOAA.bathy()` to
 #'   customise how files are stored. See the manpage for that function for
 #'   details
 #' @returns a [`terra::SpatRaster`] with the relief for the chosen region
