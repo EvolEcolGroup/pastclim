@@ -63,7 +63,7 @@ location_slice <-
       path_to_nc = path_to_nc
     )
     # now simply wrap around location_slice_from_region_series
-    location_slice_from_region_series_new(
+    location_slice_from_region_series(
       x = x,
       time_bp = time_bp,
       time_ce = time_ce,

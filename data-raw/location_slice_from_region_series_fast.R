@@ -41,7 +41,7 @@
 #' @returns a data.frame with the climatic variables of interest.
 #' @export
 
-location_slice_from_region_series_new <- # nolint
+location_slice_from_region_series <- # nolint
   function(x,
            time_bp = NULL,
            time_ce = NULL,
