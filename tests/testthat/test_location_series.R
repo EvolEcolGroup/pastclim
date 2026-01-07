@@ -46,11 +46,11 @@ test_that("location_series", {
     dataset = "Example"
   )
   expect_true(nrow(locations_ts) == 12)
-  
+
   # do the same for time-ce
   locations_ts_ce <- location_series(
     x = locations[, c("longitude", "latitude")],
-    time_ce = c(-20000, -10000, -5000)+1950,
+    time_ce = c(-20000, -10000, -5000) + 1950,
     bio_variables = c("bio01", "bio12"),
     dataset = "Example"
   )
@@ -64,8 +64,7 @@ test_that("location_series", {
     locations_ts$bio01,
     locations_ts_ce$bio01
   )
-  
-  
+
 
   locations_ts <- location_series(
     x = locations[, c("longitude", "latitude")],

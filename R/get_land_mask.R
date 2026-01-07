@@ -68,7 +68,6 @@ get_land_mask <- function(time_bp = NULL, time_ce = NULL, dataset) {
   ), terra::nlyr(land_mask))
 
 
-
   if (is.null(time_ce)) {
     names(land_mask) <- paste("land_mask", time_bp(land_mask), sep = "_")
   } else {

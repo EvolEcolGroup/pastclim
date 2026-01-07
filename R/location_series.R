@@ -71,10 +71,10 @@ location_series <-
       dataset = dataset,
       path_to_nc = path_to_nc
     )
-    
+
     # get all available times
     times <- time_bp(climate_brick)
-    
+
     # if time_bp is NULL, get all times from the region series
     if (is.null(time_bp)) {
       time_bp <- time_bp(climate_brick)
@@ -111,13 +111,6 @@ location_series <-
 
     # now copy over the times to match the coordinates
     time_bp <- rep(time_bp, each = n_loc)
-    # # and now feed the info to location_slice
-    # location_ts <- location_slice(
-    #   x = x, time_bp = time_bp, coords = coords, bio_variables = bio_variables,
-    #   dataset = dataset, path_to_nc = path_to_nc,
-    #   nn_interpol = nn_interpol, buffer = buffer,
-    #   directions = directions
-    # )
 
     # now simply wrap around location_slice_from_region_series
     location_ts <- location_slice_from_region_series(
@@ -130,8 +123,7 @@ location_series <-
       buffer = buffer,
       directions = directions
     )
-    
-    
+
     # TODO if we had time_ce, we should convert back from time_bp
     if (!is.null(time_ce)) {
       location_ts$time_ce <- location_ts$time_bp + 1950
@@ -141,7 +133,6 @@ location_series <-
 
     return(location_ts[, !names(location_ts) %in% "time_bp_slice"])
   }
-
 
 
 #' Extract a time series of bioclimatic variables for one or more locations.

@@ -78,7 +78,7 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
 
 
   # create a vrt for each variable
-  for (i in seq_len(length(band_vector))) {
+  for (i in seq_along(band_vector)) {
     vrt_path <- file.path(get_data_path(), paste0(
       dataset, "_",
       band_vector[i], "_v",

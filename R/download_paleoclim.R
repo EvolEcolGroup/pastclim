@@ -47,7 +47,7 @@ download_paleoclim <- function(dataset, bio_var, filename = NULL) {
   paleoclim_path[1] <- file.path(paleoclim_path[1], resolution)
   paleoclim_path[8] <- file.path(paleoclim_path[8], resolution)
   # create a vrt for each variable
-  for (i in seq_len(length(band_vector))) {
+  for (i in seq_along(band_vector)) {
     # build the vsizip paths
     paleoclim_vsizip <- paste0("/vsizip/", file.path(
       paleoclim_path,

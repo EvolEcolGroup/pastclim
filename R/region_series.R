@@ -111,7 +111,7 @@ region_series <-
         bio_var_pastclim = this_var, var_longname = this_var_longname,
         var_units = this_var_units
       )
-      
+
       # figure out the time indeces the first time we run this
       if (is.null(time_index)) {
         # get times from the var_brick
@@ -122,9 +122,8 @@ region_series <-
           time_steps = times
         )
       }
-      
-      
-      
+
+
       # subset to time steps
       if (!is.null(time_bp)) {
         var_brick <- terra::subset(var_brick, subset = time_index)

@@ -161,7 +161,6 @@ location_slice_from_region_series <- # nolint
         )
         # convert from matrix (one row per location) to data.frame where first
         # column is focal location, second column is id of each neighbour
-        n_neighbours <- ncol(neighbours_list)
         neighbours_list <- data.frame(
           focal_id = rep(as.numeric(rownames(neighbours_list)),
             each = ncol(neighbours_list)
@@ -170,7 +169,7 @@ location_slice_from_region_series <- # nolint
           layer = rep(time_indeces[loc_id_to_move],
             each = ncol(neighbours_list)
           ),
-          unique_id <- rep(seq_len(nrow(neighbours_list)),
+          unique_id = rep(seq_len(nrow(neighbours_list)),
             each = ncol(neighbours_list)
           )
         )
@@ -211,7 +210,6 @@ location_slice_from_region_series <- # nolint
               neighbours_mean
           }
         }
-        
       }
     }
 
