@@ -59,6 +59,7 @@ test_that("location_slice", {
     dataset = "Example", nn_interpol = TRUE
   )
   # checked value by hand
+  warning(this_climate_biome$biome)
   expect_true(as.numeric(this_climate_biome$biome[4]) == 18)
 
   # now use the full dataframe for pretty labelling
