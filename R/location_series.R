@@ -124,7 +124,7 @@ location_series <-
       directions = directions
     )
 
-    # TODO if we had time_ce, we should convert back from time_bp
+    # if we had time_ce, we should convert back from time_bp
     if (!is.null(time_ce)) {
       location_ts$time_ce <- location_ts$time_bp + 1950
       # remove the time_bp column

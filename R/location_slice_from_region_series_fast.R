@@ -131,7 +131,7 @@ location_slice_from_region_series <- # nolint
         y = locations_data[coords],
         layer = time_indeces
       )
-      # for each bio_variable (the list element), extract the value  column from
+      # for each bio_variable (the list element), extract the value column from
       # the data.frame and assign to locations_data
       for (var in bio_variables) {
         locations_data[[var]] <- locations_climate[[var]]$value
@@ -188,7 +188,7 @@ location_slice_from_region_series <- # nolint
           )
 
         # for each variable, compute the mean across neighbours
-        # and replace the vales in locations_data
+        # and replace the values in locations_data
         for (i_var in bio_variables) {
           if (i_var == "biome") {
             # for factors, compute the mode across neighbours
