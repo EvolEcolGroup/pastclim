@@ -56,7 +56,7 @@ names to layers in the raster:
 ``` r
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.8.91
+#> terra 1.8.86
 time_bp(bio01) <- c(0, -100, -200)
 names(bio01) <- paste("bio01", terra::time(bio01), sep = "_")
 ```

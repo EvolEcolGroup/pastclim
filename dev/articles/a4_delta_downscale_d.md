@@ -47,7 +47,7 @@ start by extracting monthly temperature for northern Europe for both
 datasets:
 
     #> Loading required package: terra
-    #> terra 1.8.91
+    #> terra 1.8.86
 
 ``` r
 library(pastclim)

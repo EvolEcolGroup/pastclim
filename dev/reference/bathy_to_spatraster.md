@@ -1,8 +1,6 @@
 # Cast `bathy` to `SpatRaster`
 
-This function converts a
-[`marmap::bathy`](https://rdrr.io/pkg/marmap/man/as.bathy.html) object
-to a
+This function converts a `marmap::bathy` object to a
 [`terra::SpatRaster`](https://rspatial.github.io/terra/reference/SpatRaster-class.html).
 
 ## Usage
@@ -15,8 +13,7 @@ bathy_to_spatraster(bathy)
 
 - bathy:
 
-  a [`marmap::bathy`](https://rdrr.io/pkg/marmap/man/as.bathy.html) to
-  convert
+  a `marmap::bathy` to convert
 
 ## Value
 
