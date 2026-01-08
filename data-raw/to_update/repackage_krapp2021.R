@@ -158,6 +158,8 @@ monthly_dirs <- file.path(wkdir, "original_files", monthly_dirs)
 # ncatted -a pastclim_version,global,m,c,'1.4.0' Krapp2021_prec_monthly_v1.4.0.nc
 
 
+
+
 # NOTE this needs to be changed to work for uncut as well.
 for (file_id in list.files("./repackaged/cut", full.names = TRUE)) {
   ncatted(paste0("-a author,global,d,, -a history,global,d,, -a description,global,d,, -a command_line,global,d,, -h ", file_id))

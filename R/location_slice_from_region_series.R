@@ -55,10 +55,10 @@ location_slice_from_region_series <- # nolint
     bio_variables <- names(region_series)
 
     time_bp <- check_time_vars(time_bp = time_bp, time_ce = time_ce)
-    # boolean whether we will need to read time_ce instead of time_bp
-    read_ce <- FALSE
+    # boolean whether we will need to readd time_ce instead of time_bp
+    readd_ce <- FALSE
     if (any(!is.null(time_ce), "time_ce" %in% names(x))) {
-      read_ce <- TRUE
+      readd_ce <- TRUE
     }
 
     # if we have a data.frame
@@ -123,97 +123,78 @@ location_slice_from_region_series <- # nolint
       time_bp = locations_data$time_bp, time_steps = times
     )
     locations_data$time_bp_slice <- times[time_indeces]
+    unique_times <- unique(locations_data$time_bp_slice)
 
-    # if we are not using a buffer, we try to get all the values from
-    # specific locations directly
-    if (!buffer) {
-      locations_climate <- terra::extract(climate_brick,
-        y = locations_data[coords],
-        layer = time_indeces
+    for (i_time in unique_times) {
+      this_slice <- slice_region_series(climate_brick,
+        time_bp = i_time
       )
-      # for each bio_variable (the list element), extract the value column from
-      # the data.frame and assign to locations_data
-      for (var in bio_variables) {
-        locations_data[[var]] <- locations_climate[[var]]$value
-      }
-    } else {
-      # if we are using a buffer, set to NA as we will compute them later
-      for (var in bio_variables) {
-        locations_data[[var]] <- NA
-      }
-    }
 
-    # if we interpolate or use a buffer, we have to find the incomplete cases
-    if (nn_interpol || buffer) {
-      loc_id_to_move <- which(!stats::complete.cases(locations_data))
-      # only do something if we have some locations for which we have no data
-      if (length(loc_id_to_move) != 0) {
-        # for each id, get the appropriate list of neighbours
-        rast_id_to_move <- terra::cellFromXY(
-          climate_brick[[1]],
-          as.matrix(coords_df[loc_id_to_move, ])
+      this_slice_indeces <- which(locations_data$time_bp_slice == i_time)
+      if (!buffer) { # get the specific values for those locations
+        this_climate <- terra::extract(
+          x = this_slice,
+          y = locations_data[locations_data$time_bp_slice == i_time, coords]
         )
-        neighbours_list <- terra::adjacent(
-          climate_brick[[1]],
-          rast_id_to_move,
-          directions = directions,
-          pairs = FALSE
-        )
-        # convert from matrix (one row per location) to data.frame where first
-        # column is focal location, second column is id of each neighbour
-        neighbours_list <- data.frame(
-          focal_id = rep(as.numeric(rownames(neighbours_list)),
-            each = ncol(neighbours_list)
-          ),
-          neighbour_id = as.vector(t(neighbours_list)),
-          layer = rep(time_indeces[loc_id_to_move],
-            each = ncol(neighbours_list)
-          ),
-          unique_id = rep(seq_len(nrow(neighbours_list)),
-            each = ncol(neighbours_list)
-          )
-        )
-        # there is a BUG terra does not seem to cope with using layer when
-        # extracting from sds if y is cellID, y has to be a data.frame
-        neighbours_coords <- as.data.frame(terra::xyFromCell(
-          climate_brick[[1]],
-          neighbours_list$neighbour_id
-        ))
-        # extract the climate for all neighbours
-        neighbours_values <-
-          terra::extract(
-            x = climate_brick,
-            y = neighbours_coords,
-            layer = neighbours_list$layer
-          )
+        # factors don't behave nicely when adding new elements, cast to
+        # character
+        if ("biome" %in% names(this_climate)) {
+          this_climate$biome <- as.character(this_climate$biome)
+        }
+        # sort out the indexing here
+        locations_data[locations_data$time_bp_slice == i_time, bio_variables] <-
+          this_climate[
+            ,
+            bio_variables
+          ]
+      } else { # set to NA as we will compute them with a buffer
+        locations_data[this_slice_indeces, ] <- NA
+      }
 
-        # for each variable, compute the mean across neighbours
-        # and replace the values in locations_data
-        for (i_var in bio_variables) {
-          if (i_var == "biome") {
-            # for factors, compute the mode across neighbours
-            neighbours_mode <- tapply(
-              neighbours_values[[i_var]]$value,
-              neighbours_list$unique_id,
-              mode
-            )
-            locations_data[loc_id_to_move, i_var] <-
-              neighbours_mode
+      if (nn_interpol || buffer) {
+        locations_to_move <- this_slice_indeces[
+          this_slice_indeces %in%
+            which(!stats::complete.cases(locations_data))
+        ]
+        if (length(locations_to_move) == 0) {
+          next
+        }
+        for (i in locations_to_move) {
+          if (inherits(x, "data.frame")) {
+            cell_id <-
+              terra::cellFromXY(this_slice, as.matrix(coords_df[
+                i,
+              ]))
           } else {
-            neighbours_mean <- tapply(
-              neighbours_values[[i_var]]$value,
-              neighbours_list$unique_id,
-              mean,
-              na.rm = TRUE
-            )
-            locations_data[loc_id_to_move, i_var] <-
-              neighbours_mean
+            cell_id <- coords_df[i]
           }
+          neighbours_ids <-
+            terra::adjacent(this_slice, cell_id,
+              directions = directions, pairs = FALSE
+            )
+
+          neighbours_values <-
+            terra::extract(
+              x = this_slice,
+              y = neighbours_ids[1, ]
+            ) # [, bio_variables]
+
+          neighbours_values_mean <- colMeans(
+            neighbours_values[, !names(neighbours_values) %in% "biome",
+              drop = FALSE
+            ],
+            na.rm = TRUE
+          )
+          if ("biome" %in% bio_variables) {
+            neighbours_values_mean["biome"] <-
+              mode(as.character(neighbours_values[, "biome"]))
+          }
+          locations_data[i, bio_variables] <-
+            neighbours_values_mean[bio_variables]
         }
       }
     }
-
-    # is.nan has no method for a data.frame
+    # is.nan has not method for a data.frame
     # nolint start
     is.nan.data.frame <- function(x) {
       do.call(cbind, lapply(x, is.nan))
@@ -224,7 +205,7 @@ location_slice_from_region_series <- # nolint
 
     locations_data <- locations_data[order(orig_id), ]
 
-    if (read_ce) {
+    if (readd_ce) {
       locations_data$time_ce <- locations_data$time_bp + 1950
       locations_data$time_ce_slice <- locations_data$time_bp_slice + 1950
       locations_data <- locations_data[

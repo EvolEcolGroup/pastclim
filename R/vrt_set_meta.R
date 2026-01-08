@@ -37,7 +37,7 @@ vrt_set_meta <- function(vrt_path, description, time_vector, time_bp = TRUE) {
     )
     return(FALSE)
   }
-  for (i_node in seq_along(band_nodes)) {
+  for (i_node in seq_len(length(band_nodes))) {
     # add a unique description label for this band (variable_time combination)
     xml2::xml_add_child(band_nodes[i_node], "Description",
       paste(description, time_vector[i_node], sep = "_"),

@@ -130,7 +130,7 @@ sample_rs_variable <- function(x, size, method = "random", replace = FALSE,
   # create list to store samples for each time step
   sample_list <- list()
   t_steps <- time_bp(x[1])
-  for (i in seq_along(size)) {
+  for (i in seq_len(length(size))) {
     if (size[i] > 0) {
       x_step <- slice_region_series(x, t_steps[i])
       # spatSample samples additional points to make sure it has enough points

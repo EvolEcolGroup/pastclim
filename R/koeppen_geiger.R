@@ -251,6 +251,7 @@ methods::setMethod(
 )
 
 
+
 #' @param filename filename to save the raster (optional).
 #' @rdname koeppen_geiger-methods
 #' @export

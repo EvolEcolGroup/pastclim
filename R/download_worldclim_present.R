@@ -64,7 +64,7 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
   }
 
   # create a vrt for each variable
-  for (i in seq_along(band_vector)) {
+  for (i in seq_len(length(band_vector))) {
     # build the vsizip paths
     if (!grepl("altitude", bio_var)) {
       worldclim_vsizip <- paste0("/vsizip/", file.path(
