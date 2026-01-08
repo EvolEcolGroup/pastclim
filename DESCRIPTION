@@ -1,7 +1,7 @@
 Package: pastclim
 Type: Package
 Title: Manipulate Time Series of Climate Reconstructions 
-Version: 2.2.0.9000
+Version: 2.2.0.9001
 Authors@R: c(
        person("Michela", "Leonardi", role = "aut"),
        person(c("Emily","Y."), "Hallet", role = "ctb"),
@@ -25,7 +25,7 @@ BugReports: https://github.com/EvolEcolGroup/pastclim/issues
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),

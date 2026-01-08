@@ -1,9 +1,9 @@
 #' Cast `bathy` to `SpatRaster`
 #'
-#' This function converts a [`marmap::bathy`][`marmap::as.bathy()`] object to
+#' This function converts a `marmap::bathy` object to
 #' a [`terra::SpatRaster`].
 #'
-#' @param bathy a [`marmap::bathy`][`marmap::as.bathy()`] to convert
+#' @param bathy a `marmap::bathy` to convert
 #' @returns a [`terra::SpatRaster`] with the relief for the chosen region
 #'
 #' @keywords internal

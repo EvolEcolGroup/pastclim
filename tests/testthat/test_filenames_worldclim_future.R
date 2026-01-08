@@ -28,7 +28,7 @@ test_that("filenames_worldclim_future are correct", {
   ]
   # nolint end
 
-  for (i in seq_len(length(target_datasets))) {
+  for (i in seq_along(target_datasets)) {
     bio_files <- filenames_worldclim_future(
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
@@ -42,7 +42,7 @@ test_that("filenames_worldclim_future are correct", {
     paste0("precipitation_", sprintf("%02d", 1:12))
   )
 
-  for (i in seq_len(length(target_datasets))) {
+  for (i in seq_along(target_datasets)) {
     bio_files <- filenames_worldclim_future(
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)

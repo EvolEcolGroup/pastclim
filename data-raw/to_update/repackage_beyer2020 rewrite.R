@@ -220,7 +220,6 @@ ncdf4::nc_close(nc_in)
 unlink("Beyer2020_monthly0*")
 
 
-
 ################################
 # Now remove ice sheets and internal seas
 

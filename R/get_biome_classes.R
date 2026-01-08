@@ -34,7 +34,7 @@ get_biome_classes <- function(dataset) {
     biomes_string <- biomes_string[-length(biomes_string)]
     biomes_string <- substr(biomes_string, 4, nchar(biomes_string))
     biome_categories <- data.frame(
-      id = seq_len(length(biomes_string)),
+      id = seq_along(biomes_string),
       category = biomes_string
     )
   }
