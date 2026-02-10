@@ -10,7 +10,7 @@ possible to get a list of all available datasets with:
 ``` r
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.8.86
+#> terra 1.8.93
 ```
 
 ``` r

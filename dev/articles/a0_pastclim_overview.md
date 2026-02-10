@@ -79,7 +79,7 @@ A list of all datasets available can be obtained by typing:
 ``` r
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.8.86
+#> terra 1.8.93
 get_available_datasets()
 #> Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m
 #> for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.
