@@ -213,6 +213,7 @@ location_slice_from_region_series <- # nolint
       }
     }
 
+
     # is.nan has no method for a data.frame
     # nolint start
     is.nan.data.frame <- function(x) {
@@ -236,8 +237,11 @@ location_slice_from_region_series <- # nolint
 
     # reintroduce the factor
     if ("biome" %in% bio_variables) {
-      locations_data$biome <- factor(locations_data$biome,
-        levels = levels(region_series$biome)[[1]]$category
+      biome_levels <- levels(region_series$biome)[[1]]$category
+      # get the levels from the numeric values
+      biome_numeric <- match(locations_data$biome, levels(region_series$biome)[[1]]$id)
+      locations_data$biome <- factor(biome_levels[biome_numeric],
+        levels = biome_levels
       )
     }
     return(locations_data)
