@@ -5,6 +5,8 @@ on:
     branches: [main, dev]
   pull_request:
     branches: [main, dev]
+  schedule: # this will automatically run once a week
+    - cron: "0 0 * * 0"
 
 name: R-CMD-check
 
