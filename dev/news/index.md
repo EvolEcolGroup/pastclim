@@ -2,6 +2,9 @@
 
 ## pastclim (development version)
 
+- improve the speed of
+  [`location_series()`](https://evolecolgroup.github.io/pastclim/dev/reference/location_series.md).
+
 ## pastclim 2.2.0
 
 CRAN release: 2025-02-23
