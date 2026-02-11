@@ -239,7 +239,8 @@ location_slice_from_region_series <- # nolint
     if ("biome" %in% bio_variables) {
       biome_levels <- levels(region_series$biome)[[1]]$category
       # get the levels from the numeric values
-      biome_numeric <- match(locations_data$biome, levels(region_series$biome)[[1]]$id)
+      biome_numeric <- match(locations_data$biome,
+                             levels(region_series$biome)[[1]]$id)
       locations_data$biome <- factor(biome_levels[biome_numeric],
         levels = biome_levels
       )
