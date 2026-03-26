@@ -16,7 +16,7 @@ test_that("filenames_chelsa_future are correct", {
     "0.5m",
     sep = "_"
   )
-  for (i in seq_len(length(target_datasets))) {
+  for (i in seq_along(target_datasets)) {
     bio_files <- filenames_chelsa_future(
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
@@ -29,7 +29,7 @@ test_that("filenames_chelsa_future are correct", {
     paste0("precipitation_", sprintf("%02d", 1:12))
   )
 
-  for (i in seq_len(length(target_datasets))) {
+  for (i in seq_along(target_datasets)) {
     bio_files <- filenames_chelsa_future(
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)

@@ -65,16 +65,19 @@ download_chelsa_trace21k <- function(dataset, bio_var, filename = NULL,
   download_url <- download_url[match(yr_id, file_yr_id)]
 
   # hack to deal with missing file in temperature_min_07
-  if (bio_var=="temperature_min_07"){
-    download_url[grep("CHELSA_TraCE21k_tasmin_7_-13_V1.0.tif",download_url)]<-
-      "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/tasmin/CHELSA_TraCE21k_tasmin_7_-12_V1.0.tif" #nolint
+  if (bio_var == "temperature_min_07") {
+    download_url[grep("CHELSA_TraCE21k_tasmin_7_-13_V1.0.tif", download_url,
+      fixed = TRUE
+    )] <-
+      "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/tasmin/CHELSA_TraCE21k_tasmin_7_-12_V1.0.tif" # nolint
   }
-  if (bio_var=="temperature_max_07"){
-    download_url[grep("CHELSA_TraCE21k_tasmax_7_-13_V1.0.tif",download_url)]<-
-      "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/tasmax/CHELSA_TraCE21k_tasmax_7_-12_V1.0.tif" #nolint
+  if (bio_var == "temperature_max_07") {
+    download_url[grep("CHELSA_TraCE21k_tasmax_7_-13_V1.0.tif", download_url,
+      fixed = TRUE
+    )] <-
+      "https://os.zhdk.cloud.switch.ch/chelsav1/chelsa_trace/tasmax/CHELSA_TraCE21k_tasmax_7_-12_V1.0.tif" # nolint
   }
-  
-  
+
   if (virtual) {
     if (!all(unlist(lapply(download_url, url_is_valid)))) {
       stop(
