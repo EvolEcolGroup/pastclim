@@ -32,3 +32,8 @@ CHELSA-TraCE21k – High resolution (1 km) downscaled transient temperature and
 precipitation data since the Last Glacial Maximum. Climate of the Past.
 \doi{10.5194/cp-2021-30}
 }
+\note{
+There is a missing time slice at -130 years BP for \code{temperature_min_07}
+and \code{temperature_max_07} on the CHELSA server. That timestep is replaced with
+-120 years BP in \code{pastclim} for those two variables.
+}
