@@ -339,6 +339,11 @@ NULL
 #' precipitation data since the Last Glacial Maximum. Climate of the Past.
 #' \doi{10.5194/cp-2021-30}
 #'
+#'
+#' @note There is a missing time slice at -1300 years BP for
+#'   `temperature_min_07` and `temperature_max_07` on the CHELSA server. That
+#'   timestep is replaced with
+#' -1200 years BP in `pastclim` for those two variables.
 #' @name CHELSA_trace21k_1.0
 NULL
 #> NULL
