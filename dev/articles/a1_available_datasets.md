@@ -10,7 +10,7 @@ possible to get a list of all available datasets with:
 ``` r
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.8.93
+#> terra 1.9.1
 ```
 
 ``` r
@@ -487,6 +487,13 @@ alphabetical order):
     #>      transient temperature and precipitation data since the Last
     #>      Glacial Maximum. Climate of the Past. doi:10.5194/cp-2021-30
     #>      <https://doi.org/10.5194/cp-2021-30>
+    #> 
+    #> Note:
+    #> 
+    #>      There is a missing time slice at -1300 years BP for
+    #>      'temperature_min_07' and 'temperature_max_07' on the CHELSA
+    #>      server. That timestep is replaced with -1200 years BP in
+    #>      'pastclim' for those two variables.
     #> 
     #> 
     #> #######################################################
