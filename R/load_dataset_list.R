@@ -13,6 +13,7 @@
 #' @keywords internal
 
 load_dataset_list <- function(on_cran = FALSE) {
+  browser()
   if (!on_cran) {
     config_dir <- tools::R_user_dir("pastclim", "config")
   } else {

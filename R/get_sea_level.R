@@ -6,34 +6,36 @@
 #' year ago).
 #'
 #' @param time_bp the time of interest
+#' @param dataset the dataset to use, either "spratt2016" or "clark2025"
 #' @returns a vector of sea levels in meters from present level
 #'
 #' @keywords internal
 
 
-get_sea_level <- function(time_bp) {
-  # get sea level from Spratt 2016
-  sea_level_info <- utils::read.table(
-    system.file("extdata/sea_level_spratt2016.txt",
-      package = "pastclim"
-    ),
-    header = TRUE
-  )
-  time_calkaBP <- -time_bp / 1000 # nolint
-  if (any(time_calkaBP < 0)) {
-    stop("this function only supports times in the past")
+get_sea_level <- function(time_bp, dataset = "spratt2016") {
+  dataset <- match.arg(dataset, c("spratt2016", "clark2025"))
+  if (dataset == "spratt2016") {
+    # check that time is not too old for the dataset
+    if (any(time_bp < -798000)) {
+      stop("spratt2016 only reached -798,000 years BP")
+    }
+    sea_level_info <- spratt2016
+  } else if (dataset == "clark2025") {
+    if (any(time_bp < -4882000)) {
+      stop("clark2025 only reached -4,882,000 years BP")
+    }
+    sea_level_info <- clark2025
   }
-  if (any(time_calkaBP > 798)) {
-    stop("the dataset of sea level reconstructions stops at 798ky BP")
-  }
+
+
   ## TODO this is not safe, we should be getting the closest values
   ## or even better interpolate
   sea_level <- stats::approx(
-    x = sea_level_info$age_calkaBP,
-    y = sea_level_info$SeaLev_longPC1,
-    xout = time_calkaBP
+    x = sea_level_info$time_bp,
+    y = sea_level_info$sea_level,
+    xout = time_bp
   )$y
   # rescale to have 0 for 0kBP
-  sea_level <- sea_level - sea_level_info$SeaLev_longPC1[1]
+  sea_level <- sea_level - sea_level_info$sea_level[sea_level_info$time_bp == 0]
   return(sea_level)
 }

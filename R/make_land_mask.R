@@ -16,20 +16,31 @@
 #'
 #' @param relief_rast a [`terra::SpatRaster`] with relief
 #' @param time_bp the time of interest
-#' @param sea_level sea level at the time of interest (if left to NULL, this is
-#'   computed using Spratt 2016)
+#' @param sea_level sea level at the time of interest. It can be set to
+#' "Spratt2016" (the default) or "Clark2025" to automatically compute the
+#' level from one of those two datasets.
+#' @sea_level_source 
 #' @returns a [`terra::SpatRaster`] of the land masks (with land as 1's and sea
 #'   as NAs), where the layers are different times
 #'
 #' @export
 
-make_land_mask <- function(relief_rast, time_bp, sea_level = NULL) {
-  if (is.null(sea_level)) {
-    sea_level <- get_sea_level(time_bp = time_bp)
-  } else { # check that we have as many sea level estimates as times
-    if (length(time_bp) != length(sea_level)) {
-      stop("time_bp and sea_level should have the same number of elements")
+make_land_mask <- function(relief_rast, time_bp, sea_level = "spratt2016") {
+  # if sea_level is a character, check that it is either spratt or clark
+  if (is.character(sea_level)) {
+    if (!sea_level %in% c("spratt2016", "clark2025")) {
+      stop("sea_level should be either 'spratt2016' or 'clark2025'")
     }
+    sea_level <- get_sea_level(time_bp = time_bp, dataset = sea_level)
+  }
+  
+  #now sea level should be numeric and the same length as time_bp
+  if (!is.numeric(sea_level)) {
+    stop("sea_level should be numeric")
+  }
+  
+  if (length(time_bp) != length(sea_level)) {
+      stop("time_bp and sea_level should have the same number of elements")
   }
   land_mask <- NULL
   for (i in seq_along(time_bp)) {
