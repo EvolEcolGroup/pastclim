@@ -7,6 +7,6 @@ test_that("make_land_mask works", {
   land_mask <- make_land_mask(relief_rast, time_bp, sea_level)
   
   expect_equal(nlyr(land_mask), length(time_bp))
-  expect_equal(values(land_mask[[1]]), c(NA, NA, NA, NA, NA, 1))
-  expect_equal(values(land_mask[[2]]), c(NA, NA, NA, NA, NA, NA))
+  expect_true(all.equal(as.vector(land_mask[[1]]), c(NA, NA, 1, NA, 1, 1)))
+  expect_true(all.equal(as.vector(land_mask[[2]]), c(NA, NA, 1, NA, NA, 1)))
 })

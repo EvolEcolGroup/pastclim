@@ -19,7 +19,6 @@
 #' @param sea_level sea level at the time of interest. It can be set to
 #' "Spratt2016" (the default) or "Clark2025" to automatically compute the
 #' level from one of those two datasets.
-#' @sea_level_source 
 #' @returns a [`terra::SpatRaster`] of the land masks (with land as 1's and sea
 #'   as NAs), where the layers are different times
 #'

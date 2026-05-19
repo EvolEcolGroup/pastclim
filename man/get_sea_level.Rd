@@ -4,10 +4,12 @@
 \alias{get_sea_level}
 \title{Get sea level estimate}
 \usage{
-get_sea_level(time_bp)
+get_sea_level(time_bp, dataset = "spratt2016")
 }
 \arguments{
 \item{time_bp}{the time of interest}
+
+\item{dataset}{the dataset to use, either "spratt2016" or "clark2025"}
 }
 \value{
 a vector of sea levels in meters from present level

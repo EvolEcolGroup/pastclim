@@ -4,15 +4,16 @@
 \alias{make_land_mask}
 \title{Create a land mask}
 \usage{
-make_land_mask(relief_rast, time_bp, sea_level = NULL)
+make_land_mask(relief_rast, time_bp, sea_level = "spratt2016")
 }
 \arguments{
 \item{relief_rast}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with relief}
 
 \item{time_bp}{the time of interest}
 
-\item{sea_level}{sea level at the time of interest (if left to NULL, this is
-computed using Spratt 2016)}
+\item{sea_level}{sea level at the time of interest. It can be set to
+"Spratt2016" (the default) or "Clark2025" to automatically compute the
+level from one of those two datasets.}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks (with land as 1's and sea

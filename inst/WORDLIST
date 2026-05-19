@@ -11,6 +11,7 @@ CMIP
 CSM
 Carnaval
 Chalki
+Codecov
 Doelman
 Dolan
 ESM
@@ -53,7 +54,6 @@ OSF
 PALEO
 PGEM
 Palaeo
-Palaeoclimate
 PaleoClim
 Paleoclim
 Pereira
@@ -88,13 +88,11 @@ ce
 cheatsheet
 chelsa
 ci
-codecov
+clark
 com
-config
 coords
 csv
 cv
-dir
 discretisation
 discretised
 doi
@@ -128,6 +126,7 @@ paleoclimate
 params
 prec
 sd
+spratt
 ssp
 subdatasets
 tempdir

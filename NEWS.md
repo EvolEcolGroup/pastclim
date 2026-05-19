@@ -2,6 +2,7 @@
 * improve the speed of `location_series()`.
 * fix for missing time step in CHELSA-TraCE21k (-1300 BP is missing for min
   and max temperature
+* Add Clark2025 as a possible sea level dataset.
 
 # pastclim 2.2.0
 * Add functions to perform delta downscale of climate data.
