@@ -4,7 +4,7 @@
 \alias{make_land_mask}
 \title{Create a land mask}
 \usage{
-make_land_mask(relief_rast, time_bp, sea_level = "spratt2016")
+make_land_mask(relief_rast, time_bp, sea_level = "Spratt2016")
 }
 \arguments{
 \item{relief_rast}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with relief}

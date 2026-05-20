@@ -24,22 +24,22 @@
 #'
 #' @export
 
-make_land_mask <- function(relief_rast, time_bp, sea_level = "spratt2016") {
+make_land_mask <- function(relief_rast, time_bp, sea_level = "Spratt2016") {
   # if sea_level is a character, check that it is either spratt or clark
   if (is.character(sea_level)) {
-    if (!sea_level %in% c("spratt2016", "clark2025")) {
-      stop("sea_level should be either 'spratt2016' or 'clark2025'")
+    if (!sea_level %in% c("Spratt2016", "Clark2025")) {
+      stop("sea_level should be either 'Spratt2016' or 'Clark2025'")
     }
     sea_level <- get_sea_level(time_bp = time_bp, dataset = sea_level)
   }
-  
-  #now sea level should be numeric and the same length as time_bp
+
+  # now sea level should be numeric and the same length as time_bp
   if (!is.numeric(sea_level)) {
     stop("sea_level should be numeric")
   }
-  
+
   if (length(time_bp) != length(sea_level)) {
-      stop("time_bp and sea_level should have the same number of elements")
+    stop("time_bp and sea_level should have the same number of elements")
   }
   land_mask <- NULL
   for (i in seq_along(time_bp)) {
