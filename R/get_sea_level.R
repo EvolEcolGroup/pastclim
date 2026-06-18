@@ -14,14 +14,17 @@
 
 get_sea_level <- function(time_bp, dataset = "Spratt2016") {
   dataset <- match.arg(dataset, c("Spratt2016", "Clark2025"))
+  if (any(time_bp > 0, na.rm = TRUE)) {
+    stop("time_bp should be in the past")
+  }
   if (dataset == "Spratt2016") {
     # check that time is not too old for the dataset
-    if (any(time_bp < -798000)) {
+    if (any(time_bp < -798000, na.rm = TRUE)) {
       stop("Spratt2016 only reached -798,000 years BP")
     }
     sea_level_info <- spratt2016
   } else if (dataset == "Clark2025") {
-    if (any(time_bp < -4882000)) {
+    if (any(time_bp < -4882000, na.rm = TRUE)) {
       stop("Clark2025 only reached -4,882,000 years BP")
     }
     sea_level_info <- clark2025
@@ -36,6 +39,10 @@ get_sea_level <- function(time_bp, dataset = "Spratt2016") {
     xout = time_bp
   )$y
   # rescale to have 0 for 0kBP
-  sea_level <- sea_level - sea_level_info$sea_level[sea_level_info$time_bp == 0]
+  baseline_sea_level <- sea_level_info$sea_level[sea_level_info$time_bp == 0]
+  if (length(baseline_sea_level) != 1) {
+    stop("sea level dataset should include a single time_bp == 0 entry")
+  }
+  sea_level <- sea_level - baseline_sea_level
   return(sea_level)
 }

@@ -13,7 +13,9 @@ make_land_mask(relief_rast, time_bp, sea_level = "Spratt2016")
 
 \item{sea_level}{sea level at the time of interest. It can be set to
 "Spratt2016" (the default) or "Clark2025" to automatically compute the
-level from one of those two datasets.}
+level from one of those two datasets, or to a numeric vector of sea levels
+with the same length as \code{time_bp}. \code{NULL} is treated as "Spratt2016" for
+backwards compatibility.}
 }
 \value{
 a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks (with land as 1's and sea

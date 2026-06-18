@@ -43,3 +43,47 @@ test_that("make_land_mask works with inbuilt datasets", {
     "sea_level should be either"
   )
 })
+
+test_that("make_land_mask treats NULL sea_level like the default dataset", {
+  relief_rast <- terra::rast(matrix(c(0, 10, 20, 300, -30, -40), nrow = 2))
+
+  land_mask_default <- make_land_mask(relief_rast,
+    time_bp = c(-1000, -10000, -20000)
+  )
+  land_mask_null <- make_land_mask(relief_rast,
+    time_bp = c(-1000, -10000, -20000),
+    sea_level = NULL
+  )
+
+  expect_equal(terra::values(land_mask_null), terra::values(land_mask_default))
+})
+
+test_that("get_sea_level rejects future times and malformed baselines", {
+  expect_error(
+    pastclim:::get_sea_level(1000),
+    "time_bp should be in the past"
+  )
+
+  ns <- asNamespace("pastclim")
+  original_spratt2016 <- get("spratt2016", envir = ns)
+  binding_was_locked <- bindingIsLocked("spratt2016", ns)
+  if (binding_was_locked) {
+    unlockBinding("spratt2016", ns)
+  }
+  on.exit({
+    assign("spratt2016", original_spratt2016, envir = ns)
+    if (binding_was_locked) {
+      lockBinding("spratt2016", ns)
+    }
+  }, add = TRUE)
+
+  assign("spratt2016", data.frame(
+    time_bp = c(-1000, -500),
+    sea_level = c(-20, -10)
+  ), envir = ns)
+
+  expect_error(
+    pastclim:::get_sea_level(-750),
+    "single time_bp == 0 entry"
+  )
+})
