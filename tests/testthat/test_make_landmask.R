@@ -44,7 +44,7 @@ test_that("make_land_mask works with inbuilt datasets", {
   )
 })
 
-test_that("make_land_mask treats NULL sea_level like the default dataset", {
+test_that("make_land_mask treats NULL sea_level as Spratt2016", {
   relief_rast <- terra::rast(matrix(c(0, 10, 20, 300, -30, -40), nrow = 2))
 
   land_mask_default <- make_land_mask(relief_rast,
@@ -58,7 +58,9 @@ test_that("make_land_mask treats NULL sea_level like the default dataset", {
   expect_equal(terra::values(land_mask_null), terra::values(land_mask_default))
 })
 
-test_that("get_sea_level rejects future times", {
+test_that("get_sea_level rejects future times but accepts the present", {
+  expect_equal(pastclim:::get_sea_level(0), 0)
+
   expect_error(
     pastclim:::get_sea_level(1000),
     "time_bp should be in the past"
