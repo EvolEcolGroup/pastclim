@@ -18,13 +18,19 @@
 #' @param time_bp the time of interest
 #' @param sea_level sea level at the time of interest. It can be set to
 #' "Spratt2016" (the default) or "Clark2025" to automatically compute the
-#' level from one of those two datasets.
+#' level from one of those two datasets, or to a numeric vector of sea levels
+#' with the same length as `time_bp`. `NULL` is treated as "Spratt2016" for
+#' backwards compatibility.
 #' @returns a [`terra::SpatRaster`] of the land masks (with land as 1's and sea
 #'   as NAs), where the layers are different times
 #'
 #' @export
 
 make_land_mask <- function(relief_rast, time_bp, sea_level = "Spratt2016") {
+  if (is.null(sea_level)) {
+    sea_level <- "Spratt2016"
+  }
+
   # if sea_level is a character, check that it is either spratt or clark
   if (is.character(sea_level)) {
     if (!sea_level %in% c("Spratt2016", "Clark2025")) {

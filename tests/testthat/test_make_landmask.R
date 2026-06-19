@@ -43,3 +43,46 @@ test_that("make_land_mask works with inbuilt datasets", {
     "sea_level should be either"
   )
 })
+
+test_that("make_land_mask treats NULL sea_level as Spratt2016", {
+  relief_rast <- terra::rast(matrix(c(0, 10, 20, 300, -30, -40), nrow = 2))
+
+  land_mask_default <- make_land_mask(relief_rast,
+    time_bp = c(-1000, -10000, -20000)
+  )
+  land_mask_null <- make_land_mask(relief_rast,
+    time_bp = c(-1000, -10000, -20000),
+    sea_level = NULL
+  )
+
+  expect_equal(terra::values(land_mask_null), terra::values(land_mask_default))
+})
+
+test_that("get_sea_level rejects future times but accepts the present", {
+  expect_equal(pastclim:::get_sea_level(0), 0)
+
+  expect_error(
+    pastclim:::get_sea_level(1000),
+    "time_bp should be in the past"
+  )
+})
+
+test_that("get_sea_level validates baseline data structure", {
+  # this only occurs if the baseline data is malformed, so we can simulate that
+  # by creating a new function with a different environment
+  bad_get_sea_level <- pastclim:::get_sea_level
+  environment(bad_get_sea_level) <- list2env(
+    list(
+      spratt2016 = data.frame(
+        time_bp = c(-1000, -500),
+        sea_level = c(-20, -10)
+      )
+    ),
+    parent = environment(pastclim:::get_sea_level)
+  )
+
+  expect_error(
+    bad_get_sea_level(-750),
+    "single time_bp == 0 entry"
+  )
+})
