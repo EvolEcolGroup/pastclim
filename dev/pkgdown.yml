@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
@@ -7,7 +7,7 @@ articles:
   a2_custom_datasets: a2_custom_datasets.html
   a3_pastclim_present_and_future: a3_pastclim_present_and_future.html
   a4_delta_downscale_d: a4_delta_downscale_d.html
-last_built: 2026-03-26T20:11Z
+last_built: 2026-06-19T10:19Z
 urls:
   reference: https://evolecolgroup.github.io/pastclim/reference
   article: https://evolecolgroup.github.io/pastclim/articles

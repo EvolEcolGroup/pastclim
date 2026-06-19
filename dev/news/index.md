@@ -6,6 +6,7 @@
   [`location_series()`](https://evolecolgroup.github.io/pastclim/dev/reference/location_series.md).
 - fix for missing time step in CHELSA-TraCE21k (-1300 BP is missing for
   min and max temperature
+- Add Clark2025 as a possible sea level dataset.
 
 ## pastclim 2.2.0
 

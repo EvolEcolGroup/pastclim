@@ -18,7 +18,7 @@ the appropriate ice sheets.
 ## Usage
 
 ``` r
-make_land_mask(relief_rast, time_bp, sea_level = NULL)
+make_land_mask(relief_rast, time_bp, sea_level = "Spratt2016")
 ```
 
 ## Arguments
@@ -35,8 +35,11 @@ make_land_mask(relief_rast, time_bp, sea_level = NULL)
 
 - sea_level:
 
-  sea level at the time of interest (if left to NULL, this is computed
-  using Spratt 2016)
+  sea level at the time of interest. It can be set to "Spratt2016" (the
+  default) or "Clark2025" to automatically compute the level from one of
+  those two datasets, or to a numeric vector of sea levels with the same
+  length as `time_bp`. `NULL` is treated as "Spratt2016" for backwards
+  compatibility.
 
 ## Value
 

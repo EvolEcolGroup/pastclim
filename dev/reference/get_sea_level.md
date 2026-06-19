@@ -8,7 +8,7 @@ Holocene ~5k year ago).
 ## Usage
 
 ``` r
-get_sea_level(time_bp)
+get_sea_level(time_bp, dataset = "Spratt2016")
 ```
 
 ## Arguments
@@ -16,6 +16,10 @@ get_sea_level(time_bp)
 - time_bp:
 
   the time of interest
+
+- dataset:
+
+  the dataset to use, either "Spratt2016" or "Clark2025"
 
 ## Value
 

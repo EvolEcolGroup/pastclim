@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="delta downscaling">
 <meta name="robots" content="noindex">
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pastclim</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.2.0.9003</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.2.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,7 +122,7 @@ the Beyer2020 dataset) as our low resolution model reconstructions. We
 start by extracting monthly temperature for northern Europe for both
 datasets:</p>
 <pre><code><span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.9.1</span></span></code></pre>
+<span><span class="co">#&gt; terra 1.9.27</span></span></code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EvolEcolGroup/pastclim" class="external-link">pastclim</a></span><span class="op">)</span></span>
 <span><span class="va">tavg_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_0"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"temperature_"</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
@@ -143,17 +143,17 @@ temperature in January. So, we first need to extract the
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tavg_model_lres_rast</span> <span class="op">&lt;-</span> <span class="va">tavg_series</span><span class="op">$</span><span class="va">temperature_01</span></span>
 <span><span class="va">tavg_model_lres_rast</span></span>
-<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; class       : SpatRaster</span></span>
 <span><span class="co">#&gt; size        : 30, 50, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84</span></span>
 <span><span class="co">#&gt; source(s)   : memory</span></span>
-<span><span class="co">#&gt; names       :   temper~-20000,   temper~-15000,   temper~-10000,   temper~_-5000,   temper~e_01_0 </span></span>
-<span><span class="co">#&gt; min values  :     -23.3037052,      -15.498360,      -11.794130,       -8.754138,       -9.613334 </span></span>
-<span><span class="co">#&gt; max values  :      -0.1343476,        3.690956,        6.295014,        7.745749,        6.616667 </span></span>
-<span><span class="co">#&gt; unit        : degrees Celsius </span></span>
-<span><span class="co">#&gt; time (years): -18050 to 1950 (5 steps)</span></span></code></pre></div>
+<span><span class="co">#&gt; names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0</span></span>
+<span><span class="co">#&gt; min values  :    -23.303705,     -15.49836,     -11.79413,     -8.754138,     -9.613334</span></span>
+<span><span class="co">#&gt; max values  :     -0.134348,      3.690956,      6.295014,      7.745749,      6.616667</span></span>
+<span><span class="co">#&gt; unit        : degrees Celsius</span></span>
+<span><span class="co">#&gt; time (years): -18050-00-00 to 1950-00-00 (5 steps)</span></span></code></pre></div>
 <p>And we can now plot it:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">tavg_model_lres_rast</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -263,16 +263,16 @@ reconstructions:</p>
 <span>  range_limits <span class="op">=</span> <span class="va">tavg_obs_range</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">model_downscaled</span></span>
-<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; class       : SpatRaster</span></span>
 <span><span class="co">#&gt; size        : 90, 150, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 0.1666667, 0.1666667  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84</span></span>
 <span><span class="co">#&gt; source(s)   : memory</span></span>
-<span><span class="co">#&gt; names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0 </span></span>
-<span><span class="co">#&gt; min values  :    -10.403500,     -10.40350,    -10.403500,     -9.289666,    -10.300500 </span></span>
-<span><span class="co">#&gt; max values  :      1.350215,       4.70648,      7.546785,      8.997520,      7.445105 </span></span>
-<span><span class="co">#&gt; time (years): -18050 to 1950 (5 steps)</span></span></code></pre></div>
+<span><span class="co">#&gt; names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0</span></span>
+<span><span class="co">#&gt; min values  :      -10.4035,      -10.4035,      -10.4035,     -9.289666,      -10.3005</span></span>
+<span><span class="co">#&gt; max values  :      1.350215,       4.70648,      7.546785,       8.99752,      7.445105</span></span>
+<span><span class="co">#&gt; time (years): -18050-00-00 to 1950-00-00 (5 steps)</span></span></code></pre></div>
 <p>Let’s inspect the resulting data:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/panel.html" class="external-link">panel</a></span><span class="op">(</span><span class="va">model_downscaled</span>, main <span class="op">=</span> <span class="fu"><a href="../reference/time_bp.html">time_bp</a></span><span class="op">(</span><span class="va">model_downscaled</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -308,13 +308,13 @@ finally convert the list into a <code>SpatRasterDataset</code></p>
 <p>Quickly inspect the resulting dataset:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tavg_downscaled</span></span>
-<span><span class="co">#&gt; class       : SpatRasterDataset </span></span>
-<span><span class="co">#&gt; subdatasets : 12 </span></span>
+<span><span class="co">#&gt; class       : SpatRasterDataset</span></span>
+<span><span class="co">#&gt; subdatasets : 12</span></span>
 <span><span class="co">#&gt; dimensions  : 90, 150 (nrow, ncol)</span></span>
-<span><span class="co">#&gt; nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5 </span></span>
-<span><span class="co">#&gt; resolution  : 0.1666667, 0.1666667  (x, y)</span></span>
+<span><span class="co">#&gt; nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5, ...</span></span>
+<span><span class="co">#&gt; resolution  : 0.166667, 0.166667  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84</span></span>
 <span><span class="co">#&gt; source(s)   : memory</span></span></code></pre></div>
 <p>As expected, we have 12 months (subdatasets), each with 5 time
 steps.</p>
@@ -374,14 +374,14 @@ we use logs. We now need to create a series for precipitation:</p>
 <p>Let’s inspect the object:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bioclim_downscaled</span></span>
-<span><span class="co">#&gt; class       : SpatRasterDataset </span></span>
-<span><span class="co">#&gt; subdatasets : 17 </span></span>
+<span><span class="co">#&gt; class       : SpatRasterDataset</span></span>
+<span><span class="co">#&gt; subdatasets : 17</span></span>
 <span><span class="co">#&gt; dimensions  : 90, 150 (nrow, ncol)</span></span>
-<span><span class="co">#&gt; nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5 </span></span>
-<span><span class="co">#&gt; resolution  : 0.1666667, 0.1666667  (x, y)</span></span>
+<span><span class="co">#&gt; nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5, ...</span></span>
+<span><span class="co">#&gt; resolution  : 0.166667, 0.166667  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : memory </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84</span></span>
+<span><span class="co">#&gt; source(s)   : memory</span></span>
 <span><span class="co">#&gt; names       : bio01, bio04, bio05, bio06, bio07, bio08, ...</span></span></code></pre></div>
 <p>And plot the first variable (bio01):</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
@@ -405,14 +405,14 @@ variables:</p>
 <p>We can quickly inspect the resulting <code>sds</code> object:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">custom_data</span></span>
-<span><span class="co">#&gt; class       : SpatRasterDataset </span></span>
-<span><span class="co">#&gt; subdatasets : 3 </span></span>
+<span><span class="co">#&gt; class       : SpatRasterDataset</span></span>
+<span><span class="co">#&gt; subdatasets : 3</span></span>
 <span><span class="co">#&gt; dimensions  : 90, 150 (nrow, ncol)</span></span>
-<span><span class="co">#&gt; nlyr        : 5, 5, 5 </span></span>
-<span><span class="co">#&gt; resolution  : 0.1666667, 0.1666667  (x, y)</span></span>
+<span><span class="co">#&gt; nlyr        : 5, 5, 5</span></span>
+<span><span class="co">#&gt; resolution  : 0.166667, 0.166667  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 </span></span>
-<span><span class="co">#&gt; source(s)   : EA_bioclim_downscaled.nc </span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84</span></span>
+<span><span class="co">#&gt; source(s)   : EA_bioclim_downscaled.nc</span></span>
 <span><span class="co">#&gt; names       : bio01, bio04, bio19</span></span></code></pre></div>
 <p>And plot it (it should be identical to the earlier plot obtained when
 we created the dataset):</p>

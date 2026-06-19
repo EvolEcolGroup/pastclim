@@ -8,12 +8,14 @@ article on how to format custom datasets if you are interested). It is
 possible to get a list of all available datasets with:
 
 ``` r
+
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.1
+#> terra 1.9.27
 ```
 
 ``` r
+
 get_available_datasets()
 #> Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m
 #> for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.
@@ -24,6 +26,7 @@ get_available_datasets()
 A more comprehensive list can be obtained with:
 
 ``` r
+
 list_available_datasets()
 #>   [1] "Barreto2023"                              
 #>   [2] "Beyer2020"                                
@@ -284,6 +287,7 @@ For each dataset, you can get detailed information using the help
 function:
 
 ``` r
+
 help("Example")
 ```
 

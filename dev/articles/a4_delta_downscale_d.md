@@ -47,9 +47,10 @@ start by extracting monthly temperature for northern Europe for both
 datasets:
 
     #> Loading required package: terra
-    #> terra 1.9.1
+    #> terra 1.9.27
 
 ``` r
+
 library(pastclim)
 tavg_vars <- c(paste0("temperature_0", 1:9), paste0("temperature_", 10:12))
 time_steps <- get_time_bp_steps(dataset = "Example")
@@ -57,6 +58,7 @@ n_europe_ext <- c(-10, 15, 45, 60)
 ```
 
 ``` r
+
 download_dataset(dataset = "Beyer2020", bio_variables = tavg_vars)
 tavg_series <- region_series(
   bio_variables = tavg_vars,
@@ -71,24 +73,26 @@ temperature in January. So, we first need to extract the `SpatRaster` of
 model low resolution data from the `SpatRasterDataset`:
 
 ``` r
+
 tavg_model_lres_rast <- tavg_series$temperature_01
 tavg_model_lres_rast
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 30, 50, 5  (nrow, ncol, nlyr)
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84
 #> source(s)   : memory
-#> names       :   temper~-20000,   temper~-15000,   temper~-10000,   temper~_-5000,   temper~e_01_0 
-#> min values  :     -23.3037052,      -15.498360,      -11.794130,       -8.754138,       -9.613334 
-#> max values  :      -0.1343476,        3.690956,        6.295014,        7.745749,        6.616667 
-#> unit        : degrees Celsius 
-#> time (years): -18050 to 1950 (5 steps)
+#> names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0
+#> min values  :    -23.303705,     -15.49836,     -11.79413,     -8.754138,     -9.613334
+#> max values  :     -0.134348,      3.690956,      6.295014,      7.745749,      6.616667
+#> unit        : degrees Celsius
+#> time (years): -18050-00-00 to 1950-00-00 (5 steps)
 ```
 
 And we can now plot it:
 
 ``` r
+
 plot(tavg_model_lres_rast, main = time_bp(tavg_model_lres_rast))
 ```
 
@@ -104,6 +108,7 @@ such as CHELSA would be equally suitable):
 Once the variable is downloaded, we can load it at any time with:
 
 ``` r
+
 download_dataset(dataset = "WorldClim_2.1_10m", bio_variables = tavg_vars)
 tavg_obs_hres_all <- region_series(
   bio_variables = tavg_vars,
@@ -119,6 +124,7 @@ limits from the full world distribution, but for this example, we will
 use the European range)
 
 ``` r
+
 tavg_obs_range <- range(
   unlist(
     lapply(tavg_obs_hres_all, minmax, compute = TRUE)
@@ -131,6 +137,7 @@ tavg_obs_range
 We want to crop these reconstructions to the extent of interest
 
 ``` r
+
 tavg_obs_hres_all <- terra::crop(tavg_obs_hres_all, n_europe_ext)
 # extract the January raster
 tavg_obs_hres_rast <- tavg_obs_hres_all[[1]]
@@ -143,6 +150,7 @@ We need to make sure that the extent of the modern observations is the
 same as the extent of the model reconstructions:
 
 ``` r
+
 ext(tavg_obs_hres_rast) == ext(tavg_model_lres_rast)
 #> [1] TRUE
 ```
@@ -158,6 +166,7 @@ and resample to match the extent and resolution as the high resolution
 observations.
 
 ``` r
+
 download_etopo()
 relief_rast <- load_etopo()
 relief_rast <- terra::resample(relief_rast, tavg_obs_hres_rast)
@@ -169,6 +178,7 @@ et al 2016, but a different reference can be used by setting sea levels
 for each time step (see the man page for `make_land_mask` for details):
 
 ``` r
+
 land_mask_high_res <- make_land_mask(
   relief_rast = relief_rast,
   time_bp = time_bp(tavg_model_lres_rast)
@@ -182,6 +192,7 @@ Note that this land mask does take ice sheets into account, and the
 Black and Caspian sea are missing. For the ice mask, we can:
 
 ``` r
+
 ice_mask_low_res <- get_ice_mask(time_bp = time_steps, dataset = "Beyer2020")
 ice_mask_high_res <- downscale_ice_mask(
   ice_mask_low_res = ice_mask_low_res,
@@ -197,6 +208,7 @@ Note that there is no ice mask for the last two time steps.
 We can now remove the ice mask from the land mask:
 
 ``` r
+
 land_mask_high_res <- mask(land_mask_high_res,
   ice_mask_high_res,
   inverse = TRUE
@@ -209,6 +221,7 @@ plot(land_mask_high_res)
 If it was a region with internal seas, we could then remove them with:
 
 ``` r
+
 internal_seas <- readRDS(system.file("extdata/internal_seas.RDS",
   package = "pastclim"
 ))
@@ -222,6 +235,7 @@ We can now compute a delta raster and use it to downscale the model
 reconstructions:
 
 ``` r
+
 delta_rast <- delta_compute(
   x = tavg_model_lres_rast, ref_time = 0,
   obs = tavg_obs_hres_rast
@@ -233,21 +247,22 @@ model_downscaled <- delta_downscale(
   range_limits = tavg_obs_range
 )
 model_downscaled
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 90, 150, 5  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84
 #> source(s)   : memory
-#> names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0 
-#> min values  :    -10.403500,     -10.40350,    -10.403500,     -9.289666,    -10.300500 
-#> max values  :      1.350215,       4.70648,      7.546785,      8.997520,      7.445105 
-#> time (years): -18050 to 1950 (5 steps)
+#> names       : temper~-20000, temper~-15000, temper~-10000, temper~_-5000, temper~e_01_0
+#> min values  :      -10.4035,      -10.4035,      -10.4035,     -9.289666,      -10.3005
+#> max values  :      1.350215,       4.70648,      7.546785,       8.99752,      7.445105
+#> time (years): -18050-00-00 to 1950-00-00 (5 steps)
 ```
 
 Let’s inspect the resulting data:
 
 ``` r
+
 panel(model_downscaled, main = time_bp(model_downscaled))
 ```
 
@@ -256,6 +271,7 @@ panel(model_downscaled, main = time_bp(model_downscaled))
 And, as a reminder, the original reconstructions:
 
 ``` r
+
 panel(tavg_model_lres_rast, main = time_bp(tavg_model_lres_rast))
 ```
 
@@ -270,6 +286,7 @@ downscaled temperature, add it to a list, and finally convert the list
 into a `SpatRasterDataset`
 
 ``` r
+
 tavg_downscaled_list <- list()
 for (i in 1:12) {
   delta_rast <- delta_compute(
@@ -289,14 +306,15 @@ tavg_downscaled <- terra::sds(tavg_downscaled_list)
 Quickly inspect the resulting dataset:
 
 ``` r
+
 tavg_downscaled
-#> class       : SpatRasterDataset 
-#> subdatasets : 12 
+#> class       : SpatRasterDataset
+#> subdatasets : 12
 #> dimensions  : 90, 150 (nrow, ncol)
-#> nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5 
-#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5, ...
+#> resolution  : 0.166667, 0.166667  (x, y)
 #> extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84
 #> source(s)   : memory
 ```
 
@@ -307,6 +325,7 @@ example we will downscale precipitation in its natural scale, but often
 we use logs. We now need to create a series for precipitation:
 
 ``` r
+
 prec_vars <- c(paste0("precipitation_0", 1:9), paste0("precipitation_", 10:12))
 prec_series <- region_series(
   bio_variables = prec_vars,
@@ -319,6 +338,7 @@ prec_series <- region_series(
 Get some high resolution observations:
 
 ``` r
+
 download_dataset(dataset = "WorldClim_2.1_10m", bio_variables = prec_vars)
 prec_obs_hres_all <- region_series(
   bio_variables = prec_vars,
@@ -331,6 +351,7 @@ prec_obs_hres_all <- region_series(
 Estimate the range of observed precipitation:
 
 ``` r
+
 prec_obs_range <- range(
   unlist(
     lapply(prec_obs_hres_all, minmax,
@@ -345,6 +366,7 @@ prec_obs_range
 And finally downscale precipitation:
 
 ``` r
+
 prec_downscaled_list <- list()
 for (i in 1:12) {
   delta_rast <- delta_compute(
@@ -364,6 +386,7 @@ prec_downscaled <- terra::sds(prec_downscaled_list)
 We are now ready to compute the bioclim variables:
 
 ``` r
+
 bioclim_downscaled <- bioclim_vars(
   tavg = tavg_downscaled,
   prec = prec_downscaled
@@ -373,21 +396,23 @@ bioclim_downscaled <- bioclim_vars(
 Let’s inspect the object:
 
 ``` r
+
 bioclim_downscaled
-#> class       : SpatRasterDataset 
-#> subdatasets : 17 
+#> class       : SpatRasterDataset
+#> subdatasets : 17
 #> dimensions  : 90, 150 (nrow, ncol)
-#> nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5 
-#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> nlyr        : 5, 5, 5, 5, 5, 5, 5, 5, 5, ...
+#> resolution  : 0.166667, 0.166667  (x, y)
 #> extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory 
+#> coord. ref. : lon/lat WGS 84
+#> source(s)   : memory
 #> names       : bio01, bio04, bio05, bio06, bio07, bio08, ...
 ```
 
 And plot the first variable (bio01):
 
 ``` r
+
 panel(bioclim_downscaled[[1]], main = time_bp(bioclim_downscaled[[1]]))
 ```
 
@@ -396,6 +421,7 @@ panel(bioclim_downscaled[[1]], main = time_bp(bioclim_downscaled[[1]]))
 We can now save the downscaled `sds` to a netcdf file:
 
 ``` r
+
 terra::writeCDF(bioclim_downscaled,
   paste0(tempdir(), "/EA_bioclim_downscaled.nc"),
   overwrite = TRUE
@@ -406,6 +432,7 @@ And then use it as a custom dataset for any function in `pastclim`.
 Let’s extract a region series for three variables:
 
 ``` r
+
 custom_data <- region_series(
   bio_variables = c("bio01", "bio04", "bio19"),
   dataset = "custom",
@@ -416,15 +443,16 @@ custom_data <- region_series(
 We can quickly inspect the resulting `sds` object:
 
 ``` r
+
 custom_data
-#> class       : SpatRasterDataset 
-#> subdatasets : 3 
+#> class       : SpatRasterDataset
+#> subdatasets : 3
 #> dimensions  : 90, 150 (nrow, ncol)
-#> nlyr        : 5, 5, 5 
-#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> nlyr        : 5, 5, 5
+#> resolution  : 0.166667, 0.166667  (x, y)
 #> extent      : -10, 15, 45, 60  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : EA_bioclim_downscaled.nc 
+#> coord. ref. : lon/lat WGS 84
+#> source(s)   : EA_bioclim_downscaled.nc
 #> names       : bio01, bio04, bio19
 ```
 
@@ -432,6 +460,7 @@ And plot it (it should be identical to the earlier plot obtained when we
 created the dataset):
 
 ``` r
+
 panel(custom_data$bio01, main = time_bp(custom_data$bio01))
 ```
 

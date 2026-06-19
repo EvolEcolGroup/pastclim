@@ -22,9 +22,10 @@ temperature, and precipitation.
 So, the annual variables for the 10m arc-minutes dataset are:
 
 ``` r
+
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.1
+#> terra 1.9.27
 get_vars_for_dataset("WorldClim_2.1_10m")
 #>  [1] "bio01"    "bio02"    "bio03"    "bio04"    "bio05"    "bio06"   
 #>  [7] "bio07"    "bio08"    "bio09"    "bio10"    "bio11"    "bio12"   
@@ -35,6 +36,7 @@ get_vars_for_dataset("WorldClim_2.1_10m")
 And the monthly variables
 
 ``` r
+
 get_vars_for_dataset("WorldClim_2.1_10m", monthly = TRUE, annual = FALSE)
 #>  [1] "temperature_01"     "temperature_02"     "temperature_03"    
 #>  [4] "temperature_04"     "temperature_05"     "temperature_06"    
@@ -58,6 +60,7 @@ We can manipulate data in the usual way. We start by downloading the
 dataset:
 
 ``` r
+
 download_dataset(
   dataset = "WorldClim_2.1_10m",
   bio_variables = c("bio01", "bio02", "altitude")
@@ -67,6 +70,7 @@ download_dataset(
 We can then use `region_slice` to extract the data as a `SpatRaster`:
 
 ``` r
+
 climate_present <- region_slice(
   time_ce = 1985,
   bio_variables = c("bio01", "bio02", "altitude"),
@@ -86,6 +90,7 @@ and maximum temperature, and precipitation.
 So, the annual variables for the CHELSA dataset are:
 
 ``` r
+
 library(pastclim)
 get_vars_for_dataset("CHELSA_2.1_0.5m")
 #>  [1] "bio01" "bio02" "bio03" "bio04" "bio05" "bio06" "bio07" "bio08" "bio09"
@@ -96,6 +101,7 @@ get_vars_for_dataset("CHELSA_2.1_0.5m")
 And the monthly variables
 
 ``` r
+
 get_vars_for_dataset("CHELSA_2.1_0.5m", monthly = TRUE, annual = FALSE)
 #>  [1] "temperature_01"     "temperature_02"     "temperature_03"    
 #>  [4] "temperature_04"     "temperature_05"     "temperature_06"    
@@ -119,6 +125,7 @@ We can manipulate data in the usual way. We start by downloading the
 dataset:
 
 ``` r
+
 download_dataset(
   dataset = "CHELSA_2.1_0.5m",
   bio_variables = c("bio01", "bio02")
@@ -128,6 +135,7 @@ download_dataset(
 We can then use `region_slice` to extract the data as a `SpatRaster`:
 
 ``` r
+
 climate_present <- region_slice(
   time_ce = 1990,
   bio_variables = c("bio01", "bio02"),
@@ -146,6 +154,7 @@ all the files, this sets up the virtual raster (and so it is very
 fast!):
 
 ``` r
+
 download_dataset(
   dataset = "CHELSA_2.1_0.5m_vsi",
   bio_variables = c("bio12", "temperature_01")
@@ -155,6 +164,7 @@ download_dataset(
 Once downloaded, we can use it as any other dataset:
 
 ``` r
+
 climate_present <- region_slice(
   time_ce = 1990,
   bio_variables = c("bio12", "temperature_01"),
@@ -180,6 +190,7 @@ the dataset name *WorldClim_2.1_GCM_SSP_RESm*.
 A complete list of available combinations can be obtained with:
 
 ``` r
+
 list_available_datasets()[grepl("WorldClim_2.1", list_available_datasets())]
 #>   [1] "WorldClim_2.1_0.5m"                       
 #>   [2] "WorldClim_2.1_10m"                        
@@ -399,6 +410,7 @@ So, if we are interested in the the HadGEM3-GC31-LL model, with ssp set
 to 245 and at 10 arc-minutes, we can get the available variables:
 
 ``` r
+
 get_vars_for_dataset(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")
 #>  [1] "bio01" "bio02" "bio03" "bio04" "bio05" "bio06" "bio07" "bio08" "bio09"
 #> [10] "bio10" "bio11" "bio12" "bio13" "bio14" "bio15" "bio16" "bio17" "bio18"
@@ -408,6 +420,7 @@ get_vars_for_dataset(dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m")
 We can now download “bio01” and “bio02” for that dataset with:
 
 ``` r
+
 download_dataset(
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
   bio_variables = c("bio01", "bio02")
@@ -421,6 +434,7 @@ automatically downloaded for each combination of GCM model and SSP, and
 can be selected as usual by defining the time in `region_slice`.
 
 ``` r
+
 future_slice <- region_slice(
   time_ce = 2030,
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
@@ -432,6 +446,7 @@ Alternatively, it is possible to get the full time series of 4 slices
 with:
 
 ``` r
+
 future_series <- region_series(
   dataset = "WorldClim_2.1_HadGEM3-GC31-LL_ssp245_10m",
   bio_variables = c("bio01", "bio02")
@@ -458,6 +473,7 @@ SSP can be chosen by changing the ending of the dataset name
 A complete list of available combinations can be obtained with:
 
 ``` r
+
 list_available_datasets()[grepl("CHELSA_2.1", list_available_datasets())]
 #>  [1] "CHELSA_2.1_0.5m"                         
 #>  [2] "CHELSA_2.1_0.5m_vsi"                     
@@ -498,6 +514,7 @@ interested in the the GFDL-ESM4 model, with ssp set to 126 , we can get
 the available variables:
 
 ``` r
+
 get_vars_for_dataset(
   dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m",
   monthly = TRUE
@@ -519,6 +536,7 @@ We can now download “bio01” and “bio02” for that dataset, using the
 virtual version, with:
 
 ``` r
+
 download_dataset(
   dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
   bio_variables = c("bio01", "bio02")
@@ -532,6 +550,7 @@ downloaded for a given combination of GCM model and SSP, and can be
 selected as usual by defining the time in `region_slice`.
 
 ``` r
+
 future_slice <- region_slice(
   time_ce = 2025,
   dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
@@ -543,6 +562,7 @@ Alternatively, it is possible to get the full time series of 4 slices
 with:
 
 ``` r
+
 future_series <- region_series(
   dataset = "CHELSA_2.1_UKESM1-0-LL_ssp585_0.5m_vsi",
   bio_variables = c("bio01", "bio02")

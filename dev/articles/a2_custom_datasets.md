@@ -39,6 +39,7 @@ We store all the files in a single directory, and create a `spatRaster`
 from a list of the files in that directory:
 
 ``` r
+
 tiffs_path <- system.file("extdata/CHELSA_bio01", package = "pastclim")
 list_of_tiffs <- file.path(tiffs_path, dir(tiffs_path))
 bio01 <- terra::rast(list_of_tiffs)
@@ -54,9 +55,10 @@ reconstructions are every 100 years), and generate some user friendly
 names to layers in the raster:
 
 ``` r
+
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.1
+#> terra 1.9.27
 time_bp(bio01) <- c(0, -100, -200)
 names(bio01) <- paste("bio01", terra::time(bio01), sep = "_")
 ```
@@ -65,6 +67,7 @@ Now we save the data as a *nc* file (we will use the temporary
 directory)
 
 ``` r
+
 nc_name <- file.path(tempdir(), "CHELSA_TraCE21k_bio01.nc")
 terra::writeCDF(bio01,
   filename = nc_name, varname = "bio01",
@@ -75,20 +78,21 @@ terra::writeCDF(bio01,
 We can now read in our custom netcdf file with `pastclim`.
 
 ``` r
+
 custom_series <- region_series(
   bio_variables = "bio01",
   dataset = "custom",
   path_to_nc = nc_name
 )
 custom_series
-#> class       : SpatRasterDataset 
-#> subdatasets : 1 
+#> class       : SpatRasterDataset
+#> subdatasets : 1
 #> dimensions  : 174, 360 (nrow, ncol)
-#> nlyr        : 3 
+#> nlyr        : 3
 #> resolution  : 1, 1  (x, y)
 #> extent      : -180.0001, 179.9999, -90.00014, 83.99986  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (EPSG:4326) 
-#> source(s)   : CHELSA_TraCE21k_bio01.nc 
+#> coord. ref. : lon/lat WGS 84 (EPSG:4326)
+#> source(s)   : CHELSA_TraCE21k_bio01.nc
 #> names       : bio01
 ```
 
@@ -96,6 +100,7 @@ As expected, there is only one variable (“bio01”) and 3 time steps
 (nlyr). We can get the times of those time steps with:
 
 ``` r
+
 get_time_bp_steps(dataset = "custom", path_to_nc = nc_name)
 #> [1]    0 -100 -200
 ```
@@ -103,6 +108,7 @@ get_time_bp_steps(dataset = "custom", path_to_nc = nc_name)
 And we can slice the series and plot a given time point:
 
 ``` r
+
 climate_100 <- slice_region_series(custom_series, time_bp = -100)
 terra::plot(climate_100)
 ```

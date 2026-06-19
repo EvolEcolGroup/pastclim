@@ -5,6 +5,7 @@
 `pastclim` is on CRAN, and the easiest way to install it is with:
 
 ``` r
+
 install.packages("pastclim")
 ```
 
@@ -16,6 +17,7 @@ done so already, install it from CRAN with
 need to upgrade to both:
 
 ``` r
+
 install.packages("terra", repos = "https://rspatial.r-universe.dev")
 devtools::install_github("EvolEcolGroup/pastclim", ref = "dev")
 ```
@@ -34,6 +36,7 @@ If you want to build the vignette directly in `R` when installing
 `pastclim` from GitHub, you can :
 
 ``` r
+
 devtools::install_github("EvolEcolGroup/pastclim",
   ref = "dev",
   build_vignettes = TRUE
@@ -43,6 +46,7 @@ devtools::install_github("EvolEcolGroup/pastclim",
 And read it directly in R with:
 
 ``` r
+
 vignette("pastclim_overview", package = "pastclim")
 ```
 
@@ -77,9 +81,10 @@ but you will need some familiarity with handling `netcdf` files.
 A list of all datasets available can be obtained by typing:
 
 ``` r
+
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.1
+#> terra 1.9.27
 get_available_datasets()
 #> Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m
 #> for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.
@@ -93,6 +98,7 @@ presenting the dataset. The reference to cite for `pastclim` can be
 obtained by typing
 
 ``` r
+
 citation("pastclim")
 #> To cite pastclim in publications use:
 #> 
@@ -120,6 +126,7 @@ while the reference associated to any dataset of choice (in this case
 dataset through the command:
 
 ``` r
+
 help("Beyer2020")
 ```
 
@@ -172,6 +179,7 @@ reconstructions are stored using `set_data_path`. By default, the
 package data path will be used:
 
 ``` r
+
 library(pastclim)
 set_data_path()
 ```
@@ -193,6 +201,7 @@ If you prefer using a custom path (e.g. in “~/my_reconstructions”), it
 can be set with:
 
 ``` r
+
 set_data_path(path_to_nc = "~/my_reconstructions")
 ```
 
@@ -205,6 +214,7 @@ Let us start by inspecting the *Example* dataset. We can get a list of
 variables available for this dataset with:
 
 ``` r
+
 get_vars_for_dataset(dataset = "Example")
 #> [1] "bio01" "bio10" "bio12" "biome"
 ```
@@ -212,6 +222,7 @@ get_vars_for_dataset(dataset = "Example")
 and the available time steps can be obtained with:
 
 ``` r
+
 get_time_bp_steps(dataset = "Example")
 #> [1] -20000 -15000 -10000  -5000      0
 ```
@@ -219,6 +230,7 @@ get_time_bp_steps(dataset = "Example")
 We can also query the resolution of this dataset:
 
 ``` r
+
 get_resolution(dataset = "Example")
 #> [1] 1 1
 ```
@@ -229,6 +241,7 @@ For *Beyer2020* and *Krapp2021*, you can get a list of available
 variables for each dataset with:
 
 ``` r
+
 get_vars_for_dataset(dataset = "Beyer2020")
 #>  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   
 #>  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   
@@ -239,6 +252,7 @@ get_vars_for_dataset(dataset = "Beyer2020")
 and
 
 ``` r
+
 get_vars_for_dataset(dataset = "Krapp2021")
 #>  [1] "bio01"    "bio04"    "bio05"    "bio06"    "bio07"    "bio08"   
 #>  [7] "bio09"    "bio10"    "bio11"    "bio12"    "bio13"    "bio14"   
@@ -250,6 +264,7 @@ Note that, by default, only annual variables are shown. To see the
 available monthly variables, simply use:
 
 ``` r
+
 get_vars_for_dataset(dataset = "Beyer2020", annual = FALSE, monthly = TRUE)
 #>  [1] "temperature_01"       "temperature_02"       "temperature_03"      
 #>  [4] "temperature_04"       "temperature_05"       "temperature_06"      
@@ -283,6 +298,7 @@ for February. A more thorough description of each variable (including
 the units) can be obtained with:
 
 ``` r
+
 get_vars_for_dataset(dataset = "Example", details = TRUE)
 #>   variable                           long_name           units
 #> 1    bio01             annual mean temperature degrees Celsius
@@ -299,6 +315,7 @@ To inspect which datasets and variables have already been downloaded in
 the data path, we can use:
 
 ``` r
+
 get_downloaded_datasets()
 #> $Example
 #> [1] "bio01" "bio10" "bio12" "biome"
@@ -309,6 +326,7 @@ operation might take several minutes, as the datasets are large; `R`
 will pause until the download is complete):
 
 ``` r
+
 download_dataset(dataset = "Beyer2020", bio_variables = c("bio01", "bio05"))
 ```
 
@@ -341,6 +359,7 @@ submersed city mentioned by Plato). For each site we have a date
 climatic reconstructions.
 
 ``` r
+
 locations <- data.frame(
   name = c("Iho Eleru", "La Riera", "Chalki", "Oronsay", "Atlantis"),
   longitude = c(5, -4, 27, -6, -24), latitude = c(7, 44, 36, 56, 31),
@@ -358,6 +377,7 @@ locations
 And extract their climatic conditions for *bio01* and *bio12*:
 
 ``` r
+
 location_slice(
   x = locations, bio_variables = c("bio01", "bio12"),
   dataset = "Example", nn_interpol = FALSE
@@ -384,6 +404,7 @@ the nearest neighbours, thus using climate reconstructions for
 neighbouring pixels if the location is just off one or more land pixels:
 
 ``` r
+
 location_slice(
   x = locations, bio_variables = c("bio01", "bio12"),
   dataset = "Example", nn_interpol = TRUE
@@ -409,6 +430,7 @@ Sometimes, we want to get a time series of climatic reconstructions,
 thus allowing us to see how climate changed over time:
 
 ``` r
+
 locations_ts <- location_series(
   x = locations,
   bio_variables = c("bio01", "bio12"),
@@ -420,6 +442,7 @@ The resulting dataframe can be subsetted to get the time series for each
 location (the small *Example* dataset only contains 5 time slices):
 
 ``` r
+
 subset(locations_ts, name == "Iho Eleru")
 #>          name longitude latitude time_bp    bio01    bio12
 #> 1   Iho Eleru         5        7  -20000 22.55133 1577.238
@@ -434,6 +457,7 @@ certain time steps, depending on sea level and ice sheet extent. This is
 the case for Oronsay:
 
 ``` r
+
 subset(locations_ts, name == "Oronsay")
 #>        name longitude latitude time_bp    bio01    bio12
 #> 4   Oronsay        -6       56  -20000       NA       NA
@@ -446,6 +470,7 @@ subset(locations_ts, name == "Oronsay")
 We can quickly plot `bio01` through time for the locations:
 
 ``` r
+
 library(ggplot2)
 ggplot(data = locations_ts, aes(x = time_bp, y = bio01, group = name)) +
   geom_line(aes(col = name)) +
@@ -471,6 +496,7 @@ Pretty labels for environmental variables can be generated with
 `var_labels`:
 
 ``` r
+
 library(ggplot2)
 ggplot(data = locations_ts, aes(x = time_bp, y = bio01, group = name)) +
   geom_line(aes(col = name)) +
@@ -508,6 +534,7 @@ whole region. For a given time step, we can extract a slice of climate
 with
 
 ``` r
+
 climate_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("bio01", "bio10", "bio12"),
@@ -524,26 +551,26 @@ plotting). `pastclim` automatically loads `terra`, so you should be able
 to work with `terra` objects without any problem:
 
 ``` r
+
 climate_20k
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 150, 360, 3  (nrow, ncol, nlyr)
 #> resolution  : 1, 1  (x, y)
 #> extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
-#> sources     : example_climate_v1.3.0.nc:BIO1  
-#>               example_climate_v1.3.0.nc:BIO10  
-#>               example_climate_v1.3.0.nc:BIO12  
-#> varnames    : bio01 (annual mean temperature) 
-#>               bio10 (mean temperature of warmest quarter) 
-#>               bio12 (annual precipitation) 
-#> names       :           bio01,           bio10,       bio12 
-#> unit        : degrees Celsius, degrees Celsius, mm per year 
-#> time (years): -18050
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
+#> sources     : example_climate_v1.3.0.nc
+#> varnames    : bio01 (annual mean temperature)
+#>               bio10 (mean temperature of warmest quarter)
+#>               bio12 (annual precipitation)
+#> names       :           bio01,           bio10,       bio12
+#> unit        : degrees Celsius, degrees Celsius, mm per year
+#> time (years): -18050-00-00
 ```
 
 and plot these three variables (the layers of the raster):
 
 ``` r
+
 terra::plot(climate_20k)
 ```
 
@@ -552,6 +579,7 @@ terra::plot(climate_20k)
 We can add more informative labels with `var_labels`:
 
 ``` r
+
 terra::plot(climate_20k,
   main = var_labels(climate_20k, dataset = "Example", abbreviated = TRUE)
 )
@@ -564,43 +592,47 @@ It is possible to also load a time series of rasters with the function
 `SpatRasterDataset`, with each variable as a sub-dataset:
 
 ``` r
+
 climate_region <- region_series(
   time_bp = list(min = -15000, max = 0),
   bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example"
 )
 climate_region
-#> class       : SpatRasterDataset 
-#> subdatasets : 3 
+#> class       : SpatRasterDataset
+#> subdatasets : 3
 #> dimensions  : 150, 360 (nrow, ncol)
-#> nlyr        : 4, 4, 4 
+#> nlyr        : 4, 4, 4
 #> resolution  : 1, 1  (x, y)
 #> extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
-#> source(s)   : example_climate_v1.3.0.nc 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
+#> source(s)   : example_climate_v1.3.0.nc
 #> names       : bio01, bio10, bio12
 ```
 
 Each of these sub-dataset is a `SpatRaster`, with time steps as layers:
 
 ``` r
+
 climate_region$bio01
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 150, 360, 4  (nrow, ncol, nlyr)
+#> dimensions  : lon, lat, time (360, 150, 5}
 #> resolution  : 1, 1  (x, y)
 #> extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
-#> source      : example_climate_v1.3.0.nc:BIO1 
-#> varname     : bio01 (annual mean temperature) 
-#> names       :    bio01_-15000,    bio01_-10000,     bio01_-5000,         bio01_0 
-#> unit        : degrees Celsius 
-#> time (years): -13050 to 1950 (4 steps)
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
+#> source      : example_climate_v1.3.0.nc
+#> varname     : bio01 (annual mean temperature)
+#> names       : bio01_-15000, bio01_-10000, bio01_-5000, bio01_0
+#> unit        : degrees Celsius
+#> time (years): -13050-00-00 to 1950-00-00 (4 steps)
 ```
 
 Note that `terra` stores dates in years as AD, not BP. You can inspect
 the times in years BP with:
 
 ``` r
+
 time_bp(climate_region)
 #> [1] -15000 -10000  -5000      0
 ```
@@ -609,6 +641,7 @@ We can then plot the time series of a given variable (we relabel the
 plots to use years bp):
 
 ``` r
+
 terra::plot(climate_region$bio01, main = time_bp(climate_region))
 ```
 
@@ -618,6 +651,7 @@ To plot all climate variables for a given time step, we can slice the
 time series:
 
 ``` r
+
 slice_10k <- slice_region_series(climate_region, time_bp = -10000)
 terra::plot(slice_10k)
 ```
@@ -630,6 +664,7 @@ function to get a vector of the time steps for a given MIS in a dataset.
 For example, for MIS 1, we get:
 
 ``` r
+
 mis1_steps <- get_mis_time_steps(mis = 1, dataset = "Example")
 mis1_steps
 #> [1] -10000  -5000      0
@@ -638,20 +673,21 @@ mis1_steps
 Which we can then use:
 
 ``` r
+
 climate_mis1 <- region_series(
   time_bp = mis1_steps,
   bio_variables = c("bio01", "bio10", "bio12"),
   dataset = "Example"
 )
 climate_mis1
-#> class       : SpatRasterDataset 
-#> subdatasets : 3 
+#> class       : SpatRasterDataset
+#> subdatasets : 3
 #> dimensions  : 150, 360 (nrow, ncol)
-#> nlyr        : 3, 3, 3 
+#> nlyr        : 3, 3, 3
 #> resolution  : 1, 1  (x, y)
 #> extent      : -180, 180, -60, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
-#> source(s)   : example_climate_v1.3.0.nc 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
+#> source(s)   : example_climate_v1.3.0.nc
 #> names       : bio01, bio10, bio12
 ```
 
@@ -661,6 +697,7 @@ Often we want to focus a given region. There are a number of preset
 rectangular extents in `pastclim`:
 
 ``` r
+
 names(region_extent)
 #> [1] "Africa"    "America"   "Asia"      "Europe"    "Eurasia"   "N_America"
 #> [7] "Oceania"   "S_America"
@@ -669,6 +706,7 @@ names(region_extent)
 We can get the corners of the European extent:
 
 ``` r
+
 region_extent$Europe
 #> [1] -15  70  33  75
 ```
@@ -677,6 +715,7 @@ And then we can extract climate only for Europe by setting `ext` in
 `region_slice`:
 
 ``` r
+
 europe_climate_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("bio01", "bio10", "bio12"),
@@ -696,6 +735,7 @@ the dataset `region_outline` in an
 We can get a list with:
 
 ``` r
+
 names(region_outline)
 #> [1] "Africa"    "Eurasia"   "N_America" "Oceania"   "S_America" "Europe"
 ```
@@ -704,6 +744,7 @@ We can then use the function `crop` within `region_slice` to only keep
 the area within the desired outline.
 
 ``` r
+
 europe_climate_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("bio01", "bio10", "bio12"),
@@ -719,6 +760,7 @@ We can combine multiple regions together. For example, we can crop to
 Africa and Eurasia by unioning the two individual outlines:
 
 ``` r
+
 library(sf)
 #> Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
 afr_eurasia <- sf::st_union(region_outline$Africa, region_outline$Eurasia)
@@ -745,6 +787,7 @@ object) as a mask to limit the area covered by the raster. Note that you
 need to reuse the first vertex as the last vertex, to close the polygon:
 
 ``` r
+
 custom_vec <- terra::vect("POLYGON ((0 70, 25 70, 50 80, 170 80, 170 10,
                               119 2.4, 119 0.8, 116 -7.6, 114 -12, 100 -40,
                               -25 -40, -25 64, 0 70))")
@@ -768,6 +811,7 @@ The Beyer2020 and Krapp2021 datasets include a categorical variable
 detailing the extension of biomes.
 
 ``` r
+
 get_biome_classes("Example")
 #>    id                           category
 #> 1   0                       Water bodies
@@ -804,6 +848,7 @@ get_biome_classes("Example")
 We can get the biome for 20k years ago and plot it with:
 
 ``` r
+
 biome_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("biome"),
@@ -820,6 +865,7 @@ the legend. If we need to plot the extent of a specific biome, for
 example the desert, we can simply set the other levels to NA:
 
 ``` r
+
 biome_20k$desert <- biome_20k$biome
 biome_20k$desert[biome_20k$desert != 21] <- NA
 terra::plot(biome_20k$desert)
@@ -832,6 +878,7 @@ sheets are stored as class 28 in the “biome” variable. We can retrieve
 directly the ice and land (all other biome categories) masks with:
 
 ``` r
+
 ice_mask <- get_ice_mask(-20000, dataset = "Example")
 land_mask <- get_land_mask(-20000, dataset = "Example")
 terra::plot(c(ice_mask, land_mask))
@@ -843,6 +890,7 @@ We can also add the ice sheets to plots of climatic variables. First, we
 need to turn the ice mask into polygons:
 
 ``` r
+
 ice_mask_vect <- as.polygons(ice_mask)
 ```
 
@@ -852,6 +900,7 @@ panel of the figure, we need to create a function that is used as an
 argument for `fun` within `plot`):
 
 ``` r
+
 plot(climate_20k,
   fun = function() polys(ice_mask_vect, col = "gray", lwd = 0.5)
 )
@@ -863,6 +912,7 @@ In some other cases, we have multiple time points of the same variable
 and we want to see how the ice sheets change:
 
 ``` r
+
 europe_climate <- region_series(
   time_bp = c(-20000, -15000, -10000, 0),
   bio_variables = c("bio01"),
@@ -898,6 +948,7 @@ determine the distance from marine resources in archaeology). In
 level change based on the landmask:
 
 ``` r
+
 distances_sea <- distance_from_sea(time_bp = c(-20000, 0), dataset = "Example")
 distances_sea_australia <- crop(distances_sea, terra::ext(100, 170, -60, 20))
 plot(distances_sea_australia, main = time_bp(distances_sea_australia))
@@ -912,18 +963,21 @@ To plot locations on region plots, we first need to create a
 of the columns with the x and y coordinates:
 
 ``` r
+
 locations_vect <- vect(locations, geom = c("longitude", "latitude"))
+#> Warning: [vect] guessed crs
 locations_vect
-#>  class       : SpatVector 
-#>  geometry    : points 
-#>  dimensions  : 5, 2  (geometries, attributes)
-#>  extent      : -24, 27, 7, 56  (xmin, xmax, ymin, ymax)
-#>  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
-#>  names       :      name    time_bp
-#>  type        :     <chr>      <num>
-#>  values      : Iho Eleru  -1.12e+04
-#>                 La Riera -1.874e+04
-#>                   Chalki -1.023e+04
+#> class       : SpatVector
+#> geometry    : points
+#> dimensions  : 5, 2  (geometries, attributes)
+#> extent      : -24, 27, 7, 56  (xmin, xmax, ymin, ymax)
+#> coord. ref. : +proj=longlat +datum=WGS84 +no_defs
+#> names       :      name time_bp
+#> type        :     <chr>   <num>
+#> values      : Iho Eleru  -11200
+#>                La Riera  -18738
+#>                  Chalki  -10227
+#>               ...
 ```
 
 We can then add it to a climate slice with the following code (note
@@ -931,6 +985,7 @@ that, to add the points to every panel of the figure, we need to create
 a function that is used as an argument for `fun` within `plot`):
 
 ``` r
+
 plot(europe_climate_20k,
   fun = function() points(locations_vect, col = "red", cex = 2)
 )
@@ -944,6 +999,7 @@ this case, only the European locations).
 We can combine ice sheets and locations in a single plot:
 
 ``` r
+
 plot(europe_climate_20k,
   fun = function() {
     polys(ice_mask_vect, col = "gray", lwd = 0.5)
@@ -961,6 +1017,7 @@ set of location within the background for that time period. Let us start
 by visualising the background for the time step of interest with a PCA:
 
 ``` r
+
 bio_vars <- c("bio01", "bio10", "bio12")
 climate_10k <- region_slice(-10000,
   bio_variables = bio_vars,
@@ -983,6 +1040,7 @@ step and compute the PCA scores based on the axes we defined on the
 background:
 
 ``` r
+
 locations_10k <- data.frame(
   longitude = c(0, 90, 20, 5), latitude = c(20, 45, 50, 47),
   time_bp = c(-9932, -9753, -10084, -10249)
@@ -1000,6 +1058,7 @@ locations_10k_pca_scores <- predict(climate_10k_pca,
 And now we can plot the points on top of the background
 
 ``` r
+
 plot(climate_10k_pca$x[, 2] ~ climate_10k_pca$x[, 1],
   pch = 20, col = "lightgray",
   xlab = "PC1", ylab = "PC2"
@@ -1022,6 +1081,7 @@ generate the raster for the time slice of interest, and use
 `sample_region_slice`:
 
 ``` r
+
 climate_20k <- region_slice(
   time_bp = -20000,
   bio_variables = c("bio01", "bio10"),
@@ -1044,6 +1104,7 @@ for example, if we wanted 30 samples from 20k years ago and 50 samples
 from 10k years ago:
 
 ``` r
+
 climate_ts <- region_series(
   time_bp = c(-20000, -10000),
   bio_variables = c("bio01", "bio10", "bio12"),
@@ -1076,6 +1137,7 @@ At first we will need to extract a region and time of choice, in this
 case Europe 10,000 years ago
 
 ``` r
+
 europe_10k <- region_slice(
   dataset = "Example",
   bio_variables = c("bio01"),
@@ -1094,6 +1156,7 @@ vertically, and, if needed, over layers). In the example below we used
 25 both horizontally and vertically, using bilinear interpolation.
 
 ``` r
+
 europe_ds <- terra::disagg(europe_10k, fact = 25, method = "bilinear")
 terra::plot(europe_ds)
 ```
