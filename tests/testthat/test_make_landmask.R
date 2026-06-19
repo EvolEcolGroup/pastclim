@@ -68,6 +68,8 @@ test_that("get_sea_level rejects future times but accepts the present", {
 })
 
 test_that("get_sea_level validates baseline data structure", {
+  # this only occurs if the baseline data is malformed, so we can simulate that
+  # by creating a new function with a different environment
   bad_get_sea_level <- pastclim:::get_sea_level
   environment(bad_get_sea_level) <- list2env(
     list(
