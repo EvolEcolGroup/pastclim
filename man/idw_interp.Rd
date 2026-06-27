@@ -7,9 +7,9 @@
 idw_interp(x, y, nmax = 7, set = list(idp = 0.5), ...)
 }
 \arguments{
-\item{x}{the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the variable of interest}
+\item{x}{the \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the variable of interest}
 
-\item{y}{the \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} the reference mask defining which
+\item{y}{the \code{\link[terra:SpatRaster]{terra::SpatRaster}} the reference mask defining which
 cells should have values}
 
 \item{nmax}{the number of nearest observations that should be used for a
@@ -24,7 +24,7 @@ in the \code{\link[gstat:gstat]{gstat::gstat()}} help page)}
 \item{...}{further parameters to be passed to \code{\link[gstat:gstat]{gstat::gstat()}}}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the interpolated version of \emph{x}
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the interpolated version of \emph{x}
 }
 \description{
 Fill in x to match cells available in y, using inverse distance weighted

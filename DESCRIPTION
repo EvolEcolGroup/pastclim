@@ -25,7 +25,6 @@ BugReports: https://github.com/EvolEcolGroup/pastclim/issues
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
@@ -49,3 +48,4 @@ Suggests:
   spelling
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

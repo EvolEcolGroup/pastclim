@@ -7,22 +7,22 @@
 delta_compute(x, ref_time, obs, max_land = NULL)
 }
 \arguments{
-\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} for the variable of interest, with all time
+\item{x}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} for the variable of interest, with all time
 steps of interest}
 
 \item{ref_time}{the time (BP) of the slice that is used to compute the delta}
 
 \item{obs}{the observations}
 
-\item{max_land}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the maximum land extent}
+\item{max_land}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} with the maximum land extent}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the delta
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the delta
 }
 \description{
 This function generates a delta (difference) raster, computed as the
 difference between model estimates (\code{x}) and some observations
-(\code{high_res_obs}). \code{x} is a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the variable we want to
+(\code{high_res_obs}). \code{x} is a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the variable we want to
 downscale, and it can contain multiple time steps. \code{ref_time} sets the time
 slice for which the delta should be computed.
 }

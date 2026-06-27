@@ -7,7 +7,7 @@
 make_land_mask(relief_rast, time_bp, sea_level = "Spratt2016")
 }
 \arguments{
-\item{relief_rast}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with relief}
+\item{relief_rast}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} with relief}
 
 \item{time_bp}{the time of interest}
 
@@ -18,7 +18,7 @@ with the same length as \code{time_bp}. \code{NULL} is treated as "Spratt2016" f
 backwards compatibility.}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks (with land as 1's and sea
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the land masks (with land as 1's and sea
 as NAs), where the layers are different times
 }
 \description{

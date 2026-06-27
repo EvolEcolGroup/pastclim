@@ -31,9 +31,11 @@ koeppen_geiger(prec, tavg, broad = FALSE, class_names = TRUE, ...)
 )
 }
 \arguments{
-\item{prec}{monthly precipitation}
+\item{prec}{monthly precipitation, either as a matrix (with 12 columns) or as
+a SpatRaster with 12 layers}
 
-\item{tavg}{monthly average temperatures}
+\item{tavg}{monthly average temperatures, either as a matrix (with 12
+columns) or as a SpatRaster with 12 layers}
 
 \item{broad}{boolean whether to return broad level classification}
 
@@ -48,16 +50,15 @@ addition to codes)}
 a data.frame with the Köppen Geiger classification
 }
 \description{
-Function to reconstruct biomes following the Köppen Geiger's
-classification, as implemented in Beck et al (2018). This function is a
-translation of the Matlab function "KoeppenGeiger" provided in that
-publication. See Table 1 in beck et al (2018) for the rules implemented
-in this function.
+Function to reconstruct biomes following the Köppen Geiger's classification,
+as implemented in Beck et al (2018). This function is a translation of the
+Matlab function "KoeppenGeiger" provided in that publication. See Table 1 in
+beck et al (2018) for the rules implemented in this function.
 }
 \details{
 Beck, H.E., McVicar, T.R., Vergopolan, N. et al. High-resolution (1 km)
-Köppen-Geiger maps for 1901–2099 based on constrained CMIP6 projections.
-Sci Data 10, 724 (2023). https://doi.org/10.1038/s41597-023-02549-6
+Köppen-Geiger maps for 1901–2099 based on constrained CMIP6 projections. Sci
+Data 10, 724 (2023). https://doi.org/10.1038/s41597-023-02549-6
 }
 \examples{
 prec <- matrix(

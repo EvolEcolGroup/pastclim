@@ -7,12 +7,12 @@
 sample_region_slice(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} returned
+\item{x}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} returned
 by \code{\link[=region_slice]{region_slice()}}}
 
 \item{size}{number of points sampled.}
 
-\item{method}{one of the sampling methods from \code{\link[terra:sample]{terra::spatSample()}}. It
+\item{method}{one of the sampling methods from \code{\link[terra:spatSample]{terra::spatSample()}}. It
 defaults to "random"}
 
 \item{replace}{boolean determining whether we sample with replacement}
@@ -27,8 +27,8 @@ the climate variables.
 This function samples points from a region time slice (i.e. a time point).
 }
 \details{
-This function wraps \code{\link[terra:sample]{terra::spatSample()}} to appropriate sample the
-\code{\link[terra:SpatRaster-class]{terra::SpatRaster}} returned
-by \code{\link[=region_slice]{region_slice()}}. You can also use \code{\link[terra:sample]{terra::spatSample()}} directly
-on a slice (which is a standard \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}).
+This function wraps \code{\link[terra:spatSample]{terra::spatSample()}} to appropriate sample the
+\code{\link[terra:SpatRaster]{terra::SpatRaster}} returned
+by \code{\link[=region_slice]{region_slice()}}. You can also use \code{\link[terra:spatSample]{terra::spatSample()}} directly
+on a slice (which is a standard \code{\link[terra:SpatRaster]{terra::SpatRaster}}).
 }

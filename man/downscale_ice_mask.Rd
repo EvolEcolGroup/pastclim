@@ -12,10 +12,10 @@ downscale_ice_mask(
 )
 }
 \arguments{
-\item{ice_mask_low_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the low resolution ice
+\item{ice_mask_low_res}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the low resolution ice
 mask to downscale (e.g. as obtained with \code{\link[=get_ice_mask]{get_ice_mask()}})}
 
-\item{land_mask_high_res}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the land masks at
+\item{land_mask_high_res}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the land masks at
 different times (e.g. as obtained from \code{\link[=make_land_mask]{make_land_mask()}}). The ice mask
 will be cropped and matched for the resolution of this land mask.}
 
@@ -30,7 +30,7 @@ applying the Gaussian filter. This is to avoid edge effects. The default is
 c(5,5).}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the ice mask (1's), with the rest of the
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the ice mask (1's), with the rest of the
 world (sea and land) as NA's
 }
 \description{

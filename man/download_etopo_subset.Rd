@@ -7,7 +7,7 @@
 download_etopo_subset(rast_template, ...)
 }
 \arguments{
-\item{rast_template}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} providing the extent and
+\item{rast_template}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}} providing the extent and
 resolution to be downloaded. This raster needs to have identical vertical
 and horizontal resolution, and standard lat/long projection.}
 
@@ -16,7 +16,7 @@ customise how files are stored. See the manpage for that function for
 details}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the relief for the chosen region
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} with the relief for the chosen region
 }
 \description{
 This function downloads part of the ETOPO2020 relief (topography+bathymetry)
@@ -29,9 +29,9 @@ fly from the NOAA server. If you plan to use the ETOPO2022 dataset
 extensively, it is worthwhile downloading it permanently to your computer
 with \code{\link[=download_etopo]{download_etopo()}}, but beware that it is a large file (>1Gb). This
 function uses \code{marmap::getNOAA.bathy()} to download the data, and then
-converts them into a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} formatted to be compatible with
+converts them into a \code{\link[terra:SpatRaster]{terra::SpatRaster}} formatted to be compatible with
 \code{pastclim}. NOTE: this function does not save the relief, it returns a
-\code{\link[terra:SpatRaster-class]{terra::SpatRaster}}. If you plan to reuse this relief multiple times, it
+\code{\link[terra:SpatRaster]{terra::SpatRaster}}. If you plan to reuse this relief multiple times, it
 would be wise to save it with \code{\link[terra:writeCDF]{terra::writeCDF()}}.
 }
 \keyword{internal}
