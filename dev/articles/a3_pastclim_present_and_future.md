@@ -25,7 +25,7 @@ So, the annual variables for the 10m arc-minutes dataset are:
 
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.27
+#> terra 1.9.34
 get_vars_for_dataset("WorldClim_2.1_10m")
 #>  [1] "bio01"    "bio02"    "bio03"    "bio04"    "bio05"    "bio06"   
 #>  [7] "bio07"    "bio08"    "bio09"    "bio10"    "bio11"    "bio12"   

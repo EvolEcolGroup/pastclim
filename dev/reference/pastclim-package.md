@@ -22,6 +22,8 @@ Useful links:
 
 Authors:
 
+- Andrea Manica <am315@cam.ac.uk> \[copyright holder\]
+
 - Michela Leonardi
 
 Other contributors:

@@ -39,11 +39,13 @@ koeppen_geiger(
 
 - prec:
 
-  monthly precipitation
+  monthly precipitation, either as a matrix (with 12 columns) or as a
+  SpatRaster with 12 layers
 
 - tavg:
 
-  monthly average temperatures
+  monthly average temperatures, either as a matrix (with 12 columns) or
+  as a SpatRaster with 12 layers
 
 - broad:
 

@@ -11,7 +11,7 @@ possible to get a list of all available datasets with:
 
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.27
+#> terra 1.9.34
 ```
 
 ``` r
