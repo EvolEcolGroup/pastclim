@@ -15,3 +15,5 @@ ci_dependencies
 .covrignore
 .lintr
 revdep
+^\.positai$
+^\.claude$
