@@ -26,7 +26,7 @@ changes in the `dev` version of `terra`, so you will need to upgrade
 both libraries with:
 
     install.packages('terra', repos='https://rspatial.r-universe.dev')
-    install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev")
+    install.packages("pastclim", repos = c("https://evolecolgroup.r-universe.dev"))
 
 ## Overview of functionality
 
