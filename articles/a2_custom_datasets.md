@@ -1,0 +1,199 @@
+# custom dataset
+
+### Formatting a custom dataset for `pastclim`
+
+This guide is aimed at formatting data in such a way that they can be
+used with `pastclim`. `pastclim` is designed to extract data from
+`netcdf` files, a format commonly used for storing climate
+reconstructions. `netcdf` files have a number of advantages, as they can
+store compressed information, as well as allowing access to only the
+data required (e.g. extracting only the time steps or location of
+interest without reading all the data in memory). The expected format
+for `pastclim` requires that all time steps of a given variable be
+stored within a single netcdf file. How variables are combined (or not)
+is then flexible: you can have a separate file for each variable,
+collate everything within a single file, or create multiple files each
+including a number of variables. The time variable should be in years
+since 1950 (i.e. with negative integers indicating the past). There are
+a number of command line tools as well as R libraries (e.g. `cdo`,
+`gdal`, `terra`) that can help creating and editing netcdf files.
+
+### An example: the Trace21k-CHELSEA
+
+Here we provide a simple example of how to format such a dataset in R.
+We will use a version of the Trace21k dataset, downscaled to 30 arcsecs
+using the CHELSEA algorithm(available from [this
+website](https://chelsa-climate.org/chelsa-trace21k/)). The data are
+stored as geoTIFF files, one file per time step per variable. First, we
+need to collate all the files for a given variable (we will use *bio01*
+as an example) within a single `netcdf` file. As the original files are
+large, we will illustrate here how do to that for only a few time steps
+which were aggregated to 3x3 degrees to keep files sizes small.
+
+We start by translating each geoTIFF into a `netcdf` file. The files
+have the prefix *CHELSA_TraCE21k_bio01\_-**xxx**\_V1.0.small.tif*, where
+**xxx** is the number of the time step. We will only use 3 time step for
+illustrative purposes.
+
+We store all the files in a single directory, and create a `spatRaster`
+from a list of the files in that directory:
+
+``` r
+
+tiffs_path <- system.file("extdata/CHELSA_bio01", package = "pastclim")
+list_of_tiffs <- file.path(tiffs_path, dir(tiffs_path))
+bio01 <- terra::rast(list_of_tiffs)
+```
+
+*NOTE: `terra` has changed the way it handles time when reading from
+netcdf. The dev version of `terra` can more easily format netcdf files
+correctly, but this vignette presents a number of workarounds needed for
+the version on CRAN*
+
+Now we need to set the time axis of the raster (in this case,
+reconstructions are every 100 years), and generate some user friendly
+names to layers in the raster:
+
+``` r
+
+library(pastclim)
+#> Loading required package: terra
+#> terra 1.9.38
+time_bp(bio01) <- c(0, -100, -200)
+names(bio01) <- paste("bio01", terra::time(bio01), sep = "_")
+```
+
+Now we save the data as a *nc* file (we will use the temporary
+directory)
+
+``` r
+
+nc_name <- file.path(tempdir(), "CHELSA_TraCE21k_bio01.nc")
+terra::writeCDF(bio01,
+  filename = nc_name, varname = "bio01",
+  compression = 9, overwrite = TRUE
+)
+```
+
+We can now read in our custom netcdf file with `pastclim`.
+
+``` r
+
+custom_series <- region_series(
+  bio_variables = "bio01",
+  dataset = "custom",
+  path_to_nc = nc_name
+)
+custom_series
+#> class       : SpatRasterDataset
+#> subdatasets : 1
+#> dimensions  : 174, 360 (nrow, ncol)
+#> nlyr        : 3
+#> resolution  : 1, 1  (x, y)
+#> extent      : -180.0001, 179.9999, -90.00014, 83.99986  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 (EPSG:4326)
+#> source(s)   : CHELSA_TraCE21k_bio01.nc
+#> names       : bio01
+```
+
+As expected, there is only one variable (“bio01”) and 3 time steps
+(nlyr). We can get the times of those time steps with:
+
+``` r
+
+get_time_bp_steps(dataset = "custom", path_to_nc = nc_name)
+#> [1]    0 -100 -200
+```
+
+And we can slice the series and plot a given time point:
+
+``` r
+
+climate_100 <- slice_region_series(custom_series, time_bp = -100)
+terra::plot(climate_100)
+```
+
+![](a2_custom_datasets_files/figure-html/unnamed-chunk-8-1.png)
+
+Note that these reconstructions include the ocean and the ice sheets,
+and it would be much better to remove them as they are not needed for
+most ecological/archaeological studies (and it allows for smaller
+files).
+
+## Making the data available to others
+
+Once you have created suitably formatted netcdf files that can be used
+as custom datasets in `pastclim`, you can add those data officially to
+the package, and thus make them available to others. Here are the
+necessary steps:
+
+1.  Put your files in a freely available repository.
+
+2.  Update the table used by `pastclim` to store information about
+    available datasets. This table is found in
+    “./data-raw/data_files/dataset_list_included.csv”.
+
+&nbsp;
+
+    #>   variable ncvar dataset monthly                 file_name download_path
+    #> 1    bio01  BIO1 Example   FALSE example_climate_v1.3.0.nc              
+    #> 2    bio10 BIO10 Example   FALSE example_climate_v1.3.0.nc              
+    #>   download_function file_name_orig download_path_orig version
+    #> 1                                                       1.3.0
+    #> 2                                                       1.3.0
+    #>                             long_name      abbreviated_name time_frame
+    #> 1             annual mean temperature           ann. mean T       year
+    #> 2 mean temperature of warmest quarter mean T of warmest qtr       year
+    #>             units  units_exp dataset_list_v
+    #> 1 degrees Celsius *degree*C*          1.3.9
+    #> 2 degrees Celsius *degree*C*
+
+This includes the following fields:
+
+`variable`: the variable name used by `pastclim`
+
+`ncvar`: the variable name within the *nc* file (it can be the same as
+`variable`)
+
+`dataset`: the name of the dataset.
+
+`monthly`: boolean on whether the variable is monthly.
+
+`file_name`: the name of the file for that variable.
+
+`download_path`: the URL to download the file.
+
+`donwload_function`: for datasets which can be easily converted by the
+user into a valid netcdf, it is possibly to leave `download_path` empty,
+and to create an internal function that downloads and converts the
+files. For an example, see the WorldClim datasets.
+
+`file_name_orig`: the name of the original file(s) used to create the
+*nc* dataset.
+
+`download_path_orig`: the path of those original files.
+
+`version`: the version of the dataset that you created
+
+`long_name`: the long name for the variable
+
+`abbreviated_name`: an abbreviated version of `long_name` (used for plot
+labels)
+
+`time_frame`: either `year` or the appropriate `month`
+
+`units`: units for the variable, to be displayed in a plain text table
+
+`units_exp`: units formatted to be included in `expression` when
+creating plot labels
+
+3.  Once you have added lines detailing the variables in your dataset,
+    run the script “./raw-data/make_data/dataset_list_included.R” to
+    store that information into the appropriate dataset in `pastclim`.
+
+4.  Provide information on the new dataset in the file
+    “./R/dataset_docs”, using `roxygen2` syntax. Make sure that you
+    provide an appropriate reference for the original data, as it is
+    important that users can refer back to the original source.
+
+5.  Make a Pull Request on GitHub.
