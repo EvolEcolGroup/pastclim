@@ -20,6 +20,7 @@ Edmundson
 Eleru
 FIO
 Fick
+Figshare
 GC
 GCM
 GCMs
@@ -79,6 +80,7 @@ UKESM
 VRT
 Vergopolan
 WorldClim
+Zenodo
 antimeridian
 arcsecs
 bioclim
@@ -88,7 +90,6 @@ ce
 cheatsheet
 chelsa
 ci
-clark
 com
 coords
 csv
@@ -126,7 +127,6 @@ paleoclimate
 params
 prec
 sd
-spratt
 ssp
 subdatasets
 tempdir
