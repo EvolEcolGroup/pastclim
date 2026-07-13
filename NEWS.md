@@ -4,7 +4,7 @@
   and max temperature
 * fix path for Barreto2023 dataset (Figshare does not allow any longer to
   download with a simple curl, so we have moved the data to Zenodo)
-* add se for bio variables for Barreto et al 2023
+* add SE for bio variables for Barreto et al 2023
 * Add Clark2025 as a possible sea level dataset.
 
 # pastclim 2.2.0
