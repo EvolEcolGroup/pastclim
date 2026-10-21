@@ -18,6 +18,22 @@ make_delta_inputs <- function() {
   list(x = x, obs = obs, landmask_high = landmask_high)
 }
 
+test_that("delta_downscale fills gaps in every layer", {
+  inputs <- make_delta_inputs()
+  delta_rast <- delta_compute(
+    x = inputs$x, ref_time = 0, obs = inputs$obs,
+    max_land = inputs$landmask_high[[1]]
+  )
+  x_down <- delta_downscale(
+    x = inputs$x, delta_rast = delta_rast,
+    x_landmask_high = inputs$landmask_high
+  )
+  expect_equal(terra::nlyr(x_down), 2)
+  expect_equal(terra::ncell(x_down), terra::ncell(inputs$obs))
+  # all cells in the landmask should have values, for every time step
+  expect_equal(sum(is.na(terra::values(x_down))), 0)
+})
+
 test_that("delta_downscale works without a high resolution landmask", {
   inputs <- make_delta_inputs()
   delta_rast <- delta_compute(
