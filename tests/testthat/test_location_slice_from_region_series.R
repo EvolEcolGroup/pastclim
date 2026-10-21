@@ -98,6 +98,45 @@ test_that("NAs in other columns do not trigger nn_interpol", {
   expect_equal(this_climate_single$bio01, this_climate$bio01)
 })
 
+test_that("location_slice_from_region_series works with cell numbers", {
+  locations <- data.frame(
+    longitude = c(0, 90, -9), latitude = c(20, 45, 37),
+    time_bp = c(0, -10000, -10000)
+  )
+  this_series <- region_series(
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  cells <- terra::cellFromXY(
+    this_series[[1]],
+    as.matrix(locations[, c("longitude", "latitude")])
+  )
+  by_coords <- location_slice_from_region_series(
+    x = locations, region_series = this_series, nn_interpol = TRUE
+  )
+  by_cells <- location_slice_from_region_series(
+    x = cells, time_bp = locations$time_bp, region_series = this_series,
+    nn_interpol = TRUE
+  )
+  expect_identical(by_cells$cell_number, cells)
+  expect_equal(
+    by_cells[, c("bio01", "bio12")],
+    by_coords[, c("bio01", "bio12")]
+  )
+  # integer cell numbers are also accepted
+  by_cells_int <- location_slice_from_region_series(
+    x = as.integer(cells), time_bp = locations$time_bp,
+    region_series = this_series, nn_interpol = TRUE
+  )
+  expect_equal(by_cells_int$bio01, by_cells$bio01)
+  expect_error(
+    location_slice_from_region_series(
+      x = "a", time_bp = 0, region_series = this_series
+    ),
+    "x should be either a data.frame or a numeric vector"
+  )
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)

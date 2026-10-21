@@ -95,8 +95,10 @@ location_slice_from_region_series <- # nolint
         )
       }
       locations_data <- x
-    } else if (inherits(x, "numeric")) {
+    } else if (is.numeric(x)) {
       locations_data <- data.frame(cell_number = x)
+    } else {
+      stop("x should be either a data.frame or a numeric vector")
     }
     # add time_bp if needed
     if (!is.null(time_bp)) {
@@ -114,7 +116,12 @@ location_slice_from_region_series <- # nolint
     if (inherits(x, "data.frame")) {
       coords_df <- locations_data[, coords]
     } else {
-      coords_df <- locations_data[, c("cell_number")]
+      # terra can not extract by cell number when using 'layer' (see below),
+      # so we convert cell numbers to coordinates
+      coords_df <- as.data.frame(terra::xyFromCell(
+        climate_brick[[1]],
+        locations_data$cell_number
+      ))
     }
 
     # now sort out the time slices corresponding to each location
@@ -128,7 +135,7 @@ location_slice_from_region_series <- # nolint
     # specific locations directly
     if (!buffer) {
       locations_climate <- terra::extract(climate_brick,
-        y = locations_data[coords],
+        y = coords_df,
         layer = time_indeces
       )
       # for each bio_variable (the list element), extract the value column from
