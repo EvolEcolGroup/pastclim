@@ -1,0 +1,41 @@
+---
+title: "terra ncdf slow reprex"
+output: html_document
+date: "2026-09-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(pastclim)
+library(tictoc)
+```
+
+Create a dataset
+```{r}
+locations <- data.frame(
+  name = c("Iho Eleru", "La Riera", "Chalki", "Oronsay", "Atlantis"),
+  longitude = c(5, -4, 27, -6, -24), latitude = c(7, 44, 36, 56, 31),
+  time_bp = c(-511200, -318738, -10227, -1200, -211600)
+)
+locations
+locations2 <- locations
+locations2$longitude <- locations2$longitude + 5
+locations2$latitude <- locations2$latitude -2
+locations2$time_bp <- locations2$time_bp - 10000
+locations2$name <- paste0(locations2$name, "_2")
+locations <- rbind(locations, locations2)
+locations
+```
+
+Extract locations
+```{r}
+tic()
+location_slice(
+  x = locations, bio_variables = c("bio01", "bio12", "bio15", "npp"),
+  dataset = "Krapp2021"
+)
+toc()
+```

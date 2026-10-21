@@ -78,6 +78,7 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
       if (!file.exists(file.path(get_data_path(), file_details$file_name))) {
         # if it is a standard file to download
         if (file_details$download_path != "") {
+          browser()
           curl::curl_download(file_details$download_path,
             destfile = file.path(get_data_path(), file_details$file_name),
             quiet = FALSE
