@@ -145,7 +145,9 @@ location_slice_from_region_series <- # nolint
 
     # if we interpolate or use a buffer, we have to find the incomplete cases
     if (nn_interpol || buffer) {
-      loc_id_to_move <- which(!stats::complete.cases(locations_data))
+      loc_id_to_move <- which(
+        !stats::complete.cases(locations_data[, bio_variables])
+      )
       # only do something if we have some locations for which we have no data
       if (length(loc_id_to_move) != 0) {
         # for each id, get the appropriate list of neighbours

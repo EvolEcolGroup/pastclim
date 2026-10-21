@@ -67,6 +67,37 @@ test_that("buffer keeps coordinates, names and times", {
   expect_equal(this_climate_ce$bio01, this_climate$bio01)
 })
 
+test_that("NAs in other columns do not trigger nn_interpol", {
+  locations <- data.frame(
+    name = c("A", "B", "C", "D"),
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
+    time_bp = c(0, -10000, -20000, -10000)
+  )
+  this_series <- region_series(
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  this_climate <- location_slice_from_region_series(
+    x = locations, region_series = this_series, nn_interpol = TRUE
+  )
+  locations_extra <- locations
+  locations_extra$notes <- NA
+  this_climate_extra <- location_slice_from_region_series(
+    x = locations_extra, region_series = this_series, nn_interpol = TRUE
+  )
+  expect_equal(
+    this_climate_extra[, c("bio01", "bio12")],
+    this_climate[, c("bio01", "bio12")]
+  )
+  # also with a single variable
+  this_climate_single <- location_slice_from_region_series(
+    x = locations_extra,
+    region_series = region_series(bio_variables = "bio01", dataset = "Example"),
+    nn_interpol = TRUE
+  )
+  expect_equal(this_climate_single$bio01, this_climate$bio01)
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)
