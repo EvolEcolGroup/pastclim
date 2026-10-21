@@ -78,19 +78,15 @@ methods::setMethod(
     # we get the indeces of the lines which have data
     valid_rows <- which(!is.na(prec[, 1] + tavg[, 1]))
     tot_n_rows <- nrow(prec)
-    prec <- prec[valid_rows, ]
-    tavg <- tavg[valid_rows, ]
+    prec <- prec[valid_rows, , drop = FALSE]
+    tavg <- tavg[valid_rows, , drop = FALSE]
 
     if (any(tavg > 100)) {
       stop("tavg should be in degrees celsius, but the current input is Kelvin")
     }
 
-    if (!inherits(tavg, "matrix")) {
-      stop("only one valid row of data, this function needs at least two")
-    }
-
-    T_ONDJFM <- apply(tavg[, c(10, 11, 12, 1, 2, 3)], 1, mean)
-    T_AMJJAS <- apply(tavg[, c(4, 5, 6, 7, 8, 9)], 1, mean)
+    T_ONDJFM <- apply(tavg[, c(10, 11, 12, 1, 2, 3), drop = FALSE], 1, mean)
+    T_AMJJAS <- apply(tavg[, c(4, 5, 6, 7, 8, 9), drop = FALSE], 1, mean)
     tmp <- T_AMJJAS > T_ONDJFM
     SUM_SEL <- array(FALSE, dim = dim(tavg))
     SUM_SEL[, c(10, 11, 12, 1, 2, 3)] <- !tmp
