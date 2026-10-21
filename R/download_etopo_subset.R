@@ -26,20 +26,23 @@
 
 # TODO change this function to donwload_etopo_subset
 download_etopo_subset <- function(rast_template, ...) {
+  # check that this works, I think there might be issues with decimal places
+  if (!isTRUE(all.equal(
+    terra::res(rast_template)[1],
+    terra::res(rast_template)[2]
+  ))) {
+    stop(
+      "rast_template should have identical vertical ",
+      "and horizontal resolution"
+    )
+  }
+
   if (!requireNamespace("marmap", quietly = TRUE)) {
     message(
       "This function requires the 'marmap' package; install it with:\n",
       "install.packages('marmap')"
     )
     return(invisible())
-  }
-
-  # check that this works, I think there might be issues with decimal places
-  if (!all.equal(terra::res(rast_template)[1], terra::res(rast_template)[2])) {
-    stop(
-      "rast_template should have identical vertical ",
-      "and horizontal resolution"
-    )
   }
 
   relief_bathy <- marmap::getNOAA.bathy(
