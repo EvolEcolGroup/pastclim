@@ -137,6 +137,39 @@ test_that("location_slice_from_region_series works with cell numbers", {
   )
 })
 
+test_that("nn_interpol with biome keeps numeric variables numeric", {
+  locations <- data.frame(
+    name = c("A", "B", "C", "D"),
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
+    time_bp = c(0, -10000, -20000, -10000)
+  )
+  this_series <- region_series(
+    bio_variables = c("bio01", "bio12", "biome"),
+    dataset = "Example"
+  )
+  for (this_buffer in c(FALSE, TRUE)) {
+    this_climate <- location_slice_from_region_series(
+      x = locations, region_series = this_series, nn_interpol = TRUE,
+      buffer = this_buffer
+    )
+    expect_true(is.numeric(this_climate$bio01))
+    expect_true(is.numeric(this_climate$bio12))
+    expect_true(is.factor(this_climate$biome))
+    expect_false(is.na(this_climate$bio01[4]))
+    expect_false(is.na(this_climate$biome[4]))
+  }
+  # values for numeric variables should match those without biome
+  this_climate_no_biome <- location_slice_from_region_series(
+    x = locations,
+    region_series = region_series(
+      bio_variables = c("bio01", "bio12"),
+      dataset = "Example"
+    ),
+    nn_interpol = TRUE, buffer = TRUE
+  )
+  expect_equal(this_climate$bio01, this_climate_no_biome$bio01)
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)
