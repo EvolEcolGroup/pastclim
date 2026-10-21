@@ -1,3 +1,5 @@
+# manual rchelsa: https://gitlabext.wsl.ch/karger/rchelsa/-/blob/main/Rchelsa_1.0.2.pdf?ref_type=heads
+
 library(rchelsa)
 
 # from rchelsa description
@@ -6,16 +8,18 @@ library(rchelsa)
 # define start and end dates for the extraction
 startdate <- c(1, -200)    # January, 20,000 BP
 enddate   <- c(12, -200)     # December, 20,000 BP
-Step 2: Define multiple coordinates
+#Step 2: Define multiple coordinates
 coords <- data.frame(
   lon = c(13.827138, 13.781620),
   lat = c(46.311087, 46.340116)
 )
-Step 3: Extract the data
+#Step 3: Extract the data
 pr <- getChelsa("pr", coords = coords, startdate = startdate, enddate = enddate, 
                 dataset="chelsa-trace21k-centennial")
 
 
+# full script to create URL
+# source: https://gitlabext.wsl.ch/karger/rchelsa/-/blob/main/R/createURL.R?ref_type=heads
 
 #' Build a CHELSA URL or local file path
 #'
