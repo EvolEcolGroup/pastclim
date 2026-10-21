@@ -44,7 +44,7 @@ Suggests:
   knitr,
   rmarkdown,
   marmap,
-  testthat (>= 3.0.0),
+  testthat (>= 3.1.7),
   spelling
 VignetteBuilder: knitr
 Config/testthat/edition: 3
