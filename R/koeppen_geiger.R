@@ -258,7 +258,7 @@ methods::setMethod(
   ),
   function(prec, tavg, broad = FALSE, class_names = TRUE, filename = "", ...) {
     if (!all(is_region_series(prec), is_region_series(tavg))) {
-      "prec and tavg should be generated with region_series"
+      stop("prec and tavg should be generated with region_series")
     }
     if (!all(
       (nlyr(prec)[1] == nlyr(tavg)[1]),
