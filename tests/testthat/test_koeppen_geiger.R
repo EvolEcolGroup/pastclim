@@ -135,6 +135,38 @@ test_that("koeppen geiger works with a single valid row", {
   )
 })
 
+test_that("koeppen geiger for SpatRasterDataset uses broad and class_names", {
+  prec_series <- terra::readRDS(system.file("/extdata/delta/prec_series.RDS",
+    package = "pastclim"
+  ))
+  terra::time(prec_series, tstep = "years") <- terra::time(prec_series)
+  tavg_series <- terra::readRDS(system.file("/extdata/delta/tavg_series.RDS",
+    package = "pastclim"
+  ))
+  terra::time(tavg_series, tstep = "years") <- terra::time(tavg_series)
+  prec_present <- slice_region_series(prec_series, time_bp = 0)
+  tavg_present <- slice_region_series(tavg_series, time_bp = 0)
+  for (this_broad in c(FALSE, TRUE)) {
+    for (this_names in c(FALSE, TRUE)) {
+      kg_rast <- koeppen_geiger(prec_present, tavg_present,
+        broad = this_broad, class_names = this_names
+      )
+      kg_series <- koeppen_geiger(prec_series, tavg_series,
+        broad = this_broad, class_names = this_names
+      )
+      kg_series_present <- kg_series[[1]][[nlyr(kg_series[[1]])]]
+      expect_identical(
+        terra::activeCat(kg_series_present),
+        terra::activeCat(kg_rast)
+      )
+      expect_identical(
+        terra::values(kg_series_present, dataframe = TRUE)[, 1],
+        terra::values(kg_rast, dataframe = TRUE)[, 1]
+      )
+    }
+  }
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)

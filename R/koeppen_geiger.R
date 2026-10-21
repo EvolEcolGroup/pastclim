@@ -271,7 +271,10 @@ methods::setMethod(
     for (i in seq_along(time_slices)) {
       prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
       tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
-      koeppen_slice <- koeppen_geiger(prec_slice, tavg_slice)
+      koeppen_slice <- koeppen_geiger(prec_slice, tavg_slice,
+        broad = broad,
+        class_names = class_names
+      )
       # set times in years BP
       time_bp(koeppen_slice) <- rep(time_slices[i], terra::nlyr(koeppen_slice))
       if (i == 1) {
