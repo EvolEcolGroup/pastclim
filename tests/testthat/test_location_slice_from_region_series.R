@@ -37,6 +37,36 @@ test_that("location_slice", {
   # wrapper around this function with added code to generate the region series
 })
 
+test_that("buffer keeps coordinates, names and times", {
+  locations <- data.frame(
+    name = c("A", "B", "C", "D"),
+    longitude = c(0, 90, -120, -9), latitude = c(20, 45, 60, 37),
+    time_bp = c(0, -10000, -20000, -10000)
+  )
+  this_series <- region_series(
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example"
+  )
+  this_climate <- location_slice_from_region_series(
+    x = locations, region_series = this_series, buffer = TRUE
+  )
+  expect_identical(this_climate$name, locations$name)
+  expect_identical(this_climate$longitude, locations$longitude)
+  expect_identical(this_climate$latitude, locations$latitude)
+  expect_identical(this_climate$time_bp, locations$time_bp)
+  expect_identical(this_climate$time_bp_slice, locations$time_bp)
+  expect_false(is.na(this_climate[1, "bio01"]))
+  # time_ce should also be preserved
+  locations_ce <- locations
+  locations_ce$time_ce <- locations_ce$time_bp + 1950
+  locations_ce$time_bp <- NULL
+  this_climate_ce <- location_slice_from_region_series(
+    x = locations_ce, region_series = this_series, buffer = TRUE
+  )
+  expect_identical(this_climate_ce$time_ce, locations_ce$time_ce)
+  expect_equal(this_climate_ce$bio01, this_climate$bio01)
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)
