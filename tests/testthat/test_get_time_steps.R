@@ -52,6 +52,26 @@ test_that("get_time_bp_steps for local file", {
 })
 
 
+test_that("get_time_bp_steps and get_resolution use the current dataset list", {
+  old_list <- getOption("pastclim.dataset_list")
+  on.exit(options(pastclim.dataset_list = old_list))
+  # add a dataset (as if it came from update_dataset_list()) that reuses the
+  # example file
+  new_dataset <- old_list[old_list$dataset == "Example", ]
+  new_dataset$dataset <- "Example_new"
+  new_list <- rbind(old_list, new_dataset)
+  new_list$dataset <- as.factor(as.character(new_list$dataset))
+  options(pastclim.dataset_list = new_list)
+  expect_equal(get_time_bp_steps(dataset = "Example_new"),
+    get_time_bp_steps(dataset = "Example"),
+    ignore_attr = TRUE
+  )
+  expect_equal(
+    get_resolution(dataset = "Example_new"),
+    get_resolution(dataset = "Example")
+  )
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)
