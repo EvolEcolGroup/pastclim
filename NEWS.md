@@ -1,4 +1,7 @@
 # pastclim (development version)
+* pastclim now requires terra >= 1.8-93: with earlier versions, extracting
+  categorical variables (e.g. `biome`) with `layer` in `location_slice()`
+  and `location_series()` returns incorrect results.
 * improve the speed of `location_series()`.
 * fix for missing time step in CHELSA-TraCE21k (-1300 BP is missing for min
   and max temperature

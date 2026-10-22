@@ -28,7 +28,7 @@ LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
 Depends: 
   R (>= 4.0.0),
-  terra (>= 1.7.18)
+  terra (>= 1.8-93)
 Imports:
   curl,
   lubridate,
