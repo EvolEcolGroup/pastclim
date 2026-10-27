@@ -10,7 +10,8 @@
 
 filenames_chelsa_trace21k <- function(dataset, bio_var) {
   
-  years <- seq(20, -200, by = -1)
+  version <- "1.0"
+  yr_id <- seq(20, -200, by = -1)
   
   # helper to format year following the chelsa trace21k naming convention
   format_trace21k_year <- function(x) {
@@ -27,9 +28,6 @@ filenames_chelsa_trace21k <- function(dataset, bio_var) {
     )
   }
   
-  # format the years for the file names
-  yr_fmt <- format_trace21k_year(seq(20, -200, by = -1))
-  
   # based on the variable, get the original var prefix and name for chelsa
   if (grepl("^bio", bio_var)) {
     
@@ -45,7 +43,7 @@ filenames_chelsa_trace21k <- function(dataset, bio_var) {
         sprintf(
           "CHELSA_TraCE21k_%s_%s_V.1.0.tif",
           bio_var,
-          format_trace21k_year(years)
+          format_trace21k_year(yr_id)
         )
       )
     )
