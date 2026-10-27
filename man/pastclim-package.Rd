@@ -20,10 +20,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Andrea Manica \email{am315@cam.ac.uk}
+\strong{Maintainer}: Andrea Manica \email{am315@cam.ac.uk} [copyright holder]
 
 Authors:
 \itemize{
+  \item Andrea Manica \email{am315@cam.ac.uk} [copyright holder]
   \item Michela Leonardi
 }
 

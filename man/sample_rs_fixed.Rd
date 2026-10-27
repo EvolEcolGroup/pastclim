@@ -7,13 +7,13 @@
 sample_rs_fixed(x, size, method = "random", replace = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRasterDataset}} returned
+\item{x}{a \code{\link[terra:SpatRasterDataset]{terra::SpatRasterDataset}} returned
 by \code{\link[=region_series]{region_series()}}}
 
 \item{size}{number of points sampled; the same
 locations across all time steps}
 
-\item{method}{one of the sampling methods from \code{\link[terra:sample]{terra::spatSample()}}. It
+\item{method}{one of the sampling methods from \code{\link[terra:spatSample]{terra::spatSample()}}. It
 defaults to "random"}
 
 \item{replace}{boolean determining whether we sample with replacement}

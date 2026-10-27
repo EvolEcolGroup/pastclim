@@ -17,7 +17,7 @@ To check which slices are available, you can use \code{time_bp(x)}.}
 should be used.}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of the relevant slice.
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of the relevant slice.
 }
 \description{
 This function extracts a time slice from time series of one or more climate

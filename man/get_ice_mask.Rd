@@ -20,7 +20,7 @@ values can be obtained with \code{\link[=list_available_datasets]{list_available
 will not work on custom datasets.}
 }
 \value{
-a binary \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with the ice mask as 1s
+a binary \code{\link[terra:SpatRaster]{terra::SpatRaster}} with the ice mask as 1s
 }
 \description{
 Get the ice mask for a dataset, either for the whole series or for specific

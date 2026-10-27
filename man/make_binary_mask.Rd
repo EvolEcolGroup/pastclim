@@ -7,10 +7,10 @@
 make_binary_mask(x)
 }
 \arguments{
-\item{x}{a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}}
+\item{x}{a \code{\link[terra:SpatRaster]{terra::SpatRaster}}}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} with 0s and 1s
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} with 0s and 1s
 }
 \description{
 Create a binary mask from a raster: NAs are converted to 0s, and

@@ -21,7 +21,7 @@ pastclim_rast(
 us to rename the variable)}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}}
 }
 \description{
 This function is a wrapper around \code{\link[terra:rast]{terra::rast()}}, with additional logic to

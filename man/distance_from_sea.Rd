@@ -17,7 +17,7 @@ values can be obtained with \code{\link[=list_available_datasets]{list_available
 will not work on custom datasets.}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of distances from the coastline in km
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of distances from the coastline in km
 }
 \description{
 Get the land mask for a dataset at a given time point, and compute distance

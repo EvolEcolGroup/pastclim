@@ -132,8 +132,9 @@ region_series <-
       # subset to crop
       if (!is.null(crop)) {
         terra::crs(crop) <- terra::crs(var_brick)
-        var_brick <- terra::mask(var_brick, crop)
+        # crop() before mask() increases the speed of the operation
         var_brick <- terra::crop(var_brick, crop)
+        var_brick <- terra::mask(var_brick, crop)
       }
 
       # special treatment for biome variables

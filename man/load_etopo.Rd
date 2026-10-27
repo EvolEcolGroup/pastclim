@@ -17,7 +17,7 @@ Defaults to 1 arc-minute.}
 supported at the moment}
 }
 \value{
-a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}} of relief
+a \code{\link[terra:SpatRaster]{terra::SpatRaster}} of relief
 }
 \description{
 This function loads previously downloaded ETOPO 2022 global relief dataset,
