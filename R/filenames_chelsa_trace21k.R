@@ -45,7 +45,7 @@ filenames_chelsa_trace21k <- function(dataset, bio_var) {
         sprintf(
           "CHELSA_TraCE21k_%s_%s_V.1.0.tif",
           bio_var,
-          fmt_year(years)
+          format_trace21k_year(years)
         )
       )
     )
