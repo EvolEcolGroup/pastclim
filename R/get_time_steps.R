@@ -16,8 +16,9 @@ get_time_bp_steps <- function(dataset, path_to_nc = NULL) {
   check_dataset_path(dataset = dataset, path_to_nc = path_to_nc)
 
   if (is.null(path_to_nc)) {
-    possible_files <- dataset_list_included$file_name[
-      dataset_list_included$dataset == dataset
+    dataset_list <- getOption("pastclim.dataset_list")
+    possible_files <- dataset_list$file_name[
+      dataset_list$dataset == dataset
     ]
     possible_files <- possible_files[
       possible_files %in% list.files(get_data_path())

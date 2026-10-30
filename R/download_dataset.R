@@ -50,13 +50,13 @@ download_dataset <- function(dataset, bio_variables = NULL, annual = TRUE,
 
   if (!all(bio_variables %in% available_variables)) {
     stop(
-      paste0(
-        bio_variables[!bio_variables %in% available_datasets],
-        " not available for ",
-        dataset,
-        "; available variables are ",
-        paste(available_variables, collapse = ", ")
-      )
+      paste(bio_variables[!bio_variables %in% available_variables],
+        collapse = ", "
+      ),
+      " not available for ",
+      dataset,
+      "; available variables are ",
+      paste(available_variables, collapse = ", ")
     )
   }
 

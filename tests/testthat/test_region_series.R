@@ -145,6 +145,20 @@ test_that("ext on region series", {
     dataset = "Example",
     ext = ext
   ), NA)
+
+  # integer vectors are also valid, and give the same result as doubles
+  rs_double <- region_series(
+    time_bp = -20000, bio_variables = "bio01", dataset = "Example",
+    ext = c(-15, 70, 33, 75)
+  )
+  rs_integer <- region_series(
+    time_bp = -20000, bio_variables = "bio01", dataset = "Example",
+    ext = c(-15L, 70L, 33L, 75L)
+  )
+  expect_equal(
+    as.vector(terra::ext(rs_integer[[1]])),
+    as.vector(terra::ext(rs_double[[1]]))
+  )
 })
 test_that("crop on region series", {
   # this should work

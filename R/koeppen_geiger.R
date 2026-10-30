@@ -78,19 +78,15 @@ methods::setMethod(
     # we get the indeces of the lines which have data
     valid_rows <- which(!is.na(prec[, 1] + tavg[, 1]))
     tot_n_rows <- nrow(prec)
-    prec <- prec[valid_rows, ]
-    tavg <- tavg[valid_rows, ]
+    prec <- prec[valid_rows, , drop = FALSE]
+    tavg <- tavg[valid_rows, , drop = FALSE]
 
     if (any(tavg > 100)) {
       stop("tavg should be in degrees celsius, but the current input is Kelvin")
     }
 
-    if (!inherits(tavg, "matrix")) {
-      stop("only one valid row of data, this function needs at least two")
-    }
-
-    T_ONDJFM <- apply(tavg[, c(10, 11, 12, 1, 2, 3)], 1, mean)
-    T_AMJJAS <- apply(tavg[, c(4, 5, 6, 7, 8, 9)], 1, mean)
+    T_ONDJFM <- apply(tavg[, c(10, 11, 12, 1, 2, 3), drop = FALSE], 1, mean)
+    T_AMJJAS <- apply(tavg[, c(4, 5, 6, 7, 8, 9), drop = FALSE], 1, mean)
     tmp <- T_AMJJAS > T_ONDJFM
     SUM_SEL <- array(FALSE, dim = dim(tavg))
     SUM_SEL[, c(10, 11, 12, 1, 2, 3)] <- !tmp
@@ -262,7 +258,7 @@ methods::setMethod(
   ),
   function(prec, tavg, broad = FALSE, class_names = TRUE, filename = "", ...) {
     if (!all(is_region_series(prec), is_region_series(tavg))) {
-      "prec and tavg should be generated with region_series"
+      stop("prec and tavg should be generated with region_series")
     }
     if (!all(
       (nlyr(prec)[1] == nlyr(tavg)[1]),
@@ -275,7 +271,10 @@ methods::setMethod(
     for (i in seq_along(time_slices)) {
       prec_slice <- slice_region_series(prec, time_bp = time_slices[i])
       tavg_slice <- slice_region_series(tavg, time_bp = time_slices[i])
-      koeppen_slice <- koeppen_geiger(prec_slice, tavg_slice)
+      koeppen_slice <- koeppen_geiger(prec_slice, tavg_slice,
+        broad = broad,
+        class_names = class_names
+      )
       # set times in years BP
       time_bp(koeppen_slice) <- rep(time_slices[i], terra::nlyr(koeppen_slice))
       if (i == 1) {

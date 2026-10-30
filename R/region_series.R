@@ -53,14 +53,14 @@ region_series <-
     if (!is.null(ext)) {
       if (!any(
         inherits(ext, "SpatExtent"),
-        all(inherits(ext, "numeric"), length(ext) == 4)
+        all(is.numeric(ext), length(ext) == 4)
       )) {
         stop(
           "ext should be a numeric vector of length 4 or a ",
           "terra::SpatExtent object created terra::ext"
         )
       }
-      if (inherits(ext, "numeric")) {
+      if (is.numeric(ext)) {
         ext <- terra::ext(ext)
       }
     }

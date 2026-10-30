@@ -31,7 +31,8 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
   if (grepl("bio", bio_var)) {
     band_vector <- paste0("bio", sprintf("%02d", 1:19))
   } else {
-    var_prefix <- substr(bio_var, nchar(bio_var) - 1, nchar(bio_var))
+    # remove the month (e.g. "precipitation_01" -> "precipitation_")
+    var_prefix <- substr(bio_var, 1, nchar(bio_var) - 2)
     band_vector <- paste0(var_prefix, sprintf("%02d", 1:12))
   }
 
@@ -150,7 +151,7 @@ download_worldclim_future <- function(dataset, bio_var, filename = NULL) {
       )
     }
   }
-  if (!file.exists(vrt_path)) {
+  if (!file.exists(filename)) {
     stop(
       "something went wrong setting up this dataset",
       "\n the dataset will need downloading again"

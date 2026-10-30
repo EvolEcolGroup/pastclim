@@ -90,9 +90,10 @@ sample_rs_fixed <- function(x, size, method = "random", replace = FALSE,
     if (this_var != names(x)[1]) {
       # extract values for this variable
       var_values <- terra::extract(x[this_var], sampled_cells$cell)
+      var_values <- var_values[, names(x[this_var]), drop = FALSE]
     } else {
       # reuse the values obtained from spatSample
-      var_values <- var_values[, -c(1:3)]
+      var_values <- var_values[, -c(1:3), drop = FALSE]
     }
     colnames(var_values) <- time_bp(x[1])
     var_values <- utils::stack(var_values)
