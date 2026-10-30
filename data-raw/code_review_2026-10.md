@@ -30,7 +30,7 @@ rebased again, look for the commit subject instead.
 
 ### Locations (`location_slice()`, `location_series()`, `location_slice_from_region_series()`)
 
-- [ ] **F1. NAs in unrelated columns of `x` trigger interpolation**
+- [x] AVP TODO **F1. NAs in unrelated columns of `x` trigger interpolation**
   ([`991261b`](https://github.com/EvolEcolGroup/pastclim/commit/991261b))
   - **Problem:** with `nn_interpol` or `buffer`, the locations to interpolate
     were chosen with `complete.cases()` on the whole data.frame, so an NA in
@@ -39,6 +39,7 @@ rebased again, look for the commit subject instead.
   - **Fix:** only check the climate variables.
   - **File:** `R/location_slice_from_region_series_fast.R`
   - **Test:** "NAs in other columns do not trigger nn_interpol"
+  - **Comment** from AVP: it makes sense, but the user would need to modify the object (see test)
 
 - [ ] **F2. Vectors of cell numbers fail**
   ([`61c8d9d`](https://github.com/EvolEcolGroup/pastclim/commit/61c8d9d))
@@ -55,7 +56,7 @@ rebased again, look for the commit subject instead.
 
 ### Region series and classifications
 
-- [ ] **F3. `sample_region_series()` fails with a single time step**
+- [x] AVP **F3. `sample_region_series()` fails with a single time step**
   ([`8da509c`](https://github.com/EvolEcolGroup/pastclim/commit/8da509c))
   - **Problem:** with one time step and a fixed `size`, subsetting the
     `spatSample()` output dropped to a vector and `colnames<-` failed.
