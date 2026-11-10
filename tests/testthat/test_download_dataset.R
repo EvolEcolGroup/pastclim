@@ -22,6 +22,13 @@ test_that("download_dataset", {
     ),
     "^foo not available "
   )
+  # only the unavailable variables are reported, once
+  expect_error(
+    download_dataset("Beyer2020",
+      bio_variables = c("bio01", "foo", "bar")
+    ),
+    "^foo, bar not available for Beyer2020; available variables are"
+  )
   # check that only the example climate is in the data directory
   example_filename <- getOption("pastclim.dataset_list")$file_name[
     getOption("pastclim.dataset_list")$dataset == "Example"

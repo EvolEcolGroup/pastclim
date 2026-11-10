@@ -1,4 +1,7 @@
 # pastclim (development version)
+* pastclim now requires terra >= 1.8-93: with earlier versions, extracting
+  categorical variables (e.g. `biome`) with `layer` in `location_slice()`
+  and `location_series()` returns incorrect results.
 * improve the speed of `location_series()`.
 * fix for missing time step in CHELSA-TraCE21k (-1300 BP is missing for min
   and max temperature
@@ -6,6 +9,16 @@
   download with a simple curl, so we have moved the data to Zenodo)
 * add SE for bio variables for Barreto et al 2023
 * Add Clark2025 as a possible sea level dataset.
+* Fix `location_slice()` interpolating valid locations when other columns of `x` contained NAs.
+* Fix `location_slice_from_region_series()` with a vector of cell numbers.
+* Fix `sample_region_series()` for region series with a single time step.
+* Fix `koeppen_geiger()` failing when only one cell (or a block with a single land cell) had data, and pass `broad` and `class_names` through for region series.
+* Fix `delta_downscale()` without a high resolution landmask, and interpolate gaps in all time steps rather than only the first.
+* Fix `update_dataset_list()`, which failed to install and use a newer dataset list.
+* Fix the names of monthly variables downloaded for WorldClim future datasets.
+* Fix the check for incomplete WorldClim present archives, and stop with a clear error when PaleoClim downloads fail.
+* `get_time_bp_steps()` and `get_resolution()` now use the current (possibly updated) dataset list.
+* Other minor fixes to input checks and error messages.
 
 # pastclim 2.2.0
 * Add functions to perform delta downscale of climate data.

@@ -44,8 +44,8 @@ get_vars_for_dataset <- function(dataset, path_to_nc = NULL, details = FALSE,
       stop("path_to_nc should be set for 'custom' dataset")
     }
     nc_in <- ncdf4::nc_open(path_to_nc)
+    on.exit(ncdf4::nc_close(nc_in))
     if (!details) {
-      ncdf4::nc_close(nc_in)
       return(names(nc_in$var))
     } else {
       get_detail <- function(x, attrib) {

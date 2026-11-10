@@ -58,6 +58,25 @@ test_that("sample_region_series works correctly", {
   )
 })
 
+test_that("sample_region_series works with a single time step", {
+  set.seed(123)
+  climate_ts <- region_series(
+    time_bp = -10000,
+    bio_variables = c("bio01", "bio12"),
+    dataset = "Example",
+    ext = terra::ext(region_extent$Europe)
+  )
+  sampled_fixed <- sample_region_series(climate_ts, size = 10)
+  expect_equal(nrow(sampled_fixed), 10)
+  expect_true(all(sampled_fixed$time_bp == -10000))
+  expect_true(sum(is.na(sampled_fixed)) == 0)
+  # values should match those in the raster for the sampled cells
+  expect_equal(
+    sampled_fixed$bio12,
+    terra::extract(climate_ts$bio12, sampled_fixed$cell)[, 1]
+  )
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)

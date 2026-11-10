@@ -56,6 +56,28 @@ test_that("get_vars_for_dataset for local file", {
   expect_true(inherits(vars, "data.frame"))
 })
 
+test_that("get_vars_for_dataset closes the nc file for custom datasets", {
+  skip_if_not(dir.exists("/proc/self/fd"))
+  # use a fresh copy of the file, so that we can check whether it is still open
+  path_to_nc <- file.path(tempdir(), "example_copy_for_get_vars.nc")
+  file.copy(
+    system.file("extdata/example_climate_v1.3.0.nc", package = "pastclim"),
+    path_to_nc
+  )
+  on.exit(unlink(path_to_nc))
+  is_open <- function(path) {
+    open_files <- Sys.readlink(list.files("/proc/self/fd", full.names = TRUE))
+    normalizePath(path) %in% open_files
+  }
+  get_vars_for_dataset(dataset = "custom", path_to_nc = path_to_nc)
+  expect_false(is_open(path_to_nc))
+  get_vars_for_dataset(
+    dataset = "custom", path_to_nc = path_to_nc,
+    details = TRUE
+  )
+  expect_false(is_open(path_to_nc))
+})
+
 ################################################################################
 # clean up for the next test
 unlink(data_path, recursive = TRUE)

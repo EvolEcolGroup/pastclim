@@ -54,7 +54,7 @@ download_worldclim_present <- function(dataset, bio_var, filename) {
       "^.*_([0-9]+)\\.tif$", "\\1",
       files_in_zip
     ))
-    if (!all(seq_len(length(band_vector) %in% files_in_zip_id))) {
+    if (!all(seq_along(band_vector) %in% files_in_zip_id)) {
       stop("some files are missing from the downloaded archive")
     }
   } else { # for altitude

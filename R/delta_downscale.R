@@ -41,7 +41,9 @@ delta_downscale <- function(x, delta_rast, x_landmask_high = NULL,
   # sort out the extents
   # the extent of the delta rast wins as we sorted it out in delta_compute
   x <- resample(x, delta_rast)
-  x_landmask_high <- resample(x_landmask_high, delta_rast)
+  if (!is.null(x_landmask_high)) {
+    x_landmask_high <- resample(x_landmask_high, delta_rast)
+  }
 
   # check that extent and resolutions are compatible
   if (terra::ext(delta_rast) != terra::ext(x)) {
@@ -80,7 +82,7 @@ delta_downscale <- function(x, delta_rast, x_landmask_high = NULL,
     # refine the landmask in x_high
     x_high <- mask(x_high, x_landmask_high)
     # fill in any gaps that resulted from this step with idw
-    for (i in seq_along(terra::nlyr(x_high))) {
+    for (i in seq_len(terra::nlyr(x_high))) {
       x_high[[i]] <- idw_interp(x_high[[i]], x_landmask_high[[i]],
         nmax = nmax, set = set, ...
       )
