@@ -58,7 +58,7 @@ names to layers in the raster:
 
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.34
+#> terra 1.9.50
 time_bp(bio01) <- c(0, -100, -200)
 names(bio01) <- paste("bio01", terra::time(bio01), sep = "_")
 ```
@@ -145,7 +145,7 @@ necessary steps:
     #> 1             annual mean temperature           ann. mean T       year
     #> 2 mean temperature of warmest quarter mean T of warmest qtr       year
     #>             units  units_exp dataset_list_v
-    #> 1 degrees Celsius *degree*C*          1.3.9
+    #> 1 degrees Celsius *degree*C*          2.2.1
     #> 2 degrees Celsius *degree*C*
 
 This includes the following fields:

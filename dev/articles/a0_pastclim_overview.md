@@ -84,7 +84,7 @@ A list of all datasets available can be obtained by typing:
 
 library(pastclim)
 #> Loading required package: terra
-#> terra 1.9.34
+#> terra 1.9.50
 get_available_datasets()
 #> Barreto2023, Beyer2020, CHELSA_trace21k_1.0_0.5m_vsi, Example, HYDE_3.3_baseline, Krapp2021, paleoclim_1.0_10m, paleoclim_1.0_2.5m, paleoclim_1.0_5m
 #> for present day reconstructions, use "WorldClim_2.1_RESm" or "CHELSA_2.4_RESm" where RES is an available resolution.
@@ -762,7 +762,7 @@ Africa and Eurasia by unioning the two individual outlines:
 ``` r
 
 library(sf)
-#> Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
+#> Linking to GEOS 3.14.1, GDAL 3.12.2, PROJ 9.7.1; sf_use_s2() is TRUE
 afr_eurasia <- sf::st_union(region_outline$Africa, region_outline$Eurasia)
 climate_20k_afr_eurasia <- region_slice(
   time_bp = -20000,

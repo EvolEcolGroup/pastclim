@@ -6,6 +6,9 @@
   [`location_series()`](https://evolecolgroup.github.io/pastclim/dev/reference/location_series.md).
 - fix for missing time step in CHELSA-TraCE21k (-1300 BP is missing for
   min and max temperature
+- fix path for Barreto2023 dataset (Figshare does not allow any longer
+  to download with a simple curl, so we have moved the data to Zenodo)
+- add SE for bio variables for Barreto et al 2023
 - Add Clark2025 as a possible sea level dataset.
 
 ## pastclim 2.2.0
