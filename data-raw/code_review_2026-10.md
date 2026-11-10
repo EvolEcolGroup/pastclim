@@ -41,7 +41,7 @@ rebased again, look for the commit subject instead.
   - **Test:** "NAs in other columns do not trigger nn_interpol"
   - **Comment** from AVP: it makes sense, but the user would need to modify the object (see test)
 
-- [ ] **F2. Vectors of cell numbers fail**
+- [x] ML **F2. Vectors of cell numbers fail**
   ([`61c8d9d`](https://github.com/EvolEcolGroup/pastclim/commit/61c8d9d))
   - **Problem:** the docs allow `x` to be a vector of cell numbers, but
     extraction used `locations_data[coords]`. `coords` is NULL in that case,
@@ -53,6 +53,7 @@ rebased again, look for the commit subject instead.
   - **File:** `R/location_slice_from_region_series_fast.R`
   - **Test:** "location_slice_from_region_series works with cell numbers"
     (results must match those obtained with coordinates)
+    - **Comment** ML and team: the new code solves the error. There is also an associated test in the relevant test file.
 
 ### Region series and classifications
 
