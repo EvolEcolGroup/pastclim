@@ -7,25 +7,25 @@ test_that("filenames_worldclim_present are correct", {
     dataset = "WorldClim_2.1_10m",
     bio_var = "bio04"
   )
-  expect_true(url_is_valid(bio_files))
+  expect_true(url_is_valid_retry(bio_files))
   bio_files <- filenames_worldclim_present(
     dataset = "WorldClim_2.1_2.5m",
     bio_var = "bio13"
   )
-  expect_true(url_is_valid(bio_files))
+  expect_true(url_is_valid_retry(bio_files))
   bio_files <- filenames_worldclim_present(
     dataset = "WorldClim_2.1_0.5m",
     bio_var = "temperature_10"
   )
-  expect_true(url_is_valid(bio_files))
+  expect_true(url_is_valid_retry(bio_files))
   bio_files <- filenames_worldclim_present(
     dataset = "WorldClim_2.1_5m",
     bio_var = "precipitation_01"
   )
-  expect_true(url_is_valid(bio_files))
+  expect_true(url_is_valid_retry(bio_files))
   bio_files <- filenames_worldclim_present(
     dataset = "WorldClim_2.1_5m",
     bio_var = "altitude"
   )
-  expect_true(url_is_valid(bio_files))
+  expect_true(url_is_valid_retry(bio_files))
 })

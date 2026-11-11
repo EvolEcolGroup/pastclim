@@ -21,7 +21,7 @@ test_that("filenames_chelsa_future are correct", {
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
     )
-    expect_true(url_is_valid(bio_files[sample(1:3, 1)]))
+    expect_true(url_is_valid_retry(bio_files[sample(1:3, 1)]))
   }
   # monthly variables
   variables <- c(
@@ -34,12 +34,12 @@ test_that("filenames_chelsa_future are correct", {
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
     )
-    expect_true(url_is_valid(bio_files[sample(1:3, 1)]))
+    expect_true(url_is_valid_retry(bio_files[sample(1:3, 1)]))
   }
   # test npp for a given dataset
   bio_files <- filenames_chelsa_future(
     dataset = target_datasets[1],
     bio_var = "npp"
   )
-  expect_true(url_is_valid(bio_files[sample(1:3, 1)]))
+  expect_true(url_is_valid_retry(bio_files[sample(1:3, 1)]))
 })

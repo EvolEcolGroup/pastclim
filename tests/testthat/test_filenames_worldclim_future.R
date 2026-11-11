@@ -33,7 +33,7 @@ test_that("filenames_worldclim_future are correct", {
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
     )
-    expect_true(url_is_valid(bio_files[sample(1:4, 1)]))
+    expect_true(url_is_valid_retry(bio_files[sample(1:4, 1)]))
   }
   # monthly variables
   variables <- c(
@@ -47,6 +47,6 @@ test_that("filenames_worldclim_future are correct", {
       dataset = target_datasets[i],
       bio_var = sample(variables, 1)
     )
-    expect_true(url_is_valid(bio_files[sample(1:4, 1)]))
+    expect_true(url_is_valid_retry(bio_files[sample(1:4, 1)]))
   }
 })
