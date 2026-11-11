@@ -33,6 +33,7 @@ Imports:
   curl,
   lubridate,
   gstat,
+  httr,
   methods,
   ncdf4,
   utils,
@@ -40,7 +41,6 @@ Imports:
   sf
 Suggests: 
   ggplot2,
-  httr,
   knitr,
   rmarkdown,
   marmap,

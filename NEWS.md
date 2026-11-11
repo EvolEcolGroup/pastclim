@@ -6,6 +6,9 @@
   download with a simple curl, so we have moved the data to Zenodo)
 * add SE for bio variables for Barreto et al 2023
 * Add Clark2025 as a possible sea level dataset.
+* `httr` is now imported rather than suggested: it is used to check the
+  urls of the virtual (`_vsi`) CHELSA datasets, which stopped with an error
+  asking to install `httr` when it was missing.
 
 # pastclim 2.2.0
 * Add functions to perform delta downscale of climate data.
