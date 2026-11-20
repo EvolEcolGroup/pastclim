@@ -109,7 +109,7 @@ rebased again, look for the commit subject instead.
   - **Test:** "delta_downscale works without a high resolution landmask"
     (also checks `range_limits`)
 
-- [ ] **F8. `delta_downscale()` only fills gaps in the first time step**
+- [x] TB **F8. `delta_downscale()` only fills gaps in the first time step**
   ([`e916a5e`](https://github.com/EvolEcolGroup/pastclim/commit/e916a5e))
   - **Problem:** the gap-filling loop used `seq_along(nlyr(x_high))`, i.e.
     `1`, so the other time steps kept NA cells wherever the high resolution
