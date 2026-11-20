@@ -127,7 +127,7 @@ rebased again, look for the commit subject instead.
   - **File:** `R/region_series.R`
   - **Test:** added to "ext on region series"
 
-- [ ] **F10. Misleading error for ambiguous coordinate columns**
+- [x] TB **F10. Misleading error for ambiguous coordinate columns**
   ([`dc48db9`](https://github.com/EvolEcolGroup/pastclim/commit/dc48db9))
   - **Problem:** a data.frame with both `x`/`y` and `longitude`/`latitude`
     gave "There are no recognised coordinate columns".
