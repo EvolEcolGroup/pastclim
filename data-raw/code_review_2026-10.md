@@ -90,7 +90,7 @@ rebased again, look for the commit subject instead.
     `bioclim_vars()` (numeric, matrix, SpatRaster, SpatRasterDataset, and
     invalid series).
 
-- [ ] **F6. `koeppen_geiger()` on region series ignores `broad` and `class_names`**
+- [x] AVP **F6. `koeppen_geiger()` on region series ignores `broad` and `class_names`**
   ([`a9924f4`](https://github.com/EvolEcolGroup/pastclim/commit/a9924f4))
   - **Problem:** the SpatRasterDataset method called the SpatRaster method
     without them, so it always returned the detailed classification with
