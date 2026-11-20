@@ -119,7 +119,7 @@ rebased again, look for the commit subject instead.
   - **Test:** "delta_downscale fills gaps in every layer" (new file
     `test_delta_downscale.R`; there were no tests for `delta_downscale()`)
 
-- [ ] **F9. `region_series()` rejects integer extents**
+- [x] AVP **F9. `region_series()` rejects integer extents**
   ([`f3bb578`](https://github.com/EvolEcolGroup/pastclim/commit/f3bb578))
   - **Problem:** `inherits(ext, "numeric")` is FALSE for integer vectors, so
     e.g. `ext = c(-10L, 15L, 45L, 60L)` was rejected.
