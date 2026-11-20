@@ -195,7 +195,7 @@ rebased again, look for the commit subject instead.
   - **File:** `R/download_paleoclim.R`
   - **Test:** "download_paleoclim stops if the download fails"
 
-- [ ] **F16. `download_dataset()` names the wrong variables in its error**
+- [x] JH **F16. `download_dataset()` names the wrong variables in its error**
   ([`2c1855b`](https://github.com/EvolEcolGroup/pastclim/commit/2c1855b))
   - **Problem:** requested variables were compared against the list of
     *datasets*, so the error named every requested variable (valid ones too),
