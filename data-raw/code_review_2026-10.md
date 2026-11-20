@@ -65,7 +65,7 @@ rebased again, look for the commit subject instead.
   - **File:** `R/sample_region_series.R`
   - **Test:** "sample_region_series works with a single time step"
 
-- [ ] **F4. `koeppen_geiger()` fails when only one row (or raster cell) has data**
+- [X] MC **F4. `koeppen_geiger()` fails when only one row (or raster cell) has data**
   ([`25e556f`](https://github.com/EvolEcolGroup/pastclim/commit/25e556f))
   - **Problem:** the matrix method stopped with "only one valid row of data".
     The SpatRaster method processes rasters in blocks, so any block with
@@ -78,8 +78,11 @@ rebased again, look for the commit subject instead.
     must give the same class as the full matrix, plus a 2x2 raster with one
     valid cell. **Note:** this removes the existing expectation of the "only
     one valid row" error from "koeppen geiger for numeric and matrix".
+ - **Comment:** the old code does not allow single-row input with an error message 
+    (possibly to avoid a crash?), but now the output is kept as matrix even if one row,
+    so it is compatible.
 
-- [ ] **F5. Invalid region series are not rejected by `bioclim_vars()` / `koeppen_geiger()`**
+- [X] MC **F5. Invalid region series are not rejected by `bioclim_vars()` / `koeppen_geiger()`**
   ([`245ee64`](https://github.com/EvolEcolGroup/pastclim/commit/245ee64))
   - **Problem:** the SpatRasterDataset methods built the error message but
     never called `stop()`, so the check did nothing and users got a less
