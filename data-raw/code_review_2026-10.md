@@ -100,7 +100,7 @@ rebased again, look for the commit subject instead.
   - **Test:** "koeppen geiger for SpatRasterDataset uses broad and
     class_names": each combination must match the SpatRaster method.
 
-- [ ] **F7. `delta_downscale()` fails without a high resolution landmask**
+- [x] AVP **F7. `delta_downscale()` fails without a high resolution landmask**
   ([`a0026ff`](https://github.com/EvolEcolGroup/pastclim/commit/a0026ff))
   - **Problem:** `x_landmask_high` defaults to NULL but was always passed to
     `terra::resample()`, which fails on NULL.
